@@ -9,3 +9,9 @@
 @tailwind components;
 @tailwind base;
 @tailwind utilities;
+
+body {
+  font-family: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans',
+    source-sans-pro, sans-serif;
+  font-weight: normal;
+}

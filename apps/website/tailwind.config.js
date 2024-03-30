@@ -11,7 +11,11 @@ module.exports = {
     ...createGlobPatternsForDependencies(__dirname),
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateRows: {
+        'global-layout': 'auto 1fr',
+      },
+    },
   },
   plugins: [],
 };

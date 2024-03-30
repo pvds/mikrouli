@@ -1,6 +1,7 @@
 import { component$, Slot, useStyles$ } from '@builder.io/qwik';
 import { routeLoader$ } from '@builder.io/qwik-city';
 import type { RequestHandler } from '@builder.io/qwik-city';
+import { Header } from '../components/header/header';
 
 import styles from './styles.css?inline';
 
@@ -25,9 +26,12 @@ export default component$(() => {
   useStyles$(styles);
   return (
     <>
-      <main>
-        <Slot />
-      </main>
+      <div class="grid grid-rows-global-layout h-dvh text-gray-600">
+        <Header />
+        <main class="p-4 pt-0">
+          <Slot />
+        </main>
+      </div>
     </>
   );
 });
