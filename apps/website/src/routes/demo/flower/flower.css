@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   justify-items: center;
+  --rotation: 135deg;
   --rotation: 225deg;
   --size-step: 10px;
   --odd-color-step: 5;
@@ -16,8 +17,12 @@
   contain: strict;
 }
 
-input {
-  width: 100%;
+h1 {
+  margin-bottom: 60px;
+}
+
+.input {
+  width: 60%;
 }
 
 .square {
