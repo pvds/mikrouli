@@ -65,6 +65,18 @@
         "cwd": "apps/website"
       }
     },
+    "start": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "pnpm nx run website:serve --watch",
+          "pnpm nx run website:serve.debug"
+        ],
+        "cwd": "./",
+        "color": true,
+        "parallel": true
+      }
+    },
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
