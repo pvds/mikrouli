@@ -7,16 +7,16 @@ export const NAVIGATION_ITEMS = [
   {
     title: 'Services',
     slug: 'services',
-    route: '/services',
+    route: '/services/',
   },
   {
     title: 'About',
     slug: 'about',
-    route: '/about',
+    route: '/about/',
   },
   {
     title: 'Contact',
     slug: 'contact',
-    route: '/contact',
+    route: '/contact/',
   },
 ];
