@@ -8,9 +8,11 @@ export const Header = component$(() => {
   useStylesScoped$(styles);
 
   return (
-    <header class="px-4 py-6 flex justify-between items-center">
-      <Branding />
-      <Navigation />
-    </header>
+    <div class="@container">
+      <header class=" px-4 py-6 flex flex-col gap-4 @md:flex-row justify-between items-center">
+        <Branding />
+        <Navigation />
+      </header>
+    </div>
   );
 });

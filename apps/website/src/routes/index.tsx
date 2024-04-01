@@ -3,7 +3,7 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import { Button } from '../components/button/button';
 import { Tile } from '../components/tile/tile';
 
-import Image from '../media/tree-mikrouli.webp?jsx';
+// import Image from '../media/tree-mikrouli.webp?jsx';
 
 export default component$(() => {
   return (
@@ -42,11 +42,11 @@ export default component$(() => {
           <Button>Service 3</Button>
         </Tile>
       </div>
-      <div id="about" class="grid">
-        <div class="relative">
-          <Image class="w-full h-full" />
-          <div class="absolute top-0 w-full h-full bg-white opacity-90"></div>
-        </div>
+      <div id="about" class="min-h-[20vmax] grid">
+        {/*<div class="relative">*/}
+        {/*  <Image class="w-full h-full" />*/}
+        {/*  <div class="absolute top-0 w-full h-full bg-white opacity-90"></div>*/}
+        {/*</div>*/}
       </div>
       <div
         id="contact"

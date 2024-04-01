@@ -10,8 +10,15 @@
 @tailwind base;
 @tailwind utilities;
 
+:root {
+  --mk-font-family: 'Avenir', 'Montserrat', 'Corbel', 'URW Gothic',
+    'source-sans-pro', 'sans-serif';
+  --mk-font-weight: normal;
+  --mk-font-size: 1rem;
+}
+
 body {
-  font-family: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans',
-    source-sans-pro, sans-serif;
-  font-weight: normal;
+  font-family: var(--mk-font-family);
+  font-weight: var(--mk-font-weight);
+  font-size: var(--mk-font-size);
 }

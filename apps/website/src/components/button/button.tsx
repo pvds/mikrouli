@@ -7,7 +7,7 @@ export const Button = component$(() => {
 
   return (
     <>
-      <button className="px-3 py-1 rounded bg-gray-400 text-white hover:bg-green-600">
+      <button class="px-4 py-1 rounded-full bg-brand-100 text-brand-800 hover:bg-brand-200">
         <Slot />
       </button>
     </>

@@ -8,9 +8,14 @@ export const Branding = component$(() => {
 
   return (
     <>
-      <a href="/" class="flex gap-2 items-center text-green-600">
-        <FaLeafSolid class="w-8 h-8" />
-        <h1 class="text-2xl font-medium">Mikrouli</h1>
+      <a href="/" class="flex gap-3 items-center text-brand-700">
+        <FaLeafSolid class="flex-none size-12 self-baseline" />
+        <div class="flex flex-col">
+          <h1 class="text-3xl font-medium leading-none">Mikrouli</h1>
+          <p class="font-light leading-none">
+            Transforming Patterns, Enriching Lives
+          </p>
+        </div>
       </a>
     </>
   );

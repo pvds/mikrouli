@@ -19,7 +19,7 @@ export const Tile = component$((props: ChildProps) => {
   return (
     <section
       class={{
-        'bg-gray-50 rounded': hasBg.value,
+        'bg-accent-50 rounded': hasBg.value,
         'grid items-end justify-end h-full p-2': true,
       }}
     >

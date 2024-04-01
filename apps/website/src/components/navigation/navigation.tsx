@@ -9,11 +9,11 @@ export const Navigation = component$(() => {
   return (
     <>
       <nav>
-        <ul class="flex flex-row">
+        <ul class="flex flex-row flex-wrap">
           {NAVIGATION_ITEMS.map((item) => (
             <li key={item.slug}>
               <a
-                class="px-2 py-1 rounded hover:bg-green-600 hover:text-white text-lg"
+                class="px-4 py-1 rounded-full hover:bg-accent-200 text-lg font-medium text-brand-700"
                 href={item.route}
               >
                 {item.title}
