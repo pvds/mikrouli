@@ -1,7 +1,7 @@
 const { createGlobPatternsForDependencies } = require('qwik-nx/tailwind');
 const { join } = require('path');
-// Grayscale Design palette: https://grayscale.design/app?lums=93.87,90.43,85.46,78.45,68.75,55.49,38.90,25.64,15.94,8.93,3.96,0.52&palettes=%23DEF0E8,%23359497&filters=0%7C0,0%7C0&names=lea,aqua&labels=,
-// Grayscale Design palette: https://grayscale.design/app?lums=93.87,90.43,85.46,78.45,68.75,55.49,38.90,24.17,15.94,8.93,3.96,0.52&palettes=%23DEF0E8,%23359497&filters=0%7C0,0%7C0&names=accen,brand&labels=,
+// Grayscale Design palette:
+// https://grayscale.design/app?lums=93.87,90.43,85.46,78.45,68.75,55.49,38.90,24.17,15.94,8.93,3.96,0.52&palettes=%23DEF0E8,%23359497&filters=0%7C0,0%7C0&names=accent,brand&labels=,
 const colors = {
   gray: {
     50: 'rgb(248, 248, 248)',

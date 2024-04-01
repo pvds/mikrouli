@@ -25,13 +25,11 @@ export const useServerTimeLoader = routeLoader$(() => {
 export default component$(() => {
   useStyles$(styles);
   return (
-    <>
-      <div class="grid grid-rows-global-layout min-h-full max-w-screen-3xl 3xl:mx-auto">
-        <Header />
-        <main class="p-4 pt-0">
-          <Slot />
-        </main>
-      </div>
-    </>
+    <div class="grid grid-rows-global-layout min-h-full max-w-screen-3xl 3xl:mx-auto">
+      <Header />
+      <main class="p-4 pt-0">
+        <Slot />
+      </main>
+    </div>
   );
 });

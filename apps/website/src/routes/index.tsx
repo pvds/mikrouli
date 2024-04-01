@@ -8,38 +8,42 @@ import { Tile } from '../components/tile/tile';
 export default component$(() => {
   return (
     <div class="grid gap-4">
-      <div
-        id="blog"
-        class="h-[40vmax] md:h-[20vmax] grid gap-4 xs:grid-cols-2 md:grid-cols-4"
-      >
-        <Tile>
-          <Button>Blogpost 1</Button>
+      <div id="intro">
+        <Tile hasBg={false} hasPadding={false}>
+          <div class="grid md:grid-cols-2 my-2">
+            <p class="leading-7">
+              At Mikrouli, we believe in the power of connection to heal and
+              grow. Our approach to systemic psychotherapy nurtures your mental
+              health through understanding, compassion, and tailored support,
+              fostering lasting change in your life and relationships.
+            </p>
+          </div>
         </Tile>
-        <Tile>
-          <Button>Blogpost 2</Button>
-        </Tile>
-        <Tile>
-          <Button>Blogpost 3</Button>
-        </Tile>
-        <Tile>
-          <Button>Blogpost 4</Button>
-        </Tile>
-      </div>
-      <div id="intro" class="h-[20vmax] grid">
-        <Tile hasBg={false} />
       </div>
       <div
         id="services"
         class="h-[40vmax] md:h-[20vmax] grid gap-4 sm:grid-cols-2 md:grid-cols-3"
       >
         <Tile>
-          <Button>Service 1</Button>
+          <p class="text-lg text-brand-800 font-semibold">
+            Dive deep into self-discovery and healing with our personalized
+            therapeutic sessions, designed just for you.
+          </p>
+          <Button>Individual therapy</Button>
         </Tile>
         <Tile>
-          <Button>Service 2</Button>
+          <p class="text-lg text-brand-800 font-semibold">
+            Rekindle connection and understanding in your relationship with our
+            compassionate, skilled couples therapy.
+          </p>
+          <Button>Couples therapy</Button>
         </Tile>
         <Tile>
-          <Button>Service 3</Button>
+          <p class="text-lg text-brand-800 font-semibold">
+            Strengthen your family bonds with our therapy sessions, creating a
+            more harmonious and understanding home environment.
+          </p>
+          <Button>Family therapy</Button>
         </Tile>
       </div>
       <div id="about" class="min-h-[20vmax] grid">
@@ -47,6 +51,39 @@ export default component$(() => {
         {/*  <Image class="w-full h-full" />*/}
         {/*  <div class="absolute top-0 w-full h-full bg-white opacity-90"></div>*/}
         {/*</div>*/}
+      </div>
+      <div
+        id="blog"
+        class="h-[40vmax] md:h-[20vmax] grid gap-4 xs:grid-cols-2 md:grid-cols-4"
+      >
+        <Tile>
+          <p class="text-lg text-brand-800 font-semibold">
+            Explore how systemic therapy can unlock profound insights into your
+            relationships and personal growth journey.
+          </p>
+          <Button>The Power of Systemic Therapy</Button>
+        </Tile>
+        <Tile>
+          <p class="text-lg text-brand-800 font-semibold">
+            Uncover strategies to improve communication, understanding, and
+            intimacy in your relationships with systemic therapy insights.
+          </p>
+          <Button>Navigating Relationship Dynamics</Button>
+        </Tile>
+        <Tile>
+          <p class="text-lg text-brand-800 font-semibold">
+            Discover how empathy can transform your therapy experience,
+            fostering deeper connection and understanding
+          </p>
+          <Button>The Role of Empathy in Healing</Button>
+        </Tile>
+        <Tile>
+          <p class="text-lg text-brand-800 font-semibold">
+            Learn how systemic psychotherapy can help you uncover your strengths
+            and resilience, guiding you through life's challenges
+          </p>
+          <Button>Building Resilience Through Self-Discovery</Button>
+        </Tile>
       </div>
       <div
         id="contact"

@@ -1,22 +1,24 @@
-export const NAVIGATION_ITEMS = [
+import { NavLinkProps } from '../nav-link/nav-link';
+
+export const NAVIGATION_ITEMS: NavLinkProps[] = [
   {
     title: 'Home',
     slug: 'home',
-    route: '/',
+    href: '/',
   },
   {
     title: 'Services',
     slug: 'services',
-    route: '/services/',
+    href: '/services/',
   },
   {
     title: 'About',
     slug: 'about',
-    route: '/about/',
+    href: '/about/',
   },
   {
     title: 'Contact',
     slug: 'contact',
-    route: '/contact/',
+    href: '/contact/',
   },
 ];

@@ -7,16 +7,14 @@ export const Branding = component$(() => {
   useStylesScoped$(styles);
 
   return (
-    <>
-      <a href="/" class="flex gap-3 items-center text-brand-700">
-        <FaLeafSolid class="flex-none size-12 self-baseline" />
-        <div class="flex flex-col">
-          <h1 class="text-3xl font-medium leading-none">Mikrouli</h1>
-          <p class="font-light leading-none">
-            Transforming Patterns, Enriching Lives
-          </p>
-        </div>
-      </a>
-    </>
+    <a href="/" class="flex gap-3 p-1.5 items-center text-brand-700">
+      <FaLeafSolid class="flex-none size-12 self-baseline" />
+      <div class="flex flex-col">
+        <h1 class="text-3xl font-medium leading-none">Mikrouli</h1>
+        <p class="font-light leading-none">
+          Transforming Patterns, Enriching Lives
+        </p>
+      </div>
+    </a>
   );
 });
