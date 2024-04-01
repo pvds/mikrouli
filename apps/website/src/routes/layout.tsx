@@ -1,6 +1,7 @@
 import { component$, Slot, useStyles$ } from '@builder.io/qwik';
 import { routeLoader$ } from '@builder.io/qwik-city';
 import type { RequestHandler } from '@builder.io/qwik-city';
+import { Footer } from '../components/footer/footer';
 import { Header } from '../components/header/header';
 
 import styles from './styles.css?inline';
@@ -25,11 +26,12 @@ export const useServerTimeLoader = routeLoader$(() => {
 export default component$(() => {
   useStyles$(styles);
   return (
-    <div class="grid grid-rows-global-layout min-h-full max-w-screen-3xl 3xl:mx-auto">
+    <div class="grid grid-rows-global-layout min-h-[100dvh] max-w-screen-3xl 3xl:mx-auto">
       <Header />
       <main class="p-4 pt-0">
         <Slot />
       </main>
+      <Footer />
     </div>
   );
 });

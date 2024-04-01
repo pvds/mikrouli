@@ -18,14 +18,13 @@ export const Tile = component$((props: ChildProps) => {
   const hasPadding = useSignal(props.hasPadding ?? true);
 
   return (
-    <section
+    <div
       class={{
         'bg-accent-50 rounded-lg': hasBg.value,
-        'p-2': hasPadding.value,
-        'grid items-end justify-end h-full': true,
+        'p-4': hasPadding.value,
       }}
     >
       <Slot />
-    </section>
+    </div>
   );
 });

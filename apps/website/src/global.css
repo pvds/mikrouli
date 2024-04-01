@@ -21,6 +21,7 @@ body {
   font-family: var(--mk-font-family);
   font-weight: var(--mk-font-weight);
   font-size: var(--mk-font-size);
+  color: theme('colors.gray.1000');
 }
 
 *:focus-visible {

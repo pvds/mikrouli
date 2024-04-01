@@ -7,7 +7,7 @@ export const Button = component$(() => {
 
   return (
     <>
-      <button class="px-4 py-1 rounded-full bg-brand-100 text-brand-800 hover:bg-brand-200">
+      <button class="justify-self-end px-4 py-1 rounded-full bg-brand-100 text-brand-800 hover:bg-brand-200">
         <Slot />
       </button>
     </>

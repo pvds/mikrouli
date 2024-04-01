@@ -72,6 +72,7 @@ module.exports = {
     extend: {
       gridTemplateRows: {
         'global-layout': 'auto 1fr',
+        article: 'auto 1fr auto',
       },
     },
   },
