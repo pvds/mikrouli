@@ -22,3 +22,7 @@ body {
   font-weight: var(--mk-font-weight);
   font-size: var(--mk-font-size);
 }
+
+*:focus-visible {
+  outline-color: theme('colors.brand.700');
+}
