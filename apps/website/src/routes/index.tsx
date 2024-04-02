@@ -9,6 +9,7 @@ export default component$(() => {
   return (
     <div class="grid gap-4">
       <section id="intro" class="mb-6">
+        {/* TODO: move to intro-teaser*/}
         <Tile hasBg={false} hasPadding={false}>
           <p class="leading-7 max-w-2xl">
             At Mikrouli, we believe in the power of connection to heal and grow.
@@ -18,6 +19,7 @@ export default component$(() => {
           </p>
         </Tile>
       </section>
+      {/* TODO: move to services-teaser*/}
       <section id="services" class="mb-6">
         <h2 class="text-2xl font-bold text-brand-800">Our Services</h2>
         <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
@@ -59,6 +61,7 @@ export default component$(() => {
           </Tile>
         </div>
       </section>
+      {/* TODO: move to about-teaser*/}
       <section id="about" class="mb-6 min-h-[20vmax]">
         <h2 class="mb-6 text-2xl font-bold text-brand-800">About</h2>
         <div class="grid gap-4 md:grid-cols-2">
@@ -86,6 +89,7 @@ export default component$(() => {
           </Tile>
         </div>
       </section>
+      {/* TODO: move to contact-teaser*/}
       <div
         id="contact"
         class="h-[15rem] mb-6 grid place-items-center gap-4 sm:grid-cols-2"
@@ -97,6 +101,7 @@ export default component$(() => {
           <Button>Make an appointment</Button>
         </Tile>
       </div>
+      {/* TODO: move to blog-teaser*/}
       <section id="blog" class="mb-6">
         <h2 class="mb-6 text-2xl font-bold text-brand-800">Blog</h2>
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
