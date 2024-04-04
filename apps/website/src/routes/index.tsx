@@ -21,7 +21,7 @@ export default component$(() => {
       </section>
       {/* TODO: move to services-teaser*/}
       <section id="services" class="mb-6">
-        <h2 class="text-2xl font-bold text-brand-800">Our Services</h2>
+        <h2 class="mb-4 text-2xl font-bold text-brand-800">Our Services</h2>
         <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
           <Tile>
             <article class="grid grid-rows-article gap-2 h-full">
@@ -63,7 +63,7 @@ export default component$(() => {
       </section>
       {/* TODO: move to about-teaser*/}
       <section id="about" class="mb-6 min-h-[20vmax]">
-        <h2 class="mb-6 text-2xl font-bold text-brand-800">About</h2>
+        <h2 class="mb-4 text-2xl font-bold text-brand-800">About</h2>
         <div class="grid gap-4 md:grid-cols-2">
           <Tile>
             <article class="grid grid-rows-article gap-2 h-full">
@@ -103,7 +103,7 @@ export default component$(() => {
       </div>
       {/* TODO: move to blog-teaser*/}
       <section id="blog" class="mb-6">
-        <h2 class="mb-6 text-2xl font-bold text-brand-800">Blog</h2>
+        <h2 class="mb-4 text-2xl font-bold text-brand-800">Blog</h2>
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Tile>
             <article class="grid grid-rows-article gap-2 h-full">
