@@ -5,6 +5,7 @@
 <!-- TOC -->
 * [Mikrouli website](#mikrouli-website)
   * [Features](#features)
+    * [TODO](#todo)
   * [Getting started](#getting-started)
     * [Develop](#develop)
     * [Build](#build)
@@ -21,6 +22,20 @@
 - [**Biome**](https://biomejs.dev/): Linting and formatting
 - [**GitHub**](https://github.com]): Version control & CI/CD
 - [**Netlify**](https://netlify.com): Hosting
+
+### TODO
+
+- [ ] Configure GitHub CI/CD pipeline
+- [ ] Configure [static site generation adapter](https://svelte.dev/docs/kit/adapter-static)
+- [ ] Configure Hosting
+    - [Github Pages](https://pages.github.com/)
+    - [Netlify](https://www.netlify.com/)
+    - [Vercel](https://vercel.com/)
+- [ ] Connect to a CMS checkout:
+    - [Contentful](https://www.contentful.com/)
+    - [Prismic](https://prismic.io/)
+	- [Strapi](https://www.strapi.io)
+    - [Sanity](https://www.sanity.io/)
 
 ## Getting started
 
