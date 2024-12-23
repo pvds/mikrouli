@@ -26,7 +26,6 @@
 ### TODO
 
 - [ ] Configure GitHub CI/CD pipeline
-- [ ] Configure [static site generation adapter](https://svelte.dev/docs/kit/adapter-static)
 - [ ] Configure Hosting
     - [Github Pages](https://pages.github.com/)
     - [Netlify](https://www.netlify.com/)
