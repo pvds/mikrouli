@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+@theme {
+    --default-font-family: "Nunito", "sans-serif";
+}
+
+@font-face {
+    font-family: "Nunito";
+    src: url("./fonts/nunito.ttf");
+    font-weight: 200 1000;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Nunito";
+    src: url("./fonts/nunito-italic.ttf");
+    font-weight: 200 1000;
+    font-style: italic;
+    font-display: swap;
+}
