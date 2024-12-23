@@ -7,8 +7,9 @@ const { children } = $props();
 </script>
 
 <svelte:head>
-	<link rel="preload" as="font" href="/fonts/nunito.ttf" type="font/ttf" crossorigin="anonymous">
-	<link rel="preload" as="font" href="/fonts/nunito-italic.ttf" type="font/ttf" crossorigin="anonymous">
+	<link rel="preload" as="font" href="/fonts/nunito-latin.woff2"
+		  type="font/woff2"
+		  crossorigin="anonymous">
 </svelte:head>
 
 <div class="app">
