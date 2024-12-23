@@ -9,11 +9,16 @@
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
+		"format": "biome format",
+		"format:write": "biome format --write",
+		"lint": "biome lint",
+		"lint:write": "biome lint --write",
 		"test": "npm run test:unit -- --run && npm run test:e2e",
 		"test:unit": "vitest",
 		"test:e2e": "playwright test"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
 		"@playwright/test": "^1.45.3",
 		"@sveltejs/adapter-netlify": "^4.4.0",
 		"@sveltejs/kit": "^2.0.0",
