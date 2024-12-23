@@ -22,5 +22,19 @@
 			"recommended": true,
 			"correctness": { "noUnusedImports": { "level": "error" } }
 		}
-	}
+	},
+	"overrides": [
+		{
+			"include": ["*.svelte"],
+			"linter": {
+				"rules": {
+					"style": {
+						"useConst": "off",
+						"useImportType": "off"
+					},
+					"correctness": { "noUnusedImports": "off" }
+				}
+			}
+		}
+	]
 }
