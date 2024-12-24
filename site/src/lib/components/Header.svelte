@@ -6,7 +6,7 @@ import { page } from "$app/state";
 	<nav>
 		<ul class="flex gap-2">
 			<li aria-current={page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/site/static">Home</a>
+				<a href="/">Home</a>
 			</li>
 			<li aria-current={page.url.pathname === '/about' ? 'page' : undefined}>
 				<a href="/about">About</a>
