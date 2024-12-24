@@ -1,9 +1,3 @@
-@import "tailwindcss";
-
-@theme {
-	--default-font-family: "Nunito", "Noto Sans", "sans-serif";
-}
-
 /* latin-ext */
 @font-face {
 	font-family: "Nunito";

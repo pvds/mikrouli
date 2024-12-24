@@ -1,6 +1,6 @@
 <script>
 import Header from "$lib/components/Header.svelte";
-import "../app.css";
+import "$lib/styles/index.css";
 
 /** @type {{children: import('svelte').Snippet}} */
 const { children } = $props();
