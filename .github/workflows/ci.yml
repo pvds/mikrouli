@@ -52,14 +52,6 @@ jobs:
           static_site_generator: sveltekit
 
       - name: upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: github-pages
-          path: site/build
-          compression-level: 1
-
-      - name: upload artifact
-        if: false
         uses: actions/upload-pages-artifact@v3
         with:
           path: site/build
