@@ -1,5 +1,8 @@
 name: CI
 
+env:
+  NODE_ENV: production
+
 on:
   push:
     branches:
@@ -49,6 +52,9 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
     needs: build
     permissions:
       pages: write
