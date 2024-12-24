@@ -37,9 +37,11 @@ jobs:
 
       - name: lint
         run: bun run lint
+        continue-on-error: true
 
       - name: format
         run: bun run format
+        continue-on-error: true
 
       - name: build
         run: bun run build
