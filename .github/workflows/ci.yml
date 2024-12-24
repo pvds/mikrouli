@@ -44,6 +44,11 @@ jobs:
       - name: build
         run: bun run build
 
+      - name: setup pages
+        uses: actions/configure-pages@v5
+        with:
+          static_site_generator: sveltekit
+
       - name: upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -60,9 +65,6 @@ jobs:
       pages: write
       id-token: write
     steps:
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          static_site_generator: sveltekit
       - name: github pages
+        id: deployment
         uses: actions/deploy-pages@v4
