@@ -61,4 +61,4 @@ jobs:
       id-token: write
     steps:
       - name: github pages
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
