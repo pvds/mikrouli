@@ -44,10 +44,11 @@ jobs:
       - name: build
         run: bun run build
 
-      - name: artifact
+      - name: site
         uses: actions/upload-artifact@v4
         with:
           path: site/build
+          compression-level: 1
 
   deploy:
     runs-on: ubuntu-latest
@@ -61,3 +62,5 @@ jobs:
     steps:
       - name: github pages
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: 'site'
