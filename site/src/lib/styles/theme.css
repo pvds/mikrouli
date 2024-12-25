@@ -1,3 +1,42 @@
 @theme {
 	--default-font-family: "Nunito", "Noto Sans", "sans-serif";
+
+	--color-grayscale-50: hsl(0, 0%, 97.30%);
+	--color-grayscale-100: hsl(0, 0%, 95.70%);
+	--color-grayscale-200: hsl(0, 0%, 93.30%);
+	--color-grayscale-300: hsl(0, 0%, 89.80%);
+	--color-grayscale-400: hsl(0, 0%, 84.70%);
+	--color-grayscale-500: hsl(0, 0%, 76.90%);
+	--color-grayscale-600: hsl(0, 0%, 65.50%);
+	--color-grayscale-700: hsl(0, 0%, 52.90%);
+	--color-grayscale-800: hsl(0, 0%, 43.50%);
+	--color-grayscale-900: hsl(0, 0%, 32.90%);
+	--color-grayscale-1000: hsl(0, 0%, 22.00%);
+	--color-grayscale-1100: hsl(0, 0%, 6.30%);
+
+	--color-brand-50: hsl(182, 48.00%, 96.15%);
+	--color-brand-100: hsl(182, 48.00%, 94.00%);
+	--color-brand-200: hsl(182, 48.00%, 91.00%);
+	--color-brand-300: hsl(182, 48.00%, 86.14%);
+	--color-brand-400: hsl(182, 48.00%, 79.00%);
+	--color-brand-500: hsl(182, 48.00%, 67.67%);
+	--color-brand-600: hsl(182, 48.00%, 49.94%);
+	--color-brand-700: hsl(182, 48.00%, 40.00%);
+	--color-brand-800: hsl(182, 48.00%, 33.00%);
+	--color-brand-900: hsl(182, 48.00%, 25.26%);
+	--color-brand-1000: hsl(182, 48.00%, 16.82%);
+	--color-brand-1100: hsl(182, 48.00%, 5.00%);
+
+	--color-accent-50: hsl(153, 37.50%, 96.72%);
+	--color-accent-100: hsl(153, 37.50%, 94.66%);
+	--color-accent-200: hsl(153, 37.50%, 91.58%);
+	--color-accent-300: hsl(153, 37.50%, 87.16%);
+	--color-accent-400: hsl(153, 37.50%, 80.86%);
+	--color-accent-500: hsl(153, 37.50%, 70.82%);
+	--color-accent-600: hsl(153, 37.50%, 55.36%);
+	--color-accent-700: hsl(153, 37.50%, 42.90%);
+	--color-accent-800: hsl(153, 37.50%, 35.34%);
+	--color-accent-900: hsl(153, 37.50%, 26.95%);
+	--color-accent-1000: hsl(153, 37.50%, 17.88%);
+	--color-accent-1100: hsl(153, 37.50%, 5.27%);
 }
