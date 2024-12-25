@@ -1,5 +1,5 @@
 <script>
-import Header from "$lib/components/Header.svelte";
+import Header from "$lib/components/shell/Header.svelte";
 import "../app.css";
 
 /** @type {{children: import('svelte').Snippet}} */
@@ -15,7 +15,7 @@ const { children } = $props();
 <div class="app">
 	<Header />
 
-	<main>
+	<main class="section">
 		{@render children()}
 	</main>
 </div>

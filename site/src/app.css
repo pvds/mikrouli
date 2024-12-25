@@ -1,3 +1,4 @@
 @import "tailwindcss";
-@import "$lib/styles/tokens.css";
-@import "$lib/styles/fonts.css";
+@import "$lib/styles/theme.css" layer(theme);
+@import "$lib/styles/base.css" layer(base);
+@import "$lib/styles/utilities.css";
