@@ -62,5 +62,6 @@ jobs:
           path: site/build
 
       - name: github pages
+        id: deployment
         uses: actions/deploy-pages@v4
 
