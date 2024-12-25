@@ -38,15 +38,7 @@ jobs:
         run: bun install --no-cache
 
       - name: check
-        run: bun run check
-
-      - name: lint
-        run: bun run lint
-        continue-on-error: true
-
-      - name: format
-        run: bun run format
-        continue-on-error: true
+        run: bun run check:all
 
       - name: build
         run: bun run build
