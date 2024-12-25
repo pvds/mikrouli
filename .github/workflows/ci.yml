@@ -30,12 +30,12 @@ jobs:
           fetch-depth: 1
 
       - name: setup
-        uses: oven-sh/setup-bun@v1
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version: 1.1.42
 
       - name: install
-        run: bun install --no-cache
+        run: bun install
 
       - name: check
         run: bun run check:all
