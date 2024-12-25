@@ -11,13 +11,18 @@ on:
 permissions:
   actions: read
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
-  build:
+  main:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: site
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -27,7 +32,7 @@ jobs:
       - name: setup
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: latest
+          bun-version: 1.1.42
 
       - name: install
         run: bun install --no-cache
@@ -56,16 +61,6 @@ jobs:
         with:
           path: site/build
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{steps.deployment.outputs.page_url}}
-    steps:
       - name: github pages
-        id: deployment
         uses: actions/deploy-pages@v4
+
