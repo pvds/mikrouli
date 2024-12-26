@@ -10,7 +10,7 @@ $: isCurrentPage = currentPath === href;
 
 <li>
 	<a {href}
-	class="inline-flex px-3 py-1 rounded-lg text-white bg-green-800 hover:bg-green-700"
+	class="inline-flex px-3 py-1 rounded-lg font-medium hover:text-brand-300"
 	aria-current={isCurrentPage ? "page" : undefined}
 	>
 		<slot />

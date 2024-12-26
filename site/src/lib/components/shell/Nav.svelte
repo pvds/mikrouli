@@ -5,7 +5,9 @@ import NavLink from "./NavLink.svelte";
 
 /** @type {{ href: string, label: string }[]} */
 const navItems = [
-	{ href: "/", label: "Home" },
+	{ href: "/services", label: "Services" },
+	{ href: "/blog", label: "Blog" },
+	{ href: "/contact", label: "Contact" },
 	{ href: "/about", label: "About" },
 ];
 </script>
