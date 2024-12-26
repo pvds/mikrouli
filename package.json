@@ -1,14 +1,20 @@
 {
-	"name": "$name$",
-	"version": "$version$",
-	"description": "$END$",
-	"main": "$main$",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
+	"name": "mikrouli",
+	"private": true,
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/pvds/mikrouli"
 	},
-	"private": true
+	"scripts": {
+		"prepare": "lefthook install"
+	},
+	"dependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@evilmartians/lefthook": "^1.10.1"
+	},
+	"trustedDependencies": ["@biomejs/biome"],
+	"workspaces": ["site"],
+	"prettier": {
+		"proseWrap": "always"
+	}
 }
