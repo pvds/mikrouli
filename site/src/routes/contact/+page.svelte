@@ -1,14 +1,14 @@
+<script>
+import Hero from "$lib/components/shell/Hero.svelte";
+</script>
+
 <svelte:head>
 	<title>Contact - Mikrouli</title>
 	<meta name="description" content="" />
 </svelte:head>
 
-<div class="text-column">
-	<h1>Get in contact</h1>
-
+<Hero title="Get in contact">
 	<p>
-		The page you're looking at is purely static HTML, with no client-side interactivity needed.
-		Because of that, we don't need to load any JavaScript. Try viewing the page's source, or opening
-		the devtools network panel and reloading.
+		Do you have any questions or feedback? Feel free to reach out to me.
 	</p>
-</div>
+</Hero>

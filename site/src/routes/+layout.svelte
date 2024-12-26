@@ -12,10 +12,10 @@ const { children } = $props();
 		  crossorigin="anonymous">
 </svelte:head>
 
-<div class="app min-h-dvh bg-brand-100 text-broad">
+<div class="app min-h-dvh bg-accent-100 text-broad">
 	<Header />
 
-	<main class="section">
+	<main>
 		{@render children()}
 	</main>
 </div>

@@ -1,14 +1,14 @@
+<script>
+import Hero from "$lib/components/shell/Hero.svelte";
+</script>
+
 <svelte:head>
 	<title>Blog - Mikrouli</title>
 	<meta name="description" content="" />
 </svelte:head>
 
-<div class="text-column">
-	<h1>Blog</h1>
-
+<Hero title="Blog">
 	<p>
-		The page you're looking at is purely static HTML, with no client-side interactivity needed.
-		Because of that, we don't need to load any JavaScript. Try viewing the page's source, or opening
-		the devtools network panel and reloading.
+		Some blog posts will be here soon.
 	</p>
-</div>
+</Hero>

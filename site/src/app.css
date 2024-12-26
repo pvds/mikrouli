@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* TODO: do not use `@import` until @tailwindcss/language-server is fixed
     bug: https://github.com/tailwindlabs/tailwindcss-intellisense/issues/1103
@@ -84,11 +85,6 @@
 		src: url(/fonts/noto-greek.woff2) format("woff2");
 		unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C,
 			U+038E-03A1, U+03A3-03FF;
-	}
-
-	body {
-		background-color: var(--color-accent-50);
-		background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
 	}
 }
 

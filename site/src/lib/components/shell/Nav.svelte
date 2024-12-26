@@ -1,4 +1,3 @@
-<!-- Nav.svelte -->
 <script>
 import { page } from "$app/state";
 import NavLink from "./NavLink.svelte";
@@ -12,7 +11,7 @@ const navItems = [
 ];
 </script>
 
-<nav aria-label="Main navigation">
+<nav class="ml-auto" aria-label="Main navigation">
 	<ul class="flex gap-2">
 		{#each navItems as { href, label }}
 			<NavLink {href} currentPath={page.url.pathname}>

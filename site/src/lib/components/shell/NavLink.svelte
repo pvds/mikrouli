@@ -1,4 +1,3 @@
-<!-- NavLink.svelte -->
 <script>
 /** @type {string} */
 export let href;
@@ -10,7 +9,7 @@ $: isCurrentPage = currentPath === href;
 
 <li>
 	<a {href}
-	class="inline-flex px-3 py-1 rounded-lg font-medium hover:text-brand-300"
+	class="inline-flex px-3 py-1 rounded-lg font-medium hover:text-accent-400"
 	aria-current={isCurrentPage ? "page" : undefined}
 	>
 		<slot />
