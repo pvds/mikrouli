@@ -1,21 +1,21 @@
 {
-  "name": "Mikrouli - Systemic Change",
-  "short_name": "Mikrouli",
-  "icons": [
-    {
-      "src": "%sveltekit.assets%/favicons/web-app-manifest-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable"
-    },
-    {
-      "src": "%sveltekit.assets%/favicons/web-app-manifest-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
-    }
-  ],
-  "theme_color": "#E1F4F4",
-  "background_color": "#E1F4F4",
-  "display": "standalone"
+	"name": "Mikrouli - Systemic Change",
+	"short_name": "Mikrouli",
+	"icons": [
+		{
+			"src": "%sveltekit.assets%/favicons/web-app-manifest-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "maskable"
+		},
+		{
+			"src": "%sveltekit.assets%/favicons/web-app-manifest-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "maskable"
+		}
+	],
+	"theme_color": "#E1F4F4",
+	"background_color": "#E1F4F4",
+	"display": "standalone"
 }
