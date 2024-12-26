@@ -1,15 +1,13 @@
 <script>
+/**
+ * @typedef {Object} Props
+ * @property {string} href
+ * @property {string} currentPath
+ * @property {import('svelte').Snippet} [children]
+ */
 
-
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} href
-	 * @property {string} currentPath
-	 * @property {import('svelte').Snippet} [children]
-	 */
-
-	/** @type {Props} */
-	let { href, currentPath, children } = $props();
+/** @type {Props} */
+let { href, currentPath, children } = $props();
 
 let isCurrentPage = $derived(currentPath === href);
 </script>

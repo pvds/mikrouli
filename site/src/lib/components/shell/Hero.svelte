@@ -1,13 +1,12 @@
 <script>
+/**
+ * @typedef {Object} Props
+ * @property {string} title
+ * @property {import('svelte').Snippet} [children]
+ */
 
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} title
-	 * @property {import('svelte').Snippet} [children]
-	 */
-
-	/** @type {Props} */
-	let { title, children } = $props();
+/** @type {Props} */
+let { title, children } = $props();
 </script>
 
 <section class="p-8 bg-accent-300 text-accent-950">
