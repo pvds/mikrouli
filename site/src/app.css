@@ -1,4 +1,106 @@
 @import "tailwindcss";
-@import "$lib/styles/theme.css" layer(theme);
-@import "$lib/styles/base.css" layer(base);
-@import "$lib/styles/utilities.css";
+
+/* TODO: do not use `@import` until @tailwindcss/language-server is fixed
+    bug: https://github.com/tailwindlabs/tailwindcss-intellisense/issues/1103
+    pr: https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1106
+    when ready test new version using `bun i -d @tailwindcss/language-server@insiders`
+*/
+
+/*@import "$lib/styles/theme.css" layer(theme);*/
+@layer theme {
+	@theme {
+		--default-font-family: "Nunito", "Noto Sans", "sans-serif";
+
+		--color-grayscale-50: hsl(0, 0%, 97.30%);
+		--color-grayscale-100: hsl(0, 0%, 95.70%);
+		--color-grayscale-200: hsl(0, 0%, 93.30%);
+		--color-grayscale-300: hsl(0, 0%, 89.80%);
+		--color-grayscale-400: hsl(0, 0%, 84.70%);
+		--color-grayscale-500: hsl(0, 0%, 76.90%);
+		--color-grayscale-600: hsl(0, 0%, 65.50%);
+		--color-grayscale-700: hsl(0, 0%, 52.90%);
+		--color-grayscale-800: hsl(0, 0%, 43.50%);
+		--color-grayscale-900: hsl(0, 0%, 32.90%);
+		--color-grayscale-1000: hsl(0, 0%, 22.00%);
+		--color-grayscale-1100: hsl(0, 0%, 6.30%);
+
+		--color-brand-50: hsl(182, 48.00%, 96.15%);
+		--color-brand-100: hsl(182, 48.00%, 94.00%);
+		--color-brand-200: hsl(182, 48.00%, 91.00%);
+		--color-brand-300: hsl(182, 48.00%, 86.14%);
+		--color-brand-400: hsl(182, 48.00%, 79.00%);
+		--color-brand-500: hsl(182, 48.00%, 67.67%);
+		--color-brand-600: hsl(182, 48.00%, 49.94%);
+		--color-brand-700: hsl(182, 48.00%, 40.00%);
+		--color-brand-800: hsl(182, 48.00%, 33.00%);
+		--color-brand-900: hsl(182, 48.00%, 25.26%);
+		--color-brand-1000: hsl(182, 48.00%, 16.82%);
+		--color-brand-1100: hsl(182, 48.00%, 5.00%);
+
+		--color-accent-50: hsl(153, 37.50%, 96.72%);
+		--color-accent-100: hsl(153, 37.50%, 94.66%);
+		--color-accent-200: hsl(153, 37.50%, 91.58%);
+		--color-accent-300: hsl(153, 37.50%, 87.16%);
+		--color-accent-400: hsl(153, 37.50%, 80.86%);
+		--color-accent-500: hsl(153, 37.50%, 70.82%);
+		--color-accent-600: hsl(153, 37.50%, 55.36%);
+		--color-accent-700: hsl(153, 37.50%, 42.90%);
+		--color-accent-800: hsl(153, 37.50%, 35.34%);
+		--color-accent-900: hsl(153, 37.50%, 26.95%);
+		--color-accent-1000: hsl(153, 37.50%, 17.88%);
+		--color-accent-1100: hsl(153, 37.50%, 5.27%);
+	}
+}
+
+/*@import "$lib/styles/base.css" layer(base);*/
+@layer base {
+	/* latin-ext */
+	@font-face {
+		font-family: "Nunito";
+		font-style: normal;
+		font-weight: 200 1000;
+		font-display: swap;
+		src: url(/fonts/nunito-latin-ext.woff2) format("woff2");
+		unicode-range:
+			U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+	}
+
+	/* latin */
+	@font-face {
+		font-family: "Nunito";
+		font-style: normal;
+		font-weight: 200 1000;
+		font-display: swap;
+		src: url(/fonts/nunito-latin.woff2) format("woff2");
+		unicode-range:
+			U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+	}
+
+	/* greek-ext */
+	@font-face {
+		font-family: "Noto Sans";
+		font-style: italic;
+		font-weight: 100 900;
+		font-stretch: 100%;
+		font-display: swap;
+		src: url(/fonts/noto-greek-ext.woff2) format("woff2");
+		unicode-range: U+1F00-1FFF;
+	}
+
+	/* greek */
+	@font-face {
+		font-family: "Noto Sans";
+		font-style: italic;
+		font-weight: 100 900;
+		font-stretch: 100%;
+		font-display: swap;
+		src: url(/fonts/noto-greek.woff2) format("woff2");
+		unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C,
+			U+038E-03A1, U+03A3-03FF;
+	}
+}
+
+/*@import "$lib/styles/utilities.css";*/
+@utility section {
+	@apply px-4 py-2;
+}
