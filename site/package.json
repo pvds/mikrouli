@@ -36,5 +36,9 @@
 	"prettier": {
 		"proseWrap": "always"
 	},
-	"trustedDependencies": ["@biomejs/biome", "@sveltejs/kit", "esbuild"]
+	"trustedDependencies": [
+		"@biomejs/biome",
+		"@sveltejs/kit",
+		"esbuild"
+	]
 }

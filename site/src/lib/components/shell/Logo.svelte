@@ -1,6 +1,12 @@
 <script>
-/** @type {string} */
-export let classes;
+
+  /**
+   * @typedef {Object} Props
+   * @property {string} classes
+   */
+
+  /** @type {Props} */
+  let { classes } = $props();
 </script>
 
 <svg class="{classes}" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 638.6 638.1">
