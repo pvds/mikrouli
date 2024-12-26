@@ -1,10 +1,10 @@
 <svelte:head>
-	<title>About</title>
+	<title>Services - Mikrouli</title>
 	<meta name="description" content="" />
 </svelte:head>
 
 <div class="text-column">
-	<h1>About me</h1>
+	<h1>Our Services</h1>
 
 	<p>
 		The page you're looking at is purely static HTML, with no client-side interactivity needed.
