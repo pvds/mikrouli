@@ -12,7 +12,7 @@
 		"@biomejs/biome": "1.9.4",
 		"@evilmartians/lefthook": "^1.10.1"
 	},
-	"trustedDependencies": ["@biomejs/biome"],
+	"trustedDependencies": ["@biomejs/biome", "@evilmartians/lefthook"],
 	"workspaces": ["site"],
 	"prettier": {
 		"proseWrap": "always"
