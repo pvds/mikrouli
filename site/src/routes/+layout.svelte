@@ -6,12 +6,6 @@ import "../app.css";
 const { children } = $props();
 </script>
 
-<svelte:head>
-	<link rel="preload" as="font" href="/fonts/nunito-latin.woff2"
-		  type="font/woff2"
-		  crossorigin="anonymous">
-</svelte:head>
-
 <div class="app min-h-dvh bg-accent-100 text-broad">
 	<Header />
 
