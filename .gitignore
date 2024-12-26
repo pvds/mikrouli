@@ -1,4 +1,10 @@
+test-results
 node_modules
+
+# Output
+.output
+.vercel
+.wrangler
 
 # OS
 .DS_Store
@@ -10,5 +16,14 @@ Thumbs.db
 !.env.example
 !.env.test
 
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
 ## IDE
 .idea
+
+# Site
+site/.favicons.json
+site/.svelte-kit
+site/build

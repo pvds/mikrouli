@@ -21,7 +21,6 @@
 		"util:favicons": "bunx realfavicon generate src/lib/images/icon.svg favicons.json .favicons.json static"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.9.4",
 		"@sveltejs/adapter-static": "^3.0.8",
 		"@sveltejs/kit": "^2.15.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
@@ -33,12 +32,5 @@
 		"typescript": "^5.7.2",
 		"vite": "^6.0.5"
 	},
-	"prettier": {
-		"proseWrap": "always"
-	},
-	"trustedDependencies": [
-		"@biomejs/biome",
-		"@sveltejs/kit",
-		"esbuild"
-	]
+	"trustedDependencies": ["@sveltejs/kit", "esbuild"]
 }
