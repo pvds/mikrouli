@@ -1,0 +1,32 @@
+{
+	"icon": {
+		"desktop": {
+			"regularIconTransformation": {
+				"type": "none"
+			},
+			"darkIconType": "none"
+		},
+		"touch": {
+			"transformation": {
+				"type": "background",
+				"backgroundColor": "#E1F4F4",
+				"backgroundRadius": 0,
+				"imageScale": 0.7
+			},
+			"appTitle": "Mikrouli"
+		},
+		"webAppManifest": {
+			"transformation": {
+				"type": "background",
+				"backgroundColor": "#E1F4F4",
+				"backgroundRadius": 0,
+				"imageScale": 0.7
+			},
+			"backgroundColor": "#E1F4F4",
+			"name": "Mikrouli - Systemic Change",
+			"shortName": "Mikrouli",
+			"themeColor": "#E1F4F4"
+		}
+	},
+	"path": "%sveltekit.assets%/favicons/"
+}
