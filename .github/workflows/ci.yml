@@ -37,6 +37,13 @@ jobs:
       - name: check
         run: bun run check
 
+      - name: content
+        if: false
+        run: bun run util:content
+        env:
+          CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+          CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+
       - name: build
         run: bun run build
 
