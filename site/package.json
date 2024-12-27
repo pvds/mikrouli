@@ -11,7 +11,7 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"check": "bun run check:format & bun run check:svelte & wait",
+		"check": "bun run check:format & bun run check:svelte",
 		"check:format": "biome check",
 		"check:svelte": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:svelte:watch": "bun run check:svelte --watch",
