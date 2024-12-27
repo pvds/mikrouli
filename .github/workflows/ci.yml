@@ -17,9 +17,6 @@ permissions:
 jobs:
   main:
     runs-on: ubuntu-24.04
-    defaults:
-      run:
-        working-directory: site
     environment:
       name: github-pages
       url: ${{steps.deployment.outputs.page_url}}
@@ -51,7 +48,7 @@ jobs:
       - name: upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site/build
+          path: build
 
       - name: github pages
         id: deployment

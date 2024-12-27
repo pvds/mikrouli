@@ -1,19 +1,48 @@
 {
 	"name": "mikrouli",
 	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"engines": {
+		"node": "^22",
+		"bun": "^1"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/pvds/mikrouli"
 	},
 	"scripts": {
-		"prepare": "lefthook install"
+		"prepare": "lefthook install",
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "bun run check:format & bun run check:svelte",
+		"check:all": "bun run check & bun run build",
+		"check:format": "biome check",
+		"check:svelte": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
+		"check:svelte:watch": "bun run check:svelte --watch",
+		"util:favicons": "bunx realfavicon generate src/lib/images/icon.svg favicons.json .favicons.json static"
 	},
-	"dependencies": {
+	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@evilmartians/lefthook": "^1.10.1"
+		"@evilmartians/lefthook": "^1.10.1",
+		"@sveltejs/adapter-static": "^3.0.8",
+		"@sveltejs/kit": "^2.15.0",
+		"@sveltejs/vite-plugin-svelte": "^5.0.3",
+		"@tailwindcss/typography": "^0.5.15",
+		"@tailwindcss/vite": "^4.0.0-beta.8",
+		"svelte": "^5.16.0",
+		"svelte-check": "^4.1.1",
+		"tailwindcss": "^4.0.0-beta.8",
+		"typescript": "^5.7.2",
+		"vite": "^6.0.5"
 	},
-	"trustedDependencies": ["@biomejs/biome", "@evilmartians/lefthook"],
-	"workspaces": ["site"],
+	"trustedDependencies": [
+		"@biomejs/biome",
+		"@evilmartians/lefthook",
+		"@sveltejs/kit",
+		"esbuild"
+	],
 	"prettier": {
 		"proseWrap": "always"
 	}
