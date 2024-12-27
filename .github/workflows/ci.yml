@@ -38,7 +38,7 @@ jobs:
         run: bun install
 
       - name: check
-        run: bun run check:all
+        run: bun run check
 
       - name: build
         run: bun run build
