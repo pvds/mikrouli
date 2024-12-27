@@ -11,13 +11,10 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"check:all": "bun run check & bun run format & bun run lint & wait",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
-		"format": "biome format",
-		"format:write": "biome format --write",
-		"lint": "biome lint",
-		"lint:write": "biome lint --write",
+		"check": "bun run check:format & bun run check:svelte & wait",
+		"check:format": "biome check",
+		"check:svelte": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
+		"check:svelte:watch": "bun run check:svelte --watch",
 		"util:favicons": "bunx realfavicon generate src/lib/images/icon.svg favicons.json .favicons.json static"
 	},
 	"devDependencies": {
