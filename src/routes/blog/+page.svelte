@@ -7,8 +7,8 @@ import Hero from "$lib/components/shell/Hero.svelte";
 	<meta name="description" content="" />
 </svelte:head>
 
-<Hero title="Blog">
+<Hero title="Systemic posts about systemic things">
 	<p>
-		Some blog posts will be here soon.
+		Writings about systems therapy, systemic thinking, and other systemic things.
 	</p>
 </Hero>

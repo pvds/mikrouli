@@ -14,7 +14,7 @@ const client = createClient({
 });
 
 // The JSON file to write the fetched data into
-const cachePath = path.resolve("./src/siteData.json");
+const cachePath = path.resolve("./static/siteData.json");
 
 async function fetchContentfulData() {
 	// Skip fetching in dev if cache file already exists
@@ -32,8 +32,9 @@ async function fetchContentfulData() {
 			client.getEntries({ content_type: "page" }),
 		]);
 
+		/** @type {{data: import('svelte').Snippet}} */
 		const data = {
-			navigation: navigation.items,
+			navigations: navigation.items,
 			pages: pages.items,
 		};
 
