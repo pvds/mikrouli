@@ -3,6 +3,7 @@ name: CI
 env:
   BUN_VERSION: 1.1.42
   BUILD_DIR: build
+  CONTAINER_IMAGE: ubuntu-24.04
 
 permissions:
   actions: read
@@ -22,7 +23,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ${{ env.CONTAINER_IMAGE }}
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -64,7 +65,7 @@ jobs:
           path: ${{ env.BUILD_DIR }}
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ${{ env.CONTAINER_IMAGE }}
     if: ${{ github.event_name != 'pull_request' }}
     needs: build
     environment:
