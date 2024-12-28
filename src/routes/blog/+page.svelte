@@ -22,8 +22,8 @@ const page = data.pages.find((page) => page.fields.slug === "blog");
 
     <!-- TODO: remove this demo content -->
 
-    <Section classes="p-8">
-        <h2 class="mb-4 text-2xl font-bold">Why Therapy Isn’t About Fixing You</h2>
+    <Section classes="px-8 py-10">
+        <h2 class="mb-4 text-3xl font-bold">Why Therapy Isn’t About Fixing You</h2>
         <div class="prose-base">
             <p class="italic">
                 Many people think therapy is about diagnosing problems. Systemic
@@ -45,8 +45,8 @@ const page = data.pages.find((page) => page.fields.slug === "blog");
         </div>
     </Section>
 
-    <Section classes="p-8 bg-brand-200">
-        <h2 class="mb-4 text-2xl font-bold">Adapting to Life Abroad</h2>
+    <Section classes="px-8 py-10 bg-accent-800 text-accent-100">
+        <h2 class="mb-4 text-3xl font-bold">Adapting to Life Abroad</h2>
         <div class="prose-base">
             <p class="italic">
                 The expat experience is full of transitions and challenges. Here are
@@ -67,8 +67,8 @@ const page = data.pages.find((page) => page.fields.slug === "blog");
         </div>
     </Section>
 
-    <Section classes="p-8">
-        <h2 class="mb-4 text-2xl font-bold">Strengthening Communication in Relationships</h2>
+    <Section classes="px-8 py-10">
+        <h2 class="mb-4 text-3xl font-bold">Strengthening Communication in Relationships</h2>
         <div class="prose-base">
             <p class="italic">
                 Miscommunication is one of the most common sources of conflict in relationships.
@@ -87,8 +87,8 @@ const page = data.pages.find((page) => page.fields.slug === "blog");
             </p>
         </div>
     </Section>
-    <Section classes="p-8 bg-accent-200">
-        <h2 class="mb-4 text-2xl font-bold">Understanding the Systems That Shape Us</h2>
+    <Section classes="px-8 py-10 bg-brand-800 text-brand-100">
+        <h2 class="mb-4 text-3xl font-bold">Understanding the Systems That Shape Us</h2>
         <div class="prose-base">
             <p class="italic">
                 From families to workplaces, the systems we live in affect us deeply. Explore how
