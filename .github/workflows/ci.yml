@@ -1,40 +1,40 @@
 name: CI
 
 env:
-  NODE_ENV: production
+  BUN_VERSION: 1.1.42
+  BUILD_DIR: build
 
 permissions:
-    actions: read
-    contents: write
-    pages: write
-    id-token: write
+  actions: read
+  contents: write
+  pages: write
+  id-token: write
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
   repository_dispatch:
     types: [contentful-content-changed]
 
 concurrency:
-    group: ${{
-        github.head_ref
-        || (eq(github.event_name, 'repository_dispatch') && 'dispatch')
-        || 'push-main'
-      }}
-    cancel-in-progress: ${{
-        github.event_name != 'pull_request' || eq(github.event_name, 'repository_dispatch')
-      }}
+  group: ${{ 
+    github.head_ref
+    || github.event_name == 'repository_dispatch' && 'dispatch'
+    || 'push-main'
+  }}
+  cancel-in-progress: ${{ 
+    github.event_name != 'pull_request'
+    || github.event_name == 'repository_dispatch'
+    }}
 
 jobs:
   main:
     runs-on: ubuntu-24.04
     environment:
       name: github-pages
-      url: ${{steps.deployment.outputs.page_url}}
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -44,12 +44,13 @@ jobs:
       - name: setup
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: 1.1.42
+          bun-version: ${{ env.BUN_VERSION }}
 
       - name: install
         run: bun install
 
       - name: check
+        if: ${{ github.event_name != 'repository_dispatch' }}
         run: bun run check
 
       - name: content
@@ -62,7 +63,7 @@ jobs:
       - name: build
         run: bun run build
 
-      - name: setup pages
+      - name: config
         uses: actions/configure-pages@v5
         with:
           static_site_generator: sveltekit
@@ -70,9 +71,8 @@ jobs:
       - name: upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build
+          path: ${{ env.BUILD_DIR }}
 
-      - name: github pages
+      - name: deploy
         id: deployment
         uses: actions/deploy-pages@v4
-
