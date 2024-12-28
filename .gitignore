@@ -24,7 +24,6 @@ vite.config.ts.timestamp-*
 .idea
 
 # Site
-static/siteData.json
 .favicons.json
 .svelte-kit
 build

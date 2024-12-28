@@ -1,0 +1,425 @@
+{
+	"navigation": [
+		{
+			"metadata": {
+				"tags": [],
+				"concepts": []
+			},
+			"sys": {
+				"space": {
+					"sys": {
+						"type": "Link",
+						"linkType": "Space",
+						"id": "fnyi5t75mv2d"
+					}
+				},
+				"id": "7rtbhuq4c4kUdrRUGSXm9D",
+				"type": "Entry",
+				"createdAt": "2020-12-21T16:49:18.569Z",
+				"updatedAt": "2024-12-28T06:00:03.175Z",
+				"environment": {
+					"sys": {
+						"id": "master",
+						"type": "Link",
+						"linkType": "Environment"
+					}
+				},
+				"publishedVersion": 13,
+				"revision": 4,
+				"contentType": {
+					"sys": {
+						"type": "Link",
+						"linkType": "ContentType",
+						"id": "navigation"
+					}
+				},
+				"locale": "en-US"
+			},
+			"fields": {
+				"title": "Primary",
+				"items": [
+					{
+						"metadata": {
+							"tags": [],
+							"concepts": []
+						},
+						"sys": {
+							"space": {
+								"sys": {
+									"type": "Link",
+									"linkType": "Space",
+									"id": "fnyi5t75mv2d"
+								}
+							},
+							"id": "61Vdx8qP4ItFip29IZbe9u",
+							"type": "Entry",
+							"createdAt": "2024-12-27T22:59:24.373Z",
+							"updatedAt": "2024-12-28T06:00:04.515Z",
+							"environment": {
+								"sys": {
+									"id": "master",
+									"type": "Link",
+									"linkType": "Environment"
+								}
+							},
+							"publishedVersion": 16,
+							"revision": 4,
+							"contentType": {
+								"sys": {
+									"type": "Link",
+									"linkType": "ContentType",
+									"id": "page"
+								}
+							},
+							"locale": "en-US"
+						},
+						"fields": {
+							"title": "About me",
+							"longTitle": "Get to Know Me and My Approach",
+							"slug": "about",
+							"intro": "I’m Eleni Papamikrouli, a systemic therapist working with individuals, couples, and families. Originally from Greece, I’ve lived in the Netherlands for over 15 years, giving me a unique perspective on the experiences of internationals and expats. That said, I work with people from all walks of life, offering a safe and supportive space for anyone seeking change.\n\nMy approach is practical and collaborative. I combine curiosity with empathy to help clients explore their challenges and find ways forward. You don’t need to be perfect or have all the answers—therapy is about working together to create clarity and change.\n\n## Why Systemic Therapy?\nSystemic therapy focuses on the patterns and systems we live in, rather than labeling or diagnosing individuals. It’s not about finding fault but about exploring how dynamics work and where we can make meaningful shifts. My role is to guide you in uncovering possibilities and building solutions that fit your life."
+						}
+					},
+					{
+						"metadata": {
+							"tags": [],
+							"concepts": []
+						},
+						"sys": {
+							"space": {
+								"sys": {
+									"type": "Link",
+									"linkType": "Space",
+									"id": "fnyi5t75mv2d"
+								}
+							},
+							"id": "3Dq1BUqylcl2pQweRSAvc6",
+							"type": "Entry",
+							"createdAt": "2024-12-27T23:01:22.902Z",
+							"updatedAt": "2024-12-28T06:00:04.391Z",
+							"environment": {
+								"sys": {
+									"id": "master",
+									"type": "Link",
+									"linkType": "Environment"
+								}
+							},
+							"publishedVersion": 21,
+							"revision": 8,
+							"contentType": {
+								"sys": {
+									"type": "Link",
+									"linkType": "ContentType",
+									"id": "page"
+								}
+							},
+							"locale": "en-US"
+						},
+						"fields": {
+							"title": "Services",
+							"longTitle": "Explore Ways We Can Work Together",
+							"slug": "services",
+							"intro": "I provide therapy for anyone seeking to improve their relationships, navigate challenges, or better understand themselves. While I bring a unique perspective to working with internationals and expats, my services are open to all who want to create positive change."
+						}
+					},
+					{
+						"metadata": {
+							"tags": [],
+							"concepts": []
+						},
+						"sys": {
+							"space": {
+								"sys": {
+									"type": "Link",
+									"linkType": "Space",
+									"id": "fnyi5t75mv2d"
+								}
+							},
+							"id": "2FmTPol4nxNb4Q0elgN4oG",
+							"type": "Entry",
+							"createdAt": "2024-12-28T00:14:21.086Z",
+							"updatedAt": "2024-12-28T06:04:51.743Z",
+							"environment": {
+								"sys": {
+									"id": "master",
+									"type": "Link",
+									"linkType": "Environment"
+								}
+							},
+							"publishedVersion": 13,
+							"revision": 3,
+							"contentType": {
+								"sys": {
+									"type": "Link",
+									"linkType": "ContentType",
+									"id": "page"
+								}
+							},
+							"locale": "en-US"
+						},
+						"fields": {
+							"title": "Contact",
+							"longTitle": "Contact Me to Take the First Step",
+							"slug": "contact",
+							"intro": "Taking the first step toward therapy can feel daunting, but I’m here to make it as simple as possible. Whether you’re curious about the process or ready to begin, I’d love to hear from you.\n\n### Schedule a Session\nI work with people from all over the world and all walks of life. Let’s explore how therapy can help you create positive, lasting change.\n\n[Include a link or form for booking a session.]\n\n### Contact Details\n- **Email:** eleni@mikrouli.nl\n- **Phone:** 00 31 6 19 44 62 63\n- **Languages:** Greek, Dutch, English\n- **Location:** Online sessions available worldwide"
+						}
+					},
+					{
+						"metadata": {
+							"tags": [],
+							"concepts": []
+						},
+						"sys": {
+							"space": {
+								"sys": {
+									"type": "Link",
+									"linkType": "Space",
+									"id": "fnyi5t75mv2d"
+								}
+							},
+							"id": "2skTvZuf4xUYpfqA45Vz1O",
+							"type": "Entry",
+							"createdAt": "2024-12-27T23:38:56.621Z",
+							"updatedAt": "2024-12-28T06:00:03.313Z",
+							"environment": {
+								"sys": {
+									"id": "master",
+									"type": "Link",
+									"linkType": "Environment"
+								}
+							},
+							"publishedVersion": 11,
+							"revision": 2,
+							"contentType": {
+								"sys": {
+									"type": "Link",
+									"linkType": "ContentType",
+									"id": "page"
+								}
+							},
+							"locale": "en-US"
+						},
+						"fields": {
+							"title": "Blog",
+							"longTitle": "Insights to Support Your Journey",
+							"slug": "blog",
+							"intro": "Therapy is about understanding ourselves and the systems we live in. Whether you're an international, an expat, or simply someone navigating life’s challenges, these articles offer insights and tools to support your journey."
+						}
+					}
+				]
+			}
+		}
+	],
+	"pages": [
+		{
+			"metadata": {
+				"tags": [],
+				"concepts": []
+			},
+			"sys": {
+				"space": {
+					"sys": {
+						"type": "Link",
+						"linkType": "Space",
+						"id": "fnyi5t75mv2d"
+					}
+				},
+				"id": "2FmTPol4nxNb4Q0elgN4oG",
+				"type": "Entry",
+				"createdAt": "2024-12-28T00:14:21.086Z",
+				"updatedAt": "2024-12-28T06:04:51.743Z",
+				"environment": {
+					"sys": {
+						"id": "master",
+						"type": "Link",
+						"linkType": "Environment"
+					}
+				},
+				"publishedVersion": 13,
+				"revision": 3,
+				"contentType": {
+					"sys": {
+						"type": "Link",
+						"linkType": "ContentType",
+						"id": "page"
+					}
+				},
+				"locale": "en-US"
+			},
+			"fields": {
+				"title": "Contact",
+				"longTitle": "Contact Me to Take the First Step",
+				"slug": "contact",
+				"intro": "Taking the first step toward therapy can feel daunting, but I’m here to make it as simple as possible. Whether you’re curious about the process or ready to begin, I’d love to hear from you.\n\n### Schedule a Session\nI work with people from all over the world and all walks of life. Let’s explore how therapy can help you create positive, lasting change.\n\n[Include a link or form for booking a session.]\n\n### Contact Details\n- **Email:** eleni@mikrouli.nl\n- **Phone:** 00 31 6 19 44 62 63\n- **Languages:** Greek, Dutch, English\n- **Location:** Online sessions available worldwide"
+			}
+		},
+		{
+			"metadata": {
+				"tags": [],
+				"concepts": []
+			},
+			"sys": {
+				"space": {
+					"sys": {
+						"type": "Link",
+						"linkType": "Space",
+						"id": "fnyi5t75mv2d"
+					}
+				},
+				"id": "61Vdx8qP4ItFip29IZbe9u",
+				"type": "Entry",
+				"createdAt": "2024-12-27T22:59:24.373Z",
+				"updatedAt": "2024-12-28T06:00:04.515Z",
+				"environment": {
+					"sys": {
+						"id": "master",
+						"type": "Link",
+						"linkType": "Environment"
+					}
+				},
+				"publishedVersion": 16,
+				"revision": 4,
+				"contentType": {
+					"sys": {
+						"type": "Link",
+						"linkType": "ContentType",
+						"id": "page"
+					}
+				},
+				"locale": "en-US"
+			},
+			"fields": {
+				"title": "About",
+				"longTitle": "Get to Know Me and My Approach",
+				"slug": "about",
+				"intro": "I’m Eleni Papamikrouli, a systemic therapist working with individuals, couples, and families. Originally from Greece, I’ve lived in the Netherlands for over 15 years, giving me a unique perspective on the experiences of internationals and expats. That said, I work with people from all walks of life, offering a safe and supportive space for anyone seeking change.\n\nMy approach is practical and collaborative. I combine curiosity with empathy to help clients explore their challenges and find ways forward. You don’t need to be perfect or have all the answers—therapy is about working together to create clarity and change.\n\n## Why Systemic Therapy?\nSystemic therapy focuses on the patterns and systems we live in, rather than labeling or diagnosing individuals. It’s not about finding fault but about exploring how dynamics work and where we can make meaningful shifts. My role is to guide you in uncovering possibilities and building solutions that fit your life."
+			}
+		},
+		{
+			"metadata": {
+				"tags": [],
+				"concepts": []
+			},
+			"sys": {
+				"space": {
+					"sys": {
+						"type": "Link",
+						"linkType": "Space",
+						"id": "fnyi5t75mv2d"
+					}
+				},
+				"id": "3Dq1BUqylcl2pQweRSAvc6",
+				"type": "Entry",
+				"createdAt": "2024-12-27T23:01:22.902Z",
+				"updatedAt": "2024-12-28T06:00:04.391Z",
+				"environment": {
+					"sys": {
+						"id": "master",
+						"type": "Link",
+						"linkType": "Environment"
+					}
+				},
+				"publishedVersion": 21,
+				"revision": 8,
+				"contentType": {
+					"sys": {
+						"type": "Link",
+						"linkType": "ContentType",
+						"id": "page"
+					}
+				},
+				"locale": "en-US"
+			},
+			"fields": {
+				"title": "Services",
+				"longTitle": "Explore Ways We Can Work Together",
+				"slug": "services",
+				"intro": "I provide therapy for anyone seeking to improve their relationships, navigate challenges, or better understand themselves. While I bring a unique perspective to working with internationals and expats, my services are open to all who want to create positive change."
+			}
+		},
+		{
+			"metadata": {
+				"tags": [],
+				"concepts": []
+			},
+			"sys": {
+				"space": {
+					"sys": {
+						"type": "Link",
+						"linkType": "Space",
+						"id": "fnyi5t75mv2d"
+					}
+				},
+				"id": "3rFQxFehQrVUuxDH8StNup",
+				"type": "Entry",
+				"createdAt": "2024-12-27T23:40:02.880Z",
+				"updatedAt": "2024-12-28T06:00:04.233Z",
+				"environment": {
+					"sys": {
+						"id": "master",
+						"type": "Link",
+						"linkType": "Environment"
+					}
+				},
+				"publishedVersion": 11,
+				"revision": 2,
+				"contentType": {
+					"sys": {
+						"type": "Link",
+						"linkType": "ContentType",
+						"id": "page"
+					}
+				},
+				"locale": "en-US"
+			},
+			"fields": {
+				"title": "Home",
+				"longTitle": "Creating Positive Change in Your Relationships and Life",
+				"slug": "home",
+				"intro": "Life can feel complicated, whether you’re navigating relationships, work challenges, or cultural transitions. \n\nI’m Eleni Papamikrouli, a systemic therapist working with individuals, couples, and families. While I specialize in supporting internationals and expats, I welcome anyone seeking clarity and connection in their life."
+			}
+		},
+		{
+			"metadata": {
+				"tags": [],
+				"concepts": []
+			},
+			"sys": {
+				"space": {
+					"sys": {
+						"type": "Link",
+						"linkType": "Space",
+						"id": "fnyi5t75mv2d"
+					}
+				},
+				"id": "2skTvZuf4xUYpfqA45Vz1O",
+				"type": "Entry",
+				"createdAt": "2024-12-27T23:38:56.621Z",
+				"updatedAt": "2024-12-28T06:00:03.313Z",
+				"environment": {
+					"sys": {
+						"id": "master",
+						"type": "Link",
+						"linkType": "Environment"
+					}
+				},
+				"publishedVersion": 11,
+				"revision": 2,
+				"contentType": {
+					"sys": {
+						"type": "Link",
+						"linkType": "ContentType",
+						"id": "page"
+					}
+				},
+				"locale": "en-US"
+			},
+			"fields": {
+				"title": "Blog",
+				"longTitle": "Insights to Support Your Journey",
+				"slug": "blog",
+				"intro": "Therapy is about understanding ourselves and the systems we live in. Whether you're an international, an expat, or simply someone navigating life’s challenges, these articles offer insights and tools to support your journey."
+			}
+		}
+	]
+}

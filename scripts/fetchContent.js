@@ -7,14 +7,14 @@ const space = process.env.CONTENTFUL_SPACE_ID;
 const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
 const isDev = process.env.ENVIRONMENT === "development";
 
+// The JSON file to write the fetched data into
+const cachePath = path.resolve("./static/data/content.json");
+
 // Create the Contentful client
 const client = createClient({
 	space,
 	accessToken,
 });
-
-// The JSON file to write the fetched data into
-const cachePath = path.resolve("./static/siteData.json");
 
 async function fetchContentfulData() {
 	// Skip fetching in dev if cache file already exists
