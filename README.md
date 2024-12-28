@@ -21,20 +21,13 @@
 - [**Playwright**](https://playwright.dev/): End-to-end testing
 - [**Biome**](https://biomejs.dev/): Linting and formatting
 - [**GitHub**](https://github.com]): Version control & CI/CD
-- [**Netlify**](https://netlify.com): Hosting
+- [**GitHub Pages**](https://pages.github.com/): Hosting
+- [**Contentful**](https://www.contentful.com/): Headless CMS
 
 ### TODO
 
-- [ ] Configure GitHub CI/CD pipeline
-- [ ] Configure Hosting
-    - [Github Pages](https://pages.github.com/)
-    - [Netlify](https://www.netlify.com/)
-    - [Vercel](https://vercel.com/)
-- [ ] Connect to a CMS checkout:
-    - [Contentful](https://www.contentful.com/)
-    - [Prismic](https://prismic.io/)
-	- [Strapi](https://www.strapi.io)
-    - [Sanity](https://www.sanity.io/)
+- [ ] Setup page layouts
+- 
 
 ## Getting started
 
