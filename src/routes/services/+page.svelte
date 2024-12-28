@@ -1,5 +1,10 @@
 <script>
 import Hero from "$lib/components/shell/Hero.svelte";
+
+/** @type {{data: import('$lib/types/contentful').ContentfulData}} */
+let { data } = $props();
+
+const page = data.pages.find((page) => page.fields.slug === "services");
 </script>
 
 <svelte:head>
@@ -7,9 +12,10 @@ import Hero from "$lib/components/shell/Hero.svelte";
 	<meta name="description" content="" />
 </svelte:head>
 
-<Hero title="Our services">
-	<p>
-		We offer a range of services to help you with your mental health and well-being.
-		Systemic therapy, peer support, and advocacy are some of the ways we can support you.
-	</p>
-</Hero>
+{#if page}
+	<Hero title={page.fields.longTitle}>
+		<p>
+			{page.fields.intro}
+		</p>
+	</Hero>
+{/if}

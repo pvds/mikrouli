@@ -1,5 +1,10 @@
 <script>
 import Hero from "$lib/components/shell/Hero.svelte";
+
+/** @type {{data: import('$lib/types/contentful').ContentfulData}} */
+let { data } = $props();
+
+const page = data.pages.find((page) => page.fields.slug === "contact");
 </script>
 
 <svelte:head>
@@ -7,8 +12,10 @@ import Hero from "$lib/components/shell/Hero.svelte";
 	<meta name="description" content="" />
 </svelte:head>
 
-<Hero title="Get in contact">
-	<p>
-		Do you have any questions or feedback? Feel free to reach out to me.
-	</p>
-</Hero>
+{#if page}
+	<Hero title={page.fields.longTitle}>
+		<p>
+			{page.fields.intro}
+		</p>
+	</Hero>
+{/if}

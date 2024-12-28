@@ -38,7 +38,6 @@ jobs:
         run: bun run check
 
       - name: content
-        if: false
         run: bun run util:content
         env:
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}

@@ -1,110 +1,9 @@
-export type ContentfulData = {
-	navigation: Navigation[];
-	pages: Page[];
+export type Metadata = {
+	tags: unknown[];
+	concepts: unknown[];
 };
 
-export type Page = {
-	name: "Page";
-	description: string;
-	displayField: "title";
-	fields: [
-		TitleField,
-		LongTitleField,
-		SlugField,
-		IntroField,
-		SectionsField,
-		LinksTitleField,
-		LinksField,
-	];
-	sys: Sys;
-};
-
-export type Navigation = {
-	name: "Navigation";
-	description: string;
-	displayField: "title";
-	fields: [TitleField, ItemsField];
-	sys: Sys;
-};
-
-type Validation = {
-	unique?: boolean;
-	linkContentType?: string[];
-};
-
-type Items = {
-	type: "Link";
-	validations?: Validation[];
-	linkType: "Entry";
-};
-
-type BaseField = {
-	id: string;
-	name: string;
-	type: "Symbol" | "Text" | "Array" | "Link";
-	localized: boolean;
-	required: boolean;
-	validations: Validation[];
-	disabled: boolean;
-	omitted: boolean;
-	items?: Items;
-};
-
-type TitleField = BaseField & {
-	id: "title";
-	name: "Title";
-	required: true;
-	validations: [Validation & { unique: true }];
-};
-
-type LongTitleField = BaseField & {
-	id: "longTitle";
-	name: "Long title";
-	required: true;
-	validations: [];
-};
-
-type SlugField = BaseField & {
-	id: "slug";
-	name: "Slug";
-	required: false;
-	validations: [Validation & { unique: true }];
-};
-
-type IntroField = BaseField & {
-	id: "intro";
-	name: "Intro";
-	type: "Text";
-	required: false;
-	validations: [];
-};
-
-type SectionsField = BaseField & {
-	id: "sections";
-	name: "Sections";
-	type: "Array";
-	items: Items & {
-		validations: [Validation & { linkContentType: ["content", "list"] }];
-	};
-};
-
-type LinksTitleField = BaseField & {
-	id: "linksTitle";
-	name: "Links title";
-	required: false;
-	validations: [];
-};
-
-type LinksField = BaseField & {
-	id: "links";
-	name: "Links";
-	type: "Array";
-	items: Items & {
-		validations: [Validation & { linkContentType: ["page", "link"] }];
-	};
-};
-
-type SysLink = {
+export type SysLink = {
 	sys: {
 		type: "Link";
 		linkType: string;
@@ -112,7 +11,7 @@ type SysLink = {
 	};
 };
 
-type Sys = {
+export type Sys = {
 	space: SysLink;
 	id: string;
 	type: string;
@@ -120,12 +19,36 @@ type Sys = {
 	updatedAt: string;
 	environment: SysLink;
 	publishedVersion: number;
-	publishedAt: string;
-	firstPublishedAt: string;
-	createdBy: SysLink;
-	updatedBy: SysLink;
-	publishedCounter: number;
-	version: number;
-	publishedBy: SysLink;
-	urn: string;
+	revision: number;
+	contentType: SysLink;
+	locale: string;
+};
+
+export type PageFields = {
+	title: string;
+	longTitle: string;
+	slug: string;
+	intro: string;
+};
+
+export type NavigationItem = {
+	metadata: Metadata;
+	sys: Sys;
+	fields: PageFields;
+};
+
+export type NavigationFields = {
+	title: string;
+	items: NavigationItem[];
+};
+
+export type NavigationEntry = {
+	metadata: Metadata;
+	sys: Sys;
+	fields: NavigationFields;
+};
+
+export type ContentfulData = {
+	navigation: NavigationEntry[];
+	pages: NavigationItem[];
 };
