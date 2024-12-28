@@ -7,8 +7,6 @@ env:
 permissions:
   actions: read
   contents: write
-  pages: write
-  id-token: write
 
 on:
   push:
@@ -23,11 +21,8 @@ concurrency:
     cancel-in-progress: ${{ github.event_name != 'pull_request' || (github.event_name == 'repository_dispatch') }}
 
 jobs:
-  main:
+  build:
     runs-on: ubuntu-24.04
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -57,15 +52,28 @@ jobs:
         run: bun run build
 
       - name: config
+        if: ${{ github.event_name != 'pull_request' }}
         uses: actions/configure-pages@v5
         with:
           static_site_generator: sveltekit
 
       - name: upload artifact
+        if: ${{ github.event_name != 'pull_request' }}
         uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ env.BUILD_DIR }}
 
-      - name: deploy
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'pull_request' }}
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: github pages
         id: deployment
         uses: actions/deploy-pages@v4
