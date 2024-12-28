@@ -1,6 +1,6 @@
 export type ContentfulData = {
 	navigation: Navigation[];
-	page: Page[];
+	pages: Page[];
 };
 
 export type Page = {

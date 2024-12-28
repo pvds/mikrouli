@@ -34,7 +34,7 @@ async function fetchContentfulData() {
 
 		/** @type {{data: import('svelte').Snippet}} */
 		const data = {
-			navigations: navigation.items,
+			navigation: navigation.items,
 			pages: pages.items,
 		};
 

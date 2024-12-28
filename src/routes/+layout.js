@@ -12,12 +12,13 @@ export async function load({ fetch, params }) {
 			);
 		}
 
-		const response = await res.json();
-
 		/** @type {import('$lib/types/contentful').ContentfulData} */
-		const data = response.data;
+		const data = await res.json();
 
-		return { data };
+		return {
+			navigation: data.navigation,
+			pages: data.pages,
+		};
 	} catch (error) {
 		console.error("Error loading data:", error);
 
