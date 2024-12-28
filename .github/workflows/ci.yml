@@ -57,15 +57,18 @@ jobs:
         run: bun run build
 
       - name: config
+        if: ${{ github.event_name != 'pull_request' }}
         uses: actions/configure-pages@v5
         with:
           static_site_generator: sveltekit
 
       - name: upload artifact
+        if: ${{ github.event_name != 'pull_request' }}
         uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ env.BUILD_DIR }}
 
       - name: deploy
+        if: ${{ github.event_name != 'pull_request' }}
         id: deployment
         uses: actions/deploy-pages@v4
