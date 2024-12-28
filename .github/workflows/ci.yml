@@ -3,6 +3,12 @@ name: CI
 env:
   NODE_ENV: production
 
+permissions:
+    actions: read
+    contents: write
+    pages: write
+    id-token: write
+
 on:
   push:
     branches:
@@ -13,11 +19,15 @@ on:
   repository_dispatch:
     types: [contentful-content-changed]
 
-permissions:
-  actions: read
-  contents: write
-  pages: write
-  id-token: write
+concurrency:
+    group: ${{
+        github.head_ref
+        || (eq(github.event_name, 'repository_dispatch') && 'dispatch')
+        || 'push-main'
+      }}
+    cancel-in-progress: ${{ 
+        github.head_ref || eq(github.event_name, 'repository_dispatch')
+      }}
 
 jobs:
   main:
