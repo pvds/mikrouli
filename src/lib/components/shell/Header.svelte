@@ -1,10 +1,13 @@
 <script>
 import Branding from "./Branding.svelte";
 import Nav from "./Nav.svelte";
+import Section from "./Section.svelte";
 </script>
 
-<header
-	class="section w-full flex items-center gap-4 bg-brand-950 text-brand-100">
-	<Branding />
-	<Nav/>
-</header>
+<Section classes="section bg-brand-950 text-brand-100">
+    <header class="flex items-center gap-4 ">
+        <Branding />
+        <Nav/>
+    </header>
+</Section>
+
