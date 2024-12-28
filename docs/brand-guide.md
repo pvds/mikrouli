@@ -1,193 +1,155 @@
-# Systems Therapist — Refined Brand Guide
+# Systems Therapist — Next-Level Brand Guide
 
-## Core Identity
-- **Brand Personality**: Trustworthy, approachable, calm, and warm with a playful touch, reflecting the collaborative and nurturing nature of therapy.
-- **Logo**: A friendly, rounded, and playful interpretation of the Tree of Life.
-
----
-
-## Color Palette
-
-### Primary Palette
-1. **Brand Blueish**: Used for larger areas and background dominance.
-	- **HEX:** `#359BB7`
-	- **HSL:** `hsl(182, 48%, 43%)`
-2. **Accent Greenish**: For larger sections or complementary areas.
-	- **HEX:** `#61A188`
-	- **HSL:** `hsl(153, 37.5%, 46%)`
-3. **Terracotta**: Adds warmth and focus, used for buttons or interactive elements.
-	- **HEX:** `#D6A756`
-	- **HSL:** `hsl(42, 55%, 60%)`
-
-### Neutral and Decorative Palette
-4. **Charcoal Gray**: Grounding tone for text and structural elements.
-	- **HEX:** `#2C2F33`
-	- **HSL:** `hsl(220, 20%, 20%)`
-5. **Muted Lavender (Mauve)**: Soft decorative details and gradients.
-	- **HEX:** `#B8A1C7`
-	- **HSL:** `hsl(270, 25%, 70%)`
-6. **Dusty Rose**: Highlights for testimonials or accents.
-	- **HEX:** `#D3A5A0`
-	- **HSL:** `hsl(10, 40%, 70%)`
-
-### Gradient Recommendations
-- **Blueish to Greenish**: Use for soft backgrounds in headers or sections.
-	- Example: `linear-gradient(135deg, #359BB7, #61A188)`
-- **Terracotta to Dusty Rose**: For warm overlays or decorative backgrounds.
-	- Example: `linear-gradient(135deg, #D6A756, #D3A5A0)`
-
-### Accessibility
-- Maintain a **contrast ratio of at least 4.5:1** for text on backgrounds.
-- Use high-contrast combinations for key interactive elements (e.g., Charcoal Gray text on light Greenish backgrounds).
+## 1. Introduction
+Systems Therapist is a brand dedicated to offering calm, supportive, and professional therapy experiences. The visual and tonal guidelines here ensure that every touchpoint reflects empathy, approachability, and warmth.
 
 ---
 
-## Typography
-
-### Font
-- **Font Family**: **Nunito**
-	- Weights: 400 (Regular), 600 (Semi-Bold), 700 (Bold)
-
-### Font Scaling
-- Use responsive scaling for different screen sizes:
-	- **H1**: ~48px on desktop, ~36px on mobile
-	- **H2**: ~36px on desktop, ~28px on mobile
-	- **Body**: ~18px on desktop, ~16px on mobile
-
-### Typographic Hierarchy
-1. **Headers**
-	- Color: Charcoal Gray or darker Blueish tones
-	- Weight: Bold (700)
-2. **Body Text**
-	- Color: Charcoal Gray
-	- Weight: Regular (400)
-3. **Emphasis**
-	- Use Muted Lavender or Dusty Rose sparingly for highlights or callouts
+## 2. Logo Usage
+- **Primary Logo**: A friendly, rounded Tree of Life.
+- **Clear Space**: Maintain generous space around the logo to ensure legibility.
+- **Variations**:
+	- Single-color (Charcoal Gray) for print and simplified usage.
+	- Monochrome or inverted versions for darker backgrounds.
+- **Minimum Size**: Keep the logo large enough so all text and tree details remain clear.
 
 ---
 
-## Iconography and Imagery
+## 3. Color Palette
+
+### Primary Colors
+1. **Brand Blueish**
+	- HEX: `#359BB7`
+	- Role: Large backgrounds, primary brand color
+2. **Accent Greenish**
+	- HEX: `#61A188`
+	- Role: Supporting backgrounds, subtle highlights
+3. **Terracotta**
+	- HEX: `#D6A756`
+	- Role: Call-to-action buttons or interactive elements
+
+### Neutrals & Decorative
+4. **Charcoal Gray**
+	- HEX: `#2C2F33`
+	- Role: Primary text, high contrast anchors
+5. **Muted Lavender (Mauve)**
+	- HEX: `#B8A1C7`
+	- Role: Light accents, backgrounds, or highlights
+6. **Dusty Rose**
+	- HEX: `#D3A5A0`
+	- Role: Soft highlights for testimonials or secondary UI touches
+
+### Usage Guidance
+- Maintain sufficient contrast for text (aiming for WCAG 2.1 AA or better).
+- Pair Charcoal Gray text with lighter backgrounds.
+- Terracotta is best as a spot color for calls to action or buttons.
+
+---
+
+## 4. Typography
+
+- **Typeface**: Nunito (400, 600, 700)
+- **Hierarchy**:
+	- **Headlines (H1–H3)**: Bold (700), more prominent size
+	- **Body Text & Paragraphs**: Regular (400), comfortable line spacing
+	- **Subheads/Emphasis**: Semi-Bold (600) when extra prominence is needed
+- **Responsive Rules**:
+	- Scale down headline sizes on smaller screens to avoid overflow.
+	- Keep body text comfortably readable, adjusting line height as needed.
+
+---
+
+## 5. Iconography & Imagery
 
 ### Iconography
-- **Style**: Minimal, rounded, and organic to reflect the logo
-- **Sizes**: Small (16px), Medium (24px), Large (32px+)
-- **Colors**:
-	- Muted Lavender and Accent Greenish for primary icons
-	- Dusty Rose or Terracotta for decorative highlights
+- **Style**: Rounded, minimal icons mirroring the organic Tree of Life aesthetic
+- **Use**: Small sizes for inline actions or bullet points, larger for hero features
+- **Colors**: Align icon colors with brand accents; avoid mixing too many hues at once
 
 ### Imagery
-- **Style**
-	- Warm, natural photography featuring people in relaxed, thoughtful settings
-	- Abstract, rounded illustrations inspired by the Tree of Life
-- **Color Filters**
-	- Align photography with the brand palette via soft, warm tints
-- **Do**
-	- Show diversity in imagery
-	- Use authentic, relatable visuals
-- **Don’t**
-	- Avoid overly clinical or corporate stock images
+- **Photography**:
+	- Warm, natural images that evoke empathy and calm
+	- Show diverse individuals and real-life settings
+- **Illustrations**:
+	- Keep shapes soft and rounded
+	- Focus on natural elements and growth
 
 ---
 
-## Motion Guidelines
+## 6. Motion & Interaction
 
-### General Motion Principles
-- Motion should feel **calm and purposeful**, never jarring or too visible.
-- Use gentle ease-in-out transitions, typically under 300ms, so users sense the transition without being delayed.
-
-### Key Motion Elements
-1. **Hover Effects**
-	- Favor subtle color changes or a faint shadow rather than aggressive scaling
-2. **Page Transitions**
-	- Use minimal fade-ins or a slight crossfade; keep transitions short
-3. **Interactive Feedback**
-	- Forms: Highlight focus with a light Greenish border or glow, avoiding strong pulses
+- **General Principle**: Subtle, purposeful animations felt but not overtly noticed.
+- **Transitions**:
+	- Keep durations short (under 300ms) and use gentle easing
+	- Page transitions: Brief fade or crossfade
+- **Hover & Focus**:
+	- Subtle color transitions or a faint shadow
+	- No significant scaling to avoid distraction
 
 ---
 
-## Grid and Layout System
+## 7. Grid & Layout
 
-### Grid Framework
-- Use a **12-column layout** that flexibly adapts across breakpoints (mobile to desktop).
-- For smaller devices, reduce the number of columns as needed to maintain readability.
-
-### Spacing
-- Rely on a consistent multiple-based spacing approach (e.g., using 4 or 8 units) to ensure visual harmony across sections.
+- **Grid System**: A flexible 12-column structure that can adapt to smaller devices by reducing the number of columns.
+- **Spacing**: Use consistent, unit-based increments (e.g., multiples of 4 or 8) to achieve visual harmony.
+- **Responsive Breakpoints**:
+	- Mobile-first approach, scaling layouts up for tablets and desktops
+	- Ensure ample whitespace to maintain a calm and uncluttered look
 
 ---
 
-## Button and Component Design
+## 8. Buttons & Components
 
 ### Buttons
-- **Primary**
-	- Background: Terracotta
-	- Hover: Dusty Rose
-	- Text: White
-- **Secondary**
-	- Background: Accent Greenish
-	- Hover: A lighter Greenish shade (e.g., slightly desaturated)
-	- Text: White
+- **Primary**: Terracotta background, White text, subtle color shift on hover
+- **Secondary**: Accent Greenish background, White text
+- **Text Contrast**: Ensure legibility by verifying white text meets contrast guidelines
 
 ### Forms
-- **Borders**: Muted Lavender
-- **Focus State**: A subtle shift to Accent Greenish (border or glow)
-- **Error States**: Communicate clearly with text labels and a visible color cue (e.g., Dusty Rose or a soft red variant)
+- **Borders**: Muted Lavender or subtle gray
+- **Focus State**: Lightly highlighted border or glow in Accent Greenish
+- **Error States**: Brief, clear copy explaining the issue (use Dusty Rose or soft red variant for visibility)
 
 ---
 
-## Tone of Voice and Copy Guidelines
+## 9. Tone of Voice & Copy Guidelines
 
-### Tone
-- **Empathetic**: Reflect understanding of clients’ challenges
-- **Supportive**: Reassuring and motivational language
-- **Professional yet approachable**: Use simple, inviting words
-
-### Dos and Don’ts
-- **Do**
-	- Use first-person (“I” / “we”) and second-person (“you”)
-	- Write in a positive, growth-oriented manner
-- **Don’t**
-	- Use jargon or overly clinical language
-
-### Example Copy
-1. **Header**: “Growth starts here.”
-2. **Call to Action**: “Book your first session today.”
-3. **Section Title**: “Understanding Your Needs.”
+- **Personality**: Empathetic, supportive, and approachable
+- **Example Phrasing**:
+	- “We’re here to help you grow.”
+	- “Discover your path to a healthier mind.”
+- **Best Practices**:
+	- Use first-person (“I” or “we”) and second-person (“you”) for direct engagement.
+	- Keep language free of jargon or overly clinical terms.
 
 ---
 
-## Accessibility
+## 10. Accessibility
 
-### Standards
-- Adhere to **WCAG 2.1 AA** guidelines for all designs
-- Respect **reduced motion** preferences by simplifying or removing non-essential animations
-
-### Forms
-- Provide clear labels and instructions
-- Ensure accessible contrast for error messages and focus outlines
+- **Color & Contrast**: Confirm text contrast on each background color.
+- **Reduced Motion**: Provide an option or respect user settings to disable or reduce nonessential animations.
+- **Form Labels & Errors**: Clear labeling, concise instructions, and accessible error cues.
 
 ---
 
-## Applications
+## 11. Applications
 
 ### Website
-- **Homepage**
-	- Hero background: Subtle Blueish gradient
-	- CTA button: Terracotta with Dusty Rose hover
-- **Testimonials**
-	- Soft Dusty Rose background
-	- Charcoal Gray text for contrast
+- **Homepage**: Subtle gradient from Blueish to Greenish, a concise headline, and a Terracotta button as the main CTA
+- **Testimonials**: Dusty Rose backgrounds with carefully spaced text and understated design elements
 
 ### Social Media
-- Make use of brand colors (Muted Lavender, Dusty Rose) for cohesive visuals
-- Rounded illustrations or organic icon accents for consistent branding
+- **Brand Consistency**: Maintain rounded icon styles, brand colors, and approachable copy
+- **Imagery**: Feature friendly, realistic photos or gently stylized illustrations with the brand’s soft color palette
 
 ---
 
-## Future Adaptability
-- Explore **light and dark mode** variants with the same core palette principles
-- Extend brand consistency to **video content**, workshops, and offline event materials
+## 12. Future Adaptability
+
+- **Theme Variations**: Potential dark mode or high-contrast theme while retaining core color references
+- **Video & Print**: Keep brand aesthetics and tone consistent across all mediums
+- **Maintenance**: Regularly update the guide as the brand evolves, ensuring alignment across all channels
 
 ---
 
-*This refined guide covers all critical brand elements—visuals, typography, color usage, motion, and tone—ensuring a calm, professional, and approachable design foundation.*  
+*By following these guidelines, Systems Therapist upholds a calm, supportive, and professional presence—one that resonates with clients seeking a nurturing therapy experience.*
