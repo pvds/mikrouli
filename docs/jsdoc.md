@@ -274,8 +274,10 @@ Example partial `tsconfig.json`:
     ```
 
 3. **Svelte-Specific Patterns**
+
     - Svelte’s `<script>` tags can be in TypeScript mode, but if you prefer
       JSDoc:
+
         ```html
         <script>
         	/**
@@ -287,6 +289,7 @@ Example partial `tsconfig.json`:
         	export let props;
         </script>
         ```
+
     - For advanced usage, check
       [SvelteKit’s type docs](https://kit.svelte.dev/docs/types) which often
       show JSDoc-based examples.
@@ -364,3 +367,66 @@ type insights and editor support with minimal overhead. The key points are:
 4. **Stay consistent and up-to-date** with your comments to ensure accuracy.
 
 **Happy coding!**
+
+---
+
+## JSDoc Resources: Usage, Cheat Sheets, and Best Practices
+
+A concise collection of resources for JSDoc usage, syntax, and best practices.
+
+### Official Documentation
+
+- [JSDoc Official Site](https://jsdoc.app) – Comprehensive reference for all
+  JSDoc tags and usage.
+- [TypeScript JSDoc Support](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html)
+  – How JSDoc integrates with TypeScript for type checking.
+
+### Cheat Sheets & References
+
+- [JSDoc Syntax Cheat Sheet (GitHub)](https://github.com/shri/JSDoc-Style-Guide)
+  – A guide to JSDoc syntax and style.
+- [JSDoc Tag Reference](https://devhints.io/jsdoc) – Quick reference for JSDoc
+  tags.
+- [VS Code JSDoc Guide](https://code.visualstudio.com/docs/nodejs/working-with-javascript#_intellisense-and-jsdoc)
+  – Using JSDoc to enhance IntelliSense.
+
+### Guides & Tutorials
+
+- [Using JSDoc in JavaScript (LogRocket)](https://blog.logrocket.com/using-jsdoc-javascript/)
+  – Beginner-friendly guide.
+- [JSDoc Type Checking in VS Code](https://mariusschulz.com/blog/jsdoc-type-checking-in-vs-code)
+  – Enabling `--checkJs` for type safety.
+- [Documenting JavaScript with JSDoc (DigitalOcean)](https://www.digitalocean.com/community/tutorials/documenting-javascript-with-jsdoc)
+  – Practical examples of JSDoc usage.
+
+### Advanced Patterns
+
+- [Advanced JSDoc for TypeScript Users](https://fettblog.eu/typescript-jsdoc-superpowers/)
+  – Explores advanced JSDoc features and TypeScript integration.
+- [Svelte JSDoc Guide](https://kit.svelte.dev/docs/types#using-jsdoc) – JSDoc
+  usage in Svelte projects.
+- [JSDoc Generics & Advanced Types](https://dmitripavlutin.com/jsdoc-types/) –
+  Detailed explanations of generics and templates.
+
+### Tools & Plugins
+
+- [Documentation Generator](https://documentation.js.org/) – Generate HTML docs
+  from JSDoc comments.
+- [eslint-plugin-jsdoc](https://github.com/gajus/eslint-plugin-jsdoc) – Lint
+  JSDoc comments for correctness and consistency.
+- [ts-migrate](https://github.com/airbnb/ts-migrate) – Automate JSDoc to
+  TypeScript migrations.
+
+### Communities & Forums
+
+- [Stack Overflow JSDoc Tag](https://stackoverflow.com/questions/tagged/jsdoc) –
+  Questions and discussions on JSDoc.
+- [Reddit r/JavaScript](https://www.reddit.com/r/javascript/) – Community
+  discussions on JavaScript tools like JSDoc.
+
+### Stay Updated
+
+- [JSDoc GitHub](https://github.com/jsdoc/jsdoc) – Follow for updates.
+- [TypeScript Blog](https://devblogs.microsoft.com/typescript/) – News on JSDoc
+  and TypeScript.
+- [Dev.to JSDoc Posts](https://dev.to/t/jsdoc) – Community articles and guides.
