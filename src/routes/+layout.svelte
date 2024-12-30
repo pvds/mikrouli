@@ -1,4 +1,5 @@
 <script>
+import Footer from "$lib/components/shell/Footer.svelte";
 import Header from "$lib/components/shell/Header.svelte";
 import "../app.css";
 
@@ -6,10 +7,12 @@ import "../app.css";
 let { children, data } = $props();
 </script>
 
-<div class="app min-h-dvh bg-accent-100 text-broad">
+<div class="flex flex-col app min-h-dvh bg-primary-50 text-primary-900">
 	<Header />
 
-	<main>
+	<main class="grow">
 		{@render children()}
 	</main>
+
+	<Footer />
 </div>
