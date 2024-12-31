@@ -23,11 +23,11 @@ import Section from "./Section.svelte";
 		<footer
 			class=" py-10 text-sm font-semibold">
 			<nav class="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4">
-				<a href="">Get in contact</a>
-				<a href="">About me</a>
-				<a href="">FAQ</a>
-				<a href="">Support</a>
-				<a href="">Blog</a>
+				<a href="/contact">Get in contact</a>
+				<a href="/about">About me</a>
+				<a href="/">FAQ</a>
+				<a href="/">Support</a>
+				<a href="/blog">Blog</a>
 			</nav>
 		</footer>
 	</Section>
