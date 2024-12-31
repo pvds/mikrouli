@@ -19,9 +19,8 @@ import Section from "./Section.svelte";
 	</div>
 
 	<Section
-		classes="relative px-6 text-primary-800 z-2">
-		<footer
-			class=" py-10 text-sm font-semibold">
+		classes="relative px-6 py-10 z-2">
+		<footer class="font-bold">
 			<nav class="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4">
 				<a href="/contact">Get in contact</a>
 				<a href="/about">About me</a>
