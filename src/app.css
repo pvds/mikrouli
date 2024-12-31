@@ -38,6 +38,11 @@
 
 /*@import "$lib/styles/base.css" layer(base);*/
 @layer base {
+	html {
+		/* TODO: enable when ready to configure light and dark theme */
+		/*color-scheme: light dark;*/
+	}
+
 	/* latin-ext */
 	@font-face {
 		font-family: "Nunito";
