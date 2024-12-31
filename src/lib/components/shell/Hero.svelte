@@ -13,7 +13,7 @@ let { title, children } = $props();
 
 <div class="hero relative mb-20">
 	<div
-		class="absolute w-full min-w-5xl top-[calc(100%-72px)] right-0 overflow-hidden pointer-events-none">
+		class="absolute w-full min-w-5xl top-[calc(100%-72px)] left-0 overflow-hidden pointer-events-none">
 		<svg class="w-[inherit] h-40"
 			 xmlns="http://www.w3.org/2000/svg"
 			 viewBox="0 0 1440 390" preserveAspectRatio="none">
