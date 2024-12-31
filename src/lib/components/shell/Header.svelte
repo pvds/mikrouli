@@ -6,15 +6,15 @@ import Section from "./Section.svelte";
 
 <div class="header lg:sticky lg:-top-4 z-3">
 	<div
-		class="absolute z-2 w-full min-w-5xl border-t-16 border-t-primary-900 right-0 overflow-hidden pointer-events-none">
-		<svg class="w-[inherit] h-50"
+		class="absolute z-2 w-full min-w-5xl border-t-40 border-t-primary-900 left-0 overflow-hidden pointer-events-none">
+		<svg class="w-[inherit] h-20"
 			 xmlns="http://www.w3.org/2000/svg"
 			 viewBox="0 0 1440 690" preserveAspectRatio="none">
 			<path class="fill-primary-900"
-				  d="M1440 0v219c-59 3-117 5-170-1s-99-22-151-13-110 41-166 33-109-57-165-73-113 1-166 22-101 46-156 59-116 15-172 17-105 4-153-3-94-24-141-41V0h1440Z"/>
+				  d="M1440 0v438c-142 18-284 35-415 31-130-4-249-30-355-84S472 249 362 216c-109-33-236-18-362-3V0h1440Z"/>
 		</svg>
 	</div>
-	<Section classes="relative px-8 py-6 z-3">
+	<Section classes="relative px-4 py-6 z-3">
 		<header class="flex items-center gap-4">
 			<Branding />
 			<Nav/>

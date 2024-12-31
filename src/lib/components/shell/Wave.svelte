@@ -16,7 +16,7 @@ let {
 	direction = "both",
 	alignment = "left",
 	color = "primary-100",
-	height = 20,
+	height = 30,
 	opacity = 1,
 	children,
 } = $props();
@@ -26,7 +26,7 @@ const alignmentClass = alignment === "left" ? "left-0" : "right-0";
 <div class="wave">
 	{#if direction === 'top' || direction === 'both'}
 		<div
-			class="wave__svg absolute z-1 w-full min-w-5xl {alignmentClass} bottom-full overflow-hidden pointer-events-none">
+			class="wave__svg absolute z-1 w-full min-w-5xl {alignmentClass} -top-20 overflow-hidden pointer-events-none">
 			<svg class="w-[inherit]"
 				 style="height: calc({height} * var(--spacing))"
 				 xmlns="http://www.w3.org/2000/svg"
@@ -36,12 +36,12 @@ const alignmentClass = alignment === "left" ? "left-0" : "right-0";
 			</svg>
 		</div>
 	{/if}
-	<div class="wave__content {color} relative">
+	<div class="wave__content {color} relative z-2 py-8">
 		{@render children?.()}
 	</div>
 	{#if direction === 'bottom' || direction === 'both'}
 		<div
-			class="wave__svg absolute z-1 w-full min-w-5xl {alignmentClass} top-full overflow-hidden pointer-events-none">
+			class="wave__svg absolute z-1 w-full min-w-5xl {alignmentClass} -bottom-20 overflow-hidden pointer-events-none">
 			<svg class="w-[inherit]"
 				 style="height: calc({height} * var(--spacing))"
 				 xmlns="http://www.w3.org/2000/svg"
