@@ -21,12 +21,14 @@ import Section from "./Section.svelte";
 	<Section
 		classes="relative px-6 text-primary-800 z-2">
 		<footer
-			class="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4 py-10 text-sm font-semibold">
-			<a href="">Get in contact</a>
-			<a href="">About me</a>
-			<a href="">FAQ</a>
-			<a href="">Support</a>
-			<a href="">Blog</a>
+			class=" py-10 text-sm font-semibold">
+			<nav class="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4">
+				<a href="">Get in contact</a>
+				<a href="">About me</a>
+				<a href="">FAQ</a>
+				<a href="">Support</a>
+				<a href="">Blog</a>
+			</nav>
 		</footer>
 	</Section>
 </div>

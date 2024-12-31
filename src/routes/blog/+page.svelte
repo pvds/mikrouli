@@ -22,7 +22,7 @@ const page = data.pages.find((page) => page.fields.slug === "blog");
 
     <!-- TODO: remove this demo content -->
 
-    <Section classes="px-8 py-10">
+    <Section classes="px-8 py-14">
         <h2 class="mb-4 text-3xl font-bold">Why Therapy Isn’t About Fixing You</h2>
         <div class="prose-base">
             <p class="italic">
@@ -45,7 +45,7 @@ const page = data.pages.find((page) => page.fields.slug === "blog");
         </div>
     </Section>
 
-    <Section classes="px-8 py-10 bg-secondary-800 text-secondary-100">
+    <Section classes="px-8 py-14 bg-secondary-100 text-secondary-800">
         <h2 class="mb-4 text-3xl font-bold">Adapting to Life Abroad</h2>
         <div class="prose-base">
             <p class="italic">
@@ -67,7 +67,7 @@ const page = data.pages.find((page) => page.fields.slug === "blog");
         </div>
     </Section>
 
-    <Section classes="px-8 py-10">
+    <Section classes="px-8 py-14">
         <h2 class="mb-4 text-3xl font-bold">Strengthening Communication in Relationships</h2>
         <div class="prose-base">
             <p class="italic">
@@ -87,7 +87,7 @@ const page = data.pages.find((page) => page.fields.slug === "blog");
             </p>
         </div>
     </Section>
-    <Section classes="px-8 py-10 bg-secondary-800 text-secondary-100">
+    <Section classes="px-8 py-14 bg-secondary-100 text-secondary-800">
         <h2 class="mb-4 text-3xl font-bold">Understanding the Systems That Shape Us</h2>
         <div class="prose-base">
             <p class="italic">
@@ -108,7 +108,7 @@ const page = data.pages.find((page) => page.fields.slug === "blog");
         </div>
     </Section>
 
-	<Section classes="px-8 py-10">
+	<Section classes="px-8 py-14">
 		<h2 class="mb-4 text-3xl font-bold">Breaking Unhelpful Family Patterns</h2>
 		<div class="prose-base">
 			<p class="italic">

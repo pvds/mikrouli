@@ -18,7 +18,7 @@ import Section from "./Section.svelte";
 				  d="M1440 0v219c-59 3-117 5-170-1s-99-22-151-13-110 41-166 33-109-57-165-73-113 1-166 22-101 46-156 59-116 15-172 17-105 4-153-3-94-24-141-41V0h1440Z"/>
 		</svg>
 	</div>
-	<Section classes="relative p-8 text-primary-100 z-3">
+	<Section classes="relative p-8 z-3">
 		<header class="flex items-center gap-4">
 			<Branding />
 			<Nav/>
