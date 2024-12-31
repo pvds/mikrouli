@@ -1,10 +1,38 @@
 <script>
+import { onDestroy, onMount } from "svelte";
 import Branding from "./Branding.svelte";
 import Nav from "./Nav.svelte";
 import Section from "./Section.svelte";
+
+/** @type {IntersectionObserver} */
+let observer;
+/** @type {HTMLDivElement} */
+let sentinel;
+let isCompact = false;
+
+onMount(() => {
+	observer = new IntersectionObserver(
+		([entry]) => {
+			isCompact = !entry.isIntersecting;
+		},
+		{ threshold: 0 },
+	);
+
+	if (sentinel) {
+		observer.observe(sentinel);
+	}
+});
+
+onDestroy(() => {
+	if (observer && sentinel) {
+		observer.unobserve(sentinel);
+		observer.disconnect();
+	}
+});
 </script>
 
-<div class="header lg:sticky lg:-top-4 z-3">
+<div
+	class="header transition-all lg:sticky {isCompact ? 'lg:-top-4' : 'lg:top-0'} z-3">
 	<div
 		class="absolute z-2 w-full min-w-5xl border-t-40 border-t-primary-900 left-0 overflow-hidden pointer-events-none">
 		<svg class="w-[inherit] h-20"
@@ -21,5 +49,4 @@ import Section from "./Section.svelte";
 		</header>
 	</Section>
 </div>
-
-
+<div bind:this={sentinel} class="sentinel"></div>
