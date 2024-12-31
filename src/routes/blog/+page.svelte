@@ -6,6 +6,14 @@ import Section from "$lib/components/shell/Section.svelte";
 let { data } = $props();
 
 const page = data.pages.find((page) => page.fields.slug === "blog");
+
+/** @type {import("$lib/components/shell/Wave.svelte.type").Wave} */
+const wave = {
+	direction: "both",
+	alignment: "left",
+	color: "secondary-100",
+	opacity: 1,
+};
 </script>
 
 <svelte:head>
@@ -22,7 +30,7 @@ const page = data.pages.find((page) => page.fields.slug === "blog");
 
     <!-- TODO: remove this demo content -->
 
-    <Section classes="px-8 py-10">
+    <Section classes="px-8 py-14">
         <h2 class="mb-4 text-3xl font-bold">Why Therapy Isn’t About Fixing You</h2>
         <div class="prose-base">
             <p class="italic">
@@ -45,7 +53,7 @@ const page = data.pages.find((page) => page.fields.slug === "blog");
         </div>
     </Section>
 
-    <Section classes="px-8 py-10 bg-accent-800 text-accent-100">
+    <Section {wave} classes="px-8 my-14 bg-secondary-100 text-secondary-800">
         <h2 class="mb-4 text-3xl font-bold">Adapting to Life Abroad</h2>
         <div class="prose-base">
             <p class="italic">
@@ -67,7 +75,7 @@ const page = data.pages.find((page) => page.fields.slug === "blog");
         </div>
     </Section>
 
-    <Section classes="px-8 py-10">
+    <Section classes="px-8 py-14">
         <h2 class="mb-4 text-3xl font-bold">Strengthening Communication in Relationships</h2>
         <div class="prose-base">
             <p class="italic">
@@ -87,7 +95,8 @@ const page = data.pages.find((page) => page.fields.slug === "blog");
             </p>
         </div>
     </Section>
-    <Section classes="px-8 py-10 bg-brand-800 text-brand-100">
+
+	<Section {wave} classes="px-8 my-14 bg-secondary-100 text-secondary-800">
         <h2 class="mb-4 text-3xl font-bold">Understanding the Systems That Shape Us</h2>
         <div class="prose-base">
             <p class="italic">
@@ -107,4 +116,27 @@ const page = data.pages.find((page) => page.fields.slug === "blog");
             </p>
         </div>
     </Section>
+
+	<Section classes="px-8 py-14">
+		<h2 class="mb-4 text-3xl font-bold">Breaking Unhelpful Family Patterns</h2>
+		<div class="prose-base">
+			<p class="italic">
+				Families are systems, and sometimes those systems get stuck. Learn
+				how systemic therapy can help untangle unhealthy patterns and create space for
+				change.
+			</p>
+			<h3 class="text-2xl">Understanding Family Systems</h3>
+			<p>
+				Families are made up of interconnected relationships, and sometimes those
+				relationships develop patterns that stop working. These might show up as
+				recurring arguments, strained communication, or feelings of disconnection.
+			</p>
+			<h3 class="text-2xl">How Systemic Therapy Helps</h3>
+			<p>
+				Systemic therapy works to identify these patterns and help family members
+				understand their roles within them. The goal isn’t to place blame but to explore
+				how small changes can lead to significant improvements in the family dynamic.
+			</p>
+		</div>
+	</Section>
 {/if}

@@ -11,33 +11,29 @@
 @theme {
 	--default-font-family: "Nunito", "Noto Sans", "sans-serif";
 
-	--color-accent-50: hsl(153, 37.50%, 96.72%);
-	--color-accent-100: hsl(153, 37.50%, 92.78%);
-	--color-accent-200: hsl(153, 37.50%, 85.53%);
-	--color-accent-300: hsl(153, 37.50%, 75.32%);
-	--color-accent-400: hsl(153, 37.50%, 59.07%);
-	--color-accent-500: hsl(153, 37.50%, 46.00%);
-	--color-accent-600: hsl(153, 37.50%, 37.23%);
-	--color-accent-700: hsl(153, 37.50%, 30.00%);
-	--color-accent-800: hsl(153, 37.50%, 23.81%);
-	--color-accent-900: hsl(153, 37.50%, 19.53%);
-	--color-accent-950: hsl(153, 37.50%, 10.98%);
+	--color-secondary-50: hsl(153, 37.60%, 96.72%);
+	--color-secondary-100: hsl(153, 37.60%, 92.77%);
+	--color-secondary-200: hsl(153, 37.60%, 85.53%);
+	--color-secondary-300: hsl(153, 37.60%, 75.34%);
+	--color-secondary-400: hsl(153, 37.60%, 59.10%);
+	--color-secondary-500: hsl(153, 37.60%, 46.00%);
+	--color-secondary-600: hsl(153, 37.60%, 37.22%);
+	--color-secondary-700: hsl(153, 37.60%, 29.85%);
+	--color-secondary-800: hsl(153, 37.60%, 23.79%);
+	--color-secondary-900: hsl(153, 37.60%, 19.52%);
+	--color-secondary-950: hsl(153, 37.60%, 10.99%);
 
-	--color-brand-50: hsl(182, 48.00%, 96.15%);
-	--color-brand-100: hsl(182, 48.00%, 92.00%);
-	--color-brand-200: hsl(182, 48.00%, 84.23%);
-	--color-brand-300: hsl(182, 48.00%, 72.64%);
-	--color-brand-400: hsl(182, 48.00%, 54.17%);
-	--color-brand-500: hsl(182, 48.00%, 43.19%);
-	--color-brand-600: hsl(182, 48.00%, 35.07%);
-	--color-brand-700: hsl(182, 48.00%, 28.00%);
-	--color-brand-800: hsl(182, 48.00%, 22.34%);
-	--color-brand-900: hsl(182, 48.00%, 18.41%);
-	--color-brand-950: hsl(182, 48.00%, 10.42%);
-
-	--text-broad: var(--color-brand-950);
-	--text-soft: var(--color-brand-900);
-	--text-muted: var(--color-brand-800);
+	--color-primary-50: hsl(182, 48.00%, 96.15%);
+	--color-primary-100: hsl(182, 48.00%, 92.00%);
+	--color-primary-200: hsl(182, 48.00%, 84.23%);
+	--color-primary-300: hsl(182, 48.00%, 72.64%);
+	--color-primary-400: hsl(182, 48.00%, 54.17%);
+	--color-primary-500: hsl(182, 48.00%, 43.19%);
+	--color-primary-600: hsl(182, 48.00%, 35.07%);
+	--color-primary-700: hsl(182, 48.00%, 28.00%);
+	--color-primary-800: hsl(182, 48.00%, 22.34%);
+	--color-primary-900: hsl(182, 48.00%, 18.41%);
+	--color-primary-950: hsl(182, 48.00%, 10.42%);
 }
 
 /*@import "$lib/styles/base.css" layer(base);*/

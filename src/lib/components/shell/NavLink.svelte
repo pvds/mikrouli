@@ -14,8 +14,8 @@ let isCurrentPage = $derived(currentPath.includes(href));
 
 <li>
 	<a {href}
-	class="inline-flex px-3 py-1 rounded-3xl font-medium {isCurrentPage ?
-	'text-accent-400' : 'hover:text-accent-300'}"
+	class="inline-flex px-3 py-1 font-semibold {isCurrentPage ?
+	'text-primary-50' : 'text-primary-200 hover:text-primary-50'}"
 	aria-current={isCurrentPage ? "page" : undefined}
 	>
 		{@render children?.()}

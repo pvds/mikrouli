@@ -28,16 +28,16 @@
 		"@biomejs/biome": "1.9.4",
 		"@evilmartians/lefthook": "^1.10.1",
 		"@sveltejs/adapter-static": "^3.0.8",
-		"@sveltejs/kit": "^2.15.0",
+		"@sveltejs/kit": "^2.15.1",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
 		"@tailwindcss/typography": "^0.5.15",
 		"@tailwindcss/vite": "^4.0.0-beta.8",
-		"contentful": "^11.3.4",
+		"contentful": "^11.4.0",
 		"svelte": "^5.16.0",
 		"svelte-check": "^4.1.1",
-		"tailwindcss": "^4.0.0-beta.8",
+		"tailwindcss": "^",
 		"typescript": "^5.7.2",
-		"vite": "^6.0.5"
+		"vite": "^6.0.6"
 	},
 	"trustedDependencies": [
 		"@biomejs/biome",
