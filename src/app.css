@@ -11,19 +11,6 @@
 @theme {
 	--default-font-family: "Nunito", "Noto Sans", "sans-serif";
 
-	/* Grayscale Design palette: https://grayscale.design/app?lums=93.88,87.19,75.61,61.14,42.57,28.39,18.04,11.21,6.97,4.72,1.63&palettes=%23e06538,%2349a17a,%23359497&filters=0%7C0,0%7C0,0%7C0&names=accent,secondary,primary&labels=,, */
-	--color-accent-50: hsl(16, 73.00%, 97.61%);
-	--color-accent-100: hsl(16, 73.00%, 94.88%);
-	--color-accent-200: hsl(16, 73.00%, 89.68%);
-	--color-accent-300: hsl(16, 73.00%, 82.43%);
-	--color-accent-400: hsl(16, 73.00%, 70.64%);
-	--color-accent-500: hsl(16, 73.00%, 58.40%);
-	--color-accent-600: hsl(16, 73.00%, 46.00%);
-	--color-accent-700: hsl(16, 73.00%, 36.83%);
-	--color-accent-800: hsl(16, 73.00%, 29.44%);
-	--color-accent-900: hsl(16, 73.00%, 24.14%);
-	--color-accent-950: hsl(16, 73.00%, 13.94%);
-
 	--color-secondary-50: hsl(153, 37.60%, 96.72%);
 	--color-secondary-100: hsl(153, 37.60%, 92.77%);
 	--color-secondary-200: hsl(153, 37.60%, 85.53%);
