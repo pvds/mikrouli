@@ -49,4 +49,4 @@ onDestroy(() => {
 		</header>
 	</Section>
 </div>
-<div bind:this={sentinel} class="sentinel"></div>
+<div bind:this={sentinel} class="sentinel relative -top-12"></div>
