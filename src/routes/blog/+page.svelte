@@ -1,6 +1,7 @@
 <script>
 import Hero from "$lib/components/shell/Hero.svelte";
 import Section from "$lib/components/shell/Section.svelte";
+import { marked } from "marked";
 
 /** @type {{data: import('$lib/types/contentful').ContentfulData}} */
 let { data } = $props();
@@ -24,7 +25,7 @@ const wave = {
 {#if page}
 	<Hero title={page.fields.longTitle}>
 		<p>
-			{page.fields.intro}
+			{@html marked(page?.fields.intro)}
 		</p>
 	</Hero>
 

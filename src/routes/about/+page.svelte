@@ -1,12 +1,12 @@
 <script>
 import Hero from "$lib/components/shell/Hero.svelte";
+import { marked } from "marked";
 
 /** @type {{data: import('$lib/types/contentful').ContentfulData}} */
 let { data } = $props();
 
 const page = data.pages.find((page) => page.fields.slug === "about");
 </script>
-
 
 <svelte:head>
 	<title>About</title>
@@ -15,8 +15,6 @@ const page = data.pages.find((page) => page.fields.slug === "about");
 
 {#if page}
 	<Hero title={page.fields.longTitle}>
-		<p>
-			{page.fields.intro}
-		</p>
+		{@html marked(page?.fields.intro)}
 	</Hero>
 {/if}
