@@ -6,6 +6,14 @@ import Section from "$lib/components/shell/Section.svelte";
 let { data } = $props();
 
 const page = data.pages.find((page) => page.fields.slug === "blog");
+
+/** @type {import("$lib/components/shell/Wave.svelte.type").Wave} */
+const wave = {
+	direction: "both",
+	alignment: "left",
+	color: "secondary-100",
+	opacity: 1,
+};
 </script>
 
 <svelte:head>
@@ -45,7 +53,7 @@ const page = data.pages.find((page) => page.fields.slug === "blog");
         </div>
     </Section>
 
-    <Section classes="px-8 py-14 bg-secondary-100 text-secondary-800">
+    <Section {wave} classes="px-8 my-14 bg-secondary-100 text-secondary-800">
         <h2 class="mb-4 text-3xl font-bold">Adapting to Life Abroad</h2>
         <div class="prose-base">
             <p class="italic">
@@ -87,7 +95,8 @@ const page = data.pages.find((page) => page.fields.slug === "blog");
             </p>
         </div>
     </Section>
-    <Section classes="px-8 py-14 bg-secondary-100 text-secondary-800">
+
+	<Section {wave} classes="px-8 my-14 bg-secondary-100 text-secondary-800">
         <h2 class="mb-4 text-3xl font-bold">Understanding the Systems That Shape Us</h2>
         <div class="prose-base">
             <p class="italic">
