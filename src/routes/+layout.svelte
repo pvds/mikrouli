@@ -7,7 +7,8 @@ import "../app.css";
 let { children, data } = $props();
 </script>
 
-<div class="flex flex-col app min-h-dvh bg-primary-50 text-primary-800">
+<div
+	class="relative overflow-hidden flex flex-col app min-h-dvh bg-primary-50 text-primary-800">
 	<Header />
 
 	<main class="grow">
