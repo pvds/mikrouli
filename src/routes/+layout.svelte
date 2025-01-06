@@ -8,7 +8,7 @@ let { children, data } = $props();
 </script>
 
 <div
-	class="relative overflow-hidden flex flex-col app min-h-dvh bg-primary-50 text-primary-800">
+	class="relative overflow-clip flex flex-col app min-h-dvh bg-primary-50 text-primary-800">
 	<Header />
 
 	<main class="grow">
