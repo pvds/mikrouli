@@ -24,9 +24,7 @@ const wave = {
 
 {#if page}
 	<Hero title={page.fields.longTitle}>
-		<p>
-			{@html marked(page?.fields.intro)}
-		</p>
+		{@html marked(page?.fields.intro)}
 	</Hero>
 
     <!-- TODO: remove this demo content -->
