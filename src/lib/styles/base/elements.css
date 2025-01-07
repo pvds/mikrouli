@@ -1,0 +1,9 @@
+html {
+	/* TODO: enable when ready to configure light and dark theme */
+	/*color-scheme: light dark;*/
+}
+
+body {
+	padding-bottom: var(--global-spacing-bottom);
+	overscroll-behavior-y: none;
+}
