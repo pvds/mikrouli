@@ -74,7 +74,7 @@
 							"locale": "en-US"
 						},
 						"fields": {
-							"title": "About me",
+							"title": "About",
 							"longTitle": "Get to Know Me and My Approach",
 							"slug": "about",
 							"intro": "I’m Eleni Papamikrouli, a systemic therapist working with individuals, couples, and families. Originally from Greece, I’ve lived in the Netherlands for over 15 years, giving me a unique perspective on the experiences of internationals and expats. That said, I work with people from all walks of life, offering a safe and supportive space for anyone seeking change.\n\nMy approach is practical and collaborative. I combine curiosity with empathy to help clients explore their challenges and find ways forward. You don’t need to be perfect or have all the answers—therapy is about working together to create clarity and change.\n\n## Why Systemic Therapy?\nSystemic therapy focuses on the patterns and systems we live in, rather than labeling or diagnosing individuals. It’s not about finding fault but about exploring how dynamics work and where we can make meaningful shifts. My role is to guide you in uncovering possibilities and building solutions that fit your life."
@@ -138,7 +138,7 @@
 							"id": "2FmTPol4nxNb4Q0elgN4oG",
 							"type": "Entry",
 							"createdAt": "2024-12-28T00:14:21.086Z",
-							"updatedAt": "2024-12-28T06:04:51.743Z",
+							"updatedAt": "2025-01-07T13:24:28.147Z",
 							"environment": {
 								"sys": {
 									"id": "master",
@@ -146,8 +146,8 @@
 									"linkType": "Environment"
 								}
 							},
-							"publishedVersion": 13,
-							"revision": 3,
+							"publishedVersion": 15,
+							"revision": 4,
 							"contentType": {
 								"sys": {
 									"type": "Link",
@@ -161,7 +161,7 @@
 							"title": "Contact",
 							"longTitle": "Contact Me to Take the First Step",
 							"slug": "contact",
-							"intro": "Taking the first step toward therapy can feel daunting, but I’m here to make it as simple as possible. Whether you’re curious about the process or ready to begin, I’d love to hear from you.\n\n### Schedule a Session\nI work with people from all over the world and all walks of life. Let’s explore how therapy can help you create positive, lasting change.\n\n[Include a link or form for booking a session.]\n\n### Contact Details\n- **Email:** eleni@mikrouli.nl\n- **Phone:** 00 31 6 19 44 62 63\n- **Languages:** Greek, Dutch, English\n- **Location:** Online sessions available worldwide"
+							"intro": "Taking the first step toward therapy can feel daunting, but I’m here to make it as simple as possible. Whether you’re curious about the process or ready to begin, I’d love to hear from you.\n\n## Schedule a Session\nI work with people from all over the world and all walks of life. Let’s explore how therapy can help you create positive, lasting change.\n\n[Include a link or form for booking a session.]\n\n## Contact Details\n- **Email:** eleni@mikrouli.nl\n- **Phone:** 00 31 6 19 44 62 63\n- **Languages:** Greek, Dutch, English\n- **Location:** Online sessions available worldwide"
 						}
 					},
 					{
@@ -227,7 +227,7 @@
 				"id": "2FmTPol4nxNb4Q0elgN4oG",
 				"type": "Entry",
 				"createdAt": "2024-12-28T00:14:21.086Z",
-				"updatedAt": "2024-12-28T06:04:51.743Z",
+				"updatedAt": "2025-01-07T13:24:28.147Z",
 				"environment": {
 					"sys": {
 						"id": "master",
@@ -235,8 +235,8 @@
 						"linkType": "Environment"
 					}
 				},
-				"publishedVersion": 13,
-				"revision": 3,
+				"publishedVersion": 15,
+				"revision": 4,
 				"contentType": {
 					"sys": {
 						"type": "Link",
@@ -250,7 +250,49 @@
 				"title": "Contact",
 				"longTitle": "Contact Me to Take the First Step",
 				"slug": "contact",
-				"intro": "Taking the first step toward therapy can feel daunting, but I’m here to make it as simple as possible. Whether you’re curious about the process or ready to begin, I’d love to hear from you.\n\n### Schedule a Session\nI work with people from all over the world and all walks of life. Let’s explore how therapy can help you create positive, lasting change.\n\n[Include a link or form for booking a session.]\n\n### Contact Details\n- **Email:** eleni@mikrouli.nl\n- **Phone:** 00 31 6 19 44 62 63\n- **Languages:** Greek, Dutch, English\n- **Location:** Online sessions available worldwide"
+				"intro": "Taking the first step toward therapy can feel daunting, but I’m here to make it as simple as possible. Whether you’re curious about the process or ready to begin, I’d love to hear from you.\n\n## Schedule a Session\nI work with people from all over the world and all walks of life. Let’s explore how therapy can help you create positive, lasting change.\n\n[Include a link or form for booking a session.]\n\n## Contact Details\n- **Email:** eleni@mikrouli.nl\n- **Phone:** 00 31 6 19 44 62 63\n- **Languages:** Greek, Dutch, English\n- **Location:** Online sessions available worldwide"
+			}
+		},
+		{
+			"metadata": {
+				"tags": [],
+				"concepts": []
+			},
+			"sys": {
+				"space": {
+					"sys": {
+						"type": "Link",
+						"linkType": "Space",
+						"id": "fnyi5t75mv2d"
+					}
+				},
+				"id": "2IULqLao4rH5Chl7BbeifG",
+				"type": "Entry",
+				"createdAt": "2024-12-31T13:02:36.979Z",
+				"updatedAt": "2024-12-31T13:02:36.979Z",
+				"environment": {
+					"sys": {
+						"id": "master",
+						"type": "Link",
+						"linkType": "Environment"
+					}
+				},
+				"publishedVersion": 7,
+				"revision": 1,
+				"contentType": {
+					"sys": {
+						"type": "Link",
+						"linkType": "ContentType",
+						"id": "page"
+					}
+				},
+				"locale": "en-US"
+			},
+			"fields": {
+				"title": "Markdown",
+				"longTitle": "Markdown test page",
+				"slug": "markdown",
+				"intro": "# Markdown syntax guide\n\n## Headers\n\n# This is a Heading h1\n## This is a Heading h2\n###### This is a Heading h6\n\n## Emphasis\n\n*This text will be italic*  \n_This will also be italic_\n\n**This text will be bold**  \n__This will also be bold__\n\n_You **can** combine them_\n\n## Lists\n\n### Unordered\n\n* Item 1\n* Item 2\n* Item 2a\n* Item 2b\n    * Item 3a\n    * Item 3b\n\n### Ordered\n\n1. Item 1\n2. Item 2\n3. Item 3\n    1. Item 3a\n    2. Item 3b\n\n## Images\n\n![This is an alt text.](/image/sample.webp \"This is a sample image.\")\n\n## Links\n\nYou may be using [Markdown Live Preview](https://markdownlivepreview.com/).\n\n## Blockquotes\n\n> Markdown is a lightweight markup language with plain-text-formatting syntax, created in 2004 by John Gruber with Aaron Swartz.\n>\n>> Markdown is often used to format readme files, for writing messages in online discussion forums, and to create rich text using a plain text editor.\n\n## Tables\n\n| Left columns  | Right columns |\n| ------------- |:-------------:|\n| left foo      | right foo     |\n| left bar      | right bar     |\n| left baz      | right baz     |\n\n## Blocks of code\n\n```\nlet message = 'Hello world';\nalert(message);\n```\n\n## Inline code\n\nThis web site is using `markedjs/marked`.\n"
 			}
 		},
 		{
@@ -419,6 +461,382 @@
 				"longTitle": "Insights to Support Your Journey",
 				"slug": "blog",
 				"intro": "Therapy is about understanding ourselves and the systems we live in. Whether you're an international, an expat, or simply someone navigating life’s challenges, these articles offer insights and tools to support your journey."
+			}
+		}
+	],
+	"services": [
+		{
+			"metadata": {
+				"tags": [],
+				"concepts": []
+			},
+			"sys": {
+				"space": {
+					"sys": {
+						"type": "Link",
+						"linkType": "Space",
+						"id": "fnyi5t75mv2d"
+					}
+				},
+				"id": "7tTIOTk3UaWgvlYkn51HF2",
+				"type": "Entry",
+				"createdAt": "2025-01-07T13:23:36.337Z",
+				"updatedAt": "2025-01-07T13:23:36.337Z",
+				"environment": {
+					"sys": {
+						"id": "master",
+						"type": "Link",
+						"linkType": "Environment"
+					}
+				},
+				"publishedVersion": 4,
+				"revision": 1,
+				"contentType": {
+					"sys": {
+						"type": "Link",
+						"linkType": "ContentType",
+						"id": "service"
+					}
+				},
+				"locale": "en-US"
+			},
+			"fields": {
+				"title": "Family Therapy",
+				"longTitle": "Family Therapy",
+				"slug": "family-therapy",
+				"intro": "Families operate as systems, and sometimes those systems get stuck. I help\nfamilies uncover and change unhelpful patterns, creating healthier ways of\nrelating and supporting each other."
+			}
+		},
+		{
+			"metadata": {
+				"tags": [],
+				"concepts": []
+			},
+			"sys": {
+				"space": {
+					"sys": {
+						"type": "Link",
+						"linkType": "Space",
+						"id": "fnyi5t75mv2d"
+					}
+				},
+				"id": "37va85fpU9i3eD9r36ZvvP",
+				"type": "Entry",
+				"createdAt": "2025-01-07T13:23:00.820Z",
+				"updatedAt": "2025-01-07T13:23:00.820Z",
+				"environment": {
+					"sys": {
+						"id": "master",
+						"type": "Link",
+						"linkType": "Environment"
+					}
+				},
+				"publishedVersion": 5,
+				"revision": 1,
+				"contentType": {
+					"sys": {
+						"type": "Link",
+						"linkType": "ContentType",
+						"id": "service"
+					}
+				},
+				"locale": "en-US"
+			},
+			"fields": {
+				"title": "Couples Therapy",
+				"longTitle": "Couples Therapy",
+				"slug": "couples-therapy",
+				"intro": "Every relationship has its own dynamics and struggles. I work with couples of\nall backgrounds to improve communication, resolve conflicts, and strengthen\ntheir connection."
+			}
+		},
+		{
+			"metadata": {
+				"tags": [],
+				"concepts": []
+			},
+			"sys": {
+				"space": {
+					"sys": {
+						"type": "Link",
+						"linkType": "Space",
+						"id": "fnyi5t75mv2d"
+					}
+				},
+				"id": "1jrEYUK6AF7a2NvJ41IthV",
+				"type": "Entry",
+				"createdAt": "2025-01-07T13:22:20.499Z",
+				"updatedAt": "2025-01-07T13:22:20.499Z",
+				"environment": {
+					"sys": {
+						"id": "master",
+						"type": "Link",
+						"linkType": "Environment"
+					}
+				},
+				"publishedVersion": 6,
+				"revision": 1,
+				"contentType": {
+					"sys": {
+						"type": "Link",
+						"linkType": "ContentType",
+						"id": "service"
+					}
+				},
+				"locale": "en-US"
+			},
+			"fields": {
+				"title": "Individual Therapy",
+				"longTitle": "Individual Therapy",
+				"slug": "individual-therapy",
+				"intro": "For those seeking personal growth and clarity, individual therapy offers a space\nto explore challenges and patterns that may be holding you back. Whether you’re\ndealing with anxiety, cultural transitions, or life stress, we’ll work together\nto find new possibilities."
+			}
+		}
+	],
+	"posts": [
+		{
+			"metadata": {
+				"tags": [],
+				"concepts": []
+			},
+			"sys": {
+				"space": {
+					"sys": {
+						"type": "Link",
+						"linkType": "Space",
+						"id": "fnyi5t75mv2d"
+					}
+				},
+				"id": "3JNNx7W7oR8vIgTdggece",
+				"type": "Entry",
+				"createdAt": "2024-12-28T06:00:04.415Z",
+				"updatedAt": "2024-12-28T06:00:04.415Z",
+				"environment": {
+					"sys": {
+						"id": "master",
+						"type": "Link",
+						"linkType": "Environment"
+					}
+				},
+				"publishedVersion": 5,
+				"revision": 1,
+				"contentType": {
+					"sys": {
+						"type": "Link",
+						"linkType": "ContentType",
+						"id": "post"
+					}
+				},
+				"locale": "en-US"
+			},
+			"fields": {
+				"title": "Strengthening Communication in Relationships",
+				"slug": "strengthening-communication-in-relationships",
+				"intro": "Miscommunication is one of the most common sources of conflict in relationships. Systemic therapy can help you shift how you talk and listen.\n\n## Why Communication Matters\nAt its core, communication is how we connect. But when communication breaks down, misunderstandings and conflict arise, creating distance in relationships.\n\n## Tools for Effective Communication\nSystemic therapy provides practical tools to help you listen more openly, express yourself clearly, and rebuild trust. Small shifts in how you communicate can lead to profound changes in your relationships.\n"
+			}
+		},
+		{
+			"metadata": {
+				"tags": [],
+				"concepts": []
+			},
+			"sys": {
+				"space": {
+					"sys": {
+						"type": "Link",
+						"linkType": "Space",
+						"id": "fnyi5t75mv2d"
+					}
+				},
+				"id": "4K3cTBNASwMkrwkSSWm68w",
+				"type": "Entry",
+				"createdAt": "2024-12-28T06:00:04.384Z",
+				"updatedAt": "2024-12-28T06:00:04.384Z",
+				"environment": {
+					"sys": {
+						"id": "master",
+						"type": "Link",
+						"linkType": "Environment"
+					}
+				},
+				"publishedVersion": 5,
+				"revision": 1,
+				"contentType": {
+					"sys": {
+						"type": "Link",
+						"linkType": "ContentType",
+						"id": "post"
+					}
+				},
+				"locale": "en-US"
+			},
+			"fields": {
+				"title": "Why Therapy Isn’t About Fixing You",
+				"slug": "why-therapy-isnt-about-fixing-you",
+				"intro": "Many people think therapy is about diagnosing problems. Systemic therapy offers a different perspective—it’s about working with the systems around you.\n\n## Moving Beyond Labels\nSystemic therapy takes a different approach by stepping away from the idea of diagnosing individuals. Instead, it focuses on the systems we live in—families, workplaces, and communities.\n\n## Exploring Possibilities\nRather than seeing yourself as flawed, systemic therapy helps you explore how the patterns in your life shape your experiences. It’s a process of curiosity and discovery, rather than one of fault-finding."
+			}
+		},
+		{
+			"metadata": {
+				"tags": [],
+				"concepts": []
+			},
+			"sys": {
+				"space": {
+					"sys": {
+						"type": "Link",
+						"linkType": "Space",
+						"id": "fnyi5t75mv2d"
+					}
+				},
+				"id": "3kryEmO4yykbYKbByiWU8i",
+				"type": "Entry",
+				"createdAt": "2024-12-28T06:00:04.205Z",
+				"updatedAt": "2024-12-28T06:00:04.205Z",
+				"environment": {
+					"sys": {
+						"id": "master",
+						"type": "Link",
+						"linkType": "Environment"
+					}
+				},
+				"publishedVersion": 5,
+				"revision": 1,
+				"contentType": {
+					"sys": {
+						"type": "Link",
+						"linkType": "ContentType",
+						"id": "post"
+					}
+				},
+				"locale": "en-US"
+			},
+			"fields": {
+				"title": "Cultural Sensitivity in Therapy",
+				"slug": "cultural-sensitivity-in-therapy",
+				"intro": "Your cultural background matters. Therapy that acknowledges this can help you feel understood and supported in meaningful ways.\n\n## Honoring Your Cultural Context\nOur cultural backgrounds influence how we see the world, express emotions, and relate to others. Therapy that recognizes this creates a safe and inclusive space for exploration.\n\n## Building Bridges\nIn systemic therapy, we work together to navigate cultural differences and build a deeper understanding of yourself and your relationships. Your experiences and identity are integral to the process.\n"
+			}
+		},
+		{
+			"metadata": {
+				"tags": [],
+				"concepts": []
+			},
+			"sys": {
+				"space": {
+					"sys": {
+						"type": "Link",
+						"linkType": "Space",
+						"id": "fnyi5t75mv2d"
+					}
+				},
+				"id": "4YPPEYrLxfl646mWntSl1O",
+				"type": "Entry",
+				"createdAt": "2024-12-28T06:00:04.003Z",
+				"updatedAt": "2024-12-28T06:00:04.003Z",
+				"environment": {
+					"sys": {
+						"id": "master",
+						"type": "Link",
+						"linkType": "Environment"
+					}
+				},
+				"publishedVersion": 4,
+				"revision": 1,
+				"contentType": {
+					"sys": {
+						"type": "Link",
+						"linkType": "ContentType",
+						"id": "post"
+					}
+				},
+				"locale": "en-US"
+			},
+			"fields": {
+				"title": "Adapting to Life Abroad",
+				"slug": "adapting-to-life-abroad",
+				"intro": "The expat experience is full of transitions and challenges. Here are some systemic tools to help you find stability and connection in a new culture.\n\n## The Unique Challenges of Expat Life\nFrom language barriers to cultural differences, living abroad comes with its own set of struggles. These challenges often impact not just individuals but their families and relationships.\n\n## Finding Support and Connection\nSystemic therapy helps you understand how these challenges influence your life and relationships. Together, we explore strategies to create stability and a sense of belonging, no matter where you are.\n"
+			}
+		},
+		{
+			"metadata": {
+				"tags": [],
+				"concepts": []
+			},
+			"sys": {
+				"space": {
+					"sys": {
+						"type": "Link",
+						"linkType": "Space",
+						"id": "fnyi5t75mv2d"
+					}
+				},
+				"id": "1FcZOjCAszzKaiJxOAvKxA",
+				"type": "Entry",
+				"createdAt": "2024-12-28T06:00:03.284Z",
+				"updatedAt": "2024-12-28T06:00:03.284Z",
+				"environment": {
+					"sys": {
+						"id": "master",
+						"type": "Link",
+						"linkType": "Environment"
+					}
+				},
+				"publishedVersion": 5,
+				"revision": 1,
+				"contentType": {
+					"sys": {
+						"type": "Link",
+						"linkType": "ContentType",
+						"id": "post"
+					}
+				},
+				"locale": "en-US"
+			},
+			"fields": {
+				"title": "Understanding the Systems That Shape Us",
+				"slug": "understanding-the-systems-that-shape-us",
+				"intro": "From families to workplaces, the systems we live in affect us deeply. Explore how systemic therapy helps you navigate these dynamics.\n\n## What Are Systems?\nSystems are the groups we belong to, from families to workplaces. These systems shape our behaviors, beliefs, and interactions, often in ways we don’t realize.\n\n## Making the Invisible Visible\nSystemic therapy helps you see these dynamics and identify where patterns might be holding you back. By addressing the system as a whole, we can find ways to create movement and change."
+			}
+		},
+		{
+			"metadata": {
+				"tags": [],
+				"concepts": []
+			},
+			"sys": {
+				"space": {
+					"sys": {
+						"type": "Link",
+						"linkType": "Space",
+						"id": "fnyi5t75mv2d"
+					}
+				},
+				"id": "5EA7KMYDmrAL2qk5VLuJdo",
+				"type": "Entry",
+				"createdAt": "2024-12-28T06:00:03.222Z",
+				"updatedAt": "2024-12-28T06:00:03.222Z",
+				"environment": {
+					"sys": {
+						"id": "master",
+						"type": "Link",
+						"linkType": "Environment"
+					}
+				},
+				"publishedVersion": 6,
+				"revision": 1,
+				"contentType": {
+					"sys": {
+						"type": "Link",
+						"linkType": "ContentType",
+						"id": "post"
+					}
+				},
+				"locale": "en-US"
+			},
+			"fields": {
+				"title": "Breaking Unhelpful Family Patterns",
+				"slug": "breaking-unhelpful-family-patterns",
+				"intro": "Families are systems, and sometimes those systems get stuck. Learn how systemic therapy can help untangle unhealthy patterns and create space for change.\n\n## Understanding Family Systems\nFamilies are made up of interconnected relationships, and sometimes those relationships develop patterns that stop working. These might show up as recurring arguments, strained communication, or feelings of disconnection.\n\n## How Systemic Therapy Helps\nSystemic therapy works to identify these patterns and help family members understand their roles within them. The goal isn’t to place blame but to explore how small changes can lead to significant improvements in the family dynamic."
 			}
 		}
 	]
