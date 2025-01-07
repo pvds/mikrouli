@@ -10,8 +10,6 @@ const page = data.pages.find((page) => page.fields.slug === "home");
 
 {#if page}
 	<Hero title={page.fields.longTitle}>
-		<p>
-			{@html marked(page.fields.intro)}
-		</p>
+		{@html marked(page.fields.intro)}
 	</Hero>
 {/if}

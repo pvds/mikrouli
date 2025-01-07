@@ -12,7 +12,6 @@ const page = data.pages.find((page) => page.fields.slug === "about");
 	<title>About</title>
 	<meta name="description" content="" />
 </svelte:head>
-
 {#if page}
 	<Hero title={page.fields.longTitle}>
 		{@html marked(page?.fields.intro)}

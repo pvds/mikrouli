@@ -19,9 +19,7 @@ const client = createClient({
 async function fetchContentfulData() {
 	// Skip fetching in dev if cache file already exists
 	if (isDev && fs.existsSync(cachePath)) {
-		console.info(
-			"Development mode cache found. Skipping Contentful fetch.",
-		);
+		console.info("Development mode cache found. Skipping Contentful fetch.");
 		return;
 	}
 

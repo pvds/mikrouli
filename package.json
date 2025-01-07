@@ -21,6 +21,7 @@
 		"check:format": "biome check",
 		"check:svelte": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:svelte:watch": "bun run check:svelte --watch",
+		"write": "biome write",
 		"util:favicons": "bunx realfavicon generate src/lib/images/icon.svg favicons.json .favicons.json static",
 		"util:content": "bun run scripts/fetchContent.js"
 	},
@@ -40,12 +41,7 @@
 		"typescript": "^5.7.2",
 		"vite": "^6.0.7"
 	},
-	"trustedDependencies": [
-		"@biomejs/biome",
-		"@evilmartians/lefthook",
-		"@sveltejs/kit",
-		"esbuild"
-	],
+	"trustedDependencies": ["@biomejs/biome", "@evilmartians/lefthook", "@sveltejs/kit", "esbuild"],
 	"prettier": {
 		"proseWrap": "always"
 	}
