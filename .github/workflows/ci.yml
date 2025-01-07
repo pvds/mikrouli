@@ -39,7 +39,7 @@ jobs:
 
       - name: check
         if: ${{ github.event_name != 'repository_dispatch' }}
-        run: bun run check
+        run: bun run check:ci
 
       - name: content
         if: ${{ github.event_name != 'pull_request' }}
