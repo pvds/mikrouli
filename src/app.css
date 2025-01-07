@@ -47,6 +47,7 @@
 
 	body {
 		padding-bottom: var(--global-spacing-bottom);
+		overscroll-behavior-y: none;
 	}
 
 	/* latin-ext */
