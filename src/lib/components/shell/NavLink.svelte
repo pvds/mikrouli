@@ -1,4 +1,6 @@
 <script>
+import { base } from "$app/paths";
+
 /**
  * @typedef {Object} Props
  * @property {string} href
@@ -10,7 +12,10 @@
 /** @type {Props} */
 let { href, currentPath, children, clicked } = $props();
 
-let isCurrentPage = $derived(href === "./" ? currentPath === "/" : currentPath.includes(href));
+console.info({ href, currentPath });
+let isCurrentPage = $derived(
+	href === `${base}/` ? href === currentPath : currentPath.includes(href),
+);
 </script>
 
 <li class="grow">

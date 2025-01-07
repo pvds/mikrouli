@@ -1,17 +1,18 @@
 <script>
 import { browser } from "$app/environment";
+import { base } from "$app/paths";
 import { page } from "$app/state";
 import { onDestroy, onMount } from "svelte";
 import NavLink from "./NavLink.svelte";
 
 /** @type {{ href: string, label: string }[]} */
 const navItemsBase = [
-	{ href: "services", label: "Services" },
-	{ href: "blog", label: "Blog" },
-	{ href: "contact", label: "Contact" },
-	{ href: "about", label: "About" },
+	{ href: `${base}/services`, label: "Services" },
+	{ href: `${base}/blog`, label: "Blog" },
+	{ href: `${base}/contact`, label: "Contact" },
+	{ href: `${base}/about`, label: "About" },
 ];
-const navItemsWithHome = [{ href: "./", label: "Home" }, ...navItemsBase];
+const navItemsWithHome = [{ href: `${base}/`, label: "Home" }, ...navItemsBase];
 /** @type {HTMLUListElement} */
 let popoverMenu;
 /** @type {HTMLUListElement} */
