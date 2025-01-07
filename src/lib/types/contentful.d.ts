@@ -76,6 +76,6 @@ export type NavigationEntry = {
 export type ContentfulData = {
 	navigation: NavigationEntry[];
 	pages: PageEntry[];
-	services: PageEntry[];
-	posts: PageEntry[];
+	services: ServiceEntry[];
+	posts: PostEntry[];
 };

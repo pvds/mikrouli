@@ -1,3 +1,10 @@
-// since there's no dynamic data here, we can prerender
-// it so that it gets served as a static asset in production
-export const prerender = true;
+import { getPage } from "$lib/server/content.js";
+
+export const prerender = true; // Ensure the site is statically generated
+
+/** @type {import('./$types').PageServerLoad} */
+export async function load() {
+	const slug = "about";
+	const page = getPage(slug); // Fetch and process the specific page
+	return { local: page };
+}

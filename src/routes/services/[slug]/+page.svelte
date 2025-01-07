@@ -1,9 +1,5 @@
 <script>
 import Hero from "$lib/components/shell/Hero.svelte";
-import { marked } from "marked";
-
-/** @type {{data: import('$lib/types/contentful').ContentfulData}} */
-let { data } = $props();
 </script>
 
 <svelte:head>
@@ -11,6 +7,6 @@ let { data } = $props();
 	<meta name="description" content="" />
 </svelte:head>
 
-	<Hero title="Service X">
-		{@html marked("This is a service page")}
-	</Hero>
+<Hero title="Service X">
+	{@html "This is a service page"}
+</Hero>
