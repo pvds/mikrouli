@@ -13,6 +13,9 @@ const config = {
 			precompress: false,
 			strict: true,
 		}),
+		paths: {
+			base: "/mikrouli",
+		},
 		env: {
 			publicPrefix: "PUBLIC_", // Default prefix for public variables
 			privatePrefix: "", // Default prefix for private variables
