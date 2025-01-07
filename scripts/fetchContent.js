@@ -8,7 +8,7 @@ const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
 const isDev = process.env.PUBLIC_ENVIRONMENT === "development";
 
 // The JSON file to write the fetched data into
-const cachePath = path.resolve("./static/data/content.json");
+const cachePath = path.resolve("./src/lib/data/content.json");
 
 // Create the Contentful client
 const client = createClient({

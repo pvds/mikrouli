@@ -1,4 +1,4 @@
-import data from "../../../static/data/content.json";
+import data from "./content.json";
 
 export const content = async () => {
 	return {
