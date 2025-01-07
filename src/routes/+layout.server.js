@@ -1,8 +1,8 @@
-import { content } from "$lib/data/content.js";
+import { content } from "$lib/server/content.js";
 
 export const prerender = true; // Ensure the site is statically generated
 
-/** @type {import('./$types').LayoutLoad} */
+/** @type {import('./$types').LayoutServerLoad} */
 export async function load() {
 	return await content();
 }
