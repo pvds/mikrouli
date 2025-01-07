@@ -12,7 +12,6 @@ import { base } from "$app/paths";
 /** @type {Props} */
 let { href, currentPath, children, clicked } = $props();
 
-console.info({ href, currentPath });
 let isCurrentPage = $derived(
 	href === `${base}/` ? href === currentPath : currentPath.includes(href),
 );
