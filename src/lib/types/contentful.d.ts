@@ -5,7 +5,7 @@ export type Metadata = {
 
 export type SysLink = {
 	sys: {
-		type: "Link";
+		type: string;
 		linkType: string;
 		id: string;
 	};
@@ -31,15 +31,40 @@ export type PageFields = {
 	intro: string;
 };
 
-export type NavigationItem = {
+export type PageEntry = {
 	metadata: Metadata;
 	sys: Sys;
 	fields: PageFields;
 };
 
+export type ServiceFields = {
+	title: string;
+	longTitle: string;
+	slug: string;
+	intro: string;
+};
+
+export type ServiceEntry = {
+	metadata: Metadata;
+	sys: Sys;
+	fields: ServiceFields;
+};
+
+export type PostFields = {
+	title: string;
+	slug: string;
+	intro: string;
+};
+
+export type PostEntry = {
+	metadata: Metadata;
+	sys: Sys;
+	fields: PostFields;
+};
+
 export type NavigationFields = {
 	title: string;
-	items: NavigationItem[];
+	items: PageEntry[];
 };
 
 export type NavigationEntry = {
@@ -50,5 +75,7 @@ export type NavigationEntry = {
 
 export type ContentfulData = {
 	navigation: NavigationEntry[];
-	pages: NavigationItem[];
+	pages: PageEntry[];
+	services: PageEntry[];
+	posts: PageEntry[];
 };
