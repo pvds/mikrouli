@@ -23,7 +23,7 @@
 		"check:svelte": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:svelte:ci": "bun run check:svelte --output machine",
 		"check:svelte:watch": "bun run check:svelte --watch",
-		"write": "biome write",
+		"write": "biome check --write",
 		"util:favicons": "bunx realfavicon generate src/lib/images/icon.svg favicons.json .favicons.json static",
 		"util:content": "bun run scripts/fetchContent.js"
 	},
