@@ -34,6 +34,8 @@
 	--color-primary-800: hsl(182, 48.00%, 22.34%);
 	--color-primary-900: hsl(182, 48.00%, 18.41%);
 	--color-primary-950: hsl(182, 48.00%, 10.42%);
+
+	--global-spacing-bottom: 0;
 }
 
 /*@import "$lib/styles/base.css" layer(base);*/
@@ -41,6 +43,10 @@
 	html {
 		/* TODO: enable when ready to configure light and dark theme */
 		/*color-scheme: light dark;*/
+	}
+
+	body {
+		padding-bottom: var(--global-spacing-bottom);
 	}
 
 	/* latin-ext */
@@ -84,8 +90,7 @@
 		font-stretch: 100%;
 		font-display: swap;
 		src: url(/fonts/noto-greek.woff2) format("woff2");
-		unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C,
-			U+038E-03A1, U+03A3-03FF;
+		unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
 	}
 }
 
