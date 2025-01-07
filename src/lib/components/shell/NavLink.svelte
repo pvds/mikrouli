@@ -13,9 +13,9 @@ let { href, currentPath, children, clicked } = $props();
 let isCurrentPage = $derived(href === "./" ? currentPath === "/" : currentPath.includes(href));
 </script>
 
-<li>
+<li class="grow">
 	<a {href} onclick="{() => clicked()}"
-	class="inline-flex px-3 py-1 font-semibold {isCurrentPage ?
+	class="inline-block w-full text-center px-3 py-1 font-semibold {isCurrentPage ?
 	'text-primary-50' : 'text-primary-200 hover:text-primary-50'}"
 	aria-current={isCurrentPage ? "page" : undefined}
 	>

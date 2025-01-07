@@ -81,7 +81,7 @@ onDestroy(() => {
 
 {#snippet bottomNav()}
 	<ul bind:this={bottomMenu}
-		class="menu-bottom w-full flex justify-around fixed left-0 bottom-0 px-1 py-2 bg-primary-900 gap-2">
+		class="menu-bottom w-full flex justify-around fixed left-0 bottom-0 px-1 py-2 bg-primary-900">
 		{@render navLinks()}
 	</ul>
 {/snippet}
