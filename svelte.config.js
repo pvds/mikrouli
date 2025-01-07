@@ -13,6 +13,10 @@ const config = {
 			precompress: false,
 			strict: true,
 		}),
+		env: {
+			publicPrefix: "PUBLIC_", // Default prefix for public variables
+			privatePrefix: "", // Default prefix for private variables
+		},
 	},
 };
 

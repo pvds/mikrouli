@@ -5,7 +5,7 @@ import { createClient } from "contentful";
 // Read secrets from environment vars
 const space = process.env.CONTENTFUL_SPACE_ID;
 const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
-const isDev = process.env.ENVIRONMENT === "development";
+const isDev = process.env.PUBLIC_ENVIRONMENT === "development";
 
 // The JSON file to write the fetched data into
 const cachePath = path.resolve("./static/data/content.json");
@@ -25,15 +25,19 @@ async function fetchContentfulData() {
 
 	try {
 		console.info("Fetching data from Contentful...");
-		const [navigation, pages] = await Promise.all([
+		const [navigation, pages, services, posts] = await Promise.all([
 			client.getEntries({ content_type: "navigation" }),
 			client.getEntries({ content_type: "page" }),
+			client.getEntries({ content_type: "service" }),
+			client.getEntries({ content_type: "post" }),
 		]);
 
 		/** @type {{data: import('svelte').Snippet}} */
 		const data = {
 			navigation: navigation.items,
 			pages: pages.items,
+			services: services.items,
+			posts: posts.items,
 		};
 
 		fs.writeFileSync(cachePath, JSON.stringify(data, null, 2));
