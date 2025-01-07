@@ -5,12 +5,13 @@ import { onDestroy, onMount } from "svelte";
 import NavLink from "./NavLink.svelte";
 
 /** @type {{ href: string, label: string }[]} */
-const navItems = [
+const navItemsBase = [
 	{ href: "services", label: "Services" },
 	{ href: "blog", label: "Blog" },
 	{ href: "contact", label: "Contact" },
 	{ href: "about", label: "About" },
 ];
+const navItemsWithHome = [{ href: "./", label: "Home" }, ...navItemsBase];
 /** @type {HTMLUListElement} */
 let popoverMenu;
 /** @type {HTMLUListElement} */
@@ -18,8 +19,11 @@ let bottomMenu;
 /** @type {string} */
 let breakpoint;
 
-let smallScreen = false;
-let fixedNav = true;
+let smallScreen = $state(false);
+// TODO: decide on whether to use bottom or popover menu; then remove this logic
+const smallScreenBottom = true;
+
+const navItems = $derived(smallScreen ? navItemsWithHome : navItemsBase);
 
 const handleResize = () => {
 	smallScreen = window.matchMedia(`(max-width: ${breakpoint})`).matches;
@@ -35,7 +39,7 @@ const handleResize = () => {
 };
 
 onMount(() => {
-	breakpoint = getComputedStyle(document.documentElement).getPropertyValue("--breakpoint-sm");
+	breakpoint = getComputedStyle(document.documentElement).getPropertyValue("--breakpoint-md");
 	handleResize(); // Initial check
 	window.addEventListener("resize", handleResize);
 });
@@ -48,7 +52,7 @@ onDestroy(() => {
 <nav class="navigation-primary ml-auto"
 	 aria-label="Main navigation">
 	{#if smallScreen}
-		{#if fixedNav}
+		{#if smallScreenBottom}
 			{@render bottomNav()}
 		{:else}
 			{@render popoverNav()}
@@ -69,7 +73,7 @@ onDestroy(() => {
 			class="menu-popover-toggle cursor-pointer text-primary-200 font-semibold px-3 py-1"
 			type="button">Menu
 	</button>
-	<ul bind:this={popoverMenu} id="menu-popover" popover popovertargetaction="toggle"
+	<ul bind:this={popoverMenu} id="menu-popover" popover="auto"
 		class="menu-popover absolute open:flex open:flex-col gap-1 px-1 py-2 rounded-md bg-primary-800">
 		{@render navLinks()}
 	</ul>

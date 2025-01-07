@@ -10,7 +10,7 @@
 /** @type {Props} */
 let { href, currentPath, children, clicked } = $props();
 
-let isCurrentPage = $derived(currentPath.includes(href));
+let isCurrentPage = $derived(href === "./" ? currentPath === "/" : currentPath.includes(href));
 </script>
 
 <li>
