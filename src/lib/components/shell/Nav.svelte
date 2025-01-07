@@ -88,7 +88,7 @@ onDestroy(() => {
 
 {#snippet navLinks()}
 	{#each navItems as { href, label }}
-		<NavLink {href} currentPath={page.url.pathname} clicked="{() => popoverMenu?.hidePopover()}">
+		<NavLink {href} currentPath={page.url.pathname} clicked={() => popoverMenu?.hidePopover()}>
 			{label}
 		</NavLink>
 	{/each}
