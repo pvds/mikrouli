@@ -1,77 +1,81 @@
-export type Metadata = {
-	tags: unknown[];
-	concepts: unknown[];
-};
-
-export type SysLink = {
-	sys: {
-		type: string;
-		linkType: string;
-		id: string;
-	};
-};
-
 export type Sys = {
-	space: SysLink;
 	id: string;
 	type: string;
 	createdAt: string;
 	updatedAt: string;
-	environment: SysLink;
-	publishedVersion: number;
-	revision: number;
-	contentType: SysLink;
 	locale: string;
 };
 
+// ### Pages
+
 export type PageFields = {
 	title: string;
-	longTitle: string;
+	header: string;
 	slug: string;
 	intro: string;
+	sections: SectionFields[];
 };
 
 export type PageEntry = {
-	metadata: Metadata;
 	sys: Sys;
 	fields: PageFields;
 };
 
+// ### Sections
+
+export type SectionEntry = {
+	sys: Sys;
+	fields?: SectionFields;
+};
+
+export type SectionFields = {
+	title: string;
+	header?: string;
+	content: string;
+};
+
+// ### Services
+
 export type ServiceFields = {
 	title: string;
-	longTitle: string;
+	header?: string;
 	slug: string;
 	intro: string;
+	sections: SectionFields[];
 };
 
 export type ServiceEntry = {
-	metadata: Metadata;
 	sys: Sys;
 	fields: ServiceFields;
 };
 
+// ### Posts
+
 export type PostFields = {
 	title: string;
+	header?: string;
 	slug: string;
 	intro: string;
 };
 
 export type PostEntry = {
-	metadata: Metadata;
 	sys: Sys;
 	fields: PostFields;
 };
 
+// ### Navigations
+
 export type NavigationFields = {
 	title: string;
-	items: PageEntry[];
+	items: PageFields[];
 };
 
 export type NavigationEntry = {
-	metadata: Metadata;
 	sys: Sys;
 	fields: NavigationFields;
 };
+
+// ### Data
 
 export type ContentfulData = {
 	navigation: NavigationEntry[];

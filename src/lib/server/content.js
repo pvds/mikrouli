@@ -19,13 +19,19 @@ export const getGlobal = () => {
  */
 export const getPage = (slug) => {
 	const pages = content.pages || [];
+	/** @type {import('$lib/types/contentful').PageEntry | undefined}*/
 	const page = pages?.find((p) => p.fields.slug === slug);
 
 	if (!page) throw error(404, `Page with slug '${slug}' not found`);
+	const sections = page.fields.sections;
 
 	return {
 		...page.fields,
 		intro: markdownToHtml(page.fields.intro),
+		sections: sections.map((section) => ({
+			...section,
+			content: markdownToHtml(section.content),
+		})),
 	};
 };
 
@@ -36,14 +42,21 @@ export const getPage = (slug) => {
  * @throws {Error} - Throws a SvelteKit error if the service is not found.
  */
 export const getService = (slug) => {
-	const services = content.services || [];
+	const services = content.services;
+	/** @type {import('$lib/types/contentful').ServiceEntry | undefined}*/
 	const service = services?.find((s) => s.fields.slug === slug);
 
 	if (!service) throw error(404, `Service with slug '${slug}' not found`);
 
+	const sections = service.fields.sections;
+
 	return {
 		...service.fields,
 		intro: markdownToHtml(service.fields.intro),
+		sections: sections.map((section) => ({
+			...section,
+			content: markdownToHtml(section.content),
+		})),
 	};
 };
 

@@ -4,7 +4,7 @@ import Hero from "$lib/components/shell/Hero.svelte";
 import Section from "$lib/components/shell/Section.svelte";
 
 let { data } = $props();
-let { title, longTitle, intro, slug, services } = data.local;
+let { title, header, intro, slug, services } = data.local;
 // Destructure `posts` from `local`
 let { name } = data.global;
 
@@ -22,7 +22,7 @@ const wave = {
 	<meta name="description" content="" />
 </svelte:head>
 
-<Hero title={longTitle}>
+<Hero title={header}>
 	{@html intro}
 </Hero>
 

@@ -2,7 +2,7 @@
 import Hero from "$lib/components/shell/Hero.svelte";
 
 let { data } = $props();
-let { title, longTitle, intro } = data.local;
+let { title, header, intro } = data.local;
 let { name } = data.global;
 </script>
 
@@ -11,6 +11,6 @@ let { name } = data.global;
 	<meta name="description" content="" />
 </svelte:head>
 
-<Hero title={longTitle}>
+<Hero title={header}>
 	{@html intro}
 </Hero>

@@ -1,210 +1,53 @@
 {
 	"navigation": [
 		{
-			"metadata": {
-				"tags": [],
-				"concepts": []
-			},
 			"sys": {
-				"space": {
-					"sys": {
-						"type": "Link",
-						"linkType": "Space",
-						"id": "fnyi5t75mv2d"
-					}
-				},
 				"id": "7rtbhuq4c4kUdrRUGSXm9D",
 				"type": "Entry",
 				"createdAt": "2020-12-21T16:49:18.569Z",
 				"updatedAt": "2024-12-28T06:00:03.175Z",
-				"environment": {
-					"sys": {
-						"id": "master",
-						"type": "Link",
-						"linkType": "Environment"
-					}
-				},
-				"publishedVersion": 13,
-				"revision": 4,
-				"contentType": {
-					"sys": {
-						"type": "Link",
-						"linkType": "ContentType",
-						"id": "navigation"
-					}
-				},
 				"locale": "en-US"
 			},
 			"fields": {
 				"title": "Primary",
 				"items": [
 					{
-						"metadata": {
-							"tags": [],
-							"concepts": []
-						},
-						"sys": {
-							"space": {
-								"sys": {
-									"type": "Link",
-									"linkType": "Space",
-									"id": "fnyi5t75mv2d"
-								}
-							},
-							"id": "61Vdx8qP4ItFip29IZbe9u",
-							"type": "Entry",
-							"createdAt": "2024-12-27T22:59:24.373Z",
-							"updatedAt": "2024-12-28T06:00:04.515Z",
-							"environment": {
-								"sys": {
-									"id": "master",
-									"type": "Link",
-									"linkType": "Environment"
-								}
-							},
-							"publishedVersion": 16,
-							"revision": 4,
-							"contentType": {
-								"sys": {
-									"type": "Link",
-									"linkType": "ContentType",
-									"id": "page"
-								}
-							},
-							"locale": "en-US"
-						},
-						"fields": {
-							"title": "About",
-							"longTitle": "Get to Know Me and My Approach",
-							"slug": "about",
-							"intro": "I’m Eleni Papamikrouli, a systemic therapist working with individuals, couples, and families. Originally from Greece, I’ve lived in the Netherlands for over 15 years, giving me a unique perspective on the experiences of internationals and expats. That said, I work with people from all walks of life, offering a safe and supportive space for anyone seeking change.\n\nMy approach is practical and collaborative. I combine curiosity with empathy to help clients explore their challenges and find ways forward. You don’t need to be perfect or have all the answers—therapy is about working together to create clarity and change.\n\n## Why Systemic Therapy?\nSystemic therapy focuses on the patterns and systems we live in, rather than labeling or diagnosing individuals. It’s not about finding fault but about exploring how dynamics work and where we can make meaningful shifts. My role is to guide you in uncovering possibilities and building solutions that fit your life."
-						}
+						"title": "About",
+						"header": "Get to Know Me",
+						"slug": "about",
+						"intro": "I’m Eleni Papamikrouli, a systemic therapist working with individuals, couples, and families. Originally from Greece, I’ve lived in the Netherlands for over 15 years, giving me a unique perspective on the experiences of internationals and expats. That said, I work with people from all walks of life, offering a safe and supportive space for anyone seeking change.",
+						"sections": [
+							{
+								"title": "About - Main content",
+								"content": "## My approach \nI'm practical and collaborative. I combine curiosity with empathy to help clients explore their challenges and find ways forward. You don’t need to be perfect or have all the answers—therapy is about working together to create clarity and change.\n\n## Why Systemic Therapy?\nSystemic therapy focuses on the patterns and systems we live in, rather than labeling or diagnosing individuals. It’s not about finding fault but about exploring how dynamics work and where we can make meaningful shifts. My role is to guide you in uncovering possibilities and building solutions that fit your life."
+							}
+						]
 					},
 					{
-						"metadata": {
-							"tags": [],
-							"concepts": []
-						},
-						"sys": {
-							"space": {
-								"sys": {
-									"type": "Link",
-									"linkType": "Space",
-									"id": "fnyi5t75mv2d"
-								}
-							},
-							"id": "3Dq1BUqylcl2pQweRSAvc6",
-							"type": "Entry",
-							"createdAt": "2024-12-27T23:01:22.902Z",
-							"updatedAt": "2024-12-28T06:00:04.391Z",
-							"environment": {
-								"sys": {
-									"id": "master",
-									"type": "Link",
-									"linkType": "Environment"
-								}
-							},
-							"publishedVersion": 21,
-							"revision": 8,
-							"contentType": {
-								"sys": {
-									"type": "Link",
-									"linkType": "ContentType",
-									"id": "page"
-								}
-							},
-							"locale": "en-US"
-						},
-						"fields": {
-							"title": "Services",
-							"longTitle": "Explore Ways We Can Work Together",
-							"slug": "services",
-							"intro": "I provide therapy for anyone seeking to improve their relationships, navigate challenges, or better understand themselves. While I bring a unique perspective to working with internationals and expats, my services are open to all who want to create positive change."
-						}
+						"title": "Services",
+						"header": "Explore Ways We Can Work Together",
+						"slug": "services",
+						"intro": "I provide therapy for anyone seeking to improve their relationships, navigate challenges, or better understand themselves. While I bring a unique perspective to working with internationals and expats, my services are open to all who want to create positive change.",
+						"sections": []
 					},
 					{
-						"metadata": {
-							"tags": [],
-							"concepts": []
-						},
-						"sys": {
-							"space": {
-								"sys": {
-									"type": "Link",
-									"linkType": "Space",
-									"id": "fnyi5t75mv2d"
-								}
-							},
-							"id": "2FmTPol4nxNb4Q0elgN4oG",
-							"type": "Entry",
-							"createdAt": "2024-12-28T00:14:21.086Z",
-							"updatedAt": "2025-01-07T13:24:28.147Z",
-							"environment": {
-								"sys": {
-									"id": "master",
-									"type": "Link",
-									"linkType": "Environment"
-								}
-							},
-							"publishedVersion": 15,
-							"revision": 4,
-							"contentType": {
-								"sys": {
-									"type": "Link",
-									"linkType": "ContentType",
-									"id": "page"
-								}
-							},
-							"locale": "en-US"
-						},
-						"fields": {
-							"title": "Contact",
-							"longTitle": "Contact Me to Take the First Step",
-							"slug": "contact",
-							"intro": "Taking the first step toward therapy can feel daunting, but I’m here to make it as simple as possible. Whether you’re curious about the process or ready to begin, I’d love to hear from you.\n\n## Schedule a Session\nI work with people from all over the world and all walks of life. Let’s explore how therapy can help you create positive, lasting change.\n\n[Include a link or form for booking a session.]\n\n## Contact Details\n- **Email:** eleni@mikrouli.nl\n- **Phone:** 00 31 6 19 44 62 63\n- **Languages:** Greek, Dutch, English\n- **Location:** Online sessions available worldwide"
-						}
+						"title": "Contact",
+						"header": "Contact Me to Take the First Step",
+						"slug": "contact",
+						"intro": "Taking the first step toward therapy can feel daunting, but I’m here to make it as simple as possible. Whether you’re curious about the process or ready to begin, I’d love to hear from you.",
+						"sections": [
+							{
+								"title": "Contact Main Section",
+								"content": "## Schedule a Session\nI work with people from all over the world and all walks of life. Let’s explore how therapy can help you create positive, lasting change.\n\n[Include a link or form for booking a session.]\n\n## Contact Details\n- **Email:** eleni@mikrouli.nl\n- **Phone:** 00 31 6 19 44 62 63\n- **Languages:** Greek, Dutch, English\n- **Location:** Online sessions available worldwide"
+							}
+						]
 					},
 					{
-						"metadata": {
-							"tags": [],
-							"concepts": []
-						},
-						"sys": {
-							"space": {
-								"sys": {
-									"type": "Link",
-									"linkType": "Space",
-									"id": "fnyi5t75mv2d"
-								}
-							},
-							"id": "2skTvZuf4xUYpfqA45Vz1O",
-							"type": "Entry",
-							"createdAt": "2024-12-27T23:38:56.621Z",
-							"updatedAt": "2024-12-28T06:00:03.313Z",
-							"environment": {
-								"sys": {
-									"id": "master",
-									"type": "Link",
-									"linkType": "Environment"
-								}
-							},
-							"publishedVersion": 11,
-							"revision": 2,
-							"contentType": {
-								"sys": {
-									"type": "Link",
-									"linkType": "ContentType",
-									"id": "page"
-								}
-							},
-							"locale": "en-US"
-						},
-						"fields": {
-							"title": "Blog",
-							"longTitle": "Insights to Support Your Journey",
-							"slug": "blog",
-							"intro": "Therapy is about understanding ourselves and the systems we live in. Whether you're an international, an expat, or simply someone navigating life’s challenges, these articles offer insights and tools to support your journey."
-						}
+						"title": "Blog",
+						"header": "Insights to Support Your Journey",
+						"slug": "blog",
+						"intro": "Therapy is about understanding ourselves and the systems we live in. Whether you're an international, an expat, or simply someone navigating life’s challenges, these articles offer insights and tools to support your journey.",
+						"sections": []
 					}
 				]
 			}
@@ -212,462 +55,190 @@
 	],
 	"pages": [
 		{
-			"metadata": {
-				"tags": [],
-				"concepts": []
-			},
 			"sys": {
-				"space": {
-					"sys": {
-						"type": "Link",
-						"linkType": "Space",
-						"id": "fnyi5t75mv2d"
-					}
-				},
-				"id": "73rcZJ4hT1YtU28TI15VZp",
-				"type": "Entry",
-				"createdAt": "2025-01-08T02:59:42.227Z",
-				"updatedAt": "2025-01-08T03:29:47.131Z",
-				"environment": {
-					"sys": {
-						"id": "master",
-						"type": "Link",
-						"linkType": "Environment"
-					}
-				},
-				"publishedVersion": 9,
-				"revision": 2,
-				"contentType": {
-					"sys": {
-						"type": "Link",
-						"linkType": "ContentType",
-						"id": "page"
-					}
-				},
-				"locale": "en-US"
-			},
-			"fields": {
-				"title": "404",
-				"longTitle": "Lost? Let's Find Our Way Together",
-				"slug": "404",
-				"intro": "It seems the page you’re looking for doesn’t exist—or perhaps it’s just taking a little break.\n\nJust like in life, we sometimes encounter detours that redirect us to new paths. Let’s make this moment an opportunity to move forward.\n\nYou can:\n- [Return to the homepage](/)\n- [Learn more about me and my approach](/about)\n- [Contact me for support](/contact)\n\nTake a deep breath, and let’s keep navigating this journey together.\n\n---\n\n__Still Stuck?__\n\nIf you’re finding yourself here often, don’t hesitate to reach out. I’d love to help you find what you’re looking for—or perhaps we can use this as the first step toward something new.\n\nHere’s how to get in touch:\n\n- **Email**: [eleni@mikrouli.nl](mailto:eleni@mikrouli.nl)\n- **Phone**: 00 31 6 19 44 62 63\n- **Languages**: Greek, Dutch, English\n\nOr, [schedule a session directly](/contact). Together, we can start creating clarity and positive change."
-			}
-		},
-		{
-			"metadata": {
-				"tags": [],
-				"concepts": []
-			},
-			"sys": {
-				"space": {
-					"sys": {
-						"type": "Link",
-						"linkType": "Space",
-						"id": "fnyi5t75mv2d"
-					}
-				},
 				"id": "2FmTPol4nxNb4Q0elgN4oG",
 				"type": "Entry",
 				"createdAt": "2024-12-28T00:14:21.086Z",
-				"updatedAt": "2025-01-07T13:24:28.147Z",
-				"environment": {
-					"sys": {
-						"id": "master",
-						"type": "Link",
-						"linkType": "Environment"
-					}
-				},
-				"publishedVersion": 15,
-				"revision": 4,
-				"contentType": {
-					"sys": {
-						"type": "Link",
-						"linkType": "ContentType",
-						"id": "page"
-					}
-				},
+				"updatedAt": "2025-01-08T09:02:21.603Z",
 				"locale": "en-US"
 			},
 			"fields": {
 				"title": "Contact",
-				"longTitle": "Contact Me to Take the First Step",
+				"header": "Contact Me to Take the First Step",
 				"slug": "contact",
-				"intro": "Taking the first step toward therapy can feel daunting, but I’m here to make it as simple as possible. Whether you’re curious about the process or ready to begin, I’d love to hear from you.\n\n## Schedule a Session\nI work with people from all over the world and all walks of life. Let’s explore how therapy can help you create positive, lasting change.\n\n[Include a link or form for booking a session.]\n\n## Contact Details\n- **Email:** eleni@mikrouli.nl\n- **Phone:** 00 31 6 19 44 62 63\n- **Languages:** Greek, Dutch, English\n- **Location:** Online sessions available worldwide"
+				"intro": "Taking the first step toward therapy can feel daunting, but I’m here to make it as simple as possible. Whether you’re curious about the process or ready to begin, I’d love to hear from you.",
+				"sections": [
+					{
+						"title": "Contact Main Section",
+						"content": "## Schedule a Session\nI work with people from all over the world and all walks of life. Let’s explore how therapy can help you create positive, lasting change.\n\n[Include a link or form for booking a session.]\n\n## Contact Details\n- **Email:** eleni@mikrouli.nl\n- **Phone:** 00 31 6 19 44 62 63\n- **Languages:** Greek, Dutch, English\n- **Location:** Online sessions available worldwide"
+					}
+				]
 			}
 		},
 		{
-			"metadata": {
-				"tags": [],
-				"concepts": []
-			},
 			"sys": {
-				"space": {
-					"sys": {
-						"type": "Link",
-						"linkType": "Space",
-						"id": "fnyi5t75mv2d"
-					}
-				},
-				"id": "2IULqLao4rH5Chl7BbeifG",
+				"id": "73rcZJ4hT1YtU28TI15VZp",
 				"type": "Entry",
-				"createdAt": "2024-12-31T13:02:36.979Z",
-				"updatedAt": "2024-12-31T13:02:36.979Z",
-				"environment": {
-					"sys": {
-						"id": "master",
-						"type": "Link",
-						"linkType": "Environment"
-					}
-				},
-				"publishedVersion": 7,
-				"revision": 1,
-				"contentType": {
-					"sys": {
-						"type": "Link",
-						"linkType": "ContentType",
-						"id": "page"
-					}
-				},
+				"createdAt": "2025-01-08T02:59:42.227Z",
+				"updatedAt": "2025-01-08T05:52:12.632Z",
 				"locale": "en-US"
 			},
 			"fields": {
-				"title": "Markdown",
-				"longTitle": "Markdown test page",
-				"slug": "markdown",
-				"intro": "# Markdown syntax guide\n\n## Headers\n\n# This is a Heading h1\n## This is a Heading h2\n###### This is a Heading h6\n\n## Emphasis\n\n*This text will be italic*  \n_This will also be italic_\n\n**This text will be bold**  \n__This will also be bold__\n\n_You **can** combine them_\n\n## Lists\n\n### Unordered\n\n* Item 1\n* Item 2\n* Item 2a\n* Item 2b\n    * Item 3a\n    * Item 3b\n\n### Ordered\n\n1. Item 1\n2. Item 2\n3. Item 3\n    1. Item 3a\n    2. Item 3b\n\n## Images\n\n![This is an alt text.](/image/sample.webp \"This is a sample image.\")\n\n## Links\n\nYou may be using [Markdown Live Preview](https://markdownlivepreview.com/).\n\n## Blockquotes\n\n> Markdown is a lightweight markup language with plain-text-formatting syntax, created in 2004 by John Gruber with Aaron Swartz.\n>\n>> Markdown is often used to format readme files, for writing messages in online discussion forums, and to create rich text using a plain text editor.\n\n## Tables\n\n| Left columns  | Right columns |\n| ------------- |:-------------:|\n| left foo      | right foo     |\n| left bar      | right bar     |\n| left baz      | right baz     |\n\n## Blocks of code\n\n```\nlet message = 'Hello world';\nalert(message);\n```\n\n## Inline code\n\nThis web site is using `markedjs/marked`.\n"
+				"title": "404",
+				"header": "404 - Page not found",
+				"slug": "404",
+				"intro": "It seems the page you’re looking for doesn’t exist—or perhaps it’s just taking a little break.",
+				"sections": [
+					{
+						"title": "404 - Main content",
+						"content": "## Lost? Let's Find Our Way Together\n\nJust like in life, we sometimes encounter detours that redirect us to new paths. Let’s make this moment an opportunity to move forward.\n\nYou can:\n- [Return to the homepage](/)\n- [Learn more about me and my approach](/about)\n- [Contact me for support](/contact)\n\n> Take a deep breath, and let’s keep navigating this journey together.\n\n---\n\n### Still Stuck?\n\nIf you’re finding yourself here often, don’t hesitate to reach out. I’d love to help you find what you’re looking for—or perhaps we can use this as the first step toward something new.\n\nHere’s how to get in touch:\n\n- **Email**: [eleni@mikrouli.nl](mailto:eleni@mikrouli.nl)\n- **Phone**: 00 31 6 19 44 62 63\n- **Languages**: Greek, Dutch, English\n\nOr, [schedule a session directly](/contact). \n\n> Together, we can start creating clarity and positive change."
+					}
+				]
 			}
 		},
 		{
-			"metadata": {
-				"tags": [],
-				"concepts": []
-			},
 			"sys": {
-				"space": {
-					"sys": {
-						"type": "Link",
-						"linkType": "Space",
-						"id": "fnyi5t75mv2d"
-					}
-				},
 				"id": "61Vdx8qP4ItFip29IZbe9u",
 				"type": "Entry",
 				"createdAt": "2024-12-27T22:59:24.373Z",
-				"updatedAt": "2024-12-28T06:00:04.515Z",
-				"environment": {
-					"sys": {
-						"id": "master",
-						"type": "Link",
-						"linkType": "Environment"
-					}
-				},
-				"publishedVersion": 16,
-				"revision": 4,
-				"contentType": {
-					"sys": {
-						"type": "Link",
-						"linkType": "ContentType",
-						"id": "page"
-					}
-				},
+				"updatedAt": "2025-01-08T05:49:57.459Z",
 				"locale": "en-US"
 			},
 			"fields": {
 				"title": "About",
-				"longTitle": "Get to Know Me and My Approach",
+				"header": "Get to Know Me",
 				"slug": "about",
-				"intro": "I’m Eleni Papamikrouli, a systemic therapist working with individuals, couples, and families. Originally from Greece, I’ve lived in the Netherlands for over 15 years, giving me a unique perspective on the experiences of internationals and expats. That said, I work with people from all walks of life, offering a safe and supportive space for anyone seeking change.\n\nMy approach is practical and collaborative. I combine curiosity with empathy to help clients explore their challenges and find ways forward. You don’t need to be perfect or have all the answers—therapy is about working together to create clarity and change.\n\n## Why Systemic Therapy?\nSystemic therapy focuses on the patterns and systems we live in, rather than labeling or diagnosing individuals. It’s not about finding fault but about exploring how dynamics work and where we can make meaningful shifts. My role is to guide you in uncovering possibilities and building solutions that fit your life."
+				"intro": "I’m Eleni Papamikrouli, a systemic therapist working with individuals, couples, and families. Originally from Greece, I’ve lived in the Netherlands for over 15 years, giving me a unique perspective on the experiences of internationals and expats. That said, I work with people from all walks of life, offering a safe and supportive space for anyone seeking change.",
+				"sections": [
+					{
+						"title": "About - Main content",
+						"content": "## My approach \nI'm practical and collaborative. I combine curiosity with empathy to help clients explore their challenges and find ways forward. You don’t need to be perfect or have all the answers—therapy is about working together to create clarity and change.\n\n## Why Systemic Therapy?\nSystemic therapy focuses on the patterns and systems we live in, rather than labeling or diagnosing individuals. It’s not about finding fault but about exploring how dynamics work and where we can make meaningful shifts. My role is to guide you in uncovering possibilities and building solutions that fit your life."
+					}
+				]
 			}
 		},
 		{
-			"metadata": {
-				"tags": [],
-				"concepts": []
-			},
 			"sys": {
-				"space": {
-					"sys": {
-						"type": "Link",
-						"linkType": "Space",
-						"id": "fnyi5t75mv2d"
-					}
-				},
+				"id": "2IULqLao4rH5Chl7BbeifG",
+				"type": "Entry",
+				"createdAt": "2024-12-31T13:02:36.979Z",
+				"updatedAt": "2024-12-31T13:02:36.979Z",
+				"locale": "en-US"
+			},
+			"fields": {
+				"title": "Markdown",
+				"header": "Markdown test page",
+				"slug": "markdown",
+				"intro": "# Markdown syntax guide\n\n## Headers\n\n# This is a Heading h1\n## This is a Heading h2\n###### This is a Heading h6\n\n## Emphasis\n\n*This text will be italic*  \n_This will also be italic_\n\n**This text will be bold**  \n__This will also be bold__\n\n_You **can** combine them_\n\n## Lists\n\n### Unordered\n\n* Item 1\n* Item 2\n* Item 2a\n* Item 2b\n    * Item 3a\n    * Item 3b\n\n### Ordered\n\n1. Item 1\n2. Item 2\n3. Item 3\n    1. Item 3a\n    2. Item 3b\n\n## Images\n\n![This is an alt text.](/image/sample.webp \"This is a sample image.\")\n\n## Links\n\nYou may be using [Markdown Live Preview](https://markdownlivepreview.com/).\n\n## Blockquotes\n\n> Markdown is a lightweight markup language with plain-text-formatting syntax, created in 2004 by John Gruber with Aaron Swartz.\n>\n>> Markdown is often used to format readme files, for writing messages in online discussion forums, and to create rich text using a plain text editor.\n\n## Tables\n\n| Left columns  | Right columns |\n| ------------- |:-------------:|\n| left foo      | right foo     |\n| left bar      | right bar     |\n| left baz      | right baz     |\n\n## Blocks of code\n\n```\nlet message = 'Hello world';\nalert(message);\n```\n\n## Inline code\n\nThis web site is using `markedjs/marked`.\n",
+				"sections": []
+			}
+		},
+		{
+			"sys": {
 				"id": "3Dq1BUqylcl2pQweRSAvc6",
 				"type": "Entry",
 				"createdAt": "2024-12-27T23:01:22.902Z",
 				"updatedAt": "2024-12-28T06:00:04.391Z",
-				"environment": {
-					"sys": {
-						"id": "master",
-						"type": "Link",
-						"linkType": "Environment"
-					}
-				},
-				"publishedVersion": 21,
-				"revision": 8,
-				"contentType": {
-					"sys": {
-						"type": "Link",
-						"linkType": "ContentType",
-						"id": "page"
-					}
-				},
 				"locale": "en-US"
 			},
 			"fields": {
 				"title": "Services",
-				"longTitle": "Explore Ways We Can Work Together",
+				"header": "Explore Ways We Can Work Together",
 				"slug": "services",
-				"intro": "I provide therapy for anyone seeking to improve their relationships, navigate challenges, or better understand themselves. While I bring a unique perspective to working with internationals and expats, my services are open to all who want to create positive change."
+				"intro": "I provide therapy for anyone seeking to improve their relationships, navigate challenges, or better understand themselves. While I bring a unique perspective to working with internationals and expats, my services are open to all who want to create positive change.",
+				"sections": []
 			}
 		},
 		{
-			"metadata": {
-				"tags": [],
-				"concepts": []
-			},
 			"sys": {
-				"space": {
-					"sys": {
-						"type": "Link",
-						"linkType": "Space",
-						"id": "fnyi5t75mv2d"
-					}
-				},
 				"id": "3rFQxFehQrVUuxDH8StNup",
 				"type": "Entry",
 				"createdAt": "2024-12-27T23:40:02.880Z",
 				"updatedAt": "2024-12-28T06:00:04.233Z",
-				"environment": {
-					"sys": {
-						"id": "master",
-						"type": "Link",
-						"linkType": "Environment"
-					}
-				},
-				"publishedVersion": 11,
-				"revision": 2,
-				"contentType": {
-					"sys": {
-						"type": "Link",
-						"linkType": "ContentType",
-						"id": "page"
-					}
-				},
 				"locale": "en-US"
 			},
 			"fields": {
 				"title": "Home",
-				"longTitle": "Creating Positive Change in Your Relationships and Life",
+				"header": "Creating Positive Change in Your Relationships and Life",
 				"slug": "home",
-				"intro": "Life can feel complicated, whether you’re navigating relationships, work challenges, or cultural transitions. \n\nI’m Eleni Papamikrouli, a systemic therapist working with individuals, couples, and families. While I specialize in supporting internationals and expats, I welcome anyone seeking clarity and connection in their life."
+				"intro": "Life can feel complicated, whether you’re navigating relationships, work challenges, or cultural transitions. \n\nI’m Eleni Papamikrouli, a systemic therapist working with individuals, couples, and families. While I specialize in supporting internationals and expats, I welcome anyone seeking clarity and connection in their life.",
+				"sections": []
 			}
 		},
 		{
-			"metadata": {
-				"tags": [],
-				"concepts": []
-			},
 			"sys": {
-				"space": {
-					"sys": {
-						"type": "Link",
-						"linkType": "Space",
-						"id": "fnyi5t75mv2d"
-					}
-				},
 				"id": "2skTvZuf4xUYpfqA45Vz1O",
 				"type": "Entry",
 				"createdAt": "2024-12-27T23:38:56.621Z",
 				"updatedAt": "2024-12-28T06:00:03.313Z",
-				"environment": {
-					"sys": {
-						"id": "master",
-						"type": "Link",
-						"linkType": "Environment"
-					}
-				},
-				"publishedVersion": 11,
-				"revision": 2,
-				"contentType": {
-					"sys": {
-						"type": "Link",
-						"linkType": "ContentType",
-						"id": "page"
-					}
-				},
 				"locale": "en-US"
 			},
 			"fields": {
 				"title": "Blog",
-				"longTitle": "Insights to Support Your Journey",
+				"header": "Insights to Support Your Journey",
 				"slug": "blog",
-				"intro": "Therapy is about understanding ourselves and the systems we live in. Whether you're an international, an expat, or simply someone navigating life’s challenges, these articles offer insights and tools to support your journey."
+				"intro": "Therapy is about understanding ourselves and the systems we live in. Whether you're an international, an expat, or simply someone navigating life’s challenges, these articles offer insights and tools to support your journey.",
+				"sections": []
 			}
 		}
 	],
 	"services": [
 		{
-			"metadata": {
-				"tags": [],
-				"concepts": []
-			},
 			"sys": {
-				"space": {
-					"sys": {
-						"type": "Link",
-						"linkType": "Space",
-						"id": "fnyi5t75mv2d"
-					}
-				},
 				"id": "7tTIOTk3UaWgvlYkn51HF2",
 				"type": "Entry",
 				"createdAt": "2025-01-07T13:23:36.337Z",
 				"updatedAt": "2025-01-07T13:23:36.337Z",
-				"environment": {
-					"sys": {
-						"id": "master",
-						"type": "Link",
-						"linkType": "Environment"
-					}
-				},
-				"publishedVersion": 4,
-				"revision": 1,
-				"contentType": {
-					"sys": {
-						"type": "Link",
-						"linkType": "ContentType",
-						"id": "service"
-					}
-				},
 				"locale": "en-US"
 			},
 			"fields": {
 				"title": "Family Therapy",
-				"longTitle": "Family Therapy",
+				"header": "Family Therapy",
 				"slug": "family-therapy",
-				"intro": "Families operate as systems, and sometimes those systems get stuck. I help\nfamilies uncover and change unhelpful patterns, creating healthier ways of\nrelating and supporting each other."
+				"intro": "Families operate as systems, and sometimes those systems get stuck. I help\nfamilies uncover and change unhelpful patterns, creating healthier ways of\nrelating and supporting each other.",
+				"sections": []
 			}
 		},
 		{
-			"metadata": {
-				"tags": [],
-				"concepts": []
-			},
 			"sys": {
-				"space": {
-					"sys": {
-						"type": "Link",
-						"linkType": "Space",
-						"id": "fnyi5t75mv2d"
-					}
-				},
 				"id": "37va85fpU9i3eD9r36ZvvP",
 				"type": "Entry",
 				"createdAt": "2025-01-07T13:23:00.820Z",
 				"updatedAt": "2025-01-07T13:23:00.820Z",
-				"environment": {
-					"sys": {
-						"id": "master",
-						"type": "Link",
-						"linkType": "Environment"
-					}
-				},
-				"publishedVersion": 5,
-				"revision": 1,
-				"contentType": {
-					"sys": {
-						"type": "Link",
-						"linkType": "ContentType",
-						"id": "service"
-					}
-				},
 				"locale": "en-US"
 			},
 			"fields": {
 				"title": "Couples Therapy",
-				"longTitle": "Couples Therapy",
+				"header": "Couples Therapy",
 				"slug": "couples-therapy",
-				"intro": "Every relationship has its own dynamics and struggles. I work with couples of\nall backgrounds to improve communication, resolve conflicts, and strengthen\ntheir connection."
+				"intro": "Every relationship has its own dynamics and struggles. I work with couples of\nall backgrounds to improve communication, resolve conflicts, and strengthen\ntheir connection.",
+				"sections": []
 			}
 		},
 		{
-			"metadata": {
-				"tags": [],
-				"concepts": []
-			},
 			"sys": {
-				"space": {
-					"sys": {
-						"type": "Link",
-						"linkType": "Space",
-						"id": "fnyi5t75mv2d"
-					}
-				},
 				"id": "1jrEYUK6AF7a2NvJ41IthV",
 				"type": "Entry",
 				"createdAt": "2025-01-07T13:22:20.499Z",
 				"updatedAt": "2025-01-07T13:22:20.499Z",
-				"environment": {
-					"sys": {
-						"id": "master",
-						"type": "Link",
-						"linkType": "Environment"
-					}
-				},
-				"publishedVersion": 6,
-				"revision": 1,
-				"contentType": {
-					"sys": {
-						"type": "Link",
-						"linkType": "ContentType",
-						"id": "service"
-					}
-				},
 				"locale": "en-US"
 			},
 			"fields": {
 				"title": "Individual Therapy",
-				"longTitle": "Individual Therapy",
+				"header": "Individual Therapy",
 				"slug": "individual-therapy",
-				"intro": "For those seeking personal growth and clarity, individual therapy offers a space\nto explore challenges and patterns that may be holding you back. Whether you’re\ndealing with anxiety, cultural transitions, or life stress, we’ll work together\nto find new possibilities."
+				"intro": "For those seeking personal growth and clarity, individual therapy offers a space\nto explore challenges and patterns that may be holding you back. Whether you’re\ndealing with anxiety, cultural transitions, or life stress, we’ll work together\nto find new possibilities.",
+				"sections": []
 			}
 		}
 	],
 	"posts": [
 		{
-			"metadata": {
-				"tags": [],
-				"concepts": []
-			},
 			"sys": {
-				"space": {
-					"sys": {
-						"type": "Link",
-						"linkType": "Space",
-						"id": "fnyi5t75mv2d"
-					}
-				},
 				"id": "3JNNx7W7oR8vIgTdggece",
 				"type": "Entry",
 				"createdAt": "2024-12-28T06:00:04.415Z",
 				"updatedAt": "2024-12-28T06:00:04.415Z",
-				"environment": {
-					"sys": {
-						"id": "master",
-						"type": "Link",
-						"linkType": "Environment"
-					}
-				},
-				"publishedVersion": 5,
-				"revision": 1,
-				"contentType": {
-					"sys": {
-						"type": "Link",
-						"linkType": "ContentType",
-						"id": "post"
-					}
-				},
 				"locale": "en-US"
 			},
 			"fields": {
@@ -677,38 +248,11 @@
 			}
 		},
 		{
-			"metadata": {
-				"tags": [],
-				"concepts": []
-			},
 			"sys": {
-				"space": {
-					"sys": {
-						"type": "Link",
-						"linkType": "Space",
-						"id": "fnyi5t75mv2d"
-					}
-				},
 				"id": "4K3cTBNASwMkrwkSSWm68w",
 				"type": "Entry",
 				"createdAt": "2024-12-28T06:00:04.384Z",
 				"updatedAt": "2024-12-28T06:00:04.384Z",
-				"environment": {
-					"sys": {
-						"id": "master",
-						"type": "Link",
-						"linkType": "Environment"
-					}
-				},
-				"publishedVersion": 5,
-				"revision": 1,
-				"contentType": {
-					"sys": {
-						"type": "Link",
-						"linkType": "ContentType",
-						"id": "post"
-					}
-				},
 				"locale": "en-US"
 			},
 			"fields": {
@@ -718,38 +262,11 @@
 			}
 		},
 		{
-			"metadata": {
-				"tags": [],
-				"concepts": []
-			},
 			"sys": {
-				"space": {
-					"sys": {
-						"type": "Link",
-						"linkType": "Space",
-						"id": "fnyi5t75mv2d"
-					}
-				},
 				"id": "3kryEmO4yykbYKbByiWU8i",
 				"type": "Entry",
 				"createdAt": "2024-12-28T06:00:04.205Z",
 				"updatedAt": "2024-12-28T06:00:04.205Z",
-				"environment": {
-					"sys": {
-						"id": "master",
-						"type": "Link",
-						"linkType": "Environment"
-					}
-				},
-				"publishedVersion": 5,
-				"revision": 1,
-				"contentType": {
-					"sys": {
-						"type": "Link",
-						"linkType": "ContentType",
-						"id": "post"
-					}
-				},
 				"locale": "en-US"
 			},
 			"fields": {
@@ -759,38 +276,11 @@
 			}
 		},
 		{
-			"metadata": {
-				"tags": [],
-				"concepts": []
-			},
 			"sys": {
-				"space": {
-					"sys": {
-						"type": "Link",
-						"linkType": "Space",
-						"id": "fnyi5t75mv2d"
-					}
-				},
 				"id": "4YPPEYrLxfl646mWntSl1O",
 				"type": "Entry",
 				"createdAt": "2024-12-28T06:00:04.003Z",
 				"updatedAt": "2024-12-28T06:00:04.003Z",
-				"environment": {
-					"sys": {
-						"id": "master",
-						"type": "Link",
-						"linkType": "Environment"
-					}
-				},
-				"publishedVersion": 4,
-				"revision": 1,
-				"contentType": {
-					"sys": {
-						"type": "Link",
-						"linkType": "ContentType",
-						"id": "post"
-					}
-				},
 				"locale": "en-US"
 			},
 			"fields": {
@@ -800,38 +290,11 @@
 			}
 		},
 		{
-			"metadata": {
-				"tags": [],
-				"concepts": []
-			},
 			"sys": {
-				"space": {
-					"sys": {
-						"type": "Link",
-						"linkType": "Space",
-						"id": "fnyi5t75mv2d"
-					}
-				},
 				"id": "1FcZOjCAszzKaiJxOAvKxA",
 				"type": "Entry",
 				"createdAt": "2024-12-28T06:00:03.284Z",
 				"updatedAt": "2024-12-28T06:00:03.284Z",
-				"environment": {
-					"sys": {
-						"id": "master",
-						"type": "Link",
-						"linkType": "Environment"
-					}
-				},
-				"publishedVersion": 5,
-				"revision": 1,
-				"contentType": {
-					"sys": {
-						"type": "Link",
-						"linkType": "ContentType",
-						"id": "post"
-					}
-				},
 				"locale": "en-US"
 			},
 			"fields": {
@@ -841,38 +304,11 @@
 			}
 		},
 		{
-			"metadata": {
-				"tags": [],
-				"concepts": []
-			},
 			"sys": {
-				"space": {
-					"sys": {
-						"type": "Link",
-						"linkType": "Space",
-						"id": "fnyi5t75mv2d"
-					}
-				},
 				"id": "5EA7KMYDmrAL2qk5VLuJdo",
 				"type": "Entry",
 				"createdAt": "2024-12-28T06:00:03.222Z",
 				"updatedAt": "2024-12-28T06:00:03.222Z",
-				"environment": {
-					"sys": {
-						"id": "master",
-						"type": "Link",
-						"linkType": "Environment"
-					}
-				},
-				"publishedVersion": 6,
-				"revision": 1,
-				"contentType": {
-					"sys": {
-						"type": "Link",
-						"linkType": "ContentType",
-						"id": "post"
-					}
-				},
 				"locale": "en-US"
 			},
 			"fields": {

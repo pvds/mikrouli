@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createClient } from "contentful";
+import { transformContentfulData } from "./transformContent.js";
 
 // Read secrets from environment vars
 const space = process.env.CONTENTFUL_SPACE_ID;
@@ -40,7 +41,9 @@ async function fetchContentfulData() {
 			posts: posts.items,
 		};
 
-		fs.writeFileSync(cachePath, JSON.stringify(data, null, 2));
+		const transformedData = transformContentfulData(data);
+
+		fs.writeFileSync(cachePath, JSON.stringify(transformedData, null, 2));
 		console.info(`Success! Data cached at: ${cachePath}`);
 	} catch (err) {
 		console.error("Error fetching Contentful data:", err);
