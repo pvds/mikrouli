@@ -2,20 +2,17 @@
  * Transform the raw Contentful data into a more structured shape
  * that matches our type definitions in contentful.d.ts.
  *
- * Reads the raw data from content.json, resolves references, and returns:
- *
- * {
- *   navigation: NavigationEntry[],
- *   pages: PageEntry[],
- *   services: ServiceEntry[],
- *   posts: PostEntry[],
- * }
+ * @return {import('../src/lib/types/contentful').ContentfulData}
  */
 export function transformContentfulData(data = {}) {
 	// Keeps all found sections keyed by ID
 	const allSectionsMap = {};
 
-	// Collects sections if the entry is or references a "section"
+	/**
+	 * Collects sections if the entry is or references a "section".
+	 * @param {Array} entries
+	 *   Array of raw Contentful entries (pages, services, etc.).
+	 */
 	function collectSections(entries = []) {
 		for (const entry of entries) {
 			// If this is itself a section
@@ -80,6 +77,7 @@ export function transformContentfulData(data = {}) {
 
 /**
  * Parses a single Page entry, resolving its 'sections' references.
+ * @return {import('../src/lib/types/contentful').PageEntry}
  */
 function parsePage(rawPage = {}, allSections = {}) {
 	const sys = parseSys(rawPage.sys);
@@ -99,6 +97,7 @@ function parsePage(rawPage = {}, allSections = {}) {
 
 /**
  * Parses a single Service entry, resolving its 'sections' references.
+ * @return {import('../src/lib/types/contentful').ServiceEntry}
  */
 function parseService(rawService = {}, allSections = {}) {
 	const sys = parseSys(rawService.sys);
@@ -116,7 +115,10 @@ function parseService(rawService = {}, allSections = {}) {
 	};
 }
 
-/** Parses a single Post entry. */
+/**
+ * Parses a single Post entry.
+ * @return {import('../src/lib/types/contentful').PostEntry}
+ */
 function parsePost(rawPost = {}) {
 	const sys = parseSys(rawPost.sys);
 	const { title, header, slug, intro } = rawPost.fields || {};
@@ -125,11 +127,13 @@ function parsePost(rawPost = {}) {
 
 /**
  * Parses a single Navigation entry, referencing known Pages by ID.
+ * @return {import('../src/lib/types/contentful').NavigationEntry}
  */
 function parseNavigation(rawNav = {}, pagesById = {}) {
 	const sys = parseSys(rawNav.sys);
 	const { title, items = [] } = rawNav.fields || {};
 
+	/** @type {[]} */
 	const resolvedItems = items.map((pageRef) => {
 		const pageEntry = pagesById[pageRef.sys?.id];
 		return pageEntry ? pageEntry.fields : { title: "", slug: "", intro: "", sections: [] };
@@ -138,13 +142,19 @@ function parseNavigation(rawNav = {}, pagesById = {}) {
 	return { sys, fields: { title, items: resolvedItems } };
 }
 
-/** Simplifies the Contentful sys object. */
+/**
+ * Simplifies the Contentful sys object.
+ * @return {import('../src/lib/types/contentful').Sys}
+ */
 function parseSys(rawSys = {}) {
 	const { id, type, createdAt, updatedAt, locale } = rawSys;
 	return { id, type, createdAt, updatedAt, locale };
 }
 
-/** Parses a Section entry (or returns a minimal sys if fields missing). */
+/**
+ * Parses a Section entry (or returns a minimal sys if fields missing).
+ * @return {import('../src/lib/types/contentful').SectionEntry}
+ */
 function parseSection(rawSection = {}) {
 	const sys = parseSys(rawSection.sys);
 	if (!rawSection.fields) return { sys };
