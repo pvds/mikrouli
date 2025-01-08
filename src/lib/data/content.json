@@ -224,6 +224,48 @@
 						"id": "fnyi5t75mv2d"
 					}
 				},
+				"id": "73rcZJ4hT1YtU28TI15VZp",
+				"type": "Entry",
+				"createdAt": "2025-01-08T02:59:42.227Z",
+				"updatedAt": "2025-01-08T03:29:47.131Z",
+				"environment": {
+					"sys": {
+						"id": "master",
+						"type": "Link",
+						"linkType": "Environment"
+					}
+				},
+				"publishedVersion": 9,
+				"revision": 2,
+				"contentType": {
+					"sys": {
+						"type": "Link",
+						"linkType": "ContentType",
+						"id": "page"
+					}
+				},
+				"locale": "en-US"
+			},
+			"fields": {
+				"title": "404",
+				"longTitle": "Lost? Let's Find Our Way Together",
+				"slug": "404",
+				"intro": "It seems the page you’re looking for doesn’t exist—or perhaps it’s just taking a little break.\n\nJust like in life, we sometimes encounter detours that redirect us to new paths. Let’s make this moment an opportunity to move forward.\n\nYou can:\n- [Return to the homepage](/{base})\n- [Learn more about me and my approach](/{base}/about)\n- [Contact me for support](/{base}/contact)\n\nTake a deep breath, and let’s keep navigating this journey together.\n\n---\n\n__Still Stuck?__\n\nIf you’re finding yourself here often, don’t hesitate to reach out. I’d love to help you find what you’re looking for—or perhaps we can use this as the first step toward something new.\n\nHere’s how to get in touch:\n\n- **Email**: [eleni@mikrouli.nl](mailto:eleni@mikrouli.nl)\n- **Phone**: 00 31 6 19 44 62 63\n- **Languages**: Greek, Dutch, English\n\nOr, [schedule a session directly](/{base}/contact). Together, we can start creating clarity and positive change."
+			}
+		},
+		{
+			"metadata": {
+				"tags": [],
+				"concepts": []
+			},
+			"sys": {
+				"space": {
+					"sys": {
+						"type": "Link",
+						"linkType": "Space",
+						"id": "fnyi5t75mv2d"
+					}
+				},
 				"id": "2FmTPol4nxNb4Q0elgN4oG",
 				"type": "Entry",
 				"createdAt": "2024-12-28T00:14:21.086Z",

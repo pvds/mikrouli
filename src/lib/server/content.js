@@ -2,6 +2,7 @@ import { error } from "@sveltejs/kit";
 import { marked } from "marked";
 import content from "../data/content.json";
 import global from "../data/global.json";
+import { replaceBasePath } from "./utils.js";
 
 /**
  * Fetch all content data.
@@ -23,9 +24,10 @@ export const getPage = (slug) => {
 
 	if (!page) throw error(404, `Page with slug '${slug}' not found`);
 
+	const intro = replaceBasePath(page.fields.intro);
 	return {
 		...page.fields,
-		intro: marked(page.fields.intro, { async: false }), // convert markdown to HTML
+		intro: marked(intro, { async: false }), // convert markdown to HTML
 	};
 };
 
