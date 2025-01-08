@@ -18,14 +18,14 @@ export function transformContentfulData(data = {}) {
 			// If this is itself a section
 			if (entry.sys?.contentType?.sys?.id === "section") {
 				const parsed = parseSection(entry);
-				allSectionsMap[parsed.sys.id] = parsed;
+				allSectionsMap[parsed.meta.id] = parsed;
 			}
 			// If it references sections
 			if (Array.isArray(entry.fields?.sections)) {
 				for (const secRef of entry.fields.sections) {
 					if (secRef.sys?.contentType?.sys?.id === "section") {
 						const nested = parseSection(secRef);
-						allSectionsMap[nested.sys.id] = nested;
+						allSectionsMap[nested.meta.id] = nested;
 					}
 				}
 			}
@@ -43,7 +43,7 @@ export function transformContentfulData(data = {}) {
 	const pages = [];
 	for (const rawPage of data.pages || []) {
 		const parsed = parsePage(rawPage, allSectionsMap);
-		pagesById[parsed.sys.id] = parsed;
+		pagesById[parsed.meta.id] = parsed;
 		pages.push(parsed);
 	}
 
@@ -52,7 +52,7 @@ export function transformContentfulData(data = {}) {
 	const services = [];
 	for (const rawService of data.services || []) {
 		const parsed = parseService(rawService, allSectionsMap);
-		servicesById[parsed.sys.id] = parsed;
+		servicesById[parsed.meta.id] = parsed;
 		services.push(parsed);
 	}
 
@@ -61,7 +61,7 @@ export function transformContentfulData(data = {}) {
 	const posts = [];
 	for (const rawPost of data.posts || []) {
 		const parsed = parsePost(rawPost);
-		postsById[parsed.sys.id] = parsed;
+		postsById[parsed.meta.id] = parsed;
 		posts.push(parsed);
 	}
 
@@ -80,11 +80,11 @@ export function transformContentfulData(data = {}) {
  * @return {import('../src/lib/types/contentful').PageEntry}
  */
 function parsePage(rawPage = {}, allSections = {}) {
-	const sys = parseSys(rawPage.sys);
+	const meta = parseMeta(rawPage.sys);
 	const { title, header, slug, intro, sections = [] } = rawPage.fields || {};
 
 	return {
-		sys,
+		meta,
 		fields: {
 			title,
 			header,
@@ -100,11 +100,11 @@ function parsePage(rawPage = {}, allSections = {}) {
  * @return {import('../src/lib/types/contentful').ServiceEntry}
  */
 function parseService(rawService = {}, allSections = {}) {
-	const sys = parseSys(rawService.sys);
+	const meta = parseMeta(rawService.sys);
 	const { title, header, slug, intro, sections = [] } = rawService.fields || {};
 
 	return {
-		sys,
+		meta,
 		fields: {
 			title,
 			header,
@@ -120,9 +120,9 @@ function parseService(rawService = {}, allSections = {}) {
  * @return {import('../src/lib/types/contentful').PostEntry}
  */
 function parsePost(rawPost = {}) {
-	const sys = parseSys(rawPost.sys);
+	const meta = parseMeta(rawPost.sys);
 	const { title, header, slug, intro } = rawPost.fields || {};
-	return { sys, fields: { title, header, slug, intro } };
+	return { meta, fields: { title, header, slug, intro } };
 }
 
 /**
@@ -130,37 +130,36 @@ function parsePost(rawPost = {}) {
  * @return {import('../src/lib/types/contentful').NavigationEntry}
  */
 function parseNavigation(rawNav = {}, pagesById = {}) {
-	const sys = parseSys(rawNav.sys);
+	const meta = parseMeta(rawNav.sys);
 	const { title, items = [] } = rawNav.fields || {};
 
-	/** @type {[]} */
 	const resolvedItems = items.map((pageRef) => {
 		const pageEntry = pagesById[pageRef.sys?.id];
 		return pageEntry ? pageEntry.fields : { title: "", slug: "", intro: "", sections: [] };
 	});
 
-	return { sys, fields: { title, items: resolvedItems } };
+	return { meta, fields: { title, items: resolvedItems } };
 }
 
 /**
- * Simplifies the Contentful sys object.
- * @return {import('../src/lib/types/contentful').Sys}
+ * Simplifies the Contentful sys object but returns it as 'meta' data.
+ * @return {import('../src/lib/types/contentful').Metadata} // If your type is still named Sys
  */
-function parseSys(rawSys = {}) {
+function parseMeta(rawSys = {}) {
 	const { id, type, createdAt, updatedAt, locale } = rawSys;
 	return { id, type, createdAt, updatedAt, locale };
 }
 
 /**
- * Parses a Section entry (or returns a minimal sys if fields missing).
+ * Parses a Section entry (or returns a minimal meta if fields missing).
  * @return {import('../src/lib/types/contentful').SectionEntry}
  */
 function parseSection(rawSection = {}) {
-	const sys = parseSys(rawSection.sys);
-	if (!rawSection.fields) return { sys };
+	const meta = parseMeta(rawSection.sys);
+	if (!rawSection.fields) return { meta };
 
 	const { title, header, content } = rawSection.fields;
-	return { sys, fields: { title, header, content } };
+	return { meta, fields: { title, header, content } };
 }
 
 /**

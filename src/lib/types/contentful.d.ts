@@ -1,4 +1,4 @@
-export type Sys = {
+export type Metadata = {
 	id: string;
 	type: string;
 	createdAt: string;
@@ -17,14 +17,14 @@ export type PageFields = {
 };
 
 export type PageEntry = {
-	sys: Sys;
+	meta: Metadata;
 	fields: PageFields;
 };
 
 // ### Sections
 
 export type SectionEntry = {
-	sys: Sys;
+	meta: Metadata;
 	fields?: SectionFields;
 };
 
@@ -45,7 +45,7 @@ export type ServiceFields = {
 };
 
 export type ServiceEntry = {
-	sys: Sys;
+	meta: Metadata;
 	fields: ServiceFields;
 };
 
@@ -59,7 +59,7 @@ export type PostFields = {
 };
 
 export type PostEntry = {
-	sys: Sys;
+	meta: Metadata;
 	fields: PostFields;
 };
 
@@ -71,7 +71,7 @@ export type NavigationFields = {
 };
 
 export type NavigationEntry = {
-	sys: Sys;
+	meta: Metadata;
 	fields: NavigationFields;
 };
 
