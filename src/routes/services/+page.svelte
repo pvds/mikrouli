@@ -1,9 +1,20 @@
 <script>
+import { base } from "$app/paths";
 import Hero from "$lib/components/shell/Hero.svelte";
+import Section from "$lib/components/shell/Section.svelte";
 
 let { data } = $props();
-let { title, longTitle, intro } = data.local;
+let { title, longTitle, intro, slug, services } = data.local;
+// Destructure `posts` from `local`
 let { name } = data.global;
+
+/** @type {import("$lib/components/shell/Wave.svelte.type").Wave} */
+const wave = {
+	direction: "both",
+	alignment: "left",
+	color: "secondary-100",
+	opacity: 1,
+};
 </script>
 
 <svelte:head>
@@ -14,3 +25,15 @@ let { name } = data.global;
 <Hero title={longTitle}>
 	{@html intro}
 </Hero>
+
+{#each services as service, i}
+	<Section
+		classes={`px-8 py-14 ${i % 2 === 1 ? "my-14 bg-secondary-100 text-secondary-800" : ""}`}
+		{...(i % 2 === 1 ? { wave } : {})}
+	>
+		<h2 class="mb-4 text-3xl font-bold">{service.title}</h2>
+		<div class="prose-base">{@html service.intro}</div>
+		<a href={`${base}/${slug}/${service.slug}`}
+		   class="inline-block mt-4 text-primary-600 hover:underline">Read more →</a>
+	</Section>
+{/each}

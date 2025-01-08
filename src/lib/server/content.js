@@ -48,6 +48,19 @@ export const getService = (slug) => {
 };
 
 /**
+ * Fetch and process all services
+ * @returns {import('$lib/types/contentful').ServiceFields[]} - The processed fields.
+ */
+export const getServices = () => {
+	const services = content.services || [];
+
+	return services?.map((service) => ({
+		...service.fields,
+		intro: marked(service.fields.intro, { async: false }), // convert markdown to HTML
+	}));
+};
+
+/**
  * Fetch and process blog post slugs for generating dynamic routes.
  * @return {{ slug: string }[]} - An array of objects with a slug property.
  **/
@@ -75,7 +88,7 @@ export const getPost = (slug) => {
 };
 
 /**
- * Fetch and process a specific blog post by its slug.
+ * Fetch and process all blog posts.
  * @returns {import('$lib/types/contentful').PostFields[]} - The processed fields.
  */
 export const getPosts = () => {
