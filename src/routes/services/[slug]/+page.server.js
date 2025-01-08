@@ -10,7 +10,7 @@ export const entries = async () => {
 /** @type {import('./$types').PageServerLoad} */
 export const load = async ({ params }) => {
 	const { slug } = params;
-	const post = getService(slug);
+	const service = getService(slug);
 
-	return { local: post };
+	return { local: service };
 };

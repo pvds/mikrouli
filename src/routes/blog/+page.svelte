@@ -1,9 +1,10 @@
 <script>
+import { base } from "$app/paths";
 import Hero from "$lib/components/shell/Hero.svelte";
 import Section from "$lib/components/shell/Section.svelte";
 
 let { data } = $props();
-let { title, longTitle, intro, posts } = data.local; // Destructure `posts` from `local`
+let { title, longTitle, intro, slug, posts } = data.local; // Destructure `posts` from `local`
 let { name } = data.global;
 
 /** @type {import("$lib/components/shell/Wave.svelte.type").Wave} */
@@ -31,5 +32,7 @@ const wave = {
 	>
 		<h2 class="mb-4 text-3xl font-bold">{post.title}</h2>
 		<div class="prose-base">{@html post.intro}</div>
+		<a href={`${base}/${slug}/${post.slug}`}
+		   class="inline-block mt-4 text-primary-600 hover:underline">Read more →</a>
 	</Section>
 {/each}
