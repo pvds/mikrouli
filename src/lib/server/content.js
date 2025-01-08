@@ -75,6 +75,19 @@ export const getPost = (slug) => {
 };
 
 /**
+ * Fetch and process a specific blog post by its slug.
+ * @returns {import('$lib/types/contentful').PostFields[]} - The processed fields.
+ */
+export const getPosts = () => {
+	const posts = content.posts || [];
+
+	return posts?.map((post) => ({
+		...post.fields,
+		intro: marked(post.fields.intro, { async: false }), // convert markdown to HTML
+	}));
+};
+
+/**
  * Fetch and process blog post slugs for generating dynamic routes.
  * @return {{ slug: string }[]} - An array of objects with a slug property.
  **/
