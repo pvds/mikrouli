@@ -1,13 +1,16 @@
-import { getGlobal } from "$lib/server/content.js";
+import { getPost, getPostEntries } from "$lib/server/content.js";
 
-// since there's no dynamic data here, we can prerender
-// it so that it gets served as a static asset in production
-export const prerender = true;
+export const prerender = true; // Ensure the site is statically generated
 
 /** @type {import('./$types').EntryGenerator} */
 export const entries = async () => {
-	const data = await getGlobal();
-	/** @type {import('$lib/types/contentful').PostEntry[]} */
-	const posts = data.posts;
-	return posts?.map((post) => ({ slug: post.fields.slug })) || [];
+	return getPostEntries();
+};
+
+/** @type {import('./$types').PageServerLoad} */
+export const load = async ({ params }) => {
+	const { slug } = params;
+	const post = getPost(slug);
+
+	return { local: post };
 };

@@ -1,13 +1,16 @@
-import { getGlobal } from "$lib/server/content.js";
+import { getService, getServiceEntries } from "$lib/server/content.js";
 
-// since there's no dynamic data here, we can prerender
-// it so that it gets served as a static asset in production
-export const prerender = true;
+export const prerender = true; // Ensure the site is statically generated
 
 /** @type {import('./$types').EntryGenerator} */
 export const entries = async () => {
-	const data = await getGlobal();
-	/** @type {import('$lib/types/contentful').ServiceEntry[]} */
-	const services = data.services;
-	return services?.map((service) => ({ slug: service.fields.slug })) || [];
+	return getServiceEntries();
+};
+
+/** @type {import('./$types').PageServerLoad} */
+export const load = async ({ params }) => {
+	const { slug } = params;
+	const post = getService(slug);
+
+	return { local: post };
 };

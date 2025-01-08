@@ -4,6 +4,7 @@ import Section from "$lib/components/shell/Section.svelte";
 
 let { data } = $props();
 let { title, longTitle, intro } = data.local;
+let { name } = data.global;
 
 /** @type {import("$lib/components/shell/Wave.svelte.type").Wave} */
 const wave = {
@@ -15,7 +16,7 @@ const wave = {
 </script>
 
 <svelte:head>
-	<title>{title} - Mikrouli</title>
+	<title>{title} - {name}</title>
 	<meta name="description" content="" />
 </svelte:head>
 
