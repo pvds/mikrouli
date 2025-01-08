@@ -1,8 +1,7 @@
 import { error } from "@sveltejs/kit";
-import { marked } from "marked";
 import content from "../data/content.json";
 import global from "../data/global.json";
-import { replaceBasePath } from "./utils.js";
+import { markdownToHtml } from "./utils.js";
 
 /**
  * Fetch all content data.
@@ -24,10 +23,9 @@ export const getPage = (slug) => {
 
 	if (!page) throw error(404, `Page with slug '${slug}' not found`);
 
-	const intro = replaceBasePath(page.fields.intro);
 	return {
 		...page.fields,
-		intro: marked(intro, { async: false }), // convert markdown to HTML
+		intro: markdownToHtml(page.fields.intro),
 	};
 };
 
@@ -45,7 +43,7 @@ export const getService = (slug) => {
 
 	return {
 		...service.fields,
-		intro: marked(service.fields.intro, { async: false }), // convert markdown to HTML
+		intro: markdownToHtml(service.fields.intro),
 	};
 };
 
@@ -58,7 +56,7 @@ export const getServices = () => {
 
 	return services?.map((service) => ({
 		...service.fields,
-		intro: marked(service.fields.intro, { async: false }), // convert markdown to HTML
+		intro: markdownToHtml(service.fields.intro),
 	}));
 };
 
@@ -85,7 +83,7 @@ export const getPost = (slug) => {
 
 	return {
 		...post.fields,
-		intro: marked(post.fields.intro, { async: false }), // convert markdown to HTML
+		intro: markdownToHtml(post.fields.intro),
 	};
 };
 
@@ -98,7 +96,7 @@ export const getPosts = () => {
 
 	return posts?.map((post) => ({
 		...post.fields,
-		intro: marked(post.fields.intro, { async: false }), // convert markdown to HTML
+		intro: markdownToHtml(post.fields.intro),
 	}));
 };
 
