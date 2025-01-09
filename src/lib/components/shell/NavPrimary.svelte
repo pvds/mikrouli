@@ -10,7 +10,7 @@ let { menu } = $props();
 
 /** @type {{ href: string, label: string, title: string }[]} */
 const navItemsBase = menu.fields.items.map(({ slug, title, header }) => ({
-	href: `${base}${slug}`,
+	href: `${base}/${slug}`,
 	label: title,
 	title: header,
 }));
