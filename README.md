@@ -11,6 +11,7 @@ Mikrouli is a modern web platform designed to facilitate systemic change by prov
     * [Environment Variables](#environment-variables)
     * [Local Development](#local-development)
     * [Build and Preview](#build-and-preview)
+    * [Commit](#commit)
   * [Scripts](#scripts)
   * [Content Workflow](#content-workflow)
   * [CI/CD Workflow](#cicd-workflow)
@@ -23,15 +24,19 @@ Mikrouli is a modern web platform designed to facilitate systemic change by prov
 ## Features
 
 - [**Svelte**](https://svelte.dev/): Frontend framework
+	- [**SvelteKit**](https://kit.svelte.dev/): Svelte app framework
+    - [**Svelte Check**](https://svelte.dev/docs/cli/sv-check): Type checking
 - [**Tailwind CSS**](https://tailwindcss.com/): Utility-first CSS framework
 - [**Bun**](https://bun.sh/): Package manager
 - [**Vite**](https://vitejs.dev/): Build tool
 - [**Vitest**](https://vitest.dev/): Testing framework
 - [**Playwright**](https://playwright.dev/): End-to-end testing
 - [**Biome**](https://biomejs.dev/): Linting and formatting
+- [**Lefthook**](https://evilmartians.com/opensource/lefthook): Git hooks
 - [**GitHub**](https://github.com): Version control & CI/CD
 - [**GitHub Pages**](https://pages.github.com/): Hosting
 - [**Contentful**](https://www.contentful.com/): Headless CMS
+- [**JSDoc**](https://jsdoc.app/): Documentation
 
 ## Getting Started
 
@@ -54,12 +59,12 @@ PUBLIC_ENVIRONMENT=development
 
 2. Start the development server:
    ```bash
-   bun run dev -- --open
+   bun run dev --open
    ```
 
 3. Optionally, run the svelte-check watcher for code checks:
    ```bash
-   bun run check:watch
+   bun run watch
    ```
 
 ### Build and Preview
@@ -73,6 +78,12 @@ Preview the production build:
 ```bash
 bun run preview
 ```
+
+### Commit
+
+When committing changes Lefthook will run the following checks:
+- **Biome**: Linting and formatting
+- **Svelte-check**: Svelte specific CSS/JS/TS linting
 
 ## Scripts
 
