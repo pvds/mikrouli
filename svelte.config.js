@@ -10,7 +10,7 @@ const config = {
 			pages: "build",
 			assets: "build",
 			fallback: undefined,
-			precompress: false,
+			precompress: false, // GitHub pages already pre compresses files
 			strict: true,
 		}),
 		paths: {
@@ -20,8 +20,8 @@ const config = {
 			origin: "https://pvds.github.io",
 		},
 		env: {
-			publicPrefix: "PUBLIC_", // Default prefix for public variables
-			privatePrefix: "", // Default prefix for private variables
+			publicPrefix: "PUBLIC_",
+			privatePrefix: "",
 		},
 		serviceWorker: {
 			register: false,
