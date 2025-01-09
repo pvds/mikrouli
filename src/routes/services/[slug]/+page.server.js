@@ -1,7 +1,5 @@
 import { getService, getServiceEntries } from "$lib/server/content.js";
 
-export const prerender = true; // Ensure the site is statically generated
-
 /** @type {import('./$types').EntryGenerator} */
 export const entries = async () => {
 	return getServiceEntries();

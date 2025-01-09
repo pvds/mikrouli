@@ -1,6 +1,6 @@
 import { getGlobal, getNavigation } from "$lib/server/content.js";
 
-export const prerender = true; // Ensure the site is statically generated
+export const prerender = true;
 
 /** @type {import('./$types').LayoutServerLoad} */
 export const load = async () => {
