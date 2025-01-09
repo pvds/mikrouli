@@ -16,6 +16,9 @@ const config = {
 		paths: {
 			base: "/mikrouli",
 		},
+		prerender: {
+			origin: "https://pvds.github.io",
+		},
 		env: {
 			publicPrefix: "PUBLIC_", // Default prefix for public variables
 			privatePrefix: "", // Default prefix for private variables

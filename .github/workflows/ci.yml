@@ -51,12 +51,6 @@ jobs:
       - name: build
         run: bun run build
 
-      - name: config
-        if: ${{ github.event_name != 'pull_request' }}
-        uses: actions/configure-pages@v5
-        with:
-          static_site_generator: sveltekit
-
       - name: upload artifact
         if: ${{ github.event_name != 'pull_request' }}
         uses: actions/upload-pages-artifact@v3
