@@ -53,20 +53,18 @@ developer experience and user-centric design.
 
 ### Install Dependencies
 
-1. **Install Node.js** (v22 or newer):  
-   Follow the [Node.js documentation](https://nodejs.org/). For macOS, install
-   with Homebrew:
+> For macOS we recommend using [Homebrew](https://brew.sh/)
+> For Windows we recommend using [Scoop](https://scoop.sh/)
 
-    ```bash
-    brew install node
-    ```
+1. **Install Node.js** (v22 or newer):  
+   Follow the [Node.js documentation](https://nodejs.org/).
+	- macOS: `brew install node` or `brew install nvm`
+	- windows: `scoop install nodejs` or use [nvm for windows](https://github.com/coreybutler/nvm-windows)
 
 2. **Install Bun** (v1 or newer):  
-   Follow the [Bun installation guide](https://bun.sh/). For macOS:
-
-    ```bash
-    curl -fsSL https://bun.sh/install | bash
-    ```
+   Follow the [Bun installation guide](https://bun.sh/). 
+	- macOS/Linux: `brew install oven-sh/bun/bun` or `curl -fsSL https://bun.sh/install | bash`
+    - windows: `scoop bucket add main` && `scoop install bun` or `powershell -c "irm bun.sh/install.ps1 | iex"`
 
 3. Install project dependencies:
     ```bash
