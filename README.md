@@ -238,6 +238,4 @@ project structure](https://svelte.dev/docs/kit/project-structure):
 Explore more in the `docs/` directory:
 
 - **[Brand Guide](docs/brand-guide.md):** Branding and style guidelines.
-- **[JSDoc Guide](docs/jsdoc.md):** Documentation standards.
-- **[Headless CMS Integration](docs/headless-integration.md):** Contentful
-  setup.
+- **[JSDoc Guide](docs/jsdoc.md):** Using JSDoc for type safety in JavaScript
