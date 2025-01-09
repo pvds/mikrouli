@@ -16,6 +16,7 @@ on:
   repository_dispatch:
     types: [contentful-content-changed]
 
+# Only execute the latest main or dispatch (CMS update) runs; cancel other runs.
 concurrency:
     group: ${{ github.head_ref || (github.event_name == 'repository_dispatch' && 'dispatch') || 'push-main' }}
     cancel-in-progress: ${{ github.event_name != 'pull_request' || (github.event_name == 'repository_dispatch') }}
