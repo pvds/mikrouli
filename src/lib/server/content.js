@@ -16,18 +16,18 @@ export const getGlobal = () => {
 
 /**
  * Fetch and process a specific navigation by its slug.
- * @param {string} title - The title to fetch.
- * @returns {import('$lib/types/contentful').NavigationFields} - The processed fields.
+ * @param {string} slug - The slug to fetch.
+ * @returns {import('$lib/types/contentful').NavigationEntry} - The processed fields.
  * @throws {Error} - Throws a SvelteKit error if the navigation is not found.
  */
-export const getNavigation = (title) => {
+export const getNavigation = (slug) => {
 	const navs = navigationItems || [];
 	/** @type {import('$lib/types/contentful').NavigationEntry | undefined}*/
-	const nav = navs?.find((n) => n.fields.title === title);
+	const nav = navs?.find((n) => n.fields.slug === slug);
 
-	if (!nav) throw error(404, `Navigation with title '${title}' not found`);
+	if (!nav) throw error(404, `Navigation with slug '${slug}' not found`);
 
-	return { ...nav.fields };
+	return nav;
 };
 
 /**

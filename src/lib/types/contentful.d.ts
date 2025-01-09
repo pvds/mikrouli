@@ -67,6 +67,7 @@ export type PostEntry = {
 
 export type NavigationFields = {
 	title: string;
+	slug: string;
 	items: PageFields[];
 };
 

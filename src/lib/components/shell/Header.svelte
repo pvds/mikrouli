@@ -1,14 +1,15 @@
 <script>
 import { onDestroy, onMount } from "svelte";
-import Branding from "./Branding.svelte";
-import Nav from "./Nav.svelte";
 import Section from "./Section.svelte";
 
 /** @type {IntersectionObserver} */
 let observer;
 /** @type {HTMLDivElement} */
 let sentinel;
-let isCompact = false;
+let isCompact = $state(false);
+
+/** @type {{children: import('svelte').Snippet}} */
+let { children } = $props();
 
 onMount(() => {
 	observer = new IntersectionObserver(
@@ -44,8 +45,7 @@ onDestroy(() => {
 	</div>
 	<Section classes="relative px-4 py-6 z-3">
 		<header class="flex items-center gap-4">
-			<Branding />
-			<Nav/>
+			{@render children()}
 		</header>
 	</Section>
 </div>

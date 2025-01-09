@@ -59,7 +59,7 @@ async function fetchContentfulData() {
 		const transformed = transformContentfulData(rawData);
 
 		// Pretty-print in dev, minify in production
-		const spacing = isDev ? 2 : 0;
+		const spacing = isDev ? 4 : 0;
 
 		// Write each transformed content type to its own file
 		for (const { id } of contentTypes) {

@@ -3,26 +3,27 @@ import { browser } from "$app/environment";
 import { base } from "$app/paths";
 import { page } from "$app/state";
 import { onDestroy, onMount } from "svelte";
-import NavLink from "./NavLink.svelte";
+import NavPrimaryLink from "./NavPrimaryLink.svelte";
 
-/** @type {{ href: string, label: string }[]} */
-const navItemsBase = [
-	{ href: `${base}/services`, label: "Services" },
-	{ href: `${base}/blog`, label: "Blog" },
-	{ href: `${base}/contact`, label: "Contact" },
-	{ href: `${base}/about`, label: "About" },
-];
-const navItemsWithHome = [{ href: `${base}/`, label: "Home" }, ...navItemsBase];
-/** @type {HTMLUListElement} */
-let popoverMenu;
+/** @type {{ menu: import('$lib/types/contentful').NavigationEntry }} */
+let { menu } = $props();
+
+/** @type {{ href: string, label: string, title: string }[]} */
+const navItemsBase = menu.fields.items.map(({ slug, title, header }) => ({
+	href: `${base}${slug}`,
+	label: title,
+	title: header,
+}));
+const navItemHome = { href: `${base}/`, label: "Home", title: "Mikrouli home page" };
+
+const navItemsWithHome = [navItemHome, ...navItemsBase];
+
 /** @type {HTMLUListElement} */
 let bottomMenu;
 /** @type {string} */
 let breakpoint;
 
 let smallScreen = $state(false);
-// TODO: decide on whether to use bottom or popover menu; then remove this logic
-const smallScreenBottom = true;
 
 const navItems = $derived(smallScreen ? navItemsWithHome : navItemsBase);
 
@@ -53,11 +54,7 @@ onDestroy(() => {
 <nav class="navigation-primary ml-auto"
 	 aria-label="Main navigation">
 	{#if smallScreen}
-		{#if smallScreenBottom}
-			{@render bottomNav()}
-		{:else}
-			{@render popoverNav()}
-		{/if}
+		{@render bottomNav()}
 	{:else}
 		{@render inlineNav()}
 	{/if}
@@ -65,17 +62,6 @@ onDestroy(() => {
 
 {#snippet inlineNav()}
 	<ul class="menu-inline flex relative bg-primary-900 gap-2">
-		{@render navLinks()}
-	</ul>
-{/snippet}
-
-{#snippet popoverNav()}
-	<button popovertarget="menu-popover"
-			class="menu-popover-toggle cursor-pointer text-primary-200 font-semibold px-3 py-1"
-			type="button">Menu
-	</button>
-	<ul bind:this={popoverMenu} id="menu-popover" popover="auto"
-		class="menu-popover absolute open:flex open:flex-col gap-1 px-1 py-2 rounded-md bg-primary-800">
 		{@render navLinks()}
 	</ul>
 {/snippet}
@@ -88,20 +74,9 @@ onDestroy(() => {
 {/snippet}
 
 {#snippet navLinks()}
-	{#each navItems as { href, label }}
-		<NavLink {href} currentPath={page.url.pathname} clicked={() => popoverMenu?.hidePopover()}>
+	{#each navItems as { href, label, title }}
+		<NavPrimaryLink {href} {title} currentPath={page.url.pathname}>
 			{label}
-		</NavLink>
+		</NavPrimaryLink>
 	{/each}
 {/snippet}
-
-<style>
-	.menu-popover-toggle {
-		anchor-name: --toggle;
-	}
-
-	.menu-popover {
-		position-anchor: --toggle;
-		position-area: end span-start;
-	}
-</style>

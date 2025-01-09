@@ -131,14 +131,14 @@ function parsePost(rawPost = {}) {
  */
 function parseNavigation(rawNav = {}, pagesById = {}) {
 	const meta = parseMeta(rawNav.sys);
-	const { title, items = [] } = rawNav.fields || {};
+	const { title, slug, items = [] } = rawNav.fields || {};
 
-	const resolvedItems = items.map((pageRef) => {
+	const pages = items.map((pageRef) => {
 		const pageEntry = pagesById[pageRef.sys?.id];
 		return pageEntry ? pageEntry.fields : { title: "", slug: "", intro: "", sections: [] };
 	});
 
-	return { meta, fields: { title, items: resolvedItems } };
+	return { meta, fields: { title, slug, items: pages } };
 }
 
 /**

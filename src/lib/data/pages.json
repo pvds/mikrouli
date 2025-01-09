@@ -14,7 +14,7 @@
 			"intro": "Taking the first step toward therapy can feel daunting, but I’m here to make it as simple as possible. Whether you’re curious about the process or ready to begin, I’d love to hear from you.",
 			"sections": [
 				{
-					"title": "Contact Main Section",
+					"title": "Contact - Main Content",
 					"content": "## Schedule a Session\nI work with people from all over the world and all walks of life. Let’s explore how therapy can help you create positive, lasting change.\n\n[Include a link or form for booking a session.]\n\n## Contact Details\n- **Email:** eleni@mikrouli.nl\n- **Phone:** 00 31 6 19 44 62 63\n- **Languages:** Greek, Dutch, English\n- **Location:** Online sessions available worldwide"
 				}
 			]
@@ -60,22 +60,6 @@
 					"content": "## My approach \nI'm practical and collaborative. I combine curiosity with empathy to help clients explore their challenges and find ways forward. You don’t need to be perfect or have all the answers—therapy is about working together to create clarity and change.\n\n## Why Systemic Therapy?\nSystemic therapy focuses on the patterns and systems we live in, rather than labeling or diagnosing individuals. It’s not about finding fault but about exploring how dynamics work and where we can make meaningful shifts. My role is to guide you in uncovering possibilities and building solutions that fit your life."
 				}
 			]
-		}
-	},
-	{
-		"meta": {
-			"id": "2IULqLao4rH5Chl7BbeifG",
-			"type": "Entry",
-			"createdAt": "2024-12-31T13:02:36.979Z",
-			"updatedAt": "2024-12-31T13:02:36.979Z",
-			"locale": "en-US"
-		},
-		"fields": {
-			"title": "Markdown",
-			"header": "Markdown test page",
-			"slug": "markdown",
-			"intro": "# Markdown syntax guide\n\n## Headers\n\n# This is a Heading h1\n## This is a Heading h2\n###### This is a Heading h6\n\n## Emphasis\n\n*This text will be italic*  \n_This will also be italic_\n\n**This text will be bold**  \n__This will also be bold__\n\n_You **can** combine them_\n\n## Lists\n\n### Unordered\n\n* Item 1\n* Item 2\n* Item 2a\n* Item 2b\n    * Item 3a\n    * Item 3b\n\n### Ordered\n\n1. Item 1\n2. Item 2\n3. Item 3\n    1. Item 3a\n    2. Item 3b\n\n## Images\n\n![This is an alt text.](/image/sample.webp \"This is a sample image.\")\n\n## Links\n\nYou may be using [Markdown Live Preview](https://markdownlivepreview.com/).\n\n## Blockquotes\n\n> Markdown is a lightweight markup language with plain-text-formatting syntax, created in 2004 by John Gruber with Aaron Swartz.\n>\n>> Markdown is often used to format readme files, for writing messages in online discussion forums, and to create rich text using a plain text editor.\n\n## Tables\n\n| Left columns  | Right columns |\n| ------------- |:-------------:|\n| left foo      | right foo     |\n| left bar      | right bar     |\n| left baz      | right baz     |\n\n## Blocks of code\n\n```\nlet message = 'Hello world';\nalert(message);\n```\n\n## Inline code\n\nThis web site is using `markedjs/marked`.\n",
-			"sections": []
 		}
 	},
 	{
