@@ -8,7 +8,7 @@ import NavPrimaryLink from "./NavPrimaryLink.svelte";
 /** @type {{ menu: import('$lib/types/contentful').NavigationEntry }} */
 let { menu } = $props();
 
-/** @type {{ href: string, label: string, title: string }[]} */
+/** @type {{ href: string, label: string, title: string | undefined }[]} */
 const navItemsBase = menu.fields.items.map(({ slug, title, header }) => ({
 	href: `${base}/${slug}`,
 	label: title,

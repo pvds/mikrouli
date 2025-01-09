@@ -10,7 +10,7 @@ export type Metadata = {
 
 export type PageFields = {
 	title: string;
-	header: string;
+	header?: string;
 	slug: string;
 	intro: string;
 	sections: SectionFields[];

@@ -4,7 +4,7 @@ import { base } from "$app/paths";
 /**
  * @typedef {Object} Props
  * @property {string} href
- * @property {string} title
+ * @property {string | undefined} title
  * @property {string} currentPath
  * @property {import('svelte').Snippet} [children]
  */

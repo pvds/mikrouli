@@ -5,7 +5,6 @@ import Section from "$lib/components/shell/Section.svelte";
 
 let { data } = $props();
 let { title, header, intro, slug, services } = data.local;
-// Destructure `posts` from `local`
 let { name } = data.global;
 
 /** @type {import("$lib/components/shell/Wave.svelte.type").Wave} */

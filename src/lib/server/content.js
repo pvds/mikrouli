@@ -1,8 +1,13 @@
 import { error } from "@sveltejs/kit";
+/** @type {import('$lib/types/global').global}*/
 import global from "../data/global.json";
+/** @type {import('$lib/types/contentful').NavigationEntry[]}*/
 import navigationItems from "../data/navigation.json";
+/** @type {import('$lib/types/contentful').PostEntry[]}*/
 import pageItems from "../data/pages.json";
+/** @type {import('$lib/types/contentful').PostEntry[]}*/
 import postItems from "../data/posts.json";
+/** @type {import('$lib/types/contentful').ServiceEntry[]}*/
 import serviceItems from "../data/services.json";
 import { markdownToHtml } from "./utils.js";
 
@@ -21,8 +26,7 @@ export const getGlobal = () => {
  * @throws {Error} - Throws a SvelteKit error if the navigation is not found.
  */
 export const getNavigation = (slug) => {
-	const navs = navigationItems || [];
-	/** @type {import('$lib/types/contentful').NavigationEntry | undefined}*/
+	const navs = navigationItems;
 	const nav = navs?.find((n) => n.fields.slug === slug);
 
 	if (!nav) throw error(404, `Navigation with slug '${slug}' not found`);
@@ -37,20 +41,22 @@ export const getNavigation = (slug) => {
  * @throws {Error} - Throws a SvelteKit error if the page is not found.
  */
 export const getPage = (slug) => {
-	const pages = pageItems || [];
-	/** @type {import('$lib/types/contentful').PageEntry | undefined}*/
+	const pages = pageItems;
 	const page = pages?.find((p) => p.fields.slug === slug);
 
 	if (!page) throw error(404, `Page with slug '${slug}' not found`);
-	const sections = page.fields.sections;
+
+	/** @type {import('$lib/types/contentful').SectionFields[]}*/
+	let sections = page.fields.sections;
+	sections = sections?.map((section) => ({
+		...section,
+		content: markdownToHtml(section.content),
+	}));
 
 	return {
 		...page.fields,
 		intro: markdownToHtml(page.fields.intro),
-		sections: sections.map((section) => ({
-			...section,
-			content: markdownToHtml(section.content),
-		})),
+		sections,
 	};
 };
 
@@ -62,20 +68,21 @@ export const getPage = (slug) => {
  */
 export const getService = (slug) => {
 	const services = serviceItems;
-	/** @type {import('$lib/types/contentful').ServiceEntry | undefined}*/
-	const service = services?.find((s) => s.fields.slug === slug);
+	const service = services.find((s) => s.fields.slug === slug);
 
 	if (!service) throw error(404, `Service with slug '${slug}' not found`);
 
-	const sections = service.fields.sections;
+	/** @type {import('$lib/types/contentful').SectionFields[]}*/
+	let sections = service.fields.sections;
+	sections = sections?.map((section) => ({
+		...section,
+		content: markdownToHtml(section.content),
+	}));
 
 	return {
 		...service.fields,
 		intro: markdownToHtml(service.fields.intro),
-		sections: sections.map((section) => ({
-			...section,
-			content: markdownToHtml(section.content),
-		})),
+		sections,
 	};
 };
 
@@ -84,12 +91,14 @@ export const getService = (slug) => {
  * @returns {import('$lib/types/contentful').ServiceFields[]} - The processed fields.
  */
 export const getServices = () => {
-	const services = serviceItems || [];
+	const services = serviceItems;
 
-	return services?.map((service) => ({
-		...service.fields,
-		intro: markdownToHtml(service.fields.intro),
-	}));
+	return (
+		services?.map((service) => ({
+			...service.fields,
+			intro: markdownToHtml(service.fields.intro),
+		})) || []
+	);
 };
 
 /**
@@ -97,7 +106,7 @@ export const getServices = () => {
  * @return {{ slug: string }[]} - An array of objects with a slug property.
  **/
 export const getServiceEntries = () => {
-	const services = serviceItems || [];
+	const services = serviceItems;
 	return services?.map((post) => ({ slug: post.fields.slug })) || [];
 };
 
@@ -108,7 +117,7 @@ export const getServiceEntries = () => {
  * @throws {Error} - Throws a SvelteKit error if the post is not found.
  */
 export const getPost = (slug) => {
-	const posts = postItems || [];
+	const posts = postItems;
 	const post = posts?.find((p) => p.fields.slug === slug);
 
 	if (!post) throw error(404, `Blog post with slug '${slug}' not found`);
@@ -124,12 +133,14 @@ export const getPost = (slug) => {
  * @returns {import('$lib/types/contentful').PostFields[]} - The processed fields.
  */
 export const getPosts = () => {
-	const posts = postItems || [];
+	const posts = postItems;
 
-	return posts?.map((post) => ({
-		...post.fields,
-		intro: markdownToHtml(post.fields.intro),
-	}));
+	return (
+		posts?.map((post) => ({
+			...post.fields,
+			intro: markdownToHtml(post.fields.intro),
+		})) || []
+	);
 };
 
 /**
@@ -137,6 +148,6 @@ export const getPosts = () => {
  * @return {{ slug: string }[]} - An array of objects with a slug property.
  **/
 export const getPostEntries = () => {
-	const posts = postItems || [];
+	const posts = postItems;
 	return posts?.map((post) => ({ slug: post.fields.slug })) || [];
 };

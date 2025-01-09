@@ -11,6 +11,6 @@ let { name } = data.global;
 	<meta name="description" content="" />
 </svelte:head>
 
-<Hero title={title}>
+<Hero {title}>
 	{@html intro}
 </Hero>

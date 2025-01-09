@@ -1,7 +1,7 @@
 <script>
 /**
  * @typedef {Object} Props
- * @property {string} title
+ * @property {string|undefined} title
  * @property {import('svelte').Snippet} [children]
  */
 
@@ -25,7 +25,9 @@ let { title, children } = $props();
 
 	<Section
 		classes="relative -my-8 px-10 pt-20 pb-4 z-1 bg-primary-200 text-primary-800">
-		<h1 class="text-4xl mb-4 font-bold">{title}</h1>
+		{#if title}
+			<h1 class="text-4xl mb-4 font-bold">{title}</h1>
+		{/if}
 		<div class="prose-xl font-semibold">
 			{@render children?.()}
 		</div>

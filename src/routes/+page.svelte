@@ -2,8 +2,8 @@
 import Hero from "$lib/components/shell/Hero.svelte";
 
 let { data } = $props();
-let { title, header, intro } = data.local;
 let { name } = data.global;
+let { title, header, intro } = data.local;
 </script>
 
 <svelte:head>
