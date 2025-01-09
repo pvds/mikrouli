@@ -13,6 +13,7 @@
 	},
 	"scripts": {
 		"prepare": "lefthook install",
+		"start": "vite dev --open & bun run watch",
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
@@ -26,7 +27,8 @@
 		"check:svelte:watch": "bun run check:svelte --watch",
 		"write": "biome check --write",
 		"util:favicons": "bunx realfavicon generate src/lib/images/icon.svg favicons.json .favicons.json static",
-		"util:content": "bun run scripts/fetchContent.js"
+		"util:content": "bun run scripts/fetchContent.js",
+		"util:clean": "bun run scripts/clean.js"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
