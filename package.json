@@ -16,6 +16,7 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
+		"watch": "bun run check:svelte:watch",
 		"check": "bun run check:format & bun run check:svelte",
 		"check:ci": "biome ci & bun run check:svelte:ci",
 		"check:all": "bun run check & bun run build",
