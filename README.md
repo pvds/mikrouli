@@ -98,7 +98,8 @@ Quick start by running `bun i && bun start`.
 
 ### Environment Variables
 
-To fetch live content from Contentful, add a `.env` file to the project root:
+To fetch live content from Contentful, add a `.env` file to the project root,
+you can use `.env.example` file as a template:
 
 ```env
 CONTENTFUL_SPACE_ID=<Your Contentful Space ID>
@@ -225,12 +226,12 @@ project structure](https://svelte.dev/docs/kit/project-structure):
 
 ## Troubleshooting
 
-| **Issue**                     | **Solution**                                       |
-| ----------------------------- | -------------------------------------------------- |
-| Dependency installation fails | Verify Node.js and Bun versions meet requirements. |
-| Environment variable errors   | Ensure `.env` contains valid Contentful keys.      |
-| Contentful fetch errors       | Check API keys and network connectivity.           |
-| Build or dev errors           | Run the clean script: `bun run util:clean`.        |
+| **Issue**                   | **Solution**                                                              |
+|-----------------------------|---------------------------------------------------------------------------|
+| Installation fails          | Verify Node.js and Bun versions meet requirements.                        |
+| Environment variable errors | Ensure `.env` exists and contains valid Contentful keys, see .env.example |
+| Contentful fetch errors     | Check API keys and network connectivity.                                  |
+| Build or dev errors         | Run the clean script: `bun run util:clean`.                               |
 
 ---
 
