@@ -1,9 +1,8 @@
 <script>
 import { browser } from "$app/environment";
 import { base } from "$app/paths";
-import { page } from "$app/state";
+import { isCurrentPage } from "$lib/helpers/page";
 import { onDestroy, onMount } from "svelte";
-import NavPrimaryLink from "./NavPrimaryLink.svelte";
 
 /** @type {{ menu: import('$lib/types/contentful').NavigationEntry }} */
 let { menu } = $props();
@@ -15,7 +14,6 @@ const navItemsBase = menu.fields.items.map(({ slug, title, header }) => ({
 	title: header,
 }));
 const navItemHome = { href: `${base}/`, label: "Home", title: "Mikrouli home page" };
-
 const navItemsWithHome = [navItemHome, ...navItemsBase];
 
 /** @type {HTMLUListElement} */
@@ -75,8 +73,14 @@ onDestroy(() => {
 
 {#snippet navLinks()}
 	{#each navItems as { href, label, title }}
-		<NavPrimaryLink {href} {title} currentPath={page.url.pathname}>
-			{label}
-		</NavPrimaryLink>
+		<li class="grow">
+			<a {href} {title}
+			   class="inline-block w-full text-center px-3 py-1 font-semibold {isCurrentPage(href) ?
+	'text-primary-50' : 'text-primary-200 hover:text-primary-50'}"
+			   aria-current={isCurrentPage(href) ? "page" : undefined}
+			>
+				{label}
+			</a>
+		</li>
 	{/each}
 {/snippet}
