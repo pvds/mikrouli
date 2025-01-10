@@ -1,5 +1,6 @@
 <script>
 import { base } from "$app/paths";
+import { remToPx } from "$lib/helpers/conversion";
 import { isCurrentPage } from "$lib/helpers/page";
 import { onMount } from "svelte";
 
@@ -15,18 +16,15 @@ const navItemsBase = menu.fields.items.map(({ slug, title, header }) => ({
 const navItemHome = { href: `${base}/`, label: "Home", title: "Mikrouli home page" };
 const navItemsWithHome = [navItemHome, ...navItemsBase];
 
+// DOM references
 /** @type {HTMLUListElement} */
 let bottomMenu;
-/** @type {string} */
-let breakpoint;
 
 // Reactive variables
-let smallScreen = $state(false);
+let breakpoint = $state(0);
+let viewportWidth = $state(0);
+let smallScreen = $derived(viewportWidth <= breakpoint);
 const navItems = $derived(smallScreen ? navItemsWithHome : navItemsBase);
-
-const handleResize = () => {
-	smallScreen = window.matchMedia(`(max-width: ${breakpoint})`).matches;
-};
 
 const updateGlobalSpacingBottom = () => {
 	const height = bottomMenu?.getBoundingClientRect().height || 0;
@@ -37,16 +35,16 @@ const updateGlobalSpacingBottom = () => {
 };
 
 $effect(() => {
-	// $inspect.trace("updateGlobalSpacingBottom");
 	updateGlobalSpacingBottom();
 });
 
 onMount(() => {
-	breakpoint = getComputedStyle(document.documentElement).getPropertyValue("--breakpoint-md");
-	handleResize(); // Initial check
+	breakpoint = remToPx(
+		getComputedStyle(document.documentElement).getPropertyValue("--breakpoint-md"),
+	);
 });
 </script>
-<svelte:window onresize={handleResize}/>
+<svelte:window bind:innerWidth={viewportWidth}/>
 
 <nav class="navigation-primary ml-auto"
 	 aria-label="Main navigation">
