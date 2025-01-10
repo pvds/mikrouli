@@ -49,9 +49,10 @@ onMount(() => {
 <nav class="nav-primary ml-auto"
 	 aria-label="Main navigation">
 	{#if smallScreen}
-		<ul class="nav-menu--inline flex relative gap-2">{@render navLinks()}</ul>
+		<ul bind:this={bottomMenu}
+			class="nav-menu--bottom w-full flex justify-around fixed left-0 bottom-0 bg-primary-900 px-1 py-2">{@render navLinks()}</ul>
 	{:else}
-		<ul bind:this={bottomMenu} class="nav-menu--bottom w-full flex justify-around fixed left-0 bottom-0 px-1 py-2">{@render navLinks()}</ul>
+		<ul class="nav-menu--inline flex relative gap-2 bg-primary-900">{@render navLinks()}</ul>
 	{/if}
 </nav>
 
