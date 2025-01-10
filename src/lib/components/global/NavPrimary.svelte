@@ -17,8 +17,8 @@ const navItemHome = { href: `${base}/`, label: "Home", title: "Mikrouli home pag
 const navItemsWithHome = [navItemHome, ...navItemsBase];
 
 // DOM references
-/** @type {HTMLUListElement} */
-let bottomMenu;
+/** @type {HTMLUListElement|undefined} */
+let bottomMenu = $state();
 
 // Reactive variables
 let breakpoint = $state(0);
@@ -46,38 +46,33 @@ onMount(() => {
 </script>
 <svelte:window bind:innerWidth={viewportWidth}/>
 
-<nav class="navigation-primary ml-auto"
+<nav class="nav-primary ml-auto"
 	 aria-label="Main navigation">
 	{#if smallScreen}
-		{@render bottomNav()}
+		<ul class="nav-menu--inline ">{@render navLinks()}</ul>
 	{:else}
-		{@render inlineNav()}
+		<ul bind:this={bottomMenu} class="nav-menu--bottom">{@render navLinks()}</ul>
 	{/if}
 </nav>
-
-{#snippet inlineNav()}
-	<ul class="menu-inline flex relative bg-primary-900 gap-2">
-		{@render navLinks()}
-	</ul>
-{/snippet}
-
-{#snippet bottomNav()}
-	<ul bind:this={bottomMenu}
-		class="menu-bottom w-full flex justify-around fixed left-0 bottom-0 px-1 py-2 bg-primary-900">
-		{@render navLinks()}
-	</ul>
-{/snippet}
 
 {#snippet navLinks()}
 	{#each navItems as { href, label, title }}
 		<li class="grow">
-			<a {href} {title}
-			   class="inline-block w-full text-center px-3 py-1 font-semibold {isCurrentPage(href) ?
-	'text-primary-50' : 'text-primary-200 hover:text-primary-50'}"
-			   aria-current={isCurrentPage(href) ? "page" : undefined}
-			>
-				{label}
-			</a>
+			<a {href} {title} aria-current={isCurrentPage(href) ? "page" : undefined}
+			   class="nav-menu__link {isCurrentPage(href) ? 'text-primary-50' :
+			   'text-primary-200 hover:text-primary-50'}">{label}</a>
 		</li>
 	{/each}
 {/snippet}
+
+<style lang="postcss">
+	.nav-menu--inline {
+		@apply flex relative bg-primary-900 gap-2;
+	}
+	.nav-menu--bottom {
+		@apply w-full flex justify-around fixed left-0 bottom-0 px-1 py-2 bg-primary-900;
+	}
+	.nav-menu__link {
+		@apply inline-block w-full text-center px-3 py-1 font-semibold;
+	}
+</style>
