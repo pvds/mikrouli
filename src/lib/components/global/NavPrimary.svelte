@@ -1,8 +1,7 @@
 <script>
-import { browser } from "$app/environment";
 import { base } from "$app/paths";
 import { isCurrentPage } from "$lib/helpers/page";
-import { onDestroy, onMount } from "svelte";
+import { onMount } from "svelte";
 
 /** @type {{ menu: import('$lib/types/contentful').NavigationEntry }} */
 let { menu } = $props();
@@ -21,33 +20,33 @@ let bottomMenu;
 /** @type {string} */
 let breakpoint;
 
+// Reactive variables
 let smallScreen = $state(false);
-
 const navItems = $derived(smallScreen ? navItemsWithHome : navItemsBase);
 
 const handleResize = () => {
 	smallScreen = window.matchMedia(`(max-width: ${breakpoint})`).matches;
-
-	setTimeout(() => {
-		document.documentElement.style.setProperty(
-			"--global-spacing-bottom",
-			smallScreen && bottomMenu
-				? `${bottomMenu.getBoundingClientRect().height.toString()}px`
-				: "0",
-		);
-	}, 0);
 };
+
+const updateGlobalSpacingBottom = () => {
+	const height = bottomMenu?.getBoundingClientRect().height || 0;
+	document.documentElement.style.setProperty(
+		"--global-spacing-bottom",
+		smallScreen ? `${height}px` : "0",
+	);
+};
+
+$effect(() => {
+	// $inspect.trace("updateGlobalSpacingBottom");
+	updateGlobalSpacingBottom();
+});
 
 onMount(() => {
 	breakpoint = getComputedStyle(document.documentElement).getPropertyValue("--breakpoint-md");
 	handleResize(); // Initial check
-	window.addEventListener("resize", handleResize);
-});
-
-onDestroy(() => {
-	if (browser) window.removeEventListener("resize", handleResize);
 });
 </script>
+<svelte:window onresize={handleResize}/>
 
 <nav class="navigation-primary ml-auto"
 	 aria-label="Main navigation">
