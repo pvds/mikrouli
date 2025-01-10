@@ -49,9 +49,9 @@ onMount(() => {
 <nav class="nav-primary ml-auto"
 	 aria-label="Main navigation">
 	{#if smallScreen}
-		<ul class="nav-menu--inline ">{@render navLinks()}</ul>
+		<ul class="nav-menu--inline flex relative gap-2">{@render navLinks()}</ul>
 	{:else}
-		<ul bind:this={bottomMenu} class="nav-menu--bottom">{@render navLinks()}</ul>
+		<ul bind:this={bottomMenu} class="nav-menu--bottom w-full flex justify-around fixed left-0 bottom-0 px-1 py-2">{@render navLinks()}</ul>
 	{/if}
 </nav>
 
@@ -59,20 +59,8 @@ onMount(() => {
 	{#each navItems as { href, label, title }}
 		<li class="grow">
 			<a {href} {title} aria-current={isCurrentPage(href) ? "page" : undefined}
-			   class="nav-menu__link {isCurrentPage(href) ? 'text-primary-50' :
+			   class="nav-menu__link inline-block w-full text-center px-3 py-1 font-semibold {isCurrentPage(href) ? 'text-primary-50' :
 			   'text-primary-200 hover:text-primary-50'}">{label}</a>
 		</li>
 	{/each}
 {/snippet}
-
-<style lang="postcss">
-	.nav-menu--inline {
-		@apply flex relative bg-primary-900 gap-2;
-	}
-	.nav-menu--bottom {
-		@apply w-full flex justify-around fixed left-0 bottom-0 px-1 py-2 bg-primary-900;
-	}
-	.nav-menu__link {
-		@apply inline-block w-full text-center px-3 py-1 font-semibold;
-	}
-</style>
