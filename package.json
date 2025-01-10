@@ -20,7 +20,7 @@
 		"watch": "bun run check:svelte:watch",
 		"check": "bun run check:format & bun run check:svelte",
 		"check:ci": "biome ci & bun run check:svelte:ci",
-		"check:all": "bun run check & bun run build",
+		"check:all": "bun run check & bun run build -l warn",
 		"check:format": "biome check",
 		"check:svelte": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:svelte:ci": "bun run check:svelte --output machine",
