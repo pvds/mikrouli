@@ -1,9 +1,9 @@
 <script>
-import Branding from "$lib/components/shell/Branding.svelte";
-import Footer from "$lib/components/shell/Footer.svelte";
-import Header from "$lib/components/shell/Header.svelte";
+import Branding from "$lib/components/global/Branding.svelte";
+import Footer from "$lib/components/global/Footer.svelte";
+import Header from "$lib/components/global/Header.svelte";
 import "../app.css";
-import NavPrimary from "$lib/components/shell/NavPrimary.svelte";
+import NavPrimary from "$lib/components/global/NavPrimary.svelte";
 
 let { children, data } = $props();
 let { nav } = data.local;

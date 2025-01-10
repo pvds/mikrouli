@@ -1,5 +1,5 @@
 <script>
-import Hero from "$lib/components/shell/Hero.svelte";
+import Hero from "$lib/components/layout/Hero.svelte";
 
 let { data } = $props();
 let { title, intro } = data.local;

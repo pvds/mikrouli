@@ -1,6 +1,6 @@
 <script>
 import { onDestroy, onMount } from "svelte";
-import Section from "./Section.svelte";
+import Section from "../layout/Section.svelte";
 
 /** @type {IntersectionObserver} */
 let observer;

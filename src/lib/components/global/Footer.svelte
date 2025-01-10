@@ -1,6 +1,6 @@
 <script>
 import { base } from "$app/paths";
-import Section from "./Section.svelte";
+import Section from "../layout/Section.svelte";
 
 const links = [
 	{ href: `${base}/contact`, label: "Get in contact" },

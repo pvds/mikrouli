@@ -1,13 +1,13 @@
 <script>
 import { base } from "$app/paths";
-import Hero from "$lib/components/shell/Hero.svelte";
-import Section from "$lib/components/shell/Section.svelte";
+import Hero from "$lib/components/layout/Hero.svelte";
+import Section from "$lib/components/layout/Section.svelte";
 
 let { data } = $props();
 let { title, header, intro, slug, services } = data.local;
 let { name } = data.global;
 
-/** @type {import("$lib/components/shell/Wave.svelte.type").Wave} */
+/** @type {import("$lib/components/visuals/Wave.svelte.type").Wave} */
 const wave = {
 	direction: "both",
 	alignment: "left",

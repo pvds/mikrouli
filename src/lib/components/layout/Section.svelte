@@ -2,11 +2,11 @@
 /**
  * @typedef {Object} Props
  * @property {string} [classes]
- * @property {import('$lib/components/shell/Wave.svelte.type.js').Wave} [wave]
+ * @property {import('$lib/components/visuals/Wave.svelte.type').Wave} [wave]
  * @property {import('svelte').Snippet} [children]
  */
 
-import Wave from "./Wave.svelte";
+import Wave from "../visuals/Wave.svelte";
 
 /** @type {Props} */
 let { classes, wave, children } = $props();
