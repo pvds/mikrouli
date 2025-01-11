@@ -3,8 +3,8 @@ import { marked } from "marked";
 
 /**
  * Prepend base path to relative links
- * @param {string} content - The original Markdown text.
- * @return {string} - The updated Markdown text with absolute links.
+ * @param {string} content - The content to apply the changes to.
+ * @return {string} - The updated content with absolute links.
  */
 export const prependBasePath = (content) => {
 	return content.replace(/href="\/(?!\/)(.*?)"/g, `href="${base}/$1"`);
