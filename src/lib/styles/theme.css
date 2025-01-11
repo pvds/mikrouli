@@ -1,4 +1,4 @@
-@theme {
+@theme default {
 	/* === COLORS === */
 	--color-secondary-50: hsl(153, 37.60%, 96.72%);
 	--color-secondary-100: hsl(153, 37.60%, 92.77%);
