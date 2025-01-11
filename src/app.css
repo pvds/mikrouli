@@ -5,10 +5,18 @@
 /* === CUSTOM === */
 @import "$lib/styles/theme.css" layer(theme);
 @import "$lib/styles/base.css" layer(base);
-@import "$lib/styles/utilities.css" layer(utilities);
+
+/* TODO: check why using @utility in `src/lib/styles/utilities/layout.css` breaks intellisense autocomplete */
+/*@import "$lib/styles/utilities.css" layer(utilities);*/
 
 /* === PLUGINS === */
 @plugin "@tailwindcss/typography";
 
 /* === LAYERS === */
 @layer theme, base, components, utilities;
+
+/* === UTILITIES === */
+/* TODO: remove this when intellisense does not break when using @utility in imported css files */
+@utility section {
+	@apply px-4 py-2;
+}
