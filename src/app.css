@@ -5,12 +5,10 @@
 /* === CUSTOM === */
 @import "$lib/styles/theme.css" layer(theme);
 @import "$lib/styles/base.css" layer(base);
-/* TODO: applying layer(utilities) breaks intellisense autocomplete,
-    re-add layer when this is issue is resolved */
 @import "$lib/styles/utilities.css";
 
 /* === PLUGINS === */
 @plugin "@tailwindcss/typography";
 
-/* === LAYERS === */
 @layer theme, base, components, utilities;
+/* === LAYERS === */
