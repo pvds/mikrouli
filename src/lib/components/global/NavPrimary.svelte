@@ -85,6 +85,6 @@ This server as an example on how to do it (using @reference)
 	}
 
 	.nav-menu__link {
-		@apply section inline-block w-full text-center px-3 py-1 font-semibold;
+		@apply inline-block w-full text-center px-3 py-1 font-semibold;
 	}
 </style>
