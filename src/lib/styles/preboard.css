@@ -1,0 +1,160 @@
+/* ======================================================================
+   Tailwind Preflight Extension
+
+   Additions to the Tailwind CSS Preflight base styles to normalize
+   browser inconsistencies and improve user experience.
+   ====================================================================== */
+
+/* Increase line height for smaller font sizes, decrease it for larger
+	see https://kittygiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/
+   ====================================================================== */
+/*
+*:where(:not(html)) {
+  line-height: calc(0.25rem + 1em + 0.25rem);
+}
+html {
+  line-height: initial;
+}
+*/
+
+/* Provide background-origin & background-repeat for all elements
+   ====================================================================== */
+*,
+::before,
+::after {
+	background-origin: border-box;
+	background-repeat: no-repeat;
+}
+
+/* Ensure html/body fill available space and optimize text rendering
+   ====================================================================== */
+html {
+	block-size: 100%;
+}
+
+body {
+	text-rendering: optimizeSpeed;
+	min-block-size: 100%;
+}
+
+/* Smooth scrolling for users that don't prefer reduced motion
+   ====================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+	html:focus-within {
+		scroll-behavior: smooth;
+	}
+}
+
+/* Default SVG fill/stroke handling
+   ====================================================================== */
+:where(svg) {
+	stroke: none;
+	fill: currentColor;
+}
+
+:where(svg):where(:not([fill])) {
+	stroke: currentColor;
+	fill: none;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+/* :where(svg):where(:not([width])) {
+     inline-size: 5rem;
+   } */
+
+/* Let textarea resize be vertical by default, block if supported
+   ====================================================================== */
+@supports (resize: block) {
+	textarea {
+		resize: block;
+	}
+}
+
+/* Wrap text to avoid horizontal overflow
+   ====================================================================== */
+:where(p, h1, h2, h3, h4, h5, h6) {
+	overflow-wrap: break-word;
+}
+
+/* Position list markers inside
+   ====================================================================== */
+ol,
+ul,
+menu {
+	list-style-position: inside;
+}
+
+/* Use a more readable underline style for all links
+   ====================================================================== */
+a {
+	text-decoration-skip-ink: auto;
+}
+
+/* Interactive elements: pointer cursor & touch-action manipulation
+   ====================================================================== */
+:where(
+		a[href],
+		area,
+		button,
+		input,
+		label[for],
+		select,
+		summary,
+		textarea,
+		[tabindex]:not([tabindex*="-"])
+	) {
+	cursor: pointer;
+	touch-action: manipulation;
+}
+
+:where(input[type="file"])::file-selector-button {
+	cursor: pointer;
+}
+
+/* Focus outline animation & offset, respecting reduced motion
+   ====================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+	:focus-visible {
+		transition: outline-offset 145ms cubic-bezier(0.25, 0, 0.4, 1);
+	}
+	:where(:not(:active)):focus-visible {
+		transition-duration: 0.25s;
+	}
+}
+
+:where(:not(:active)):focus-visible {
+	outline-offset: 5px;
+}
+
+/* Make button text unselectable & center it; disabled cursor feedback
+   ====================================================================== */
+:where(button, button[type], input[type="button"], input[type="submit"], input[type="reset"]),
+:where(input[type="file"])::-webkit-file-upload-button,
+:where(input[type="file"])::file-selector-button {
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	user-select: none;
+	text-align: center;
+}
+
+:where(
+		button,
+		button[type],
+		input[type="button"],
+		input[type="submit"],
+		input[type="reset"]
+	)[disabled] {
+	cursor: not-allowed;
+}
+
+/* Add word-spacing inherit to form elements
+   ====================================================================== */
+button,
+input,
+select,
+optgroup,
+textarea,
+::file-selector-button {
+	word-spacing: inherit;
+}

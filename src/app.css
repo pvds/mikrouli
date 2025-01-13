@@ -10,5 +10,5 @@
 /* === PLUGINS === */
 @plugin "@tailwindcss/typography";
 
-@layer theme, base, components, utilities;
 /* === LAYERS === */
+@layer theme, base, components, utilities;
