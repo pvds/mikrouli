@@ -39,6 +39,9 @@ html {
 
 	/* Making sure text size is only controlled by font-size */
 	/*-webkit-text-size-adjust: none;*/
+
+	/* Use color-scheme to support auto dark/light mode */
+	color-scheme: light dark;
 }
 
 body {
@@ -47,6 +50,12 @@ body {
 	min-block-size: 100%;
 	/* https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-gutter#example_2 */
 	/* scrollbar-gutter: stable both-edges; Removed until this bug is fixed: https://bugs.chromium.org/p/chromium/issues/detail?id=1318404#c2 */
+}
+
+/* Prevent scrolling behind an open <dialog> with [modal][open]
+   ====================================================================== */
+:where(html:has(dialog:modal[open])) {
+	overflow: clip;
 }
 
 /* Smooth scrolling for users that don't prefer reduced motion
@@ -64,12 +73,12 @@ body {
 	fill: currentColor;
 }
 
-:where(svg):where(:not([fill])) {
+/*:where(svg):where(:not([fill])) {
 	stroke: currentColor;
 	fill: none;
 	stroke-linecap: round;
 	stroke-linejoin: round;
-}
+}*/
 
 /* :where(svg):where(:not([width])) {
      inline-size: 5rem;
@@ -89,6 +98,12 @@ body {
 	overflow-wrap: break-word;
 }
 
+/* Wrap text to avoid horizontal overflow
+   ====================================================================== */
+:where(h1, h2, h3, h4, h5, h6) {
+	text-wrap: var(--default-heading-text-wrap, balance);
+}
+
 /* Position list markers inside
    ====================================================================== */
 ol,
@@ -97,10 +112,11 @@ menu {
 	list-style-position: inside;
 }
 
-/* Use a more readable underline style for all links
+/* Use a more readable underline style for all links + offset
    ====================================================================== */
 a {
 	text-decoration-skip-ink: auto;
+	text-underline-offset: 0.2ex;
 }
 
 /* Interactive elements: pointer cursor & touch-action manipulation
@@ -124,20 +140,21 @@ a {
 	cursor: pointer;
 }
 
-/* Focus outline animation & offset, respecting reduced motion
+/* Focus outline with transitions, respecting reduced motion
    ====================================================================== */
 @media (prefers-reduced-motion: no-preference) {
 	:focus-visible {
+		/* Use your transition variables if available */
 		transition: outline-offset var(--transition-duration-fast, 150ms)
 			var(--default-transition-timing-function, cubic-bezier(0.4, 0, 0.2, 1));
 	}
-	:where(:not(:active)):focus-visible {
-		transition-duration: var(--transision-duration-normal, 250ms);
-	}
 }
 
-:where(:not(:active)):focus-visible {
-	outline-offset: 5px;
+/* Override previous offset with new style */
+:where(:focus-visible) {
+	outline: 3px solid var(--global-focus-color, CanvasText);
+	outline-offset: var(--global-focus-outline-offset, 3px);
+	border-radius: var(--global-focus-border-radius, 0.25rem);
 }
 
 /* Make button text unselectable & center it; disabled cursor feedback
@@ -161,6 +178,12 @@ a {
 	cursor: not-allowed;
 }
 
+/* Disabled cursor feedback for nested labels
+   ====================================================================== */
+:where(:disabled, label:has(> :disabled, + disabled)) {
+	cursor: not-allowed;
+}
+
 /* Preserves consistent word spacing from the parent element for these controls.
    ====================================================================== */
 button,
@@ -170,4 +193,11 @@ optgroup,
 textarea,
 ::file-selector-button {
 	word-spacing: inherit;
+}
+
+/* Add extra scroll margin to target element
+   ====================================================================== */
+:where(:focus-visible, :target) {
+	scroll-margin-block-start: var(--global-target-scroll-margin-start, 5ex);
+	scroll-margin-block-end: var(--global-target-scroll-margin-end, 5ex);
 }

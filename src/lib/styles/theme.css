@@ -208,11 +208,27 @@
 	--aspect-video: 16 / 9;
 
 	/* === DEFAULTS === */
+	--default-heading-text-wrap: balance;
 	--default-transition-duration: 150ms;
 	--default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	--default-font-family: var(--font-sans);
 	--default-mono-font-family: var(--font-mono);
+	--default-selection-light: var(--color-primary-800);
+	--default-selection-dark: var(--color-primary-300);
 
-	/* === APP === */
-	--global-spacing-bottom: 0;
+	/* === GLOBAL === */
+	--global-spacing-top: 0;
+	--global-spacing-bottom: 90px;
+	--global-target-offset: 5ex;
+	--global-focus-color: var(--color-primary-600);
+	--global-focus-border-radius: var(--radius-sm);
+	--global-focus-outline-offset: 3px;
+	--global-target-scroll-margin-start: calc(
+		var(--global-spacing-top) +
+		var(--global-target-offset)
+	);
+	--global-target-scroll-margin-end: calc(
+		var(--global-spacing-bottom) +
+		var(--global-target-offset)
+	);
 }

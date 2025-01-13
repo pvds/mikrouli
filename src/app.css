@@ -4,6 +4,7 @@
 
 /* === CUSTOM === */
 @import "$lib/styles/theme.css" layer(theme);
+@import "$lib/styles/preboard.css" layer(base);
 @import "$lib/styles/base.css" layer(base);
 @import "$lib/styles/utilities.css";
 

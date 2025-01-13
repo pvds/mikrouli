@@ -1,6 +1,11 @@
-html {
-	/* TODO: enable when ready to configure light and dark theme */
-	/*color-scheme: light dark;*/
+/* Default selection colors
+   ====================================================================== */
+::selection {
+	background-color: light-dark(
+		var(--default-selection-light, black),
+		var(--default-selection-dark, white)
+	);
+	color: light-dark(var(--default-selection-dark, white), var(--default-selection-light, black));
 }
 
 body {
