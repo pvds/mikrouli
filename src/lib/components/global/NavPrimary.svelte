@@ -68,7 +68,7 @@ onMount(() => {
 
 <!--
 Using @apply is not recommended.
-This server as an example on how to do it (using @reference)
+This serves as an example on how to do it (using @reference)
 - theme.css allows accessing generated theme classes
 - utilities.css allows accessing generated custom utility classes
 -->
