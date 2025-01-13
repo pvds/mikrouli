@@ -10,3 +10,18 @@ export const isCurrentPage = (href) => {
 	const currentPath = page.url.pathname;
 	return href === `${base}/` ? href === currentPath : currentPath.includes(href);
 };
+
+/**
+ * @summary Prepend the base URL to a path
+ *
+ * TODO: harden to ensure the path is a valid URL
+ *
+ * @param {string} url url path
+ * @returns {string} full url
+ */
+export const prependURL = (url) => {
+	if (url && !url.startsWith("http")) {
+		return `${page.url.origin}${base}/${url}`;
+	}
+	return url;
+};

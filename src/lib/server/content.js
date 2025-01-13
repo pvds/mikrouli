@@ -1,13 +1,15 @@
 import { error } from "@sveltejs/kit";
-/** @type {import('$lib/types/global').global}*/
-import global from "../data/global.json";
-/** @type {import('$lib/types/contentful').NavigationEntry[]}*/
+/** @type {import("$lib/types/global").global}*/
+import globalData from "../data/global.json";
+/** @type {import("$lib/types/contentful").NavigationEntry[]}*/
 import navigationItems from "../data/navigation.json";
-/** @type {import('$lib/types/contentful').PostEntry[]}*/
+/** @type {import("$lib/types/contentful").PostEntry[]}*/
 import pageItems from "../data/pages.json";
-/** @type {import('$lib/types/contentful').PostEntry[]}*/
+/** @type {import("$lib/types/contentful").PostEntry[]}*/
 import postItems from "../data/posts.json";
-/** @type {import('$lib/types/contentful').ServiceEntry[]}*/
+/** @type {import("$lib/components/util/seo/Seo.svelte.types").SEOProps}*/
+import seoData from "../data/seo.json";
+/** @type {import("$lib/types/contentful").ServiceEntry[]}*/
 import serviceItems from "../data/services.json";
 import { markdownToHtml } from "./utils.js";
 
@@ -16,7 +18,15 @@ import { markdownToHtml } from "./utils.js";
  * @returns {import('$lib/types/global').global} - The processed content data.
  */
 export const getGlobal = () => {
-	return global;
+	return globalData;
+};
+
+/**
+ * Fetch all seo data.
+ * @returns {import('$lib/components/util/seo/Seo.svelte.types').SEOProps} - The processed seo data.
+ */
+export const getSeo = () => {
+	return seoData;
 };
 
 /**

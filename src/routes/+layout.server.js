@@ -1,6 +1,7 @@
-import { getGlobal, getNavigation } from "$lib/server/content.js";
+import { getGlobal, getNavigation, getSeo } from "$lib/server/content.js";
 
 export const prerender = true;
+export const ssr = false;
 
 /** @type {import('./$types').LayoutServerLoad} */
 export const load = async () => {
@@ -11,5 +12,6 @@ export const load = async () => {
 	return {
 		global: getGlobal(),
 		local: { nav },
+		...getSeo(),
 	};
 };

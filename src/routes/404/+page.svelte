@@ -1,17 +1,10 @@
 <script>
-import { base } from "$app/paths";
 import Hero from "$lib/components/layout/Hero.svelte";
 import Section from "$lib/components/layout/Section.svelte";
 
 let { data } = $props();
 let { header, intro, sections } = data.local;
-let { name } = data.global;
 </script>
-
-<svelte:head>
-	<title>{header} - {name}</title>
-	<meta name="robots" content="noindex, nofollow" />
-</svelte:head>
 
 <Hero title={header}>
 	{@html intro}

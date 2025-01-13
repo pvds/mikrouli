@@ -10,5 +10,9 @@ export const load = async ({ params }) => {
 	const { slug } = params;
 	const post = getPost(slug);
 
-	return { local: post };
+	const seo = {
+		title: post.title,
+	};
+
+	return { local: post, ...seo };
 };

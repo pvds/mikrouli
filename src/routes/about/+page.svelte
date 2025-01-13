@@ -3,14 +3,8 @@ import Hero from "$lib/components/layout/Hero.svelte";
 import Section from "$lib/components/layout/Section.svelte";
 
 let { data } = $props();
-let { title, header, intro, sections } = data.local;
-let { name } = data.global;
+let { header, intro, sections } = data.local;
 </script>
-
-<svelte:head>
-	<title>{title} - {name}</title>
-	<meta name="description" content="" />
-</svelte:head>
 
 <Hero title={header}>
 	{@html intro}

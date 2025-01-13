@@ -4,8 +4,7 @@ import Hero from "$lib/components/layout/Hero.svelte";
 import Section from "$lib/components/layout/Section.svelte";
 
 let { data } = $props();
-let { title, header, intro, slug, posts } = data.local; // Destructure `posts` from `local`
-let { name } = data.global;
+let { header, intro, slug, posts } = data.local; // Destructure `posts` from `local`
 
 /** @type {import("$lib/components/visuals/Wave.svelte.type").Wave} */
 const wave = {
@@ -15,11 +14,6 @@ const wave = {
 	opacity: 1,
 };
 </script>
-
-<svelte:head>
-	<title>{title} - {name}</title>
-	<meta name="description" content="" />
-</svelte:head>
 
 <Hero title={header}>
 	{@html intro}
