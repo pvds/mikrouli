@@ -19,7 +19,8 @@ html {
 }
 */
 
-/* Provide background-origin & background-repeat for all elements
+/* Ensures backgrounds begin at the border box and do not repeat by default,
+   preventing accidental tiling.
    ====================================================================== */
 *,
 ::before,
