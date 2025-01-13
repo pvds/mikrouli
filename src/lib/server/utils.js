@@ -1,5 +1,6 @@
 import { base } from "$app/paths";
 import { marked } from "marked";
+import { gfmHeadingId } from "marked-gfm-heading-id";
 
 /**
  * Prepend base path to relative links
@@ -18,6 +19,7 @@ export const prependBasePath = (content) => {
  * @return {string} - The HTML content.
  */
 export const markdownToHtml = (markdown) => {
+	marked.use(gfmHeadingId({ prefix: "heading-" }));
 	const html = marked(markdown, { async: false });
 	return prependBasePath(html);
 };
