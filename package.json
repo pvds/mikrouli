@@ -14,6 +14,7 @@
 	"scripts": {
 		"prepare": "lefthook install",
 		"start": "vite dev --open & bun run watch",
+		"start:prod": "vite build && vite preview --open",
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
