@@ -4,7 +4,9 @@
    Additions to the Tailwind CSS Preflight base styles to normalize
    browser inconsistencies and improve user experience.
 
-   This file references Tailwind theme variables where possible.
+   Notes:
+   - css variables used where possible.
+   - `:where()` is used to lower specificity for easy overriding.
    ====================================================================== */
 
 /* Increase line height for smaller font sizes, decrease it for larger
