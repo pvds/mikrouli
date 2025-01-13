@@ -3,10 +3,12 @@
 
    Additions to the Tailwind CSS Preflight base styles to normalize
    browser inconsistencies and improve user experience.
+
+   This file references Tailwind theme variables where possible.
    ====================================================================== */
 
 /* Increase line height for smaller font sizes, decrease it for larger
-	see https://kittygiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/
+   see https://kittygiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/
    ====================================================================== */
 /*
 *:where(:not(html)) {
@@ -70,7 +72,7 @@ body {
      inline-size: 5rem;
    } */
 
-/* Let textarea resize be block if supported
+/* Allows textareas to resize in a more flexible way if the browser supports it.
    ====================================================================== */
 @supports (resize: block) {
 	textarea {
@@ -155,7 +157,7 @@ a {
 	cursor: not-allowed;
 }
 
-/* Add word-spacing inherit to form elements
+/* Preserves consistent word spacing from the parent element for these controls.
    ====================================================================== */
 button,
 input,
