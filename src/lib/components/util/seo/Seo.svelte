@@ -1,25 +1,9 @@
 <script>
-import { base } from "$app/paths";
 import { page } from "$app/state";
-import { prependURL } from "$lib/helpers/page.js";
+import { constructTitle, prependURL } from "./Seo.helpers.js";
 
 /** @type {{children?: import('svelte').Snippet}} */
 let { children } = $props();
-
-/**
- * @param {string|undefined} pageTitle title of the current page
- * @param {string|undefined} siteSlogan site slogan
- * @param {string|undefined} siteName site name
- * @param {string} [separator] separator between title, parent, and slogan
- * @returns {string|undefined} the constructed title
- */
-function constructTitle(pageTitle, siteSlogan, siteName, separator = " - ") {
-	if (!siteName || !siteSlogan) return "";
-	const isHome = page.url.pathname === `${base}/`;
-	const homeTitle = `${siteName}${separator}${siteSlogan}`;
-	const defaultTitle = `${pageTitle}${separator}${siteName}`;
-	return isHome || !pageTitle ? homeTitle : defaultTitle;
-}
 
 /** @type {import('./Seo.svelte.types').SEOProps} */
 const seoData = page.data.seo;
@@ -28,14 +12,14 @@ const seoData = page.data.seo;
 let seo = $derived({
 	title: constructTitle(
 		seoData.title || page.data.local.title,
-		seoData.titleSlogan,
+		seoData.siteSlogan,
 		seoData.siteName,
 	),
-	titleSlogan: seoData.titleSlogan,
 	description: seoData.description,
 	keywords: seoData.keywords,
 	canonical: seoData.canonical || page.url.href,
 	siteName: seoData.siteName,
+	siteSlogan: seoData.siteSlogan,
 	imageURL: prependURL(seoData.imageURL),
 	logo: prependURL(seoData.logo),
 	author: seoData.author,

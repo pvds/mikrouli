@@ -2,13 +2,10 @@
  * Type definitions for the SEO component.
  */
 export type SEOProps = {
-	/** The title of the page */
+	/** title of the page */
 	title?: string;
 
-	/** The title parent of the page */
-	titleSlogan?: string;
-
-	/** The description of the page */
+	/** description of the page */
 	description?: string;
 
 	/** Keywords for the page */
@@ -17,23 +14,26 @@ export type SEOProps = {
 	/** Canonical URL for the page */
 	canonical?: string;
 
-	/** The site name */
+	/** site name */
 	siteName?: string;
 
-	/** The URL of the main image for the page */
+	/** site slogan */
+	siteSlogan?: string;
+
+	/** URL of the main image for the page */
 	imageURL?: string;
 
-	/** The URL of the logo image */
+	/** URL of the logo image */
 	logo?: string;
 
-	/** The author of the page */
+	/** author of the page */
 	author?: string;
 
-	/** The name of the entity (e.g., person, organization) */
+	/** name of the entity (e.g., person, organization) */
 	name?: string;
 
 	/**
-	 * The type of the schema (e.g., website, article).
+	 * type of the schema (e.g., website, article).
 	 * @default "website"
 	 */
 	type?: string;
@@ -63,7 +63,7 @@ export type SEOProps = {
 	schemaOrg?: boolean;
 
 	/**
-	 * The schema type(s) for the page.
+	 * schema type(s) for the page.
 	 * @default ["Person", "Organization"]
 	 */
 	schemaType?: string[];
@@ -79,33 +79,33 @@ export type SEOProps = {
 };
 
 export type SeoLinkedData = {
-	/** The JSON-LD context, typically "https://schema.org". */
+	/** JSON-LD context, typically "https://schema.org". */
 	"@context": string;
 
-	/** The type of the schema entity. */
+	/** type of the schema entity. */
 	"@type": string | string[];
 
-	/** The name of the entity (e.g., person, organization). */
+	/** name of the entity (e.g., person, organization). */
 	name: string;
 
-	/** The URL of the entity or page. */
+	/** URL of the entity or page. */
 	url: string;
 
-	/** The URL of the main image. */
+	/** URL of the main image. */
 	image: string;
 
-	/** The logo of the entity as an ImageObject. */
+	/** logo of the entity as an ImageObject. */
 	logo: {
 		/** Specifies that the type is an ImageObject. */
 		"@type": "ImageObject";
 
-		/** The URL of the logo. */
+		/** URL of the logo. */
 		url: string;
 
-		/** The width of the logo in pixels. */
+		/** width of the logo in pixels. */
 		width: number;
 
-		/** The height of the logo in pixels. */
+		/** height of the logo in pixels. */
 		height: number;
 	};
 
