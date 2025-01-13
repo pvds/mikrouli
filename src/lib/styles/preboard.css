@@ -29,12 +29,19 @@ html {
 /* Ensure html/body fill available space and optimize text rendering
    ====================================================================== */
 html {
+	/* Allow percentage-based heights in the application */
 	block-size: 100%;
+
+	/* Making sure text size is only controlled by font-size */
+	/*-webkit-text-size-adjust: none;*/
 }
 
 body {
+	/* https://marco.org/2012/11/15/text-rendering-optimize-legibility */
 	text-rendering: optimizeSpeed;
 	min-block-size: 100%;
+	/* https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-gutter#example_2 */
+	/* scrollbar-gutter: stable both-edges; Removed until this bug is fixed: https://bugs.chromium.org/p/chromium/issues/detail?id=1318404#c2 */
 }
 
 /* Smooth scrolling for users that don't prefer reduced motion
@@ -63,7 +70,7 @@ body {
      inline-size: 5rem;
    } */
 
-/* Let textarea resize be vertical by default, block if supported
+/* Let textarea resize be block if supported
    ====================================================================== */
 @supports (resize: block) {
 	textarea {
