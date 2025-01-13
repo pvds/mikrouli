@@ -16,8 +16,8 @@ export const isCurrentPage = (href) => {
  *
  * TODO: harden to ensure the path is a valid URL
  *
- * @param {string} url url path
- * @returns {string} full url
+ * @param {string | undefined} url url path
+ * @returns {string | undefined} full url
  */
 export const prependURL = (url) => {
 	if (url && !url.startsWith("http")) {

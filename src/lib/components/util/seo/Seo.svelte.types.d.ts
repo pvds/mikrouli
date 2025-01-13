@@ -2,70 +2,34 @@
  * Type definitions for the SEO component.
  */
 export type SEOProps = {
-	/**
-	 * The title of the page.
-	 * @default ""
-	 */
+	/** The title of the page */
 	title?: string;
 
-	/**
-	 * Helps to construct the title.
-	 * @default undefined
-	 */
-	titleConstructor?: () => string;
-
-	/**
-	 * The title parent of the page.
-	 * @default ""
-	 */
+	/** The title parent of the page */
 	titleSlogan?: string;
 
-	/**
-	 * The description of the page.
-	 * @default ""
-	 */
+	/** The description of the page */
 	description?: string;
 
-	/**
-	 * Keywords for the page.
-	 * @default ""
-	 */
+	/** Keywords for the page */
 	keywords?: string;
 
-	/**
-	 * Canonical URL for the page.
-	 * @default ""
-	 */
+	/** Canonical URL for the page */
 	canonical?: string;
 
-	/**
-	 * The site name.
-	 * @default ""
-	 */
+	/** The site name */
 	siteName?: string;
 
-	/**
-	 * The URL of the main image for the page.
-	 * @default ""
-	 */
+	/** The URL of the main image for the page */
 	imageURL?: string;
 
-	/**
-	 * The URL of the logo image.
-	 * @default ""
-	 */
+	/** The URL of the logo image */
 	logo?: string;
 
-	/**
-	 * The author of the page.
-	 * @default ""
-	 */
+	/** The author of the page */
 	author?: string;
 
-	/**
-	 * The name of the entity (e.g., person, organization).
-	 * @default ""
-	 */
+	/** The name of the entity (e.g., person, organization) */
 	name?: string;
 
 	/**
@@ -110,16 +74,8 @@ export type SEOProps = {
 	 */
 	socials?: string[];
 
-	/**
-	 * Additional JSON-LD data to include in the structured data.
-	 * @default {}
-	 */
-	jsonld?: Record<string, unknown>;
-
-	/**
-	 * Renderable children for the component.
-	 */
-	children?: import("svelte").Snippet;
+	/** Additional JSON-LD data to include in the structured data */
+	jsonld?: SeoLinkedData;
 };
 
 export type SeoLinkedData = {
