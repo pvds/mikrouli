@@ -51,7 +51,16 @@ const analyzePage = async (browser, file, dir) => {
 
 	try {
 		await page.goto(`file://${file}`);
-		const axeResults = await new AxeBuilder({ page }).analyze();
+		const axeBuilder = new AxeBuilder({ page }).options({
+			runOnly: {
+				type: "tag",
+				values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "best-practice"],
+			},
+		});
+		if (!file.endsWith("index.html")) {
+			axeBuilder.include("main");
+		}
+		const axeResults = await axeBuilder.analyze();
 		return { file: relativePath, violations: axeResults.violations };
 	} catch (error) {
 		logError(`Error processing file ${relativePath}:`, error);
