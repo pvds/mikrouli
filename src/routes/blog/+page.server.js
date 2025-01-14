@@ -10,7 +10,7 @@ export const load = async ({ route, parent }) => {
 	const seo = {
 		...parentData?.seo,
 		title: page.title,
-		description: "test",
+		description: "These articles offer insights and tools to support your journey.",
 	};
 
 	return { local: { ...page, posts }, seo };

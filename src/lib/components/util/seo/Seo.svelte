@@ -1,7 +1,6 @@
 <script>
 import { base } from "$app/paths";
 import { page } from "$app/state";
-import { prependURL } from "$lib/helpers/page.js";
 
 /** @type {{children?: import('svelte').Snippet}} */
 let { children } = $props();
@@ -13,12 +12,16 @@ let { children } = $props();
  * @param {string} [separator] separator between title, parent, and slogan
  * @returns {string} the constructed title
  */
-function constructTitle(title, slogan, name, separator = " - ") {
+const constructTitle = (title, slogan, name, separator = " - ") => {
+	if (!name || !slogan) return "";
 	const isHome = page.url.pathname === `${base}/`;
-	const homeTitle = `${name}${separator}${slogan}`;
-	const defaultTitle = `${title}${separator}${name}`;
-	return isHome || !title ? homeTitle : defaultTitle;
-}
+	return isHome || !title ? name + separator + slogan : title + separator + name;
+};
+/**
+ * @param {string} url the URL to prepend
+ * @returns {string} the URL with the origin prepended
+ */
+const prependURL = (url) => (url?.startsWith("http") ? url : `${page.url.origin}${base}/${url}`);
 
 let title = $derived(
 	constructTitle(
