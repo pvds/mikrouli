@@ -12,6 +12,6 @@ export const load = async () => {
 	return {
 		global: getGlobal(),
 		local: { nav },
-		...getSeo(),
+		seo: getSeo(),
 	};
 };

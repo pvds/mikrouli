@@ -20,111 +20,110 @@ function constructTitle(title, slogan, name, separator = " - ") {
 	return isHome || !title ? homeTitle : defaultTitle;
 }
 
-let seoTitle = $derived(
+let title = $derived(
 	constructTitle(
-		page.data.title || page.data.local.title,
-		page.data.titleSlogan,
-		page.data.name,
-		page.data.titleConstructed,
+		page.data.seo.title || page.data.local.title,
+		page.data.seo.titleSlogan,
+		page.data.seo.name,
 	),
 );
-let seoDescription = $state(page.data.description);
-let seoKeywords = $state(page.data.keywords);
-let seoCanonical = $state(page.data.canonical);
-let seoSiteName = $state(page.data.siteName);
-let seoImageURL = $state(prependURL(page.data.imageURL));
-let seoLogo = $state(prependURL(page.data.logo));
-let seoAuthor = $state(page.data.author);
-let seoName = $state(page.data.name);
-let seoType = $state(page.data.type);
-let seoIndex = $state(page.data.index);
-let seoTwitter = $state(page.data.twitter);
-let seoOpenGraph = $state(page.data.openGraph);
-let seoSchemaOrg = $state(page.data.schemaOrg);
-let seoSchemaType = $state(page.data.schemaType);
-let seoSocials = $state(page.data.socials);
-let seoJsonld = $state(page.data.jsonld);
+let description = $derived(page.data.seo.description);
+let keywords = $derived(page.data.seo.keywords);
+let canonical = $derived(page.data.seo.canonical);
+let siteName = $derived(page.data.seo.siteName);
+let imageURL = $derived(prependURL(page.data.seo.imageURL));
+let logo = $derived(prependURL(page.data.seo.logo));
+let author = $derived(page.data.seo.author);
+let name = $derived(page.data.seo.name);
+let type = $derived(page.data.seo.type);
+let index = $derived(page.data.seo.index);
+let twitter = $derived(page.data.seo.twitter);
+let openGraph = $derived(page.data.seo.openGraph);
+let schemaOrg = $derived(page.data.seo.schemaOrg);
+let schemaType = $derived(page.data.seo.schemaType);
+let socials = $derived(page.data.seo.socials);
+let jsonld = $derived(page.data.seo.jsonld);
 
 // Reactive data bindings
-let SeoLinkedData = $derived(
+let linkedData = $derived(
 	/** @type {import('./Seo.svelte.types').SeoLinkedData} */
 	{
 		"@context": "https://schema.org",
-		"@type": seoSchemaType.length > 1 ? seoSchemaType : seoSchemaType[0],
-		name: seoName,
+		"@type": schemaType.length > 1 ? schemaType : schemaType[0],
+		name: name,
 		url: page.url.origin,
-		image: seoImageURL,
+		image: imageURL,
 		logo: {
 			"@type": "ImageObject",
-			url: seoLogo,
+			url: logo,
 			width: 48,
 			height: 48,
 		},
-		sameAs: seoSocials,
-		...seoJsonld,
+		sameAs: socials,
+		...jsonld,
 	},
 );
 
-let LdScript = $derived(
-	`<script type="application/ld+json">${JSON.stringify(SeoLinkedData)}${"<"}/script>`,
+let ldScript = $derived(
+	`<script type="application/ld+json">${JSON.stringify(linkedData)}${"<"}/script>`,
 );
 </script>
 
 <svelte:head>
-	{#if seoTitle}
-		{#if seoImageURL}
-			<meta name="robots" content={seoIndex ? "index, follow, max-image-preview:large" :
+	{#if title}
+		{#if imageURL}
+			<meta name="robots" content={index ? "index, follow, max-image-preview:large" :
 			"noindex nofollow"}>
 		{:else}
-			<meta name="robots" content={seoIndex ? "index, follow" : "noindex nofollow"}>
+			<meta name="robots" content={index ? "index, follow" : "noindex nofollow"}>
 		{/if}
-		<title>{seoTitle}</title>
-		<link rel="canonical" href={seoCanonical || page.url.href}>
+		<title>{title}</title>
+		<link rel="canonical" href={canonical || page.url.href}>
 	{/if}
-	{#if seoDescription}
-		<meta name="description" content={seoDescription}>
+	{#if description}
+		<meta name="description" content={description}>
 	{/if}
-	{#if seoKeywords}
-		<meta name="keywords" content={seoKeywords}>
+	{#if keywords}
+		<meta name="keywords" content={keywords}>
 	{/if}
-	{#if seoAuthor}
-		<meta name="author" content={seoAuthor}>
+	{#if author}
+		<meta name="author" content={author}>
 	{/if}
-	{#if seoOpenGraph}
-		{#if seoSiteName}
-			<meta property="og:site_name" content={seoSiteName}>
+	{#if openGraph}
+		{#if siteName}
+			<meta property="og:site_name" content={siteName}>
 		{/if}
-		{#if seoTitle}
+		{#if title}
 			<meta property="og:url" content={page.url.href}>
-			<meta property="og:type" content={seoType}>
-			<meta property="og:title" content={seoTitle}>
+			<meta property="og:type" content={type}>
+			<meta property="og:title" content={title}>
 		{/if}
-		{#if seoDescription}
-			<meta property="og:description" content={seoDescription}>
+		{#if description}
+			<meta property="og:description" content={description}>
 		{/if}
-		{#if seoImageURL}
-			<meta property="og:image" content={seoImageURL}>
+		{#if imageURL}
+			<meta property="og:image" content={imageURL}>
 		{/if}
-		{#if seoLogo}
-			<meta property="og:logo" content={seoLogo}>
+		{#if logo}
+			<meta property="og:logo" content={logo}>
 		{/if}
 	{/if}
-	{#if seoTwitter}
-		{#if seoTitle}
+	{#if twitter}
+		{#if title}
 			<meta name="twitter:card" content="summary_large_image">
 			<meta property="twitter:domain" content={page.url.hostname}>
 			<meta property="twitter:url" content={page.url.href}>
-			<meta name="twitter:title" content={seoTitle}>
+			<meta name="twitter:title" content={title}>
 		{/if}
-		{#if seoDescription}
-			<meta name="twitter:description" content={seoDescription}>
+		{#if description}
+			<meta name="twitter:description" content={description}>
 		{/if}
-		{#if seoImageURL}
-			<meta name="twitter:image" content={seoImageURL}>
+		{#if imageURL}
+			<meta name="twitter:image" content={imageURL}>
 		{/if}
 	{/if}
 	{@render children?.()}
-	{#if seoSchemaOrg && (seoSocials.length || seoLogo || seoName)}
-		{@html LdScript}
+	{#if schemaOrg && (socials.length || logo || name)}
+		{@html ldScript}
 	{/if}
 </svelte:head>

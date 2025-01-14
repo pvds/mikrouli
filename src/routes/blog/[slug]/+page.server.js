@@ -6,13 +6,15 @@ export const entries = async () => {
 };
 
 /** @type {import('./$types').PageServerLoad} */
-export const load = async ({ params }) => {
+export const load = async ({ params, parent }) => {
 	const { slug } = params;
 	const post = getPost(slug);
+	const parentData = await parent();
 
 	const seo = {
+		...parentData?.seo,
 		title: post.title,
 	};
 
-	return { local: post, ...seo };
+	return { local: post, seo };
 };
