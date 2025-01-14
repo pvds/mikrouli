@@ -58,12 +58,15 @@ jobs:
         with:
           path: ${{ env.BUILD_DIR }}
 
+  test:
+    runs-on: ubuntu-24.04
+    if: ${{ github.event_name != 'repository_dispatch' }}
+    needs: build
+    steps:
       - name: install Playwright browsers
-        if: ${{ github.event_name != 'repository_dispatch' }}
         run: bunx playwright install chromium
 
       - name: accessibility test
-        if: ${{ github.event_name != 'repository_dispatch' }}
         continue-on-error: true
         run: bun run util:a11y
 
