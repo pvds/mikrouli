@@ -27,6 +27,6 @@ const wave = {
 		<h2 class="mb-4 text-3xl font-bold">{service.title}</h2>
 		<div class="prose prose-base">{@html service.intro}</div>
 		<a href={`${base}/${slug}/${service.slug}`}
-		   class="inline-block mt-4 text-primary-600 hover:underline">Read more →</a>
+		   class="inline-block mt-4 text-primary-700 hover:underline">Read more →</a>
 	</Section>
 {/each}
