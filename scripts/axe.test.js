@@ -10,6 +10,8 @@ const args = process.argv.slice(2);
 const isMinimal = args.includes("--minimal");
 const cpuCount = os.cpus().length;
 const maxConcurrency = Math.max(2, Math.floor(cpuCount / 2));
+const timings = {};
+let exitCode = 0;
 
 // Function to recursively find all HTML files in a directory
 const getAllHtmlFiles = (dir) => {
@@ -61,12 +63,16 @@ const analyzePage = async (browser, file, dir) => {
 };
 
 (async () => {
-	console.time("Total Execution Time"); // Start timing the total execution
+	const startTotal = performance.now();
+
 	const buildDir = path.resolve("./build");
 	logDebug(`Analyzing files in: ${buildDir}`);
 
-	// Get all HTML files in the build directory, including subdirectories
+	// Measure file discovery time
+	const startFileDiscovery = performance.now();
 	const htmlFiles = getAllHtmlFiles(buildDir);
+	timings["File Discovery Time"] = `${(performance.now() - startFileDiscovery).toFixed(2)} ms`;
+
 	logSuccess(`Found ${htmlFiles.length} HTML files`);
 
 	if (htmlFiles.length === 0) {
@@ -79,7 +85,8 @@ const analyzePage = async (browser, file, dir) => {
 	let hasViolations = false;
 
 	try {
-		console.time("Analysis Time");
+		// Measure analysis time
+		const startAnalysis = performance.now();
 		const results = await Promise.all(
 			htmlFiles
 				.map((file, index) =>
@@ -94,7 +101,7 @@ const analyzePage = async (browser, file, dir) => {
 				)
 				.filter(Boolean), // Remove null values from non-chunk indices
 		);
-		console.timeEnd("Analysis Time");
+		timings["Analysis Time"] = `${(performance.now() - startAnalysis).toFixed(2)} ms`;
 
 		// Collect and summarize violations
 		for (const { file, violations } of results.flat()) {
@@ -120,11 +127,17 @@ const analyzePage = async (browser, file, dir) => {
 			logError(`  - Description: ${description}`);
 			for (const { target } of nodes) logError(`    Element: ${target}`);
 		}
-		console.timeEnd("Total Execution Time");
-		process.exit(1);
+		exitCode = 1;
 	} else {
 		logSuccess("No accessibility violations found.");
-		console.timeEnd("Total Execution Time");
-		process.exit(0);
 	}
+
+	// Log timing summary
+	logInfo("Timing Summary:");
+	timings["Total Execution Time"] = `${(performance.now() - startTotal).toFixed(2)} ms`;
+	for (const [key, value] of Object.entries(timings)) {
+		logInfo(`  ${key}: ${value}`);
+	}
+
+	process.exit(exitCode);
 })();
