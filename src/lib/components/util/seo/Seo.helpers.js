@@ -3,9 +3,9 @@ import { page } from "$app/state";
 
 /**
  * Construct the title of the current page
- * @param {string|undefined} pageTitle title of the current page
- * @param {string|undefined} siteSlogan site slogan
- * @param {string|undefined} siteName site name
+ * @param {string} [pageTitle] title of the current page
+ * @param {string} [siteSlogan] site slogan
+ * @param {string} [siteName] site name
  * @param {string} [separator] separator between parts of the title
  * @returns {string|undefined} the constructed title
  */

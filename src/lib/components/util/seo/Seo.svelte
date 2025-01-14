@@ -2,36 +2,35 @@
 import { page } from "$app/state";
 import { constructTitle, prependURL } from "./Seo.helpers.js";
 
+/** @typedef {import('./Seo.svelte.types').SEOProps} SEOProps */
+
 /** @type {{children?: import('svelte').Snippet}} */
 let { children } = $props();
 
-/** @type {import('./Seo.svelte.types').SEOProps} */
-const seoData = page.data.seo;
-
-/** @type {import('./Seo.svelte.types').SEOProps} */
+/** @type SEOProps */
 let seo = $derived({
 	title: constructTitle(
-		seoData.title || page.data.local.title,
-		seoData.siteSlogan,
-		seoData.siteName,
+		page.data.seo.title || page.data.local.title,
+		page.data.seo.siteSlogan,
+		page.data.seo.siteName,
 	),
-	description: seoData.description,
-	keywords: seoData.keywords,
-	canonical: seoData.canonical || page.url.href,
-	siteName: seoData.siteName,
-	siteSlogan: seoData.siteSlogan,
-	imageURL: prependURL(seoData.imageURL),
-	logo: prependURL(seoData.logo),
-	author: seoData.author,
-	name: seoData.name,
-	type: seoData.type || "website",
-	index: seoData.index,
-	twitter: seoData.twitter || false,
-	openGraph: seoData.openGraph || false,
-	schemaOrg: seoData.schemaOrg || false,
-	schemaType: seoData.schemaType || ["WebSite"],
-	socials: seoData.socials || [],
-	jsonld: seoData.jsonld,
+	description: page.data.seo.description,
+	keywords: page.data.seo.keywords,
+	canonical: page.data.seo.canonical || page.url.href,
+	siteName: page.data.seo.siteName,
+	siteSlogan: page.data.seo.siteSlogan,
+	imageURL: prependURL(page.data.seo.imageURL),
+	logo: prependURL(page.data.seo.logo),
+	author: page.data.seo.author,
+	name: page.data.seo.name,
+	type: page.data.seo.type || "website",
+	index: page.data.seo.index,
+	twitter: page.data.seo.twitter || false,
+	openGraph: page.data.seo.openGraph || false,
+	schemaOrg: page.data.seo.schemaOrg || false,
+	schemaType: page.data.seo.schemaType || ["WebSite"],
+	socials: page.data.seo.socials || [],
+	jsonld: page.data.seo.jsonld,
 });
 
 let seoLinkedData = $derived({
@@ -53,6 +52,20 @@ let seoLinkedData = $derived({
 let ldScript = $derived(
 	`<script type="application/ld+json">${JSON.stringify(seoLinkedData)}${"<"}/script>`,
 );
+
+/** Warn for missing description and keywords */
+if (import.meta.env.MODE === "development") {
+	/** @type {(keyof SEOProps)[]} */
+	const propertiesToCheck = ["description", "keywords"];
+	$effect(() => {
+		console.log("SEO data:", seo);
+		for (const property of propertiesToCheck) {
+			if (!seo[property]) {
+				console.warn(`SEO warning: '${property}' is not defined.`);
+			}
+		}
+	});
+}
 </script>
 
 <svelte:head>
