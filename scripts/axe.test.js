@@ -1,5 +1,6 @@
-import fs from "node:fs";
-import os from "node:os";
+import { execSync } from "node:child_process";
+import { existsSync, readdirSync } from "node:fs";
+import { cpus } from "node:os";
 import path from "node:path";
 import { AxeBuilder } from "@axe-core/playwright";
 import { chromium } from "playwright";
@@ -8,14 +9,14 @@ import { logDebug, logError, logInfo, logSuccess } from "./log.js";
 // Parse command-line arguments
 const args = process.argv.slice(2);
 const isMinimal = args.includes("--minimal");
-const cpuCount = os.cpus().length;
+const cpuCount = cpus().length;
 const maxConcurrency = Math.max(2, Math.floor(cpuCount / 2));
 const timings = {};
 let exitCode = 0;
 
 // Function to recursively find all HTML files in a directory
 const getAllHtmlFiles = (dir) => {
-	const entries = fs.readdirSync(dir, { withFileTypes: true });
+	const entries = readdirSync(dir, { withFileTypes: true });
 
 	const htmlFiles = [];
 	const directories = [];
@@ -30,7 +31,7 @@ const getAllHtmlFiles = (dir) => {
 
 	if (isMinimal) {
 		const firstHtmlInDirs = directories.flatMap((subDir) => {
-			const subEntries = fs.readdirSync(subDir, { withFileTypes: true });
+			const subEntries = readdirSync(subDir, { withFileTypes: true });
 			const firstHtml = subEntries.find(
 				(entry) => entry.isFile() && entry.name.endsWith(".html"),
 			);
@@ -75,6 +76,9 @@ const analyzePage = async (browser, file, dir) => {
 	const startTotal = performance.now();
 
 	const buildDir = path.resolve("./build");
+	if (!existsSync(buildDir)) {
+		execSync("bun run build", { stdio: "inherit" });
+	}
 	logDebug(`Analyzing files in: ${buildDir}`);
 
 	// Measure file discovery time
