@@ -61,7 +61,7 @@ const analyzePage = async (browser, file, dir) => {
 };
 
 (async () => {
-	console.profile("Accessibility Test");
+	console.time("Total Execution Time"); // Start timing the total execution
 	const buildDir = path.resolve("./build");
 	logDebug(`Analyzing files in: ${buildDir}`);
 
@@ -79,6 +79,7 @@ const analyzePage = async (browser, file, dir) => {
 	let hasViolations = false;
 
 	try {
+		console.time("Analysis Time");
 		const results = await Promise.all(
 			htmlFiles
 				.map((file, index) =>
@@ -93,6 +94,7 @@ const analyzePage = async (browser, file, dir) => {
 				)
 				.filter(Boolean), // Remove null values from non-chunk indices
 		);
+		console.timeEnd("Analysis Time");
 
 		// Collect and summarize violations
 		for (const { file, violations } of results.flat()) {
@@ -118,11 +120,11 @@ const analyzePage = async (browser, file, dir) => {
 			logError(`  - Description: ${description}`);
 			for (const { target } of nodes) logError(`    Element: ${target}`);
 		}
-		console.profileEnd("Accessibility Test");
+		console.timeEnd("Total Execution Time");
 		process.exit(1);
 	} else {
 		logSuccess("No accessibility violations found.");
-		console.profileEnd("Accessibility Test");
+		console.timeEnd("Total Execution Time");
 		process.exit(0);
 	}
 })();
