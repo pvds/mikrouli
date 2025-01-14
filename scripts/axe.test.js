@@ -1,19 +1,44 @@
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { AxeBuilder } from "@axe-core/playwright";
 import { chromium } from "playwright";
 import { logDebug, logError, logInfo, logSuccess } from "./log.js";
 
+// Parse command-line arguments
+const args = process.argv.slice(2);
+const isMinimal = args.includes("--minimal");
+const cpuCount = os.cpus().length;
+const maxConcurrency = Math.max(2, Math.floor(cpuCount / 2));
+
 // Function to recursively find all HTML files in a directory
-const getAllHtmlFiles = (dir) =>
-	fs.readdirSync(dir).flatMap((file) => {
-		const fullPath = path.join(dir, file);
-		return fs.statSync(fullPath).isDirectory()
-			? getAllHtmlFiles(fullPath)
-			: file.endsWith(".html")
-				? [fullPath]
-				: [];
-	});
+const getAllHtmlFiles = (dir) => {
+	const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+	const htmlFiles = [];
+	const directories = [];
+
+	for (const entry of entries) {
+		if (entry.isFile() && entry.name.endsWith(".html")) {
+			htmlFiles.push(path.join(dir, entry.name));
+		} else if (entry.isDirectory()) {
+			directories.push(path.join(dir, entry.name));
+		}
+	}
+
+	if (isMinimal) {
+		const firstHtmlInDirs = directories.flatMap((subDir) => {
+			const subEntries = fs.readdirSync(subDir, { withFileTypes: true });
+			const firstHtml = subEntries.find(
+				(entry) => entry.isFile() && entry.name.endsWith(".html"),
+			);
+			return firstHtml ? [path.join(subDir, firstHtml.name)] : [];
+		});
+		return [...htmlFiles, ...firstHtmlInDirs];
+	}
+
+	return [...htmlFiles, ...directories.flatMap((subDir) => getAllHtmlFiles(subDir))];
+};
 
 // Analyze a single page
 const analyzePage = async (browser, file, dir) => {
@@ -36,6 +61,7 @@ const analyzePage = async (browser, file, dir) => {
 };
 
 (async () => {
+	console.profile("Accessibility Test");
 	const buildDir = path.resolve("./build");
 	logDebug(`Analyzing files in: ${buildDir}`);
 
@@ -53,7 +79,6 @@ const analyzePage = async (browser, file, dir) => {
 	let hasViolations = false;
 
 	try {
-		const maxConcurrency = 5; // Limit concurrency to avoid overloading
 		const results = await Promise.all(
 			htmlFiles
 				.map((file, index) =>
@@ -93,9 +118,11 @@ const analyzePage = async (browser, file, dir) => {
 			logError(`  - Description: ${description}`);
 			for (const { target } of nodes) logError(`    Element: ${target}`);
 		}
+		console.profileEnd("Accessibility Test");
 		process.exit(1);
 	} else {
 		logSuccess("No accessibility violations found.");
+		console.profileEnd("Accessibility Test");
 		process.exit(0);
 	}
 })();
