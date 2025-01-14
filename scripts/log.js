@@ -43,6 +43,12 @@ function log(textColor = "white", backgroundColor = null, ...messages) {
 }
 
 /**
+ * Logs a debug message with white text
+ * @param messages
+ */
+const logDebug = (...messages) => log("white", "null", ...messages);
+
+/**
  * Logs an informational message with cyan text.
  * @param  {...any} messages - Messages to log.
  */
@@ -65,4 +71,4 @@ const logError = (...messages) => log("red", null, ...messages);
  * @param  {...any} messages - Messages to log. */
 const logSuccess = (...messages) => log("green", null, ...messages);
 
-export { logInfo, logWarn, logError, logSuccess };
+export { logDebug, logInfo, logWarn, logError, logSuccess };

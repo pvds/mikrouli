@@ -2,60 +2,42 @@ import fs from "node:fs";
 import path from "node:path";
 import { AxeBuilder } from "@axe-core/playwright";
 import { chromium } from "playwright";
-import { logError, logInfo, logSuccess } from "./log.js";
+import { logDebug, logError, logInfo, logSuccess } from "./log.js";
 
 // Function to recursively find all HTML files in a directory
-function getAllHtmlFiles(dir) {
-	let htmlFiles = [];
-	const files = fs.readdirSync(dir);
-
-	for (const file of files) {
+const getAllHtmlFiles = (dir) =>
+	fs.readdirSync(dir).flatMap((file) => {
 		const fullPath = path.join(dir, file);
-		const stat = fs.statSync(fullPath);
-
-		if (stat.isDirectory()) {
-			// Recursively search subdirectories
-			htmlFiles = htmlFiles.concat(getAllHtmlFiles(fullPath));
-		} else if (file.endsWith(".html")) {
-			// Add HTML files to the list
-			htmlFiles.push(fullPath);
-		}
-	}
-
-	return htmlFiles;
-}
+		return fs.statSync(fullPath).isDirectory()
+			? getAllHtmlFiles(fullPath)
+			: file.endsWith(".html")
+				? [fullPath]
+				: [];
+	});
 
 // Analyze a single page
-async function analyzePage(browser, file, dir) {
+const analyzePage = async (browser, file, dir) => {
 	const context = await browser.newContext();
 	const page = await context.newPage();
-	const results = { file, violations: [] };
+	const relativePath = path.relative(dir, file); // Get the relative path from the build
+	logDebug(`Checking: ${relativePath}`);
 
 	try {
-		const filePath = `file://${file}`;
-		const relativePath = path.relative(dir, file); // Get the relative path from the build
-		logInfo(`Navigating to: ${relativePath}`);
-		await page.goto(filePath);
-
+		await page.goto(`file://${file}`);
 		const axeResults = await new AxeBuilder({ page }).analyze();
-		results.violations = axeResults.violations;
+		return { file: relativePath, violations: axeResults.violations };
 	} catch (error) {
-		logError(`Error processing file ${file}:`, error);
+		logError(`Error processing file ${relativePath}:`, error);
+		return { file: relativePath, violations: [] };
 	} finally {
 		await page.close();
 		await context.close();
 	}
-
-	return results;
-}
+};
 
 (async () => {
-	let hasViolations = false;
-	const violationsSummary = [];
-
-	// Path to your static site output directory
 	const buildDir = path.resolve("./build");
-	logInfo(`Analyzing files in: ${buildDir}`);
+	logDebug(`Analyzing files in: ${buildDir}`);
 
 	// Get all HTML files in the build directory, including subdirectories
 	const htmlFiles = getAllHtmlFiles(buildDir);
@@ -67,48 +49,49 @@ async function analyzePage(browser, file, dir) {
 	}
 
 	const browser = await chromium.launch({ headless: true });
+	const violationsSummary = [];
+	let hasViolations = false;
 
 	try {
 		const maxConcurrency = 5; // Limit concurrency to avoid overloading
-		const chunks = Array.from(
-			{ length: Math.ceil(htmlFiles.length / maxConcurrency) },
-			(_, i) => htmlFiles.slice(i * maxConcurrency, i * maxConcurrency + maxConcurrency),
+		const results = await Promise.all(
+			htmlFiles
+				.map((file, index) =>
+					// Group tasks into chunks of maxConcurrency
+					index % maxConcurrency === 0
+						? Promise.all(
+								htmlFiles
+									.slice(index, index + maxConcurrency)
+									.map((chunkFile) => analyzePage(browser, chunkFile, buildDir)),
+							)
+						: null,
+				)
+				.filter(Boolean), // Remove null values from non-chunk indices
 		);
 
-		for (const chunk of chunks) {
-			const results = await Promise.all(
-				chunk.map((file) => analyzePage(browser, file, buildDir)),
-			);
-			for (const result of results) {
-				if (result.violations.length > 0) {
-					hasViolations = true;
-					violationsSummary.push(
-						...result.violations.map((violation) => ({
-							...violation,
-							file: result.file,
-						})),
-					);
-				}
+		// Collect and summarize violations
+		for (const { file, violations } of results.flat()) {
+			if (violations.length) {
+				hasViolations = true;
+				for (const violation of violations) violationsSummary.push({ file, ...violation });
 			}
 		}
-	} catch (iterationError) {
-		logError("Error during file iteration:", iterationError);
+	} catch (error) {
+		logError("Error during file iteration:", error);
 	} finally {
-		logInfo("Closing browser...");
+		logDebug("Closing browser...");
 		await browser.close();
-		logInfo("Browser closed.");
+		logSuccess("Browser closed.");
 	}
 
 	// Report all violations at the end
 	if (hasViolations) {
 		logInfo("Accessibility violations found across the following pages:");
-		for (const violation of violationsSummary) {
-			logError(`Page: ${violation.file}`);
-			logError(`  - Rule: ${violation.id}`);
-			logError(`  - Description: ${violation.description}`);
-			for (const node of violation.nodes) {
-				logError(`    Element: ${node.target}`);
-			}
+		for (const { file, id, description, nodes } of violationsSummary) {
+			logError(`Page: ${file}`);
+			logError(`  - Rule: ${id}`);
+			logError(`  - Description: ${description}`);
+			for (const { target } of nodes) logError(`    Element: ${target}`);
 		}
 		process.exit(1);
 	} else {
