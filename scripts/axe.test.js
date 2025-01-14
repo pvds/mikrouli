@@ -25,8 +25,33 @@ function getAllHtmlFiles(dir) {
 	return htmlFiles;
 }
 
+// Analyze a single page
+async function analyzePage(browser, file, dir) {
+	const context = await browser.newContext();
+	const page = await context.newPage();
+	const results = { file, violations: [] };
+
+	try {
+		const filePath = `file://${file}`;
+		const relativePath = path.relative(dir, file); // Get the relative path from the build
+		logInfo(`Navigating to: ${relativePath}`);
+		await page.goto(filePath);
+
+		const axeResults = await new AxeBuilder({ page }).analyze();
+		results.violations = axeResults.violations;
+	} catch (error) {
+		logError(`Error processing file ${file}:`, error);
+	} finally {
+		await page.close();
+		await context.close();
+	}
+
+	return results;
+}
+
 (async () => {
-	let hasViolations = false; // Flag to track if violations are found
+	let hasViolations = false;
+	const violationsSummary = [];
 
 	// Path to your static site output directory
 	const buildDir = path.resolve("./build");
@@ -44,35 +69,26 @@ function getAllHtmlFiles(dir) {
 	const browser = await chromium.launch({ headless: true });
 
 	try {
-		for (const file of htmlFiles) {
-			logInfo(`Starting analysis for file: ${file}`);
-			const context = await browser.newContext();
-			const page = await context.newPage();
+		const maxConcurrency = 5; // Limit concurrency to avoid overloading
+		const chunks = Array.from(
+			{ length: Math.ceil(htmlFiles.length / maxConcurrency) },
+			(_, i) => htmlFiles.slice(i * maxConcurrency, i * maxConcurrency + maxConcurrency),
+		);
 
-			try {
-				const filePath = `file://${file}`;
-				logInfo(`Navigating to: ${filePath}`);
-				await page.goto(filePath);
-
-				const results = await new AxeBuilder({ page }).analyze();
-				logSuccess(`Results for ${file}:`);
-				if (results.violations.length > 0) {
-					hasViolations = true; // Set flag if violations are found
-					logInfo(`Accessibility issues found on ${filePath}:`);
-					for (const violation of results.violations) {
-						logError(`- ${violation.id}: ${violation.description}`);
-						for (const node of violation.nodes) {
-							logError(`  Element: ${node.target}`);
-						}
-					}
-				} else {
-					logSuccess(`No accessibility issues found on ${filePath}`);
+		for (const chunk of chunks) {
+			const results = await Promise.all(
+				chunk.map((file) => analyzePage(browser, file, buildDir)),
+			);
+			for (const result of results) {
+				if (result.violations.length > 0) {
+					hasViolations = true;
+					violationsSummary.push(
+						...result.violations.map((violation) => ({
+							...violation,
+							file: result.file,
+						})),
+					);
 				}
-			} catch (pageError) {
-				logError(`Error processing file ${file}:`, pageError);
-			} finally {
-				await page.close();
-				await context.close();
 			}
 		}
 	} catch (iterationError) {
@@ -83,9 +99,17 @@ function getAllHtmlFiles(dir) {
 		logInfo("Browser closed.");
 	}
 
-	// Exit with a non-zero code if violations were found
+	// Report all violations at the end
 	if (hasViolations) {
-		logError("Accessibility violations were found.");
+		logInfo("Accessibility violations found across the following pages:");
+		for (const violation of violationsSummary) {
+			logError(`Page: ${violation.file}`);
+			logError(`  - Rule: ${violation.id}`);
+			logError(`  - Description: ${violation.description}`);
+			for (const node of violation.nodes) {
+				logError(`    Element: ${node.target}`);
+			}
+		}
 		process.exit(1);
 	} else {
 		logSuccess("No accessibility violations found.");
