@@ -28,7 +28,7 @@ let { title, children } = $props();
 		{#if title}
 			<h1 class="text-4xl mb-4 font-bold">{title}</h1>
 		{/if}
-		<div class="prose-xl font-semibold">
+		<div class="prose prose-xl font-semibold">
 			{@render children?.()}
 		</div>
 	</Section>

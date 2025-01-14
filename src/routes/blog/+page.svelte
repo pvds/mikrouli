@@ -25,7 +25,7 @@ const wave = {
 		{...(i % 2 === 1 ? { wave } : {})}
 	>
 		<h2 class="mb-4 text-3xl font-bold">{post.title}</h2>
-		<div class="prose-base">{@html post.intro}</div>
+		<div class="prose prose-base">{@html post.intro}</div>
 		<a href={`${base}/${slug}/${post.slug}`}
 		   class="inline-block mt-4 text-primary-600 hover:underline">Read more →</a>
 	</Section>
