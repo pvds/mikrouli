@@ -67,17 +67,28 @@ export const load = async ({ url }) => {
 Override metadata for specific pages in their respective `+page.server.js`
 files. Metadata defined here will take precedence over the layout defaults.
 
+> In order to access the parent data, you must pass the `parent` function.
+> If you want to reuse parent data in a deeper level, like accessing `blog` 
+> data in a `blog/[slug]` page, you should use a `+layout.server.js` file in
+> the `blog` directory and set the shared data there for it to be accessible
+> in all child pages using the `parent` function.
+
 ```javascript
 // +page.server.js
-export const load = async ({ url }) => {
-	return {
-		seo: {
-			title: "Contact Us",
-			description:
-				"Get in touch with us for more information",
-		},
+/** @type {import('./$types').PageServerLoad} */
+export const load = async ({ parent }) => {
+	const parentData = await parent();
+
+	const seo = {
+		...parentData?.seo,
+		description: "Mikrouli is a platform for systemic change",
+		keywords:
+			"systemic therapy, systemic change, systemic coaching, individual therapy, family therapy, organizational therapy, online therapy",
 	};
+
+	return { seo };
 };
+
 ```
 
 ### Extendable Custom Meta Tags

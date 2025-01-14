@@ -1,6 +1,9 @@
 <script>
 import { base } from "$app/paths";
 import { page } from "$app/state";
+import { checkSeo } from "./Seo.helper.js";
+
+/** @typedef {import('./Seo.svelte.types').SEOProps} SEOProps */
 
 /** @type {{children?: import('svelte').Snippet}} */
 let { children } = $props();
@@ -30,21 +33,37 @@ let title = $derived(
 		page.data.seo.name,
 	),
 );
+/** @type {SEOProps['description']} */
 let description = $derived(page.data.seo.description);
+/** @type {SEOProps['keywords']} */
 let keywords = $derived(page.data.seo.keywords);
-let canonical = $derived(page.data.seo.canonical);
+/** @type {SEOProps['canonical']} */
+let canonical = $derived(page.data.seo.canonical || page.url.href);
+/** @type {SEOProps['siteName']} */
 let siteName = $derived(page.data.seo.siteName);
+/** @type {SEOProps['imageURL']} */
 let imageURL = $derived(prependURL(page.data.seo.imageURL));
+/** @type {SEOProps['logo']} */
 let logo = $derived(prependURL(page.data.seo.logo));
+/** @type {SEOProps['author']} */
 let author = $derived(page.data.seo.author);
+/** @type {SEOProps['name']} */
 let name = $derived(page.data.seo.name);
-let type = $derived(page.data.seo.type);
+/** @type {SEOProps['type']} */
+let type = $derived(page.data.seo.type || "website");
+/** @type {SEOProps['index']} */
 let index = $derived(page.data.seo.index);
-let twitter = $derived(page.data.seo.twitter);
-let openGraph = $derived(page.data.seo.openGraph);
-let schemaOrg = $derived(page.data.seo.schemaOrg);
-let schemaType = $derived(page.data.seo.schemaType);
-let socials = $derived(page.data.seo.socials);
+/** @type {SEOProps['twitter']} */
+let twitter = $derived(page.data.seo.twitter || false);
+/** @type {SEOProps['openGraph']} */
+let openGraph = $derived(page.data.seo.openGraph || false);
+/** @type {SEOProps['schemaOrg']} */
+let schemaOrg = $derived(page.data.seo.schemaOrg || false);
+/** @type {SEOProps['schemaType']} */
+let schemaType = $derived(page.data.seo.schemaType || ["WebSite"]);
+/** @type {SEOProps['socials']} */
+let socials = $derived(page.data.seo.socials || []);
+/** @type {SEOProps['jsonld']} */
 let jsonld = $derived(page.data.seo.jsonld);
 
 // Reactive data bindings
@@ -52,7 +71,7 @@ let linkedData = $derived(
 	/** @type {import('./Seo.svelte.types').SeoLinkedData} */
 	{
 		"@context": "https://schema.org",
-		"@type": schemaType.length > 1 ? schemaType : schemaType[0],
+		"@type": schemaType && schemaType.length > 1 ? schemaType : schemaType?.[0],
 		name: name,
 		url: page.url.origin,
 		image: imageURL,
@@ -70,16 +89,20 @@ let linkedData = $derived(
 let ldScript = $derived(
 	`<script type="application/ld+json">${JSON.stringify(linkedData)}${"<"}/script>`,
 );
+
+if (import.meta.env.MODE === "development") {
+	$effect(() => checkSeo(page.data.seo, page.route.id));
+}
 </script>
 
 <svelte:head>
-	{#if title}
-		{#if imageURL}
-			<meta name="robots" content={index ? "index, follow, max-image-preview:large" :
+	{#if imageURL}
+		<meta name="robots" content={index ? "index, follow, max-image-preview:large" :
 			"noindex nofollow"}>
-		{:else}
-			<meta name="robots" content={index ? "index, follow" : "noindex nofollow"}>
-		{/if}
+	{:else}
+		<meta name="robots" content={index ? "index, follow" : "noindex nofollow"}>
+	{/if}
+	{#if title}
 		<title>{title}</title>
 		<link rel="canonical" href={canonical || page.url.href}>
 	{/if}
@@ -126,7 +149,7 @@ let ldScript = $derived(
 		{/if}
 	{/if}
 	{@render children?.()}
-	{#if schemaOrg && (socials.length || logo || name)}
+	{#if schemaOrg && (socials?.length || logo || name)}
 		{@html ldScript}
 	{/if}
 </svelte:head>
