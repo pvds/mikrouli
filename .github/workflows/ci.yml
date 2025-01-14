@@ -58,15 +58,21 @@ jobs:
         with:
           path: ${{ env.BUILD_DIR }}
 
-  test:
-    runs-on: ubuntu-24.04
-    if: ${{ github.event_name != 'repository_dispatch' }}
-    needs: build
-    steps:
-      - name: install Playwright browsers
-        run: bunx playwright install chromium
+      - name: cache browsers
+        uses: actions/cache@v3
+        if: ${{ github.event_name != 'repository_dispatch' }}
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-browsers
+          restore-keys: |
+            ${{ runner.os }}-playwright-browsers
 
-      - name: accessibility test
+      - name: install browsers
+        if: ${{ github.event_name != 'repository_dispatch' && steps.playwright-cache.outputs.cache-hit != 'true' }}
+        run: bunx playwright install chromium --only-shell
+
+      - name: test accessibility
+        if: ${{ github.event_name != 'repository_dispatch' }}
         continue-on-error: true
         run: bun run util:a11y
 
