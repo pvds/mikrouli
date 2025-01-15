@@ -1,5 +1,7 @@
-import { spawn } from "node:child_process";
+import { execSync, spawn } from "node:child_process";
+import { existsSync } from "node:fs";
 import http from "node:http";
+import path from "node:path";
 import { chromium } from "playwright";
 import { playAudit } from "playwright-lighthouse";
 import { logDebug, logError, logInfo, logSuccess } from "./log.js";
@@ -15,12 +17,14 @@ const THRESHOLDS = {
 };
 const REPORT_DIR = "./.tmp/performance-reports";
 
-const startVitePreview = () => {
+const startServer = () => {
+	const buildDir = path.resolve("./build");
+	if (!existsSync(buildDir)) {
+		logInfo("Building project...");
+		execSync("vite build --logLevel error", { stdio: "inherit" });
+	}
 	logInfo("Starting server...");
-	return spawn("bun", ["vite", "preview", "--port", PORT], {
-		stdio: ["pipe", "pipe", "pipe"],
-		shell: true,
-	});
+	return spawn("bun", ["vite", "preview", "--port", PORT]);
 };
 
 const waitForServer = async (url, timeout = 10000, initialDelay = 500) => {
@@ -107,7 +111,7 @@ const runPerformanceTest = async (url, port) => {
 };
 
 (async () => {
-	const viteServer = startVitePreview();
+	const viteServer = startServer();
 
 	try {
 		await waitForServer(BASE_URL);
