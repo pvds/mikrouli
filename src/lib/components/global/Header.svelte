@@ -33,7 +33,7 @@ onDestroy(() => {
 </script>
 
 <div
-	class="header transition-all md:sticky {isCompact ? 'md:-top-4' : 'md:top-0'} z-3">
+	class="header md:sticky {isCompact ? 'md:-top-4' : 'md:top-0'} z-3">
 	<div
 		class="absolute z-2 w-full min-w-5xl border-t-40 border-t-primary-900 left-0 overflow-hidden pointer-events-none">
 		<svg class="w-[inherit] h-20"
