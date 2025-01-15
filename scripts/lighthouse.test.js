@@ -29,21 +29,20 @@ const startServer = () => {
 
 const waitForServer = async (url, timeout = 10000, initialDelay = 500) => {
 	const baseUrl = new URL(url).origin;
-	const start = Date.now();
+	const deadline = Date.now() + timeout;
 	await new Promise((resolve) => setTimeout(resolve, initialDelay)); // Initial delay
 
-	while (Date.now() - start < timeout) {
+	while (Date.now() < deadline) {
 		try {
-			const isAvailable = await new Promise((resolve, reject) => {
-				http.get(baseUrl, (res) => {
-					[200, 404].includes(res.statusCode) ? resolve(true) : reject();
-				}).on("error", reject);
-			});
-
-			if (isAvailable) {
-				logSuccess(`Server is ready at ${url}`);
-				return;
-			}
+			await new Promise((resolve, reject) =>
+				http
+					.get(baseUrl, (res) =>
+						[200, 404].includes(res.statusCode) ? resolve() : reject(),
+					)
+					.on("error", reject),
+			);
+			logSuccess(`Server is ready at ${url}`);
+			return;
 		} catch {
 			logDebug("Checking server status...");
 			await new Promise((resolve) => setTimeout(resolve, 200)); // Retry after 200ms
