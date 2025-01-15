@@ -150,11 +150,16 @@ a {
 	}
 }
 
-/* Override previous offset with new style */
-:where(:focus-visible) {
+/* Focus ring styling */
+:where(:focus-visible):not([tabindex*="-"]) {
 	outline: 3px solid var(--global-focus-color, CanvasText);
 	outline-offset: var(--global-focus-outline-offset, 3px);
 	border-radius: var(--global-focus-border-radius, 0.25rem);
+}
+
+/* Do not apply focus to non-interactive elements */
+:where(:focus-visible)[tabindex*="-"] {
+	outline: none;
 }
 
 /* Make button text unselectable & center it; disabled cursor feedback
