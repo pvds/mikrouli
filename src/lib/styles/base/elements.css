@@ -11,4 +11,5 @@
 body {
 	padding-bottom: var(--global-spacing-bottom);
 	overscroll-behavior-y: none;
+	background-color: var(--color-primary-200);
 }
