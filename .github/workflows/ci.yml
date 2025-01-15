@@ -74,6 +74,11 @@ jobs:
         continue-on-error: true
         run: bun run util:a11y:ci
 
+      - name: test lighthouse
+        if: ${{ github.event_name != 'repository_dispatch' }}
+        continue-on-error: true
+        run: bun run util:lighthouse
+
   deploy:
     runs-on: ubuntu-24.04
     if: ${{ github.event_name != 'pull_request' }}
