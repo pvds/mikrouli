@@ -77,7 +77,7 @@ const analyzePage = async (browser, file, dir) => {
 
 	const buildDir = path.resolve("./build");
 	if (!existsSync(buildDir)) {
-		execSync("bun run build", { stdio: "inherit" });
+		execSync("vite build --logLevel error", { stdio: "inherit" });
 	}
 	logDebug(`Analyzing files in: ${buildDir}`);
 
