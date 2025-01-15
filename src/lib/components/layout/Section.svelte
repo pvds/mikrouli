@@ -2,11 +2,11 @@
 /**
  * @typedef {Object} Props
  * @property {string} [classes]
- * @property {import('$lib/components/visuals/Wave.svelte.type').Wave} [wave]
+ * @property {import('../visuals/WaveSvg.type').WaveProps} [wave]
  * @property {import('svelte').Snippet} [children]
  */
 
-import Wave from "../visuals/Wave.svelte";
+import WaveSvg from "../visuals/WaveSvg.svelte";
 
 /** @type {Props} */
 let { classes, wave, children } = $props();
@@ -15,9 +15,9 @@ let { classes, wave, children } = $props();
 <section class="{classes} relative">
 	<div class="max-w-5xl mx-auto">
 		{#if wave}
-			<Wave {...wave}>
+			<WaveSvg {...wave}>
 				{@render children?.()}
-			</Wave>
+			</WaveSvg>
 	    {:else}
 			{@render children?.()}
 		{/if}

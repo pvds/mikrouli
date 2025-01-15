@@ -1,4 +1,4 @@
-export type Wave = {
+export type WaveProps = {
 	direction?: "top" | "bottom" | "both";
 	alignment?: "left" | "right";
 	height?: number;

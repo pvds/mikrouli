@@ -1,5 +1,5 @@
 <script>
-/** @typedef {import('./Wave.svelte.type.js').Wave} Wave */
+/** @typedef {import('./WaveSvg.type.d.ts').WaveProps} Wave */
 
 /**
  * @typedef {Object} Props
@@ -52,6 +52,7 @@ const alignmentClass = alignment === "left" ? "left-0" : "right-0";
 	{/if}
 </div>
 
+<!-- TODO: allow selecting or randomizing selected wave -->
 {#snippet wave()}
 	<div
 		class="wave__svg absolute z-1 w-full min-w-5xl {alignmentClass} top-full overflow-hidden pointer-events-none">
