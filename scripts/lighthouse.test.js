@@ -1,7 +1,8 @@
 import { execSync, spawn } from "node:child_process";
 import { existsSync } from "node:fs";
-import http from "node:http";
+import { get } from "node:http";
 import path from "node:path";
+import { setTimeout } from "node:timers/promises";
 import { chromium } from "playwright";
 import { playAudit } from "playwright-lighthouse";
 import { logDebug, logError, logInfo, logSuccess } from "./log.js";
@@ -29,23 +30,20 @@ const startServer = () => {
 
 const waitForServer = async (url, timeout = 10000, initialDelay = 500) => {
 	const baseUrl = new URL(url).origin;
+	await setTimeout(initialDelay);
 	const deadline = Date.now() + timeout;
-	await new Promise((resolve) => setTimeout(resolve, initialDelay)); // Initial delay
 
 	while (Date.now() < deadline) {
 		try {
 			await new Promise((resolve, reject) =>
-				http
-					.get(baseUrl, (res) =>
-						[200, 404].includes(res.statusCode) ? resolve() : reject(),
-					)
-					.on("error", reject),
+				get(baseUrl, ({ statusCode }) =>
+					[200, 404].includes(statusCode) ? resolve() : reject(),
+				).on("error", reject),
 			);
-			logSuccess(`Server is ready at ${url}`);
-			return;
+			return logSuccess(`Server is ready at ${url}`);
 		} catch {
 			logDebug("Checking server status...");
-			await new Promise((resolve) => setTimeout(resolve, 200)); // Retry after 200ms
+			await setTimeout(200); // Retry after 200ms
 		}
 	}
 
