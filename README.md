@@ -224,14 +224,50 @@ project structure](https://svelte.dev/docs/kit/project-structure):
 
 ## Troubleshooting
 
-| **Issue**                   | **Solution**                                                              |
-|-----------------------------|---------------------------------------------------------------------------|
-| Installation fails          | Verify Node.js and Bun versions meet requirements.                        |
-| Environment variable errors | Ensure `.env` exists and contains valid Contentful keys, see .env.example |
-| Contentful fetch errors     | Check API keys and network connectivity.                                  |
-| Build or dev errors         | Run the clean script: `bun run util:clean`.                               |
+| **Issue**               | **Solution**                                                              |
+|-------------------------|---------------------------------------------------------------------------|
+| Installation fails      | Verify Node.js and Bun versions meet requirements.                        |
+| Contentful fetch errors | Ensure `.env` exists and contains valid Contentful keys, see .env.example |
+| Build or dev errors     | Run the clean script: `bun run util:clean`.                               |
 
 ---
+
+## Guidelines
+
+### Tailwind
+
+#### Using @apply
+
+In general, `@apply` is not recommended.
+In some cases it can be useful:
+- you don't have control over the HTML structure (e.g. when using a 3rd party component)
+- styling elements that cannot be targeted with a class (e.g. scrollbar)
+
+Alternative to using `@apply`:
+- use the theme() and screen() functions to access Tailwind's configuration
+
+This serves as an example on how to do it (using @reference)
+- theme.css allows accessing generated theme classes
+- utilities.css allows accessing generated custom utility classes
+
+```html
+<style>
+	@reference "$lib/styles/theme.css";
+	@reference "$lib/styles/utilities.css";
+
+	.nav-menu--bottom {
+		@apply w-full flex justify-around fixed left-0 bottom-0 bg-primary-900 px-1 py-2;
+	}
+
+	.nav-menu--inline {
+		@apply flex relative gap-2 bg-primary-900;
+	}
+
+	.nav-menu__link {
+		@apply inline-block w-full text-center px-3 py-1 font-semibold;
+	}
+</style>
+```
 
 ## Documentation
 
