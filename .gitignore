@@ -5,6 +5,7 @@ node_modules
 .output
 .vercel
 .wrangler
+.tmp
 
 # OS
 .DS_Store
