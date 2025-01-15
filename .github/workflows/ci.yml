@@ -1,7 +1,7 @@
 name: CI
 
 env:
-  BUN_VERSION: 1.1.42
+  BUN_VERSION: 1.1.43
   BUILD_DIR: build
 
 permissions:
