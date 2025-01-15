@@ -16,7 +16,7 @@ const THRESHOLDS = {
 const REPORT_DIR = "./.tmp/performance-reports";
 
 const startVitePreview = () => {
-	logInfo("Starting Vite preview server...");
+	logInfo("Starting server...");
 	return spawn("bun", ["vite", "preview", "--port", PORT], {
 		stdio: ["pipe", "pipe", "pipe"],
 		shell: true,
@@ -24,25 +24,28 @@ const startVitePreview = () => {
 };
 
 const waitForServer = async (url, timeout = 10000, initialDelay = 500) => {
-	await new Promise((resolve) => setTimeout(resolve, initialDelay)); // Initial delay
 	const baseUrl = new URL(url).origin;
 	const start = Date.now();
+	await new Promise((resolve) => setTimeout(resolve, initialDelay)); // Initial delay
+
 	while (Date.now() - start < timeout) {
 		try {
-			await new Promise((resolve, reject) => {
-				const req = http.get(baseUrl, (res) => {
-					if ([200, 404].includes(res.statusCode)) resolve();
-					else reject(new Error(`Status Code: ${res.statusCode}`));
-				});
-				req.on("error", reject);
+			const isAvailable = await new Promise((resolve, reject) => {
+				http.get(baseUrl, (res) => {
+					[200, 404].includes(res.statusCode) ? resolve(true) : reject();
+				}).on("error", reject);
 			});
-			logDebug(`Vite server is available at ${url}`);
-			return;
-		} catch (err) {
+
+			if (isAvailable) {
+				logSuccess(`Server is ready at ${url}`);
+				return;
+			}
+		} catch {
 			logDebug("Checking server status...");
-			await new Promise((resolve) => setTimeout(resolve, 200));
+			await new Promise((resolve) => setTimeout(resolve, 200)); // Retry after 200ms
 		}
 	}
+
 	throw new Error(`Server at ${url} did not start within ${timeout}ms`);
 };
 
@@ -100,7 +103,6 @@ const runPerformanceTest = async (url, port) => {
 		logError("Error running Lighthouse audit:", error);
 	} finally {
 		await browser.close();
-		// logDebug("Browser closed.");
 	}
 };
 
@@ -108,14 +110,13 @@ const runPerformanceTest = async (url, port) => {
 	const viteServer = startVitePreview();
 
 	try {
-		// logDebug(`Waiting for Vite server to be ready at ${BASE_URL}...`);
 		await waitForServer(BASE_URL);
 		await runPerformanceTest(BASE_URL, 9222);
 	} catch (error) {
 		logError("Error during setup:", error);
 		process.exit(1);
 	} finally {
-		logInfo("Stopping Vite preview server...");
+		logInfo("Stopping server...");
 		viteServer.kill();
 	}
 })();
