@@ -7,6 +7,9 @@ import { chromium } from "playwright";
 import { playAudit } from "playwright-lighthouse";
 import { logDebug, logError, logInfo, logSuccess } from "./log.js";
 
+// TODO: run on multiple pages concurrently with a limit (see axe.test.js logic)
+// TODO: check for using shared logic between scripts (see axe.test.js logic)
+
 const PORT = 4173;
 const SUBFOLDER = "/mikrouli";
 const BASE_URL = `http://localhost:${PORT}${SUBFOLDER}`;
