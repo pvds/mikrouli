@@ -1,90 +1,48 @@
 <script>
 import { base } from "$app/paths";
-import { remToPx } from "$lib/helpers/conversion";
 import { isCurrentPage } from "$lib/helpers/page";
-import { onMount } from "svelte";
+
+/** @typedef {{ href: string, label: string, title: string | undefined }} NavItem */
 
 /** @type {{ menu: import('$lib/types/contentful').NavigationEntry }} */
 let { menu } = $props();
 
-/** @type {{ href: string, label: string, title: string | undefined }[]} */
+/** @type NavItem[] */
 const navItemsBase = menu.fields.items.map(({ slug, title, header }) => ({
 	href: `${base}/${slug}`,
 	label: title,
 	title: header,
 }));
+/** @type NavItem */
 const navItemHome = { href: `${base}/`, label: "Home", title: "Mikrouli home page" };
 const navItemsWithHome = [navItemHome, ...navItemsBase];
-
-// DOM references
-/** @type {HTMLUListElement|undefined} */
-let bottomMenu = $state();
-
-// Reactive variables
-let breakpoint = $state(0);
-let viewportWidth = $state(0);
-let smallScreen = $derived(viewportWidth <= breakpoint);
-const navItems = $derived(smallScreen ? navItemsWithHome : navItemsBase);
-
-const updateGlobalSpacingBottom = () => {
-	const height = bottomMenu?.getBoundingClientRect().height || 0;
-	document.documentElement.style.setProperty(
-		"--global-spacing-bottom",
-		smallScreen ? `${height}px` : "0",
-	);
-};
-
-$effect(() => {
-	updateGlobalSpacingBottom();
-});
-
-onMount(() => {
-	breakpoint = remToPx(
-		getComputedStyle(document.documentElement).getPropertyValue("--breakpoint-md"),
-	);
-});
 </script>
-<svelte:window bind:innerWidth={viewportWidth}/>
-
 <nav class="nav-primary ml-auto"
 	 aria-label="Main navigation">
-	{#if smallScreen}
-		<ul bind:this={bottomMenu}
-			class="nav-menu--bottom">{@render navLinks()}</ul>
-	{:else}
-		<ul class="nav-menu--inline">{@render navLinks()}</ul>
-	{/if}
+		<ul class="md:hidden nav-menu--bottom w-full flex justify-around fixed
+		left-0 bottom-0 bg-primary-900 px-1 py-2">{@render navLinks(navItemsWithHome)}</ul>
+		<ul
+			class="max-md:hidden nav-menu--inline flex relative gap-2 bg-primary-900">{@render
+			navLinks(navItemsBase)}</ul>
 </nav>
 
-{#snippet navLinks()}
+{#snippet navLinks(/** @type NavItem[] */ navItems)}
 	{#each navItems as { href, label, title }}
 		<li class="grow">
 			<a {href} {title} aria-current={isCurrentPage(href) ? "page" : undefined}
-			   class="nav-menu__link {isCurrentPage(href) ? 'text-primary-50' :
-			   'text-primary-200 hover:text-primary-50'}">{label}</a>
+			   class="nav-menu__link inline-block w-full text-center px-3 py-1 font-semibold
+				{isCurrentPage(href) ? 'text-primary-50' :
+				'text-primary-200 hover:text-primary-50'}">{label}</a>
 		</li>
 	{/each}
 {/snippet}
 
-<!--
-Using @apply is not recommended.
-This serves as an example on how to do it (using @reference)
-- theme.css allows accessing generated theme classes
-- utilities.css allows accessing generated custom utility classes
--->
 <style>
-	@reference "$lib/styles/theme.css";
-	@reference "$lib/styles/utilities.css";
-
-	.nav-menu--bottom {
-		@apply w-full flex justify-around fixed left-0 bottom-0 bg-primary-900 px-1 py-2;
-	}
-
-	.nav-menu--inline {
-		@apply flex relative gap-2 bg-primary-900;
-	}
-
-	.nav-menu__link {
-		@apply inline-block w-full text-center px-3 py-1 font-semibold;
+	:root {
+		--nav-primary-bottom: 48px;
+		--global-spacing-bottom: var(--nav-primary-bottom);
+		@media (min-width: var(--breakpoint-md)) {
+			--global-spacing-bottom: 0;
+		}
 	}
 </style>
