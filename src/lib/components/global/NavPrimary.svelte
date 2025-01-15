@@ -1,6 +1,7 @@
 <script>
 import { base } from "$app/paths";
 import { isCurrentPage } from "$lib/helpers/page";
+import WaveCss from "../visuals/WaveCss.svelte";
 
 /** @typedef {{ href: string, label: string, title: string | undefined }} NavItem */
 
@@ -20,7 +21,8 @@ const navItemsWithHome = [navItemHome, ...navItemsBase];
 <nav class="nav-primary ml-auto"
 	 aria-label="Main navigation">
 		<ul class="md:hidden nav-menu--bottom w-full flex justify-around fixed
-		left-0 bottom-0 bg-primary-900 px-1 py-2">{@render navLinks(navItemsWithHome)}</ul>
+		left-0 bottom-0 bg-primary-900 px-1 py-2"><WaveCss height={10}/>{@render
+			navLinks(navItemsWithHome)}</ul>
 		<ul
 			class="max-md:hidden nav-menu--inline flex relative gap-2 bg-primary-900">{@render
 			navLinks(navItemsBase)}</ul>
