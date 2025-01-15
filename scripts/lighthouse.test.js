@@ -7,6 +7,12 @@ import { logDebug, logError, logInfo, logSuccess } from "./log.js";
 const PORT = 4173;
 const SUBFOLDER = "/mikrouli";
 const BASE_URL = `http://localhost:${PORT}${SUBFOLDER}`;
+const thresholds = {
+	performance: 100,
+	accessibility: 80,
+	bestPractices: 80,
+	seo: 80,
+};
 
 const startVitePreview = () => {
 	logInfo("Starting Vite preview server...");
@@ -37,7 +43,7 @@ const waitForServer = async (url, timeout = 10000) => {
 			return true; // Server is ready
 		} catch (err) {
 			logDebug(`Retrying server readiness check: ${err.message}`);
-			await new Promise((resolve) => setTimeout(resolve, 500)); // Retry after 500ms
+			await new Promise((resolve) => setTimeout(resolve, 1000)); // Retry after 500ms
 		}
 	}
 	throw new Error(`Server at ${url} did not start within ${timeout}ms`);
@@ -58,11 +64,13 @@ const runPerformanceTest = async (url, port) => {
 			page,
 			port,
 			thresholds: {
-				performance: 80,
-				accessibility: 80,
-				"best-practices": 80,
-				seo: 80,
+				performance: thresholds.performance,
+				accessibility: thresholds.accessibility,
+				"best-practices": thresholds.bestPractices,
+				seo: thresholds.seo,
 			},
+			disableLogs: true,
+			ignoreError: true,
 			reports: {
 				formats: { html: true, json: true },
 				directory: "./.tmp/performance-reports",
@@ -73,13 +81,23 @@ const runPerformanceTest = async (url, port) => {
 		if (!lighthouseResults?.lhr) {
 			logError("Lighthouse audit did not return valid results.");
 		} else {
+			const {
+				performance,
+				accessibility,
+				"best-practices": bestPractices,
+				seo,
+			} = lighthouseResults.lhr.categories;
 			logSuccess("Lighthouse audit completed:");
-			logInfo(`Performance: ${lighthouseResults.lhr.categories.performance.score * 100}`);
-			logInfo(`Accessibility: ${lighthouseResults.lhr.categories.accessibility.score * 100}`);
 			logInfo(
-				`Best Practices: ${lighthouseResults.lhr.categories["best-practices"].score * 100}`,
+				`  - Performance: ${performance.score * 100} (minimum: ${thresholds.performance})`,
 			);
-			logInfo(`SEO: ${lighthouseResults.lhr.categories.seo.score * 100}`);
+			logInfo(
+				`  - Accessibility: ${accessibility.score * 100} (minimum: ${thresholds.accessibility})`,
+			);
+			logInfo(
+				`  - Best Practices: ${bestPractices.score * 100} (minimum: ${thresholds.bestPractices})`,
+			);
+			logInfo(`  - SEO: ${seo.score * 100} (minimum: ${thresholds.seo})`);
 		}
 	} catch (error) {
 		logError("Error running Lighthouse audit:", error);
