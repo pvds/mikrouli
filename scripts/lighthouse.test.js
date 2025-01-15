@@ -10,10 +10,10 @@ const PORT = 4173;
 const SUBFOLDER = "/mikrouli";
 const BASE_URL = `http://localhost:${PORT}${SUBFOLDER}`;
 const THRESHOLDS = {
-	performance: 100,
-	accessibility: 80,
-	"best-practices": 80,
-	seo: 80,
+	performance: 99,
+	accessibility: 100,
+	"best-practices": 100,
+	seo: 100,
 };
 const REPORT_DIR = "./.tmp/performance-reports";
 
