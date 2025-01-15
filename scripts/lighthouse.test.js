@@ -24,11 +24,20 @@ const startServer = () => {
 		logInfo("Building project...");
 		execSync("vite build --logLevel error", { stdio: "inherit" });
 	}
-	logInfo("Starting server...");
+	logDebug("Starting server...");
 	return spawn("bun", ["vite", "preview", "--port", PORT]);
 };
 
-const waitForServer = async (url, timeout = 10000, initialDelay = 500) => {
+const stopServer = (server) => {
+	logDebug("Stopping server...");
+	server.kill("SIGTERM");
+	server.on("close", () => {
+		logSuccess("Server stopped");
+		process.exit(0);
+	});
+};
+
+const waitForServer = async (url, timeout = 10000, initialDelay = 100) => {
 	const baseUrl = new URL(url).origin;
 	await setTimeout(initialDelay);
 	const deadline = Date.now() + timeout;
@@ -117,7 +126,6 @@ const runPerformanceTest = async (url, port) => {
 		logError("Error during setup:", error);
 		process.exit(1);
 	} finally {
-		logInfo("Stopping server...");
-		viteServer.kill();
+		stopServer(viteServer);
 	}
 })();
