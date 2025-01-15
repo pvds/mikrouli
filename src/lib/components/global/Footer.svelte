@@ -32,7 +32,7 @@ const links = [
 		<footer class="font-bold">
 			<nav class="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4">
 				{#each links as { href, label }}
-					<a {href}>{label}</a>
+					<a class="text-center" {href}>{label}</a>
 				{/each}
 			</nav>
 		</footer>
