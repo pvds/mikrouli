@@ -7,46 +7,52 @@ import { logDebug, logError, logInfo, logSuccess } from "./log.js";
 const PORT = 4173;
 const SUBFOLDER = "/mikrouli";
 const BASE_URL = `http://localhost:${PORT}${SUBFOLDER}`;
-const thresholds = {
+const THRESHOLDS = {
 	performance: 100,
 	accessibility: 80,
-	bestPractices: 80,
+	"best-practices": 80,
 	seo: 80,
 };
+const REPORT_DIR = "./.tmp/performance-reports";
 
 const startVitePreview = () => {
 	logInfo("Starting Vite preview server...");
-	const server = spawn("bun", ["vite", "preview", "--port", PORT], {
+	return spawn("bun", ["vite", "preview", "--port", PORT], {
 		stdio: ["pipe", "pipe", "pipe"],
 		shell: true,
 	});
-
-	server.on("close", (code) => logSuccess("Vite server closed"));
-
-	return server;
 };
 
-const waitForServer = async (url, timeout = 10000) => {
-	const baseUrl = new URL(url).origin; // Extract the base URL (e.g., http://localhost:4173)
+const waitForServer = async (url, timeout = 10000, initialDelay = 500) => {
+	await new Promise((resolve) => setTimeout(resolve, initialDelay)); // Initial delay
+	const baseUrl = new URL(url).origin;
 	const start = Date.now();
 	while (Date.now() - start < timeout) {
 		try {
 			await new Promise((resolve, reject) => {
 				const req = http.get(baseUrl, (res) => {
-					if (res.statusCode === 200 || res.statusCode === 404)
-						resolve(); // Ready if 200 or 404
+					if ([200, 404].includes(res.statusCode)) resolve();
 					else reject(new Error(`Status Code: ${res.statusCode}`));
 				});
 				req.on("error", reject);
 			});
-			logSuccess(`Server is available at ${url}`);
-			return true; // Server is ready
+			logDebug(`Vite server is available at ${url}`);
+			return;
 		} catch (err) {
-			logDebug(`Retrying server readiness check: ${err.message}`);
-			await new Promise((resolve) => setTimeout(resolve, 1000)); // Retry after 500ms
+			logDebug("Checking server status...");
+			await new Promise((resolve) => setTimeout(resolve, 200));
 		}
 	}
 	throw new Error(`Server at ${url} did not start within ${timeout}ms`);
+};
+
+const validateScore = (category, score, threshold) => {
+	const percentageScore = score * 100;
+	if (percentageScore >= threshold) {
+		logSuccess(`${category}: ${percentageScore} (meets threshold of ${threshold})`);
+	} else {
+		logError(`${category}: ${percentageScore} (below threshold of ${threshold})`);
+	}
 };
 
 const runPerformanceTest = async (url, port) => {
@@ -56,54 +62,45 @@ const runPerformanceTest = async (url, port) => {
 	});
 
 	try {
-		logInfo(`Launching Lighthouse audit for ${url}...`);
+		logInfo(`Launching Lighthouse audit for ${url}`);
 		const page = await browser.newPage();
 		await page.goto(url);
 
 		const lighthouseResults = await playAudit({
 			page,
 			port,
-			thresholds: {
-				performance: thresholds.performance,
-				accessibility: thresholds.accessibility,
-				"best-practices": thresholds.bestPractices,
-				seo: thresholds.seo,
-			},
+			thresholds: THRESHOLDS,
 			disableLogs: true,
 			ignoreError: true,
 			reports: {
 				formats: { html: true, json: true },
-				directory: "./.tmp/performance-reports",
+				directory: REPORT_DIR,
 				name: `lighthouse-report-${new Date().toISOString()}`,
 			},
 		});
 
 		if (!lighthouseResults?.lhr) {
 			logError("Lighthouse audit did not return valid results.");
-		} else {
-			const {
-				performance,
-				accessibility,
-				"best-practices": bestPractices,
-				seo,
-			} = lighthouseResults.lhr.categories;
-			logSuccess("Lighthouse audit completed:");
-			logInfo(
-				`  - Performance: ${performance.score * 100} (minimum: ${thresholds.performance})`,
-			);
-			logInfo(
-				`  - Accessibility: ${accessibility.score * 100} (minimum: ${thresholds.accessibility})`,
-			);
-			logInfo(
-				`  - Best Practices: ${bestPractices.score * 100} (minimum: ${thresholds.bestPractices})`,
-			);
-			logInfo(`  - SEO: ${seo.score * 100} (minimum: ${thresholds.seo})`);
+			return;
 		}
+
+		logInfo("Lighthouse audit completed:");
+		const {
+			performance,
+			accessibility,
+			"best-practices": bestPractices,
+			seo,
+		} = lighthouseResults.lhr.categories;
+
+		validateScore("  - Performance", performance.score, THRESHOLDS.performance);
+		validateScore("  - Accessibility", accessibility.score, THRESHOLDS.accessibility);
+		validateScore("  - Best Practices", bestPractices.score, THRESHOLDS["best-practices"]);
+		validateScore("  - SEO", seo.score, THRESHOLDS.seo);
 	} catch (error) {
 		logError("Error running Lighthouse audit:", error);
 	} finally {
 		await browser.close();
-		logSuccess("Browser closed.");
+		// logDebug("Browser closed.");
 	}
 };
 
@@ -111,10 +108,8 @@ const runPerformanceTest = async (url, port) => {
 	const viteServer = startVitePreview();
 
 	try {
-		logInfo(`Waiting for Vite server to be ready at ${BASE_URL}...`);
+		// logDebug(`Waiting for Vite server to be ready at ${BASE_URL}...`);
 		await waitForServer(BASE_URL);
-		logSuccess("Vite server is ready.");
-
 		await runPerformanceTest(BASE_URL, 9222);
 	} catch (error) {
 		logError("Error during setup:", error);
