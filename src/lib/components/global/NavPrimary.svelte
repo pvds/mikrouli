@@ -39,10 +39,16 @@ const navItemsWithHome = [navItemHome, ...navItemsBase];
 
 <style>
 	:root {
+		--nav-primary-top: 0px;
 		--nav-primary-bottom: 48px;
+		--global-spacing-top: var(--nav-primary-top);
 		--global-spacing-bottom: var(--nav-primary-bottom);
-		@media (min-width: var(--breakpoint-md)) {
-			--global-spacing-bottom: 0;
+	}
+
+	@media (min-width: 768px) {
+		:root {
+			--nav-primary-top: 72px;
+			--nav-primary-bottom: 0px;
 		}
 	}
 </style>

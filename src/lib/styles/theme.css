@@ -217,9 +217,9 @@
 	--default-selection-dark: var(--color-primary-300);
 
 	/* === GLOBAL === */
-	--global-spacing-top: 0;
-	--global-spacing-bottom: 90px;
-	--global-target-offset: 5ex;
+	--global-spacing-top: 0px;
+	--global-spacing-bottom: 0px;
+	--global-target-offset: 2ex;
 	--global-focus-color: var(--color-primary-600);
 	--global-focus-border-radius: var(--radius-sm);
 	--global-focus-outline-offset: 3px;
