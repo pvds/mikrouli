@@ -56,6 +56,7 @@ export type PostFields = {
 	header?: string;
 	slug: string;
 	intro: string;
+	sections: SectionFields[];
 };
 
 export type PostEntry = {
@@ -65,10 +66,12 @@ export type PostEntry = {
 
 // ### Navigations
 
+export type NavigationPageFields = Pick<PageFields, "title" | "header" | "slug">;
+
 export type NavigationFields = {
 	title: string;
 	slug: string;
-	items: PageFields[];
+	items: NavigationPageFields[];
 };
 
 export type NavigationEntry = {
