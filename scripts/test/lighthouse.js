@@ -10,8 +10,15 @@ import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
 // TODO: run on multiple pages concurrently with a limit (see axe.test.js logic)
 // TODO: check for using shared logic between scripts (see axe.test.js logic)
 
+// Parse command-line arguments
+const args = process.argv.slice(2);
+const isNetlify = args.includes("--netlify");
+const BUILD_DIR = isNetlify ? "./build/netlify" : "./build/github";
+const SUBFOLDER = isNetlify ? "" : "/mikrouli";
+const BUILD_COMMAND = isNetlify ? "build:netlify" : "build";
+const PREVIEW_COMMAND = isNetlify ? "preview:netlify" : "preview";
+
 const PORT = 4173;
-const SUBFOLDER = "/mikrouli";
 const BASE_URL = `http://localhost:${PORT}${SUBFOLDER}`;
 const THRESHOLDS = {
 	performance: 99,
@@ -19,17 +26,16 @@ const THRESHOLDS = {
 	"best-practices": 100,
 	seo: 100,
 };
-const BUILD_DIR = "./build/github";
 const REPORT_DIR = "./.tmp/performance-reports";
 
 const startServer = () => {
 	const buildDir = path.resolve(BUILD_DIR);
 	if (!existsSync(buildDir)) {
 		logInfo("Building project...");
-		execSync("vite build --logLevel error", { stdio: "inherit" });
+		execSync(`bun run ${BUILD_COMMAND} --logLevel error`, { stdio: "inherit" });
 	}
 	logDebug("Starting server...");
-	return spawn("bun", ["vite", "preview", "--port", PORT]);
+	return spawn("bun", ["run", PREVIEW_COMMAND, "--port", PORT]);
 };
 
 const stopServer = (server) => {
@@ -80,6 +86,9 @@ const runPerformanceTest = async (url, port) => {
 
 	try {
 		logInfo(`Launching Lighthouse audit for ${url}`);
+		const timestamp = new Date().toISOString().split(".")[0]; // Removes milliseconds and 'Z'
+		const reportName = `lighthouse-report-${timestamp}`;
+		const reportPath = path.resolve(REPORT_DIR, `${reportName}.html`);
 		const page = await browser.newPage();
 		await page.goto(url);
 
@@ -92,7 +101,7 @@ const runPerformanceTest = async (url, port) => {
 			reports: {
 				formats: { html: true, json: true },
 				directory: REPORT_DIR,
-				name: `lighthouse-report-${new Date().toISOString()}`,
+				name: reportName,
 			},
 		});
 
@@ -113,6 +122,8 @@ const runPerformanceTest = async (url, port) => {
 		validateScore("  - Accessibility", accessibility.score, THRESHOLDS.accessibility);
 		validateScore("  - Best Practices", bestPractices.score, THRESHOLDS["best-practices"]);
 		validateScore("  - SEO", seo.score, THRESHOLDS.seo);
+
+		logInfo("\n", `Lighthouse report saved to file://${reportPath}`);
 	} catch (error) {
 		logError("Error running Lighthouse audit:", error);
 	} finally {

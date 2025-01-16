@@ -6,11 +6,11 @@ import { AxeBuilder } from "@axe-core/playwright";
 import { chromium } from "playwright";
 import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
 
-const BUILD_DIR = "./build/github";
-
 // Parse command-line arguments
 const args = process.argv.slice(2);
 const isMinimal = args.includes("--minimal");
+const BUILD_DIR = args.includes("--netlify") ? "./build/netlify" : "./build/github";
+
 const cpuCount = cpus().length;
 const maxConcurrency = Math.max(2, Math.floor(cpuCount / 2));
 const timings = {};
