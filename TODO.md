@@ -49,11 +49,16 @@
 
 - [ ] Seo component server side rendering (getting hydration warnings now)
 - [x] a11y issue due to nesting non `li` in `ul` in `NavPrimary` component
+- [ ] for some reason local lighthouse seo test is 100% on github build while 
+  robots.txt has disallow and meta tag with noindex nofollow is set. Would 
+  expect a failure like when running on the netlify build.
 
 ### Tests
 
 - [ ] axe and lighthouse tests should reuse logic
 - [ ] log issues when found in lighthouse test
+  - [x] provide log to report for local use
+  - [ ] decide on using custom logging or letting lighthouse do it
 
 ### Documentation
 
@@ -65,6 +70,7 @@
 
 - [ ] optimize for speed
 - [ ] cleanup by splitting steps into templates
+- [ ] add a test job
 - [ ] optimize flow
 	- for different scenarios
     - for when site is launched
