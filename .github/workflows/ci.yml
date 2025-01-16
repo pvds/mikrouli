@@ -118,6 +118,19 @@ jobs:
         needs: build
         if: ${{ needs.build.outputs.run_production == 'true' }}
         steps:
+            - name: checkout
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 1
+
+            - name: setup
+              uses: oven-sh/setup-bun@v2
+              with:
+                    bun-version: ${{ env.BUN_VERSION }}
+
+            - name: install
+              run: bun install
+
             - name: download Netlify artifact
               uses: actions/download-artifact@v4
               with:
@@ -136,7 +149,6 @@ jobs:
               run: bunx playwright install chromium --only-shell
 
             - name: test accessibility
-              if: ${{ github.ref_name == 'main' }}
               continue-on-error: true
               run: bun run util:a11y --minimal --netlify
 
