@@ -84,7 +84,7 @@ jobs:
                   fetch-depth: 1
 
             - name: setup
-              uses: ./.github/templates/setup
+              uses: ./.github/actions/setup
               with:
                   bun_version: "${{ env.BUN_VERSION }}"
 
@@ -100,7 +100,7 @@ jobs:
                   CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
 
             - name: build
-              uses: ./.github/templates/build
+              uses: ./.github/actions/build
               with:
                   run_staging: ${{ env.RUN_STAGING == 'true' }}
                   run_production: ${{ env.RUN_PRODUCTION == 'true' }}
@@ -109,7 +109,7 @@ jobs:
 
             - name: test
               if: ${{ env.RUN_PRODUCTION == 'true' }}
-              uses: ./.github/templates/test
+              uses: ./.github/actions/test
 
     staging:
         name: Deploy to GitHub Pages
