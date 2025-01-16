@@ -64,15 +64,13 @@ jobs:
             IS_CONTENT_UPDATE: ${{ github.event_name == 'repository_dispatch' }}
             IS_PR: ${{ github.event_name == 'pull_request' }}
             RUN_STAGING: ${{
-                (
-                    github.event_name != 'workflow_dispatch' && 
-                    github.event_name != 'repository_dispatch'
-                ) ||
-                (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_github =='true')
+                (github.event_name == 'push' && github.ref_name == 'main') ||
+                (github.event_name == 'pull_request' && github.base_ref == 'main') ||
+                (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_github == 'true')
                 }}
             RUN_PRODUCTION: ${{
-                (github.event_name != 'pull_request' && github.event_name != 'workflow_dispatch') ||
-                (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_netlify=='true')
+                github.event_name == 'repository_dispatch' ||
+                (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_netlify == 'true')
                 }}
         outputs:
             run_staging: ${{ env.RUN_STAGING }}
