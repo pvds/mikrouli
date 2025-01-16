@@ -12,8 +12,20 @@ permissions:
 on:
     push:
         branches: [main]
+        paths-ignore: &paths-to-ignore
+            - "docs/**"
+            - "*.md"
+            - ".editorconfig"
+            - ".env.example"
+            - ".gitignore"
+            - ".npmrc"
+            - "biome.jsonc"
+            - "jsconfig.json"
+            - "lefthook.yml"
+            - "favicons.json"
     pull_request:
         branches: [main]
+        paths-ignore: *paths-to-ignore
     repository_dispatch:
         types: [contentful-content-changed]
     workflow_dispatch:
