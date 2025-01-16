@@ -5,41 +5,60 @@
  * @return {import('$lib/types/contentful.d.js').ContentfulData}
  */
 export function transformContentfulData(data = {}) {
-	// Keeps all found sections keyed by ID
 	const allSectionsMap = {};
 
-	// 1) Collect all sections from the main content arrays
-	collectSections(data.pages || [], allSectionsMap);
-	collectSections(data.services || [], allSectionsMap);
-	collectSections(data.posts || [], allSectionsMap);
-	collectSections(data.navigation || [], allSectionsMap);
+	// Extract raw arrays (or default to empty arrays)
+	const pagesRaw = data.pages || [];
+	const servicesRaw = data.services || [];
+	const postsRaw = data.posts || [];
+	const navigationRaw = data.navigation || [];
 
-	// 2) Parse each content type
-	const pages = (data.pages || []).map((rawPage) => parsePage(rawPage, allSectionsMap));
-	const services = (data.services || []).map((rawService) =>
-		parseService(rawService, allSectionsMap),
-	);
-	const posts = (data.posts || []).map((rawPost) => parsePost(rawPost, allSectionsMap));
-	const navigation = (data.navigation || [])
-		.map((rawNav) => parseNavigation(rawNav, pages))
-		.filter((n) => n);
+	// Collect sections from all content arrays using for...of
+	for (const entries of [pagesRaw, servicesRaw, postsRaw, navigationRaw]) {
+		collectSections(entries, allSectionsMap);
+	}
+
+	// Parse each content type
+	const pages = [];
+	for (const rawPage of pagesRaw) {
+		pages.push(parseContentEntry(rawPage, allSectionsMap));
+	}
+
+	const services = [];
+	for (const rawService of servicesRaw) {
+		services.push(parseContentEntry(rawService, allSectionsMap));
+	}
+
+	const posts = [];
+	for (const rawPost of postsRaw) {
+		posts.push(parseContentEntry(rawPost, allSectionsMap));
+	}
+
+	const navigation = [];
+	for (const rawNav of navigationRaw) {
+		const navEntry = parseNavigation(rawNav, pages);
+		if (navEntry) {
+			navigation.push(navEntry);
+		}
+	}
 
 	return { navigation, pages, services, posts };
 }
 
 /**
- * Collects any "section" entries embedded or referenced inside the given entries array.
+ * Collects any "section" entries (or references) from the given entries.
+ *
  * @param {Array} entries Array of raw Contentful entries (pages, services, etc.)
- * @param {Object} allSectionsMap The global map of all section entries by ID
+ * @param {Object} allSectionsMap The map of all section entries by ID
  */
 function collectSections(entries, allSectionsMap) {
 	for (const entry of entries) {
-		// If this entry itself is a 'section'
+		// If the entry itself is a 'section'
 		if (entry.sys?.contentType?.sys?.id === "section") {
 			const parsed = parseSection(entry);
 			allSectionsMap[parsed.meta.id] = parsed;
 		}
-		// If it references an array of 'sections'
+		// If the entry references sections
 		if (Array.isArray(entry.fields?.sections)) {
 			for (const secRef of entry.fields.sections) {
 				if (secRef.sys?.contentType?.sys?.id === "section") {
@@ -52,13 +71,17 @@ function collectSections(entries, allSectionsMap) {
 }
 
 /**
- * Parse a Page entry, resolving 'sections'.
+ * Generic parser for content entries (used for Pages and Services)
+ * that resolve their 'sections'.
+ *
+ * @param {Object} rawEntry The raw Contentful entry
+ * @param {Object} allSections Map of all parsed sections
  * @return {import('$lib/types/contentful').PageEntry}
+ *         // (or ServiceEntry, as they share the same structure)
  */
-function parsePage(rawPage = {}, allSections = {}) {
-	const meta = parseMeta(rawPage.sys);
-	// Destructure known reference fields and spread the rest.
-	const { sections = [], ...restFields } = rawPage.fields || {};
+function parseContentEntry(rawEntry = {}, allSections = {}) {
+	const meta = parseMeta(rawEntry.sys);
+	const { sections = [], ...restFields } = rawEntry.fields || {};
 	return {
 		meta,
 		fields: {
@@ -69,39 +92,12 @@ function parsePage(rawPage = {}, allSections = {}) {
 }
 
 /**
- * Parse a Service entry, resolving 'sections'.
- * @return {import('$lib/types/contentful').ServiceEntry}
- */
-function parseService(rawService = {}, allSections = {}) {
-	const meta = parseMeta(rawService.sys);
-	const { sections = [], ...restFields } = rawService.fields || {};
-	return {
-		meta,
-		fields: {
-			...restFields,
-			sections: resolveSections(sections, allSections),
-		},
-	};
-}
-
-/**
- * Parse a Post entry, resolving 'sections'.
- * @return {import('$lib/types/contentful').PostEntry}
- */
-function parsePost(rawPost = {}, allSections = {}) {
-	const meta = parseMeta(rawPost.sys);
-	const { sections = [], ...restFields } = rawPost.fields || {};
-	return {
-		meta,
-		fields: {
-			...restFields,
-			sections: resolveSections(sections, allSections),
-		},
-	};
-}
-
-/**
- * Parse Navigation, resolving pages
+ * Parse Navigation, resolving page references.
+ * Only includes the page's title, header, and slug.
+ * If a referenced page can't be found, it is omitted.
+ *
+ * @param {Object} rawNav The raw navigation entry
+ * @param {Array} pages Array of parsed Page entries
  * @return {import('$lib/types/contentful').NavigationEntry}
  */
 function parseNavigation(rawNav = {}, pages = []) {
@@ -110,13 +106,11 @@ function parseNavigation(rawNav = {}, pages = []) {
 
 	const parsedItems = items
 		.map((pageRef) => {
-			// Find the page by ID from the pages array
 			const found = pages.find((p) => p.meta.id === pageRef.sys?.id);
 			if (found) {
 				const { title, header, slug } = found.fields;
 				return { title, header, slug };
 			}
-			// Instead of a fallback object, we return null so we can filter these out.
 			return null;
 		})
 		.filter((item) => item !== null);
@@ -131,7 +125,9 @@ function parseNavigation(rawNav = {}, pages = []) {
 }
 
 /**
- * Convert Contentful sys object to a simpler 'meta' object.
+ * Convert a raw sys object into a simpler 'meta' object.
+ *
+ * @param {Object} rawSys The raw sys object from Contentful
  * @return {import('$lib/types/contentful').Metadata}
  */
 function parseMeta(rawSys = {}) {
@@ -140,31 +136,32 @@ function parseMeta(rawSys = {}) {
 }
 
 /**
- * Parse a Section entry if it has fields.
+ * Parse a Section entry.
+ * If there are no fields, only the metadata is returned.
+ *
+ * @param {Object} rawSection The raw section entry
  * @return {import('$lib/types/contentful').SectionEntry}
  */
 function parseSection(rawSection = {}) {
 	const meta = parseMeta(rawSection.sys);
-	if (!rawSection.fields) {
-		return { meta };
-	}
-
-	const { ...restFields } = rawSection.fields;
-	return { meta, fields: { ...restFields } };
+	return rawSection.fields ? { meta, fields: { ...rawSection.fields } } : { meta };
 }
 
 /**
- * Turn an array of Section references into their resolved fields
- * @returns {Array<import('$lib/types/contentful').SectionEntry[]>}
+ * Resolve an array of section references into their fields.
+ * Omits any references that cannot be resolved.
+ *
+ * @param {Array} sectionRefs Array of section reference objects
+ * @param {Object} allSections Map of all parsed sections
+ * @return {Array<import('$lib/types/contentful').SectionFields>}
  */
 function resolveSections(sectionRefs = [], allSections = {}) {
-	return sectionRefs
-		.map((ref) => {
-			const sectionEntry = allSections[ref.sys?.id];
-			if (!sectionEntry?.fields) {
-				return null;
-			}
-			return { ...sectionEntry.fields };
-		})
-		.filter((section) => section !== null);
+	const resolved = [];
+	for (const ref of sectionRefs) {
+		const sectionEntry = allSections[ref.sys?.id];
+		if (sectionEntry?.fields) {
+			resolved.push({ ...sectionEntry.fields });
+		}
+	}
+	return resolved;
 }
