@@ -43,7 +43,7 @@ on:
             deploy_github:
                 description: "Deploy to GitHub Pages"
                 required: false
-                default: true
+                default: false
                 type: boolean
             deploy_netlify:
                 description: "Deploy to Netlify"
