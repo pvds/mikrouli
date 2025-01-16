@@ -68,6 +68,11 @@ jobs:
             run_staging: ${{ env.RUN_STAGING }}
             run_production: ${{ env.RUN_PRODUCTION }}
         steps:
+            - name: checkout
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 1
+
             - name: setup
               uses: ./.github/templates/setup
               with:
