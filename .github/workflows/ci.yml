@@ -141,7 +141,7 @@ jobs:
         name: Deploy to GitHub Pages
         runs-on: ubuntu-24.04
         needs: main
-        if: ${{ needs.build.outputs.run_staging == 'true' }}
+        if: ${{ needs.main.outputs.run_staging == 'true' }}
         environment:
             name: github-pages
             url: ${{ steps.deployment.outputs.page_url }}
@@ -157,7 +157,7 @@ jobs:
         name: Deploy to Netlify
         runs-on: ubuntu-24.04
         needs: main
-        if: ${{ needs.build.outputs.run_production == 'true' }}
+        if: ${{ needs.main.outputs.run_production == 'true' }}
         steps:
             - name: setup
               uses: oven-sh/setup-bun@v2
