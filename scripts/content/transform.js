@@ -71,13 +71,12 @@ function collectSections(entries, allSectionsMap) {
 }
 
 /**
- * Generic parser for content entries (used for Pages and Services)
+ * Generic parser for content entries (used for Pages, Services, and Posts)
  * that resolve their 'sections'.
  *
  * @param {Object} rawEntry The raw Contentful entry
  * @param {Object} allSections Map of all parsed sections
  * @return {import('$lib/types/contentful').PageEntry}
- *         // (or ServiceEntry, as they share the same structure)
  */
 function parseContentEntry(rawEntry = {}, allSections = {}) {
 	const meta = parseMeta(rawEntry.sys);
@@ -104,16 +103,14 @@ function parseNavigation(rawNav = {}, pages = []) {
 	const meta = parseMeta(rawNav.sys);
 	const { items = [], ...restFields } = rawNav.fields || {};
 
-	const parsedItems = items
-		.map((pageRef) => {
-			const found = pages.find((p) => p.meta.id === pageRef.sys?.id);
-			if (found) {
-				const { title, header, slug } = found.fields;
-				return { title, header, slug };
-			}
-			return null;
-		})
-		.filter((item) => item !== null);
+	const parsedItems = [];
+	for (const pageRef of items) {
+		const found = pages.find((p) => p.meta.id === pageRef.sys?.id);
+		if (found) {
+			const { title, header, slug } = found.fields;
+			parsedItems.push({ title, header, slug });
+		}
+	}
 
 	return {
 		meta,
