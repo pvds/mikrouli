@@ -29,19 +29,10 @@ on:
                 default: true
                 type: boolean
 
-# Only execute the latest main or dispatch (CMS update/Manual) runs
 concurrency:
-    group: ${{
-        github.head_ref ||
-        (github.event_name == 'workflow_dispatch' && 'workflow_dispatch') ||
-        (github.event_name == 'repository_dispatch' && 'repository_dispatch') ||
-        (github.ref_name == 'main' && 'push-main')
-        }}
-    cancel-in-progress: ${{ 
-        github.event_name != 'pull_request' || 
-        github.event_name == 'repository_dispatch' ||
-        github.event_name == 'workflow_dispatch'
-        }}
+    # Group by PR number for pull requests, branch name for pushes, or event name for dispatches
+    group: ${{ github.event.pull_request.number || github.ref_name || github.event_name }}
+    cancel-in-progress: true
 
 jobs:
     main:
