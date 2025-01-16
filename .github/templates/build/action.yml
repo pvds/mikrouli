@@ -1,0 +1,46 @@
+name: Build and Upload Artifacts
+description: Builds the project for GitHub or Netlify and uploads artifacts.
+
+inputs:
+    run_staging:
+        description: "Whether to build for GitHub Pages (staging)."
+        required: true
+    run_production:
+        description: "Whether to build for Netlify (production)."
+        required: true
+    build_dir_github:
+        description: "Build directory for GitHub Pages."
+        required: true
+    build_dir_netlify:
+        description: "Build directory for Netlify."
+        required: true
+
+runs:
+    using: "composite"
+    steps:
+        - name: Build for GitHub
+          if: ${{ inputs.run_staging == 'true' }}
+          run: bun run build
+          shell: bash
+          env:
+              DEPLOY_TARGET: github
+
+        - name: Upload GitHub artifact
+          if: ${{ inputs.run_staging == 'true' }}
+          uses: actions/upload-pages-artifact@v3
+          with:
+              path: ${{ inputs.build_dir_github }}
+
+        - name: Build for Netlify
+          if: ${{ inputs.run_production == 'true' }}
+          run: bun run build:netlify
+          shell: bash
+          env:
+              DEPLOY_TARGET: netlify
+
+        - name: Upload Netlify artifact
+          if: ${{ inputs.run_production == 'true' }}
+          uses: actions/upload-artifact@v4
+          with:
+              name: netlify
+              path: ${{ inputs.build_dir_netlify }}
