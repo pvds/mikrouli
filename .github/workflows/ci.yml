@@ -11,9 +11,9 @@ permissions:
 
 on:
     push:
-        branches: [ main ]
+        branches: [main]
     pull_request:
-        branches: [ main ]
+        branches: [main]
     repository_dispatch:
         types: [contentful-content-changed]
     workflow_dispatch:
@@ -49,9 +49,11 @@ jobs:
         env:
             IS_CONTENT_UPDATE: ${{ github.event_name == 'repository_dispatch' }}
             IS_PR: ${{ github.event_name == 'pull_request' }}
-            RUN_TESTS: ${{ github.event_name != 'pull_request' && github.event_name != 'repository_dispatch' }}
             RUN_STAGING: ${{
-                (github.event_name != 'pull_request' && github.event_name != 'workflow_dispatch') ||
+                (
+                    github.event_name != 'workflow_dispatch' && 
+                    github.event_name != 'repository_dispatch'
+                ) ||
                 (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_github =='true')
                 }}
             RUN_PRODUCTION: ${{
@@ -87,7 +89,7 @@ jobs:
                   CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
 
             - name: build for GitHub
-              if: ${{ env.RUN_STAGING == 'true' || env.RUN_TESTS == 'true' }}
+              if: ${{ env.RUN_STAGING == 'true' }}
               run: bun run build
               env:
                   DEPLOY_TARGET: github
@@ -111,28 +113,36 @@ jobs:
                   name: netlify
                   path: ${{ env.BUILD_DIR_NETLIFY }}
 
+    test:
+        runs-on: ubuntu-24.04
+        needs: build
+        if: ${{ needs.build.outputs.run_production == 'true' }}
+        steps:
+            - name: download Netlify artifact
+              uses: actions/download-artifact@v4
+              with:
+                  name: netlify
+                  path: ${{ env.BUILD_DIR_NETLIFY }}
+
             - name: cache browsers
               id: playwright-cache
               uses: actions/cache@v4
-              if: ${{ env.RUN_TESTS == 'true' }}
               with:
                   path: ~/.cache/ms-playwright
                   key: ${{ runner.os }}-playwright-browsers
 
             - name: install browsers
-              if: ${{ env.RUN_TESTS == 'true' && 
-                  steps.playwright-cache.outputs.cache-hit !='true' }}
+              if: ${{ steps.playwright-cache.outputs.cache-hit != 'true' }}
               run: bunx playwright install chromium --only-shell
 
             - name: test accessibility
-              if: ${{ env.RUN_TESTS == 'true' }}
+              if: ${{ github.ref_name == 'main' }}
               continue-on-error: true
-              run: bun run util:a11y:ci
+              run: bun run util:a11y --minimal --netlify
 
             - name: test lighthouse
-              if: ${{ env.RUN_TESTS == 'true' && false }} # Disabled for now
               continue-on-error: true
-              run: bun run util:lighthouse
+              run: bun run util:lighthouse --netlify
 
     staging:
         name: Deploy to GitHub Pages
@@ -153,7 +163,7 @@ jobs:
     production:
         name: Deploy to Netlify
         runs-on: ubuntu-24.04
-        needs: build
+        needs: [build, test]
         if: ${{ needs.build.outputs.run_production == 'true' }}
         steps:
             - name: setup
