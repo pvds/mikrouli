@@ -19,28 +19,10 @@ export function transformContentfulData(data = {}) {
 	}
 
 	// Parse each content type
-	const pages = [];
-	for (const rawPage of pagesRaw) {
-		pages.push(parseContentEntry(rawPage, allSectionsMap));
-	}
-
-	const services = [];
-	for (const rawService of servicesRaw) {
-		services.push(parseContentEntry(rawService, allSectionsMap));
-	}
-
-	const posts = [];
-	for (const rawPost of postsRaw) {
-		posts.push(parseContentEntry(rawPost, allSectionsMap));
-	}
-
-	const navigation = [];
-	for (const rawNav of navigationRaw) {
-		const navEntry = parseNavigation(rawNav, pages);
-		if (navEntry) {
-			navigation.push(navEntry);
-		}
-	}
+	const pages = pagesRaw.map((rawPage) => parseContentEntry(rawPage, allSectionsMap));
+	const services = servicesRaw.map((rawService) => parseContentEntry(rawService, allSectionsMap));
+	const posts = postsRaw.map((rawPost) => parseContentEntry(rawPost, allSectionsMap));
+	const navigation = navigationRaw.map((rawNav) => parseNavigation(rawNav, pages));
 
 	return { navigation, pages, services, posts };
 }
@@ -52,20 +34,17 @@ export function transformContentfulData(data = {}) {
  * @param {Object} allSectionsMap The map of all section entries by ID
  */
 function collectSections(entries, allSectionsMap) {
-	for (const entry of entries) {
-		// If the entry itself is a 'section'
-		if (entry.sys?.contentType?.sys?.id === "section") {
+	const addSection = (entry) => {
+		if (entry?.sys?.contentType?.sys?.id === "section") {
 			const parsed = parseSection(entry);
 			allSectionsMap[parsed.meta.id] = parsed;
 		}
-		// If the entry references sections
-		if (Array.isArray(entry.fields?.sections)) {
-			for (const secRef of entry.fields.sections) {
-				if (secRef.sys?.contentType?.sys?.id === "section") {
-					const nested = parseSection(secRef);
-					allSectionsMap[nested.meta.id] = nested;
-				}
-			}
+	};
+
+	for (const entry of entries) {
+		addSection(entry);
+		for (const secRef of entry.fields?.sections || []) {
+			addSection(secRef);
 		}
 	}
 }
@@ -102,22 +81,18 @@ function parseContentEntry(rawEntry = {}, allSections = {}) {
 function parseNavigation(rawNav = {}, pages = []) {
 	const meta = parseMeta(rawNav.sys);
 	const { items = [], ...restFields } = rawNav.fields || {};
-
 	const parsedItems = [];
+
 	for (const pageRef of items) {
 		const found = pages.find((p) => p.meta.id === pageRef.sys?.id);
-		if (found) {
-			const { title, header, slug } = found.fields;
-			parsedItems.push({ title, header, slug });
-		}
+		if (!found) continue;
+		const { title, header, slug } = found.fields;
+		parsedItems.push({ title, header, slug });
 	}
 
 	return {
 		meta,
-		fields: {
-			...restFields,
-			items: parsedItems,
-		},
+		fields: { ...restFields, items: parsedItems },
 	};
 }
 
@@ -155,10 +130,8 @@ function parseSection(rawSection = {}) {
 function resolveSections(sectionRefs = [], allSections = {}) {
 	const resolved = [];
 	for (const ref of sectionRefs) {
-		const sectionEntry = allSections[ref.sys?.id];
-		if (sectionEntry?.fields) {
-			resolved.push({ ...sectionEntry.fields });
-		}
+		const { fields } = allSections[ref.sys?.id] || {};
+		if (fields) resolved.push({ ...fields });
 	}
 	return resolved;
 }
