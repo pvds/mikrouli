@@ -1,5 +1,5 @@
 name: Run Tests
-description: Cache browsers, install Playwright, and run tests.
+description: Execute accessibility and lighthouse tests
 runs:
     using: "composite"
     steps:
