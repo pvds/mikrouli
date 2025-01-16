@@ -1,149 +1,143 @@
 /**
- * Transform the raw Contentful data into a more structured shape
+ * Transform the raw Contentful data into a structured shape
  * that matches our type definitions in contentful.d.ts.
  *
  * @return {import('$lib/types/contentful.d.js').ContentfulData}
  */
+
 export function transformContentfulData(data = {}) {
 	// Keeps all found sections keyed by ID
 	const allSectionsMap = {};
 
-	/**
-	 * Collects sections if the entry is or references a "section".
-	 * @param {Array} entries
-	 *   Array of raw Contentful entries (pages, services, etc.).
-	 */
-	function collectSections(entries = []) {
-		for (const entry of entries) {
-			// If this is itself a section
-			if (entry.sys?.contentType?.sys?.id === "section") {
-				const parsed = parseSection(entry);
-				allSectionsMap[parsed.meta.id] = parsed;
-			}
-			// If it references sections
-			if (Array.isArray(entry.fields?.sections)) {
-				for (const secRef of entry.fields.sections) {
-					if (secRef.sys?.contentType?.sys?.id === "section") {
-						const nested = parseSection(secRef);
-						allSectionsMap[nested.meta.id] = nested;
-					}
-				}
-			}
-		}
-	}
+	// 1) Collect all sections from the main content arrays
+	collectSections(data.pages || [], allSectionsMap);
+	collectSections(data.services || [], allSectionsMap);
+	collectSections(data.posts || [], allSectionsMap);
+	collectSections(data.navigation || [], allSectionsMap);
 
-	// Collect sections from each content array
-	collectSections(data.pages || []);
-	collectSections(data.services || []);
-	collectSections(data.posts || []);
-	collectSections(data.navigation || []);
+	// 2) Parse each content type
+	const pages = (data.pages || []).map((rawPage) => parsePage(rawPage, allSectionsMap));
+	const services = (data.services || []).map((rawService) =>
+		parseService(rawService, allSectionsMap),
+	);
+	const posts = (data.posts || []).map((rawPost) => parsePost(rawPost, allSectionsMap));
+	const navigation = (data.navigation || []).map((rawNav) => parseNavigation(rawNav, pages));
 
-	// Parse Pages
-	const pagesById = {};
-	const pages = [];
-	for (const rawPage of data.pages || []) {
-		const parsed = parsePage(rawPage, allSectionsMap);
-		pagesById[parsed.meta.id] = parsed;
-		pages.push(parsed);
-	}
-
-	// Parse Services
-	const servicesById = {};
-	const services = [];
-	for (const rawService of data.services || []) {
-		const parsed = parseService(rawService, allSectionsMap);
-		servicesById[parsed.meta.id] = parsed;
-		services.push(parsed);
-	}
-
-	// Parse Posts
-	const postsById = {};
-	const posts = [];
-	for (const rawPost of data.posts || []) {
-		const parsed = parsePost(rawPost);
-		postsById[parsed.meta.id] = parsed;
-		posts.push(parsed);
-	}
-
-	// Parse Navigation, referencing pagesById
-	const navigation = [];
-	for (const nav of data.navigation || []) {
-		navigation.push(parseNavigation(nav, pagesById));
-	}
-
-	// Return final structure (no top-level `sections` array)
 	return { navigation, pages, services, posts };
 }
 
 /**
- * Parses a single Page entry, resolving its 'sections' references.
- * @return {import('$lib/types/contentful.d.js').PageEntry}
+ * Collects any "section" entries embedded or referenced inside the given entries array.
+ * @param {Array} entries Array of raw Contentful entries (pages, services, etc.)
+ * @param {Object} allSectionsMap The global map of all section entries by ID
+ */
+function collectSections(entries, allSectionsMap) {
+	for (const entry of entries) {
+		// If this entry itself is a 'section'
+		if (entry.sys?.contentType?.sys?.id === "section") {
+			const parsed = parseSection(entry);
+			allSectionsMap[parsed.meta.id] = parsed;
+		}
+
+		// If it references an array of 'sections'
+		if (Array.isArray(entry.fields?.sections)) {
+			for (const secRef of entry.fields.sections) {
+				if (secRef.sys?.contentType?.sys?.id === "section") {
+					const nested = parseSection(secRef);
+					allSectionsMap[nested.meta.id] = nested;
+				}
+			}
+		}
+	}
+}
+
+/**
+ * Parse a Page entry, resolving 'sections'.
+ * @return {import('$lib/types/contentful').PageEntry}
  */
 function parsePage(rawPage = {}, allSections = {}) {
 	const meta = parseMeta(rawPage.sys);
-	const { title, header, slug, intro, sections = [] } = rawPage.fields || {};
+
+	// Destructure known references, spread the rest
+	const {
+		sections = [], // known reference field
+		...restFields // everything else gets auto-included
+	} = rawPage.fields || {};
 
 	return {
 		meta,
 		fields: {
-			title,
-			header,
-			slug,
-			intro,
+			...restFields,
 			sections: resolveSections(sections, allSections),
 		},
 	};
 }
 
 /**
- * Parses a single Service entry, resolving its 'sections' references.
- * @return {import('$lib/types/contentful.d.js').ServiceEntry}
+ * Parse a Service entry, resolving 'sections'.
+ * @return {import('$lib/types/contentful').ServiceEntry}
  */
 function parseService(rawService = {}, allSections = {}) {
 	const meta = parseMeta(rawService.sys);
-	const { title, header, slug, intro, sections = [] } = rawService.fields || {};
+
+	const { sections = [], ...restFields } = rawService.fields || {};
 
 	return {
 		meta,
 		fields: {
-			title,
-			header,
-			slug,
-			intro,
+			...restFields,
 			sections: resolveSections(sections, allSections),
 		},
 	};
 }
 
 /**
- * Parses a single Post entry.
- * @return {import('$lib/types/contentful.d.js').PostEntry}
+ * Parse a Post entry, resolving 'sections'.
+ * @return {import('$lib/types/contentful').PostEntry}
  */
-function parsePost(rawPost = {}) {
+function parsePost(rawPost = {}, allSections = {}) {
 	const meta = parseMeta(rawPost.sys);
-	const { title, header, slug, intro } = rawPost.fields || {};
-	return { meta, fields: { title, header, slug, intro } };
+
+	const { sections = [], ...restFields } = rawPost.fields || {};
+
+	return {
+		meta,
+		fields: {
+			...restFields,
+			sections: resolveSections(sections, allSections),
+		},
+	};
 }
 
 /**
- * Parses a single Navigation entry, referencing known Pages by ID.
- * @return {import('$lib/types/contentful.d.js').NavigationEntry}
+ * Parse Navigation, resolving pages
+ * @return {import('$lib/types/contentful').NavigationEntry}
  */
-function parseNavigation(rawNav = {}, pagesById = {}) {
+function parseNavigation(rawNav = {}, pages = []) {
 	const meta = parseMeta(rawNav.sys);
-	const { title, slug, items = [] } = rawNav.fields || {};
 
-	const pages = items.map((pageRef) => {
-		const pageEntry = pagesById[pageRef.sys?.id];
-		return pageEntry ? pageEntry.fields : { title: "", slug: "", intro: "", sections: [] };
+	const { items = [], ...restFields } = rawNav.fields || {};
+
+	const parsedItems = items.map((pageRef) => {
+		// We have the entire 'pages' array with meta+fields.
+		// Attempt to find the page that matches pageRef.sys.id
+		const found = pages.find((p) => p.meta.id === pageRef.sys?.id);
+		// Return just the fields if found, or a fallback
+		return found ? found.fields : { title: "", slug: "", intro: "", sections: [] };
 	});
 
-	return { meta, fields: { title, slug, items: pages } };
+	return {
+		meta,
+		fields: {
+			...restFields,
+			items: parsedItems,
+		},
+	};
 }
 
 /**
- * Simplifies the Contentful sys object but returns it as 'meta' data.
- * @return {import('$lib/types/contentful.d.js').Metadata} // If your type is still named Sys
+ * Convert Contentful sys object to simpler 'meta'.
+ * @return {import('$lib/types/contentful').Metadata}
  */
 function parseMeta(rawSys = {}) {
 	const { id, type, createdAt, updatedAt, locale } = rawSys;
@@ -151,30 +145,32 @@ function parseMeta(rawSys = {}) {
 }
 
 /**
- * Parses a Section entry (or returns a minimal meta if fields missing).
- * @return {import('$lib/types/contentful.d.js').SectionEntry}
+ * Parse a Section entry if it has fields.
+ * @return {import('$lib/types/contentful').SectionEntry}
  */
 function parseSection(rawSection = {}) {
 	const meta = parseMeta(rawSection.sys);
-	if (!rawSection.fields) return { meta };
+	if (!rawSection.fields) {
+		return { meta };
+	}
 
-	const { title, header, content } = rawSection.fields;
-	return { meta, fields: { title, header, content } };
+	const { ...restFields } = rawSection.fields;
+	return { meta, fields: { ...restFields } };
 }
 
 /**
- * Helper to turn an array of section references into resolved fields.
- * This reduces in-line nesting in parsePage/parseService.
+ * Turn an array of Section references into their resolved fields
  */
 function resolveSections(sectionRefs = [], allSections = {}) {
 	return sectionRefs.map((ref) => {
 		const sectionEntry = allSections[ref.sys?.id];
-		return !sectionEntry?.fields
-			? { title: "", content: "" }
-			: {
-					title: sectionEntry.fields.title,
-					header: sectionEntry.fields.header,
-					content: sectionEntry.fields.content,
-				};
+		if (!sectionEntry?.fields) {
+			return { title: "", content: "" };
+		}
+		return {
+			title: sectionEntry.fields.title,
+			header: sectionEntry.fields.header,
+			content: sectionEntry.fields.content,
+		};
 	});
 }
