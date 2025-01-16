@@ -117,6 +117,9 @@ jobs:
         runs-on: ubuntu-24.04
         needs: main
         if: ${{ needs.main.outputs.run_production == 'true' }}
+        environment:
+            name: netlify
+            url: https://mikrouli.nl
         steps:
             - name: setup
               uses: oven-sh/setup-bun@v2
