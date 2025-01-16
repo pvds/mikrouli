@@ -28,10 +28,10 @@
 		"check:svelte:watch": "bun run check:svelte --watch",
 		"write": "biome check --write",
 		"util:favicons": "bunx realfavicon generate src/lib/images/icon.svg favicons.json .favicons.json static",
-		"util:content": "bun run scripts/fetchContent.js",
-		"util:clean": "bun run scripts/clean.js",
-		"util:lighthouse": "bun run scripts/lighthouse.test.js",
-		"util:a11y": "bun run scripts/axe.test.js",
+		"util:content": "bun run scripts/content/fetch.js",
+		"util:clean": "bun run scripts/util/clean.js",
+		"util:lighthouse": "bun run scripts/test/lighthouse.js",
+		"util:a11y": "bun run scripts/test/axe.js",
 		"util:a11y:ci": "bun run util:a11y --minimal"
 	},
 	"devDependencies": {

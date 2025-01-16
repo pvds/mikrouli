@@ -2,7 +2,7 @@
  * Transform the raw Contentful data into a more structured shape
  * that matches our type definitions in contentful.d.ts.
  *
- * @return {import('../src/lib/types/contentful').ContentfulData}
+ * @return {import('$lib/types/contentful.d.js').ContentfulData}
  */
 export function transformContentfulData(data = {}) {
 	// Keeps all found sections keyed by ID
@@ -77,7 +77,7 @@ export function transformContentfulData(data = {}) {
 
 /**
  * Parses a single Page entry, resolving its 'sections' references.
- * @return {import('../src/lib/types/contentful').PageEntry}
+ * @return {import('$lib/types/contentful.d.js').PageEntry}
  */
 function parsePage(rawPage = {}, allSections = {}) {
 	const meta = parseMeta(rawPage.sys);
@@ -97,7 +97,7 @@ function parsePage(rawPage = {}, allSections = {}) {
 
 /**
  * Parses a single Service entry, resolving its 'sections' references.
- * @return {import('../src/lib/types/contentful').ServiceEntry}
+ * @return {import('$lib/types/contentful.d.js').ServiceEntry}
  */
 function parseService(rawService = {}, allSections = {}) {
 	const meta = parseMeta(rawService.sys);
@@ -117,7 +117,7 @@ function parseService(rawService = {}, allSections = {}) {
 
 /**
  * Parses a single Post entry.
- * @return {import('../src/lib/types/contentful').PostEntry}
+ * @return {import('$lib/types/contentful.d.js').PostEntry}
  */
 function parsePost(rawPost = {}) {
 	const meta = parseMeta(rawPost.sys);
@@ -127,7 +127,7 @@ function parsePost(rawPost = {}) {
 
 /**
  * Parses a single Navigation entry, referencing known Pages by ID.
- * @return {import('../src/lib/types/contentful').NavigationEntry}
+ * @return {import('$lib/types/contentful.d.js').NavigationEntry}
  */
 function parseNavigation(rawNav = {}, pagesById = {}) {
 	const meta = parseMeta(rawNav.sys);
@@ -143,7 +143,7 @@ function parseNavigation(rawNav = {}, pagesById = {}) {
 
 /**
  * Simplifies the Contentful sys object but returns it as 'meta' data.
- * @return {import('../src/lib/types/contentful').Metadata} // If your type is still named Sys
+ * @return {import('$lib/types/contentful.d.js').Metadata} // If your type is still named Sys
  */
 function parseMeta(rawSys = {}) {
 	const { id, type, createdAt, updatedAt, locale } = rawSys;
@@ -152,7 +152,7 @@ function parseMeta(rawSys = {}) {
 
 /**
  * Parses a Section entry (or returns a minimal meta if fields missing).
- * @return {import('../src/lib/types/contentful').SectionEntry}
+ * @return {import('$lib/types/contentful.d.js').SectionEntry}
  */
 function parseSection(rawSection = {}) {
 	const meta = parseMeta(rawSection.sys);

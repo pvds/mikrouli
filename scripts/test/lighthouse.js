@@ -5,7 +5,7 @@ import path from "node:path";
 import { setTimeout } from "node:timers/promises";
 import { chromium } from "playwright";
 import { playAudit } from "playwright-lighthouse";
-import { logDebug, logError, logInfo, logSuccess } from "./log.js";
+import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
 
 // TODO: run on multiple pages concurrently with a limit (see axe.test.js logic)
 // TODO: check for using shared logic between scripts (see axe.test.js logic)
@@ -19,10 +19,11 @@ const THRESHOLDS = {
 	"best-practices": 100,
 	seo: 100,
 };
+const BUILD_DIR = "./build/github";
 const REPORT_DIR = "./.tmp/performance-reports";
 
 const startServer = () => {
-	const buildDir = path.resolve("./build");
+	const buildDir = path.resolve(BUILD_DIR);
 	if (!existsSync(buildDir)) {
 		logInfo("Building project...");
 		execSync("vite build --logLevel error", { stdio: "inherit" });

@@ -4,7 +4,9 @@ import { cpus } from "node:os";
 import path from "node:path";
 import { AxeBuilder } from "@axe-core/playwright";
 import { chromium } from "playwright";
-import { logDebug, logError, logInfo, logSuccess } from "./log.js";
+import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
+
+const BUILD_DIR = "./build/github";
 
 // Parse command-line arguments
 const args = process.argv.slice(2);
@@ -75,7 +77,7 @@ const analyzePage = async (browser, file, dir) => {
 (async () => {
 	const startTotal = performance.now();
 
-	const buildDir = path.resolve("./build");
+	const buildDir = path.resolve(BUILD_DIR);
 	if (!existsSync(buildDir)) {
 		execSync("vite build --logLevel error", { stdio: "inherit" });
 	}

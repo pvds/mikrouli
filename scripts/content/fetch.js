@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createClient } from "contentful";
-import { transformContentfulData } from "./transformContent.js";
+import { transformContentfulData } from "./transform.js";
 
 // 1) Validate environment vars
 if (!process.env.CONTENTFUL_SPACE_ID || !process.env.CONTENTFUL_ACCESS_TOKEN) {
