@@ -114,28 +114,9 @@ jobs:
                   name: netlify
                   path: ${{ env.BUILD_DIR_NETLIFY }}
 
-            - name: cache browsers
-              id: playwright-cache
-              uses: actions/cache@v4
+            - name: Run Tests
               if: ${{ env.RUN_PRODUCTION == 'true' }}
-              with:
-                  path: ~/.cache/ms-playwright
-                  key: ${{ runner.os }}-playwright-browsers
-
-            - name: install browsers
-              if: ${{ env.RUN_PRODUCTION == 'true' && 
-                  steps.playwright-cache.outputs.cache-hit !='true' }}
-              run: bunx playwright install chromium --only-shell
-
-            - name: test accessibility
-              if: ${{ env.RUN_PRODUCTION == 'true' }}
-              continue-on-error: true
-              run: bun run util:a11y --minimal --netlify
-
-            - name: test lighthouse
-              if: ${{ env.RUN_PRODUCTION == 'true' }}
-              continue-on-error: true
-              run: bun run util:lighthouse --netlify
+              uses: ./.github/templates/test
 
     staging:
         name: Deploy to GitHub Pages

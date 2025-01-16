@@ -1,0 +1,23 @@
+name: Run Tests
+description: Cache browsers, install Playwright, and run tests.
+runs:
+    using: "composite"
+    steps:
+        - name: Cache browsers
+          id: playwright-cache
+          uses: actions/cache@v4
+          with:
+              path: ~/.cache/ms-playwright
+              key: ${{ runner.os }}-playwright-browsers
+
+        - name: Install browsers
+          if: ${{ steps.playwright-cache.outputs.cache-hit != 'true' }}
+          run: bunx playwright install chromium --only-shell
+
+        - name: Test accessibility
+          continue-on-error: true
+          run: bun run util:a11y --minimal --netlify
+
+        - name: Test Lighthouse
+          continue-on-error: true
+          run: bun run util:lighthouse --netlify
