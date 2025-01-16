@@ -1,0 +1,24 @@
+name: Setup Environment
+description: Checkout code, set up Bun, and install dependencies.
+
+inputs:
+    bun_version:
+        description: "Version of Bun to use."
+        required: true
+
+runs:
+    using: "composite"
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+          with:
+              fetch-depth: 1
+
+        - name: Setup Bun
+          uses: oven-sh/setup-bun@v2
+          with:
+              bun-version: ${{ inputs.bun_version }}
+
+        - name: Install dependencies
+          run: bun install
+          shell: bash
