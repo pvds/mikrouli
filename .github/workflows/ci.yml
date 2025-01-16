@@ -108,7 +108,7 @@ jobs:
               run: bunx playwright install chromium --only-shell
 
             - name: test accessibility
-              if: ${{ github.event_name != 'repository_dispatch' }}
+              if: ${{ github.ref_name == 'main' }}
               continue-on-error: true
               run: bun run util:a11y:ci
 
@@ -162,7 +162,7 @@ jobs:
                   path: ./build
 
             - name: deploy to Netlify
-              run: bunx netlify deploy --prod --dir ./build
+              run: bunx netlify-cli deploy --prod --dir ./build
               env:
                   NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
                   NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
