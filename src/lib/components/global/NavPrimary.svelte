@@ -20,15 +20,14 @@ const navItemsWithHome = [navItemHome, ...navItemsBase];
 </script>
 <nav class="nav-primary ml-auto"
 	 aria-label="Main navigation">
-		<ul class="md:hidden nav-menu--bottom w-full flex justify-around fixed
-		left-0 bottom-0 bg-primary-900 px-1 py-2"><WaveCss height={10}/>{@render
-			navLinks(navItemsWithHome)}</ul>
-		<ul
-			class="max-md:hidden nav-menu--inline flex relative gap-2 bg-primary-900">{@render
-			navLinks(navItemsBase)}</ul>
+		<div class="md:hidden w-full fixed left-0 bottom-0 bg-primary-900 px-1 py-2">
+			<WaveCss height={10}/> {@render navMenu(navItemsWithHome, "justify-around")}</div>
+		<div class="max-md:hidden relative bg-primary-900">
+			{@render navMenu(navItemsBase, "gap-2")}</div>
 </nav>
 
-{#snippet navLinks(/** @type NavItem[] */ navItems)}
+{#snippet navMenu(/** @type NavItem[] */ navItems, /** @type string */ classes)}
+	<ul class="flex {classes}">
 	{#each navItems as { href, label, title }}
 		<li class="grow">
 			<a {href} {title} aria-current={isCurrentPage(href) ? "page" : undefined}
@@ -37,6 +36,7 @@ const navItemsWithHome = [navItemHome, ...navItemsBase];
 				'text-primary-200 hover:text-primary-50'}">{label}</a>
 		</li>
 	{/each}
+	</ul>
 {/snippet}
 
 <style>

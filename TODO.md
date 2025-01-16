@@ -48,11 +48,12 @@
 ### Fixes
 
 - [ ] Seo component server side rendering (getting hydration warnings now)
-- [ ] a11y issue due to nesting non `li` in `ul` in `NavPrimary` component
+- [x] a11y issue due to nesting non `li` in `ul` in `NavPrimary` component
 
 ### Tests
 
 - [ ] axe and lighthouse tests should reuse logic
+- [ ] log issues when found in lighthouse test
 
 ### Documentation
 
