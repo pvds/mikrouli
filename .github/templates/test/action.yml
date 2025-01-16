@@ -13,11 +13,14 @@ runs:
         - name: Install browsers
           if: ${{ steps.playwright-cache.outputs.cache-hit != 'true' }}
           run: bunx playwright install chromium --only-shell
+          shell: bash
 
         - name: Test accessibility
           continue-on-error: true
           run: bun run util:a11y --minimal --netlify
+          shell: bash
 
         - name: Test Lighthouse
           continue-on-error: true
           run: bun run util:lighthouse --netlify
+          shell: bash

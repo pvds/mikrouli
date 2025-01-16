@@ -116,7 +116,7 @@ jobs:
 
             - name: Run Tests
               if: ${{ env.RUN_PRODUCTION == 'true' }}
-              uses: /.github/templates/test
+              uses: ./.github/templates/test
 
     staging:
         name: Deploy to GitHub Pages
