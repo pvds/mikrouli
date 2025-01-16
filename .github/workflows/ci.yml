@@ -65,7 +65,7 @@ jobs:
             run_staging: ${{ env.RUN_STAGING }}
             run_production: ${{ env.RUN_PRODUCTION }}
         steps:
-            - name: Setup Environment
+            - name: setup
               uses: ./.github/templates/setup
               with:
                   bun_version: "${{ env.BUN_VERSION }}"
@@ -81,32 +81,15 @@ jobs:
                   CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
                   CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
 
-            - name: build for GitHub
-              if: ${{ env.RUN_STAGING == 'true' }}
-              run: bun run build
-              env:
-                  DEPLOY_TARGET: github
-
-            - name: upload Github artifact
-              if: ${{ env.RUN_STAGING == 'true' }}
-              uses: actions/upload-pages-artifact@v3
+            - name: build
+              uses: ./.github/templates/build
               with:
-                  path: ${{ env.BUILD_DIR_GITHUB }}
+                  run_staging: ${{ env.RUN_STAGING == 'true' }}
+                  run_production: ${{ env.RUN_PRODUCTION == 'true' }}
+                  build_dir_github: ${{ env.BUILD_DIR_GITHUB }}
+                  build_dir_netlify: ${{ env.BUILD_DIR_NETLIFY }}
 
-            - name: build for Netlify
-              if: ${{ env.RUN_PRODUCTION == 'true' }}
-              run: bun run build:netlify
-              env:
-                  DEPLOY_TARGET: netlify
-
-            - name: upload Netlify artifact
-              if: ${{ env.RUN_PRODUCTION == 'true' }}
-              uses: actions/upload-artifact@v4
-              with:
-                  name: netlify
-                  path: ${{ env.BUILD_DIR_NETLIFY }}
-
-            - name: Run Tests
+            - name: test
               if: ${{ env.RUN_PRODUCTION == 'true' }}
               uses: ./.github/templates/test
 
@@ -122,7 +105,7 @@ jobs:
             pages: write
             id-token: write
         steps:
-            - name: github pages
+            - name: deploy
               id: deployment
               uses: actions/deploy-pages@v4
 
