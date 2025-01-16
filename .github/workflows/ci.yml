@@ -46,6 +46,21 @@ concurrency:
 jobs:
     build:
         runs-on: ubuntu-24.04
+        env:
+            IS_CONTENT_UPDATE: ${{ github.event_name == 'repository_dispatch' }}
+            IS_PR: ${{ github.event_name == 'pull_request' }}
+            RUN_TESTS: ${{ github.event_name != 'pull_request' && github.event_name != 'repository_dispatch' }}
+            RUN_STAGING: ${{
+                (github.event_name != 'pull_request' && github.event_name != 'workflow_dispatch') ||
+                (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_github =='true')
+                }}
+            RUN_PRODUCTION: ${{
+                (github.event_name != 'pull_request' && github.event_name != 'workflow_dispatch') ||
+                (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_netlify=='true')
+                }}
+        outputs:
+            run_staging: ${{ env.RUN_STAGING }}
+            run_production: ${{ env.RUN_PRODUCTION }}
         steps:
             - name: checkout
               uses: actions/checkout@v4
@@ -61,35 +76,36 @@ jobs:
               run: bun install
 
             - name: check
-              if: ${{ github.event_name != 'repository_dispatch' }}
+              if: ${{ env.IS_CONTENT_UPDATE == 'false' }}
               run: bun run check:ci
 
             - name: content
-              if: ${{ github.event_name != 'pull_request' }}
+              if: ${{ env.IS_PR == 'false' }}
               run: bun run util:content
               env:
                   CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
                   CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
 
             - name: build for GitHub
+              if: ${{ env.RUN_STAGING == 'true' || env.RUN_TESTS == 'true' }}
               run: bun run build
               env:
                   DEPLOY_TARGET: github
 
             - name: upload Github artifact
-              if: ${{ github.event_name != 'pull_request' }}
+              if: ${{ env.RUN_STAGING == 'true' }}
               uses: actions/upload-pages-artifact@v3
               with:
                   path: ${{ env.BUILD_DIR_GITHUB }}
 
             - name: build for Netlify
-              if: ${{ github.event_name != 'pull_request' }} # should become ${{ github.event_name == 'repository_dispatch' }}
+              if: ${{ env.RUN_PRODUCTION == 'true' }}
               run: bun run build:netlify
               env:
                   DEPLOY_TARGET: netlify
 
             - name: upload Netlify artifact
-              if: ${{ github.event_name != 'pull_request' }} # should become ${{ github.event_name == 'repository_dispatch' }}
+              if: ${{ env.RUN_PRODUCTION == 'true' }}
               uses: actions/upload-artifact@v4
               with:
                   name: netlify
@@ -98,32 +114,31 @@ jobs:
             - name: cache browsers
               id: playwright-cache
               uses: actions/cache@v4
-              if: ${{ github.event_name != 'repository_dispatch' }}
+              if: ${{ env.RUN_TESTS == 'true' }}
               with:
                   path: ~/.cache/ms-playwright
                   key: ${{ runner.os }}-playwright-browsers
 
             - name: install browsers
-              if: ${{ github.event_name != 'repository_dispatch' && steps.playwright-cache.outputs.cache-hit != 'true' }}
+              if: ${{ env.RUN_TESTS == 'true' && 
+                  steps.playwright-cache.outputs.cache-hit !='true' }}
               run: bunx playwright install chromium --only-shell
 
             - name: test accessibility
-              if: ${{ github.ref_name == 'main' }}
+              if: ${{ env.RUN_TESTS == 'true' }}
               continue-on-error: true
               run: bun run util:a11y:ci
 
             - name: test lighthouse
-              if: ${{ github.event_name != 'repository_dispatch' && false }} # Disabled for now
+              if: ${{ env.RUN_TESTS == 'true' && false }} # Disabled for now
               continue-on-error: true
               run: bun run util:lighthouse
 
-    deploy-github:
+    staging:
+        name: Deploy to GitHub Pages
         runs-on: ubuntu-24.04
-        if: ${{
-            (github.event_name != 'pull_request' && github.event_name != 'workflow_dispatch') ||
-            (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_github =='true')
-            }}
         needs: build
+        if: ${{ needs.build.outputs.run_staging == 'true' }}
         environment:
             name: github-pages
             url: ${{ steps.deployment.outputs.page_url }}
@@ -135,34 +150,28 @@ jobs:
               id: deployment
               uses: actions/deploy-pages@v4
 
-    deploy-netlify:
+    production:
+        name: Deploy to Netlify
         runs-on: ubuntu-24.04
-        if: ${{
-            (github.event_name != 'pull_request' && github.event_name != 'workflow_dispatch') ||
-            (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_netlify=='true') 
-            }}
-        # should become ${{ github.event_name == 'repository_dispatch' && github.event.inputs.deploy_netlify == 'true' }}
-        # after launch should be:
-        # ${{
-        # (github.event_name == 'repository_dispatch' && github.event.inputs.deploy_netlify == 'true') ||
-        # github.event_name == 'repository_dispatch' ||
-        # github.ref_name == 'main'
-        # }}
         needs: build
+        if: ${{ needs.build.outputs.run_production == 'true' }}
         steps:
             - name: setup
               uses: oven-sh/setup-bun@v2
               with:
                   bun-version: ${{ env.BUN_VERSION }}
 
-            - name: download Netlify artifact
+            - name: download artifact
               uses: actions/download-artifact@v4
               with:
                   name: netlify
                   path: ./build
 
-            - name: deploy to Netlify
-              run: bunx netlify-cli deploy --prod --dir ./build
+            - name: deploy
+              run: >
+                  bunx netlify-cli deploy --prod-if-unlocked --dir ./build
+                  --message "${{ env.DEPLOY_MESSAGE }}"
               env:
                   NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
                   NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+                  DEPLOY_MESSAGE: ${{ github.event_name == 'repository_dispatch' && 'content update' || github.event.head_commit.message }}
