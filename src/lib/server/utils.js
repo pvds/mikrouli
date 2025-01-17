@@ -42,6 +42,37 @@ export const prependBasePath = (content) => {
 export const markdownToHtml = (markdown) => {
 	if (!markdown) return "";
 	marked.use(gfmHeadingId({ prefix: "heading-" }));
-	const html = marked(markdown, { async: false });
-	return prependBasePath(html);
+	const htmlProcessor = processSync(
+		(input) => marked(input, { async: false, breaks: true }),
+		obfuscateEmails,
+		prependBasePath,
+	);
+	return htmlProcessor(markdown);
+};
+
+/**
+ * Encodes an email address into its HTML character entities.
+ * Each character is replaced with its corresponding numeric entity.
+ *
+ * @param {string} email - The email string to encode.
+ * @returns {string} The encoded email address.
+ */
+const encodeEmail = (email) => {
+	let encoded = "";
+	for (let i = 0, len = email.length; i < len; i++) {
+		encoded += `&#${email.charCodeAt(i)};`;
+	}
+	return encoded;
+};
+
+/**
+ * Finds all email addresses in a markdown string using a regex,
+ * then replaces each email with its encoded version.
+ *
+ * @param {string} markdown - The markdown string that may contain email addresses.
+ * @returns {string} The markdown string with all email addresses obfuscated.
+ */
+const obfuscateEmails = (markdown) => {
+	const emailRegex = /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g;
+	return markdown.replace(emailRegex, (match) => encodeEmail(match));
 };
