@@ -15,10 +15,11 @@ export const prependBasePath = (content) => {
  * Convert Markdown to HTML
  *
  * Also prepends base path to relative links
- * @param {string} markdown - The Markdown text to convert.
+ * @param {string|undefined} markdown - The Markdown text to convert.
  * @return {string} - The HTML content.
  */
 export const markdownToHtml = (markdown) => {
+	if (!markdown) return "";
 	marked.use(gfmHeadingId({ prefix: "heading-" }));
 	const html = marked(markdown, { async: false });
 	return prependBasePath(html);
