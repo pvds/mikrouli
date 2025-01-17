@@ -11,7 +11,7 @@ import postItems from "../data/posts.json";
 import seoData from "../data/seo.json";
 /** @type {import("$lib/types/contentful").ServiceEntry[]}*/
 import serviceItems from "../data/services.json";
-import { markdownToHtml } from "./utils.js";
+import { markdownToHtml, splitText } from "./utils.js";
 
 /**
  * Fetch all content data.
@@ -58,18 +58,10 @@ export const getPage = (slug) => {
 
 	if (!page) throw error(404, `Page with slug '${slug}' not found`);
 
-	/** @type {import('$lib/types/contentful').SectionFields[]}*/
-	let sections = page.fields.sections;
-	sections = sections?.map((section) => ({
-		...section,
-		content: markdownToHtml(section.content),
-	}));
-
 	return {
 		...page.fields,
 		intro: markdownToHtml(page.fields.intro),
-		content: markdownToHtml(page.fields.content),
-		sections,
+		sections: splitText(markdownToHtml(page.fields?.content)),
 	};
 };
 
@@ -86,18 +78,10 @@ export const getService = (slug) => {
 
 	if (!service) throw error(404, `Service with slug '${slug}' not found`);
 
-	/** @type {import('$lib/types/contentful').SectionFields[]}*/
-	let sections = service.fields.sections;
-	sections = sections?.map((section) => ({
-		...section,
-		content: markdownToHtml(section.content),
-	}));
-
 	return {
 		...service.fields,
 		intro: markdownToHtml(service.fields.intro),
-		content: markdownToHtml(service.fields.content),
-		sections,
+		sections: splitText(markdownToHtml(service.fields.content)),
 	};
 };
 
@@ -138,18 +122,10 @@ export const getPost = (slug) => {
 
 	if (!post) throw error(404, `Blog post with slug '${slug}' not found`);
 
-	/** @type {import('$lib/types/contentful').SectionFields[]}*/
-	let sections = post.fields.sections;
-	sections = sections?.map((section) => ({
-		...section,
-		content: markdownToHtml(section.content),
-	}));
-
 	return {
 		...post.fields,
 		intro: markdownToHtml(post.fields.intro),
-		content: markdownToHtml(post.fields?.content),
-		sections,
+		sections: splitText(markdownToHtml(post.fields.content)),
 	};
 };
 

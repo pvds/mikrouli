@@ -9,12 +9,9 @@ let { header, intro, sections } = data.local;
 <Hero title={header}>
 	{@html intro}
 </Hero>
- 
+
 {#each sections as section}
 	<Section>
-		{#if section.header}
-			<h2 class="mb-4 text-3xl font-bold">{section.header}</h2>
-		{/if}
-		<div class="prose prose-base">{@html section.content}</div>
+		<div class="prose prose-base">{@html section}</div>
 	</Section>
 {/each}

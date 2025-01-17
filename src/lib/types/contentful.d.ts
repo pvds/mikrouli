@@ -16,7 +16,7 @@ export type BaseFields = {
 	header?: string;
 	intro: string;
 	content?: string;
-	sections: SectionFields[];
+	sections: string[];
 };
 
 // ### Pages
@@ -25,17 +25,6 @@ export type PageFields = BaseFields & {};
 export type PageEntry = {
 	meta: Metadata;
 	fields: PageFields;
-};
-
-// ### Sections
-export type SectionEntry = {
-	meta: Metadata;
-	fields?: SectionFields;
-};
-export type SectionFields = {
-	title: string;
-	header?: string;
-	content: string;
 };
 
 // ### Services
