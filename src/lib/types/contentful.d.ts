@@ -10,9 +10,13 @@ export type Metadata = {
 
 export type PageFields = {
 	title: string;
-	header?: string;
 	slug: string;
+	seoDescription: string;
+	seoKeywords?: string;
+	seoIndex: boolean;
+	header?: string;
 	intro: string;
+	content?: string;
 	sections: SectionFields[];
 };
 
@@ -38,9 +42,13 @@ export type SectionFields = {
 
 export type ServiceFields = {
 	title: string;
-	header?: string;
 	slug: string;
+	seoDescription: string;
+	seoKeywords?: string;
+	seoIndex: boolean;
+	header?: string;
 	intro: string;
+	content?: string;
 	sections: SectionFields[];
 };
 
@@ -53,9 +61,13 @@ export type ServiceEntry = {
 
 export type PostFields = {
 	title: string;
-	header?: string;
 	slug: string;
+	seoDescription: string;
+	seoKeywords?: string;
+	seoIndex: boolean;
+	header?: string;
 	intro: string;
+	content?: string;
 	sections: SectionFields[];
 };
 
