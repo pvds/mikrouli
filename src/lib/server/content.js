@@ -37,6 +37,7 @@ export const getSeo = () => {
  */
 export const getNavigation = (slug) => {
 	const navs = navigationItems;
+	/** @type {import('$lib/types/contentful').NavigationEntry|undefined}*/
 	const nav = navs?.find((n) => n.fields.slug === slug);
 
 	if (!nav) throw error(404, `Navigation with slug '${slug}' not found`);
@@ -52,6 +53,7 @@ export const getNavigation = (slug) => {
  */
 export const getPage = (slug) => {
 	const pages = pageItems;
+	/** @type {import('$lib/types/contentful').ServiceEntry|undefined}*/
 	const page = pages?.find((p) => p.fields.slug === slug);
 
 	if (!page) throw error(404, `Page with slug '${slug}' not found`);
@@ -66,6 +68,7 @@ export const getPage = (slug) => {
 	return {
 		...page.fields,
 		intro: markdownToHtml(page.fields.intro),
+		content: markdownToHtml(page.fields.content),
 		sections,
 	};
 };
@@ -78,6 +81,7 @@ export const getPage = (slug) => {
  */
 export const getService = (slug) => {
 	const services = serviceItems;
+	/** @type {import('$lib/types/contentful').ServiceEntry|undefined}*/
 	const service = services.find((s) => s.fields.slug === slug);
 
 	if (!service) throw error(404, `Service with slug '${slug}' not found`);
@@ -92,6 +96,7 @@ export const getService = (slug) => {
 	return {
 		...service.fields,
 		intro: markdownToHtml(service.fields.intro),
+		content: markdownToHtml(service.fields.content),
 		sections,
 	};
 };
@@ -128,13 +133,23 @@ export const getServiceEntries = () => {
  */
 export const getPost = (slug) => {
 	const posts = postItems;
+	/** @type {import('$lib/types/contentful').PostEntry|undefined}*/
 	const post = posts?.find((p) => p.fields.slug === slug);
 
 	if (!post) throw error(404, `Blog post with slug '${slug}' not found`);
 
+	/** @type {import('$lib/types/contentful').SectionFields[]}*/
+	let sections = post.fields.sections;
+	sections = sections?.map((section) => ({
+		...section,
+		content: markdownToHtml(section.content),
+	}));
+
 	return {
 		...post.fields,
 		intro: markdownToHtml(post.fields.intro),
+		content: markdownToHtml(post.fields?.content),
+		sections,
 	};
 };
 
