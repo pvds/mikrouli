@@ -4,13 +4,15 @@
 			"id": "7tTIOTk3UaWgvlYkn51HF2",
 			"type": "Entry",
 			"createdAt": "2025-01-07T13:23:36.337Z",
-			"updatedAt": "2025-01-07T13:23:36.337Z",
+			"updatedAt": "2025-01-17T01:00:03.735Z",
 			"locale": "en-US"
 		},
 		"fields": {
 			"title": "Family Therapy",
-			"header": "Family Therapy",
 			"slug": "family-therapy",
+			"seoIndex": true,
+			"seoDescription": "I help families uncover and change unhelpful patterns, creating healthier ways of relating and supporting each other.",
+			"header": "Family Therapy",
 			"intro": "Families operate as systems, and sometimes those systems get stuck. I help\nfamilies uncover and change unhelpful patterns, creating healthier ways of\nrelating and supporting each other.",
 			"sections": []
 		}
@@ -20,13 +22,15 @@
 			"id": "37va85fpU9i3eD9r36ZvvP",
 			"type": "Entry",
 			"createdAt": "2025-01-07T13:23:00.820Z",
-			"updatedAt": "2025-01-07T13:23:00.820Z",
+			"updatedAt": "2025-01-17T01:00:03.682Z",
 			"locale": "en-US"
 		},
 		"fields": {
 			"title": "Couples Therapy",
-			"header": "Couples Therapy",
 			"slug": "couples-therapy",
+			"seoIndex": true,
+			"seoDescription": "I work with couples of all backgrounds to improve communication, resolve conflicts, and strengthen their connection.",
+			"header": "Couples Therapy",
 			"intro": "Every relationship has its own dynamics and struggles. I work with couples of\nall backgrounds to improve communication, resolve conflicts, and strengthen\ntheir connection.",
 			"sections": []
 		}
@@ -36,13 +40,15 @@
 			"id": "1jrEYUK6AF7a2NvJ41IthV",
 			"type": "Entry",
 			"createdAt": "2025-01-07T13:22:20.499Z",
-			"updatedAt": "2025-01-07T13:22:20.499Z",
+			"updatedAt": "2025-01-17T01:00:03.006Z",
 			"locale": "en-US"
 		},
 		"fields": {
 			"title": "Individual Therapy",
-			"header": "Individual Therapy",
 			"slug": "individual-therapy",
+			"seoIndex": true,
+			"seoDescription": "For those seeking personal growth and clarity, individual therapy offers a space to explore challenges and patterns that may be holding you back. ",
+			"header": "Individual Therapy",
 			"intro": "For those seeking personal growth and clarity, individual therapy offers a space\nto explore challenges and patterns that may be holding you back. Whether you’re\ndealing with anxiety, cultural transitions, or life stress, we’ll work together\nto find new possibilities.",
 			"sections": []
 		}

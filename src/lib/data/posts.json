@@ -4,12 +4,14 @@
 			"id": "3JNNx7W7oR8vIgTdggece",
 			"type": "Entry",
 			"createdAt": "2024-12-28T06:00:04.415Z",
-			"updatedAt": "2025-01-09T15:13:29.577Z",
+			"updatedAt": "2025-01-17T01:00:03.837Z",
 			"locale": "en-US"
 		},
 		"fields": {
 			"title": "Strengthening Communication in Relationships",
 			"slug": "strengthening-communication-in-relationships",
+			"seoIndex": true,
+			"seoDescription": "Systemic therapy can help you shift how you talk and listen.",
 			"intro": "Miscommunication is one of the most common sources of conflict in relationships. Systemic therapy can help you shift how you talk and listen.\n",
 			"sections": [
 				{
