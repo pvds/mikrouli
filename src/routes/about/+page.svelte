@@ -11,7 +11,7 @@ let { header, intro, sections } = data.local;
 </Hero>
  
 {#each sections as section}
-	<Section classes="p-8">
+	<Section>
 		{#if section.header}
 			<h2 class="mb-4 text-3xl font-bold">{section.header}</h2>
 		{/if}

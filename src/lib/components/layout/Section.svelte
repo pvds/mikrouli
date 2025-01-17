@@ -12,7 +12,7 @@ import WaveSvg from "../visuals/WaveSvg.svelte";
 let { classes, wave, children } = $props();
 </script>
 
-<section class="{classes} relative">
+<section class="{classes ?? 'px-8 py-14'} relative">
 	<div class="max-w-5xl mx-auto">
 		{#if wave}
 			<WaveSvg {...wave}>
