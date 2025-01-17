@@ -18,7 +18,7 @@ import { gfmHeadingId } from "marked-gfm-heading-id";
  * const fooBar = (i, n) => i + n; // Curried function
  * const addOneThenDouble = compose(foo, bar, (i) => fooBar(i, 1));
  */
-const processSync =
+export const processSync =
 	(...functions) =>
 	(input) =>
 		functions.reduce((value, fn) => fn(value), input);
@@ -58,6 +58,7 @@ export const splitText = (text, identifier = "<hr>") => {
  */
 export const markdownToHtml = (markdown) => {
 	if (!markdown) return "";
+
 	marked.use(gfmHeadingId({ prefix: "heading-" }));
 	const htmlProcessor = processSync(
 		(input) => marked(input, { async: false, breaks: true }),

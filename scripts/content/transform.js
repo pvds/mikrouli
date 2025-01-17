@@ -64,6 +64,7 @@ function parseContentEntry(rawEntry = {}, allSections = {}) {
 		meta,
 		fields: {
 			...restFields,
+			contentSections: [], // Placeholder for future content parsing (avoids type errors)
 			sections: resolveSections(sections, allSections),
 		},
 	};

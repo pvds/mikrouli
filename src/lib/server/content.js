@@ -11,7 +11,7 @@ import postItems from "../data/posts.json";
 import seoData from "../data/seo.json";
 /** @type {import("$lib/types/contentful").ServiceEntry[]}*/
 import serviceItems from "../data/services.json";
-import { markdownToHtml } from "./utils.js";
+import { markdownToHtml, splitText } from "./utils.js";
 
 /**
  * Fetch all content data.
@@ -68,7 +68,7 @@ export const getPage = (slug) => {
 	return {
 		...page.fields,
 		intro: markdownToHtml(page.fields.intro),
-		content: markdownToHtml(page.fields.content),
+		contentSections: splitText(markdownToHtml(page.fields?.content)),
 		sections,
 	};
 };
@@ -96,7 +96,7 @@ export const getService = (slug) => {
 	return {
 		...service.fields,
 		intro: markdownToHtml(service.fields.intro),
-		content: markdownToHtml(service.fields.content),
+		contentSections: splitText(markdownToHtml(service.fields.content)),
 		sections,
 	};
 };
@@ -148,7 +148,7 @@ export const getPost = (slug) => {
 	return {
 		...post.fields,
 		intro: markdownToHtml(post.fields.intro),
-		content: markdownToHtml(post.fields?.content),
+		contentSections: splitText(markdownToHtml(post.fields.content)),
 		sections,
 	};
 };

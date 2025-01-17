@@ -16,6 +16,10 @@ export type BaseFields = {
 	header?: string;
 	intro: string;
 	content?: string;
+	contentSections: string[];
+	/**
+	 * @deprecated Use `contentSections` instead.
+	 */
 	sections: SectionFields[];
 };
 
