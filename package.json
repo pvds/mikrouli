@@ -38,9 +38,9 @@
 	"devDependencies": {
 		"@axe-core/playwright": "^4.10.1",
 		"@biomejs/biome": "1.9.4",
-		"@evilmartians/lefthook": "^1.10.5",
+		"@evilmartians/lefthook": "1.10.5",
 		"@sveltejs/adapter-static": "^3.0.8",
-		"@sveltejs/kit": "^2.15.2",
+		"@sveltejs/kit": "^2.16.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
 		"@tailwindcss/typography": "^0.5.16",
 		"@tailwindcss/vite": "^4.0.0-beta.9",
