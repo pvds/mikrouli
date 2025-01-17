@@ -16,7 +16,7 @@ export type BaseFields = {
 	header?: string;
 	intro: string;
 	content?: string;
-	contentSections: string[];
+	sections: string[];
 };
 
 // ### Pages

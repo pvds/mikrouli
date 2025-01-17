@@ -4,7 +4,7 @@
 			"id": "5EA7KMYDmrAL2qk5VLuJdo",
 			"type": "Entry",
 			"createdAt": "2024-12-28T06:00:03.222Z",
-			"updatedAt": "2025-01-17T02:00:02.420Z",
+			"updatedAt": "2025-01-17T14:00:04.185Z",
 			"locale": "en-US"
 		},
 		"fields": {
@@ -12,76 +12,9 @@
 			"slug": "breaking-unhelpful-family-patterns",
 			"seoIndex": true,
 			"seoDescription": "Families are systems, and sometimes those systems get stuck. Learn how systemic therapy can help untangle unhealthy patterns and create space for change.",
-			"intro": "Families are systems, and sometimes those systems get stuck. Learn how systemic therapy can help untangle unhealthy patterns and create space for change.\n\n## Understanding Family Systems\nFamilies are made up of interconnected relationships, and sometimes those relationships develop patterns that stop working. These might show up as recurring arguments, strained communication, or feelings of disconnection.\n\n## How Systemic Therapy Helps\nSystemic therapy works to identify these patterns and help family members understand their roles within them. The goal isn’t to place blame but to explore how small changes can lead to significant improvements in the family dynamic.",
-			"contentSections": []
-		}
-	},
-	{
-		"meta": {
-			"id": "3kryEmO4yykbYKbByiWU8i",
-			"type": "Entry",
-			"createdAt": "2024-12-28T06:00:04.205Z",
-			"updatedAt": "2025-01-17T02:00:02.394Z",
-			"locale": "en-US"
-		},
-		"fields": {
-			"title": "Cultural Sensitivity in Therapy",
-			"slug": "cultural-sensitivity-in-therapy",
-			"seoIndex": true,
-			"seoDescription": "Your cultural background matters. Therapy that acknowledges this can help you feel understood and supported in meaningful ways.",
-			"intro": "Your cultural background matters. Therapy that acknowledges this can help you feel understood and supported in meaningful ways.\n\n## Honoring Your Cultural Context\nOur cultural backgrounds influence how we see the world, express emotions, and relate to others. Therapy that recognizes this creates a safe and inclusive space for exploration.\n\n## Building Bridges\nIn systemic therapy, we work together to navigate cultural differences and build a deeper understanding of yourself and your relationships. Your experiences and identity are integral to the process.\n",
-			"contentSections": []
-		}
-	},
-	{
-		"meta": {
-			"id": "1FcZOjCAszzKaiJxOAvKxA",
-			"type": "Entry",
-			"createdAt": "2024-12-28T06:00:03.284Z",
-			"updatedAt": "2025-01-17T02:00:02.383Z",
-			"locale": "en-US"
-		},
-		"fields": {
-			"title": "Understanding the Systems That Shape Us",
-			"slug": "understanding-the-systems-that-shape-us",
-			"seoIndex": true,
-			"seoDescription": "From families to workplaces, the systems we live in affect us deeply. Explore how systemic therapy helps you navigate these dynamics.",
-			"intro": "From families to workplaces, the systems we live in affect us deeply. Explore how systemic therapy helps you navigate these dynamics.\n\n## What Are Systems?\nSystems are the groups we belong to, from families to workplaces. These systems shape our behaviors, beliefs, and interactions, often in ways we don’t realize.\n\n## Making the Invisible Visible\nSystemic therapy helps you see these dynamics and identify where patterns might be holding you back. By addressing the system as a whole, we can find ways to create movement and change.",
-			"contentSections": []
-		}
-	},
-	{
-		"meta": {
-			"id": "4K3cTBNASwMkrwkSSWm68w",
-			"type": "Entry",
-			"createdAt": "2024-12-28T06:00:04.384Z",
-			"updatedAt": "2025-01-17T02:00:02.310Z",
-			"locale": "en-US"
-		},
-		"fields": {
-			"title": "Why Therapy Isn’t About Fixing You",
-			"slug": "why-therapy-isnt-about-fixing-you",
-			"seoIndex": true,
-			"seoDescription": "Many people think therapy is about diagnosing problems. Systemic therapy offers a different perspective—it’s about working with the systems around you.",
-			"intro": "Many people think therapy is about diagnosing problems. Systemic therapy offers a different perspective—it’s about working with the systems around you.",
-			"contentSections": []
-		}
-	},
-	{
-		"meta": {
-			"id": "4YPPEYrLxfl646mWntSl1O",
-			"type": "Entry",
-			"createdAt": "2024-12-28T06:00:04.003Z",
-			"updatedAt": "2025-01-17T02:00:02.297Z",
-			"locale": "en-US"
-		},
-		"fields": {
-			"title": "Adapting to Life Abroad",
-			"slug": "adapting-to-life-abroad",
-			"seoIndex": true,
-			"seoDescription": "The expat experience is full of transitions and challenges. Here are some systemic tools to help you find stability and connection in a new culture.",
-			"intro": "The expat experience is full of transitions and challenges. Here are some systemic tools to help you find stability and connection in a new culture.\n\n## The Unique Challenges of Expat Life\nFrom language barriers to cultural differences, living abroad comes with its own set of struggles. These challenges often impact not just individuals but their families and relationships.\n\n## Finding Support and Connection\nSystemic therapy helps you understand how these challenges influence your life and relationships. Together, we explore strategies to create stability and a sense of belonging, no matter where you are.\n",
-			"contentSections": []
+			"intro": "Families are systems, and sometimes those systems get stuck. Learn how systemic therapy can help untangle unhealthy patterns and create space for change.",
+			"content": "## Understanding Family Systems\nFamilies are made up of interconnected relationships, and sometimes those relationships develop patterns that stop working. These might show up as recurring arguments, strained communication, or feelings of disconnection.\n\n---\n\n## How Systemic Therapy Helps\nSystemic therapy works to identify these patterns and help family members understand their roles within them. The goal isn’t to place blame but to explore how small changes can lead to significant improvements in the family dynamic.",
+			"sections": []
 		}
 	},
 	{
@@ -89,7 +22,7 @@
 			"id": "3JNNx7W7oR8vIgTdggece",
 			"type": "Entry",
 			"createdAt": "2024-12-28T06:00:04.415Z",
-			"updatedAt": "2025-01-17T01:00:03.837Z",
+			"updatedAt": "2025-01-17T14:00:04.101Z",
 			"locale": "en-US"
 		},
 		"fields": {
@@ -98,7 +31,80 @@
 			"seoIndex": true,
 			"seoDescription": "Systemic therapy can help you shift how you talk and listen.",
 			"intro": "Miscommunication is one of the most common sources of conflict in relationships. Systemic therapy can help you shift how you talk and listen.\n",
-			"contentSections": []
+			"content": "## Why Communication Matters\nAt its core, communication is how we connect. But when communication breaks down, misunderstandings and conflict arise, creating distance in relationships.\n\n---\n\n## Tools for Effective Communication\nSystemic therapy provides practical tools to help you listen more openly, express yourself clearly, and rebuild trust. Small shifts in how you communicate can lead to profound changes in your relationships.\n",
+			"sections": []
+		}
+	},
+	{
+		"meta": {
+			"id": "4K3cTBNASwMkrwkSSWm68w",
+			"type": "Entry",
+			"createdAt": "2024-12-28T06:00:04.384Z",
+			"updatedAt": "2025-01-17T14:00:03.880Z",
+			"locale": "en-US"
+		},
+		"fields": {
+			"title": "Why Therapy Isn’t About Fixing You",
+			"slug": "why-therapy-isnt-about-fixing-you",
+			"seoIndex": true,
+			"seoDescription": "Many people think therapy is about diagnosing problems. Systemic therapy offers a different perspective—it’s about working with the systems around you.",
+			"intro": "Many people think therapy is about diagnosing problems. Systemic therapy offers a different perspective—it’s about working with the systems around you.",
+			"content": "## Moving Beyond Labels\nSystemic therapy takes a different approach by stepping away from the idea of diagnosing individuals. Instead, it focuses on the systems we live in—families, workplaces, and communities.\n\n---\n\n## Exploring Possibilities\nRather than seeing yourself as flawed, systemic therapy helps you explore how the patterns in your life shape your experiences. It’s a process of curiosity and discovery, rather than one of fault-finding.",
+			"sections": []
+		}
+	},
+	{
+		"meta": {
+			"id": "3kryEmO4yykbYKbByiWU8i",
+			"type": "Entry",
+			"createdAt": "2024-12-28T06:00:04.205Z",
+			"updatedAt": "2025-01-17T14:00:03.647Z",
+			"locale": "en-US"
+		},
+		"fields": {
+			"title": "Cultural Sensitivity in Therapy",
+			"slug": "cultural-sensitivity-in-therapy",
+			"seoIndex": true,
+			"seoDescription": "Your cultural background matters. Therapy that acknowledges this can help you feel understood and supported in meaningful ways.",
+			"intro": "Your cultural background matters. Therapy that acknowledges this can help you feel understood and supported in meaningful ways.\n",
+			"content": "## Honoring Your Cultural Context\nOur cultural backgrounds influence how we see the world, express emotions, and relate to others. Therapy that recognizes this creates a safe and inclusive space for exploration.\n\n---\n\n## Building Bridges\nIn systemic therapy, we work together to navigate cultural differences and build a deeper understanding of yourself and your relationships. Your experiences and identity are integral to the process.",
+			"sections": []
+		}
+	},
+	{
+		"meta": {
+			"id": "1FcZOjCAszzKaiJxOAvKxA",
+			"type": "Entry",
+			"createdAt": "2024-12-28T06:00:03.284Z",
+			"updatedAt": "2025-01-17T14:00:03.605Z",
+			"locale": "en-US"
+		},
+		"fields": {
+			"title": "Understanding the Systems That Shape Us",
+			"slug": "understanding-the-systems-that-shape-us",
+			"seoIndex": true,
+			"seoDescription": "From families to workplaces, the systems we live in affect us deeply. Explore how systemic therapy helps you navigate these dynamics.",
+			"intro": "From families to workplaces, the systems we live in affect us deeply. Explore how systemic therapy helps you navigate these dynamics.",
+			"content": "## What Are Systems?\nSystems are the groups we belong to, from families to workplaces. These systems shape our behaviors, beliefs, and interactions, often in ways we don’t realize.\n\n---\n\n## Making the Invisible Visible\nSystemic therapy helps you see these dynamics and identify where patterns might be holding you back. By addressing the system as a whole, we can find ways to create movement and change.",
+			"sections": []
+		}
+	},
+	{
+		"meta": {
+			"id": "4YPPEYrLxfl646mWntSl1O",
+			"type": "Entry",
+			"createdAt": "2024-12-28T06:00:04.003Z",
+			"updatedAt": "2025-01-17T14:00:03.533Z",
+			"locale": "en-US"
+		},
+		"fields": {
+			"title": "Adapting to Life Abroad",
+			"slug": "adapting-to-life-abroad",
+			"seoIndex": true,
+			"seoDescription": "The expat experience is full of transitions and challenges. Here are some systemic tools to help you find stability and connection in a new culture.",
+			"intro": "The expat experience is full of transitions and challenges. Here are some systemic tools to help you find stability and connection in a new culture.\n",
+			"content": "## The Unique Challenges of Expat Life\nFrom language barriers to cultural differences, living abroad comes with its own set of struggles. These challenges often impact not just individuals but their families and relationships.\n\n---\n\n## Finding Support and Connection\nSystemic therapy helps you understand how these challenges influence your life and relationships. Together, we explore strategies to create stability and a sense of belonging, no matter where you are.## The Unique Challenges of Expat Life\nFrom language barriers to cultural differences, living abroad comes with its own set of struggles. These challenges often impact not just individuals but their families and relationships.",
+			"sections": []
 		}
 	}
 ]

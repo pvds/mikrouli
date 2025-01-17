@@ -34,7 +34,7 @@ function parseContentEntry(rawEntry = {}) {
 		meta,
 		fields: {
 			...restFields,
-			contentSections: [], // Placeholder for future content parsing (avoids type errors)
+			sections: [], // Placeholder for future content parsing (avoids type errors)
 		},
 	};
 }

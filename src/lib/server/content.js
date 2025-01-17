@@ -61,7 +61,7 @@ export const getPage = (slug) => {
 	return {
 		...page.fields,
 		intro: markdownToHtml(page.fields.intro),
-		contentSections: splitText(markdownToHtml(page.fields?.content)),
+		sections: splitText(markdownToHtml(page.fields?.content)),
 	};
 };
 
@@ -81,7 +81,7 @@ export const getService = (slug) => {
 	return {
 		...service.fields,
 		intro: markdownToHtml(service.fields.intro),
-		contentSections: splitText(markdownToHtml(service.fields.content)),
+		sections: splitText(markdownToHtml(service.fields.content)),
 	};
 };
 
@@ -125,7 +125,7 @@ export const getPost = (slug) => {
 	return {
 		...post.fields,
 		intro: markdownToHtml(post.fields.intro),
-		contentSections: splitText(markdownToHtml(post.fields.content)),
+		sections: splitText(markdownToHtml(post.fields.content)),
 	};
 };
 
