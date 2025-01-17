@@ -8,9 +8,9 @@ export const load = async ({ parent }) => {
 
 	const seo = {
 		...parentData?.seo,
-		description: "Mikrouli is a platform for systemic change",
-		keywords:
-			"systemic therapy, systemic change, systemic coaching, individual therapy, family therapy, organizational therapy, online therapy",
+		description: page.seoDescription,
+		keywords: page.seoKeywords,
+		index: page.seoIndex,
 	};
 
 	return { local: page, seo };

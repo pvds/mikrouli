@@ -6,9 +6,19 @@ export const entries = async () => {
 };
 
 /** @type {import('./$types').PageServerLoad} */
-export const load = async ({ params }) => {
+export const load = async ({ params, parent }) => {
 	const { slug } = params;
 	const service = getService(slug);
 
-	return { local: service };
+	const parentData = await parent();
+
+	const seo = {
+		...parentData?.seo,
+		title: service.title,
+		description: service.seoDescription,
+		keywords: service.seoKeywords,
+		index: service.seoIndex,
+	};
+
+	return { local: service, seo };
 };
