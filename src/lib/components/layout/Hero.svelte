@@ -11,7 +11,7 @@ import Section from "./Section.svelte";
 let { title, children } = $props();
 </script>
 
-<div class="hero relative mb-20">
+<div class="hero relative mb-24">
 	<div
 		class="absolute w-full min-w-5xl top-[calc(100%-72px)] left-0 overflow-hidden pointer-events-none">
 		<svg class="w-[inherit] h-40"
