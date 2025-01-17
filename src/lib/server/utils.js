@@ -33,6 +33,23 @@ export const prependBasePath = (content) => {
 };
 
 /**
+ * Split text into sections based on an identifier.
+ * Ensures no empty sections in the result.
+ * @param {string} text - The text to split.
+ * @param {string} [identifier='<hr>'] - The identifier to split the Markdown by.
+ * @return {string[]} - An array of sections split by the identifier.
+ */
+export const splitText = (text, identifier = "<hr>") => {
+	if (!text) return [];
+	const regex = new RegExp(`^${identifier}$`, "m");
+
+	return text
+		.split(regex)
+		.map((section) => section.trim())
+		.filter((section) => section.length > 0);
+};
+
+/**
  * Convert Markdown to HTML
  *
  * Also prepends base path to relative links
