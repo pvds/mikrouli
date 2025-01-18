@@ -8,7 +8,7 @@ const INPUT_DIR = "./images";
 const OUTPUT_DIR = "./static/images/generated";
 const SIZES = [1920, 1280, 640]; // Responsive sizes
 
-const cpuCount = os.cpus().length;
+const cpuCount = Math.floor(os.cpus().length / 2);
 
 // Euclidean algorithm for greatest common divisor
 const gcd = (a, b) => {
