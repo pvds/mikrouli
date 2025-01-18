@@ -79,11 +79,11 @@ const processImages = async (inputDir, outputDir, format, quality, concurrency =
 	await Promise.all(tasks);
 };
 
-const startPerf = performance.now();
+const startTime = performance.now();
 processImages(INPUT_DIR, OUTPUT_DIR, "webp", 80)
 	.then(() => {
-		const endPerf = performance.now();
+		const timing = Math.round(performance.now() - startTime) / 1000;
 		console.log("Finished processing images");
-		console.log(`Processing took ${Math.round(endPerf - startPerf) / 1000} seconds`);
+		console.log(`Processing took ${timing} seconds`);
 	})
 	.catch((err) => console.error(err));
