@@ -1,10 +1,14 @@
 const sharp = require("sharp");
 const fs = require("node:fs");
 const path = require("node:path");
+const pLimit = require("p-limit").default;
+const os = require("node:os");
 
 const INPUT_DIR = "./images";
 const OUTPUT_DIR = "./static/images/generated";
 const SIZES = [1920, 1280, 640]; // Responsive sizes
+
+const cpuCount = os.cpus().length;
 
 // Euclidean algorithm for greatest common divisor
 const gcd = (a, b) => {
@@ -18,43 +22,64 @@ if (!fs.existsSync(OUTPUT_DIR)) {
 	fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 }
 
-const processImages = async (inputDir, outputDir, format, quality) => {
+/**
+ * Process images with concurrency control using p-limit.
+ * @param {string} inputDir - Input directory path.
+ * @param {string} outputDir - Output directory path.
+ * @param {keyof import("sharp").FormatEnum} format - Desired output image format.
+ * @param {number} quality - Quality level for the format.
+ * @param {number} concurrency - Maximum number of files to process concurrently.
+ */
+const processImages = async (inputDir, outputDir, format, quality, concurrency = cpuCount) => {
+	const limit = pLimit(concurrency);
 	const dir = path.resolve(inputDir);
-	// Ensure we get an array of file names.
-	const files = fs.readdirSync(dir).filter((file) => /\.(jpg|jpeg|png|webp)$/i.test(file));
 
-	for (const file of files) {
-		const inputPath = path.join(dir, file);
-		try {
-			// Create the initial image instance
-			const image = sharp(inputPath);
+	// Get an array of image file names that match the pattern.
+	const files = fs.readdirSync(dir).filter((file) => /\.(jpg|jpeg|png)$/i.test(file));
 
-			// Extract metadata for the aspect ratio
-			const metadata = await image.metadata();
-			const divisor = gcd(metadata.width, metadata.height);
-			const aspectRatio = `${metadata.width / divisor}:${metadata.height / divisor}`;
+	// Map each file to a limited promise.
+	const tasks = files.map((file) =>
+		limit(async () => {
+			const inputPath = path.join(dir, file);
+			try {
+				// Create the Sharp instance for the file.
+				const image = sharp(inputPath);
 
-			// Process all sizes concurrently using Promise.all and clone the image for each size.
-			await Promise.all(
-				SIZES.map(async (size) => {
-					const outputFileName = `${path.parse(file).name}-${size}-${aspectRatio}.${format}`;
-					const outputPath = path.join(outputDir, outputFileName);
-					await image
-						.clone()
-						.resize({
-							width: size,
-							fit: sharp.fit.inside,
-							withoutEnlargement: true, // Avoid enlarging images
-						})
-						.toFormat(format, { quality })
-						.toFile(outputPath);
-					console.log(`Generated: ${outputFileName}`);
-				}),
-			);
-		} catch (err) {
-			console.error(`Error processing file ${file}:`, err.message);
-		}
-	}
+				// Get metadata and calculate the simplest integer aspect ratio.
+				const metadata = await image.metadata();
+				const divisor = gcd(metadata.width, metadata.height);
+				const aspectRatio = `${metadata.width / divisor}:${metadata.height / divisor}`;
+
+				// Process all sizes concurrently using Promise.all.
+				await Promise.all(
+					SIZES.map(async (size) => {
+						const outputFileName = `${path.parse(file).name}-${size}-${aspectRatio}.${format}`;
+						const outputPath = path.join(outputDir, outputFileName);
+
+						await image
+							.clone()
+							.resize({
+								width: size,
+								fit: sharp.fit.inside,
+								withoutEnlargement: true, // Avoid enlarging images
+							})
+							.toFormat(format, { quality })
+							.toFile(outputPath);
+
+						console.log(`Generated: ${outputFileName}`);
+					}),
+				);
+			} catch (err) {
+				console.error(`Error processing file ${file}:`, err.message);
+			}
+		}),
+	);
+
+	// Wait until all file tasks have completed.
+	await Promise.all(tasks);
 };
 
-processImages(INPUT_DIR, OUTPUT_DIR, "webp", 80);
+// Process medium images (WebP format) with a concurrency level of 3.
+processImages(INPUT_DIR, OUTPUT_DIR, "webp", 80)
+	.then(() => console.log("Finished processing medium images"))
+	.catch((err) => console.error(err));
