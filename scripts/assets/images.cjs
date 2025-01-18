@@ -6,6 +6,15 @@ const INPUT_DIR = "./images";
 const OUTPUT_DIR = "./static/images/generated";
 const SIZES = [1920, 1280, 640]; // Responsive sizes
 
+// Euclidean algorithm for greatest common divisor
+const gcd = (a, b) => {
+	while (y) {
+		// biome-ignore lint/style/noParameterAssign: more clear than using local variables
+		[a, b] = [y, x % y];
+	}
+	return x;
+};
+
 // Ensure output directory exists
 if (!fs.existsSync(OUTPUT_DIR)) {
 	fs.mkdirSync(OUTPUT_DIR, { recursive: true });
@@ -24,7 +33,8 @@ const processImages = async (inputDir, outputDir, format, quality) => {
 
 			// Extract metadata for the aspect ratio
 			const metadata = await image.metadata();
-			const aspectRatio = `${metadata.width}:${metadata.height}`;
+			const divisor = gcd(metadata.width, metadata.height);
+			const aspectRatio = `${metadata.width / divisor}:${metadata.height / divisor}`;
 
 			// Process all sizes concurrently using Promise.all and clone the image for each size.
 			await Promise.all(
