@@ -2,10 +2,7 @@ const sharp = require("sharp");
 const fs = require("node:fs");
 const path = require("node:path");
 
-const INPUT_DIRS = {
-	large: "./images/large", // minimum 1920px x 1080px
-	medium: "./images/medium", // minimum 640px x 360px
-};
+const INPUT_DIR = "./images";
 const OUTPUT_DIR = "./static/images/generated";
 const SIZES = [1920, 1280, 640]; // Responsive sizes
 
@@ -17,7 +14,7 @@ if (!fs.existsSync(OUTPUT_DIR)) {
 const processImages = async (inputDir, outputDir, format, quality) => {
 	const dir = path.resolve(inputDir);
 	// Ensure we get an array of file names.
-	const files = fs.readdirSync(dir).filter((file) => /\.(jpg|jpeg|png)$/i.test(file));
+	const files = fs.readdirSync(dir).filter((file) => /\.(jpg|jpeg|png|webp)$/i.test(file));
 
 	for (const file of files) {
 		const inputPath = path.join(dir, file);
@@ -52,8 +49,4 @@ const processImages = async (inputDir, outputDir, format, quality) => {
 	}
 };
 
-// Process large images (AVIF format)
-processImages(INPUT_DIRS.large, OUTPUT_DIR, "avif", 80);
-
-// Process medium images (WebP format)
-processImages(INPUT_DIRS.medium, OUTPUT_DIR, "webp", 80);
+processImages(INPUT_DIR, OUTPUT_DIR, "webp", 80);
