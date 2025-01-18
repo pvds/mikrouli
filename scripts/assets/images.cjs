@@ -5,7 +5,7 @@ const pLimit = require("p-limit").default;
 const os = require("node:os");
 
 const INPUT_DIR = "./images";
-const OUTPUT_DIR = "./static/images/generated";
+const OUTPUT_DIR = "./static/images/processed";
 const SIZES = [1920, 1280, 640]; // Responsive sizes
 
 const cpuCount = Math.floor(os.cpus().length / 2);
@@ -17,10 +17,11 @@ const gcd = (a, b) => {
 	return a;
 };
 
-// Ensure output directory exists
-if (!fs.existsSync(OUTPUT_DIR)) {
-	fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+// Remove the output directory if it exists and then re-create it.
+if (fs.existsSync(OUTPUT_DIR)) {
+	fs.rmSync(OUTPUT_DIR, { recursive: true, force: true });
 }
+fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
 /**
  * Process images with concurrency control using p-limit.
@@ -32,15 +33,14 @@ if (!fs.existsSync(OUTPUT_DIR)) {
  */
 const processImages = async (inputDir, outputDir, format, quality, concurrency = cpuCount) => {
 	const limit = pLimit(concurrency);
-	const dir = path.resolve(inputDir);
 
 	// Get an array of image file names that match the pattern.
-	const files = fs.readdirSync(dir).filter((file) => /\.(jpg|jpeg|png)$/i.test(file));
+	const files = fs.readdirSync(INPUT_DIR).filter((file) => /\.(jpg|jpeg|png)$/i.test(file));
 
 	// Map each file to a limited promise.
 	const tasks = files.map((file) =>
 		limit(async () => {
-			const inputPath = path.join(dir, file);
+			const inputPath = path.join(INPUT_DIR, file);
 			try {
 				// Create the Sharp instance for the file.
 				const image = sharp(inputPath);
@@ -50,7 +50,7 @@ const processImages = async (inputDir, outputDir, format, quality, concurrency =
 				const divisor = gcd(metadata.width, metadata.height);
 				const aspectRatio = `${metadata.width / divisor}:${metadata.height / divisor}`;
 
-				// Process all sizes concurrently using Promise.all.
+				// Process all sizes concurrently
 				await Promise.all(
 					SIZES.map(async (size) => {
 						const outputFileName = `${path.parse(file).name}-${size}-${aspectRatio}.${format}`;
