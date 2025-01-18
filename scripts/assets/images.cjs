@@ -8,11 +8,9 @@ const SIZES = [1920, 1280, 640]; // Responsive sizes
 
 // Euclidean algorithm for greatest common divisor
 const gcd = (a, b) => {
-	while (y) {
-		// biome-ignore lint/style/noParameterAssign: more clear than using local variables
-		[a, b] = [y, x % y];
-	}
-	return x;
+	// biome-ignore lint/style/noParameterAssign: more clear than using local variables
+	while (b) [a, b] = [b, a % b];
+	return a;
 };
 
 // Ensure output directory exists
