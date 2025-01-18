@@ -79,7 +79,11 @@ const processImages = async (inputDir, outputDir, format, quality, concurrency =
 	await Promise.all(tasks);
 };
 
-// Process medium images (WebP format) with a concurrency level of 3.
+const startPerf = performance.now();
 processImages(INPUT_DIR, OUTPUT_DIR, "webp", 80)
-	.then(() => console.log("Finished processing medium images"))
+	.then(() => {
+		const endPerf = performance.now();
+		console.log("Finished processing images");
+		console.log(`Processing took ${Math.round(endPerf - startPerf) / 1000} seconds`);
+	})
 	.catch((err) => console.error(err));
