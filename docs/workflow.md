@@ -38,7 +38,7 @@ The staging deployment to GitHub Pages is triggered by:
 
 ### Production Deployment
 
-The production deploymet to Netlify is triggered by:
+The production deployment to Netlify is triggered by:
 
 - Contentful `repository_dispatch` events
 - Manual dispatch with `deploy_netlify` set to `true`
