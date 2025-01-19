@@ -25,27 +25,32 @@ const getImageName = (image) => image.split(".")[0];
 
 {#each posts as post, i}
 	<Section
-		classes={`px-8 py-14 ${i % 2 === 1 ? "my-14 bg-secondary-100 text-secondary-800" : ""}`}
+		classes={`px-8 ${i % 2 === 1 ? "py-10 my-14 bg-secondary-100 text-secondary-800" :
+		"py-14"}`}
 		{...(i % 2 === 1 ? { wave } : {})}
 	>
-		<div class="flex items-center">
-			{#if post.heroImage}
-			<div class="mr-4">
+		{@render teaser(post)}
+	</Section>
+{/each}
+
+{#snippet teaser(/** @type {import("$lib/types/contentful").PostFields } */ post)}
+	<a href={`${base}/${slug}/${post.slug}`}  class="group flex flex-wrap items-center gap-4">
+		{#if post.heroImage}
+			<div class="flex-none">
 				<Image
 					image={getImageName(post.heroImage.file.fileName)}
 					alt={post.heroImage.description}
 					sizes="20rem"
-					classes="rounded-md"
+					classes="rounded-md not-group-hover:grayscale"
 					isCMS={true}
 				/>
 			</div>
-			{/if}
-			<div>
-				<h2 class="mb-4 text-3xl font-bold">{post.title}</h2>
-				<div class="prose prose-base">{@html post.intro}</div>
-				<a href={`${base}/${slug}/${post.slug}`}
-				   class="inline-block mt-4 text-primary-700 hover:underline">Read more →</a>
-			</div>
+		{/if}
+		<div>
+			<h2 class="mb-4 text-3xl font-bold">{post.title}</h2>
+			<div class="prose prose-base">{@html post.intro}</div>
+			<span
+				class="inline-block mt-4 text-primary-700 hover:underline">Read more →</span>
 		</div>
-	</Section>
-{/each}
+	</a>
+{/snippet}
