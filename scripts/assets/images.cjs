@@ -46,14 +46,15 @@ const processImages = async (inputDir, outputDir, format, quality, concurrency =
 				const image = sharp(inputPath);
 
 				// Get metadata and calculate the simplest integer aspect ratio.
-				const metadata = await image.metadata();
-				const divisor = gcd(metadata.width, metadata.height);
-				const aspectRatio = `${metadata.width / divisor}:${metadata.height / divisor}`;
+				// TODO: decide whether to use aspect ratio in file names
+				// const metadata = await image.metadata();
+				// const divisor = gcd(metadata.width, metadata.height);
+				// const aspectRatio = `${metadata.width / divisor}:${metadata.height / divisor}`;
 
 				// Process all sizes concurrently
 				await Promise.all(
 					SIZES.map(async (size) => {
-						const outputFileName = `${path.parse(file).name}-${size}-${aspectRatio}.${format}`;
+						const outputFileName = `${path.parse(file).name}-${size}.${format}`;
 						const outputPath = path.join(outputDir, outputFileName);
 
 						await image
