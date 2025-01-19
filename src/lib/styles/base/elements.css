@@ -13,3 +13,7 @@ body {
 	overscroll-behavior-y: none;
 	background-color: var(--color-primary-200);
 }
+
+iframe {
+	border-radius: var(--radius-md);
+}
