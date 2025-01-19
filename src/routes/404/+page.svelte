@@ -1,14 +1,23 @@
 <script>
 import Hero from "$lib/components/layout/Hero.svelte";
 import Section from "$lib/components/layout/Section.svelte";
+import Image from "$lib/components/util/image/Image.svelte";
 
 let { data } = $props();
 let { header, intro, sections } = data.local;
 </script>
 
-<Hero title={header}>
-	{@html intro}
+<Hero title={header} proseClasses="">
+	<div class="flex flex-col md:flex-row items-center">
+		<div class="flex-1 prose prose-lg font-semibold">
+			{@html intro}
+		</div>
+		<div class="flex-none w-xs flex items-center">
+			<Image image="chair" alt="Armchair" sizes="20rem"/>
+		</div>
+	</div>
 </Hero>
+
 
 {#each sections as section}
 	<Section>

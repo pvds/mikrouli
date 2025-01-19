@@ -1,6 +1,26 @@
 [
 	{
 		"meta": {
+			"id": "73rcZJ4hT1YtU28TI15VZp",
+			"type": "Entry",
+			"createdAt": "2025-01-08T02:59:42.227Z",
+			"updatedAt": "2025-01-19T09:12:37.822Z",
+			"locale": "en-US"
+		},
+		"fields": {
+			"title": "404",
+			"slug": "404",
+			"seoIndex": false,
+			"seoDescription": "Oops! The page you’re looking for couldn’t be found. Check your link or navigate back to discover our helpful content.",
+			"seoKeywords": "404, error, missing, not-found, navigation",
+			"header": "404 - Page not found",
+			"intro": "Just like in life, we sometimes encounter detours that redirect us to new paths. Let’s make this moment an opportunity to move forward.\n\nYou can:\n- [Return to the homepage](/)\n- [Learn more about me and my approach](/about)\n- [Contact me for support](/contact)\n\n> Take a deep breath, and let’s keep navigating this journey together.",
+			"content": "### Still Stuck?\n\nIf you’re finding yourself here often, don’t hesitate to reach out. I’d love to help you find what you’re looking for—or perhaps we can use this as the first step toward something new.\n\nHere’s how to get in touch:\n\n- **Email**: [eleni@mikrouli.nl](mailto:eleni@mikrouli.nl)\n- **Phone**: 00 31 6 19 44 62 63\n- **Languages**: Greek, Dutch, English\n\nOr, [schedule a session directly](/contact). \n\n> Together, we can start creating clarity and positive change.",
+			"sections": []
+		}
+	},
+	{
+		"meta": {
 			"id": "3rFQxFehQrVUuxDH8StNup",
 			"type": "Entry",
 			"createdAt": "2024-12-27T23:40:02.880Z",
@@ -36,26 +56,6 @@
 			"header": "Get to Know Me",
 			"intro": "I’m Eleni Papamikrouli, a systemic therapist working with individuals, couples, and families. Originally from Greece, I’ve lived in the Netherlands for over 15 years, giving me a unique perspective on the experiences of internationals and expats. That said, I work with people from all walks of life, offering a safe and supportive space for anyone seeking change.",
 			"content": "## My approach \nI'm practical and collaborative. I combine curiosity with empathy to help clients explore their challenges and find ways forward. You don’t need to be perfect or have all the answers—therapy is about working together to create clarity and change.\n\n---\n\n## Why Systemic Therapy?\nSystemic therapy focuses on the patterns and systems we live in, rather than labeling or diagnosing individuals. It’s not about finding fault but about exploring how dynamics work and where we can make meaningful shifts. My role is to guide you in uncovering possibilities and building solutions that fit your life.",
-			"sections": []
-		}
-	},
-	{
-		"meta": {
-			"id": "73rcZJ4hT1YtU28TI15VZp",
-			"type": "Entry",
-			"createdAt": "2025-01-08T02:59:42.227Z",
-			"updatedAt": "2025-01-17T14:00:04.144Z",
-			"locale": "en-US"
-		},
-		"fields": {
-			"title": "404",
-			"slug": "404",
-			"seoIndex": false,
-			"seoDescription": "Oops! The page you’re looking for couldn’t be found. Check your link or navigate back to discover our helpful content.",
-			"seoKeywords": "404, error, missing, not-found, navigation",
-			"header": "404 - Page not found",
-			"intro": "It seems the page you’re looking for doesn’t exist—or perhaps it’s just taking a little break.",
-			"content": "## Lost? Let's Find Our Way Together\n\nJust like in life, we sometimes encounter detours that redirect us to new paths. Let’s make this moment an opportunity to move forward.\n\nYou can:\n- [Return to the homepage](/)\n- [Learn more about me and my approach](/about)\n- [Contact me for support](/contact)\n\n> Take a deep breath, and let’s keep navigating this journey together.\n\n---\n\n### Still Stuck?\n\nIf you’re finding yourself here often, don’t hesitate to reach out. I’d love to help you find what you’re looking for—or perhaps we can use this as the first step toward something new.\n\nHere’s how to get in touch:\n\n- **Email**: [eleni@mikrouli.nl](mailto:eleni@mikrouli.nl)\n- **Phone**: 00 31 6 19 44 62 63\n- **Languages**: Greek, Dutch, English\n\nOr, [schedule a session directly](/contact). \n\n> Together, we can start creating clarity and positive change.",
 			"sections": []
 		}
 	},
