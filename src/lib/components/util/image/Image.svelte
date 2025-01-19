@@ -2,18 +2,17 @@
 import { base } from "$app/paths";
 import { onDestroy, onMount } from "svelte";
 
-/** @typedef {{ image: string, alt: string, sizes: string, directory: string }} ImageProps */
-let {
-	image,
-	alt,
-	sizes = "(max-width: 768px) 100vw, 50vw",
-	directory = "/images/processed/static",
-} = $props();
+/** @type {{ image: string, alt: string, sizes: string, isCMS?: boolean, classes?: string }}
+ * ImageProps */
+let { image, alt, sizes = "(max-width: 768px) 100vw, 50vw", isCMS = false, classes } = $props();
 
 /** @type {HTMLImageElement} */
 let imgRef;
 /** @type {IntersectionObserver} */
 let observer;
+
+const IMAGE_DIR = "/images/processed";
+const directory = $derived(isCMS ? `${IMAGE_DIR}/cms` : `${IMAGE_DIR}/static`);
 
 /**
  * @param {number[]} sizes
@@ -44,6 +43,7 @@ onDestroy(() => observer?.unobserve(imgRef));
 <picture>
 	<source srcset={srcset([640, 1280, 1920])} sizes={sizes} type="image/webp" />
 	<img
+		class={classes}
 		bind:this={imgRef}
 		src={`${base}${directory}/${image}-1920.webp`}
 		alt={alt}

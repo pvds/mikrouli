@@ -19,6 +19,26 @@ export type BaseFields = {
 	sections: string[];
 };
 
+// ### ImageField
+
+// TODO: remove unnecessary properties
+export type ImageField = {
+	title: string;
+	description: string;
+	file: {
+		url: string;
+		details: {
+			size: number;
+			image: {
+				width: number;
+				height: number;
+			};
+		};
+		fileName: string;
+		contentType: string;
+	};
+};
+
 // ### Pages
 export type PageFields = BaseFields & {};
 
@@ -35,7 +55,9 @@ export type ServiceEntry = {
 };
 
 // ### Posts
-export type PostFields = BaseFields & {};
+export type PostFields = BaseFields & {
+	heroImage?: ImageField;
+};
 export type PostEntry = {
 	meta: Metadata;
 	fields: PostFields;
