@@ -34,7 +34,7 @@ export const processImages = async (
 	const limit = pLimit(concurrency);
 
 	// Get an array of image file names that match the pattern.
-	const files = fs.readdirSync(inDir).filter((file) => /\.(jpg|jpeg|png)$/i.test(file));
+	const files = fs.readdirSync(inDir).filter((file) => /\.(jpg|jpeg|png|webp)$/i.test(file));
 
 	// Remove the output directory if it exists and then re-create it.
 	if (fs.existsSync(outDir)) {
