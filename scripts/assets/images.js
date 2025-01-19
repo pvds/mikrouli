@@ -6,6 +6,30 @@ import sharp from "sharp";
 import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
 
 const SIZES = [1920, 1280, 640]; // Responsive sizes
+const IMAGE_EXTENSIONS = [
+	"avif",
+	"dz",
+	"fits",
+	"gif",
+	"heif",
+	"input",
+	"jpeg",
+	"jpg",
+	"jp2",
+	"jxl",
+	"magick",
+	"openslide",
+	"pdf",
+	"png",
+	"ppm",
+	"raw",
+	"svg",
+	"tiff",
+	"tif",
+	"v",
+	"webp",
+];
+const fileRegex = new RegExp(`\\.(${IMAGE_EXTENSIONS.join("|")})$`, "i");
 
 const cpuCount = Math.floor(os.cpus().length / 2);
 const args = process.argv.slice(2);
@@ -34,7 +58,7 @@ export const processImages = async (
 	const limit = pLimit(concurrency);
 
 	// Get an array of image file names that match the pattern.
-	const files = fs.readdirSync(inDir).filter((file) => /\.(jpg|jpeg|png|webp)$/i.test(file));
+	const files = fs.readdirSync(inDir).filter((file) => fileRegex.test(file));
 
 	// Remove the output directory if it exists and then re-create it.
 	if (fs.existsSync(outDir)) {
