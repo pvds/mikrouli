@@ -31,10 +31,11 @@
 		"write": "biome check --write",
 		"util:favicons": "bunx realfavicon generate src/lib/images/icon.svg favicons.json .favicons.json static",
 		"util:content": "bun run scripts/content/fetch.js",
+		"util:assets": "bun run scripts/assets/fetch.js",
 		"util:clean": "bun run scripts/util/clean.js",
 		"util:lighthouse": "bun run scripts/test/lighthouse.js",
 		"util:a11y": "bun run scripts/test/axe.js",
-		"util:images": "bun run scripts/assets/images.cjs"
+		"util:images": "bun run scripts/assets/images.js"
 	},
 	"devDependencies": {
 		"@axe-core/playwright": "^4.10.1",

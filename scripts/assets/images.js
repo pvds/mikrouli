@@ -1,11 +1,9 @@
-const sharp = require("sharp");
-const fs = require("node:fs");
-const path = require("node:path");
-const pLimit = require("p-limit").default;
-const os = require("node:os");
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import pLimit from "p-limit";
+import sharp from "sharp";
 
-const INPUT_DIR = "./images";
-const OUTPUT_DIR = "./static/images/processed";
 const SIZES = [1920, 1280, 640]; // Responsive sizes
 
 const cpuCount = Math.floor(os.cpus().length / 2);
@@ -16,12 +14,6 @@ const gcd = (a, b) => {
 	while (b) [a, b] = [b, a % b];
 	return a;
 };
-
-// Remove the output directory if it exists and then re-create it.
-if (fs.existsSync(OUTPUT_DIR)) {
-	fs.rmSync(OUTPUT_DIR, { recursive: true, force: true });
-}
-fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
 /**
  * Process images with concurrency control using p-limit.
@@ -35,12 +27,24 @@ const processImages = async (inputDir, outputDir, format, quality, concurrency =
 	const limit = pLimit(concurrency);
 
 	// Get an array of image file names that match the pattern.
-	const files = fs.readdirSync(INPUT_DIR).filter((file) => /\.(jpg|jpeg|png)$/i.test(file));
+	const files = fs.readdirSync(inputDir).flatMap(
+		(folder) =>
+			fs
+				.readdirSync(path.join(inputDir, folder)) // Read contents of each folder
+				.filter((file) => /\.(jpg|jpeg|png)$/i.test(file)) // Filter image files
+				.map((file) => path.join(folder, file)), // Correct path construction
+	);
+
+	// Remove the output directory if it exists and then re-create it.
+	if (fs.existsSync(outputDir)) {
+		fs.rmSync(outputDir, { recursive: true, force: true });
+	}
+	fs.mkdirSync(outputDir, { recursive: true });
 
 	// Map each file to a limited promise.
 	const tasks = files.map((file) =>
 		limit(async () => {
-			const inputPath = path.join(INPUT_DIR, file);
+			const inputPath = path.join(inputDir, file);
 			try {
 				// Create the Sharp instance for the file.
 				const image = sharp(inputPath);
@@ -81,7 +85,7 @@ const processImages = async (inputDir, outputDir, format, quality, concurrency =
 };
 
 const startTime = performance.now();
-processImages(INPUT_DIR, OUTPUT_DIR, "webp", 80)
+processImages("./images", "./static/images/processed", "webp", 80)
 	.then(() => {
 		const timing = Math.round(performance.now() - startTime) / 1000;
 		console.log("Finished processing images");
