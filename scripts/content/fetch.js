@@ -32,10 +32,12 @@ const client = createClient({ space, accessToken });
  */
 async function fetchContentfulData() {
 	// We'll generate these file paths and check if all exist in dev mode.
-	const allPaths = contentTypes.map(({ id }) => path.resolve(`./src/lib/data/${id}.json`));
+	const contentPaths = contentTypes.map(({ id }) => path.resolve(`./src/lib/data/${id}.json`));
+	const rawPath = path.resolve("./src/lib/data/content.json");
+	const alPaths = [...contentPaths, rawPath];
 
 	// If *all* files exist in dev, skip the fetch
-	if (isDev && allPaths.every(fs.existsSync)) {
+	if (isDev && alPaths.every(fs.existsSync)) {
 		console.info("Development mode. All cached files exist, skipping fetch.");
 		return;
 	}
@@ -55,8 +57,12 @@ async function fetchContentfulData() {
 			rawData[id] = results[i].items;
 		}
 
+		// Write raw data to a file
+		// Only for debugging purposes in dev mode
+		// if (isDev) writeJsonFile("./src/lib/data/content.json", rawData, 4);
+
 		// Run your custom transform on the combined data
-		const transformed = transformContentfulData(rawData);
+		const processedData = transformContentfulData(rawData);
 
 		// Pretty-print in dev, minify in production
 		const spacing = isDev ? 4 : 0;
@@ -64,8 +70,11 @@ async function fetchContentfulData() {
 		// Write each transformed content type to its own file
 		for (const { id } of contentTypes) {
 			const outputPath = path.resolve(`./src/lib/data/${id}.json`);
-			writeJsonFile(outputPath, transformed[id], spacing);
+			writeJsonFile(outputPath, processedData[id], spacing);
 		}
+		// TODO: download & process images instead of writing them to a file
+		if (isDev)
+			writeJsonFile(path.resolve("./src/lib/data/images.json"), processedData.images, 4);
 
 		// Wrap up
 		console.info(

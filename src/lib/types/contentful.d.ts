@@ -59,4 +59,5 @@ export type ContentfulData = {
 	pages: PageEntry[];
 	services: ServiceEntry[];
 	posts: PostEntry[];
+	images: string[];
 };

@@ -16,27 +16,58 @@ export function transformContentfulData(data = {}) {
 	const services = servicesRaw.map((rawService) => parseContentEntry(rawService));
 	const posts = postsRaw.map((rawPost) => parseContentEntry(rawPost));
 	const navigation = navigationRaw.map((rawNav) => parseNavigation(rawNav, pages));
+	const images = parseImages(data);
 
-	return { navigation, pages, services, posts };
+	return { navigation, pages, services, posts, images };
 }
+
+/**
+ * Parse images from Contentful data.
+ *
+ * TODO: consider optimizing by using processed data instead of raw data.
+ * @param data
+ * @return {string[]}
+ */
+export const parseImages = (data) => {
+	const urls = Object.values(data)
+		// Flatten all collections (each collection is an array of items)
+		.flat()
+		// Extract each item's fields (using destructuring)
+		.flatMap(({ fields }) => Object.values(fields))
+		// Filter for image fields (which always have a nested fields property)
+		// where file.contentType starts with "image/"
+		.filter((field) => field.fields?.file?.contentType?.startsWith("image/"))
+		// Map to the image URL from the unwrapped asset
+		.map((image) => image.fields.file.url);
+
+	// Remove duplicates by converting to a Set and back to an array.
+	return [...new Set(urls)];
+};
 
 /**
  * Generic parser for content entries (used for Pages, Services, and Posts)
  * that resolve their 'sections'.
  *
  * @param {Object} rawEntry The raw Contentful entry
+ * @param {boolean} isTopLevel
  * @return {import('$lib/types/contentful').PageEntry}
  */
-function parseContentEntry(rawEntry = {}) {
-	const meta = parseMeta(rawEntry.sys);
+export function parseContentEntry(rawEntry = {}, isTopLevel = true) {
+	const meta = isTopLevel && rawEntry.sys ? parseMeta(rawEntry.sys) : undefined;
 	const { sections = [], ...restFields } = rawEntry.fields || {};
-	return {
-		meta,
-		fields: {
-			...restFields,
-			sections: [], // Placeholder for future content parsing (avoids type errors)
-		},
-	};
+
+	for (const key of Object.keys(restFields)) {
+		// Process only objects that have a 'fields' property
+		if (restFields[key] && typeof restFields[key] === "object" && "fields" in restFields[key]) {
+			// Recursively parse nested content entry as non-top-level (no meta and no sections)
+			restFields[key] = parseContentEntry(restFields[key], false).fields;
+		}
+	}
+
+	// Only include meta and sections when at top-level
+	return isTopLevel
+		? { meta, fields: { ...restFields, sections: [] } }
+		: { fields: { ...restFields } };
 }
 
 /**
