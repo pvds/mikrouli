@@ -106,7 +106,7 @@ jobs:
                   build_dir_netlify: ${{ env.BUILD_DIR_NETLIFY }}
 
             - name: test
-              if: ${{ env.RUN_PRODUCTION == 'true' }}
+              if: ${{ env.RUN_PRODUCTION == 'true' && env.IS_CONTENT_UPDATE == 'false' }}
               uses: ./.github/actions/test
 
     staging:
