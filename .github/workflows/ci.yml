@@ -92,7 +92,7 @@ jobs:
 
             - name: content
               if: ${{ env.IS_PR == 'false' }}
-              run: bun run util:content
+              run: bun run content:cms --prod
               env:
                   CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
                   CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}

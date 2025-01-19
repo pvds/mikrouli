@@ -1,11 +1,14 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createClient } from "contentful";
+import { downloadContentfulAssets } from "../assets/fetch.js";
+import { processImages } from "../assets/images.js";
+import { logError, logInfo, logSuccess, logWarn } from "../util/log.js";
 import { transformContentfulData } from "./transform.js";
 
 // 1) Validate environment vars
 if (!process.env.CONTENTFUL_SPACE_ID || !process.env.CONTENTFUL_ACCESS_TOKEN) {
-	console.error(
+	logError(
 		"Missing Contentful environment vars (CONTENTFUL_SPACE_ID or CONTENTFUL_ACCESS_TOKEN).",
 	);
 	process.exit(1);
@@ -13,7 +16,9 @@ if (!process.env.CONTENTFUL_SPACE_ID || !process.env.CONTENTFUL_ACCESS_TOKEN) {
 
 const space = process.env.CONTENTFUL_SPACE_ID;
 const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
-const isDev = process.env.PUBLIC_ENVIRONMENT === "development";
+const args = process.argv.slice(2);
+const isProd = args.includes("--prod");
+const isForce = args.includes("--force");
 
 // 2) Array of content types, each with an ID + the matching Contentful query
 const contentTypes = [
@@ -31,19 +36,13 @@ const client = createClient({ space, accessToken });
  * to its own JSON file. In dev, JSON is pretty-printed; in production, minified.
  */
 async function fetchContentfulData() {
-	// We'll generate these file paths and check if all exist in dev mode.
-	const contentPaths = contentTypes.map(({ id }) => path.resolve(`./src/lib/data/${id}.json`));
-	const rawPath = path.resolve("./src/lib/data/content.json");
-	const alPaths = [...contentPaths, rawPath];
-
-	// If *all* files exist in dev, skip the fetch
-	if (isDev && alPaths.every(fs.existsSync)) {
-		console.info("Development mode. All cached files exist, skipping fetch.");
+	if (!isProd && !isForce) {
+		logWarn("Development mode. All cached files exist, skipping fetch.");
 		return;
 	}
 
 	try {
-		console.info("Fetching data from Contentful...");
+		logInfo("Fetching data from CMS...");
 
 		// Fetch each content type in parallel
 		const requests = contentTypes.map(({ query }) =>
@@ -59,29 +58,30 @@ async function fetchContentfulData() {
 
 		// Write raw data to a file
 		// Only for debugging purposes in dev mode
-		// if (isDev) writeJsonFile("./src/lib/data/content.json", rawData, 4);
+		// if (!isProd) writeJsonFile("./src/lib/data/content.json", rawData, 4);
+		// if (!isProd) writeJsonFile(path.resolve("./src/lib/data/images.json"), processedData.images, 4);
 
 		// Run your custom transform on the combined data
 		const processedData = transformContentfulData(rawData);
 
 		// Pretty-print in dev, minify in production
-		const spacing = isDev ? 4 : 0;
+		const spacing = !isProd ? 4 : 0;
 
 		// Write each transformed content type to its own file
 		for (const { id } of contentTypes) {
 			const outputPath = path.resolve(`./src/lib/data/${id}.json`);
 			writeJsonFile(outputPath, processedData[id], spacing);
 		}
-		// TODO: download & process images instead of writing them to a file
-		if (isDev)
-			writeJsonFile(path.resolve("./src/lib/data/images.json"), processedData.images, 4);
 
-		// Wrap up
-		console.info(
-			`Success! Data saved for content types: ${contentTypes.map(({ id }) => id).join(", ")}`,
-		);
+		if (isProd || isForce) {
+			await downloadContentfulAssets(processedData.images).then(() => {
+				processImages("./images/cms", "./static/images/processed/cms");
+			});
+		}
+
+		logSuccess("Saved data from CMS!");
 	} catch (err) {
-		console.error("Error fetching Contentful data:", err);
+		logError("Error fetching CMS data:", err);
 		process.exit(1);
 	}
 }

@@ -46,7 +46,9 @@ function log(textColor = "white", backgroundColor = null, ...messages) {
  * Logs a debug message with white text
  * @param messages
  */
-const logDebug = (...messages) => log("white", "null", ...messages);
+const logDebug = (...messages) => {
+	if (process.env.DEBUG === "true") log("white", "null", ...messages);
+};
 
 /**
  * Logs an informational message with cyan text.

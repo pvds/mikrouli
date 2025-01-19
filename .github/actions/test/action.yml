@@ -17,10 +17,10 @@ runs:
 
         - name: Test accessibility
           continue-on-error: true
-          run: bun run util:a11y --minimal --netlify
+          run: bun run test:a11y --minimal --prod
           shell: bash
 
         - name: Test Lighthouse
           continue-on-error: true
-          run: bun run util:lighthouse --netlify
+          run: bun run test:lighthouse --prod
           shell: bash

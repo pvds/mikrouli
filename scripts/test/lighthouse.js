@@ -12,7 +12,7 @@ import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
 
 // Parse command-line arguments
 const args = process.argv.slice(2);
-const isNetlify = args.includes("--netlify");
+const isNetlify = args.includes("--prod");
 const BUILD_DIR = isNetlify ? "./build/netlify" : "./build/github";
 const SUBFOLDER = isNetlify ? "" : "/mikrouli";
 const BUILD_COMMAND = isNetlify ? "build:netlify" : "build";

@@ -29,13 +29,13 @@
 		"check:svelte:ci": "bun run check:svelte --output machine",
 		"check:svelte:watch": "bun run check:svelte --watch",
 		"write": "biome check --write",
+		"test:lighthouse": "bun run scripts/test/lighthouse.js",
+		"test:a11y": "bun run scripts/test/axe.js",
+		"content": "bun run content:cms --force && bun run content:images",
+		"content:cms": "bun run scripts/content/fetch.js",
+		"content:images": "bun run scripts/assets/images.js --static",
 		"util:favicons": "bunx realfavicon generate src/lib/images/icon.svg favicons.json .favicons.json static",
-		"util:content": "bun run scripts/content/fetch.js",
-		"util:assets": "bun run scripts/assets/fetch.js",
-		"util:clean": "bun run scripts/util/clean.js",
-		"util:lighthouse": "bun run scripts/test/lighthouse.js",
-		"util:a11y": "bun run scripts/test/axe.js",
-		"util:images": "bun run scripts/assets/images.js"
+		"util:clean": "bun run scripts/util/clean.js"
 	},
 	"devDependencies": {
 		"@axe-core/playwright": "^4.10.1",

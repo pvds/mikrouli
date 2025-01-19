@@ -6,10 +6,10 @@
 
 #### CMS
 
-- [ ] add seo fields to page/service/post pages (update types and transform.js)
-- [ ] change transform.js to automatically include new fields
-- [ ] decide on a way to handle images (contentful/local files/Some CDN)
-- [ ] decide on using a `content` field (use `---` to divide in sections) or 
+- [x] add seo fields to page/service/post pages (update types and transform.js)
+- [x] change transform.js to automatically include new fields
+- [x] decide on a way to handle images (contentful/local files/Some CDN)
+- [x] decide on using a `content` field (use `---` to divide in sections) or 
   `sections` content type
 
 #### Global
@@ -49,7 +49,7 @@
 
 - [ ] Seo component server side rendering (getting hydration warnings now)
 - [x] a11y issue due to nesting non `li` in `ul` in `NavPrimary` component
-- [ ] for some reason local lighthouse seo test is 100% on github build while 
+- [x] for some reason local lighthouse seo test is 100% on github build while 
   robots.txt has disallow and meta tag with noindex nofollow is set. Would 
   expect a failure like when running on the netlify build.
 
@@ -70,8 +70,8 @@
 
 - [ ] optimize for speed
 - [ ] cleanup by splitting steps into templates
-- [ ] add a test job
-- [ ] optimize flow
+- [ ] add a test job (once vitest or playwright tests are added)
+- [x] optimize flow
 	- for different scenarios
     - for when site is launched
 

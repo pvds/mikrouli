@@ -130,7 +130,7 @@ PUBLIC_ENVIRONMENT=development
 - **Fetch Content:**
 
     ```bash
-    bun run util:content
+    bun run content:cms
     ```
 
 - **Clean and Reset:**

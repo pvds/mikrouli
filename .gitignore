@@ -21,10 +21,14 @@ Thumbs.db
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
-## IDE
+# IDE
 .idea
 
 # Site
 .favicons.json
 .svelte-kit
+
+# Generated
 /build
+/static/images/processed/cms
+/images/cms

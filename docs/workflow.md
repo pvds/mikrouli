@@ -93,11 +93,11 @@ The pipeline includes accessibility and Lighthouse performance tests for
 production deployments:
 
 - **Accessibility Tests**:
-    - Run using `bun run util:a11y --minimal --netlify`.
+    - Run using `bun run test:a11y --minimal --prod`.
     - Tests are non-blocking (continue-on-error) and help identify accessibility
       issues.
 - **Lighthouse Tests**:
-    - Run using `bun run util:lighthouse --netlify`.
+    - Run using `bun run test:lighthouse --prod`.
     - Lighthouse evaluates key performance metrics.
 
 Currently, test results are not stored as artifacts or exposed in the pipeline.

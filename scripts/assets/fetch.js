@@ -1,16 +1,20 @@
 import fs from "node:fs";
 import https from "node:https";
 import path from "node:path";
-/** @type {string[]} */
-import images from "../../src/lib/data/images.json";
+import { logDebug, logError, logInfo, logSuccess, logWarn } from "../util/log.js";
 
 /**
  * Download assets from Contentful.
  */
-async function downloadContentfulAssets() {
-	const OUTPUT_DIR = "./images/contentful";
+export async function downloadContentfulAssets(images = []) {
+	if (!images.length) {
+		logWarn("No images to download.");
+		return;
+	}
+
+	const OUTPUT_DIR = path.resolve(process.cwd(), "images/cms");
 	try {
-		console.info("Fetching assets from Contentful...");
+		logInfo("Fetching images from CMS...");
 
 		// Ensure download directory exists
 		if (fs.existsSync(OUTPUT_DIR)) {
@@ -25,12 +29,12 @@ async function downloadContentfulAssets() {
 			const outputPath = path.join(OUTPUT_DIR, fileName);
 
 			await downloadImage(url, outputPath);
-			console.log(`Downloaded: ${fileName}`);
+			logDebug(`Downloaded: ${fileName}`);
 		}
 
-		console.info("All assets downloaded successfully!");
+		logSuccess(`Saved ${images?.length} images from CMS!`);
 	} catch (err) {
-		console.error("Error downloading assets:", err);
+		logError("Error downloading assets:", err);
 	}
 }
 
@@ -51,5 +55,3 @@ function downloadImage(url, outputPath) {
 			.on("error", (err) => reject(err));
 	});
 }
-
-downloadContentfulAssets();
