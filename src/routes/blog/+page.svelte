@@ -29,11 +29,14 @@ const getImageName = (image) => image.split(".")[0];
 		"py-14"}`}
 		{...(i % 2 === 1 ? { wave } : {})}
 	>
-		{@render teaser(post)}
+		{@render teaser(post, i)}
 	</Section>
 {/each}
 
-{#snippet teaser(/** @type {import("$lib/types/contentful").PostFields } */ post)}
+{#snippet teaser(
+	/** @type {import("$lib/types/contentful").PostFields } */ post,
+	/** @type {number} */ i
+)}
 	<a href={`${base}/${slug}/${post.slug}`}  class="group flex flex-wrap items-center gap-4">
 		{#if post.heroImage}
 			<div class="flex-none">
@@ -43,6 +46,7 @@ const getImageName = (image) => image.split(".")[0];
 					${post.heroImage.file.details.image.height}`}
 					alt={post.heroImage.description}
 					sizes="20rem"
+					eager={(i <= 1)}
 					classes="rounded-md not-group-hover:grayscale"
 					isCMS={true}
 				/>

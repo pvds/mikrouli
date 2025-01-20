@@ -1,9 +1,10 @@
 <script>
 import { base } from "$app/paths";
 import { IMAGE_SIZES } from "$const";
-import { onDestroy, onMount } from "svelte";
 
-/** @type {{ image: string, alt: string, sizes: string, aspectRatio?: string, isCMS?: boolean,
+/** @type {{ image: string, alt: string, sizes: string, aspectRatio?: string, eager?:
+ * boolean, isCMS?:
+ * boolean,
  * classes?:
  * string }}
  * ImageProps */
@@ -12,14 +13,11 @@ let {
 	alt,
 	sizes = "(max-width: 768px) 100vw, 50vw",
 	aspectRatio,
+	eager,
 	isCMS = false,
 	classes,
 } = $props();
 
-/** @type {HTMLImageElement} */
-let imgRef;
-/** @type {IntersectionObserver} */
-let observer;
 let loaded = $state(true);
 
 const IMAGE_DIR = "/images/processed";
@@ -31,22 +29,6 @@ const directory = $derived(isCMS ? `${IMAGE_DIR}/cms` : `${IMAGE_DIR}/static`);
  */
 const srcset = (sizes) =>
 	sizes.map((size) => `${base}${directory}/${image}-${size}.webp ${size}w`).join(", ");
-
-onMount(() => {
-	if (!(imgRef.getBoundingClientRect().top < window.innerHeight)) {
-		observer = new IntersectionObserver(
-			(entry) => {
-				if (entry[0].isIntersecting) {
-					imgRef.src = `${base}${directory}/${image}-1920.webp`;
-					observer.unobserve(imgRef);
-				}
-			},
-			{ rootMargin: "300px" },
-		);
-		observer.observe(imgRef);
-	}
-});
-onDestroy(() => observer?.unobserve(imgRef));
 </script>
 
 {#if loaded}
@@ -55,10 +37,10 @@ onDestroy(() => observer?.unobserve(imgRef));
 	<img
 		style={aspectRatio && `aspect-ratio: ${aspectRatio};`}
 		class={classes}
-		bind:this={imgRef}
 		src={`${base}${directory}/${image}-1920.webp`}
 		alt={alt}
-		loading="lazy"
+		loading={eager ? "eager" : "lazy"}
+		fetchpriority={eager ? "high" : null}
 		onerror={() => loaded = false}
 	/>
 </picture>
