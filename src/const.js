@@ -1,0 +1,25 @@
+export const IMAGE_SIZES = [320, 640, 1280, 1920];
+
+export const IMAGE_EXTENSIONS = [
+	"avif",
+	"dz",
+	"fits",
+	"gif",
+	"heif",
+	"input",
+	"jpeg",
+	"jpg",
+	"jp2",
+	"jxl",
+	"magick",
+	"openslide",
+	"pdf",
+	"png",
+	"ppm",
+	"raw",
+	"svg",
+	"tiff",
+	"tif",
+	"v",
+	"webp",
+];

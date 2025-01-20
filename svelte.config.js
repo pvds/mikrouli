@@ -23,6 +23,10 @@ const config = {
 			publicPrefix: "PUBLIC_",
 			privatePrefix: "",
 		},
+		alias: {
+			$: "src",
+			$const: "src/const.js",
+		},
 		serviceWorker: {
 			register: false,
 		},

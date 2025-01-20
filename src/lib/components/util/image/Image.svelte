@@ -1,5 +1,6 @@
 <script>
 import { base } from "$app/paths";
+import { IMAGE_SIZES } from "$const";
 import { onDestroy, onMount } from "svelte";
 
 /** @type {{ image: string, alt: string, sizes: string, aspectRatio?: string, isCMS?: boolean,
@@ -50,7 +51,7 @@ onDestroy(() => observer?.unobserve(imgRef));
 
 {#if loaded}
 <picture>
-	<source srcset={srcset([640, 1280, 1920])} sizes={sizes} type="image/webp" />
+	<source srcset={srcset(IMAGE_SIZES)} sizes={sizes} type="image/webp" />
 	<img
 		style={aspectRatio && `aspect-ratio: ${aspectRatio};`}
 		class={classes}

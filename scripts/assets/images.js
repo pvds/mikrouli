@@ -3,38 +3,14 @@ import os from "node:os";
 import path from "node:path";
 import pLimit from "p-limit";
 import sharp from "sharp";
+import { IMAGE_EXTENSIONS, IMAGE_SIZES } from "../../src/const.js";
 import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
-
-const SIZES = [1920, 1280, 640, 320]; // Responsive sizes
-const IMAGE_EXTENSIONS = [
-	"avif",
-	"dz",
-	"fits",
-	"gif",
-	"heif",
-	"input",
-	"jpeg",
-	"jpg",
-	"jp2",
-	"jxl",
-	"magick",
-	"openslide",
-	"pdf",
-	"png",
-	"ppm",
-	"raw",
-	"svg",
-	"tiff",
-	"tif",
-	"v",
-	"webp",
-];
-const fileRegex = new RegExp(`\\.(${IMAGE_EXTENSIONS.join("|")})$`, "i");
 
 const cpuCount = Math.floor(os.cpus().length / 2);
 const args = process.argv.slice(2);
 const isCMS = args.includes("--cms");
 const isStatic = args.includes("--static");
+const fileRegex = new RegExp(`\\.(${IMAGE_EXTENSIONS.join("|")})$`, "i");
 
 /**
  * Process images with concurrency control using p-limit.
@@ -76,7 +52,7 @@ export const processImages = async (
 
 				// Process all sizes concurrently
 				await Promise.all(
-					SIZES.map(async (size) => {
+					IMAGE_SIZES.map(async (size) => {
 						const outputFileName = `${path.parse(file).name}-${size}.${format}`;
 						const outputPath = path.join(outDir, outputFileName);
 
