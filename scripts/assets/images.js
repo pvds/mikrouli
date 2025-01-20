@@ -5,7 +5,7 @@ import pLimit from "p-limit";
 import sharp from "sharp";
 import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
 
-const SIZES = [1920, 1280, 640]; // Responsive sizes
+const SIZES = [1920, 1280, 640, 320]; // Responsive sizes
 const IMAGE_EXTENSIONS = [
 	"avif",
 	"dz",
