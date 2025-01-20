@@ -39,6 +39,8 @@ const getImageName = (image) => image.split(".")[0];
 			<div class="flex-none">
 				<Image
 					image={getImageName(post.heroImage.file.fileName)}
+					aspectRatio={`${post.heroImage.file.details.image.width}/
+					${post.heroImage.file.details.image.height}`}
 					alt={post.heroImage.description}
 					sizes="20rem"
 					classes="rounded-md not-group-hover:grayscale"

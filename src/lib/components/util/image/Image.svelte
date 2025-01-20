@@ -2,9 +2,18 @@
 import { base } from "$app/paths";
 import { onDestroy, onMount } from "svelte";
 
-/** @type {{ image: string, alt: string, sizes: string, isCMS?: boolean, classes?: string }}
+/** @type {{ image: string, alt: string, sizes: string, aspectRatio?: string, isCMS?: boolean,
+ * classes?:
+ * string }}
  * ImageProps */
-let { image, alt, sizes = "(max-width: 768px) 100vw, 50vw", isCMS = false, classes } = $props();
+let {
+	image,
+	alt,
+	sizes = "(max-width: 768px) 100vw, 50vw",
+	aspectRatio,
+	isCMS = false,
+	classes,
+} = $props();
 
 /** @type {HTMLImageElement} */
 let imgRef;
@@ -43,6 +52,7 @@ onDestroy(() => observer?.unobserve(imgRef));
 <picture>
 	<source srcset={srcset([640, 1280, 1920])} sizes={sizes} type="image/webp" />
 	<img
+		style={aspectRatio && `aspect-ratio: ${aspectRatio};`}
 		class={classes}
 		bind:this={imgRef}
 		src={`${base}${directory}/${image}-1920.webp`}
