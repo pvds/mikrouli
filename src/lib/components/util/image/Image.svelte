@@ -19,6 +19,7 @@ let {
 let imgRef;
 /** @type {IntersectionObserver} */
 let observer;
+let loaded = $state(true);
 
 const IMAGE_DIR = "/images/processed";
 const directory = $derived(isCMS ? `${IMAGE_DIR}/cms` : `${IMAGE_DIR}/static`);
@@ -31,9 +32,7 @@ const srcset = (sizes) =>
 	sizes.map((size) => `${base}${directory}/${image}-${size}.webp ${size}w`).join(", ");
 
 onMount(() => {
-	if (imgRef.getBoundingClientRect().top < window.innerHeight) {
-		// imgRef.src = `${base}${directory}/${image}-1920.webp`;
-	} else {
+	if (!(imgRef.getBoundingClientRect().top < window.innerHeight)) {
 		observer = new IntersectionObserver(
 			(entry) => {
 				if (entry[0].isIntersecting) {
@@ -49,6 +48,7 @@ onMount(() => {
 onDestroy(() => observer?.unobserve(imgRef));
 </script>
 
+{#if loaded}
 <picture>
 	<source srcset={srcset([640, 1280, 1920])} sizes={sizes} type="image/webp" />
 	<img
@@ -58,5 +58,7 @@ onDestroy(() => observer?.unobserve(imgRef));
 		src={`${base}${directory}/${image}-1920.webp`}
 		alt={alt}
 		loading="lazy"
+		onerror={() => loaded = false}
 	/>
 </picture>
+{/if}
