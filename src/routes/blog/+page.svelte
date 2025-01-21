@@ -38,7 +38,6 @@ const getImageName = (image) => image.split(".")[0];
 	/** @type {number} */ i
 )}
 	<a href={`${base}/${slug}/${post.slug}`}
-	   style="view-transition-name: {post.slug}"
 	   class="group flex flex-wrap items-center gap-4">
 		{#if post.heroImage}
 			<div class="flex-none min-w-[20rem]">
@@ -54,11 +53,10 @@ const getImageName = (image) => image.split(".")[0];
 				/>
 			</div>
 		{/if}
-		<div>
+		<div style="view-transition-name: {post.slug}">
 			<h2 class="mb-4 text-3xl font-bold">{post.title}</h2>
 			<div class="prose prose-base">{@html post.intro}</div>
-			<span
-				class="inline-block mt-4 text-primary-700 hover:underline">Read more →</span>
+			<span class="inline-block mt-4 text-primary-700 hover:underline">Read more →</span>
 		</div>
 	</a>
 {/snippet}

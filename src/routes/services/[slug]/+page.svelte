@@ -6,9 +6,8 @@ let { data } = $props();
 let { title, intro, slug, sections } = data.local;
 </script>
 
-<div style="view-transition-name: {slug}">
 
-<Hero {title}>
+<Hero {title} transitionName={slug}>
 	{@html intro}
 </Hero>
 
@@ -18,4 +17,3 @@ let { title, intro, slug, sections } = data.local;
 	</Section>
 {/each}
 
-</div>

@@ -2,6 +2,7 @@
 /**
  * @typedef {Object} Props
  * @property {string|undefined} title
+ * @property {string} [transitionName]
  * @property {string|undefined} [proseClasses="prose prose-xl font-semibold"]
  * @property {import('svelte').Snippet} [children]
  */
@@ -9,10 +10,10 @@
 import Section from "./Section.svelte";
 
 /** @type {Props} */
-let { title, proseClasses = "prose prose-xl font-semibold", children } = $props();
+let { title, transitionName, proseClasses = "prose prose-xl font-semibold", children } = $props();
 </script>
 
-<div class="hero relative mb-24">
+<div class="hero relative mb-24" style="view-transition-name:hero">
 	<div
 		class="absolute w-full min-w-5xl top-[calc(100%-72px)] left-0 overflow-hidden pointer-events-none">
 		<svg class="w-[inherit] h-40"
@@ -26,6 +27,7 @@ let { title, proseClasses = "prose prose-xl font-semibold", children } = $props(
 
 	<Section
 		classes="relative -my-8 px-10 pt-20 pb-4 z-1 bg-primary-200 text-primary-800">
+		<div style={transitionName && `view-transition-name:${transitionName}`}></div>
 		{#if title}
 			<h1 class="text-4xl mb-4 font-bold">{title}</h1>
 		{/if}
