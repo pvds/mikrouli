@@ -75,7 +75,7 @@ async function fetchContentfulData() {
 
 		if (isProd || isForce) {
 			await downloadContentfulAssets(processedData.images).then(() => {
-				processImages("./images/cms", "./static/images/processed/cms");
+				processImages("cms");
 			});
 		}
 
