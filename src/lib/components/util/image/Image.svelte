@@ -1,8 +1,12 @@
 <script>
 import { base } from "$app/paths";
 import { IMAGE_SIZES } from "$const";
+import placeholders from "$lib/data/placeholders.json";
 
-/** @type {{ image: string, alt: string, sizes: string, aspectRatio?: string, eager?:
+const IMAGE_DIR = "/images/processed";
+const POSITION_CLASSES = "absolute w-full h-full object-center object-cover";
+
+/** @type {{ image: string, alt: string, sizes: string, aspectRatio?: string, priority?:
  * boolean, isCMS?:
  * boolean,
  * classes?:
@@ -13,15 +17,24 @@ let {
 	alt,
 	sizes = "(max-width: 768px) 100vw, 50vw",
 	aspectRatio,
-	eager,
+	priority,
 	isCMS = false,
 	classes,
 } = $props();
 
 let loaded = $state(true);
+/** @type {HTMLImageElement|undefined} */
+let img = $state(undefined);
 
-const IMAGE_DIR = "/images/processed";
 const directory = $derived(isCMS ? `${IMAGE_DIR}/cms` : `${IMAGE_DIR}/static`);
+/** @type {Record<string, string>} */
+const cmsPlaceholders = placeholders.cms;
+/** @type {Record<string, string>} */
+const staticPlaceholders = placeholders.static;
+/** @type {string} */
+const placeholder = $derived(
+	isCMS ? cmsPlaceholders[image] || "" : staticPlaceholders[image] || "",
+);
 
 /**
  * @param {number[]} sizes
@@ -31,17 +44,25 @@ const srcset = (sizes) =>
 	sizes.map((size) => `${base}${directory}/${image}-${size}.webp ${size}w`).join(", ");
 </script>
 
+
 {#if loaded}
-<picture>
-	<source srcset={srcset(IMAGE_SIZES)} sizes={sizes} type="image/webp" />
-	<img
-		style={aspectRatio && `aspect-ratio: ${aspectRatio};`}
-		class={classes}
-		src={`${base}${directory}/${image}-1920.webp`}
-		alt={alt}
-		loading={eager ? "eager" : "lazy"}
-		fetchpriority={eager ? "high" : null}
-		onerror={() => loaded = false}
-	/>
-</picture>
+<div class="relative"
+	 style={`aspect-ratio: ${aspectRatio}`}
+>
+	<img src={placeholder} {alt} class="{POSITION_CLASSES} {classes}" />
+	<div class="{POSITION_CLASSES} backdrop-blur-xl {classes}"></div>
+	<picture>
+		<source srcset={srcset(IMAGE_SIZES)} sizes={sizes} type="image/webp" />
+		<img
+			class="{POSITION_CLASSES} transition-opacity opacity-0 duration-300 {classes}"
+			src={`${base}${directory}/${image}-1280.webp`}
+			{alt}
+			bind:this={img}
+			loading={priority ? "eager" : "lazy"}
+			fetchpriority={priority ? "high" : null}
+			onload={() => img?.classList.remove("opacity-0")}
+			onerror={() => loaded = false}
+		/>
+	</picture>
+</div>
 {/if}
