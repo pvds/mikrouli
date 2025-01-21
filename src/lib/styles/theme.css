@@ -148,9 +148,11 @@
 	--ease-out: cubic-bezier(0, 0, 0.2, 1);
 	--ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
+	--transition-duration-fastest: 100ms;
 	--transition-duration-fast: var(--default-transition-duration, 150ms);
-	--transision-duration-normal: 250ms;
-	--transision-duration-slow: 350ms;
+	--transition-duration-normal: 250ms;
+	--transition-duration-slow: 350ms;
+	--transition-duration-slowest: 500ms;
 
 	--animate-spin: spin 1s linear infinite;
 	--animate-ping: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
