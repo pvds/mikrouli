@@ -50,3 +50,10 @@ onDestroy(() => {
 	</Section>
 </div>
 <div bind:this={sentinel} class="sentinel relative -top-12"></div>
+
+<style>
+	.header {
+		/* Ensure view transitions do not mess with the fixed elements */
+		view-transition-name: header;
+	}
+</style>

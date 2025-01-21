@@ -1,2 +1,10 @@
 @import "./base/elements.css";
 @import "./base/fonts.css";
+
+@media (prefers-reduced-motion) {
+	::view-transition-group(*),
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation: none !important;
+	}
+}

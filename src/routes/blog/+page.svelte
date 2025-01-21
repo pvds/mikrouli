@@ -37,7 +37,9 @@ const getImageName = (image) => image.split(".")[0];
 	/** @type {import("$lib/types/contentful").PostFields } */ post,
 	/** @type {number} */ i
 )}
-	<a href={`${base}/${slug}/${post.slug}`}  class="group flex flex-wrap items-center gap-4">
+	<a href={`${base}/${slug}/${post.slug}`}
+	   style="view-transition-name: {post.slug}"
+	   class="group flex flex-wrap items-center gap-4">
 		{#if post.heroImage}
 			<div class="flex-none min-w-[20rem]">
 				<Image
