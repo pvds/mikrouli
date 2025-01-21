@@ -40,13 +40,13 @@
 	"devDependencies": {
 		"@axe-core/playwright": "^4.10.1",
 		"@biomejs/biome": "1.9.4",
-		"@evilmartians/lefthook": "1.10.5",
+		"@evilmartians/lefthook": "1.10.9",
 		"@sveltejs/adapter-static": "^3.0.8",
 		"@sveltejs/kit": "^2.16.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
 		"@tailwindcss/typography": "^0.5.16",
 		"@tailwindcss/vite": "^4.0.0-beta.9",
-		"contentful": "^11.4.3",
+		"contentful": "^11.4.4",
 		"marked": "^15.0.6",
 		"marked-gfm-heading-id": "^4.1.1",
 		"p-limit": "^6.2.0",
@@ -57,7 +57,7 @@
 		"svelte-check": "^4.1.4",
 		"tailwindcss": "^4.0.0-beta.9",
 		"typescript": "^5.7.3",
-		"vite": "^6.0.7"
+		"vite": "^6.0.10"
 	},
 	"trustedDependencies": ["@biomejs/biome", "@evilmartians/lefthook", "@sveltejs/kit", "esbuild"],
 	"prettier": {
