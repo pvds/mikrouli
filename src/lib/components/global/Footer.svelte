@@ -38,10 +38,3 @@ const links = [
 		</footer>
 	</Section>
 </div>
-
-<style>
-	.footer {
-		/* Ensure view transitions do not mess with the fixed elements */
-		view-transition-name: footer;
-	}
-</style>
