@@ -26,7 +26,7 @@ const config = {
 		alias: {
 			$data: "data",
 			$const: "src/const.js",
-			$components: "src/components",
+			$types: "src/lib/types",
 			$global: "src/lib/components/global",
 			$layout: "src/lib/components/layout",
 			$ui: "src/lib/components/ui",

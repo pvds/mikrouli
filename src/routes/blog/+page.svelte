@@ -34,7 +34,7 @@ const getImageName = (image) => image.split(".")[0];
 {/each}
 
 {#snippet teaser(
-	/** @type {import("$lib/types/contentful").PostFields } */ post,
+	/** @type {import("$types/contentful").PostFields } */ post,
 	/** @type {number} */ i
 )}
 	<a href={`${base}/${slug}/${post.slug}`}
