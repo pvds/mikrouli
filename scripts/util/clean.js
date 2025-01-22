@@ -24,6 +24,6 @@ async function cleanDirectories() {
 }
 
 cleanDirectories().catch((error) => {
-	console.error("Clean script failed:", error.message);
+	logError("Clean script failed:", error.message);
 	process.exit(1);
 });
