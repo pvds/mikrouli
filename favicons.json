@@ -28,5 +28,5 @@
 			"themeColor": "#E1F4F4"
 		}
 	},
-	"path": "%sveltekit.assets%/favicons/"
+	"path": "%sveltekit.assets%/pwa/"
 }

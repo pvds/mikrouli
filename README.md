@@ -220,7 +220,8 @@ project structure](https://svelte.dev/docs/kit/project-structure):
 │   └── routes/                     # SvelteKit route handlers
 ├── static/                         # Static assets (copied to build)
 │   ├── fonts/                      # Font files
-│   └── images/                     # Optimized images
+│   ├── images/                     # Optimized images
+│   └── pwa/                        # PWA assets (manifest, icons, images)
 ├── .editorconfig                   # Editor configuration
 ├── .env                            # Environment variables (see .env.example)
 ├── .gitignore                      # Git ignore rules
