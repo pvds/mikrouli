@@ -8,4 +8,4 @@ pre-commit:
     svelte:
       run: bun run check:svelte
     build:
-      run: bun run build:netlify
+      run: bun run build:production

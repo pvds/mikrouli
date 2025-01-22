@@ -12,11 +12,11 @@ import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
 
 // Parse command-line arguments
 const args = process.argv.slice(2);
-const isNetlify = args.includes("--prod");
-const BUILD_DIR = isNetlify ? "./build/netlify" : "./build/github";
-const SUBFOLDER = isNetlify ? "" : "/mikrouli";
-const BUILD_COMMAND = isNetlify ? "build:netlify" : "build";
-const PREVIEW_COMMAND = isNetlify ? "preview:netlify" : "preview";
+const isProduction = args.includes("--prod");
+const BUILD_DIR = isProduction ? "./build/production" : "./build/staging";
+const SUBFOLDER = isProduction ? "" : "/mikrouli";
+const BUILD_COMMAND = isProduction ? "build:production" : "build";
+const PREVIEW_COMMAND = isProduction ? "preview:production" : "preview";
 
 const PORT = 4173;
 const BASE_URL = `http://localhost:${PORT}${SUBFOLDER}`;

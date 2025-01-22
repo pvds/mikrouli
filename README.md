@@ -43,7 +43,8 @@ developer experience and user-centric design.
 
 ### Hosting and CMS
 
-- **[GitHub Pages](https://pages.github.com/):** Static hosting.
+- **[GitHub Pages](https://pages.github.com/):** Staging environment host
+- **[Netlify](https://www.netlify.com/):** Production environment host
 - **[Contentful](https://www.contentful.com/):** Headless CMS for managing
   content.
 
@@ -154,13 +155,10 @@ Mikrouli integrates with Contentful for content management. The workflow:
 
 ### CI/CD Workflow
 
-GitHub Actions handles CI/CD:
+GitHub Actions handles CI/CD using our [CI workflow](.github/workflows/ci.yml).
+The workflow is documented in the [workflow documentation](docs/workflow.md).
 
-1. **Build Stage:** Lint, check, and build the project on every push to `main`.
-2. **Deploy Stage:** Deploy artifacts to GitHub Pages.
-
-> Secrets such as `CONTENTFUL_SPACE_ID` and `CONTENTFUL_ACCESS_TOKEN` are
-> securely managed via GitHub.
+> Environment secrets are [securely managed via GitHub](https://github.com/pvds/mikrouli/settings/secrets/actions).
 
 ---
 

@@ -9,20 +9,20 @@ the project's goals.
 
 ## Triggers
 
-
 The conditions for running staging or production deployments depend on the type
 of event triggering the workflow.
 
-| **Trigger**                | **Deploy to GitHub Pages (Staging)** | **Deploy to Netlify (Production)** | **Reasoning**                              |
-| -------------------------- | ------------------------------------ | ---------------------------------- | ------------------------------------------ |
-| **Push to `main`**         | ✅ Yes                               | ❌ No                              | Test changes in staging before production. |
-| **Pull Request to `main`** | ✅ Yes                               | ❌ No                              | Validate changes on staging.               |
-| **Contentful Change**      | ❌ No                                | ✅ Yes                             | Keep production updated automatically.     |
-| **Manual Deploy**          | 🔶 Optional                          | 🔶 Optional                        | Fine-grained control over production.      |
+| **Trigger**                | **Deploy to Staging** | **Deploy to Production** | **Reasoning**                              |
+| -------------------------- | --------------------- | ------------------------ | ------------------------------------------ |
+| **Push to `main`**         | ✅ Yes                | ❌ No                    | Test changes in staging before production. |
+| **Pull Request to `main`** | ✅ Yes                | ❌ No                    | Validate changes on staging.               |
+| **Contentful Change**      | ❌ No                 | ✅ Yes                   | Keep production updated automatically.     |
+| **Manual Deploy**          | 🔶 Optional           | 🔶 Optional              | Fine-grained control over production.      |
 
 ### File and Path Exclusions
 
-The pipeline uses `paths-ignore` to avoid triggering workflows for irrelevant changes, such as:
+The pipeline uses `paths-ignore` to avoid triggering workflows for irrelevant
+changes, such as:
 
 - Documentation: `docs/**`, `*.md`
 - Editor and tool configurations: `.editorconfig`, `.npmrc`, `biome.jsonc`
@@ -34,14 +34,14 @@ The staging deployment to GitHub Pages is triggered by:
 
 - Pushes to `main`
 - Pull requests targeting `main`
-- Manual dispatch with `deploy_github` set to `true`
+- Manual dispatch with `deploy_staging` set to `true`
 
 ### Production Deployment
 
 The production deployment to Netlify is triggered by:
 
 - Contentful `repository_dispatch` events
-- Manual dispatch with `deploy_netlify` set to `true`
+- Manual dispatch with `deploy_production` set to `true`
 
 ---
 
@@ -79,7 +79,7 @@ The workflow is defined in `.github/ci.yml` with the following key jobs:
 
 ### Production Artifacts
 
-- The project is built using `bun run build:netlify` for production.
+- The project is built using `bun run build:production` for production.
 - Artifacts are uploaded as a Netlify artifact using
   `actions/upload-artifact@v4`.
 - These artifacts are deployed to Netlify at the custom domain
@@ -117,8 +117,8 @@ function:
     - `NETLIFY_SITE_ID`: Identifier for the Netlify site.
 - **Environment Variables**:
     - `BUN_VERSION`: Specifies the version of Bun to use.
-    - `BUILD_DIR_GITHUB`: Directory for staging build artifacts.
-    - `BUILD_DIR_NETLIFY`: Directory for production build artifacts.
+    - `BUILD_DIR_STAGING`: Directory for staging build artifacts.
+    - `BUILD_DIR_PRODUCTION`: Directory for production build artifacts.
 
 Ensure all secrets are configured in the repository settings before running the
 pipeline.
@@ -128,10 +128,8 @@ pipeline.
 The pipeline uses composite actions for modular and reusable logic:
 
 1. **[Setup Environment](.github/actions/setup/action.yml)**:
-	- Sets up Bun and installs dependencies.
-
+    - Sets up Bun and installs dependencies.
 2. **[Build and Upload Artifacts](.github/actions/build/action.yml)**:
-	- Builds the project for staging and/or production and uploads artifacts.
-
+    - Builds the project for staging and/or production and uploads artifacts.
 3. **[Run Tests](.github/actions/test/action.yml)**:
-	- Runs Playwright accessibility tests and Lighthouse performance tests.
+    - Runs Playwright accessibility tests and Lighthouse performance tests.

@@ -1,7 +1,7 @@
 import adapterStatic from "@sveltejs/adapter-static";
 
-const target = process.env.DEPLOY_TARGET || "github";
-const isNetlify = target === "netlify";
+const target = process.env.DEPLOY_TARGET || "staging";
+const production = target === "production";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -10,14 +10,14 @@ const config = {
 			pages: `build/${target}`,
 			assets: `build/${target}`,
 			fallback: undefined,
-			precompress: false, // GitHub Pages already pre-compresses files
+			precompress: false, // staging and production environments already pre-compress files
 			strict: true,
 		}),
 		paths: {
-			base: isNetlify ? "" : "/mikrouli",
+			base: production ? "" : "/mikrouli",
 		},
 		prerender: {
-			origin: isNetlify ? "https://mikrouli.nl" : "https://pvds.github.io",
+			origin: production ? "https://mikrouli.nl" : "https://pvds.github.io",
 		},
 		env: {
 			publicPrefix: "PUBLIC_",

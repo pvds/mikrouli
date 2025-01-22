@@ -2,8 +2,8 @@ name: CI
 
 env:
     BUN_VERSION: 1.1.43
-    BUILD_DIR_GITHUB: ./build/github
-    BUILD_DIR_NETLIFY: ./build/netlify
+    BUILD_DIR_STAGING: ./build/staging
+    BUILD_DIR_PRODUCTION: ./build/production
 
 permissions:
     actions: read
@@ -40,13 +40,13 @@ on:
         types: [contentful-content-changed]
     workflow_dispatch:
         inputs:
-            deploy_github:
-                description: "Deploy to GitHub Pages"
+            deploy_staging:
+                description: "Deploy to Staging"
                 required: false
                 default: false
                 type: boolean
-            deploy_netlify:
-                description: "Deploy to Netlify"
+            deploy_production:
+                description: "Deploy to Production"
                 required: false
                 default: true
                 type: boolean
@@ -66,11 +66,11 @@ jobs:
             RUN_STAGING: ${{
                 (github.event_name == 'push' && github.ref_name == 'main') ||
                 (github.event_name == 'pull_request' && github.base_ref == 'main') ||
-                (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_github == 'true')
+                (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_staging == 'true')
                 }}
             RUN_PRODUCTION: ${{
                 github.event_name == 'repository_dispatch' ||
-                (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_netlify == 'true')
+                (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_production == 'true')
                 }}
         outputs:
             run_staging: ${{ env.RUN_STAGING }}
@@ -102,15 +102,15 @@ jobs:
               with:
                   run_staging: ${{ env.RUN_STAGING == 'true' }}
                   run_production: ${{ env.RUN_PRODUCTION == 'true' }}
-                  build_dir_github: ${{ env.BUILD_DIR_GITHUB }}
-                  build_dir_netlify: ${{ env.BUILD_DIR_NETLIFY }}
+                  build_dir_staging: ${{ env.BUILD_DIR_STAGING }}
+                  build_dir_production: ${{ env.BUILD_DIR_PRODUCTION }}
 
             - name: test
               if: ${{ env.RUN_PRODUCTION == 'true' && env.IS_CONTENT_UPDATE == 'false' }}
               uses: ./.github/actions/test
 
     staging:
-        name: Deploy to GitHub Pages
+        name: Deploy to Staging
         runs-on: ubuntu-24.04
         needs: main
         if: ${{ needs.main.outputs.run_staging == 'true' }}
@@ -126,12 +126,12 @@ jobs:
               uses: actions/deploy-pages@v4
 
     production:
-        name: Deploy to Netlify
+        name: Deploy to Production
         runs-on: ubuntu-24.04
         needs: main
         if: ${{ needs.main.outputs.run_production == 'true' }}
         environment:
-            name: netlify
+            name: production
             url: https://mikrouli.nl
         steps:
             - name: setup
@@ -142,7 +142,7 @@ jobs:
             - name: download artifact
               uses: actions/download-artifact@v4
               with:
-                  name: netlify
+                  name: production
                   path: ./build
 
             - name: deploy
