@@ -80,7 +80,7 @@ export const processImages = async (
 	const inDir = path.resolve(process.cwd(), INPUT_DIR, category);
 	const outDir = path.resolve(process.cwd(), OUTPUT_DIR, category);
 	const limit = pLimit(concurrency);
-	const placeholdersFile = path.resolve(process.cwd(), "data/placeholders.json");
+	const placeholdersFile = path.resolve(process.cwd(), "src/data/placeholders.json");
 	const placeholders = {};
 
 	// Get an array of image file names that match the pattern.

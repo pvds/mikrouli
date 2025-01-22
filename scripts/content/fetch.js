@@ -61,15 +61,15 @@ async function fetchContentfulData() {
 
 		// Write raw data to a file
 		// Only for debugging purposes in dev mode
-		// if (!isProd) writeJsonFile(path.resolve(process.cwd(),"data/content.json"), rawData, 4);
-		// if (!isProd) writeJsonFile(path.resolve(process.cwd(),"data/images.json"), processedData.images, 4);
+		// if (!isProd) writeJsonFile(path.resolve(process.cwd(),"src/data/content.json"), rawData, 4);
+		// if (!isProd) writeJsonFile(path.resolve(process.cwd(),"src/data/images.json"), processedData.images, 4);
 
 		// Pretty-print in dev, minify in production
 		const spacing = !isProd ? 4 : 0;
 
 		// Write each transformed content type to its own file
 		for (const { id } of contentTypes) {
-			const outputPath = path.resolve(process.cwd(), `data/${id}.json`);
+			const outputPath = path.resolve(process.cwd(), `src/data/${id}.json`);
 			writeJsonFile(outputPath, processedData[id], spacing);
 		}
 
