@@ -7,3 +7,5 @@ pre-commit:
       stage_fixed: true
     svelte:
       run: bun run check:svelte
+    build:
+      run: bun run build:netlify
