@@ -9,12 +9,12 @@ import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
 const cpuCount = Math.floor(os.cpus().length / 2);
 const args = process.argv.slice(2);
 const isCMS = args.includes("--cms");
-const isStatic = args.includes("--static");
+const isLocal = args.includes("--local");
 const fileRegex = new RegExp(`\\.(${IMAGE_EXTENSIONS.join("|")})$`, "i");
 const useBase64Placeholders = true;
 
 const INPUT_DIR = "./images";
-const OUTPUT_DIR = "./static/images/processed";
+const OUTPUT_DIR = "./static/images";
 
 /**
  * Generate a small blurred placeholder image.
@@ -41,7 +41,7 @@ const generatePlaceholder = async (inputPath, outputPath = "", asBase64 = true) 
 
 /**
  * Overwrite placeholders for a specific category in the JSON file.
- * @param {string} category - The category key (e.g., "cms" or "static").
+ * @param {string} category - The category key (e.g., "cms" or "local").
  * @param {Object} placeholders - An object containing new image placeholders.
  * @param {string} outputPath - Path to the placeholders JSON file.
  */
@@ -144,5 +144,5 @@ export const processImages = async (
 	logDebug(`Optimizing took ${timing} seconds`);
 };
 
-if (isStatic) processImages("static").catch((err) => console.error(err));
+if (isLocal) processImages("local").catch((err) => console.error(err));
 if (isCMS) processImages("cms").catch((err) => console.error(err));

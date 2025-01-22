@@ -33,7 +33,7 @@
 		"test:a11y": "bun run scripts/test/axe.js",
 		"content": "bun run content:cms --force && bun run content:images",
 		"content:cms": "bun run scripts/content/fetch.js",
-		"content:images": "bun run scripts/assets/images.js --static",
+		"content:images": "bun run scripts/assets/images.js --local",
 		"util:favicons": "bunx realfavicon generate images/icon.svg favicons.json .favicons.json static/pwa",
 		"util:clean": "bun run scripts/util/clean.js"
 	},

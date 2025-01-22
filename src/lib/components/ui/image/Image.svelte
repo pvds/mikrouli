@@ -3,7 +3,7 @@ import { base } from "$app/paths";
 import { IMAGE_SIZES } from "$const";
 import placeholders from "$data/generated/placeholders.json";
 
-const IMAGE_DIR = "/images/processed";
+const IMAGE_DIR = "/images";
 const POSITION_CLASSES = "absolute w-full h-full object-center object-cover";
 
 /** @type {{ image: string, alt: string, sizes: string, aspectRatio?: string, priority?:
@@ -26,15 +26,13 @@ let loaded = $state(true);
 /** @type {HTMLImageElement|undefined} */
 let img = $state(undefined);
 
-const directory = $derived(isCMS ? `${IMAGE_DIR}/cms` : `${IMAGE_DIR}/static`);
+const directory = $derived(isCMS ? `${IMAGE_DIR}/cms` : `${IMAGE_DIR}/local`);
 /** @type {Record<string, string>} */
 const cmsPlaceholders = placeholders.cms;
 /** @type {Record<string, string>} */
-const staticPlaceholders = placeholders.static;
+const localPlaceholders = placeholders.local;
 /** @type {string} */
-const placeholder = $derived(
-	isCMS ? cmsPlaceholders[image] || "" : staticPlaceholders[image] || "",
-);
+const placeholder = $derived(isCMS ? cmsPlaceholders[image] || "" : localPlaceholders[image] || "");
 
 /**
  * @param {number[]} sizes
