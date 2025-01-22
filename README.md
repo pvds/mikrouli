@@ -192,48 +192,50 @@ project structure](https://svelte.dev/docs/kit/project-structure):
 
 ```
 .
-├── .github/                        # Github related files
-│   ├── actions/                    # Composite actions used in workflows
-│   └── workflows/                  # CI/CD workflows
-├── docs/                           # Project documentation
-├── images/                         # Soource images for the project
-├── scripts/                        # Node scripts
-│   ├── assets/                     # Asset related scripts
-│   ├── content/                    # CMS content scripts
-│   ├── test/                       # Testing scripts
-│   └── util/                       # Utility scripts
-├── src/                            # Svelte source code
-│   ├── data/                       # JSON data files
-│   │   ├── generated/              # Generated JSON data files
-│   │   ├── global.json             # Global application data
-│   │   └── seo.json                # Default SEO data
-│   ├── lib/                        # Svelte library files
-│   │   ├── components/             # Svelte components
-│   │   │   ├── global/             # Application shell components
-│   │   │   ├── layout/             # Structural layout components
-│   │   │   ├── ui/                 # Reusable UI components
-│   │   │   ├── visuals/            # Decorative visual components
-│   │   ├── helpers/                # Helper functions
-│   │   ├── server/                 # Server-only code
-│   │   ├── styles/                 # Global styling
-│   │   └── types /                 # Typing d.ts files for usage in jsdoc
-│   └── routes/                     # SvelteKit route handlers
-├── static/                         # Static assets (copied to build)
-│   ├── fonts/                      # Font files
-│   ├── images/                     # Optimized images
-│   └── pwa/                        # PWA assets (manifest, icons, images)
-├── .editorconfig                   # Editor configuration
-├── .env                            # Environment variables (see .env.example)
-├── .gitignore                      # Git ignore rules
-├── .npmrc                          # npm configuration
-├── biome.jsonc                     # Linting and formatting configuration
-├── bun.lockb                       # Bun lock file
-├── favicons.json                   # Favicon configuration
-├── jsconfig.json                   # JavaScript configuration
-├── lefthook.yml                    # Git hooks configuration
-├── package.json                    # Project metadata
-├── svelte.config.js                # Svelte configuration
-└── vite.config.js                  # Vite configuration
+├── .github/                  # Github related files
+│   ├── actions/              # Composite actions used in workflows
+│   └── workflows/            # CI/CD workflows
+├── docs/                     # Project documentation
+├── images/                   # Soource images for the project
+├── scripts/                  # Node scripts
+│   ├── assets/               # Asset related scripts
+│   ├── content/              # CMS content scripts
+│   ├── test/                 # Testing scripts
+│   └── util/                 # Utility scripts
+├── src/                      # Svelte source code
+│   ├── data/                 # JSON data files
+│   │   ├── generated/        # Generated JSON data files
+│   │   ├── global.json       # Global application data
+│   │   └── seo.json          # Default SEO data
+│   ├── lib/                  # Svelte library files
+│   │   ├── components/       # Svelte components
+│   │   │   ├── global/       # Application shell components
+│   │   │   ├── layout/       # Structural layout components
+│   │   │   ├── ui/           # Reusable UI components
+│   │   │   ├── visuals/      # Decorative visual components
+│   │   ├── helpers/          # Helper functions
+│   │   ├── server/           # Server-only code
+│   │   ├── styles/           # Global styling
+│   │   └── types/            # Typing d.ts files for usage in jsdoc
+│   └── routes/               # SvelteKit route handlers
+├── static/                   # Static assets (copied to build)
+│   ├── fonts/                # Font files
+│   ├── images/               # Image assets
+│   │   ├── cms/              # Optimized CMS images (generated)
+│   │   └── local/            # Optimized local images from (generated)
+│   └── pwa/                  # PWA assets (manifest, icons, images)
+├── .editorconfig             # Editor configuration
+├── .env                      # Environment variables (see .env.example)
+├── .gitignore                # Git ignore rules
+├── .npmrc                    # npm configuration
+├── biome.jsonc               # Linting and formatting configuration
+├── bun.lockb                 # Bun lock file
+├── favicons.json             # Favicon configuration
+├── jsconfig.json             # JavaScript configuration
+├── lefthook.yml              # Git hooks configuration
+├── package.json              # Project metadata
+├── svelte.config.js          # Svelte configuration
+└── vite.config.js            # Vite configuration
 ```
 
 ---
