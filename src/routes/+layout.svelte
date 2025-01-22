@@ -11,8 +11,10 @@ import Seo from "$lib/components/util/seo/Seo.svelte";
 let { children, data } = $props();
 let { nav } = data.local;
 
+const disableViewTransitions = true;
+
 onNavigate((navigation) => {
-	if (!document.startViewTransition) return;
+	if (!document.startViewTransition || disableViewTransitions) return;
 
 	return new Promise((resolve) => {
 		document.startViewTransition(async () => {
