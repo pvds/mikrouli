@@ -8,7 +8,7 @@
 
 :root {
 	/* Disable all root level view transitions */
-	view-transition-name: none;
+	/*view-transition-name: none;*/
 	/*!* Comment out to debug view-transitions *!*/
 	/*&::view-transition-group(*) {*/
 	/*	position: fixed;*/
