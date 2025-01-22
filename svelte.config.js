@@ -26,6 +26,7 @@ const config = {
 		alias: {
 			$: "src",
 			$const: "src/const.js",
+			$data: "data",
 		},
 		serviceWorker: {
 			register: false,
