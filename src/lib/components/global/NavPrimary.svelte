@@ -1,7 +1,7 @@
 <script>
 import { base } from "$app/paths";
+import WaveCss from "$lib/components/visuals/WaveCss.svelte";
 import { isCurrentPage } from "$lib/helpers/page";
-import WaveCss from "../visuals/WaveCss.svelte";
 
 /** @typedef {{ href: string, label: string, title: string | undefined }} NavItem */
 
