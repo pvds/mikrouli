@@ -1,15 +1,15 @@
+/** @type {import("$types/contentful").NavigationEntry[]}*/
+import navigationItems from "$data/generated/navigation.json";
+/** @type {import("$types/contentful").PostEntry[]}*/
+import pageItems from "$data/generated/pages.json";
+/** @type {import("$types/contentful").PostEntry[]}*/
+import postItems from "$data/generated/posts.json";
+/** @type {import("$types/contentful").ServiceEntry[]}*/
+import serviceItems from "$data/generated/services.json";
 /** @type {import("$types/global").global}*/
 import globalData from "$data/global.json";
-/** @type {import("$types/contentful").NavigationEntry[]}*/
-import navigationItems from "$data/navigation.json";
-/** @type {import("$types/contentful").PostEntry[]}*/
-import pageItems from "$data/pages.json";
-/** @type {import("$types/contentful").PostEntry[]}*/
-import postItems from "$data/posts.json";
 /** @type {import("$global/seo/Seo.svelte.types").SEOProps}*/
 import seoData from "$data/seo.json";
-/** @type {import("$types/contentful").ServiceEntry[]}*/
-import serviceItems from "$data/services.json";
 import { error } from "@sveltejs/kit";
 import { markdownToHtml, splitText } from "./utils.js";
 
