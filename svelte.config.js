@@ -24,9 +24,8 @@ const config = {
 			privatePrefix: "",
 		},
 		alias: {
-			$: "src",
-			$const: "src/const.js",
 			$data: "data",
+			$const: "src/const.js",
 		},
 		serviceWorker: {
 			register: false,
