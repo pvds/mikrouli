@@ -192,14 +192,16 @@ project structure](https://svelte.dev/docs/kit/project-structure):
 
 ```
 .
-├── .github/                        # Github related files (eg. workflows)
+├── .github/                        # Github related files
+│   ├── actions/                    # Composite actions used in workflows
+│   └── workflows/                  # CI/CD workflows
 ├── docs/                           # Project documentation
 ├── images/                         # Soource images for the project
 ├── scripts/                        # Node scripts
 │   ├── assets/                     # Asset related scripts
 │   ├── content/                    # CMS content scripts
 │   ├── test/                       # Testing scripts
-│   ├── util/                       # Utility scripts
+│   └── util/                       # Utility scripts
 ├── src/                            # Svelte source code
 │   ├── data/                       # JSON data files
 │   │   ├── generated/              # Generated JSON data files
@@ -216,7 +218,9 @@ project structure](https://svelte.dev/docs/kit/project-structure):
 │   │   ├── styles/                 # Global styling
 │   │   └── types /                 # Typing d.ts files for usage in jsdoc
 │   └── routes/                     # SvelteKit route handlers
-├── static/                         # Static assets (e.g., favicon.svg)
+├── static/                         # Static assets (copied to build)
+│   ├── fonts/                      # Font files
+│   └── images/                     # Optimized images
 ├── .editorconfig                   # Editor configuration
 ├── .env                            # Environment variables (see .env.example)
 ├── .gitignore                      # Git ignore rules
