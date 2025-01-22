@@ -34,7 +34,7 @@
 		"content": "bun run content:cms --force && bun run content:images",
 		"content:cms": "bun run scripts/content/fetch.js",
 		"content:images": "bun run scripts/assets/images.js --static",
-		"util:favicons": "bunx realfavicon generate src/lib/images/icon.svg favicons.json .favicons.json static",
+		"util:favicons": "bunx realfavicon generate images/icon.svg favicons.json .favicons.json static",
 		"util:clean": "bun run scripts/util/clean.js"
 	},
 	"devDependencies": {
