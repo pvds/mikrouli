@@ -1,10 +1,10 @@
 <script>
 import { onNavigate } from "$app/navigation";
-import Branding from "$lib/components/global/Branding.svelte";
-import Footer from "$lib/components/global/Footer.svelte";
-import Header from "$lib/components/global/Header.svelte";
-import NavPrimary from "$lib/components/global/NavPrimary.svelte";
-import Skip from "$lib/components/global/Skip.svelte";
+import Branding from "$global/Branding.svelte";
+import Footer from "$global/Footer.svelte";
+import Header from "$global/Header.svelte";
+import NavPrimary from "$global/NavPrimary.svelte";
+import Skip from "$global/Skip.svelte";
 import Seo from "$lib/components/util/seo/Seo.svelte";
 import "../app.css";
 

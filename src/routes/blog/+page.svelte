@@ -7,7 +7,7 @@ import Image from "$lib/components/util/image/Image.svelte";
 let { data } = $props();
 let { header, intro, slug, posts } = data.local; // Destructure `posts` from `local`
 
-/** @type {import("$lib/components/visuals/WaveSvg.type").WaveProps} */
+/** @type {import("$visuals/WaveSvg.type").WaveProps} */
 const wave = {
 	direction: "both",
 	alignment: "left",

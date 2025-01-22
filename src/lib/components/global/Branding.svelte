@@ -1,5 +1,5 @@
 <script>
-import Logo from "$lib/components/visuals/Logo.svelte";
+import Logo from "$visuals/Logo.svelte";
 </script>
 
 <section role="banner">

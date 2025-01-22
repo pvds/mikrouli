@@ -6,7 +6,7 @@ import Section from "$lib/components/layout/Section.svelte";
 let { data } = $props();
 let { header, intro, slug, services } = data.local;
 
-/** @type {import("$lib/components/visuals/WaveSvg.type").WaveProps} */
+/** @type {import("$visuals/WaveSvg.type").WaveProps} */
 const wave = {
 	direction: "both",
 	alignment: "left",

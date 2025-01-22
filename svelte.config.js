@@ -26,6 +26,11 @@ const config = {
 		alias: {
 			$data: "data",
 			$const: "src/const.js",
+			$components: "src/components",
+			$global: "src/lib/components/global",
+			$layout: "src/lib/components/layout",
+			$ui: "src/lib/components/ui",
+			$visuals: "src/lib/components/visuals",
 		},
 		serviceWorker: {
 			register: false,
