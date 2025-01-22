@@ -29,7 +29,7 @@ Add the `<Seo />` component to your `+layout.svelte` file.
 
 ```svelte
 <script>
-  import Seo from '$lib/components/util/seo/SEO.svelte';
+  import Seo from '$global/seo/SEO.svelte';
 </script>
 
 <Seo />

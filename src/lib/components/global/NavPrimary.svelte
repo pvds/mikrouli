@@ -5,7 +5,7 @@ import WaveCss from "$visuals/WaveCss.svelte";
 
 /** @typedef {{ href: string, label: string, title: string | undefined }} NavItem */
 
-/** @type {{ menu: import('$lib/types/contentful').NavigationEntry }} */
+/** @type {{ menu: import('$types/contentful').NavigationEntry }} */
 let { menu } = $props();
 
 /** @type NavItem[] */

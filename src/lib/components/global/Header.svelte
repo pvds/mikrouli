@@ -1,5 +1,5 @@
 <script>
-import Section from "$lib/components/layout/Section.svelte";
+import Section from "$layout/Section.svelte";
 import { onDestroy, onMount } from "svelte";
 
 /** @type {IntersectionObserver} */

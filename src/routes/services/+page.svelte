@@ -1,7 +1,7 @@
 <script>
 import { base } from "$app/paths";
-import Hero from "$lib/components/layout/Hero.svelte";
-import Section from "$lib/components/layout/Section.svelte";
+import Hero from "$layout/Hero.svelte";
+import Section from "$layout/Section.svelte";
 
 let { data } = $props();
 let { header, intro, slug, services } = data.local;
