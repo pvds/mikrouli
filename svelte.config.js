@@ -24,13 +24,13 @@ const config = {
 			privatePrefix: "",
 		},
 		alias: {
-			$data: "src/data",
 			$const: "src/const.js",
-			$types: "src/lib/types",
+			$data: "src/data",
 			$global: "src/lib/components/global",
 			$layout: "src/lib/components/layout",
 			$ui: "src/lib/components/ui",
 			$visuals: "src/lib/components/visuals",
+			$types: "src/lib/types",
 		},
 		serviceWorker: {
 			register: false,
