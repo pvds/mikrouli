@@ -1,18 +1,10 @@
-import { getPage } from "$lib/server/content.js";
+import { getPage, getSeo } from "$lib/server/content.js";
 
 /** @type {import('./$types').PageServerLoad} */
-export const load = async ({ route, parent }) => {
+export const load = async ({ route }) => {
 	const slug = route.id.replace("/", "");
-	const page = getPage(slug); // Fetch and process the specific page
-	const parentData = await parent();
-
-	const seo = {
-		...parentData?.seo,
-		title: page.title,
-		description: page.seoDescription,
-		keywords: page.seoKeywords,
-		index: page.seoIndex,
-	};
+	const page = getPage(slug);
+	const seo = getSeo(page);
 
 	return { local: page, seo };
 };

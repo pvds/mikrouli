@@ -23,10 +23,18 @@ export const getGlobal = () => {
 
 /**
  * Fetch all seo data.
+ * @param {import('$types/contentful').BaseFields} [page] - The page data to override the default seo data.
  * @returns {import('$global/seo/Seo.svelte.types').SEOProps} - The processed seo data.
  */
-export const getSeo = () => {
-	return seoData;
+export const getSeo = (page) => {
+	if (!page) return seoData;
+	return {
+		...seoData,
+		title: page.title,
+		description: page.seoDescription,
+		keywords: page.seoKeywords,
+		index: page.seoIndex,
+	};
 };
 
 /**

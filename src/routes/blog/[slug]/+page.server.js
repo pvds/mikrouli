@@ -1,4 +1,4 @@
-import { getPost, getPostEntries } from "$lib/server/content.js";
+import { getPost, getPostEntries, getSeo } from "$lib/server/content.js";
 
 /** @type {import('./$types').EntryGenerator} */
 export const entries = async () => {
@@ -6,17 +6,10 @@ export const entries = async () => {
 };
 
 /** @type {import('./$types').PageServerLoad} */
-export const load = async ({ params, parent }) => {
+export const load = async ({ params }) => {
 	const { slug } = params;
 	const post = getPost(slug);
-	const parentData = await parent();
-	const seo = {
-		...parentData?.seo,
-		title: post.title,
-		description: post.seoDescription,
-		keywords: post.seoKeywords,
-		index: post.seoIndex,
-	};
+	const seo = getSeo(post);
 
 	return { local: post, seo };
 };

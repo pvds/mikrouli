@@ -8,9 +8,10 @@ export const load = async () => {
 		primary: getNavigation("primary"),
 		footer: getNavigation("footer"),
 	};
+	const seo = getSeo();
 	return {
 		global: getGlobal(),
 		local: { nav },
-		seo: getSeo(),
+		seo,
 	};
 };
