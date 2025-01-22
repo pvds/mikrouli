@@ -6,14 +6,16 @@
 	}
 }
 
-:root {
-	/* Disable all root level view transitions */
-	/*view-transition-name: none;*/
-	/*!* Comment out to debug view-transitions *!*/
-	/*&::view-transition-group(*) {*/
-	/*	position: fixed;*/
-	/*	inset: 0;*/
-	/*	animation-duration: 5s;*/
-	/*	animation-fill-mode: both;*/
-	/*}*/
+@media (min-width: 768px) {
+	:root {
+		/* Disable all root level view transitions */
+		view-transition-name: none;
+		/*!* Comment out to debug view-transitions *!*/
+		/*&::view-transition-group(*) {*/
+		/*	position: fixed;*/
+		/*	inset: 0;*/
+		/*	animation-duration: 5s;*/
+		/*	animation-fill-mode: both;*/
+		/*}*/
+	}
 }
