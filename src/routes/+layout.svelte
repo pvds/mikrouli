@@ -5,7 +5,7 @@ import Footer from "$global/Footer.svelte";
 import Header from "$global/Header.svelte";
 import NavPrimary from "$global/NavPrimary.svelte";
 import Skip from "$global/Skip.svelte";
-import Seo from "$lib/components/util/seo/Seo.svelte";
+import Seo from "$global/seo/Seo.svelte";
 import "../app.css";
 
 let { children, data } = $props();

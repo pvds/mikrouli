@@ -3,7 +3,7 @@ import { base } from "$app/paths";
 import { page } from "$app/state";
 import { checkSeo } from "./Seo.helper.js";
 
-/** @typedef {import('./Seo.svelte.types').SEOProps} SEOProps */
+/** @typedef {import('./Seo.svelte.types.js').SEOProps} SEOProps */
 
 /** @type {{children?: import('svelte').Snippet}} */
 let { children } = $props();
@@ -68,7 +68,7 @@ let jsonld = $derived(page.data.seo.jsonld);
 
 // Reactive data bindings
 let linkedData = $derived(
-	/** @type {import('./Seo.svelte.types').SeoLinkedData} */
+	/** @type {import('./Seo.svelte.types.js').SeoLinkedData} */
 	{
 		"@context": "https://schema.org",
 		"@type": schemaType && schemaType.length > 1 ? schemaType : schemaType?.[0],

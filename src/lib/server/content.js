@@ -6,7 +6,7 @@ import navigationItems from "$data/navigation.json";
 import pageItems from "$data/pages.json";
 /** @type {import("$lib/types/contentful").PostEntry[]}*/
 import postItems from "$data/posts.json";
-/** @type {import("$lib/components/util/seo/Seo.svelte.types").SEOProps}*/
+/** @type {import("$global/seo/Seo.svelte.types").SEOProps}*/
 import seoData from "$data/seo.json";
 /** @type {import("$lib/types/contentful").ServiceEntry[]}*/
 import serviceItems from "$data/services.json";
@@ -23,7 +23,7 @@ export const getGlobal = () => {
 
 /**
  * Fetch all seo data.
- * @returns {import('$lib/components/util/seo/Seo.svelte.types').SEOProps} - The processed seo data.
+ * @returns {import('$global/seo/Seo.svelte.types').SEOProps} - The processed seo data.
  */
 export const getSeo = () => {
 	return seoData;

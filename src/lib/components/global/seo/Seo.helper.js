@@ -1,4 +1,4 @@
-/** @typedef {import('./Seo.svelte.types').SEOProps} SEOProps */
+/** @typedef {import('./Seo.svelte.types.js').SEOProps} SEOProps */
 
 /**
  * Check if the SEO properties are set

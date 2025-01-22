@@ -2,7 +2,7 @@
 import { base } from "$app/paths";
 import Hero from "$lib/components/layout/Hero.svelte";
 import Section from "$lib/components/layout/Section.svelte";
-import Image from "$lib/components/util/image/Image.svelte";
+import Image from "$ui/image/Image.svelte";
 
 let { data } = $props();
 let { header, intro, slug, posts } = data.local; // Destructure `posts` from `local`
