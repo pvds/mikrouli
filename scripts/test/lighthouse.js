@@ -1,12 +1,9 @@
 import path from "node:path";
-import pLimit from "p-limit";
 import { playAudit } from "playwright-lighthouse";
 import { getAllHtmlFiles } from "../util/file.js";
 import { logError, logInfo, logSuccess } from "../util/log.js";
 import { closeBrowser, launchBrowser } from "../util/playwright.js";
 import { startServer, stopServer, waitForServer } from "../util/server.js";
-
-// TODO: run on multiple pages concurrently with a limit (see axe.test.js logic)
 
 // Parse command-line arguments
 const args = process.argv.slice(2);
@@ -30,11 +27,6 @@ const THRESHOLDS = {
 	"best-practices": 100,
 	seo: 100,
 };
-
-// Limit concurrency for performance tests (using half of available CPUs)
-const cpuCount = require("node:os").cpus().length;
-const maxConcurrency = Math.max(2, Math.floor(cpuCount / 2));
-const tasks = pLimit(1);
 
 /**
  * Generate an array of URLs to audit based on the command-line flags.
@@ -89,24 +81,18 @@ const formatReportName = (url) => {
 };
 
 /**
- * Run a single Lighthouse performance audit.
+ * Run Lighthouse audit for a single page.
+ * @param {import('playwright').Page} page - The Playwright page instance.
  * @param {string} url - The URL to audit.
  * @returns {Promise<void>}
  */
-const analyzePage = async (url) => {
-	const browser = await launchBrowser();
-
+const analyzePage = async (page, url) => {
 	try {
 		logInfo(`Launching Lighthouse audit for ${url}`);
 		const reportName = formatReportName(url);
 		const reportPath = path.resolve(reportDir, `${reportName}`);
-		const page = await browser.newPage();
-		await page.goto(url);
 
-		page.on("console", (msg) => {
-			const message = msg.text();
-			logInfo(message);
-		});
+		await page.goto(url, { waitUntil: "load" });
 
 		const lighthouseResults = await playAudit({
 			page,
@@ -122,11 +108,11 @@ const analyzePage = async (url) => {
 		});
 
 		if (!lighthouseResults?.lhr) {
-			logError("Lighthouse audit did not return valid results.");
+			logError(`Lighthouse audit for ${url} did not return valid results.`);
 			return;
 		}
 
-		logInfo("Lighthouse audit completed:");
+		logInfo(`Lighthouse audit completed for ${url}`);
 		const {
 			performance,
 			accessibility,
@@ -139,20 +125,31 @@ const analyzePage = async (url) => {
 		validateScore("  - Best Practices", bestPractices.score, THRESHOLDS["best-practices"]);
 		validateScore("  - SEO", seo.score, THRESHOLDS.seo);
 
-		logInfo("\n", `Lighthouse report saved to file://${reportPath}`);
+		logInfo(`Lighthouse report saved to file://${reportPath}`);
 	} catch (error) {
-		logError(`Error running Lighthouse audit for ${url}:`, error);
-	} finally {
-		await closeBrowser(browser);
+		logError(`Error analyzing page ${url}:`, error);
 	}
 };
 
 /**
- * Run multiple Lighthouse performance audits concurrently with a limit.
- * @param {string[]} urls - Array of URLs to audit.
+ * Run Lighthouse audits sequentially by navigating to different pages using the same browser instance.
+ * @param {string[]} urls - List of URLs to audit.
  */
 const runPerformanceTests = async (urls) => {
-	await Promise.all(urls.map((url) => tasks(() => analyzePage(url))));
+	logInfo(`Running tests sequentially for ${urls.length} pages...`);
+
+	const browser = await launchBrowser();
+	const page = await browser.newPage();
+
+	try {
+		for (const url of urls) {
+			await analyzePage(page, url);
+		}
+	} catch (error) {
+		logError("Error during sequential audits:", error);
+	} finally {
+		await closeBrowser(browser);
+	}
 };
 
 (async () => {
