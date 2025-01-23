@@ -73,4 +73,11 @@ const logError = (...messages) => log("red", null, ...messages);
  * @param  {...any} messages - Messages to log. */
 const logSuccess = (...messages) => log("green", null, ...messages);
 
-export { logDebug, logInfo, logWarn, logError, logSuccess };
+/**
+ * Logs a header message with magenta text.
+ * @param  {...any} [messages] - Messages to log.
+ */
+const logHeader = (...messages) =>
+	log("magenta", null, ...["\n=============== ", ...messages, "\n"]);
+
+export { logDebug, logInfo, logWarn, logError, logSuccess, logHeader };

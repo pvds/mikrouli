@@ -91,7 +91,6 @@ jobs:
               run: bun run check:ci
 
             - name: content
-              if: ${{ env.IS_PR == 'false' }}
               run: bun run content:cms --prod
               env:
                   CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}

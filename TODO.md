@@ -68,8 +68,9 @@
 
 ### CI/CD
 
-- [ ] optimize for speed
-- [ ] cleanup by splitting steps into templates
+- [x] balance speed and reliability
+- [x] cleanup by splitting steps into templates
+- [ ] cache cms images in pipeline to avoid downloading them every time
 - [ ] add a test job (once vitest or playwright tests are added)
 - [x] optimize flow
 	- for different scenarios

@@ -1,24 +1,28 @@
-import { execSync, spawn } from "node:child_process";
-import { existsSync } from "node:fs";
-import { get } from "node:http";
 import path from "node:path";
-import { setTimeout } from "node:timers/promises";
-import { chromium } from "playwright";
 import { playAudit } from "playwright-lighthouse";
-import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
+import { getAllHtmlFiles } from "../util/file.js";
+import { logError, logHeader, logInfo, logSuccess } from "../util/log.js";
+import { closeBrowser, launchBrowser } from "../util/playwright.js";
+import { startServer, stopServer, waitForServer } from "../util/server.js";
 
-// TODO: run on multiple pages concurrently with a limit (see axe.test.js logic)
-// TODO: check for using shared logic between scripts (see axe.test.js logic)
+// Parse flags
+const flags = ["--prod", "--minimal", "--all"];
+const [productionFlag, minimalFlag, allPagesFlag] = flags.map((flag) =>
+	process.argv.includes(flag),
+);
+const specificIndex = process.argv.indexOf("--specific");
+const specificPath =
+	specificIndex !== -1 && process.argv[specificIndex + 1]
+		? process.argv[specificIndex + 1]
+		: null;
 
-// Parse command-line arguments
-const args = process.argv.slice(2);
-const isProduction = args.includes("--prod");
-const BUILD_DIR = isProduction ? "./build/production" : "./build/staging";
-const SUBFOLDER = isProduction ? "" : "/mikrouli";
-const BUILD_COMMAND = isProduction ? "build:production" : "build";
-const PREVIEW_COMMAND = isProduction ? "preview:production" : "preview";
-
+// Constants
+const BUILD_DIR = productionFlag ? "build/production" : "build/staging";
+const SUBFOLDER = productionFlag ? "" : "/mikrouli";
+const BUILD_CMD = productionFlag ? "build:production" : "build";
+const PREVIEW_CMD = productionFlag ? "preview:production" : "preview";
 const PORT = 4173;
+const DEBUG_PORT = 9222;
 const BASE_URL = `http://localhost:${PORT}${SUBFOLDER}`;
 const THRESHOLDS = {
 	performance: 99,
@@ -26,121 +30,153 @@ const THRESHOLDS = {
 	"best-practices": 100,
 	seo: 100,
 };
-const REPORT_DIR = "./.tmp/performance-reports";
 
-const startServer = () => {
-	const buildDir = path.resolve(BUILD_DIR);
-	if (!existsSync(buildDir)) {
-		logInfo("Building project...");
-		execSync(`bun run ${BUILD_COMMAND} --logLevel error`, { stdio: "inherit" });
-	}
-	logDebug("Starting server...");
-	return spawn("bun", ["run", PREVIEW_COMMAND, "--port", PORT]);
-};
+const timeStamp = new Date().toISOString().replace(/[:.]/g, "-");
+const reportDir = `${process.cwd()}/.tmp/lighthouse/${timeStamp}`;
+const startTime = performance.now();
+const serverProcess = startServer(BUILD_DIR, BUILD_CMD, PREVIEW_CMD, PORT);
 
-const stopServer = (server) => {
-	logDebug("Stopping server...");
-	server.kill("SIGTERM");
-	server.on("close", () => {
-		logSuccess("Server stopped");
-		process.exit(0);
+waitForServer(BASE_URL)
+	.then(() => {
+		const pagesToAudit = gatherPagesToAudit();
+		logSuccess(`Running tests for ${pagesToAudit.length} page(s)...`);
+		return runPerformanceTests(pagesToAudit); // returns a promise, so `.then()` will wait for it to complete
+	})
+	.catch((error) => {
+		logError("Error during setup:", error);
+		process.exit(1);
+	})
+	.finally(() => {
+		const totalTime = ((performance.now() - startTime) / 1000).toFixed(2);
+		logInfo(`Total time: ${totalTime} s`);
+		stopServer(serverProcess);
 	});
-};
 
-const waitForServer = async (url, timeout = 10000, initialDelay = 100) => {
-	const baseUrl = new URL(url).origin;
-	await setTimeout(initialDelay);
-	const deadline = Date.now() + timeout;
-
-	while (Date.now() < deadline) {
-		try {
-			await new Promise((resolve, reject) =>
-				get(baseUrl, ({ statusCode }) =>
-					[200, 404].includes(statusCode) ? resolve() : reject(),
-				).on("error", reject),
-			);
-			return logSuccess(`Server is ready at ${url}`);
-		} catch {
-			logDebug("Checking server status...");
-			await setTimeout(200); // Retry after 200ms
-		}
-	}
-
-	throw new Error(`Server at ${url} did not start within ${timeout}ms`);
-};
-
-const validateScore = (category, score, threshold) => {
-	const percentageScore = score * 100;
-	if (percentageScore >= threshold) {
-		logSuccess(`${category}: ${percentageScore} (meets threshold of ${threshold})`);
-	} else {
-		logError(`${category}: ${percentageScore} (below threshold of ${threshold})`);
-	}
-};
-
-const runPerformanceTest = async (url, port) => {
-	const browser = await chromium.launch({
-		headless: true,
-		args: [`--remote-debugging-port=${port}`],
-	});
+/**
+ * Runs Lighthouse audits sequentially for each page URL.
+ * @param {string[]} pageUrls - The list of URLs to audit.
+ */
+async function runPerformanceTests(pageUrls) {
+	const { browser, page } = await launchBrowser();
 
 	try {
-		logInfo(`Launching Lighthouse audit for ${url}`);
-		const timestamp = new Date().toISOString().split(".")[0]; // Removes milliseconds and 'Z'
-		const reportName = `lighthouse-report-${timestamp}`;
-		const reportPath = path.resolve(REPORT_DIR, `${reportName}.html`);
-		const page = await browser.newPage();
-		await page.goto(url);
+		for (const pageUrl of pageUrls) await analyzePage(page, pageUrl);
+	} catch (error) {
+		logError("Error during audits:", error);
+	} finally {
+		await closeBrowser(browser);
+	}
+}
 
-		const lighthouseResults = await playAudit({
+/**
+ * Performs a Lighthouse audit on a single page.
+ * @param {import('playwright').Page} page - The Playwright page instance.
+ * @param {string} pageUrl - The URL to audit.
+ */
+async function analyzePage(page, pageUrl) {
+	try {
+		logHeader(`Auditing ${pageUrl}`);
+		const reportName = createReportName(pageUrl);
+		const reportFilePath = path.resolve(reportDir, reportName);
+
+		await page.goto(pageUrl, { waitUntil: "load" });
+		const auditResults = await playAudit({
 			page,
-			port,
+			port: DEBUG_PORT,
 			thresholds: THRESHOLDS,
 			disableLogs: true,
 			ignoreError: true,
 			reports: {
-				formats: { html: true, json: true },
-				directory: REPORT_DIR,
+				formats: { html: true, json: false },
+				directory: reportDir,
 				name: reportName,
 			},
 		});
 
-		if (!lighthouseResults?.lhr) {
-			logError("Lighthouse audit did not return valid results.");
+		if (!auditResults?.lhr) {
+			logError(`No valid results for ${pageUrl}`);
 			return;
 		}
 
-		logInfo("Lighthouse audit completed:");
 		const {
 			performance,
 			accessibility,
 			"best-practices": bestPractices,
 			seo,
-		} = lighthouseResults.lhr.categories;
+		} = auditResults.lhr.categories;
 
+		logInfo("Results");
 		validateScore("  - Performance", performance.score, THRESHOLDS.performance);
 		validateScore("  - Accessibility", accessibility.score, THRESHOLDS.accessibility);
 		validateScore("  - Best Practices", bestPractices.score, THRESHOLDS["best-practices"]);
 		validateScore("  - SEO", seo.score, THRESHOLDS.seo);
-
-		logInfo("\n", `Lighthouse report saved to file://${reportPath}`);
+		logInfo(`Report saved: file://${reportFilePath}`);
 	} catch (error) {
-		logError("Error running Lighthouse audit:", error);
-	} finally {
-		await browser.close();
+		logError(`Error analyzing ${pageUrl}:`, error);
 	}
-};
+}
 
-(async () => {
-	const viteServer = startServer();
-
-	try {
-		await waitForServer(BASE_URL);
-		await runPerformanceTest(BASE_URL, 9222);
-	} catch (error) {
-		logError("Error during setup:", error);
-		process.exit(1);
-	} finally {
-		stopServer(viteServer);
+/**
+ * Identifies which pages to audit based on CLI flags.
+ * @returns {string[]} - The list of URLs to audit.
+ */
+function gatherPagesToAudit() {
+	if (specificPath) {
+		// e.g., user runs: node script.js --specific blog.html
+		logInfo(`Specific mode: testing only "${specificPath}"`);
+		// Return that path appended to BASE_URL (removing any leading slash)
+		const relative = specificPath.replace(/^\/+/, "");
+		return [`${BASE_URL}/${relative}`];
 	}
-})();
+	if (allPagesFlag) {
+		logInfo("All mode: testing all HTML files.");
+		const files = getAllHtmlFiles(BUILD_DIR);
+		return files.map(transformFileToUrl);
+	}
+	if (minimalFlag) {
+		logInfo("Minimal mode: only first HTML file in each directory.");
+		const files = getAllHtmlFiles(BUILD_DIR, true);
+		return files.map(transformFileToUrl);
+	}
+	logInfo("No flags: testing homepage only.");
+	return [BASE_URL];
+}
+
+/**
+ * Convert a file path into a fully qualified URL
+ * @param {string} filePath
+ * @returns {string} - Formatted file URL.
+ */
+function transformFileToUrl(filePath) {
+	return (
+		BASE_URL +
+		filePath
+			.replace(BUILD_DIR, "")
+			.replace(/\\/g, "/")
+			.replace(/index\.html$/, "")
+	);
+}
+
+/**
+ * Creates a human-readable name for the Lighthouse report file.
+ * @param {string} pageUrl
+ * @returns {string} - The formatted report name.
+ */
+function createReportName(pageUrl) {
+	const pathName = new URL(pageUrl).pathname;
+	let url = pathName.replace(/^\/|\/$/g, "").replace(/\//g, "-");
+	if (!url.endsWith(".html")) url += ".html";
+	return url;
+}
+
+/**
+ * Validates a Lighthouse score against thresholds.
+ * @param {string} category - e.g. "Performance"
+ * @param {number} score - The category score (0-1).
+ * @param {number} threshold - Required minimum percentage.
+ */
+function validateScore(category, score, threshold) {
+	const percentScore = Math.round(score * 100);
+	if (percentScore >= threshold) logSuccess(`${category}: ${percentScore} (>= ${threshold})`);
+	else logError(`${category}: ${percentScore} (< ${threshold})`);
+}
