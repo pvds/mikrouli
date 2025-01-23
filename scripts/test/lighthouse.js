@@ -10,6 +10,11 @@ const flags = ["--prod", "--minimal", "--all"];
 const [productionFlag, minimalFlag, allPagesFlag] = flags.map((flag) =>
 	process.argv.includes(flag),
 );
+const specificIndex = process.argv.indexOf("--specific");
+const specificPath =
+	specificIndex !== -1 && process.argv[specificIndex + 1]
+		? process.argv[specificIndex + 1]
+		: null;
 
 // Constants
 const BUILD_DIR = productionFlag ? "build/production" : "build/staging";
@@ -53,7 +58,9 @@ waitForServer(BASE_URL)
  */
 async function runPerformanceTests(pageUrls) {
 	const browserInstance = await launchBrowser();
-	const browserPage = await browserInstance.newPage();
+	const browserPage = await browserInstance.newPage({
+		closeOnPageError: true,
+	});
 
 	try {
 		for (const pageUrl of pageUrls) await analyzePage(browserPage, pageUrl);
@@ -117,6 +124,13 @@ async function analyzePage(page, pageUrl) {
  * @returns {string[]} - The list of URLs to audit.
  */
 function gatherPagesToAudit() {
+	if (specificPath) {
+		// e.g., user runs: node script.js --specific blog.html
+		logInfo(`Specific mode: testing only "${specificPath}"`);
+		// Return that path appended to BASE_URL (removing any leading slash)
+		const relative = specificPath.replace(/^\/+/, "");
+		return [`${BASE_URL}/${relative}`];
+	}
 	if (allPagesFlag) {
 		logInfo("All mode: testing all HTML files.");
 		const files = getAllHtmlFiles(BUILD_DIR);
