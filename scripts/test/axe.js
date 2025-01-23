@@ -70,7 +70,7 @@ const analyzePage = async (browser, file, dir) => {
 	}
 
 	const browser = await launchBrowser();
-	const limit = pLimit(maxConcurrency);
+	const tasks = pLimit(maxConcurrency);
 	const violationsSummary = [];
 	let hasViolations = false;
 
@@ -78,7 +78,7 @@ const analyzePage = async (browser, file, dir) => {
 		// Measure analysis time
 		const startAnalysis = performance.now();
 		const results = await Promise.all(
-			htmlFiles.map((file) => limit(() => analyzePage(browser, file, buildDir))),
+			htmlFiles.map((file) => tasks(() => analyzePage(browser, file, buildDir))),
 		);
 		timings["Analysis Time"] = `${(performance.now() - startAnalysis).toFixed(2)} ms`;
 
