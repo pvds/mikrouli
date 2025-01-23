@@ -1,14 +1,11 @@
-import { execSync, spawn } from "node:child_process";
-import { existsSync } from "node:fs";
-import { get } from "node:http";
 import path from "node:path";
-import { setTimeout } from "node:timers/promises";
 import { chromium } from "playwright";
 import { playAudit } from "playwright-lighthouse";
-import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
+import { logError, logInfo, logSuccess } from "../util/log.js";
+import { closeBrowser } from "../util/playwright.js";
+import { startServer, stopServer, waitForServer } from "../util/server.js";
 
 // TODO: run on multiple pages concurrently with a limit (see axe.test.js logic)
-// TODO: check for using shared logic between scripts (see axe.test.js logic)
 
 // Parse command-line arguments
 const args = process.argv.slice(2);
@@ -17,7 +14,6 @@ const BUILD_DIR = isProduction ? "./build/production" : "./build/staging";
 const SUBFOLDER = isProduction ? "" : "/mikrouli";
 const BUILD_COMMAND = isProduction ? "build:production" : "build";
 const PREVIEW_COMMAND = isProduction ? "preview:production" : "preview";
-
 const PORT = 4173;
 const BASE_URL = `http://localhost:${PORT}${SUBFOLDER}`;
 const THRESHOLDS = {
@@ -28,47 +24,12 @@ const THRESHOLDS = {
 };
 const REPORT_DIR = "./.tmp/performance-reports";
 
-const startServer = () => {
-	const buildDir = path.resolve(BUILD_DIR);
-	if (!existsSync(buildDir)) {
-		logInfo("Building project...");
-		execSync(`bun run ${BUILD_COMMAND} --logLevel error`, { stdio: "inherit" });
-	}
-	logDebug("Starting server...");
-	return spawn("bun", ["run", PREVIEW_COMMAND, "--port", PORT]);
-};
-
-const stopServer = (server) => {
-	logDebug("Stopping server...");
-	server.kill("SIGTERM");
-	server.on("close", () => {
-		logSuccess("Server stopped");
-		process.exit(0);
-	});
-};
-
-const waitForServer = async (url, timeout = 10000, initialDelay = 100) => {
-	const baseUrl = new URL(url).origin;
-	await setTimeout(initialDelay);
-	const deadline = Date.now() + timeout;
-
-	while (Date.now() < deadline) {
-		try {
-			await new Promise((resolve, reject) =>
-				get(baseUrl, ({ statusCode }) =>
-					[200, 404].includes(statusCode) ? resolve() : reject(),
-				).on("error", reject),
-			);
-			return logSuccess(`Server is ready at ${url}`);
-		} catch {
-			logDebug("Checking server status...");
-			await setTimeout(200); // Retry after 200ms
-		}
-	}
-
-	throw new Error(`Server at ${url} did not start within ${timeout}ms`);
-};
-
+/**
+ * Validate audit scores against defined thresholds.
+ * @param {string} category - Audit category.
+ * @param {number} score - Achieved score (0-1).
+ * @param {number} threshold - Minimum required score.
+ */
 const validateScore = (category, score, threshold) => {
 	const percentageScore = score * 100;
 	if (percentageScore >= threshold) {
@@ -78,6 +39,11 @@ const validateScore = (category, score, threshold) => {
 	}
 };
 
+/**
+ * Run Lighthouse performance audits.
+ * @param {string} url - The URL to audit.
+ * @param {number} port - Remote debugging port.
+ */
 const runPerformanceTest = async (url, port) => {
 	const browser = await chromium.launch({
 		headless: true,
@@ -127,12 +93,12 @@ const runPerformanceTest = async (url, port) => {
 	} catch (error) {
 		logError("Error running Lighthouse audit:", error);
 	} finally {
-		await browser.close();
+		await closeBrowser(browser);
 	}
 };
 
 (async () => {
-	const viteServer = startServer();
+	const viteServer = startServer(BUILD_DIR, BUILD_COMMAND, PREVIEW_COMMAND, PORT);
 
 	try {
 		await waitForServer(BASE_URL);
