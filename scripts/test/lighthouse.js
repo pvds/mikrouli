@@ -22,7 +22,7 @@ const THRESHOLDS = {
 	"best-practices": 100,
 	seo: 100,
 };
-const REPORT_DIR = "./.tmp/performance-reports";
+const REPORT_DIR = `${process.cwd()}/.tmp/performance-reports`;
 
 /**
  * Validate audit scores against defined thresholds.
@@ -52,7 +52,7 @@ const runPerformanceTest = async (url, port) => {
 
 	try {
 		logInfo(`Launching Lighthouse audit for ${url}`);
-		const timestamp = new Date().toISOString().split(".")[0]; // Removes milliseconds and 'Z'
+		const timestamp = new Date().toISOString();
 		const reportName = `lighthouse-report-${timestamp}`;
 		const reportPath = path.resolve(REPORT_DIR, `${reportName}.html`);
 		const page = await browser.newPage();
