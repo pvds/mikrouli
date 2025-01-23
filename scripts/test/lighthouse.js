@@ -1,26 +1,24 @@
 import path from "node:path";
 import { playAudit } from "playwright-lighthouse";
 import { getAllHtmlFiles } from "../util/file.js";
-import { logError, logInfo, logSuccess } from "../util/log.js";
+import { logError, logHeader, logInfo, logSuccess } from "../util/log.js";
 import { closeBrowser, launchBrowser } from "../util/playwright.js";
 import { startServer, stopServer, waitForServer } from "../util/server.js";
 
-// Parse command-line arguments
-const args = process.argv.slice(2);
-const isProduction = args.includes("--prod");
-const isMinimal = args.includes("--minimal");
-const isAll = args.includes("--all");
+// Parse flags
+const flags = ["--prod", "--minimal", "--all"];
+const [productionFlag, minimalFlag, allPagesFlag] = flags.map((flag) =>
+	process.argv.includes(flag),
+);
 
-// Define constants
-const BUILD_DIR = isProduction ? "build/production" : "build/staging";
-const SUBFOLDER = isProduction ? "" : "/mikrouli";
-const BUILD_COMMAND = isProduction ? "build:production" : "build";
-const PREVIEW_COMMAND = isProduction ? "preview:production" : "preview";
+// Constants
+const BUILD_DIR = productionFlag ? "build/production" : "build/staging";
+const SUBFOLDER = productionFlag ? "" : "/mikrouli";
+const BUILD_CMD = productionFlag ? "build:production" : "build";
+const PREVIEW_CMD = productionFlag ? "preview:production" : "preview";
 const PORT = 4173;
 const DEBUG_PORT = 9222;
 const BASE_URL = `http://localhost:${PORT}${SUBFOLDER}`;
-const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-const reportDir = `${process.cwd()}/.tmp/lighthouse/${timestamp}`;
 const THRESHOLDS = {
 	performance: 99,
 	accessibility: 100,
@@ -28,68 +26,57 @@ const THRESHOLDS = {
 	seo: 100,
 };
 
-/**
- * Main execution: starts the server, waits for it, fetches URLs to audit,
- * runs performance tests, and then stops the server.
- */
-(async function main() {
-	const startTotal = performance.now();
-	const viteServer = startServer(BUILD_DIR, BUILD_COMMAND, PREVIEW_COMMAND, PORT);
+const timeStamp = new Date().toISOString().replace(/[:.]/g, "-");
+const reportDir = `${process.cwd()}/.tmp/lighthouse/${timeStamp}`;
+const startTime = performance.now();
+const serverProcess = startServer(BUILD_DIR, BUILD_CMD, PREVIEW_CMD, PORT);
 
-	try {
-		await waitForServer(BASE_URL);
-
-		// Get pages to audit based on the command-line arguments
-		const pagesToAudit = getPagesToAudit();
-		logInfo(`Testing ${pagesToAudit.length} pages...`);
-
-		await runPerformanceTests(pagesToAudit);
-	} catch (error) {
+waitForServer(BASE_URL)
+	.then(() => {
+		const pagesToAudit = gatherPagesToAudit();
+		logSuccess(`Running tests for ${pagesToAudit.length} page(s)...`);
+		return runPerformanceTests(pagesToAudit); // returns a promise, so `.then()` will wait for it to complete
+	})
+	.catch((error) => {
 		logError("Error during setup:", error);
 		process.exit(1);
-	} finally {
-		const totalTime = ((performance.now() - startTotal) / 1000).toFixed(2);
+	})
+	.finally(() => {
+		const totalTime = ((performance.now() - startTime) / 1000).toFixed(2);
 		logInfo(`Total time: ${totalTime} s`);
-		stopServer(viteServer);
-	}
-})();
+		stopServer(serverProcess);
+	});
 
 /**
- * Run Lighthouse audits sequentially by navigating to different pages using the same browser instance.
- * @param {string[]} urls - List of URLs to audit.
+ * Runs Lighthouse audits sequentially for each page URL.
+ * @param {string[]} pageUrls - The list of URLs to audit.
  */
-async function runPerformanceTests(urls) {
-	logInfo(`Running tests sequentially for ${urls.length} pages...`);
-
-	const browser = await launchBrowser();
-	const page = await browser.newPage();
+async function runPerformanceTests(pageUrls) {
+	const browserInstance = await launchBrowser();
+	const browserPage = await browserInstance.newPage();
 
 	try {
-		for (const url of urls) {
-			await analyzePage(page, url);
-		}
+		for (const pageUrl of pageUrls) await analyzePage(browserPage, pageUrl);
 	} catch (error) {
-		logError("Error during sequential audits:", error);
+		logError("Error during audits:", error);
 	} finally {
-		await closeBrowser(browser);
+		await closeBrowser(browserInstance);
 	}
 }
 
 /**
- * Run Lighthouse audit for a single page.
+ * Performs a Lighthouse audit on a single page.
  * @param {import('playwright').Page} page - The Playwright page instance.
- * @param {string} url - The URL to audit.
- * @returns {Promise<void>}
+ * @param {string} pageUrl - The URL to audit.
  */
-async function analyzePage(page, url) {
+async function analyzePage(page, pageUrl) {
 	try {
-		logInfo(`Launching Lighthouse audit for ${url}`);
-		const reportName = formatReportName(url);
-		const reportPath = path.resolve(reportDir, reportName);
+		logHeader(`Auditing ${pageUrl}`);
+		const reportName = createReportName(pageUrl);
+		const reportFilePath = path.resolve(reportDir, reportName);
 
-		await page.goto(url, { waitUntil: "load" });
-
-		const lighthouseResults = await playAudit({
+		await page.goto(pageUrl, { waitUntil: "load" });
+		const auditResults = await playAudit({
 			page,
 			port: DEBUG_PORT,
 			thresholds: THRESHOLDS,
@@ -102,58 +89,57 @@ async function analyzePage(page, url) {
 			},
 		});
 
-		if (!lighthouseResults?.lhr) {
-			logError(`Lighthouse audit for ${url} did not return valid results.`);
+		if (!auditResults?.lhr) {
+			logError(`No valid results for ${pageUrl}`);
 			return;
 		}
 
-		logInfo(`Lighthouse audit completed for ${url}`);
 		const {
 			performance,
 			accessibility,
 			"best-practices": bestPractices,
 			seo,
-		} = lighthouseResults.lhr.categories;
+		} = auditResults.lhr.categories;
 
+		logInfo("Results");
 		validateScore("  - Performance", performance.score, THRESHOLDS.performance);
 		validateScore("  - Accessibility", accessibility.score, THRESHOLDS.accessibility);
 		validateScore("  - Best Practices", bestPractices.score, THRESHOLDS["best-practices"]);
 		validateScore("  - SEO", seo.score, THRESHOLDS.seo);
-
-		logInfo(`Lighthouse report saved to file://${reportPath}`);
+		logInfo(`Report saved: file://${reportFilePath}`);
 	} catch (error) {
-		logError(`Error analyzing page ${url}:`, error);
+		logError(`Error analyzing ${pageUrl}:`, error);
 	}
 }
 
 /**
- * Generate an array of URLs to audit based on the command-line flags.
- * @returns {string[]} - List of URLs to audit.
+ * Identifies which pages to audit based on CLI flags.
+ * @returns {string[]} - The list of URLs to audit.
  */
-function getPagesToAudit() {
-	if (isMinimal) {
-		logInfo("Running in minimal mode: testing only first HTML files in directories.");
-		return getAllHtmlFiles(BUILD_DIR, true).map(formatPageUrl);
+function gatherPagesToAudit() {
+	if (allPagesFlag) {
+		logInfo("All mode: testing all HTML files.");
+		const files = getAllHtmlFiles(BUILD_DIR);
+		return files.map(transformFileToUrl);
 	}
-
-	if (isAll) {
-		logInfo("Running in all pages mode: testing all HTML files.");
-		return getAllHtmlFiles(BUILD_DIR).map(formatPageUrl);
+	if (minimalFlag) {
+		logInfo("Minimal mode: only first HTML file in each directory.");
+		const files = getAllHtmlFiles(BUILD_DIR, true);
+		return files.map(transformFileToUrl);
 	}
-
-	logInfo("No flags provided: testing homepage only.");
+	logInfo("No flags: testing homepage only.");
 	return [BASE_URL];
 }
 
 /**
- * Format a file path into a testable page URL.
- * @param {string} file - The file path.
- * @returns {string} - Formatted page URL.
+ * Convert a file path into a fully qualified URL
+ * @param {string} filePath
+ * @returns {string} - Formatted file URL.
  */
-function formatPageUrl(file) {
+function transformFileToUrl(filePath) {
 	return (
 		BASE_URL +
-		file
+		filePath
 			.replace(BUILD_DIR, "")
 			.replace(/\\/g, "/")
 			.replace(/index\.html$/, "")
@@ -161,26 +147,25 @@ function formatPageUrl(file) {
 }
 
 /**
- * Extract a user-friendly name from a URL (e.g., http://localhost:4173/mikrouli -> mikrouli).
- * @param {string} url - The page URL.
- * @returns {string} - The formatted page name.
+ * Creates a human-readable name for the Lighthouse report file.
+ * @param {string} pageUrl
+ * @returns {string} - The formatted report name.
  */
-function formatReportName(url) {
-	const pathname = new URL(url).pathname;
-	return pathname.replace(/^\//, "").replace(/\//g, "-") || "home";
+function createReportName(pageUrl) {
+	const pathName = new URL(pageUrl).pathname;
+	let url = pathName.replace(/^\/|\/$/g, "").replace(/\//g, "-");
+	if (!url.endsWith(".html")) url += ".html";
+	return url;
 }
 
 /**
- * Validate audit scores against defined thresholds.
- * @param {string} category - Audit category.
- * @param {number} score - Achieved score (0-1).
- * @param {number} threshold - Minimum required score.
+ * Validates a Lighthouse score against thresholds.
+ * @param {string} category - e.g. "Performance"
+ * @param {number} score - The category score (0-1).
+ * @param {number} threshold - Required minimum percentage.
  */
 function validateScore(category, score, threshold) {
-	const percentageScore = score * 100;
-	if (percentageScore >= threshold) {
-		logSuccess(`${category}: ${percentageScore} (meets threshold of ${threshold})`);
-	} else {
-		logError(`${category}: ${percentageScore} (below threshold of ${threshold})`);
-	}
+	const percentScore = Math.round(score * 100);
+	if (percentScore >= threshold) logSuccess(`${category}: ${percentScore} (>= ${threshold})`);
+	else logError(`${category}: ${percentScore} (< ${threshold})`);
 }
