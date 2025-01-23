@@ -31,7 +31,8 @@ export const generatePlaceholder = async (inputPath, outputPath = "", asBase64 =
 export const writePlaceholders = (category, placeholders, outputPath) => {
 	const data = fs.existsSync(outputPath) ? JSON.parse(fs.readFileSync(outputPath, "utf-8")) : {};
 
-	data[category] = placeholders;
+	// Sort placeholders alphabetically and assign to the category
+	data[category] = Object.fromEntries(Object.entries(placeholders).sort());
 	fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));
 
 	console.info(`Successfully wrote placeholders under "${category}"`);
