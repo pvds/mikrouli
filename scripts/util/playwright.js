@@ -2,31 +2,41 @@ import { chromium } from "playwright";
 import { logDebug, logError, logSuccess } from "./log.js";
 
 const chromeTestFlags = [
-	// "--disable-gpu", // Disable GPU hardware acceleration to avoid rendering issues.
-	// "--disable-features=IsolateOrigins,site-per-process", // Disables site isolation, reducing resource usage.
-	// "--disable-site-isolation-trials", // Similar to the above, helps avoid cross-origin restrictions in testing.
-	// "--disable-component-update", // Disables automatic updates of Chromium components.
-	// "--disable-extensions", // Prevents unnecessary browser extensions from interfering.
-	// "--disable-background-timer-throttling", // Prevents automatic throttling of background tasks.
-	// "--disable-backgrounding-occluded-windows", // Ensures all browser operations run without hidden optimizations.
-	// "--disable-renderer-backgrounding", // Keeps all renderer processes running at full performance.
-	// "--password-store=basic", // Prevents Chromium from accessing OS keychain (avoids popups).
-	// "--use-mock-keychain", // Further prevents the browser from triggering keychain popups.
-	// "--deny-permission-prompts", // Denies all permission requests to avoid interruptions.
+	"--password-store=basic", // Prevents Chromium from accessing OS keychain (avoids popups).
+	"--use-mock-keychain", // Further prevents the browser from triggering keychain popups.
+	"--deny-permission-prompts", // Denies all permission requests to avoid interruptions.
 ];
 
 /**
- * Launch a headless Chromium browser.
- * @returns {Promise<import('playwright').Browser>} - The browser instance.
+ * Launch a headless Chromium browser and attach global event listeners.
+ * @param {number} [debugPort=9222]
+ * @returns {Promise<{ browser: import('playwright').Browser, page: import('playwright').Page }>}
  */
 export const launchBrowser = async (debugPort = 9222) => {
 	logDebug("Launching browser...");
 
-	return await chromium.launch({
+	const browser = await chromium.launch({
 		headless: true,
-		// launchOptions: { args: ['--deny-permission-prompts'] }, //use this option to disable the prompt
 		args: [`--remote-debugging-port=${debugPort}`, ...chromeTestFlags],
 	});
+
+	const page = await browser.newPage();
+
+	// Attach inline event listeners for page errors, network issues, console logs
+	page.on("pageerror", (error) => {
+		logError(`Page JS error: ${error.message}`);
+	});
+	page.on("requestfailed", (request) => {
+		const failure = request.failure();
+		const errorText = failure ? failure.errorText : "unknown error";
+		logError(`Request failed: ${request.url()} - ${errorText}`);
+	});
+	page.on("console", (msg) => {
+		if (msg.type() === "error") logError(`Console error: ${msg.text()}`);
+		else logDebug(`Console ${msg.type()}: ${msg.text()}`);
+	});
+
+	return { browser, page };
 };
 
 /**

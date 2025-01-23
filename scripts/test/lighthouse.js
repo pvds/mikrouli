@@ -57,17 +57,14 @@ waitForServer(BASE_URL)
  * @param {string[]} pageUrls - The list of URLs to audit.
  */
 async function runPerformanceTests(pageUrls) {
-	const browserInstance = await launchBrowser();
-	const browserPage = await browserInstance.newPage({
-		closeOnPageError: true,
-	});
+	const { browser, page } = await launchBrowser();
 
 	try {
-		for (const pageUrl of pageUrls) await analyzePage(browserPage, pageUrl);
+		for (const pageUrl of pageUrls) await analyzePage(page, pageUrl);
 	} catch (error) {
 		logError("Error during audits:", error);
 	} finally {
-		await closeBrowser(browserInstance);
+		await closeBrowser(browser);
 	}
 }
 
