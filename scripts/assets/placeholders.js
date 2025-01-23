@@ -1,5 +1,5 @@
-import fs from "node:fs";
 import sharp from "sharp";
+import { readJSON, writeJSON } from "../util/file.js";
 
 /**
  * Generate a small blurred placeholder image.
@@ -29,11 +29,10 @@ export const generatePlaceholder = async (inputPath, outputPath = "", asBase64 =
  * @param {string} outputPath - Path to the placeholders JSON file.
  */
 export const writePlaceholders = (category, placeholders, outputPath) => {
-	const data = fs.existsSync(outputPath) ? JSON.parse(fs.readFileSync(outputPath, "utf-8")) : {};
-
+	const data = readJSON(outputPath);
 	// Sort placeholders alphabetically and assign to the category
 	data[category] = Object.fromEntries(Object.entries(placeholders).sort());
-	fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));
 
+	writeJSON(outputPath, data);
 	console.info(`Successfully wrote placeholders under "${category}"`);
 };
