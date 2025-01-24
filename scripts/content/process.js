@@ -4,7 +4,7 @@
  *
  * @return {import('$lib/types/contentful.d.js').ContentfulData}
  */
-export function transformContentfulData(data = {}) {
+export function processContentfulData(data = {}) {
 	// Extract raw arrays (or default to empty arrays)
 	const pagesRaw = data.pages || [];
 	const servicesRaw = data.services || [];

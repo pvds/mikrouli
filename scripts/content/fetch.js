@@ -1,10 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createClient } from "contentful";
-import { downloadContentfulAssets } from "../assets/fetch.js";
-import { processImages } from "../assets/images.js";
 import { logError, logInfo, logSuccess, logWarn } from "../util/log.js";
-import { transformContentfulData } from "./transform.js";
+import { processContentfulData } from "./process.js";
 
 // 1) Validate environment vars
 if (!process.env.CONTENTFUL_SPACE_ID || !process.env.CONTENTFUL_ACCESS_TOKEN) {
@@ -37,12 +35,12 @@ const client = createClient({ space, accessToken });
  */
 async function fetchContentfulData() {
 	if (!isProd && !isForce) {
-		logWarn("Development mode. All cached files exist, skipping fetch.");
+		logWarn("Development mode. Use --force to fetch fresh data.");
 		return;
 	}
 
 	try {
-		logInfo("Fetching data from CMS...");
+		logInfo("Fetching data from cms...");
 
 		// Fetch each content type in parallel
 		const requests = contentTypes.map(({ query }) =>
@@ -57,7 +55,7 @@ async function fetchContentfulData() {
 		}
 
 		// Run your custom transform on the combined data
-		const processedData = transformContentfulData(rawData);
+		const processedData = processContentfulData(rawData);
 
 		// Write raw data to a file
 		// Only for debugging purposes in dev mode
@@ -73,15 +71,12 @@ async function fetchContentfulData() {
 			writeJsonFile(outputPath, processedData[id], spacing);
 		}
 
-		if (isProd || isForce) {
-			await downloadContentfulAssets(processedData.images).then(() => {
-				processImages("cms");
-			});
-		}
-
-		logSuccess("Saved data from CMS!");
+		// Also store the final list of images we *might* need
+		const imagesPath = path.resolve(process.cwd(), "src/data/generated/images.json");
+		writeJsonFile(imagesPath, processedData.images, spacing);
+		logSuccess("Fetched Contentful data");
 	} catch (err) {
-		logError("Error fetching CMS data:", err);
+		logError("Error fetching cms data:", err);
 		process.exit(1);
 	}
 }
