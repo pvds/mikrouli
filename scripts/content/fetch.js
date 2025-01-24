@@ -76,7 +76,7 @@ async function fetchContentfulData() {
 		writeJsonFile(imagesPath, processedData.images, spacing);
 		logSuccess("Fetched Contentful data");
 	} catch (err) {
-		logError("Error fetching cms data:", err);
+		logError("Error fetching cms data:", err.message);
 		process.exit(1);
 	}
 }
