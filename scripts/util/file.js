@@ -83,7 +83,6 @@ export const runCommand = (command) => {
 	try {
 		execSync(command, { stdio: "inherit" });
 	} catch (error) {
-		console.error(`Error executing command: ${command}`, error);
-		throw error;
+		throw new Error(error.message);
 	}
 };
