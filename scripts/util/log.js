@@ -33,7 +33,7 @@ const colors = {
 /**
  * Logs a message with customizable text and background colors.
  * @param {string} [textColor='white'] - The color of the text.
- * @param {string} [backgroundColor=null] - The background color.
+ * @param {string|null} [backgroundColor=undefined] - The background color.
  * @param  {...any} messages - Messages to log.
  */
 function log(textColor = "white", backgroundColor = null, ...messages) {
@@ -80,4 +80,10 @@ const logSuccess = (...messages) => log("green", null, ...messages);
 const logHeader = (...messages) =>
 	log("magenta", null, ...["\n=============== ", ...messages, "\n"]);
 
-export { logDebug, logInfo, logWarn, logError, logSuccess, logHeader };
+/**
+ * Logs a highlighted message with white text on a blue background.
+ * @param  {...any} messages - Messages to log.
+ */
+const logHighlight = (...messages) => log("blue", null, ...messages);
+
+export { logDebug, logInfo, logWarn, logError, logSuccess, logHeader, logHighlight };
