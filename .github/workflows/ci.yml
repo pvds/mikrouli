@@ -85,7 +85,7 @@ jobs:
               run: bun run check:ci
 
             - name: content
-              run: bun run content:cms --prod
+              run: bun run content
               env:
                   CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
                   CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
