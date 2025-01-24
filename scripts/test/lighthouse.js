@@ -2,6 +2,7 @@ import path from "node:path";
 import { playAudit } from "playwright-lighthouse";
 import { getAllHtmlFiles } from "../util/file.js";
 import { logError, logHeader, logInfo, logSuccess } from "../util/log.js";
+import { measure } from "../util/measure.js";
 import { closeBrowser, launchBrowser } from "../util/playwright.js";
 import { startServer, stopServer, waitForServer } from "../util/server.js";
 
@@ -47,7 +48,7 @@ waitForServer(BASE_URL)
 		process.exit(1);
 	})
 	.finally(() => {
-		const totalTime = ((performance.now() - startTime) / 1000).toFixed(2);
+		const totalTime = measure(startTime);
 		logInfo(`Total time: ${totalTime} s`);
 		stopServer(serverProcess);
 	});

@@ -6,6 +6,7 @@ import pLimit from "p-limit";
 import sharp from "sharp";
 import { prepareDir } from "../util/file.js";
 import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
+import { measure } from "../util/measure.js";
 import { generatePlaceholder, writePlaceholders } from "../util/placeholders.js";
 
 const cpuCount = Math.floor(os.cpus().length / 2);
@@ -91,9 +92,8 @@ export const processImages = async (
 	// Wait until all file tasks have completed.
 	await Promise.all(tasks);
 	writePlaceholders(category, placeholders, placeholdersFile);
-	const timing = Math.round(performance.now() - startTime) / 1000;
 	logSuccess(`Optimized ${files.length} images`);
-	logDebug(`Optimizing took ${timing} seconds`);
+	logDebug(`Optimizing took ${measure(startTime)} seconds`);
 };
 
 if (isLocal) processImages("local").catch((err) => logError(err));

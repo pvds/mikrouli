@@ -4,6 +4,7 @@ import { AxeBuilder } from "@axe-core/playwright";
 import pLimit from "p-limit";
 import { getAllHtmlFiles, resolveIfExists, runCommand } from "../util/file.js";
 import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
+import { measure } from "../util/measure.js";
 import { closeBrowser, launchBrowser, navigateToPage } from "../util/playwright.js";
 
 // Parse command-line arguments
@@ -60,7 +61,7 @@ const analyzePage = async (browser, file, dir) => {
 	// Measure file discovery time
 	const startFileDiscovery = performance.now();
 	const htmlFiles = getAllHtmlFiles(buildDir, isMinimal);
-	timings["File Discovery Time"] = `${(performance.now() - startFileDiscovery).toFixed(2)} ms`;
+	timings["File Discovery Time"] = measure(startFileDiscovery);
 
 	logSuccess(`Found ${htmlFiles.length} HTML files`);
 
@@ -80,7 +81,7 @@ const analyzePage = async (browser, file, dir) => {
 		const results = await Promise.all(
 			htmlFiles.map((file) => tasks(() => analyzePage(browser, file, buildDir))),
 		);
-		timings["Analysis Time"] = `${(performance.now() - startAnalysis).toFixed(2)} ms`;
+		timings["Analysis Time"] = measure(startAnalysis);
 
 		// Collect and summarize violations
 		for (const { file, violations } of results) {
@@ -109,7 +110,7 @@ const analyzePage = async (browser, file, dir) => {
 	}
 
 	logInfo("Timing Summary:");
-	timings["Total Execution Time"] = `${(performance.now() - startTotal).toFixed(2)} ms`;
+	timings["Total Execution Time"] = measure(startTotal);
 	for (const [key, value] of Object.entries(timings)) {
 		logInfo(`  ${key}: ${value}`);
 	}
