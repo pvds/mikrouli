@@ -1,7 +1,10 @@
 import fs from "node:fs";
 import https from "node:https";
 import path from "node:path";
+import pLimit from "p-limit";
+
 import { logDebug, logError, logInfo, logSuccess, logWarn } from "../util/log.js";
+import { withRetry } from "../util/retry.js";
 
 const OUTPUT_DIR = path.resolve(process.cwd(), "images/cms");
 const IMAGES_JSON = path.resolve(process.cwd(), "src/data/generated/images.json");
@@ -98,6 +101,7 @@ async function downloadContentfulAssets(images = []) {
 			fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 		}
 
+		const limit = pLimit(5);
 		const downloadPromises = [];
 		for (const image of images) {
 			const url = `https:${image}`;
@@ -105,13 +109,14 @@ async function downloadContentfulAssets(images = []) {
 			const outputPath = path.join(OUTPUT_DIR, fileName);
 
 			downloadPromises.push(
-				downloadImage(url, outputPath).then(() => {
-					logDebug(`Downloaded: ${fileName}`);
-				}),
+				limit(() =>
+					withRetry(downloadImage, [url, outputPath], 3).then(() => {
+						logDebug(`Downloaded: ${fileName}`);
+					}),
+				),
 			);
 		}
 
-		// Download each asset in parallel
 		await Promise.all(downloadPromises);
 		logSuccess(`Saved ${images.length} image(s) from cms`);
 	} catch (err) {
