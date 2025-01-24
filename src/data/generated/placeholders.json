@@ -1,23 +1,23 @@
 {
-	"local": {
-		"braib-system": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAACwAQCdASoQAAgAAsBMJaACdACCkFaAAP7gQfaj8yjLugclAjj/y8715UO5v/LsUfHlv2ibGHrrAAAA",
-		"chair": "data:image/webp;base64,UklGRsoAAABXRUJQVlA4WAoAAAAQAAAADwAADwAAQUxQSIsAAAARX6C2bRsWe64pERFwQnkcPhzVtq02938FwTkLKI8/ZlwUEI6AogA00MQBOajSiP4HAF8uQwJgVigZAuCXUxEDBj+qIoY5F1KWsS/2x2N5dWfF5frq7s7293r3U22nfdf9p4Sm7fs9fDXdlcVzeGiLK3EempXFlsG+3YTWLDT51TGJYcKTFABgBAQAAFZQOCAYAAAAMAEAnQEqEAAQAALATCWkAANwAP74H4AA",
-		"family-systems": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAADwAQCdASoQAAwAAsBMJYwCdADpNdZZIAAA+GKV3DEh81MH9yari/iYKA2mftkFqolzhQHwyLQMjiUwAAA=",
-		"head-cloud": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAADQAwCdASoQABMAPtFUo0uoJKMhsAgBABoJZQBVI4bDiZO73OpDewAA/q06Gn3qxeInpH5UcW7lmzRCRdKGlAxvMXOtj+0mtsGxlEIYTS/WlBxJpev1eZlSip1kTXlabMW7KgAA",
-		"head-cogs": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAACwAQCdASoQAAYAAsBMJaQAAlxDrSLAAP70t4Khc+aFMqaKkf0Qe+iPsaKkA06pAAA=",
-		"mental-health": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAACwAQCdASoQABAAAsBMJaQAApK4M9pAAP75kgeTJVbarhpc/L/1sHbvBo++g5wAAAA=",
-		"sea-head": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADQAQCdASoQAAsAAsBMJQBOgBjFyYF6QAD+9xFxXgnIrInsbvNQROWPp4MGkJEa05g5tOXsF6oKX/WYMuIurj2AAAA=",
-		"tangled-mind": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAADQAQCdASoQAAoAAsBMJbACdADF6bNOIAD5Pfly0L71/WVhQXdzXskN2dzV7aJ2OxsRdxFceZ2ux5Olju1nO7oNfouJfHWpTOd9xFxi7ASvcK7qeoAAAA==",
-		"therapy-councelling": "data:image/webp;base64,UklGRuAAAABXRUJQVlA4WAoAAAAQAAAADwAACwAAQUxQSHIAAAARX6CgbRs2VQjt/omIgLYrMuzZcFTbttrcOPgkIDzmzDljFsACUjLABkgBOOiqvK56iOj/BOC/ygBZBYk5ILuSMgrAali0+1nr/SNnpLxmy/ei2/tXXn7eQfF8mOHmGHSnWVfcyq9al1Fqa45GKUAopQBWUDggSAAAABACAJ0BKhAADAACwEwllALsARW7l2FVukAA/vCR4XmNHEFnJg8AOIVFRp3sdqKBSsBabs2KnZyI3MBmVsMm3VePMMmhSiAAAA==",
-		"window-of-tolerance": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADwAQCdASoQAAoAAsBMJZgCdAC9WlRFmAAA90BXVQYrS6ooxmKDaP81rpLuSyVYeeeLC6zgAAA=",
-		"witt-wisdom": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAAAQAgCdASoQAAkAAsBMJbACsADGk6LkHuYAAPqexB5OFyftS4k4nppMsKzVjTn9xnFzUwKfuULahjJXrYOgj6hSHaAAAA=="
-	},
-	"cms": {
-		"communication-relationships": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAQCdASoQAAkAAsBMJQBOgCIey9n6TYAA/vg0Nh5FBGLYPzDywPL2LE1D2gP7XZbOuRkq8+QatbA8OfAecgBu8AA=",
-		"cultural-sensitivity": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAAAQAgCdASoQAA0AAsBMJQBWAB4bPRYEp/8AAP73ESU0YhNbgATSjM8kCs/nOyj1W4MvX8Qd2Ae2K+C8oOFhS2msKgAAAA==",
-		"families-in-therapy": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADQAQCdASoQAAsAAsBMJQBOgCHf3HSAAAD+9zzT4eYk2Tf11PetMaalNzsSAAAA",
-		"generational-patterns": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACwAQCdASoQAAgAAsBMJZwCdADF4J0AAP75x9oX5XhF8zz8QrZXLUa1uwAUAAAA",
-		"living-abroad": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAABQAgCdASoQAAkAAsBMJbACdLoAAnfcQ+SpK2AA/tbqonPA1BuybZeuywH/u7U+UV/5G1i4WvL8WGv4PAAAAA==",
-		"therapy-acceptance": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAADQAQCdASoQAAcAAsBMJZQCdADdE64HAAD+667hHeddOXUdPzonqds198c5gXLThLfCz866ThJYAAAA"
-	}
+  "local": {
+    "braib-system": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAACwAQCdASoQAAgAAsBMJaACdACCkFaAAP7gQfaj8yjLugclAjj/y8715UO5v/LsUfHlv2ibGHrrAAAA",
+    "chair": "data:image/webp;base64,UklGRsoAAABXRUJQVlA4WAoAAAAQAAAADwAADwAAQUxQSIsAAAARX6C2bRsWe64pERFwQnkcPhzVtq02938FwTkLKI8/ZlwUEI6AogA00MQBOajSiP4HAF8uQwJgVigZAuCXUxEDBj+qIoY5F1KWsS/2x2N5dWfF5frq7s7293r3U22nfdf9p4Sm7fs9fDXdlcVzeGiLK3EempXFlsG+3YTWLDT51TGJYcKTFABgBAQAAFZQOCAYAAAAMAEAnQEqEAAQAALATCWkAANwAP74H4AA",
+    "family-systems": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAADwAQCdASoQAAwAAsBMJYwCdADpNdZZIAAA+GKV3DEh81MH9yari/iYKA2mftkFqolzhQHwyLQMjiUwAAA=",
+    "head-cloud": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAADQAwCdASoQABMAPtFUo0uoJKMhsAgBABoJZQBVI4bDiZO73OpDewAA/q06Gn3qxeInpH5UcW7lmzRCRdKGlAxvMXOtj+0mtsGxlEIYTS/WlBxJpev1eZlSip1kTXlabMW7KgAA",
+    "head-cogs": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAACwAQCdASoQAAYAAsBMJaQAAlxDrSLAAP70t4Khc+aFMqaKkf0Qe+iPsaKkA06pAAA=",
+    "mental-health": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAACwAQCdASoQABAAAsBMJaQAApK4M9pAAP75kgeTJVbarhpc/L/1sHbvBo++g5wAAAA=",
+    "sea-head": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADQAQCdASoQAAsAAsBMJQBOgBjFyYF6QAD+9xFxXgnIrInsbvNQROWPp4MGkJEa05g5tOXsF6oKX/WYMuIurj2AAAA=",
+    "tangled-mind": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAADQAQCdASoQAAoAAsBMJbACdADF6bNOIAD5Pfly0L71/WVhQXdzXskN2dzV7aJ2OxsRdxFceZ2ux5Olju1nO7oNfouJfHWpTOd9xFxi7ASvcK7qeoAAAA==",
+    "therapy-councelling": "data:image/webp;base64,UklGRuAAAABXRUJQVlA4WAoAAAAQAAAADwAACwAAQUxQSHIAAAARX6CgbRs2VQjt/omIgLYrMuzZcFTbttrcOPgkIDzmzDljFsACUjLABkgBOOiqvK56iOj/BOC/ygBZBYk5ILuSMgrAali0+1nr/SNnpLxmy/ei2/tXXn7eQfF8mOHmGHSnWVfcyq9al1Fqa45GKUAopQBWUDggSAAAABACAJ0BKhAADAACwEwllALsARW7l2FVukAA/vCR4XmNHEFnJg8AOIVFRp3sdqKBSsBabs2KnZyI3MBmVsMm3VePMMmhSiAAAA==",
+    "window-of-tolerance": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADwAQCdASoQAAoAAsBMJZgCdAC9WlRFmAAA90BXVQYrS6ooxmKDaP81rpLuSyVYeeeLC6zgAAA=",
+    "witt-wisdom": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAAAQAgCdASoQAAkAAsBMJbACsADGk6LkHuYAAPqexB5OFyftS4k4nppMsKzVjTn9xnFzUwKfuULahjJXrYOgj6hSHaAAAA=="
+  },
+  "cms": {
+    "communication-relationships": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAQCdASoQAAkAAsBMJQBOgCIey9n6TYAA/vg0Nh5FBGLYPzDywPL2LE1D2gP7XZbOuRkq8+QatbA8OfAecgBu8AA=",
+    "cultural-sensitivity": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAAAQAgCdASoQAA0AAsBMJQBWAB4bPRYEp/8AAP73ESU0YhNbgATSjM8kCs/nOyj1W4MvX8Qd2Ae2K+C8oOFhS2msKgAAAA==",
+    "families-in-therapy": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADQAQCdASoQAAsAAsBMJQBOgCHf3HSAAAD+9zzT4eYk2Tf11PetMaalNzsSAAAA",
+    "generational-patterns": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACwAQCdASoQAAgAAsBMJZwCdADF4J0AAP75x9oX5XhF8zz8QrZXLUa1uwAUAAAA",
+    "living-abroad": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAABQAgCdASoQAAkAAsBMJbACdLoAAnfcQ+SpK2AA/tbqonPA1BuybZeuywH/u7U+UV/5G1i4WvL8WGv4PAAAAA==",
+    "therapy-acceptance": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAADQAQCdASoQAAcAAsBMJZQCdADdE64HAAD+667hHeddOXUdPzonqds198c5gXLThLfCz866ThJYAAAA"
+  }
 }

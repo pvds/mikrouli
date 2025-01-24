@@ -8,7 +8,7 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": []
+		"ignore": ["src/data/generated"]
 	},
 	"formatter": {
 		"enabled": true,
