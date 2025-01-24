@@ -36,6 +36,7 @@
 		"fetch:images": "bun run scripts/assets/fetch.js --cms",
 		"gen:images": "bun run scripts/assets/process.js",
 		"util:favicons": "bunx realfavicon generate images/icon.svg favicons.json .favicons.json static/pwa",
+		"util:prepare": "bun run scripts/prepare.js",
 		"util:clean": "bun run scripts/util/clean.js"
 	},
 	"devDependencies": {
