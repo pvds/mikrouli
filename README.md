@@ -52,6 +52,11 @@ developer experience and user-centric design.
 
 ## Getting Started
 
+If you already have all dependencies quick start by running `bun i && bun 
+start`.
+
+> `bun start` is a shorthand for `bun dev --open & bun run watch`.
+
 ### Install Dependencies
 
 > For macOS we recommend using [Homebrew](https://brew.sh/)
@@ -74,10 +79,6 @@ developer experience and user-centric design.
 
 ### Local Development
 
-Quick start by running `bun i && bun start`.
-
-> `bun start` is a shorthand for `bun dev --open & bun run watch`.
-
 1. Install dependencies:
 
     ```bash
@@ -98,46 +99,72 @@ Quick start by running `bun i && bun start`.
 ### Environment Variables
 
 To fetch live content from Contentful, add a `.env` file to the project root,
-you can use `.env.example` file as a template:
-
-```env
-CONTENTFUL_SPACE_ID=<Your Contentful Space ID>
-CONTENTFUL_ACCESS_TOKEN=<Your Contentful Access Token>
-PUBLIC_ENVIRONMENT=development
-```
+you can use `.env.example` file as a template.
 
 ---
 
 ## Scripts
 
-- **Development Server:**
+- **Setup**
+  ```bash
+  bun run prepare   		# Install git hooks with Lefthook
+  ```
 
-    ```bash
-    bun run dev
-    ```
+- **Development**
+  ```bash
+  bun run dev       	# Start development server
+  bun run start     	# Start server and watch for changes
+  bun run start:prod 	# Start production server and watch for changes
+  ```
 
-- **Build:**
+- **Build**
+  ```bash
+  bun run build           	# Build for staging
+  bun run build:production 	# Build for production
+  ```
 
-    ```bash
-    bun run build
-    ```
+- **Preview**
+  ```bash
+  bun run preview           	# Preview staging build
+  bun run preview:production 	# Preview production build
+  ```
 
-- **Code Checks:**
+- **Code Quality**
+  ```bash
+  bun run check        # Run formatting and Svelte checks
+  bun run check:format # Check code formatting
+  bun run check:svelte # Run Svelte checks
+  bun run check:all    # Run all checks including build
+  bun run watch        # Watch for changes and re-run checks
+  bun run write        # Fix formatting issues
+  ```
 
-    ```bash
-    bun run check
-    ```
+- **Continuous Integration**
+  ```bash
+  bun run check:ci         		# Check code for CI pipeline
+  bun run check:svelte:ci  		# Svelte checks with CI output
+  bun run check:svelte:watch 	# Watch mode for Svelte checks
+  ```
 
-- **Fetch Content:**
+- **Content Management**
+  ```bash
+  bun run content        # Fetch content and images
+  bun run content:cms    # Fetch content from CMS
+  bun run content:images # Fetch and process images
+  ```
 
-    ```bash
-    bun run content:cms
-    ```
+- **Testing**
+  ```bash
+  bun run test:lighthouse # Run Lighthouse performance tests
+  bun run test:a11y       # Run accessibility tests
+  ```
 
-- **Clean and Reset:**
-    ```bash
-    bun run util:clean
-    ```
+- **Utilities**
+  ```bash
+  bun run util:clean    # Clean project files
+  bun run util:favicons # Generate favicons
+  bun run util:prepare  # Run project preparation scripts
+  ```
 
 ---
 
@@ -199,7 +226,11 @@ project structure](https://svelte.dev/docs/kit/project-structure):
 ├── images/                   # Soource images for the project
 ├── scripts/                  # Node scripts
 │   ├── assets/               # Asset related scripts
+│   ├   ├── fetch.js          # Fetch CMS images
+│   ├   └── process.js        # Process local and CMS images 
 │   ├── content/              # CMS content scripts
+│   ├   ├── fetch.js          # Fetch CMS content
+│   ├   └── process.js        # Process content data
 │   ├── test/                 # Testing scripts
 │   └── util/                 # Utility scripts
 ├── src/                      # Svelte source code

@@ -6,8 +6,8 @@
 
 #### CMS
 
-- [x] add seo fields to page/service/post pages (update types and transform.js)
-- [x] change transform.js to automatically include new fields
+- [x] add seo fields to page/service/post pages (update types and process.js)
+- [x] change process.js to automatically include new fields
 - [x] decide on a way to handle images (contentful/local files/Some CDN)
 - [x] decide on using a `content` field (use `---` to divide in sections) or 
   `sections` content type
