@@ -11,52 +11,68 @@ const isCMS = args.includes("--cms");
 
 if (isCMS) syncImages(OUTPUT_DIR, IMAGES_JSON);
 
+/**
+ * Syncs images with the CMS by downloading missing assets and removing unused ones.
+ *
+ * @param {string} imagesPath - The path to the local image folder.
+ * @param {string} dataPath - The path to the CMS JSON file containing image data.
+ * @returns {Promise<void>}
+ */
 export async function syncImages(imagesPath, dataPath) {
 	logInfo("Syncing images with cms...");
 	if (!fs.existsSync(dataPath)) {
 		logWarn("No cms image data found");
 		process.exit(0);
 	}
+	if (!fs.existsSync(imagesPath)) fs.mkdirSync(imagesPath, { recursive: true });
 
 	const cmsImages = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
 	const { missing, unused } = checkImages(imagesPath, cmsImages);
+
 	if (missing.length) await downloadContentfulAssets(missing);
 	if (unused.length) deleteImages(imagesPath, unused);
-	if (missing.length || unused.length) {
-		logSuccess("Synced images with cms");
-	} else {
-		logSuccess("No images to sync");
-	}
+
+	if (missing.length || unused.length) logSuccess("Synced images with cms");
+	else logSuccess("No images to sync");
 }
 
 /**
  * Delete unused images.
+ *
+ * @param {string} imagesPath - The path to the local image folder.
+ * @param {string[]} images - List of image file names to delete.
+ * @returns {void}
  */
-export function deleteImages(imagesPath, images = []) {
+function deleteImages(imagesPath, images = []) {
 	logInfo("Deleting unused cms images...");
 	for (const image of images) {
 		const imagePath = path.join(imagesPath, image);
 		fs.unlinkSync(imagePath);
 		logDebug(`Deleted: ${image}`);
 	}
-	logSuccess(`Deleted ${images.length} unused cms images.`);
+	logSuccess(`Deleted ${images.length} unused cms image(s).`);
 }
 
 /**
- * Check which images need to be downloaded.
+ * Check which images need to be downloaded and which are unused.
+ *
+ * @param {string} imagePath - The path to the local image folder.
+ * @param {string[]} images - List of image URLs from the CMS.
+ * @returns {{ missing: string[], unused: string[] }} An object containing arrays for `missing`
+ * and `unused` images.
  */
-export function checkImages(imagePath, images = []) {
+function checkImages(imagePath, images = []) {
+	const downloadedImages = fs.readdirSync(imagePath);
+	const imageBaseNames = images.map((image) => path.basename(image));
 	let missing = [];
 	let unused = [];
 
-	const downloadedImages = fs.readdirSync(imagePath);
 	missing = images.filter((image) => {
 		const fileName = path.basename(image);
 		return !downloadedImages.includes(fileName);
 	});
 	unused = downloadedImages.filter((image) => {
-		const imageNames = images.map((image) => path.basename(image));
-		return !imageNames.includes(image);
+		return !imageBaseNames.includes(image);
 	});
 
 	return { missing, unused };
@@ -64,8 +80,11 @@ export function checkImages(imagePath, images = []) {
 
 /**
  * Download assets from Contentful.
+ *
+ * @param {string[]} images - List of image URLs to download.
+ * @returns {Promise<void>}
  */
-export async function downloadContentfulAssets(images = []) {
+async function downloadContentfulAssets(images = []) {
 	if (!images.length) {
 		logWarn("No images to download");
 		return;
@@ -79,17 +98,22 @@ export async function downloadContentfulAssets(images = []) {
 			fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 		}
 
-		// Download each asset
+		const downloadPromises = [];
 		for (const image of images) {
 			const url = `https:${image}`;
 			const fileName = path.basename(url);
 			const outputPath = path.join(OUTPUT_DIR, fileName);
 
-			await downloadImage(url, outputPath);
-			logDebug(`Downloaded: ${fileName}`);
+			downloadPromises.push(
+				downloadImage(url, outputPath).then(() => {
+					logDebug(`Downloaded: ${fileName}`);
+				}),
+			);
 		}
 
-		logSuccess(`Saved ${images?.length} images from cms`);
+		// Download each asset in parallel
+		await Promise.all(downloadPromises);
+		logSuccess(`Saved ${images.length} image(s) from cms`);
 	} catch (err) {
 		logError("Error downloading assets:", err);
 	}
@@ -97,6 +121,10 @@ export async function downloadContentfulAssets(images = []) {
 
 /**
  * Download an image from a URL.
+ *
+ * @param {string} url - The URL of the image to download.
+ * @param {string} outputPath - Path to save the downloaded image file.
+ * @returns {Promise<void>}
  */
 function downloadImage(url, outputPath) {
 	return new Promise((resolve, reject) => {
