@@ -13,7 +13,10 @@ const cpuCount = Math.floor(os.cpus().length / 2);
 const args = process.argv.slice(2);
 const isCMS = args.includes("--cms");
 const isLocal = args.includes("--local");
+
+// Use regex to match valid image extensions and sizes
 const fileRegex = new RegExp(`\.(${IMAGE_EXTENSIONS.join("|")})$`, "i");
+const processedImageRegex = new RegExp(`^(.*)-(${IMAGE_SIZES.join("|")})\.(webp)$`, "i");
 
 const INPUT_DIR = "./images";
 const OUTPUT_DIR = "./static/images";
@@ -31,6 +34,12 @@ const generateImages = async (image, baseName, format, quality, outDir) => {
 		IMAGE_SIZES.map(async (size) => {
 			const outputFileName = `${baseName}-${size}.${format}`;
 			const outputPath = path.join(outDir, outputFileName);
+
+			if (fs.existsSync(outputPath)) {
+				logDebug(`Skipping existing image: ${outputFileName}`);
+				return;
+			}
+
 			await image
 				.clone()
 				.resize({
@@ -46,9 +55,43 @@ const generateImages = async (image, baseName, format, quality, outDir) => {
 };
 
 /**
+ * Delete stale generated images without a corresponding base image asynchronously.
+ * @param {string} category - The category of images to check.
+ */
+const deleteStaleImages = async (category) => {
+	const inDir = path.resolve(process.cwd(), INPUT_DIR, category);
+	const outDir = path.resolve(process.cwd(), OUTPUT_DIR, category);
+
+	if (!fs.existsSync(outDir)) return;
+
+	// Get the list of base image names (without extensions)
+	const baseImageFiles = new Set(
+		fs
+			.readdirSync(inDir)
+			.filter((file) => fileRegex.test(file))
+			.map((file) => path.parse(file).name),
+	);
+
+	const optimizedFiles = fs.readdirSync(outDir);
+
+	for (const file of optimizedFiles) {
+		const match = file.match(processedImageRegex);
+
+		if (match) {
+			const baseName = match[1]; // Extract base name before the size suffix
+			if (!baseImageFiles.has(baseName)) {
+				const filePath = path.join(outDir, file);
+				fs.unlinkSync(filePath);
+				logInfo(`Deleted stale optimized image: ${filePath}`);
+			}
+		}
+	}
+};
+
+/**
  * Process images with concurrency control using p-limit.
  * @param {string} category - The category of images to process.
- * @param {keyof import("sharp").FormatEnum} format - Desired output image format.
+ * @param {keyof import("sharp").FormatEnum | sharp.AvailableFormatInfo} format - Desired output image format.
  * @param {number} quality - Quality level for the format.
  * @param {number} concurrency - Maximum number of files to process concurrently.
  */
@@ -68,7 +111,7 @@ export const processImages = async (
 
 	// Get an array of image file names that match the pattern.
 	if (!fs.existsSync(inDir)) {
-		logError(`Directory not found: ${inDir}, Skipping image optimization...`);
+		logError(`Directory not found: ${inDir}, skipping image optimization...`);
 		return;
 	}
 	const files = fs.readdirSync(inDir).filter((file) => fileRegex.test(file));
@@ -76,14 +119,12 @@ export const processImages = async (
 	// Ensure output directory is clean and exists
 	prepareDir(outDir);
 
-	// Map each file to a limited promise.
 	const tasks = files.map((file) =>
 		limit(async () => {
 			const inputPath = path.join(inDir, file);
 			const baseName = path.parse(file).name;
 
 			try {
-				// Create the Sharp instance for the file.
 				const image = sharp(inputPath);
 				await generateImages(image, baseName, format, quality, outDir);
 				placeholders[baseName] = await generatePlaceholder(inputPath);
@@ -96,9 +137,12 @@ export const processImages = async (
 	// Wait until all file tasks have completed.
 	await Promise.all(tasks);
 	writePlaceholders(category, placeholders, placeholdersFile);
+	await deleteStaleImages(category);
+
 	logSuccess(`Optimized ${files.length} images`);
 	logDebug(`Optimizing took ${measure(startTime)} seconds`);
 };
 
+// Execute processing based on command-line args
 if (isLocal) processImages("local").catch((err) => logError(err));
 if (isCMS) processImages("cms").catch((err) => logError(err));

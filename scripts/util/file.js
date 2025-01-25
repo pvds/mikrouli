@@ -19,14 +19,16 @@ export const writeJSON = (filePath, data) =>
 	fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 
 /**
- * Prepare a directory by ensuring it exists and clearing it.
+ * Prepare a directory by ensuring it exists and optionally clearing it.
  * @param {string} dirPath - Directory path.
+ * @param {boolean} remove - Whether to remove the directory.
  */
-export const prepareDir = (dirPath) => {
-	if (fs.existsSync(dirPath)) {
+export const prepareDir = (dirPath, remove = false) => {
+	if (fs.existsSync(dirPath) && remove) {
 		fs.rmSync(dirPath, { recursive: true, force: true });
+	} else {
+		fs.mkdirSync(dirPath, { recursive: true });
 	}
-	fs.mkdirSync(dirPath, { recursive: true });
 };
 
 /**
