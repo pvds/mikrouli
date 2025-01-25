@@ -32,14 +32,32 @@ const colors = {
 
 /**
  * Logs a message with customizable text and background colors.
+ * @param {"log"|"info"|"warn"|"error"} type - The type of message to log.
  * @param {string} [textColor='white'] - The color of the text.
  * @param {string|null} [backgroundColor=undefined] - The background color.
  * @param  {...any} messages - Messages to log.
+ * @returns {string|void} - The formatted message if type is 'text'.
  */
-function log(textColor = "white", backgroundColor = null, ...messages) {
+function log(type = "log", textColor = "white", backgroundColor = null, ...messages) {
 	const textCode = colors.text[textColor] || colors.text.white;
 	const bgCode = backgroundColor ? colors.background[backgroundColor] || "" : "";
-	console.log(`${bgCode}${textCode}`, ...messages, colors.reset);
+	const startCode = bgCode + textCode;
+	switch (type) {
+		case "log":
+			console.log(startCode, ...messages, colors.reset);
+			break;
+		case "info":
+			console.info(startCode, ...messages, colors.reset);
+			break;
+		case "warn":
+			console.warn(startCode, ...messages, colors.reset);
+			break;
+		case "error":
+			console.error(startCode, ...messages, colors.reset);
+			break;
+		default:
+			console.log(startCode, ...(messages + colors.reset));
+	}
 }
 
 /**
@@ -47,43 +65,52 @@ function log(textColor = "white", backgroundColor = null, ...messages) {
  * @param messages
  */
 const logDebug = (...messages) => {
-	if (process.env.DEBUG === "true") log("white", "null", ...messages);
+	if (process.env.DEBUG === "true") log("log", "white", null, ...messages);
 };
+
+/**
+ * Logs a message with white text
+ *
+ * Always logs the message regardless of the DEBUG environment variable.
+ * Use logDebug for messages that should only be logged when DEBUG is true.
+ * @param messages
+ */
+const logMessage = (...messages) => log("log", "white", null, ...messages);
 
 /**
  * Logs an informational message with cyan text.
  * @param  {...any} messages - Messages to log.
  */
-const logInfo = (...messages) => log("cyan", null, ...messages);
+const logInfo = (...messages) => log("info", "cyan", null, ...messages);
 
 /**
  * Logs a warning message with yellow text.
  * @param  {...any} messages - Messages to log.
  */
-const logWarn = (...messages) => log("yellow", null, ...messages);
+const logWarn = (...messages) => log("warn", "yellow", null, ...messages);
 
 /**
  * Logs an error message with red text.
  * @param  {...any} messages - Messages to log.
  */
-const logError = (...messages) => log("red", null, ...messages);
+const logError = (...messages) => log("error", "red", null, ...messages);
 
 /**
  * Logs a success message with green text.
  * @param  {...any} messages - Messages to log. */
-const logSuccess = (...messages) => log("green", null, ...messages);
+const logSuccess = (...messages) => log("log", "green", null, ...messages);
 
 /**
  * Logs a header message with magenta text.
  * @param  {...any} [messages] - Messages to log.
  */
 const logHeader = (...messages) =>
-	log("magenta", null, ...["\n=============== ", ...messages, "\n"]);
+	log("log", "magenta", null, ...["\n=============== ", ...messages, "\n"]);
 
 /**
  * Logs a highlighted message with white text on a blue background.
  * @param  {...any} messages - Messages to log.
  */
-const logHighlight = (...messages) => log("blue", null, ...messages);
+const logHighlight = (...messages) => log("log", "blue", null, ...messages);
 
-export { logDebug, logInfo, logWarn, logError, logSuccess, logHeader, logHighlight };
+export { logDebug, logMessage, logInfo, logWarn, logError, logSuccess, logHeader, logHighlight };
