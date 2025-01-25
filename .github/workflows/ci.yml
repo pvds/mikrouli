@@ -57,15 +57,13 @@ jobs:
         env:
             IS_CONTENT_UPDATE: ${{ github.event_name == 'repository_dispatch' }}
             IS_PR: ${{ github.event_name == 'pull_request' }}
-            RUN_STAGING: ${{
-                (github.event_name == 'push' && github.ref_name == 'main') ||
-                (github.event_name == 'pull_request' && github.base_ref == 'main') ||
-                (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_staging == 'true')
-                }}
-            RUN_PRODUCTION: ${{
-                github.event_name == 'repository_dispatch' ||
-                (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_production == 'true')
-                }}
+            RUN_STAGING:
+                ${{ (github.event_name == 'push' && github.ref_name == 'main') || (github.event_name
+                == 'pull_request' && github.base_ref == 'main') || (github.event_name ==
+                'workflow_dispatch' && github.event.inputs.deploy_staging == 'true') }}
+            RUN_PRODUCTION:
+                ${{ github.event_name == 'repository_dispatch' || (github.event_name ==
+                'workflow_dispatch' && github.event.inputs.deploy_production == 'true') }}
         outputs:
             run_staging: ${{ env.RUN_STAGING }}
             run_production: ${{ env.RUN_PRODUCTION }}
@@ -106,7 +104,7 @@ jobs:
         name: Deploy to Staging
         runs-on: ubuntu-24.04
         needs: main
-        if: ${{ needs.main.outputs.run_staging == 'true' }}
+        if: ${{ needs.main.outputs.run_staging == 'true' && github.event_name != 'pull_request' }}
         environment:
             name: github-pages
             url: ${{ steps.deployment.outputs.page_url }}
@@ -140,9 +138,11 @@ jobs:
 
             - name: deploy
               run: >
-                  bunx netlify-cli deploy --prod-if-unlocked --dir ./build
-                  --message "${{ env.DEPLOY_MESSAGE }}"
+                  bunx netlify-cli deploy --prod-if-unlocked --dir ./build --message "${{
+                  env.DEPLOY_MESSAGE }}"
               env:
                   NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
                   NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-                  DEPLOY_MESSAGE: ${{ github.event_name == 'repository_dispatch' && 'content update' || github.event.head_commit.message }}
+                  DEPLOY_MESSAGE:
+                      ${{ github.event_name == 'repository_dispatch' && 'content update' ||
+                      github.event.head_commit.message }}

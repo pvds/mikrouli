@@ -12,12 +12,12 @@ the project's goals.
 The conditions for running staging or production deployments depend on the type
 of event triggering the workflow.
 
-| **Trigger**                | **Deploy to Staging** | **Deploy to Production** | **Reasoning**                              |
-| -------------------------- | --------------------- | ------------------------ | ------------------------------------------ |
-| **Push to `main`**         | ✅ Yes                | ❌ No                    | Test changes in staging before production. |
-| **Pull Request to `main`** | ✅ Yes                | ❌ No                    | Validate changes on staging.               |
-| **Contentful Change**      | ❌ No                 | ✅ Yes                   | Keep production updated automatically.     |
-| **Manual Deploy**          | 🔶 Optional           | 🔶 Optional              | Fine-grained control over production.      |
+| **Trigger**                | **Deploy to Staging** | **Deploy to Production** | **Reasoning**                               |
+| -------------------------- | --------------------- | ------------------------ | ------------------------------------------- |
+| **Push to `main`**         | ✅ Yes                | ❌ No                    | Test changes in staging before production.  |
+| **Pull Request to `main`** | ❌ No                 | ❌ No                    | Manual control over staging and production. |
+| **Contentful Change**      | ❌ No                 | ✅ Yes                   | Keep production updated automatically.      |
+| **Manual Deploy**          | 🔶 Optional           | 🔶 Optional              | Manual control over staging and production. |
 
 ### File and Path Exclusions
 
