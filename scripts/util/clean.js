@@ -19,7 +19,7 @@ async function cleanDirectories() {
 	logSuccess("Caches and output cleaned.");
 
 	logInfo("Reinstalling packages...");
-	await runCommand("bun install");
+	await runCommand("bun install --save-text-lockfile");
 	logSuccess("Packages reinstalled.");
 }
 
