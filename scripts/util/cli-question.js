@@ -14,22 +14,19 @@ export const askQuestion = (query, { required = false } = {}) => {
 		input: process.stdin,
 		output: process.stdout,
 	});
+	const ask = (resolve) => {
+		rl.question(query, (answerRaw) => {
+			const answer = answerRaw.trim();
 
-	return new Promise((resolve) => {
-		const ask = () => {
-			rl.question(query, (answer) => {
-				const trimmed = answer.trim();
+			if (required && !answer) {
+				console.log("Value cannot be empty. Please try again.");
+				ask(); // re-ask until a non-empty answer is given
+			} else {
+				rl.close();
+				resolve(answer);
+			}
+		});
+	};
 
-				if (required && !trimmed) {
-					console.log("Value cannot be empty. Please try again.");
-					ask(); // re-ask until a non-empty answer is given
-				} else {
-					rl.close();
-					resolve(trimmed);
-				}
-			});
-		};
-
-		ask();
-	});
+	return new Promise((resolve) => ask(resolve));
 };

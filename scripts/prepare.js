@@ -36,7 +36,8 @@ const main = async () => {
 	 * 2. Prompt for empty env variables (can be skipped)
 	 */
 	logHeader("Prompt for missing environment variables");
-	await promptForMissingVariables(envFile);
+	const requiredVariables = ["CONTENTFUL_SPACE_ID", "CONTENTFUL_ACCESS_TOKEN"];
+	await promptForMissingVariables(envFile, requiredVariables);
 	logSuccess("Environment variables have been checked and updated if needed.");
 
 	/**

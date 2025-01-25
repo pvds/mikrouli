@@ -8,7 +8,7 @@ import { logInfo } from "./log.js";
  * @param {string} envFilePath - The path to the .env file.
  * @returns {string[]} - Array of variable names that lack a value.
  */
-const getMissingEnvVariables = (envFilePath) => {
+const getEmptyEnvVariables = (envFilePath) => {
 	if (!fs.existsSync(envFilePath)) return [];
 
 	const envContent = fs.readFileSync(envFilePath, { encoding: "utf8" });
@@ -76,9 +76,15 @@ const updateEnvFile = (envUpdates, envFilePath) => {
  * Then updates the .env file with the provided values.
  *
  * @param {string} envFilePath - Path to the .env file.
+ * @param {string[]} [requiredVars] - List of required environment variables.
  */
-const promptForMissingVariables = async (envFilePath) => {
-	const missingVars = getMissingEnvVariables(envFilePath);
+const promptForMissingVariables = async (envFilePath, requiredVars = []) => {
+	const emptyVars = getEmptyEnvVariables(envFilePath);
+	const missingRequiredVars = requiredVars.filter(
+		(key) => emptyVars.includes(key) || !process.env[key],
+	);
+	const promptVars = new Set([...missingRequiredVars, ...emptyVars]);
+	const missingVars = Array.from(promptVars);
 
 	if (missingVars.length === 0) {
 		logInfo("No missing environment variables found.");
@@ -102,4 +108,4 @@ const promptForMissingVariables = async (envFilePath) => {
 	logInfo(`Updated ${envFilePath} with missing environment variables.`);
 };
 
-export { getMissingEnvVariables, updateEnvFile, promptForMissingVariables };
+export { getEmptyEnvVariables, updateEnvFile, promptForMissingVariables };
