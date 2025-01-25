@@ -8,18 +8,40 @@ import { prepareDir } from "../util/file.js";
 import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
 import { measure } from "../util/measure.js";
 import { generatePlaceholder, writePlaceholders } from "../util/placeholders.js";
+import { escapeRegex } from "../util/regex.js";
 
 const cpuCount = Math.floor(os.cpus().length / 2);
 const args = process.argv.slice(2);
 const isCMS = args.includes("--cms");
 const isLocal = args.includes("--local");
 
-// Use regex to match valid image extensions and sizes
-const fileRegex = new RegExp(`\.(${IMAGE_EXTENSIONS.join("|")})$`, "i");
-const processedImageRegex = new RegExp(`^(.*)-(${IMAGE_SIZES.join("|")})\.(webp)$`, "i");
-
 const INPUT_DIR = "./images";
 const OUTPUT_DIR = "./static/images";
+const FILENAME_TEMPLATE = "{base}-{size}.{ext}";
+
+// Use regex to match valid image extensions and sizes
+const fileRegex = new RegExp(`\.(${IMAGE_EXTENSIONS.join("|")})$`, "i");
+
+/**
+ * Generates a filename based on the template.
+ * @param {string} base - Base filename without extension.
+ * @param {string} size - Image width.
+ * @param {string} ext - Image format (e.g., webp).
+ * @returns {string} - Formatted filename.
+ */
+const buildFileName = (base, size, ext) =>
+	FILENAME_TEMPLATE.replace("{base}", base).replace("{size}", size).replace("{ext}", ext);
+
+/**
+ * Creates a regex to match filenames based on the template.
+ */
+const processedImageRegex = new RegExp(
+	`^${escapeRegex(FILENAME_TEMPLATE)
+		.replace("\\{base\\}", "([A-Za-z0-9-]+)") // Restrictive base pattern
+		.replace("\\{size\\}", "(\\d+)")
+		.replace("\\{ext\\}", `(${IMAGE_EXTENSIONS.join("|")})`)}$`,
+	"i",
+);
 
 /**
  * Generate resized images for different sizes.
@@ -32,7 +54,7 @@ const OUTPUT_DIR = "./static/images";
 const generateImages = async (image, baseName, format, quality, outDir) => {
 	await Promise.all(
 		IMAGE_SIZES.map(async (size) => {
-			const outputFileName = `${baseName}-${size}.${format}`;
+			const outputFileName = buildFileName(baseName, size.toString(), format.toString());
 			const outputPath = path.join(outDir, outputFileName);
 
 			if (fs.existsSync(outputPath)) {
@@ -59,31 +81,25 @@ const generateImages = async (image, baseName, format, quality, outDir) => {
  * @param {string} category - The category of images to check.
  */
 const deleteStaleImages = async (category) => {
-	const inDir = path.resolve(process.cwd(), INPUT_DIR, category);
-	const outDir = path.resolve(process.cwd(), OUTPUT_DIR, category);
+	const inDir = path.resolve(INPUT_DIR, category);
+	const outDir = path.resolve(OUTPUT_DIR, category);
 
 	if (!fs.existsSync(outDir)) return;
 
-	// Get the list of base image names (without extensions)
-	const baseImageFiles = new Set(
-		fs
-			.readdirSync(inDir)
-			.filter((file) => fileRegex.test(file))
-			.map((file) => path.parse(file).name),
-	);
+	const baseNames = new Set(fs.readdirSync(inDir).map((file) => path.parse(file).name));
 
-	const optimizedFiles = fs.readdirSync(outDir);
-
-	for (const file of optimizedFiles) {
+	for (const file of fs.readdirSync(outDir)) {
 		const match = file.match(processedImageRegex);
-
 		if (match) {
-			const baseName = match[1]; // Extract base name before the size suffix
-			if (!baseImageFiles.has(baseName)) {
-				const filePath = path.join(outDir, file);
-				fs.unlinkSync(filePath);
-				logInfo(`Deleted stale optimized image: ${filePath}`);
+			const [, base, size, ext] = match;
+			if (!baseNames.has(base) || !IMAGE_SIZES.includes(Number(size))) {
+				fs.unlinkSync(path.join(outDir, file));
+				console.info(`Deleted stale: ${file}`);
 			}
+		} else {
+			// Delete files not matching the pattern
+			fs.unlinkSync(path.join(outDir, file));
+			console.info(`Deleted stale (pattern mismatch): ${file}`);
 		}
 	}
 };
