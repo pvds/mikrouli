@@ -2,10 +2,7 @@
  * A simple logging utility with colored text and background options.
  */
 
-/**
- *
- * @type {{reset: string, text: {black: string, red: string, green: string, yellow: string, blue: string, magenta: string, cyan: string, white: string}, background: {black: string, red: string, green: string, yellow: string, blue: string, magenta: string, cyan: string, white: string}}}
- */
+/** @type {{reset: string, text: {black: string, red: string, green: string, yellow: string, blue: string, magenta: string, cyan: string, white: string}, background: {black: string, red: string, green: string, yellow: string, blue: string, magenta: string, cyan: string, white: string}}} */
 const colors = {
 	reset: "\x1b[0m",
 	text: {
