@@ -1,4 +1,5 @@
 import readline from "node:readline";
+import { logWarn } from "./log.js";
 
 /**
  * Prompts the user with a question and returns their input.
@@ -18,7 +19,7 @@ export const askQuestion = (query, { required = false, mask = false } = {}) => {
 		rl.question(query, (answerRaw) => {
 			const answer = answerRaw.trim();
 			if (required && !answer) {
-				console.log("Value cannot be empty. Please try again.");
+				logWarn("Value cannot be empty. Please try again.");
 				ask(); // Re-ask until we get a non-empty answer
 			} else {
 				rl.close();
