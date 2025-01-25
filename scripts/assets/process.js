@@ -67,6 +67,10 @@ export const processImages = async (
 	const placeholders = {};
 
 	// Get an array of image file names that match the pattern.
+	if (!fs.existsSync(inDir)) {
+		logError(`Directory not found: ${inDir}, Skipping image optimization...`);
+		return;
+	}
 	const files = fs.readdirSync(inDir).filter((file) => fileRegex.test(file));
 
 	// Ensure output directory is clean and exists
