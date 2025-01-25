@@ -70,12 +70,7 @@ const main = async () => {
 	);
 };
 
-// Execute the main function
-main()
-	.catch((error) => {
-		logError("An unexpected error occurred:", error);
-		process.exit(1);
-	})
-	.finally(() => {
-		process.exit(0);
-	});
+main().catch((error) => {
+	logError("An unexpected error occurred:", error);
+	process.exit(1);
+});

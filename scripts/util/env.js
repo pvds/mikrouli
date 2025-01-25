@@ -11,37 +11,20 @@ import { logInfo } from "./log.js";
 const getEmptyEnvVariables = (envFilePath) => {
 	if (!fs.existsSync(envFilePath)) return [];
 
-	const envContent = fs.readFileSync(envFilePath, { encoding: "utf8" });
-	const lines = envContent.split("\n");
-	const missingKeys = [];
-
-	for (const line of lines) {
-		const trimmed = line.trim();
-		// Skip empty or comment lines
-		if (!trimmed || trimmed.startsWith("#")) continue;
-
-		// Expect KEY=VALUE format
-		const [rawKey, ...rest] = trimmed.split("=");
-		const key = rawKey.trim();
-
-		// Re-join the rest in case there's an '=' in the value
-		let value = rest.join("=").trim();
-
-		// Strip surrounding quotes if any
-		if (
-			(value.startsWith('"') && value.endsWith('"')) ||
-			(value.startsWith("'") && value.endsWith("'"))
-		) {
-			value = value.slice(1, -1);
-		}
-
-		// Consider it missing if there's no non-empty value
-		if (!value) {
-			missingKeys.push(key);
-		}
-	}
-
-	return missingKeys;
+	const lines = fs.readFileSync(envFilePath, "utf8").split("\n");
+	return lines
+		.map((line) => line.trim())
+		.filter((l) => l && !l.startsWith("#")) // skip empty or comment lines
+		.map((l) => {
+			const [k, ...vParts] = l.split("="); // expect KEY=VALUE format
+			const v = vParts
+				.join("=")
+				.trim()
+				.replace(/^["']|["']$/g, ""); // strip surrounding quotes
+			return { key: k.trim(), value: v };
+		})
+		.filter(({ value }) => !value) // only those with empty value
+		.map(({ key }) => key);
 };
 
 /**
@@ -80,30 +63,28 @@ const updateEnvFile = (envUpdates, envFilePath) => {
  */
 const promptForMissingVariables = async (envFilePath, requiredVars = []) => {
 	const emptyVars = getEmptyEnvVariables(envFilePath);
-	const missingRequiredVars = requiredVars.filter(
-		(key) => emptyVars.includes(key) || !process.env[key],
-	);
-	const promptVars = new Set([...missingRequiredVars, ...emptyVars]);
-	const missingVars = Array.from(promptVars);
 
-	if (missingVars.length === 0) {
+	// Convert everything to a Set so we don't prompt duplicates
+	const allVarsToPrompt = new Set([...requiredVars.filter((k) => !process.env[k]), ...emptyVars]);
+
+	if (allVarsToPrompt.size === 0) {
 		logInfo("No missing environment variables found.");
 		return;
 	}
 
-	logInfo("The following environment variables are missing values:");
-	for (const key of missingVars) {
+	logInfo("The following environment variables need values:");
+	for (const key of allVarsToPrompt) {
 		logInfo(`- ${key}`);
 	}
 
 	const envUpdates = {};
-	for (const key of missingVars) {
+	for (const key of allVarsToPrompt) {
 		envUpdates[key] = await askQuestion(`Please enter a value for ${key}: `, {
 			required: false,
+			mask: !key.toLowerCase().startsWith("public"),
 		});
 	}
 
-	// Update the .env file with the newly provided values
 	updateEnvFile(envUpdates, envFilePath);
 	logInfo(`Updated ${envFilePath} with missing environment variables.`);
 };
