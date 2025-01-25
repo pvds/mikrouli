@@ -51,7 +51,9 @@ const main = async () => {
 	);
 
 	const missingRequiredVariables = getEmptyEnvVariables(envFile, requiredVariables);
-	if (missingRequiredVariables.length > 0) {
+	const fetchContent = missingRequiredVariables.length === 0;
+
+	if (!fetchContent) {
 		logHeader("Project is ready for development");
 		logWarn(
 			"Preparation cannot be completed because the following required environment variables are missing:",
@@ -62,26 +64,27 @@ const main = async () => {
 			"Without these variables, you won't be able to fetch content from Contentful.",
 		);
 		logInfo("Don't panic! We regularly check-in a snapshot of the content to the repository.");
-		logHighlight(
-			"\n",
-			"Run `bun start` to start the development server and open the project in your browser.",
-		);
-		process.exit(1);
 	}
 
 	/**
 	 * 3. Fetch content from Contentful
 	 */
-	logHeader("Fetching content from Contentful");
-	runCommand("bun run fetch:content --force");
-	logSuccess("Fetched content from Contentful.");
+
+	if (fetchContent) {
+		logHeader("Fetching content from Contentful");
+		runCommand("bun run fetch:content --force");
+		logSuccess("Fetched content from Contentful.");
+	}
 
 	/**
 	 * 4. Fetch images from Contentful
 	 */
-	logHeader("Fetching images from Contentful");
-	runCommand("bun run fetch:images --cms");
-	logSuccess("Fetched images from Contentful.");
+
+	if (fetchContent) {
+		logHeader("Fetching images from Contentful");
+		runCommand("bun run fetch:images --cms");
+		logSuccess("Fetched images from Contentful.");
+	}
 
 	/**
 	 * 5. Generate processed images and base64 placeholders
