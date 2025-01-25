@@ -81,7 +81,7 @@ export const getAllHtmlFiles = (dir, isMinimal = false) => {
  */
 export const runCommand = (command) => {
 	try {
-		execSync(command, { stdio: "inherit" });
+		execSync(command, { stdio: "inherit", env: process.env });
 	} catch (error) {
 		throw new Error(error.message);
 	}
