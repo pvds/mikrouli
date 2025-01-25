@@ -22,7 +22,7 @@ const OUTPUT_DIR = "./static/images";
  * Generate resized images for different sizes.
  * @param {sharp.Sharp} image - Sharp instance of the image.
  * @param {string} baseName - Base name of the image file.
- * @param {string} format - Desired output image format.
+ * @param {keyof sharp.format | sharp.AvailableFormatInfo} format - Desired output image format.
  * @param {number} quality - Quality level for the format.
  * @param {string} outDir - Output directory path.
  */

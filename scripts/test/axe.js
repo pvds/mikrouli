@@ -30,7 +30,10 @@ const analyzePage = async (browser, file, dir) => {
 
 	try {
 		const page = await navigateToPage(browser, `file://${file}`);
-		const axeBuilder = new AxeBuilder({ page }).options({
+		const axeBuilder = new AxeBuilder({
+			// @ts-ignore - weird playwright type error
+			page,
+		}).options({
 			runOnly: {
 				type: "tag",
 				values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "best-practice"],
@@ -70,7 +73,7 @@ const analyzePage = async (browser, file, dir) => {
 		return;
 	}
 
-	const browser = await launchBrowser();
+	const { browser } = await launchBrowser();
 	const tasks = pLimit(maxConcurrency);
 	const violationsSummary = [];
 	let hasViolations = false;

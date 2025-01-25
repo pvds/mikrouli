@@ -10,7 +10,7 @@ import { logDebug, logInfo, logSuccess } from "./log.js";
  * @param {string} buildCommand - Command to build the project.
  * @param {string} previewCommand - Command to start the preview server.
  * @param {number} port - Server port number.
- * @returns {ChildProcessWithoutNullStreams} - The server process.
+ * @returns {import('node:child_process').ChildProcessWithoutNullStreams} - The server process.
  */
 export const startServer = (buildDir, buildCommand, previewCommand, port) => {
 	const resolvedBuildDir = resolveIfExists(buildDir);
@@ -19,12 +19,12 @@ export const startServer = (buildDir, buildCommand, previewCommand, port) => {
 		runCommand(`bun run ${buildCommand} --logLevel error`);
 	}
 	logDebug("Starting server...");
-	return spawn("bun", ["run", previewCommand, "--port", port]);
+	return spawn("bun", ["run", previewCommand, "--port", port.toString()]);
 };
 
 /**
  * Stop the running server process gracefully.
- * @param {ChildProcessWithoutNullStreams} server - The server process.
+ * @param {import('node:child_process').ChildProcessWithoutNullStreams} server - The server process.
  */
 export const stopServer = (server) => {
 	logDebug("Stopping server...");

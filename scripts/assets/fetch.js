@@ -140,7 +140,12 @@ function downloadImage(url, outputPath) {
 					return reject(new Error(`Failed to download ${url}: ${response.statusCode}`));
 				}
 				response.pipe(file);
-				file.on("finish", () => file.close(resolve));
+				file.on("finish", () => {
+					file.close((err) => {
+						if (err) reject(err);
+						else resolve();
+					});
+				});
 			})
 			.on("error", (err) => reject(err));
 	});

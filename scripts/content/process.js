@@ -65,6 +65,7 @@ export function parseContentEntry(rawEntry = {}, isTopLevel = true) {
 	}
 
 	// Only include meta and sections when at top-level
+	// @ts-ignore - need to figure out how to type this properly without breaking typing in other places
 	return isTopLevel
 		? { meta, fields: { ...restFields, sections: [] } }
 		: { fields: { ...restFields } };

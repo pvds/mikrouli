@@ -4,6 +4,9 @@ import { logWarn } from "./log.js";
 /**
  * Prompts the user with a question and returns their input.
  *
+ * @typedef {import('node:readline').Interface} ReadlineInterface
+ * @typedef {ReadlineInterface & { _writeToOutput?: (text: string) => void }} ExtendedReadlineInterface
+ *
  * @param {string} query The question to display to the user.
  * @param {object} [options]
  * @param {boolean} [options.required=false] Require non-empty answer
@@ -11,6 +14,7 @@ import { logWarn } from "./log.js";
  * @returns {Promise<string>}
  */
 export const askQuestion = (query, { required = false, mask = false } = {}) => {
+	/** @type {ExtendedReadlineInterface} */
 	const rl = readline.createInterface({
 		input: process.stdin,
 		output: process.stdout,
@@ -30,7 +34,10 @@ export const askQuestion = (query, { required = false, mask = false } = {}) => {
 
 	// Only override output if masked input is requested
 	if (mask) {
-		// Store default write method
+		/**
+		 * Preserve the original _writeToOutput method.
+		 * @type {(text: string) => void}
+		 */
 		const originalWrite = rl._writeToOutput;
 		rl._writeToOutput = (stringToWrite) => {
 			// Replace actual typed characters with "*"
