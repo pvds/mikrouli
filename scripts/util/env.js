@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import { askQuestion } from "./cli-question.js";
 import { logInfo } from "./log.js";
+import { escapeRegex } from "./regex.js";
 
 /**
  * Reads the .env file and returns an array of variables that have an empty or missing value.
