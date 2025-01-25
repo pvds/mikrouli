@@ -30,4 +30,3 @@ vite.config.ts.timestamp-*
 
 # Generated
 /build
-/static/images/cms
