@@ -39,7 +39,9 @@ const updateEnvFile = (envUpdates, envFilePath) => {
 		: "";
 
 	for (const [key, value] of Object.entries(envUpdates)) {
-		const regex = new RegExp(`^${key}=["']?.*["']?$`, "m");
+		const escapedKey = escapeRegex(key);
+		// Match the key at the start of a line, with optional `=` and quotes and value
+		const regex = new RegExp(`^${escapedKey}(?:=["']?.*["']?)?$`, "m");
 		const newLine = `${key}=${value}`;
 
 		if (regex.test(envContent)) {
@@ -48,7 +50,7 @@ const updateEnvFile = (envUpdates, envFilePath) => {
 			envContent += `\n${newLine}`;
 		}
 		// Reflect changes into process.env immediately
-		process.env[key] = value;
+		process.env[key] = value.toString();
 	}
 
 	fs.writeFileSync(envFilePath, envContent, { encoding: "utf8" });
