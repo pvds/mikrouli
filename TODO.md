@@ -4,6 +4,10 @@
 
 ### Features
 
+#### Automation
+
+- [ ] ensure all content and images (raw + optimized) are in sync
+
 #### CMS
 
 - [x] add seo fields to page/service/post pages (update types and process.js)
