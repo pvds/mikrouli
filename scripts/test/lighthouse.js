@@ -82,7 +82,6 @@ async function analyzePage(page, pageUrl) {
 
 		await page.goto(pageUrl, { waitUntil: "load" });
 		const auditResults = await playAudit({
-			// @ts-ignore - weird playwright type error
 			page,
 			port: DEBUG_PORT,
 			thresholds: THRESHOLDS,

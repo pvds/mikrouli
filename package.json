@@ -11,6 +11,9 @@
 		"type": "git",
 		"url": "https://github.com/pvds/mikrouli"
 	},
+	"overrides": {
+		"playwright": "$playwright"
+	},
 	"scripts": {
 		"prepare": "lefthook install",
 		"start": "vite dev --open & bun run watch",

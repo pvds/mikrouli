@@ -31,7 +31,6 @@ const analyzePage = async (browser, file, dir) => {
 	try {
 		const page = await navigateToPage(browser, `file://${file}`);
 		const axeBuilder = new AxeBuilder({
-			// @ts-ignore - weird playwright type error
 			page,
 		}).options({
 			runOnly: {
