@@ -5,7 +5,13 @@ pre-commit:
       run: bun run biome check --write --no-errors-on-unmatched 
         --files-ignore-unknown=true --colors=off {staged_files}
       stage_fixed: true
-    svelte:
+    images:
+      run: bun run gen:images --local --cms
+      stage_fixed: true
+      skip: true
+    check-svelte:
       run: bun run check:svelte
+    check-scripts:
+      run: bun run check:scripts
     build:
       run: bun run build:production
