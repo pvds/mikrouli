@@ -4,29 +4,34 @@ import { logInfo } from "./log.js";
 import { escapeRegex } from "./regex.js";
 
 /**
- * Reads the .env file and returns an array of variables that have an empty or missing value.
+ * Reads the .env file at `envFilePath` and returns an array of variable names
+ * that have an empty (or missing) value.
  *
  * @param {string} envFilePath - The path to the .env file.
- * @returns {string[]} - Array of variable names that lack a value.
+ * @returns {string[]} - An array of variable names that lack a value.
  */
-const getEmptyEnvVariables = (envFilePath) => {
+function getEmptyEnvVariables(envFilePath) {
 	if (!fs.existsSync(envFilePath)) return [];
 
-	const lines = fs.readFileSync(envFilePath, "utf8").split("\n");
-	return lines
-		.map((line) => line.trim())
-		.filter((l) => l && !l.startsWith("#")) // skip empty or comment lines
-		.map((l) => {
-			const [k, ...vParts] = l.split("="); // expect KEY=VALUE format
-			const v = vParts
-				.join("=")
+	return fs
+		.readFileSync(envFilePath, "utf8")
+		.split("\n") // split file into lines
+		.map((lineRaw) => {
+			const line = lineRaw.trim();
+			if (!line || line.startsWith("#")) return null; // skip empty or commented lines
+
+			// Split into key and value
+			const [rawKey, ...valueParts] = line.split("=");
+			const key = rawKey.trim();
+			const value = valueParts
+				.join("=") // re-join in case there are "=" characters in the value
 				.trim()
-				.replace(/^["']|["']$/g, ""); // strip surrounding quotes
-			return { key: k.trim(), value: v };
+				.replace(/^["']|["']$/g, ""); // remove surrounding quotes
+
+			return !value ? key : null;
 		})
-		.filter(({ value }) => !value) // only those with empty value
-		.map(({ key }) => key);
-};
+		.filter((key) => !key); // filter out empty keys
+}
 
 /**
  * Updates or appends environment variables in the .env file, then syncs them into process.env.
