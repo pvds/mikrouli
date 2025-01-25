@@ -9,9 +9,17 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import { promptForMissingVariables } from "./util/env.js";
+import { getEmptyEnvVariables, promptForMissingVariables } from "./util/env.js";
 import { runCommand } from "./util/file.js";
-import { logError, logHeader, logHighlight, logInfo, logSuccess } from "./util/log.js";
+import {
+	logError,
+	logHeader,
+	logHighlight,
+	logInfo,
+	logMessage,
+	logSuccess,
+	logWarn,
+} from "./util/log.js";
 
 /**
  * Main asynchronous function to prepare the project
@@ -23,7 +31,7 @@ const main = async () => {
 	const envFile = path.resolve(process.cwd(), ".env");
 	const envExampleFile = path.resolve(process.cwd(), ".env.example");
 
-	logHeader("Copy .env.example to .env");
+	logHeader("Checking for missing .env file");
 	if (!fs.existsSync(envFile)) {
 		logInfo("Missing .env file. Copying .env.example to .env...");
 		fs.copyFileSync(envExampleFile, envFile);
@@ -35,10 +43,31 @@ const main = async () => {
 	/**
 	 * 2. Prompt for empty env variables (can be skipped)
 	 */
-	logHeader("Prompt for missing environment variables");
+	logHeader("Checking for missing environment variables");
 	const requiredVariables = ["CONTENTFUL_SPACE_ID", "CONTENTFUL_ACCESS_TOKEN"];
 	await promptForMissingVariables(envFile, requiredVariables);
-	logSuccess("Environment variables have been checked and updated if needed.");
+	logSuccess(
+		"Environment variables have been checked and updated according to to provided values.",
+	);
+
+	const missingRequiredVariables = getEmptyEnvVariables(envFile, requiredVariables);
+	if (missingRequiredVariables.length > 0) {
+		logHeader("Project is ready for development");
+		logWarn(
+			"Preparation cannot be completed because the following required environment variables are missing:",
+		);
+		for (const key of missingRequiredVariables) logMessage(`- ${key}`);
+		logInfo(
+			"\n",
+			"Without these variables, you won't be able to fetch content from Contentful.",
+		);
+		logInfo("Don't panic! We regularly check-in a snapshot of the content to the repository.");
+		logHighlight(
+			"\n",
+			"Run `bun start` to start the development server and open the project in your browser.",
+		);
+		process.exit(1);
+	}
 
 	/**
 	 * 3. Fetch content from Contentful

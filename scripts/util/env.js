@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import { askQuestion } from "./cli-question.js";
-import { logInfo } from "./log.js";
+import { logInfo, logMessage } from "./log.js";
 import { escapeRegex } from "./regex.js";
 
 /**
@@ -8,12 +8,13 @@ import { escapeRegex } from "./regex.js";
  * that have an empty (or missing) value.
  *
  * @param {string} envFilePath - The path to the .env file.
+ * @param {string[]} requiredVars - If used only these variables will be checked.
  * @returns {string[]} - An array of variable names that lack a value.
  */
-function getEmptyEnvVariables(envFilePath) {
+function getEmptyEnvVariables(envFilePath, requiredVars = []) {
 	if (!fs.existsSync(envFilePath)) return [];
 
-	return fs
+	const emptyVariables = fs
 		.readFileSync(envFilePath, "utf8")
 		.split("\n") // split file into lines
 		.map((lineRaw) => {
@@ -30,7 +31,13 @@ function getEmptyEnvVariables(envFilePath) {
 
 			return !value ? key : null;
 		})
-		.filter((key) => !key); // filter out empty keys
+		.filter((key) => key !== null); // filter out empty keys
+
+	if (requiredVars.length > 0) {
+		return emptyVariables.filter((key) => requiredVars.includes(key));
+	}
+
+	return emptyVariables;
 }
 
 /**
@@ -84,12 +91,13 @@ const promptForMissingVariables = async (envFilePath, requiredVars = []) => {
 	for (const key of allVarsToPrompt) {
 		logInfo(`- ${key}`);
 	}
+	logMessage("You can skip the prompts by pressing Enter without providing a value");
 
 	const envUpdates = {};
 	for (const key of allVarsToPrompt) {
 		envUpdates[key] = await askQuestion(`Please enter a value for ${key}: `, {
 			required: false,
-			mask: !key.toLowerCase().startsWith("public"),
+			mask: !key?.toLowerCase()?.startsWith("public") || true,
 		});
 	}
 
