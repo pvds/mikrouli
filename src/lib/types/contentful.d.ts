@@ -19,6 +19,11 @@ export type BaseFields = {
 	sections: string[];
 };
 
+export type BaseEntry = {
+	meta?: Metadata;
+	fields: BaseFields;
+};
+
 // ### ImageField
 
 // TODO: remove unnecessary properties

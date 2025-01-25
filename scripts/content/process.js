@@ -50,11 +50,14 @@ export const parseImages = (data) => {
  *
  * @param {Object} rawEntry The raw Contentful entry
  * @param {boolean} isTopLevel
- * @return {import('$lib/types/contentful').PageEntry}
+ * @return {import('$lib/types/contentful').BaseEntry}
  */
 export function parseContentEntry(rawEntry = {}, isTopLevel = true) {
 	const meta = isTopLevel && rawEntry.sys ? parseMeta(rawEntry.sys) : undefined;
-	const { sections = [], ...restFields } = rawEntry.fields || {};
+	const {
+		sections = [],
+		/** @type {import('$lib/types/contentful').BaseFields} */ ...restFields
+	} = rawEntry.fields || {};
 
 	for (const key of Object.keys(restFields)) {
 		// Process only objects that have a 'fields' property
