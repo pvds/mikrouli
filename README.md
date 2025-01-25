@@ -57,7 +57,7 @@ start`.
 
 > `bun start` is a shorthand for `bun dev --open & bun run watch`.
 
-### Install Dependencies
+### Prerequisites
 
 > For macOS we recommend using [Homebrew](https://brew.sh/)
 > For Windows we recommend using [Scoop](https://scoop.sh/)
@@ -76,6 +76,11 @@ start`.
     ```bash
     bun install
     ```
+   
+4. Set up the project:
+	```bash
+	bun run util:prepare
+	```
 
 ### Local Development
 
@@ -88,18 +93,11 @@ start`.
 2. Start the development server:
 
     ```bash
-    bun run dev --open
+    bun start
     ```
 
-3. Optionally, run the svelte-check watcher for code checks:
-    ```bash
-    bun run watch
-    ```
 
-### Environment Variables
 
-To fetch live content from Contentful, add a `.env` file to the project root,
-you can use `.env.example` file as a template.
 
 ---
 
