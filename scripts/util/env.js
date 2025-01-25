@@ -1,46 +1,70 @@
 import fs from "node:fs";
 import { askQuestion } from "./cli-question.js";
-import { logError, logInfo } from "./log.js";
+import { logInfo } from "./log.js";
 
 /**
- * Retrieves the value of a specific environment variable from the .env file.
+ * Reads the .env file and returns an array of variables that have an empty or missing value.
  *
- * @param {string} key - The environment variable key.
  * @param {string} envFilePath - The path to the .env file.
- * @returns {string|null} - The value if found, otherwise null.
+ * @returns {string[]} - Array of variable names that lack a value.
  */
-const getEnvVariable = (key, envFilePath) => {
-	if (!fs.existsSync(envFilePath)) return null;
+const getMissingEnvVariables = (envFilePath) => {
+	if (!fs.existsSync(envFilePath)) return [];
+
 	const envContent = fs.readFileSync(envFilePath, { encoding: "utf8" });
-	const regex = new RegExp(`^${key}=["']?(.*?)["']?$`, "m");
-	const match = envContent.match(regex);
-	logInfo(`Match: ${match}`);
-	return match ? match[1] : null;
+	const lines = envContent.split("\n");
+	const missingKeys = [];
+
+	for (const line of lines) {
+		const trimmed = line.trim();
+		// Skip empty or comment lines
+		if (!trimmed || trimmed.startsWith("#")) continue;
+
+		// Expect KEY=VALUE format
+		const [rawKey, ...rest] = trimmed.split("=");
+		const key = rawKey.trim();
+
+		// Re-join the rest in case there's an '=' in the value
+		let value = rest.join("=").trim();
+
+		// Strip surrounding quotes if any
+		if (
+			(value.startsWith('"') && value.endsWith('"')) ||
+			(value.startsWith("'") && value.endsWith("'"))
+		) {
+			value = value.slice(1, -1);
+		}
+
+		// Consider it missing if there's no non-empty value
+		if (!value) {
+			missingKeys.push(key);
+		}
+	}
+
+	return missingKeys;
 };
 
 /**
- * Updates or appends environment variables in the .env file.
+ * Updates or appends environment variables in the .env file, then syncs them into process.env.
  *
- * @param {Object} envUpdates - An object containing key-value pairs of environment variables.
- * @param {string} envFilePath - The path to the .env file.
+ * @param {Object} envUpdates - Key-value pairs of environment variables to update/append.
+ * @param {string} envFilePath - Path to the .env file.
  */
 const updateEnvFile = (envUpdates, envFilePath) => {
-	let envContent = "";
-	if (fs.existsSync(envFilePath)) {
-		envContent = fs.readFileSync(envFilePath, { encoding: "utf8" });
-	}
+	let envContent = fs.existsSync(envFilePath)
+		? fs.readFileSync(envFilePath, { encoding: "utf8" })
+		: "";
 
 	for (const [key, value] of Object.entries(envUpdates)) {
 		const regex = new RegExp(`^${key}=["']?.*["']?$`, "m");
 		const newLine = `${key}=${value}`;
+
 		if (regex.test(envContent)) {
-			// Replace existing variable
 			envContent = envContent.replace(regex, newLine);
 		} else {
-			// Append new variable
 			envContent += `\n${newLine}`;
 		}
-		// Also set the variable in process.env for the current script
+		// Reflect changes into process.env immediately
 		process.env[key] = value;
 	}
 
@@ -48,38 +72,34 @@ const updateEnvFile = (envUpdates, envFilePath) => {
 };
 
 /**
- * Checks which required environment variables are missing.
+ * Finds all missing environment variables from the .env file and prompts the user for them.
+ * Then updates the .env file with the provided values.
  *
- * @param {string[]} requiredEnvVariables - An array of required environment variable names.
- * @param {string} envFilePath - The path to the .env file.
- * @returns {string[]} - An array of missing environment variable names.
+ * @param {string} envFilePath - Path to the .env file.
  */
-const getMissingEnvVariables = (requiredEnvVariables, envFilePath) => {
-	return requiredEnvVariables.filter((envVar) => {
-		return !process.env[envVar] && !getEnvVariable(envVar, envFilePath);
-	});
-};
+const promptForMissingVariables = async (envFilePath) => {
+	const missingVars = getMissingEnvVariables(envFilePath);
 
-/**
- * Prompts the user for each missing environment variable and collects their inputs.
- *
- * @param {string[]} missingEnvVariables - An array of missing environment variable names.
- * @returns {Promise<Object>} - An object containing key-value pairs of the environment variables.
- */
-const promptForMissingVariables = async (missingEnvVariables) => {
-	const envUpdates = {};
-	for (const envVar of missingEnvVariables) {
-		let value = "";
-		while (!value) {
-			// Ensure that the user provides a non-empty value
-			value = await askQuestion(`Please enter a value for ${envVar}: `);
-			if (!value) {
-				logError(`Value for ${envVar} cannot be empty. Please try again.`);
-			}
-		}
-		envUpdates[envVar] = value;
+	if (missingVars.length === 0) {
+		logInfo("No missing environment variables found.");
+		return;
 	}
-	return envUpdates;
+
+	logInfo("The following environment variables are missing values:");
+	for (const key of missingVars) {
+		logInfo(`- ${key}`);
+	}
+
+	const envUpdates = {};
+	for (const key of missingVars) {
+		envUpdates[key] = await askQuestion(`Please enter a value for ${key}: `, {
+			required: false,
+		});
+	}
+
+	// Update the .env file with the newly provided values
+	updateEnvFile(envUpdates, envFilePath);
+	logInfo(`Updated ${envFilePath} with missing environment variables.`);
 };
 
-export { getEnvVariable, updateEnvFile, getMissingEnvVariables, promptForMissingVariables };
+export { getMissingEnvVariables, updateEnvFile, promptForMissingVariables };
