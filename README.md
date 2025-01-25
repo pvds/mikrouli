@@ -52,35 +52,39 @@ developer experience and user-centric design.
 
 ## Getting Started
 
-If you already have all dependencies quick start by running `bun i && bun 
-start`.
+If you already have all dependencies quick start by running
+`bun i && bun  start`.
 
 > `bun start` is a shorthand for `bun dev --open & bun run watch`.
 
 ### Prerequisites
 
-> For macOS we recommend using [Homebrew](https://brew.sh/)
-> For Windows we recommend using [Scoop](https://scoop.sh/)
+> For macOS we recommend using [Homebrew](https://brew.sh/) For Windows we
+> recommend using [Scoop](https://scoop.sh/)
 
 1. **Install Node.js** (v22 or newer):  
    Follow the [Node.js documentation](https://nodejs.org/).
-	- macOS: `brew install node` or `brew install nvm`
-	- windows: `scoop install nodejs` or use [nvm for windows](https://github.com/coreybutler/nvm-windows)
+
+    - macOS: `brew install node` or `brew install nvm`
+    - windows: `scoop install nodejs` or use
+      [nvm for windows](https://github.com/coreybutler/nvm-windows)
 
 2. **Install Bun** (v1 or newer):  
-   Follow the [Bun installation guide](https://bun.sh/). 
-	- macOS/Linux: `brew install oven-sh/bun/bun` or `curl -fsSL https://bun.sh/install | bash`
-    - windows: `scoop bucket add main` && `scoop install bun` or `powershell -c "irm bun.sh/install.ps1 | iex"`
+   Follow the [Bun installation guide](https://bun.sh/).
+
+    - macOS/Linux: `brew install oven-sh/bun/bun` or
+      `curl -fsSL https://bun.sh/install | bash`
+    - windows: `scoop bucket add main` && `scoop install bun` or
+      `powershell -c "irm bun.sh/install.ps1 | iex"`
 
 3. Install project dependencies:
     ```bash
     bun install
     ```
-   
 4. Set up the project:
-	```bash
-	bun run util:prepare
-	```
+    ```bash
+    bun run util:prepare
+    ```
 
 ### Local Development
 
@@ -96,73 +100,78 @@ start`.
     bun start
     ```
 
-
-
-
 ---
 
 ## Scripts
 
 - **Setup**
-  ```bash
-  bun run prepare   		# Install git hooks with Lefthook
-  ```
+
+    ```bash
+    bun run prepare   		# Install git hooks with Lefthook
+    ```
 
 - **Development**
-  ```bash
-  bun run dev       	# Start development server
-  bun run start     	# Start server and watch for changes
-  bun run start:prod 	# Start production server and watch for changes
-  ```
+
+    ```bash
+    bun run dev       	# Start development server
+    bun run start     	# Start server and watch for changes
+    bun run start:prod 	# Start production server and watch for changes
+    ```
 
 - **Build**
-  ```bash
-  bun run build           	# Build for staging
-  bun run build:production 	# Build for production
-  ```
+
+    ```bash
+    bun run build           	# Build for staging
+    bun run build:production 	# Build for production
+    ```
 
 - **Preview**
-  ```bash
-  bun run preview           	# Preview staging build
-  bun run preview:production 	# Preview production build
-  ```
+
+    ```bash
+    bun run preview           	# Preview staging build
+    bun run preview:production 	# Preview production build
+    ```
 
 - **Code Quality**
-  ```bash
-  bun run check        # Run formatting and Svelte checks
-  bun run check:format # Check code formatting
-  bun run check:svelte # Run Svelte checks
-  bun run check:all    # Run all checks including build
-  bun run watch        # Watch for changes and re-run checks
-  bun run write        # Fix formatting issues
-  ```
+
+    ```bash
+    bun run check        # Run formatting and Svelte checks
+    bun run check:format # Check code formatting
+    bun run check:svelte # Run Svelte checks
+    bun run check:all    # Run all checks including build
+    bun run watch        # Watch for changes and re-run checks
+    bun run write        # Fix formatting issues
+    ```
 
 - **Continuous Integration**
-  ```bash
-  bun run check:ci         		# Check code for CI pipeline
-  bun run check:svelte:ci  		# Svelte checks with CI output
-  bun run check:svelte:watch 	# Watch mode for Svelte checks
-  ```
+
+    ```bash
+    bun run check:ci         		# Check code for CI pipeline
+    bun run check:svelte:ci  		# Svelte checks with CI output
+    bun run check:svelte:watch 	# Watch mode for Svelte checks
+    ```
 
 - **Content Management**
-  ```bash
-  bun run content        # Fetch content and images
-  bun run content:cms    # Fetch content from CMS
-  bun run content:images # Fetch and process images
-  ```
+
+    ```bash
+    bun run content        # Fetch content and images
+    bun run content:cms    # Fetch content from CMS
+    bun run content:images # Fetch and process images
+    ```
 
 - **Testing**
-  ```bash
-  bun run test:lighthouse # Run Lighthouse performance tests
-  bun run test:a11y       # Run accessibility tests
-  ```
+
+    ```bash
+    bun run test:lighthouse # Run Lighthouse performance tests
+    bun run test:a11y       # Run accessibility tests
+    ```
 
 - **Utilities**
-  ```bash
-  bun run util:clean    # Clean project files
-  bun run util:favicons # Generate favicons
-  bun run util:prepare  # Run project preparation scripts
-  ```
+    ```bash
+    bun run util:clean    # Clean project files
+    bun run util:favicons # Generate favicons
+    bun run util:prepare  # Run project preparation scripts
+    ```
 
 ---
 
@@ -183,7 +192,8 @@ Mikrouli integrates with Contentful for content management. The workflow:
 GitHub Actions handles CI/CD using our [CI workflow](.github/workflows/ci.yml).
 The workflow is documented in the [workflow documentation](docs/workflow.md).
 
-> Environment secrets are [securely managed via GitHub](https://github.com/pvds/mikrouli/settings/secrets/actions).
+> Environment secrets are
+> [securely managed via GitHub](https://github.com/pvds/mikrouli/settings/secrets/actions).
 
 ---
 
@@ -212,8 +222,8 @@ The workflow is documented in the [workflow documentation](docs/workflow.md).
 
 ## Project Structure
 
-The project is modular and organized as follows, also refer to [sveltekit 
-project structure](https://svelte.dev/docs/kit/project-structure):
+The project is modular and organized as follows, also refer to
+[sveltekit project structure](https://svelte.dev/docs/kit/project-structure):
 
 ```
 .
@@ -225,7 +235,7 @@ project structure](https://svelte.dev/docs/kit/project-structure):
 ├── scripts/                  # Node scripts
 │   ├── assets/               # Asset related scripts
 │   ├   ├── fetch.js          # Fetch CMS images
-│   ├   └── process.js        # Process local and CMS images 
+│   ├   └── process.js        # Process local and CMS images
 │   ├── content/              # CMS content scripts
 │   ├   ├── fetch.js          # Fetch CMS content
 │   ├   └── process.js        # Process content data
@@ -272,7 +282,7 @@ project structure](https://svelte.dev/docs/kit/project-structure):
 ## Troubleshooting
 
 | **Issue**               | **Solution**                                                              |
-|-------------------------|---------------------------------------------------------------------------|
+| ----------------------- | ------------------------------------------------------------------------- |
 | Installation fails      | Verify Node.js and Bun versions meet requirements.                        |
 | Contentful fetch errors | Ensure `.env` exists and contains valid Contentful keys, see .env.example |
 | Build or dev errors     | Run the clean script: `bun run util:clean`.                               |
@@ -285,15 +295,18 @@ project structure](https://svelte.dev/docs/kit/project-structure):
 
 #### Using @apply
 
-In general, `@apply` is not recommended.
-In some cases it can be useful:
-- you don't have control over the HTML structure (e.g. when using a 3rd party component)
+In general, `@apply` is not recommended. In some cases it can be useful:
+
+- you don't have control over the HTML structure (e.g. when using a 3rd party
+  component)
 - styling elements that cannot be targeted with a class (e.g. scrollbar)
 
 Alternative to using `@apply`:
+
 - use the theme() and screen() functions to access Tailwind's configuration
 
 This serves as an example on how to do it (using @reference)
+
 - theme.css allows accessing generated theme classes
 - utilities.css allows accessing generated custom utility classes
 
