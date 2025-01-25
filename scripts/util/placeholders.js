@@ -30,7 +30,7 @@ export const generatePlaceholder = async (inputPath, outputPath = "", asBase64 =
  * @param {string} outputPath - Path to the placeholders JSON file.
  */
 export const writePlaceholders = (category, placeholders, outputPath) => {
-	logInfo(`Writing ${category} base64 placeholders...`);
+	logInfo("\n", `Writing ${category} base64 placeholders...`);
 	const data = readJSON(outputPath);
 	// Sort placeholders alphabetically and assign to the category
 	data[category] = Object.fromEntries(Object.entries(placeholders).sort());

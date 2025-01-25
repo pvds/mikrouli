@@ -5,7 +5,7 @@ import { IMAGE_EXTENSIONS, IMAGE_SIZES } from "$const";
 import pLimit from "p-limit";
 import sharp from "sharp";
 import { prepareDir } from "../util/file.js";
-import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
+import { logDebug, logError, logHeader, logInfo, logMessage, logSuccess } from "../util/log.js";
 import { measure } from "../util/measure.js";
 import { generatePlaceholder, writePlaceholders } from "../util/placeholders.js";
 import { escapeRegex } from "../util/regex.js";
@@ -50,8 +50,9 @@ const processedImageRegex = new RegExp(
  * @param {keyof sharp.format | sharp.AvailableFormatInfo} format - Desired output image format.
  * @param {number} quality - Quality level for the format.
  * @param {string} outDir - Output directory path.
+ * @param {Object} counts - Object to keep track of generated images count.
  */
-const generateImages = async (image, baseName, format, quality, outDir) => {
+const generateImages = async (image, baseName, format, quality, outDir, counts) => {
 	await Promise.all(
 		IMAGE_SIZES.map(async (size) => {
 			const outputFileName = buildFileName(baseName, size.toString(), format.toString());
@@ -59,6 +60,7 @@ const generateImages = async (image, baseName, format, quality, outDir) => {
 
 			if (fs.existsSync(outputPath)) {
 				logDebug(`Skipping existing image: ${outputFileName}`);
+				counts.skipped += 1;
 				return;
 			}
 
@@ -72,6 +74,7 @@ const generateImages = async (image, baseName, format, quality, outDir) => {
 				.toFormat(format, { quality })
 				.toFile(outputPath);
 			logDebug(`Generated: ${outputFileName}`);
+			counts.generated += 1;
 		}),
 	);
 };
@@ -79,8 +82,9 @@ const generateImages = async (image, baseName, format, quality, outDir) => {
 /**
  * Delete stale generated images without a corresponding base image asynchronously.
  * @param {string} category - The category of images to check.
+ * @param {Object} counts - Object to keep track of deleted images count.
  */
-const deleteStaleImages = async (category) => {
+const deleteStaleImages = async (category, counts) => {
 	const inDir = path.resolve(INPUT_DIR, category);
 	const outDir = path.resolve(OUTPUT_DIR, category);
 
@@ -95,11 +99,13 @@ const deleteStaleImages = async (category) => {
 			if (!baseNames.has(base) || !IMAGE_SIZES.includes(Number(size))) {
 				fs.unlinkSync(path.join(outDir, file));
 				console.info(`Deleted stale: ${file}`);
+				counts.deleted += 1;
 			}
 		} else {
 			// Delete files not matching the pattern
 			fs.unlinkSync(path.join(outDir, file));
 			console.info(`Deleted stale (pattern mismatch): ${file}`);
+			counts.deleted += 1;
 		}
 	}
 };
@@ -125,6 +131,9 @@ export const processImages = async (
 	const placeholdersFile = path.resolve(process.cwd(), "src/data/generated/placeholders.json");
 	const placeholders = {};
 
+	// Initialize counters
+	const counts = { generated: 0, skipped: 0, deleted: 0 };
+
 	// Get an array of image file names that match the pattern.
 	if (!fs.existsSync(inDir)) {
 		logError(`Directory not found: ${inDir}, skipping image optimization...`);
@@ -142,7 +151,7 @@ export const processImages = async (
 
 			try {
 				const image = sharp(inputPath);
-				await generateImages(image, baseName, format, quality, outDir);
+				await generateImages(image, baseName, format, quality, outDir, counts);
 				placeholders[baseName] = await generatePlaceholder(inputPath);
 			} catch (err) {
 				logError(`Error processing file ${file}:`, err.message);
@@ -152,11 +161,16 @@ export const processImages = async (
 
 	// Wait until all file tasks have completed.
 	await Promise.all(tasks);
-	writePlaceholders(category, placeholders, placeholdersFile);
-	await deleteStaleImages(category);
+	await deleteStaleImages(category, counts);
 
-	logSuccess(`Optimized ${files.length} images`);
-	logDebug(`Optimizing took ${measure(startTime)} seconds`);
+	logHeader(`Optimized ${category} images`);
+	logSuccess(`Synced optimized images from ${files.length} ${category} images`);
+	logMessage(`Generated ${counts.generated} new ${category} images`);
+	logMessage(`Skipped ${counts.skipped} existing ${category} images`);
+	logMessage(`Deleted ${counts.deleted} stale ${category} images`);
+	logDebug(`Optimizing ${category} images took ${measure(startTime)} seconds`);
+
+	writePlaceholders(category, placeholders, placeholdersFile);
 };
 
 // Execute processing based on command-line args
