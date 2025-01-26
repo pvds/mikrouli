@@ -1,40 +1,34 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createClient } from "contentful";
+import {
+	CONTENTFUL_ACCESS_TOKEN,
+	CONTENTFUL_SPACE_ID,
+	CONTENT_TYPES,
+	IS_FORCE,
+	IS_PROD,
+} from "../util/const.js";
 import { logError, logInfo, logSuccess, logWarn } from "../util/log.js";
 import { processContentfulData } from "./process.js";
 
-// 1) Validate environment vars
-if (!process.env.CONTENTFUL_SPACE_ID || !process.env.CONTENTFUL_ACCESS_TOKEN) {
+if (!CONTENTFUL_SPACE_ID || !CONTENTFUL_ACCESS_TOKEN) {
 	logError(
 		"Missing Contentful environment vars (CONTENTFUL_SPACE_ID or CONTENTFUL_ACCESS_TOKEN).",
 	);
 	process.exit(1);
 }
 
-const space = process.env.CONTENTFUL_SPACE_ID;
-const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
-const args = process.argv.slice(2);
-const isProd = args.includes("--prod");
-const isForce = args.includes("--force");
-
-// 2) Array of content types, each with an ID + the matching Contentful query
-const contentTypes = [
-	{ id: "navigation", query: "navigation" },
-	{ id: "pages", query: "page" },
-	{ id: "services", query: "service" },
-	{ id: "posts", query: "post" },
-];
-
 // Create the Contentful client
-const client = createClient({ space, accessToken });
+/** @type {import('contentful').CreateClientParams} */
+const clientParams = { space: CONTENTFUL_SPACE_ID, accessToken: CONTENTFUL_ACCESS_TOKEN };
+const client = createClient(clientParams);
 
 /**
  * Fetch data from Contentful, transform it, and write each content type
  * to its own JSON file. In dev, JSON is pretty-printed; in production, minified.
  */
 async function fetchContentfulData() {
-	if (!isProd && !isForce) {
+	if (!IS_PROD && !IS_FORCE) {
 		logWarn("Development mode. Use --force to fetch fresh data.");
 		return;
 	}
@@ -43,14 +37,14 @@ async function fetchContentfulData() {
 		logInfo("Fetching data from cms...");
 
 		// Fetch each content type in parallel
-		const requests = contentTypes.map(({ query }) =>
+		const requests = CONTENT_TYPES.map(({ query }) =>
 			client.getEntries({ content_type: query }),
 		);
 		const results = await Promise.all(requests);
 
 		// Assemble the raw data keyed by 'navigation', 'pages', etc.
 		const rawData = {};
-		for (const [i, { id }] of contentTypes.entries()) {
+		for (const [i, { id }] of CONTENT_TYPES.entries()) {
 			rawData[id] = results[i].items;
 		}
 
@@ -63,10 +57,10 @@ async function fetchContentfulData() {
 		// if (!isProd) writeJsonFile(path.resolve(process.cwd(),"src/data/generated/images.json"), processedData.images, 4);
 
 		// Pretty-print in dev, minify in production
-		const spacing = !isProd ? 4 : 0;
+		const spacing = !IS_PROD ? 4 : 0;
 
 		// Write each transformed content type to its own file
-		for (const { id } of contentTypes) {
+		for (const { id } of CONTENT_TYPES) {
 			const outputPath = path.resolve(process.cwd(), `src/data/generated/${id}.json`);
 			writeJsonFile(outputPath, processedData[id], spacing);
 		}

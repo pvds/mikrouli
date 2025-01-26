@@ -1,16 +1,24 @@
 import path from "node:path";
 import { playAudit } from "playwright-lighthouse";
+import {
+	BUILD_PATH_PRODUCTION_RESOLVED,
+	BUILD_PATH_STAGING_RESOLVED,
+	DEBUG_PORT,
+	IS_ALL,
+	IS_MINIMAL,
+	IS_PROD,
+	PORT,
+	REPORTS_PATH_RESOLVED,
+	THRESHOLDS,
+	URL_SUBFOLDER_PRODUCTION,
+	URL_SUBFOLDER_STAGING,
+} from "../util/const.js";
 import { getAllHtmlFiles } from "../util/file.js";
 import { logError, logHeader, logInfo, logSuccess } from "../util/log.js";
 import { measure } from "../util/measure.js";
 import { closeBrowser, launchBrowser } from "../util/playwright.js";
 import { startServer, stopServer, waitForServer } from "../util/server.js";
 
-// Parse flags
-const flags = ["--prod", "--minimal", "--all"];
-const [productionFlag, minimalFlag, allPagesFlag] = flags.map((flag) =>
-	process.argv.includes(flag),
-);
 const specificIndex = process.argv.indexOf("--specific");
 const specificPath =
 	specificIndex !== -1 && process.argv[specificIndex + 1]
@@ -18,22 +26,14 @@ const specificPath =
 		: null;
 
 // Constants
-const BUILD_DIR = productionFlag ? "build/production" : "build/staging";
-const SUBFOLDER = productionFlag ? "" : "/mikrouli";
-const BUILD_CMD = productionFlag ? "build:production" : "build";
-const PREVIEW_CMD = productionFlag ? "preview:production" : "preview";
-const PORT = 4173;
-const DEBUG_PORT = 9222;
+const BUILD_DIR = IS_PROD ? BUILD_PATH_PRODUCTION_RESOLVED : BUILD_PATH_STAGING_RESOLVED;
+const SUBFOLDER = IS_PROD ? URL_SUBFOLDER_PRODUCTION : URL_SUBFOLDER_STAGING;
 const BASE_URL = `http://localhost:${PORT}${SUBFOLDER}`;
-const THRESHOLDS = {
-	performance: 99,
-	accessibility: 100,
-	"best-practices": 100,
-	seo: 100,
-};
+const BUILD_CMD = IS_PROD ? "build:production" : "build";
+const PREVIEW_CMD = IS_PROD ? "preview:production" : "preview";
 
 const timeStamp = new Date().toISOString().replace(/[:.]/g, "-");
-const reportDir = `${process.cwd()}/.tmp/lighthouse/${timeStamp}`;
+const reportDir = path.join(REPORTS_PATH_RESOLVED, "lighthouse", timeStamp);
 const startTime = performance.now();
 const serverProcess = startServer(BUILD_DIR, BUILD_CMD, PREVIEW_CMD, PORT);
 
@@ -129,12 +129,12 @@ function gatherPagesToAudit() {
 		const relative = specificPath.replace(/^\/+/, "");
 		return [`${BASE_URL}/${relative}`];
 	}
-	if (allPagesFlag) {
+	if (IS_ALL) {
 		logInfo("All mode: testing all HTML files.");
 		const files = getAllHtmlFiles(BUILD_DIR);
 		return files.map(transformFileToUrl);
 	}
-	if (minimalFlag) {
+	if (IS_MINIMAL) {
 		logInfo("Minimal mode: only first HTML file in each directory.");
 		const files = getAllHtmlFiles(BUILD_DIR, true);
 		return files.map(transformFileToUrl);

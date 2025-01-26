@@ -2,17 +2,21 @@ import fs from "node:fs";
 import https from "node:https";
 import path from "node:path";
 import pLimit from "p-limit";
+import {
+	IMAGES_JSON_OUTPUT_PATH_RESOLVED,
+	IMAGE_OUTPUT_PATH_RESOLVED,
+	IS_CMS,
+} from "../util/const.js";
+import { prepareDir } from "../util/file.js";
 
 import { logDebug, logError, logInfo, logSuccess, logWarn } from "../util/log.js";
 import { withRetry } from "../util/retry.js";
 
-const OUTPUT_DIR = path.resolve(process.cwd(), "images/cms");
-const IMAGES_JSON = path.resolve(process.cwd(), "src/data/generated/images.json");
-
-const args = process.argv.slice(2);
-const isCMS = args.includes("--cms");
-
-if (isCMS) syncImages(OUTPUT_DIR, IMAGES_JSON);
+if (IS_CMS)
+	await syncImages(
+		path.join(IMAGE_OUTPUT_PATH_RESOLVED, "cms"),
+		IMAGES_JSON_OUTPUT_PATH_RESOLVED,
+	);
 
 /**
  * Syncs images with the CMS by downloading missing assets and removing unused ones.
@@ -44,7 +48,6 @@ export async function syncImages(imagesPath, dataPath) {
  *
  * @param {string} imagesPath - The path to the local image folder.
  * @param {string[]} images - List of image file names to delete.
- * @returns {void}
  */
 function deleteImages(imagesPath, images = []) {
 	logInfo("Deleting unused cms images...");
@@ -67,14 +70,11 @@ function deleteImages(imagesPath, images = []) {
 function checkImages(imagePath, images = []) {
 	const downloadedImages = fs.readdirSync(imagePath);
 	const imageBaseNames = images.map((image) => path.basename(image));
-	let missing = [];
-	let unused = [];
-
-	missing = images.filter((image) => {
+	const missing = images.filter((image) => {
 		const fileName = path.basename(image);
 		return !downloadedImages.includes(fileName);
 	});
-	unused = downloadedImages.filter((image) => {
+	const unused = downloadedImages.filter((image) => {
 		return !imageBaseNames.includes(image);
 	});
 
@@ -95,18 +95,14 @@ async function downloadContentfulAssets(images = []) {
 
 	try {
 		logInfo("Fetching images from cms...");
-
-		// Ensure download directory exists
-		if (!fs.existsSync(OUTPUT_DIR)) {
-			fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-		}
+		prepareDir(IMAGE_OUTPUT_PATH_RESOLVED);
 
 		const limit = pLimit(5);
 		const downloadPromises = [];
 		for (const image of images) {
 			const url = `https:${image}`;
 			const fileName = path.basename(url);
-			const outputPath = path.join(OUTPUT_DIR, fileName);
+			const outputPath = path.join(IMAGE_OUTPUT_PATH_RESOLVED, fileName);
 
 			downloadPromises.push(
 				limit(() =>

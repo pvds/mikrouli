@@ -61,7 +61,7 @@ function log(type = "log", textColor = "white", backgroundColor = null, ...messa
  * Logs a debug message with white text
  * @param messages
  */
-const logDebug = (...messages) => {
+export const logDebug = (...messages) => {
 	if (process.env.DEBUG === "true") log("log", "white", null, ...messages);
 };
 
@@ -72,42 +72,40 @@ const logDebug = (...messages) => {
  * Use logDebug for messages that should only be logged when DEBUG is true.
  * @param messages
  */
-const logMessage = (...messages) => log("log", "white", null, ...messages);
+export const logMessage = (...messages) => log("log", "white", null, ...messages);
 
 /**
  * Logs an informational message with cyan text.
  * @param  {...any} messages - Messages to log.
  */
-const logInfo = (...messages) => log("info", "cyan", null, ...messages);
+export const logInfo = (...messages) => log("info", "cyan", null, ...messages);
 
 /**
  * Logs a warning message with yellow text.
  * @param  {...any} messages - Messages to log.
  */
-const logWarn = (...messages) => log("warn", "yellow", null, ...messages);
+export const logWarn = (...messages) => log("warn", "yellow", null, ...messages);
 
 /**
  * Logs an error message with red text.
  * @param  {...any} messages - Messages to log.
  */
-const logError = (...messages) => log("error", "red", null, ...messages);
+export const logError = (...messages) => log("error", "red", null, ...messages);
 
 /**
  * Logs a success message with green text.
  * @param  {...any} messages - Messages to log. */
-const logSuccess = (...messages) => log("log", "green", null, ...messages);
+export const logSuccess = (...messages) => log("log", "green", null, ...messages);
 
 /**
  * Logs a header message with magenta text.
  * @param  {...any} [messages] - Messages to log.
  */
-const logHeader = (...messages) =>
+export const logHeader = (...messages) =>
 	log("log", "magenta", null, ...["\n=============== ", ...messages, "\n"]);
 
 /**
  * Logs a highlighted message with white text on a blue background.
  * @param  {...any} messages - Messages to log.
  */
-const logHighlight = (...messages) => log("log", "blue", null, ...messages);
-
-export { logDebug, logMessage, logInfo, logWarn, logError, logSuccess, logHeader, logHighlight };
+export const logHighlight = (...messages) => log("log", "blue", null, ...messages);

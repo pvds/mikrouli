@@ -1,21 +1,21 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { IMAGE_SIZES } from "$lib/const";
+import { IMAGE_SIZES } from "$lib/const.js";
 import pLimit from "p-limit";
 import sharp from "sharp";
 import {
 	CPU_COUNT,
 	IMAGE_EXTENSIONS,
 	IMAGE_FILENAME_TEMPLATE,
-	IMAGE_INPUT_PATH,
-	IMAGE_OUTPUT_PATH,
-} from "./const.js";
-import { directoryExists, fileExists, prepareDir } from "./file.js";
-import { logDebug, logError, logHeader, logInfo, logMessage, logSuccess } from "./log.js";
-import { measure } from "./measure.js";
+	IMAGE_INPUT_PATH_RESOLVED,
+	IMAGE_OUTPUT_PATH_RESOLVED,
+} from "../util/const.js";
+import { directoryExists, fileExists, prepareDir } from "../util/file.js";
+import { logDebug, logError, logHeader, logInfo, logMessage, logSuccess } from "../util/log.js";
+import { measure } from "../util/measure.js";
+import { safeIncrement } from "../util/process.js";
+import { escapeRegex } from "../util/regex.js";
 import { generatePlaceholder, writePlaceholders } from "./placeholders.js";
-import { safeIncrement } from "./process.js";
-import { escapeRegex } from "./regex.js";
 
 /**
  * Main function to process images.
@@ -32,8 +32,8 @@ export async function processImages(
 ) {
 	logInfo(`Optimizing ${category} images...`);
 	const startTime = performance.now();
-	const inDir = path.join(IMAGE_INPUT_PATH, category);
-	const outDir = path.join(IMAGE_OUTPUT_PATH, category);
+	const inDir = path.join(IMAGE_INPUT_PATH_RESOLVED, category);
+	const outDir = path.join(IMAGE_OUTPUT_PATH_RESOLVED, category);
 	const limit = pLimit(concurrency);
 	const placeholders = {};
 	const counts = { generated: 0, skipped: 0, deleted: 0 };
@@ -108,8 +108,8 @@ async function generateImages(image, baseName, format, quality, outDir, counts) 
  * @param {Object} counts - Object to keep track of deleted images count.
  */
 async function deleteStaleImages(category, counts) {
-	const inDir = path.join(IMAGE_INPUT_PATH, category);
-	const outDir = path.join(IMAGE_OUTPUT_PATH, category);
+	const inDir = path.join(IMAGE_INPUT_PATH_RESOLVED, category);
+	const outDir = path.join(IMAGE_OUTPUT_PATH_RESOLVED, category);
 	const processedImageRegex = createProcessedImageRegex();
 
 	if (!(await directoryExists(outDir))) return;

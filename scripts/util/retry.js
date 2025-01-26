@@ -8,7 +8,7 @@ import { logDebug } from "./log.js";
  * @param {number} retries - Number of retry attempts.
  * @returns {Promise<unknown>}
  */
-export async function withRetry(fn, fnArgs, retries = 3) {
+export const withRetry = async (fn, fnArgs, retries = 3) => {
 	try {
 		return await fn(...fnArgs);
 	} catch (err) {
@@ -18,4 +18,4 @@ export async function withRetry(fn, fnArgs, retries = 3) {
 		}
 		throw err;
 	}
-}
+};

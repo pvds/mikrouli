@@ -1,20 +1,20 @@
-import { cpus } from "node:os";
 import path from "node:path";
 import { AxeBuilder } from "@axe-core/playwright";
 import pLimit from "p-limit";
+import {
+	BUILD_PATH_PRODUCTION_RESOLVED,
+	BUILD_PATH_STAGING_RESOLVED,
+	CPU_COUNT,
+	IS_MINIMAL,
+	IS_PROD,
+} from "../util/const.js";
 import { getAllHtmlFiles, resolveIfExists } from "../util/file.js";
 import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
 import { measure } from "../util/measure.js";
 import { closeBrowser, launchBrowser, navigateToPage } from "../util/playwright.js";
 import { runCommand } from "../util/process.js";
 
-// Parse command-line arguments
-const args = process.argv.slice(2);
-const isMinimal = args.includes("--minimal");
-const BUILD_DIR = args.includes("--prod") ? "./build/production" : "./build/staging";
-
-const cpuCount = cpus().length;
-const maxConcurrency = Math.max(2, Math.floor(cpuCount / 2));
+const BUILD_DIR = IS_PROD ? BUILD_PATH_PRODUCTION_RESOLVED : BUILD_PATH_STAGING_RESOLVED;
 const timings = {};
 let exitCode = 0;
 
@@ -63,7 +63,7 @@ const analyzePage = async (browser, file, dir) => {
 
 	// Measure file discovery time
 	const startFileDiscovery = performance.now();
-	const htmlFiles = getAllHtmlFiles(buildDir, isMinimal);
+	const htmlFiles = getAllHtmlFiles(buildDir, IS_MINIMAL);
 	timings["File Discovery Time"] = measure(startFileDiscovery);
 
 	logSuccess(`Found ${htmlFiles.length} HTML files`);
@@ -74,7 +74,7 @@ const analyzePage = async (browser, file, dir) => {
 	}
 
 	const { browser } = await launchBrowser();
-	const tasks = pLimit(maxConcurrency);
+	const tasks = pLimit(CPU_COUNT);
 	const violationsSummary = [];
 	let hasViolations = false;
 

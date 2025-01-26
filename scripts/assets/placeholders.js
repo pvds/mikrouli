@@ -1,7 +1,7 @@
 import sharp from "sharp";
-import { PLACEHOLDERS_OUTPUT_PATH } from "./const.js";
-import { readJSON, writeJSON } from "./file.js";
-import { logInfo, logSuccess } from "./log.js";
+import { PLACEHOLDERS_OUTPUT_PATH_RESOLVED } from "../util/const.js";
+import { readJSON, writeJSON } from "../util/file.js";
+import { logInfo, logSuccess } from "../util/log.js";
 
 /**
  * Generate a small blurred placeholder image.
@@ -31,10 +31,10 @@ export const generatePlaceholder = async (inputPath, outputPath = "", asBase64 =
  */
 export const writePlaceholders = (category, placeholders) => {
 	logInfo("\n", `Writing ${category} base64 placeholders...`);
-	const data = readJSON(PLACEHOLDERS_OUTPUT_PATH);
+	const data = readJSON(PLACEHOLDERS_OUTPUT_PATH_RESOLVED);
 	// Sort placeholders alphabetically and assign to the category
 	data[category] = Object.fromEntries(Object.entries(placeholders).sort());
 
-	writeJSON(PLACEHOLDERS_OUTPUT_PATH, data);
+	writeJSON(PLACEHOLDERS_OUTPUT_PATH_RESOLVED, data);
 	logSuccess(`Wrote ${category} placeholders`);
 };
