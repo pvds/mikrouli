@@ -1,12 +1,10 @@
-// @ts-nocheck
-
 import { logDebug } from "$util/log";
 
 /**
  * A generic retry wrapper for any asynchronous function.
  *
  * @param {Function} fn - The async function to call.
- * @param {Array} fnArgs - An array of arguments to apply.
+ * @param {unknown[]} fnArgs - An array of arguments to apply.
  * @param {number} retries - Number of retry attempts.
  * @returns {Promise<unknown>}
  */
