@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import path from "node:path";
 import {
 	BUILD_PATH_PRODUCTION_RESOLVED,
@@ -26,7 +24,8 @@ let exitCode = 0;
 
 /**
  * Analyze a single page for accessibility violations.
- * @typedef {{file: string, violations: string[]}} AnalysisResults
+ * @typedef {import('axe-core').AxeResults['violations']} Violations
+ * @typedef {{file: string, violations: Violations}} AnalysisResults
  *
  * @param {import('playwright').Browser} browser - The browser instance.
  * @param {string} file - Path to the HTML file to analyze.
@@ -67,10 +66,15 @@ const analyzePage = async (browser, file, dir) => {
 (async () => {
 	const startTotal = performance.now();
 
-	const buildDir = resolveIfExists(BUILD_DIR);
-	if (!buildDir) {
-		runCommand("vite build --logLevel error");
-	}
+	const buildDir =
+		resolveIfExists(BUILD_DIR) ||
+		(() => {
+			runCommand("vite build --logLevel error");
+			return resolveIfExists(BUILD_DIR);
+		})();
+
+	if (!buildDir) throw new Error("Build directory could not be created.");
+
 	logDebug(`Analyzing files in: ${buildDir}`);
 
 	// Measure file discovery time
