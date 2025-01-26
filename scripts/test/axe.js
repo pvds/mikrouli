@@ -2,10 +2,11 @@ import { cpus } from "node:os";
 import path from "node:path";
 import { AxeBuilder } from "@axe-core/playwright";
 import pLimit from "p-limit";
-import { getAllHtmlFiles, resolveIfExists, runCommand } from "../util/file.js";
+import { getAllHtmlFiles, resolveIfExists } from "../util/file.js";
 import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
 import { measure } from "../util/measure.js";
 import { closeBrowser, launchBrowser, navigateToPage } from "../util/playwright.js";
+import { runCommand } from "../util/process.js";
 
 // Parse command-line arguments
 const args = process.argv.slice(2);

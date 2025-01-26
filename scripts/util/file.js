@@ -1,4 +1,3 @@
-import { execSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -28,6 +27,34 @@ export const prepareDir = (dirPath, remove = false) => {
 		fs.rmSync(dirPath, { recursive: true, force: true });
 	} else {
 		fs.mkdirSync(dirPath, { recursive: true });
+	}
+};
+
+/**
+ * Checks if a file exists.
+ * @param {string} filePath - Path to the file.
+ * @returns {Promise<boolean>} - True if exists, else false.
+ */
+export const fileExists = async (filePath) => {
+	try {
+		await fs.promises.access(filePath);
+		return true;
+	} catch {
+		return false;
+	}
+};
+
+/**
+ * Checks if a directory exists.
+ * @param {string} dirPath - Path to the directory.
+ * @returns {Promise<boolean>} - True if exists, else false.
+ */
+export const directoryExists = async (dirPath) => {
+	try {
+		const stats = await fs.promises.stat(dirPath);
+		return stats.isDirectory();
+	} catch {
+		return false;
 	}
 };
 
@@ -75,16 +102,4 @@ export const getAllHtmlFiles = (dir, isMinimal = false) => {
 	}
 
 	return [...htmlFiles, ...directories.flatMap((subDir) => getAllHtmlFiles(subDir, isMinimal))];
-};
-
-/**
- * Execute a shell command and log output.
- * @param {string} command - The shell command to execute.
- */
-export const runCommand = (command) => {
-	try {
-		execSync(command, { stdio: "inherit", env: process.env });
-	} catch (error) {
-		throw new Error(error.message);
-	}
 };

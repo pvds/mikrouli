@@ -24,7 +24,6 @@ const config = {
 			privatePrefix: "",
 		},
 		alias: {
-			$const: "src/const.js",
 			$data: "src/data",
 			$global: "src/lib/components/global",
 			$layout: "src/lib/components/layout",

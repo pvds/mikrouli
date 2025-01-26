@@ -10,7 +10,6 @@
 import fs from "node:fs";
 import path from "node:path";
 import { getEmptyEnvVariables, promptForMissingVariables } from "./util/env.js";
-import { runCommand } from "./util/file.js";
 import {
 	logError,
 	logHeader,
@@ -20,6 +19,7 @@ import {
 	logSuccess,
 	logWarn,
 } from "./util/log.js";
+import { runCommand } from "./util/process.js";
 
 /**
  * Main asynchronous function to prepare the project

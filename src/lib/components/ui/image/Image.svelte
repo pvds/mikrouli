@@ -1,7 +1,7 @@
 <script>
 import { base } from "$app/paths";
-import { IMAGE_SIZES } from "$const";
 import placeholders from "$data/generated/placeholders.json";
+import { IMAGE_SIZES } from "$lib/const";
 
 const IMAGE_DIR = "/images";
 const POSITION_CLASSES = "absolute w-full h-full object-center object-cover";

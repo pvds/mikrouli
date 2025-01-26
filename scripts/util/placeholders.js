@@ -1,4 +1,5 @@
 import sharp from "sharp";
+import { PLACEHOLDERS_OUTPUT_PATH } from "./const.js";
 import { readJSON, writeJSON } from "./file.js";
 import { logInfo, logSuccess } from "./log.js";
 
@@ -27,14 +28,13 @@ export const generatePlaceholder = async (inputPath, outputPath = "", asBase64 =
  * Overwrite placeholders for a specific category in the JSON file.
  * @param {string} category - The category key (e.g., "cms" or "local").
  * @param {Object} placeholders - An object containing new image placeholders.
- * @param {string} outputPath - Path to the placeholders JSON file.
  */
-export const writePlaceholders = (category, placeholders, outputPath) => {
+export const writePlaceholders = (category, placeholders) => {
 	logInfo("\n", `Writing ${category} base64 placeholders...`);
-	const data = readJSON(outputPath);
+	const data = readJSON(PLACEHOLDERS_OUTPUT_PATH);
 	// Sort placeholders alphabetically and assign to the category
 	data[category] = Object.fromEntries(Object.entries(placeholders).sort());
 
-	writeJSON(outputPath, data);
+	writeJSON(PLACEHOLDERS_OUTPUT_PATH, data);
 	logSuccess(`Wrote ${category} placeholders`);
 };

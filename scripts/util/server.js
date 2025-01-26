@@ -1,8 +1,9 @@
 import { spawn } from "node:child_process";
 import { get } from "node:http";
 import { setTimeout } from "node:timers/promises";
-import { resolveIfExists, runCommand } from "./file.js";
+import { resolveIfExists } from "./file.js";
 import { logDebug, logInfo, logSuccess } from "./log.js";
+import { runCommand } from "./process.js";
 
 /**
  * Start the server, build if necessary.
