@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { execSync } from "node:child_process";
 import { logInfo } from "$util/log";
 
@@ -24,7 +22,10 @@ export const runCommand = (command) => {
 	try {
 		execSync(command, { stdio: "inherit", env: process.env });
 	} catch (error) {
-		throw new Error(error.message);
+		if (error instanceof Error) {
+			throw new Error(error.message);
+		}
+		throw new Error("An unknown error occurred");
 	}
 };
 
