@@ -73,25 +73,35 @@ export const parseImageUrls = (data) => {
  * that resolve their 'sections'.
  *
  * @param {ContentfulEntry} rawEntry The raw Contentful entry
- * @param {boolean} isTopLevel
- * @return PostEntry | PageEntry | ServiceEntry | BaseEntryNested
+ * @return PostEntry | PageEntry | ServiceEntry
  */
-export function parseContentEntry(rawEntry, isTopLevel = true) {
-	const meta = isTopLevel && rawEntry?.sys ? parseMeta(rawEntry.sys) : undefined;
+export function parseContentEntry(rawEntry) {
+	const meta = parseMeta(rawEntry.sys);
 	const { sections = [], /** @type BaseFields */ ...restFields } = rawEntry.fields || {};
 
 	for (const key of Object.keys(restFields)) {
 		// Process only objects that have a 'fields' property
 		if (restFields[key] && typeof restFields[key] === "object" && "fields" in restFields[key]) {
 			// Recursively parse nested content entry as non-top-level (no meta and no sections)
-			restFields[key] = parseContentEntry(restFields[key], false).fields;
+			restFields[key] = parseNestedContentEntry(restFields[key]).fields;
 		}
 	}
 
 	// Ensure required fields exist
-	return isTopLevel
-		? { meta, fields: { ...restFields, sections: [] } }
-		: { fields: { ...restFields } };
+	return { meta, fields: { ...restFields, sections: [] } };
+}
+
+/**
+ * Generic parser for content entries (used for Pages, Services, and Posts)
+ * that resolve their 'sections'.
+ *
+ * @param {ContentfulEntry} rawEntry The raw Contentful entry
+ * @return {Partial<PostEntry> | Partial<PageEntry> | Partial<ServiceEntry>}
+ */
+export function parseNestedContentEntry(rawEntry) {
+	const { fields } = rawEntry;
+	// Ensure required fields exist
+	return { ...fields };
 }
 
 /**
