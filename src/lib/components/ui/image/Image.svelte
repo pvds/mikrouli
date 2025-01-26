@@ -47,7 +47,9 @@ const srcset = (sizes) =>
 <div class="relative"
 	 style={`aspect-ratio: ${aspectRatio}`}
 >
-	<img src={placeholder} {alt} class="{POSITION_CLASSES} {classes}" />
+	<img src={placeholder} {alt} class="{POSITION_CLASSES} {classes}"
+		 loading={priority ? "eager" : "lazy"}
+		 fetchpriority={priority ? "high" : null}/>
 	<div class="{POSITION_CLASSES} backdrop-blur-xl {classes}"></div>
 	<picture>
 		<source srcset={srcset(IMAGE_SIZES)} sizes={sizes} type="image/webp" />
