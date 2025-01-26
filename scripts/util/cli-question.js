@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import readline from "node:readline";
 import { logWarn } from "$util/log";
 
@@ -21,7 +19,7 @@ export const askQuestion = (query, { required = false, mask = false } = {}) => {
 		input: process.stdin,
 		output: process.stdout,
 	});
-	const ask = (resolve) => {
+	const ask = (/** @type {(value: string | PromiseLike<string>) => void} */ resolve) => {
 		rl.question(query, (answerRaw) => {
 			const answer = answerRaw.trim();
 			if (required && !answer) {
@@ -38,15 +36,15 @@ export const askQuestion = (query, { required = false, mask = false } = {}) => {
 	if (mask) {
 		/**
 		 * Preserve the original _writeToOutput method.
-		 * @type {(text: string) => void}
+		 * @type {((text: string) => void) | undefined}
 		 */
 		const originalWrite = rl._writeToOutput;
 		rl._writeToOutput = (stringToWrite) => {
 			// Replace actual typed characters with "*"
 			if (stringToWrite.trim() && !stringToWrite.startsWith(query)) {
-				originalWrite.call(rl, "*".repeat(stringToWrite.length));
+				originalWrite?.call(rl, "*".repeat(stringToWrite.length));
 			} else {
-				originalWrite.call(rl, stringToWrite);
+				originalWrite?.call(rl, stringToWrite);
 			}
 		};
 	}
