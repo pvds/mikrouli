@@ -1,6 +1,8 @@
 // ##################################################
 // Derived constants
-// - only dynamic values
+// - only add dynamic values
+// - only imports from `const.js` and node
+// - for static values use `const.js`
 // For more complex logic add a new utility file
 // ##################################################
 
