@@ -1,9 +1,8 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { IMAGE_SIZES } from "$lib/const.js";
 import pLimit from "p-limit";
 import sharp from "sharp";
-import { IMAGE_EXTENSIONS, IMAGE_FILENAME_TEMPLATE } from "../../util/const.js";
+import { IMAGE_EXTENSIONS, IMAGE_FILENAME_TEMPLATE, IMAGE_SIZES } from "../../util/const.js";
 import {
 	CPU_COUNT,
 	IMAGE_INPUT_PATH_RESOLVED,

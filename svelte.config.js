@@ -30,6 +30,7 @@ const config = {
 			$ui: "src/lib/components/ui",
 			$visuals: "src/lib/components/visuals",
 			$types: "src/lib/types",
+			$const: "scripts/util/const",
 		},
 		serviceWorker: {
 			register: false,
