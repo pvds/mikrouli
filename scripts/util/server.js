@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { spawn } from "node:child_process";
 import { get } from "node:http";
 import { setTimeout } from "node:timers/promises";
@@ -52,8 +50,8 @@ export const waitForServer = async (url, timeout = 10000, initialDelay = 100) =>
 	while (Date.now() < deadline) {
 		try {
 			await new Promise((resolve, reject) =>
-				get(baseUrl, ({ statusCode }) =>
-					[200, 404].includes(statusCode) ? resolve() : reject(),
+				get(baseUrl, ({ statusCode = 0 }) =>
+					[200, 404].includes(statusCode) ? resolve : reject,
 				).on("error", reject),
 			);
 			return logSuccess(`Server is ready at ${url}`);
