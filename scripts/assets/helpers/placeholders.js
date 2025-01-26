@@ -1,7 +1,7 @@
 import sharp from "sharp";
-import { PLACEHOLDERS_OUTPUT_PATH_RESOLVED } from "../util/const.js";
-import { readJSON, writeJSON } from "../util/file.js";
-import { logInfo, logSuccess } from "../util/log.js";
+import { PLACEHOLDERS_OUTPUT_PATH_RESOLVED } from "../../util/const.js";
+import { readJSON, writeJSON } from "../../util/file.js";
+import { logInfo, logSuccess } from "../../util/log.js";
 
 /**
  * Generate a small blurred placeholder image.

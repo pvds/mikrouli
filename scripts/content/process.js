@@ -1,8 +1,10 @@
+/** @typedef {import('$lib/types/contentful')} Contentful */
+
 /**
  * Transform the raw Contentful data into a structured shape
  * that matches our type definitions in contentful.d.ts.
  *
- * @return {import('$lib/types/contentful.d.js').ContentfulData}
+ * @return Contentful.ContentfulData
  */
 export function processContentfulData(data = {}) {
 	// Extract raw arrays (or default to empty arrays)
@@ -12,11 +14,18 @@ export function processContentfulData(data = {}) {
 	const navigationRaw = data.navigation || [];
 
 	// Parse each content type
-	const pages = pagesRaw.map((rawPage) => parseContentEntry(rawPage));
-	const services = servicesRaw.map((rawService) => parseContentEntry(rawService));
-	const posts = postsRaw.map((rawPost) => parseContentEntry(rawPost));
+
+	const pages = /** @type Contentful.PageEntry[] */ pagesRaw.map((rawPage) =>
+		parseContentEntry(rawPage),
+	);
+	const services = /** @type Contentful.ServiceEntry[] */ servicesRaw.map((rawService) =>
+		parseContentEntry(rawService),
+	);
+	const posts = /** @type Contentful.PostEntry[] */ postsRaw.map((rawPost) =>
+		parseContentEntry(rawPost),
+	);
 	const navigation = navigationRaw.map((rawNav) => parseNavigation(rawNav, pages));
-	const images = parseImages(data);
+	const images = parseImageUrls(data);
 
 	return { navigation, pages, services, posts, images };
 }
@@ -28,7 +37,7 @@ export function processContentfulData(data = {}) {
  * @param data
  * @return {string[]}
  */
-export const parseImages = (data) => {
+export const parseImageUrls = (data) => {
 	const urls = Object.values(data)
 		// Flatten all collections (each collection is an array of items)
 		.flat()
@@ -50,14 +59,12 @@ export const parseImages = (data) => {
  *
  * @param {Object} rawEntry The raw Contentful entry
  * @param {boolean} isTopLevel
- * @return {import('$lib/types/contentful').BaseEntry}
+ * @return Contentful.BaseEntry
  */
 export function parseContentEntry(rawEntry = {}, isTopLevel = true) {
 	const meta = isTopLevel && rawEntry.sys ? parseMeta(rawEntry.sys) : undefined;
-	const {
-		sections = [],
-		/** @type {import('$lib/types/contentful').BaseFields} */ ...restFields
-	} = rawEntry.fields || {};
+	const { sections = [], /** @type Contentful.BaseFields */ ...restFields } =
+		rawEntry.fields || {};
 
 	for (const key of Object.keys(restFields)) {
 		// Process only objects that have a 'fields' property
@@ -80,7 +87,7 @@ export function parseContentEntry(rawEntry = {}, isTopLevel = true) {
  *
  * @param {Object} rawNav The raw navigation entry
  * @param {Array} pages Array of parsed Page entries
- * @return {import('$lib/types/contentful').NavigationEntry}
+ * @return Contentful.NavigationEntry
  */
 function parseNavigation(rawNav = {}, pages = []) {
 	const meta = parseMeta(rawNav.sys);
@@ -104,7 +111,7 @@ function parseNavigation(rawNav = {}, pages = []) {
  * Convert a raw sys object into a simpler 'meta' object.
  *
  * @param {Object} rawSys The raw sys object from Contentful
- * @return {import('$lib/types/contentful').Metadata}
+ * @return Contentful.Metadata
  */
 function parseMeta(rawSys = {}) {
 	const { id, type, createdAt, updatedAt, locale } = rawSys;
