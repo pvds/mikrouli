@@ -6,7 +6,7 @@ import {
 	IMAGES_JSON_OUTPUT_PATH_RESOLVED,
 	IMAGE_OUTPUT_PATH_RESOLVED,
 	IS_CMS,
-} from "../util/const.js";
+} from "../util/dyn.js";
 import { prepareDir } from "../util/file.js";
 
 import { logDebug, logError, logInfo, logSuccess, logWarn } from "../util/log.js";

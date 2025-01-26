@@ -7,7 +7,7 @@ import {
 	CPU_COUNT,
 	IS_MINIMAL,
 	IS_PROD,
-} from "../util/const.js";
+} from "../util/dyn.js";
 import { getAllHtmlFiles, resolveIfExists } from "../util/file.js";
 import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
 import { measure } from "../util/measure.js";

@@ -3,13 +3,12 @@ import path from "node:path";
 import { IMAGE_SIZES } from "$lib/const.js";
 import pLimit from "p-limit";
 import sharp from "sharp";
+import { IMAGE_EXTENSIONS, IMAGE_FILENAME_TEMPLATE } from "../../util/const.js";
 import {
 	CPU_COUNT,
-	IMAGE_EXTENSIONS,
-	IMAGE_FILENAME_TEMPLATE,
 	IMAGE_INPUT_PATH_RESOLVED,
 	IMAGE_OUTPUT_PATH_RESOLVED,
-} from "../../util/const.js";
+} from "../../util/dyn.js";
 import { directoryExists, fileExists, prepareDir } from "../../util/file.js";
 import { logDebug, logError, logHeader, logInfo, logMessage, logSuccess } from "../../util/log.js";
 import { measure } from "../../util/measure.js";

@@ -1,5 +1,6 @@
 import sharp from "sharp";
-import { PLACEHOLDERS_OUTPUT_PATH_RESOLVED } from "../../util/const.js";
+
+import { PLACEHOLDERS_OUTPUT_PATH_RESOLVED } from "../../util/dyn.js";
 import { readJSON, writeJSON } from "../../util/file.js";
 import { logInfo, logSuccess } from "../../util/log.js";
 

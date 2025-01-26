@@ -1,13 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createClient } from "contentful";
-import {
-	CONTENTFUL_ACCESS_TOKEN,
-	CONTENTFUL_SPACE_ID,
-	CONTENT_TYPES,
-	IS_FORCE,
-	IS_PROD,
-} from "../util/const.js";
+import { CONTENT_TYPES } from "../util/const.js";
+import { CONTENTFUL_ACCESS_TOKEN, CONTENTFUL_SPACE_ID, IS_FORCE, IS_PROD } from "../util/dyn.js";
 import { logError, logInfo, logSuccess, logWarn } from "../util/log.js";
 import { processContentfulData } from "./process.js";
 

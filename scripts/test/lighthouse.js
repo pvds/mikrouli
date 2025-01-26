@@ -1,18 +1,20 @@
 import path from "node:path";
 import { playAudit } from "playwright-lighthouse";
 import {
-	BUILD_PATH_PRODUCTION_RESOLVED,
-	BUILD_PATH_STAGING_RESOLVED,
 	DEBUG_PORT,
-	IS_ALL,
-	IS_MINIMAL,
-	IS_PROD,
 	PORT,
-	REPORTS_PATH_RESOLVED,
 	THRESHOLDS,
 	URL_SUBFOLDER_PRODUCTION,
 	URL_SUBFOLDER_STAGING,
 } from "../util/const.js";
+import {
+	BUILD_PATH_PRODUCTION_RESOLVED,
+	BUILD_PATH_STAGING_RESOLVED,
+	IS_ALL,
+	IS_MINIMAL,
+	IS_PROD,
+	REPORTS_PATH_RESOLVED,
+} from "../util/dyn.js";
 import { getAllHtmlFiles } from "../util/file.js";
 import { logError, logHeader, logInfo, logSuccess } from "../util/log.js";
 import { measure } from "../util/measure.js";
