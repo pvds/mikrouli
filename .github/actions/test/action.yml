@@ -17,7 +17,7 @@ runs:
 
         - name: Test accessibility
           continue-on-error: true
-          run: bun run test:a11y --minimal --prod
+          run: bun run test:axe --minimal --prod
           shell: bash
 
         - name: Test Lighthouse

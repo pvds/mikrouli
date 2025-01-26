@@ -6,7 +6,7 @@ pre-commit:
         --files-ignore-unknown=true --colors=off {staged_files}
       stage_fixed: true
     images:
-      run: bun run gen:images --local --cms
+      run: bun run images:process --local --cms
       stage_fixed: true
       skip: true
     check-svelte:

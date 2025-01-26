@@ -9,7 +9,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import { getEmptyEnvVariables, promptForMissingVariables } from "./util/env.js";
+import { getEmptyEnvVariables, promptForMissingVariables } from "../util/env.js";
 import {
 	logError,
 	logHeader,
@@ -18,8 +18,8 @@ import {
 	logMessage,
 	logSuccess,
 	logWarn,
-} from "./util/log.js";
-import { runCommand } from "./util/process.js";
+} from "../util/log.js";
+import { runCommand } from "../util/process.js";
 
 /**
  * Main asynchronous function to prepare the project
@@ -72,7 +72,7 @@ const main = async () => {
 
 	if (fetchContent) {
 		logHeader("Fetching content from Contentful");
-		runCommand("bun run fetch:content --force");
+		runCommand("bun run content:fetch --force");
 		logSuccess("Fetched content from Contentful.");
 	}
 
@@ -82,7 +82,7 @@ const main = async () => {
 
 	if (fetchContent) {
 		logHeader("Fetching images from Contentful");
-		runCommand("bun run fetch:images --cms");
+		runCommand("bun run images:fetch --cms");
 		logSuccess("Fetched images from Contentful.");
 	}
 
@@ -90,7 +90,7 @@ const main = async () => {
 	 * 5. Generate processed images and base64 placeholders
 	 */
 	logHeader("Generating processed images and base64 placeholders");
-	runCommand("bun run gen:images --local --cms");
+	runCommand("bun run images:process --local --cms");
 	logSuccess("Generated processed images and base64 placeholders.");
 
 	/**

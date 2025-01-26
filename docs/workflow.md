@@ -93,7 +93,7 @@ The pipeline includes accessibility and Lighthouse performance tests for
 production deployments:
 
 - **Accessibility Tests**:
-    - Run using `bun run test:a11y --minimal --prod`.
+    - Run using `bun run test:axe --minimal --prod`.
     - Tests are non-blocking (continue-on-error) and help identify accessibility
       issues.
 - **Lighthouse Tests**:

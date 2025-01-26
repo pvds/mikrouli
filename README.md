@@ -107,70 +107,77 @@ If you already have all dependencies quick start by running
 - **Setup**
 
     ```bash
-    bun run prepare   		# Install git hooks with Lefthook
+    bun run prepare        		# Install git hooks with Lefthook
     ```
 
 - **Development**
 
     ```bash
-    bun run dev       	# Start development server
-    bun run start     	# Start server and watch for changes
-    bun run start:prod 	# Start production server and watch for changes
+    bun run start          		# Start development server and watch for changes
+    bun run start:prod     		# Build and start production server
     ```
 
 - **Build**
 
     ```bash
-    bun run build           	# Build for staging
-    bun run build:production 	# Build for production
+    bun run build              	# Build for staging
+    bun run build:production   	# Build for production
     ```
 
 - **Preview**
 
     ```bash
-    bun run preview           	# Preview staging build
+    bun run preview            	# Preview staging build
     bun run preview:production 	# Preview production build
-    ```
-
-- **Code Quality**
-
-    ```bash
-    bun run check        # Run formatting and Svelte checks
-    bun run check:format # Check code formatting
-    bun run check:svelte # Run Svelte checks
-    bun run check:all    # Run all checks including build
-    bun run watch        # Watch for changes and re-run checks
-    bun run write        # Fix formatting issues
-    ```
-
-- **Continuous Integration**
-
-    ```bash
-    bun run check:ci         		# Check code for CI pipeline
-    bun run check:svelte:ci  		# Svelte checks with CI output
-    bun run check:svelte:watch 	# Watch mode for Svelte checks
-    ```
-
-- **Content Management**
-
-    ```bash
-    bun run content        # Fetch content and images
-    bun run content:cms    # Fetch content from CMS
-    bun run content:images # Fetch and process images
     ```
 
 - **Testing**
 
     ```bash
-    bun run test:lighthouse # Run Lighthouse performance tests
-    bun run test:a11y       # Run accessibility tests
+    bun run test:lighthouse 	# Run Lighthouse performance tests
+    bun run test:axe        	# Run accessibility tests
     ```
 
-- **Utilities**
+- **Watching**
+
     ```bash
-    bun run util:clean    # Clean project files
-    bun run util:favicons # Generate favicons
-    bun run util:prepare  # Run project preparation scripts
+    bun run watch       		# Watch for changes in Svelte files
+    bun run watch:scripts		# Watch for changes in script files
+    ```
+
+- **Code Quality**
+
+    ```bash
+    bun run check         		# Run formatting, Svelte, and script checks
+    bun run check:ci      		# Run checks for CI pipeline
+    bun run check:all      		# Run all checks including build
+    bun run check:format    	# Check code formatting
+    bun run check:scripts   	# Check script files
+    bun run check:svelte    	# Check Svelte files
+    bun run write          		# Fix formatting issues
+    ```
+
+- **Content Management**
+
+    ```bash
+    bun run content         	# Fetch content and process assets
+    bun run content:fetch   	# Fetch content from CMS
+    ```
+
+- **Asset Management**
+
+    ```bash
+    bun run assets          	# Fetch and process images
+    bun run assets:fetch    	# Fetch assets from CMS
+    bun run assets:process  	# Process fetched assets
+    bun run assets:favicons 	# Generate favicons
+    ```
+
+- **Workspace Management**
+
+    ```bash
+    bun run workspace:prepare 	# Prepare the workspace
+    bun run workspace:clean   	# Clean the workspace
     ```
 
 ---
