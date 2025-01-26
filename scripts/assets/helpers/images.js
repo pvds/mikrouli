@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { IMAGE_EXTENSIONS, IMAGE_FILENAME_TEMPLATE, IMAGE_SIZES } from "$config";
@@ -31,7 +29,9 @@ export async function processImages(
 	const inDir = path.join(IMAGE_INPUT_PATH_RESOLVED, category);
 	const outDir = path.join(IMAGE_OUTPUT_PATH_RESOLVED, category);
 	const limit = pLimit(concurrency);
+	/** @type {Record<string, string>} */
 	const placeholders = {};
+	/** @type {Record<string, number>} */
 	const counts = { generated: 0, skipped: 0, deleted: 0 };
 
 	await prepareDir(outDir);
@@ -44,7 +44,7 @@ export async function processImages(
 			const baseName = path.parse(file).name;
 			const image = sharp(inputPath);
 			await generateImages(image, baseName, { format, quality, outDir, counts, force });
-			placeholders[baseName] = await generatePlaceholder(inputPath);
+			placeholders[baseName] = /** @type {string} */ (await generatePlaceholder(inputPath));
 		}),
 	);
 
@@ -69,7 +69,7 @@ export async function processImages(
  * @param {keyof sharp.format | sharp.AvailableFormatInfo} options.format - Desired output image format.
  * @param {number} options.quality - Quality level for the format.
  * @param {string} options.outDir - Output directory path.
- * @param {Object} options.counts - Object to keep track of generated images count.
+ * @param {Record<string, number>} options.counts - Object to keep track of generated images count.
  * @param {boolean} options.force - Whether to force overwriting existing images.
  */
 async function generateImages(image, baseName, { format, quality, outDir, counts, force }) {
@@ -103,7 +103,7 @@ async function generateImages(image, baseName, { format, quality, outDir, counts
 /**
  * Deletes stale generated images without a corresponding base image.
  * @param {string} category - The category of images to check.
- * @param {Object} counts - Object to keep track of deleted images count.
+ * @param {Record<string, number>} counts - Object to keep track of deleted images count.
  */
 async function deleteStaleImages(category, counts) {
 	const inDir = path.join(IMAGE_INPUT_PATH_RESOLVED, category);
