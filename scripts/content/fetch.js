@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import fs from "node:fs";
 import path from "node:path";
 import { CONTENT_TYPES } from "$config";
@@ -7,6 +5,8 @@ import { CONTENTFUL_ACCESS_TOKEN, CONTENTFUL_SPACE_ID, IS_FORCE, IS_PROD } from 
 import { logError, logInfo, logSuccess, logWarn } from "$util/log";
 import { createClient } from "contentful";
 import { processContentfulData } from "./process";
+
+/** @typedef {import('$lib/types/contentful').ContentfulData} ContentfulData*/
 
 if (!CONTENTFUL_SPACE_ID || !CONTENTFUL_ACCESS_TOKEN) {
 	logError(
@@ -40,6 +40,7 @@ async function fetchContentfulData() {
 		const results = await Promise.all(requests);
 
 		// Assemble the raw data keyed by 'navigation', 'pages', etc.
+		/** @type {Record<string, any[]>} */
 		const rawData = {};
 		for (const [i, { id }] of CONTENT_TYPES.entries()) {
 			rawData[id] = results[i].items;
@@ -59,21 +60,26 @@ async function fetchContentfulData() {
 		// Write each transformed content type to its own file
 		for (const { id } of CONTENT_TYPES) {
 			const outputPath = path.resolve(process.cwd(), `src/data/generated/${id}.json`);
-			writeJsonFile(outputPath, processedData[id], spacing);
+
+			const contentType = processedData[/** @type {keyof ContentfulData} */ (id)];
+			writeJsonFile(outputPath, contentType, spacing);
 		}
 
 		// Also store the final list of images we *might* need
 		const imagesPath = path.resolve(process.cwd(), "src/data/generated/images.json");
 		writeJsonFile(imagesPath, processedData.images, spacing);
 		logSuccess("Fetched Contentful data");
-	} catch (err) {
-		logError("Error fetching cms data:", err.message);
+	} catch (error) {
+		if (error instanceof Error) logError("Error fetching cms data:", error.message);
 		process.exit(1);
 	}
 }
 
 /**
  * Helper for writing JSON data to file with optional spacing.
+ * @param {string} filePath
+ * @param {unknown[]}data
+ * @param {number} spacing
  */
 function writeJsonFile(filePath, data, spacing = 0) {
 	fs.writeFileSync(filePath, JSON.stringify(data, null, spacing));
