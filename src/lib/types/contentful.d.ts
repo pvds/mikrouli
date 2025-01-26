@@ -20,6 +20,11 @@ export type BaseFields = {
 };
 
 export type BaseEntry = {
+	meta: Metadata;
+	fields: BaseFields;
+};
+
+export type BaseEntryNested = {
 	meta?: Metadata;
 	fields: BaseFields;
 };

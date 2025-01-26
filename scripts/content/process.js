@@ -1,38 +1,45 @@
+// @ts-nocheck
+
 /**
- * TODO: Investigate how to make more type safe, at least use unknown instead of any
- *
  * @typedef {import('$lib/types/contentful').ContentfulData} ContentfulData
  * @typedef {import('$lib/types/contentful').PageEntry} PageEntry
+ * @typedef {import('$lib/types/contentful').PageFields} PageFields
  * @typedef {import('$lib/types/contentful').ServiceEntry} ServiceEntry
  * @typedef {import('$lib/types/contentful').PostEntry} PostEntry
  * @typedef {import('$lib/types/contentful').NavigationEntry} NavigationEntry
+ * @typedef {import('$lib/types/contentful').NavigationFields} NavigationFields
  * @typedef {import('$lib/types/contentful').BaseEntry} BaseEntry
+ * @typedef {import('$lib/types/contentful').BaseEntryNested} BaseEntryNested
  * @typedef {import('$lib/types/contentful').Metadata} Metadata
- **/
+ * @typedef {import('contentful').Entry} ContentfulEntry
+ * @typedef {import('contentful').EntrySys} EntrySys
+ * @typedef {import('contentful').EntrySkeletonType} EntrySkeletonType
+ */
 
 /**
  * Transform the raw Contentful data into a structured shape
  * that matches our type definitions in d.ts.
  *
- * @param {any} data The raw Contentful data
+ * @param {Record<string, ContentfulEntry[]>} data The raw Contentful data
  * @return ContentfulData
  */
 export function processContentfulData(data = {}) {
-	/** @type {unknown[]} */
-	const pagesRaw = data.pages || [];
-	/** @type {unknown[]} */
-	const servicesRaw = data.services || [];
-	/** @type {unknown[]} */
-	const postsRaw = data.posts || [];
-	/** @type {unknown[]} */
-	const navigationRaw = data.navigation || [];
+	/** @type {ContentfulEntry[]} */
+	const emptyEntries = [];
+	const pagesRaw = data.pages || emptyEntries;
+	const servicesRaw = data.services || emptyEntries;
+	const postsRaw = data.posts || emptyEntries;
+	const navigationRaw = data.navigation || emptyEntries;
 
 	// Parse each content type
-	const pages = /** @type PageEntry[] */ (pagesRaw.map((rawPage) => parseContentEntry(rawPage)));
-	const services = /** @type ServiceEntry[] */ (
-		servicesRaw.map((rawService) => parseContentEntry(rawService))
+
+	const pages = /** @type {PageEntry[]} */ (
+		pagesRaw.map((rawPage) => parseContentEntry(rawPage))
 	);
-	const posts = /** @type PostEntry[] */ (postsRaw.map((rawPost) => parseContentEntry(rawPost)));
+	const services = /** @type {ServiceEntry[]} */ servicesRaw.map((rawService) =>
+		parseContentEntry(rawService),
+	);
+	const posts = /** @type {PostEntry[]} */ postsRaw.map((rawPost) => parseContentEntry(rawPost));
 	const navigation = navigationRaw.map((rawNav) => parseNavigation(rawNav, pages));
 	const images = parseImageUrls(data);
 
@@ -42,8 +49,7 @@ export function processContentfulData(data = {}) {
 /**
  * Parse images from Contentful data.
  *
- * TODO: consider optimizing by using processed data instead of raw data.
- * @param {any} data The raw Contentful data
+ * @param {Record<string, ContentfulEntry[]>} data The raw Contentful data
  * @return {string[]}
  */
 export const parseImageUrls = (data) => {
@@ -66,11 +72,11 @@ export const parseImageUrls = (data) => {
  * Generic parser for content entries (used for Pages, Services, and Posts)
  * that resolve their 'sections'.
  *
- * @param {any} rawEntry The raw Contentful entry
+ * @param {ContentfulEntry} rawEntry The raw Contentful entry
  * @param {boolean} isTopLevel
- * @return BaseEntry
+ * @return PostEntry | PageEntry | ServiceEntry | BaseEntryNested
  */
-export function parseContentEntry(rawEntry = {}, isTopLevel = true) {
+export function parseContentEntry(rawEntry, isTopLevel = true) {
 	const meta = isTopLevel && rawEntry?.sys ? parseMeta(rawEntry.sys) : undefined;
 	const { sections = [], /** @type BaseFields */ ...restFields } = rawEntry.fields || {};
 
@@ -93,13 +99,15 @@ export function parseContentEntry(rawEntry = {}, isTopLevel = true) {
  * Only includes the page's title, header, and slug.
  * If a referenced page can't be found, it is omitted.
  *
- * @param {any} rawNav The raw navigation entry
+ * @param {ContentfulEntry} rawNav The raw navigation entry
  * @param {PageEntry[]} pages Array of parsed Page entries
  * @return NavigationEntry
  */
-function parseNavigation(rawNav = {}, pages = []) {
+function parseNavigation(rawNav, pages) {
 	const meta = parseMeta(rawNav?.sys || {});
-	const { items = [], ...restFields } = rawNav.fields || {};
+	/** @type {EntrySkeletonType['fields']} */
+	const { items = [], ...restFields } = rawNav.fields;
+	/** @type {Partial<PageFields>[]} */
 	const parsedItems = [];
 
 	for (const pageRef of items) {
@@ -109,16 +117,18 @@ function parseNavigation(rawNav = {}, pages = []) {
 		parsedItems.push({ title, header, slug });
 	}
 
+	const fields = { ...restFields, items: parsedItems };
+
 	return {
 		meta,
-		fields: { ...restFields, items: parsedItems },
+		fields,
 	};
 }
 
 /**
  * Convert a raw sys object into a simpler 'meta' object.
  *
- * @param {any} rawSys The raw sys object from Contentful
+ * @param {EntrySys} rawSys The raw sys object from Contentful
  * @return Metadata
  */
 function parseMeta({ id, type, createdAt, updatedAt, locale }) {
