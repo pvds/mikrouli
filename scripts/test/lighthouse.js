@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import path from "node:path";
 import {
 	DEBUG_PORT,
@@ -17,7 +15,7 @@ import {
 	REPORTS_PATH_RESOLVED,
 } from "$util/dyn";
 import { getAllHtmlFiles } from "$util/file";
-import { logError, logHeader, logInfo, logSuccess } from "$util/log";
+import { logError, logHeader, logInfo, logSuccess, logWarn } from "$util/log";
 import { measure } from "$util/measure";
 import { closeBrowser, launchBrowser } from "$util/playwright";
 import { startServer, stopServer, waitForServer } from "$util/server";
@@ -177,10 +175,14 @@ function createReportName(pageUrl) {
 /**
  * Validates a Lighthouse score against thresholds.
  * @param {string} category - e.g. "Performance"
- * @param {number} score - The category score (0-1).
+ * @param {number|null} score - The category score (0-1).
  * @param {number} threshold - Required minimum percentage.
  */
 function validateScore(category, score, threshold) {
+	if (score === null) {
+		logWarn(`${category}: No score available`);
+		return;
+	}
 	const percentScore = Math.round(score * 100);
 	if (percentScore >= threshold) logSuccess(`${category}: ${percentScore} (>= ${threshold})`);
 	else logError(`${category}: ${percentScore} (< ${threshold})`);
