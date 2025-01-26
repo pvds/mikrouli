@@ -33,8 +33,8 @@ export const URL_ORIGIN_PRODUCTION = "https://mikrouli.nl";
 export const CONTENT_TYPES = [
 	{ id: "navigation", query: "navigation" },
 	{ id: "pages", query: "page" },
-	{ id: "images", query: "image" },
-	{ id: "settings", query: "settings" },
+	{ id: "services", query: "service" },
+	{ id: "posts", query: "post" },
 ];
 
 // Lighthouse
