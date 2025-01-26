@@ -31,8 +31,8 @@ const specificPath =
 const BUILD_DIR = IS_PROD ? BUILD_PATH_PRODUCTION_RESOLVED : BUILD_PATH_STAGING_RESOLVED;
 const SUBFOLDER = IS_PROD ? URL_SUBFOLDER_PRODUCTION : URL_SUBFOLDER_STAGING;
 const BASE_URL = `http://localhost:${PORT}${SUBFOLDER}`;
-const BUILD_CMD = IS_PROD ? "build:production" : "build";
-const PREVIEW_CMD = IS_PROD ? "preview:production" : "preview";
+const BUILD_CMD = IS_PROD ? "build:prod" : "build";
+const PREVIEW_CMD = IS_PROD ? "preview:prod" : "preview";
 
 const timeStamp = new Date().toISOString().replace(/[:.]/g, "-");
 const reportDir = path.join(REPORTS_PATH_RESOLVED, "lighthouse", timeStamp);

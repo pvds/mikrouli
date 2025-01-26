@@ -79,7 +79,7 @@ The workflow is defined in `.github/ci.yml` with the following key jobs:
 
 ### Production Artifacts
 
-- The project is built using `bun run build:production` for production.
+- The project is built using `bun run build:prod` for production.
 - Artifacts are uploaded as a Netlify artifact using
   `actions/upload-artifact@v4`.
 - These artifacts are deployed to Netlify at the custom domain

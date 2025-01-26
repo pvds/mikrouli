@@ -121,14 +121,14 @@ If you already have all dependencies quick start by running
 
     ```bash
     bun run build              	# Build for staging
-    bun run build:production   	# Build for production
+    bun run build:prod   	# Build for production
     ```
 
 - **Preview**
 
     ```bash
     bun run preview            	# Preview staging build
-    bun run preview:production 	# Preview production build
+    bun run preview:prod 	# Preview production build
     ```
 
 - **Testing**

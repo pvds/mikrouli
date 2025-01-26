@@ -13,4 +13,4 @@ pre-commit:
     check-scripts:
       run: bun run check:scripts
     build:
-      run: bun run build:production
+      run: bun run build:prod

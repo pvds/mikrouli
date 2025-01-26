@@ -33,7 +33,7 @@ runs:
 
         - name: Build for Production
           if: ${{ inputs.run_production == 'true' }}
-          run: bun run build:production
+          run: bun run build:prod
           shell: bash
           env:
               DEPLOY_TARGET: production
