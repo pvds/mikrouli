@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { exec } from "node:child_process";
 import fs from "node:fs/promises";
 import { promisify } from "node:util";
@@ -15,7 +13,7 @@ async function cleanDirectories() {
 		try {
 			await fs.rm(path, { recursive: true, force: true });
 		} catch (error) {
-			logError(`Failed to delete ${path}:`, error.message);
+			logError(`Failed to delete ${path}:`, error);
 		}
 	}
 	logSuccess("Caches and output cleaned.");
