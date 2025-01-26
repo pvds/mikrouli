@@ -17,18 +17,26 @@ import { AxeBuilder } from "@axe-core/playwright";
 import pLimit from "p-limit";
 
 const BUILD_DIR = IS_PROD ? BUILD_PATH_PRODUCTION_RESOLVED : BUILD_PATH_STAGING_RESOLVED;
-const timings = {};
+const timings = {
+	file_discovery: "",
+	analysis: "",
+	total: "",
+};
 let exitCode = 0;
 
 /**
  * Analyze a single page for accessibility violations.
+ * @typedef {{file: string, violations: string[]}} AnalysisResults
+ *
  * @param {import('playwright').Browser} browser - The browser instance.
  * @param {string} file - Path to the HTML file to analyze.
  * @param {string} dir - The base directory.
- * @returns {Promise<Object>} - Analysis results.
+ * @returns {Promise<AnalysisResults>} - The analysis results.
  */
 const analyzePage = async (browser, file, dir) => {
 	const relativePath = path.relative(dir, file);
+	/** @type AnalysisResults */
+	const results = { file: relativePath, violations: [] };
 	logDebug(`Checking: ${relativePath}`);
 
 	try {
@@ -47,10 +55,12 @@ const analyzePage = async (browser, file, dir) => {
 		}
 
 		const axeResults = await axeBuilder.analyze();
-		return { file: relativePath, violations: axeResults.violations };
+		results.violations = axeResults.violations;
+
+		return results;
 	} catch (error) {
 		logError(`Error processing file ${relativePath}:`, error);
-		return { file: relativePath, violations: [] };
+		return results;
 	}
 };
 
@@ -66,7 +76,7 @@ const analyzePage = async (browser, file, dir) => {
 	// Measure file discovery time
 	const startFileDiscovery = performance.now();
 	const htmlFiles = getAllHtmlFiles(buildDir, IS_MINIMAL);
-	timings["File Discovery Time"] = measure(startFileDiscovery);
+	timings.file_discovery = measure(startFileDiscovery);
 
 	logSuccess(`Found ${htmlFiles.length} HTML files`);
 
@@ -86,7 +96,7 @@ const analyzePage = async (browser, file, dir) => {
 		const results = await Promise.all(
 			htmlFiles.map((file) => tasks(() => analyzePage(browser, file, buildDir))),
 		);
-		timings["Analysis Time"] = measure(startAnalysis);
+		timings.analysis = measure(startAnalysis);
 
 		// Collect and summarize violations
 		for (const { file, violations } of results) {
@@ -115,7 +125,7 @@ const analyzePage = async (browser, file, dir) => {
 	}
 
 	logInfo("Timing Summary:");
-	timings["Total Execution Time"] = measure(startTotal);
+	timings.total = measure(startTotal);
 	for (const [key, value] of Object.entries(timings)) {
 		logInfo(`  ${key}: ${value}`);
 	}
