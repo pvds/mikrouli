@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import fs from "node:fs";
 import { askQuestion } from "$util/cli-question";
 import { logInfo, logMessage } from "$util/log";
@@ -95,6 +93,7 @@ const promptForMissingVariables = async (envFilePath, requiredVars = []) => {
 	}
 	logMessage("You can skip the prompts by pressing Enter without providing a value");
 
+	/** @type {Record<string, string>} */
 	const envUpdates = {};
 	for (const key of allVarsToPrompt) {
 		envUpdates[key] = await askQuestion(`Please enter a value for ${key}: `, {
