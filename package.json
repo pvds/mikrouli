@@ -16,7 +16,7 @@
 	},
 	"scripts": {
 		"prepare": "lefthook install",
-		"start": "bun run dev --open & bun run watch",
+		"start": "vite dev --open & bun run watch",
 		"start:prod": "bun run build:prod && bun run preview:prod --open",
 		"build": "vite build",
 		"build:prod": "DEPLOY_TARGET=production vite build",
