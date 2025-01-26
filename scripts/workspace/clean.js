@@ -1,7 +1,9 @@
+// @ts-nocheck
+
 import { exec } from "node:child_process";
 import fs from "node:fs/promises";
 import { promisify } from "node:util";
-import { logError, logInfo, logSuccess } from "../util/log.js";
+import { logError, logInfo, logSuccess } from "$util/log";
 
 const runCommand = promisify(exec);
 

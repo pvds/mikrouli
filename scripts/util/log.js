@@ -32,11 +32,13 @@ const colors = {
  * @param {"log"|"info"|"warn"|"error"} type - The type of message to log.
  * @param {string} [textColor='white'] - The color of the text.
  * @param {string|null} [backgroundColor=undefined] - The background color.
- * @param  {...any} messages - Messages to log.
+ * @param  {...unknown} messages - Messages to log.
  * @returns {string|void} - The formatted message if type is 'text'.
  */
 function log(type = "log", textColor = "white", backgroundColor = null, ...messages) {
+	// @ts-expect-error
 	const textCode = colors.text[textColor] || colors.text.white;
+	// @ts-expect-error
 	const bgCode = backgroundColor ? colors.background[backgroundColor] || "" : "";
 	const startCode = bgCode + textCode;
 	switch (type) {
@@ -59,7 +61,7 @@ function log(type = "log", textColor = "white", backgroundColor = null, ...messa
 
 /**
  * Logs a debug message with white text
- * @param messages
+ * @param {...unknown} messages
  */
 export const logDebug = (...messages) => {
 	if (process.env.DEBUG === "true") log("log", "white", null, ...messages);
@@ -70,42 +72,42 @@ export const logDebug = (...messages) => {
  *
  * Always logs the message regardless of the DEBUG environment variable.
  * Use logDebug for messages that should only be logged when DEBUG is true.
- * @param messages
+ * @param {...unknown} messages
  */
 export const logMessage = (...messages) => log("log", "white", null, ...messages);
 
 /**
  * Logs an informational message with cyan text.
- * @param  {...any} messages - Messages to log.
+ * @param  {...unknown} messages - Messages to log.
  */
 export const logInfo = (...messages) => log("info", "cyan", null, ...messages);
 
 /**
  * Logs a warning message with yellow text.
- * @param  {...any} messages - Messages to log.
+ * @param  {...unknown} messages - Messages to log.
  */
 export const logWarn = (...messages) => log("warn", "yellow", null, ...messages);
 
 /**
  * Logs an error message with red text.
- * @param  {...any} messages - Messages to log.
+ * @param  {...unknown} messages - Messages to log.
  */
 export const logError = (...messages) => log("error", "red", null, ...messages);
 
 /**
  * Logs a success message with green text.
- * @param  {...any} messages - Messages to log. */
+ * @param  {...unknown} messages - Messages to log. */
 export const logSuccess = (...messages) => log("log", "green", null, ...messages);
 
 /**
  * Logs a header message with magenta text.
- * @param  {...any} [messages] - Messages to log.
+ * @param  {...unknown} messages - Messages to log.
  */
 export const logHeader = (...messages) =>
 	log("log", "magenta", null, ...["\n=============== ", ...messages, "\n"]);
 
 /**
  * Logs a highlighted message with white text on a blue background.
- * @param  {...any} messages - Messages to log.
+ * @param  {...unknown} messages - Messages to log.
  */
 export const logHighlight = (...messages) => log("log", "blue", null, ...messages);

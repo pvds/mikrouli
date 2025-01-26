@@ -17,7 +17,7 @@ import {
 	JSON_OUTPUT_DIR,
 	PLACEHOLDERS_FILE,
 	REPORTS_DIR,
-} from "./const.js";
+} from "$config";
 
 // Paths
 const BASE_DIR = process.env.BASE_DIR || process.cwd();

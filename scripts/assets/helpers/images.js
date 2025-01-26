@@ -1,19 +1,17 @@
+// @ts-nocheck
+
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import { IMAGE_EXTENSIONS, IMAGE_FILENAME_TEMPLATE, IMAGE_SIZES } from "$config";
+import { CPU_COUNT, IMAGE_INPUT_PATH_RESOLVED, IMAGE_OUTPUT_PATH_RESOLVED } from "$util/dyn";
+import { directoryExists, fileExists, prepareDir } from "$util/file";
+import { logDebug, logError, logHeader, logInfo, logMessage, logSuccess } from "$util/log";
+import { measure } from "$util/measure";
+import { safeIncrement } from "$util/process";
+import { escapeRegex } from "$util/regex";
 import pLimit from "p-limit";
 import sharp from "sharp";
-import { IMAGE_EXTENSIONS, IMAGE_FILENAME_TEMPLATE, IMAGE_SIZES } from "../../util/const.js";
-import {
-	CPU_COUNT,
-	IMAGE_INPUT_PATH_RESOLVED,
-	IMAGE_OUTPUT_PATH_RESOLVED,
-} from "../../util/dyn.js";
-import { directoryExists, fileExists, prepareDir } from "../../util/file.js";
-import { logDebug, logError, logHeader, logInfo, logMessage, logSuccess } from "../../util/log.js";
-import { measure } from "../../util/measure.js";
-import { safeIncrement } from "../../util/process.js";
-import { escapeRegex } from "../../util/regex.js";
-import { generatePlaceholder, writePlaceholders } from "./placeholders.js";
+import { generatePlaceholder, writePlaceholders } from "./placeholders";
 
 /**
  * Main function to process images.

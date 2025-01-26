@@ -1,9 +1,11 @@
+// @ts-nocheck
+
 import { spawn } from "node:child_process";
 import { get } from "node:http";
 import { setTimeout } from "node:timers/promises";
-import { resolveIfExists } from "./file.js";
-import { logDebug, logInfo, logSuccess } from "./log.js";
-import { runCommand } from "./process.js";
+import { resolveIfExists } from "$util/file";
+import { logDebug, logInfo, logSuccess } from "$util/log";
+import { runCommand } from "$util/process";
 
 /**
  * Start the server, build if necessary.

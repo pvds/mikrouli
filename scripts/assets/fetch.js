@@ -1,16 +1,12 @@
 import fs from "node:fs";
 import https from "node:https";
 import path from "node:path";
+import { IMAGES_JSON_OUTPUT_PATH_RESOLVED, IMAGE_OUTPUT_PATH_RESOLVED, IS_CMS } from "$util/dyn";
+import { prepareDir } from "$util/file";
 import pLimit from "p-limit";
-import {
-	IMAGES_JSON_OUTPUT_PATH_RESOLVED,
-	IMAGE_OUTPUT_PATH_RESOLVED,
-	IS_CMS,
-} from "../util/dyn.js";
-import { prepareDir } from "../util/file.js";
 
-import { logDebug, logError, logInfo, logSuccess, logWarn } from "../util/log.js";
-import { withRetry } from "../util/retry.js";
+import { logDebug, logError, logInfo, logSuccess, logWarn } from "$util/log";
+import { withRetry } from "$util/retry";
 
 if (IS_CMS)
 	await syncImages(

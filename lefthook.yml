@@ -1,16 +1,14 @@
 pre-commit:
   parallel: true
   commands:
-    biome:
+    format:
       run: bun run biome check --write --no-errors-on-unmatched 
         --files-ignore-unknown=true --colors=off {staged_files}
       stage_fixed: true
+    lint:
+      run: bun run check:lint
     assets:
       run: bun run assets
       stage_fixed: true
-    check-svelte:
-      run: bun run check:svelte
-    check-scripts:
-      run: bun run check:scripts
     build:
       run: bun run build:prod

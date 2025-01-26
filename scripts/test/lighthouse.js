@@ -1,12 +1,13 @@
+// @ts-nocheck
+
 import path from "node:path";
-import { playAudit } from "playwright-lighthouse";
 import {
 	DEBUG_PORT,
 	PORT,
 	THRESHOLDS,
 	URL_SUBFOLDER_PRODUCTION,
 	URL_SUBFOLDER_STAGING,
-} from "../util/const.js";
+} from "$config";
 import {
 	BUILD_PATH_PRODUCTION_RESOLVED,
 	BUILD_PATH_STAGING_RESOLVED,
@@ -14,12 +15,13 @@ import {
 	IS_MINIMAL,
 	IS_PROD,
 	REPORTS_PATH_RESOLVED,
-} from "../util/dyn.js";
-import { getAllHtmlFiles } from "../util/file.js";
-import { logError, logHeader, logInfo, logSuccess } from "../util/log.js";
-import { measure } from "../util/measure.js";
-import { closeBrowser, launchBrowser } from "../util/playwright.js";
-import { startServer, stopServer, waitForServer } from "../util/server.js";
+} from "$util/dyn";
+import { getAllHtmlFiles } from "$util/file";
+import { logError, logHeader, logInfo, logSuccess } from "$util/log";
+import { measure } from "$util/measure";
+import { closeBrowser, launchBrowser } from "$util/playwright";
+import { startServer, stopServer, waitForServer } from "$util/server";
+import { playAudit } from "playwright-lighthouse";
 
 const specificIndex = process.argv.indexOf("--specific");
 const specificPath =

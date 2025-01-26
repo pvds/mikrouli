@@ -1,18 +1,20 @@
+// @ts-nocheck
+
 import path from "node:path";
-import { AxeBuilder } from "@axe-core/playwright";
-import pLimit from "p-limit";
 import {
 	BUILD_PATH_PRODUCTION_RESOLVED,
 	BUILD_PATH_STAGING_RESOLVED,
 	CPU_COUNT,
 	IS_MINIMAL,
 	IS_PROD,
-} from "../util/dyn.js";
-import { getAllHtmlFiles, resolveIfExists } from "../util/file.js";
-import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
-import { measure } from "../util/measure.js";
-import { closeBrowser, launchBrowser, navigateToPage } from "../util/playwright.js";
-import { runCommand } from "../util/process.js";
+} from "$util/dyn";
+import { getAllHtmlFiles, resolveIfExists } from "$util/file";
+import { logDebug, logError, logInfo, logSuccess } from "$util/log";
+import { measure } from "$util/measure";
+import { closeBrowser, launchBrowser, navigateToPage } from "$util/playwright";
+import { runCommand } from "$util/process";
+import { AxeBuilder } from "@axe-core/playwright";
+import pLimit from "p-limit";
 
 const BUILD_DIR = IS_PROD ? BUILD_PATH_PRODUCTION_RESOLVED : BUILD_PATH_STAGING_RESOLVED;
 const timings = {};

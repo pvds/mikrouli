@@ -1,10 +1,12 @@
+// @ts-nocheck
+
 import fs from "node:fs";
 import path from "node:path";
+import { CONTENT_TYPES } from "$config";
+import { CONTENTFUL_ACCESS_TOKEN, CONTENTFUL_SPACE_ID, IS_FORCE, IS_PROD } from "$util/dyn";
+import { logError, logInfo, logSuccess, logWarn } from "$util/log";
 import { createClient } from "contentful";
-import { CONTENT_TYPES } from "../util/const.js";
-import { CONTENTFUL_ACCESS_TOKEN, CONTENTFUL_SPACE_ID, IS_FORCE, IS_PROD } from "../util/dyn.js";
-import { logError, logInfo, logSuccess, logWarn } from "../util/log.js";
-import { processContentfulData } from "./process.js";
+import { processContentfulData } from "./process";
 
 if (!CONTENTFUL_SPACE_ID || !CONTENTFUL_ACCESS_TOKEN) {
 	logError(

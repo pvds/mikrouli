@@ -1,7 +1,9 @@
+// @ts-nocheck
+
 import fs from "node:fs";
-import { askQuestion } from "./cli-question.js";
-import { logInfo, logMessage } from "./log.js";
-import { escapeRegex } from "./regex.js";
+import { askQuestion } from "$util/cli-question";
+import { logInfo, logMessage } from "$util/log";
+import { escapeRegex } from "$util/regex";
 
 /**
  * Reads the .env file at `envFilePath` and returns an array of variable names

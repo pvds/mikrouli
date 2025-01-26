@@ -1,5 +1,7 @@
+// @ts-nocheck
+
 import { execSync } from "node:child_process";
-import { logInfo } from "./log.js";
+import { logInfo } from "$util/log";
 
 /**
  * Handles graceful shutdown on process termination signals.

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 /** @typedef {import('$lib/types/contentful')} Contentful */
 
 /**

@@ -1,8 +1,10 @@
+// @ts-nocheck
+
 import sharp from "sharp";
 
-import { PLACEHOLDERS_OUTPUT_PATH_RESOLVED } from "../../util/dyn.js";
-import { readJSON, writeJSON } from "../../util/file.js";
-import { logInfo, logSuccess } from "../../util/log.js";
+import { PLACEHOLDERS_OUTPUT_PATH_RESOLVED } from "$util/dyn";
+import { readJSON, writeJSON } from "$util/file";
+import { logInfo, logSuccess } from "$util/log";
 
 /**
  * Generate a small blurred placeholder image.

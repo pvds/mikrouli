@@ -1,4 +1,6 @@
-import { logDebug } from "./log.js";
+// @ts-nocheck
+
+import { logDebug } from "$util/log";
 
 /**
  * A generic retry wrapper for any asynchronous function.

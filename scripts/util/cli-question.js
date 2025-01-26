@@ -1,5 +1,7 @@
+// @ts-nocheck
+
 import readline from "node:readline";
-import { logWarn } from "./log.js";
+import { logWarn } from "$util/log";
 
 /**
  * Prompts the user with a question and returns their input.

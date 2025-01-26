@@ -1,6 +1,6 @@
 <script>
 import { base } from "$app/paths";
-import { IMAGE_SIZES } from "$const";
+import { IMAGE_SIZES } from "$config";
 import placeholders from "$data/generated/placeholders.json";
 
 const IMAGE_DIR = "/images";

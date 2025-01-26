@@ -141,8 +141,7 @@ If you already have all dependencies quick start by running
 - **Watching**
 
     ```bash
-    bun run watch       		# Watch for changes in Svelte files
-    bun run watch:scripts		# Watch for changes in script files
+    bun run watch       		# Watch for changes in code
     ```
 
 - **Code Quality**
@@ -152,8 +151,7 @@ If you already have all dependencies quick start by running
     bun run check:ci      		# Run checks for CI pipeline
     bun run check:all      		# Run all checks including build
     bun run check:format    	# Check code formatting
-    bun run check:scripts   	# Check script files
-    bun run check:svelte    	# Check Svelte files
+    bun run check:lint	    	# Check code linting
     bun run write          		# Fix formatting issues
     ```
 
@@ -276,6 +274,7 @@ The project is modular and organized as follows, also refer to
 ├── .npmrc                    # npm configuration
 ├── biome.jsonc               # Linting and formatting configuration
 ├── bun.lockb                 # Bun lock file
+├── config.js                 # Project configuration constants
 ├── favicons.json             # Favicon configuration
 ├── jsconfig.json             # JavaScript configuration
 ├── lefthook.yml              # Git hooks configuration

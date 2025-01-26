@@ -1,7 +1,7 @@
-import { IS_CMS, IS_FORCE, IS_LOCAL } from "../util/dyn.js";
-import { logError, logWarn } from "../util/log.js";
-import { setupGracefulShutdown } from "../util/process.js";
-import { processImages } from "./helpers/images.js";
+import { IS_CMS, IS_FORCE, IS_LOCAL } from "$util/dyn";
+import { logError, logWarn } from "$util/log";
+import { setupGracefulShutdown } from "$util/process";
+import { processImages } from "./helpers/images";
 
 setupGracefulShutdown();
 await executeProcessing();

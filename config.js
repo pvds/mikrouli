@@ -50,3 +50,7 @@ export const THRESHOLDS = {
 // Ports
 export const PORT = 4173;
 export const DEBUG_PORT = 9222;
+
+// Environment
+export const PUBLIC_PREFIX = "PUBLIC_";
+export const PRIVATE_PREFIX = "";
