@@ -1,7 +1,8 @@
-// ##############################
-// # Derived constants
-// # Only dynamic values here
-// ##############################
+// ##################################################
+// Derived constants
+// - only dynamic values
+// For more complex logic add a new utility file
+// ##################################################
 
 import { cpus } from "node:os";
 import { resolve } from "node:path";

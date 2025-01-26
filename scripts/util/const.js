@@ -1,7 +1,8 @@
-// ##############################
-// # Configuration
-// # Only static values here
-// ##############################
+// ##################################################
+// Configuration
+// - only static values here
+// - for dynamic values use `dyn.js`
+// ##################################################
 
 // Files
 export const PLACEHOLDERS_FILE = "placeholders.json";
