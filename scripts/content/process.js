@@ -1,5 +1,5 @@
 /**
- * TODO: Investigate how to make more type safe
+ * TODO: Investigate how to make more type safe, at least use unknown instead of any
  *
  * @typedef {import('$lib/types/contentful').ContentfulData} ContentfulData
  * @typedef {import('$lib/types/contentful').PageEntry} PageEntry
@@ -18,7 +18,6 @@
  * @return ContentfulData
  */
 export function processContentfulData(data = {}) {
-	// Extract raw arrays (or default to empty arrays)
 	/** @type {unknown[]} */
 	const pagesRaw = data.pages || [];
 	/** @type {unknown[]} */
