@@ -1,31 +1,39 @@
-// @ts-nocheck
-
-/** @typedef {import('$lib/types/contentful')} Contentful */
+/**
+ * TODO: Investigate how to make more type safe
+ *
+ * @typedef {import('$lib/types/contentful').ContentfulData} ContentfulData
+ * @typedef {import('$lib/types/contentful').PageEntry} PageEntry
+ * @typedef {import('$lib/types/contentful').ServiceEntry} ServiceEntry
+ * @typedef {import('$lib/types/contentful').PostEntry} PostEntry
+ * @typedef {import('$lib/types/contentful').NavigationEntry} NavigationEntry
+ * @typedef {import('$lib/types/contentful').BaseEntry} BaseEntry
+ * @typedef {import('$lib/types/contentful').Metadata} Metadata
+ **/
 
 /**
  * Transform the raw Contentful data into a structured shape
- * that matches our type definitions in contentful.d.ts.
+ * that matches our type definitions in d.ts.
  *
- * @return Contentful.ContentfulData
+ * @param {any} data The raw Contentful data
+ * @return ContentfulData
  */
 export function processContentfulData(data = {}) {
 	// Extract raw arrays (or default to empty arrays)
+	/** @type {unknown[]} */
 	const pagesRaw = data.pages || [];
+	/** @type {unknown[]} */
 	const servicesRaw = data.services || [];
+	/** @type {unknown[]} */
 	const postsRaw = data.posts || [];
+	/** @type {unknown[]} */
 	const navigationRaw = data.navigation || [];
 
 	// Parse each content type
-
-	const pages = /** @type Contentful.PageEntry[] */ pagesRaw.map((rawPage) =>
-		parseContentEntry(rawPage),
+	const pages = /** @type PageEntry[] */ (pagesRaw.map((rawPage) => parseContentEntry(rawPage)));
+	const services = /** @type ServiceEntry[] */ (
+		servicesRaw.map((rawService) => parseContentEntry(rawService))
 	);
-	const services = /** @type Contentful.ServiceEntry[] */ servicesRaw.map((rawService) =>
-		parseContentEntry(rawService),
-	);
-	const posts = /** @type Contentful.PostEntry[] */ postsRaw.map((rawPost) =>
-		parseContentEntry(rawPost),
-	);
+	const posts = /** @type PostEntry[] */ (postsRaw.map((rawPost) => parseContentEntry(rawPost)));
 	const navigation = navigationRaw.map((rawNav) => parseNavigation(rawNav, pages));
 	const images = parseImageUrls(data);
 
@@ -36,7 +44,7 @@ export function processContentfulData(data = {}) {
  * Parse images from Contentful data.
  *
  * TODO: consider optimizing by using processed data instead of raw data.
- * @param data
+ * @param {any} data The raw Contentful data
  * @return {string[]}
  */
 export const parseImageUrls = (data) => {
@@ -59,14 +67,13 @@ export const parseImageUrls = (data) => {
  * Generic parser for content entries (used for Pages, Services, and Posts)
  * that resolve their 'sections'.
  *
- * @param {Object} rawEntry The raw Contentful entry
+ * @param {any} rawEntry The raw Contentful entry
  * @param {boolean} isTopLevel
- * @return Contentful.BaseEntry
+ * @return BaseEntry
  */
 export function parseContentEntry(rawEntry = {}, isTopLevel = true) {
-	const meta = isTopLevel && rawEntry.sys ? parseMeta(rawEntry.sys) : undefined;
-	const { sections = [], /** @type Contentful.BaseFields */ ...restFields } =
-		rawEntry.fields || {};
+	const meta = isTopLevel && rawEntry?.sys ? parseMeta(rawEntry.sys) : undefined;
+	const { sections = [], /** @type BaseFields */ ...restFields } = rawEntry.fields || {};
 
 	for (const key of Object.keys(restFields)) {
 		// Process only objects that have a 'fields' property
@@ -76,7 +83,7 @@ export function parseContentEntry(rawEntry = {}, isTopLevel = true) {
 		}
 	}
 
-	// Only include meta and sections when at top-level
+	// Ensure required fields exist
 	return isTopLevel
 		? { meta, fields: { ...restFields, sections: [] } }
 		: { fields: { ...restFields } };
@@ -87,17 +94,17 @@ export function parseContentEntry(rawEntry = {}, isTopLevel = true) {
  * Only includes the page's title, header, and slug.
  * If a referenced page can't be found, it is omitted.
  *
- * @param {Object} rawNav The raw navigation entry
- * @param {Array} pages Array of parsed Page entries
- * @return Contentful.NavigationEntry
+ * @param {any} rawNav The raw navigation entry
+ * @param {PageEntry[]} pages Array of parsed Page entries
+ * @return NavigationEntry
  */
 function parseNavigation(rawNav = {}, pages = []) {
-	const meta = parseMeta(rawNav.sys);
+	const meta = parseMeta(rawNav?.sys || {});
 	const { items = [], ...restFields } = rawNav.fields || {};
 	const parsedItems = [];
 
 	for (const pageRef of items) {
-		const found = pages.find((p) => p.meta.id === pageRef.sys?.id);
+		const found = pages.find((p) => p?.meta?.id === pageRef?.sys?.id);
 		if (!found) continue;
 		const { title, header, slug } = found.fields;
 		parsedItems.push({ title, header, slug });
@@ -112,10 +119,15 @@ function parseNavigation(rawNav = {}, pages = []) {
 /**
  * Convert a raw sys object into a simpler 'meta' object.
  *
- * @param {Object} rawSys The raw sys object from Contentful
- * @return Contentful.Metadata
+ * @param {any} rawSys The raw sys object from Contentful
+ * @return Metadata
  */
-function parseMeta(rawSys = {}) {
-	const { id, type, createdAt, updatedAt, locale } = rawSys;
-	return { id, type, createdAt, updatedAt, locale };
+function parseMeta({ id, type, createdAt, updatedAt, locale }) {
+	return {
+		id,
+		type,
+		createdAt,
+		updatedAt,
+		locale,
+	};
 }
