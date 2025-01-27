@@ -6,7 +6,7 @@
 
 #### Automation
 
-- [ ] ensure all content and images (raw + optimized) are in sync
+- [x] ensure all content and images (raw + optimized) are in sync
 
 #### CMS
 
@@ -59,7 +59,7 @@
 
 ### Tests
 
-- [ ] axe and lighthouse tests should reuse logic
+- [x] axe and lighthouse tests should reuse logic
 - [ ] log issues when found in lighthouse test
   - [x] provide log to report for local use
   - [ ] decide on using custom logging or letting lighthouse do it
