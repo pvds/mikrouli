@@ -2,6 +2,7 @@
 import { base } from "$app/paths";
 import Hero from "$layout/Hero.svelte";
 import Section from "$layout/Section.svelte";
+import { getImageName } from "$lib/helpers/image";
 import Image from "$ui/image/Image.svelte";
 
 let { data } = $props();
@@ -14,9 +15,6 @@ const wave = {
 	color: "secondary-100",
 	opacity: 1,
 };
-
-/** @param {string} image */
-const getImageName = (image) => image.split(".")[0];
 </script>
 
 <Hero title={header}>
