@@ -1,5 +1,3 @@
-// TODO: cleanup types
-
 export type Metadata = {
 	id: string;
 	type: string;
@@ -8,7 +6,7 @@ export type Metadata = {
 	locale: string;
 };
 
-// ### Base - Raw
+// ### Base
 
 export type BaseFieldsRaw = {
 	title: string;
@@ -21,23 +19,11 @@ export type BaseFieldsRaw = {
 	content?: string;
 };
 
-export type BaseEntryRaw = {
-	meta: Metadata;
-	fields: BaseFieldsRaw;
-};
-
-export type BaseEntry = {
-	meta: Metadata;
-	fields: BaseFields;
-};
-
-// ### Base - Processed
-
 export type BaseFields = BaseFieldsRaw & {
 	sections: string[];
 };
 
-export type BaseEntryProcessed = {
+export type BaseEntry = {
 	meta: Metadata;
 	fields: BaseFields;
 };
@@ -63,13 +49,6 @@ export type ImageField = {
 
 // ### Pages
 
-export type PageFieldsRaw = BaseFieldsRaw;
-
-export type PageEntryRaw = {
-	meta: Metadata;
-	fields: PageFieldsRaw;
-};
-
 export type PageFields = BaseFields;
 
 export type PageEntry = {
@@ -79,13 +58,6 @@ export type PageEntry = {
 
 // ### Services
 
-export type ServiceFieldsRaw = BaseFieldsRaw;
-
-export type ServiceEntryRaw = {
-	meta: Metadata;
-	fields: ServiceFieldsRaw;
-};
-
 export type ServiceFields = BaseFields;
 
 export type ServiceEntry = {
@@ -94,13 +66,6 @@ export type ServiceEntry = {
 };
 
 // ### Posts
-
-export type PostFieldsRaw = BaseFieldsRaw;
-
-export type PostEntryRaw = {
-	meta: Metadata;
-	fields: PostFieldsRaw;
-};
 
 export type PostFields = BaseFields & {
 	heroImage?: ImageField;
