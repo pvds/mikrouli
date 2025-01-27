@@ -28,8 +28,6 @@ export const IMAGE_EXTENSIONS = [
 // URL
 export const URL_SUBFOLDER_STAGING = "/mikrouli";
 export const URL_SUBFOLDER_PRODUCTION = "";
-export const URL_ORIGIN_STAGING = "https://pvds.github.io";
-export const URL_ORIGIN_PRODUCTION = "https://mikrouli.nl";
 
 // Contentful
 export const CONTENT_TYPES = [
@@ -50,7 +48,3 @@ export const THRESHOLDS = {
 // Ports
 export const PORT = 4173;
 export const DEBUG_PORT = 9222;
-
-// Environment
-export const PUBLIC_PREFIX = "PUBLIC_";
-export const PRIVATE_PREFIX = "";
