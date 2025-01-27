@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import https from "node:https";
 import path from "node:path";
-import { IMAGES_JSON_OUTPUT_PATH_RESOLVED, IMAGE_OUTPUT_PATH_RESOLVED, IS_CMS } from "$util/dyn";
+import { IMAGES_JSON_OUTPUT_PATH_RESOLVED, IMAGE_INPUT_PATH_RESOLVED, IS_CMS } from "$util/dyn";
 import { prepareDir } from "$util/file";
 import pLimit from "p-limit";
 
@@ -9,10 +9,7 @@ import { logDebug, logError, logInfo, logSuccess, logWarn } from "$util/log";
 import { withRetry } from "$util/retry";
 
 if (IS_CMS)
-	await syncImages(
-		path.join(IMAGE_OUTPUT_PATH_RESOLVED, "cms"),
-		IMAGES_JSON_OUTPUT_PATH_RESOLVED,
-	);
+	await syncImages(path.join(IMAGE_INPUT_PATH_RESOLVED, "cms"), IMAGES_JSON_OUTPUT_PATH_RESOLVED);
 
 /**
  * Syncs images with the CMS by downloading missing assets and removing unused ones.
@@ -30,9 +27,9 @@ export async function syncImages(imagesPath, dataPath) {
 	if (!fs.existsSync(imagesPath)) fs.mkdirSync(imagesPath, { recursive: true });
 
 	const cmsImages = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
-	const { missing, unused } = checkImages(imagesPath, cmsImages);
+	const { missing = [], unused = [] } = checkImages(imagesPath, cmsImages);
 
-	if (missing.length) await downloadContentfulAssets(missing);
+	await downloadContentfulAssets(imagesPath, missing);
 	if (unused.length) deleteImages(imagesPath, unused);
 
 	if (missing.length || unused.length) logSuccess("Synced images with cms");
@@ -80,10 +77,11 @@ function checkImages(imagePath, images = []) {
 /**
  * Download assets from Contentful.
  *
+ * @param {string} imagesPath - The path to the unprocessed image folder.
  * @param {string[]} images - List of image URLs to download.
  * @returns {Promise<void>}
  */
-async function downloadContentfulAssets(images = []) {
+async function downloadContentfulAssets(imagesPath, images = []) {
 	if (!images.length) {
 		logWarn("No images to download");
 		return;
@@ -91,14 +89,14 @@ async function downloadContentfulAssets(images = []) {
 
 	try {
 		logInfo("Fetching images from cms...");
-		prepareDir(IMAGE_OUTPUT_PATH_RESOLVED);
+		prepareDir(imagesPath);
 
 		const limit = pLimit(5);
 		const downloadPromises = [];
 		for (const image of images) {
 			const url = `https:${image}`;
 			const fileName = path.basename(url);
-			const outputPath = path.join(IMAGE_OUTPUT_PATH_RESOLVED, fileName);
+			const outputPath = path.join(imagesPath, fileName);
 
 			downloadPromises.push(
 				limit(() =>

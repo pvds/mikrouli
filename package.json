@@ -35,7 +35,7 @@
 		"write": "biome check --write",
 		"content": "bun run content:fetch --force && bun run assets",
 		"content:fetch": "bun run scripts/content/fetch.js",
-		"assets": "bun run assets:fetch && bun run assets:process --local --cms",
+		"assets": "bun run assets:fetch --cms && bun run assets:process --local --cms",
 		"assets:fetch": "bun run scripts/assets/fetch.js",
 		"assets:process": "bun run scripts/assets/process.js",
 		"assets:favicons": "bunx realfavicon generate images/icon.svg favicons.json .favicons.json static/pwa",
