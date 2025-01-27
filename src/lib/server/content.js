@@ -1,6 +1,6 @@
 /** @type {import("$types/contentful").NavigationEntry[]}*/
 import navigationItems from "$data/generated/navigation.json";
-/** @type {import("$types/contentful").PostEntry[]}*/
+/** @type {import("$types/contentful").PageEntry[]}*/
 import pageItems from "$data/generated/pages.json";
 /** @type {import("$types/contentful").PostEntry[]}*/
 import postItems from "$data/generated/posts.json";
@@ -12,6 +12,30 @@ import globalData from "$data/global.json";
 import seoData from "$data/seo.json";
 import { error } from "@sveltejs/kit";
 import { markdownToHtml, splitText } from "./utils.js";
+
+/**
+ * TODO: check if we can simplify this
+ * @typedef {import('$types/contentful').BaseFieldsRaw} BaseFieldsRaw
+ * @typedef {import('$types/contentful').BaseFields} BaseFields
+ */
+
+/**
+ * Preprocess JSON data to ensure `sections` field exists.
+ * @template T
+ * @param {Array<T & { fields: BaseFieldsRaw }>} data - Array of content entries.
+ * @returns {Array<T & { fields: BaseFields }>} Processed data with sections.
+ */
+const preprocessJson = (data) => {
+	return data.map((item) => {
+		return {
+			...item,
+			fields: {
+				...item.fields,
+				sections: [],
+			},
+		};
+	});
+};
 
 /**
  * Fetch all content data.
@@ -60,8 +84,8 @@ export const getNavigation = (slug) => {
  * @throws {Error} - Throws a SvelteKit error if the page is not found.
  */
 export const getPage = (slug) => {
-	const pages = pageItems;
-	/** @type {import('$types/contentful').ServiceEntry|undefined}*/
+	const pages = preprocessJson(pageItems);
+	/** @type {import('$types/contentful').PageEntry|undefined}*/
 	const page = pages?.find((p) => p.fields.slug === slug);
 
 	if (!page) throw error(404, `Page with slug '${slug}' not found`);
@@ -80,7 +104,7 @@ export const getPage = (slug) => {
  * @throws {Error} - Throws a SvelteKit error if the service is not found.
  */
 export const getService = (slug) => {
-	const services = serviceItems;
+	const services = preprocessJson(serviceItems);
 	/** @type {import('$types/contentful').ServiceEntry|undefined}*/
 	const service = services.find((s) => s.fields.slug === slug);
 
@@ -98,7 +122,7 @@ export const getService = (slug) => {
  * @returns {import('$types/contentful').ServiceFields[]} - The processed fields.
  */
 export const getServices = () => {
-	const services = serviceItems;
+	const services = preprocessJson(serviceItems);
 
 	return (
 		services?.map((service) => ({
@@ -124,7 +148,7 @@ export const getServiceEntries = () => {
  * @throws {Error} - Throws a SvelteKit error if the post is not found.
  */
 export const getPost = (slug) => {
-	const posts = postItems;
+	const posts = preprocessJson(postItems);
 	/** @type {import('$types/contentful').PostEntry|undefined}*/
 	const post = posts?.find((p) => p.fields.slug === slug);
 
@@ -142,7 +166,7 @@ export const getPost = (slug) => {
  * @returns {import('$types/contentful').PostFields[]} - The processed fields.
  */
 export const getPosts = () => {
-	const posts = postItems;
+	const posts = preprocessJson(postItems);
 
 	return (
 		posts?.map((post) => ({

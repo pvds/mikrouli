@@ -1,3 +1,5 @@
+// TODO: cleanup types
+
 export type Metadata = {
 	id: string;
 	type: string;
@@ -6,8 +8,9 @@ export type Metadata = {
 	locale: string;
 };
 
-// ### Base
-export type BaseFields = {
+// ### Base - Raw
+
+export type BaseFieldsRaw = {
 	title: string;
 	slug: string;
 	seoDescription: string;
@@ -16,7 +19,11 @@ export type BaseFields = {
 	header?: string;
 	intro: string;
 	content?: string;
-	sections: string[];
+};
+
+export type BaseEntryRaw = {
+	meta: Metadata;
+	fields: BaseFieldsRaw;
 };
 
 export type BaseEntry = {
@@ -24,14 +31,19 @@ export type BaseEntry = {
 	fields: BaseFields;
 };
 
-export type BaseEntryNested = {
-	meta?: Metadata;
+// ### Base - Processed
+
+export type BaseFields = BaseFieldsRaw & {
+	sections: string[];
+};
+
+export type BaseEntryProcessed = {
+	meta: Metadata;
 	fields: BaseFields;
 };
 
 // ### ImageField
 
-// TODO: remove unnecessary properties
 export type ImageField = {
 	title: string;
 	description: string;
@@ -50,7 +62,15 @@ export type ImageField = {
 };
 
 // ### Pages
-export type PageFields = BaseFields & {};
+
+export type PageFieldsRaw = BaseFieldsRaw;
+
+export type PageEntryRaw = {
+	meta: Metadata;
+	fields: PageFieldsRaw;
+};
+
+export type PageFields = BaseFields;
 
 export type PageEntry = {
 	meta: Metadata;
@@ -58,28 +78,49 @@ export type PageEntry = {
 };
 
 // ### Services
-export type ServiceFields = BaseFields & {};
+
+export type ServiceFieldsRaw = BaseFieldsRaw;
+
+export type ServiceEntryRaw = {
+	meta: Metadata;
+	fields: ServiceFieldsRaw;
+};
+
+export type ServiceFields = BaseFields;
+
 export type ServiceEntry = {
 	meta: Metadata;
 	fields: ServiceFields;
 };
 
 // ### Posts
+
+export type PostFieldsRaw = BaseFieldsRaw;
+
+export type PostEntryRaw = {
+	meta: Metadata;
+	fields: PostFieldsRaw;
+};
+
 export type PostFields = BaseFields & {
 	heroImage?: ImageField;
 };
+
 export type PostEntry = {
 	meta: Metadata;
 	fields: PostFields;
 };
 
 // ### Navigations
-export type NavigationPageFields = Pick<PageFields, "title" | "header" | "slug">;
+
+export type NavigationPageFields = Pick<PageFieldsRaw, "title" | "header" | "slug">;
+
 export type NavigationFields = {
 	title: string;
 	slug: string;
 	items: NavigationPageFields[];
 };
+
 export type NavigationEntry = {
 	meta: Metadata;
 	fields: NavigationFields;

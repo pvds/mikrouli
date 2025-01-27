@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 /**
  * @typedef {import('$lib/types/contentful').ContentfulData} ContentfulData
  * @typedef {import('$lib/types/contentful').PageEntry} PageEntry
@@ -8,8 +6,9 @@
  * @typedef {import('$lib/types/contentful').PostEntry} PostEntry
  * @typedef {import('$lib/types/contentful').NavigationEntry} NavigationEntry
  * @typedef {import('$lib/types/contentful').NavigationFields} NavigationFields
+ * @typedef {import('$lib/types/contentful').NavigationPageFields} NavigationPageFields
  * @typedef {import('$lib/types/contentful').BaseEntry} BaseEntry
- * @typedef {import('$lib/types/contentful').BaseEntryNested} BaseEntryNested
+ * @typedef {import('$lib/types/contentful').BaseFields} BaseFields
  * @typedef {import('$lib/types/contentful').Metadata} Metadata
  * @typedef {import('contentful').Entry} ContentfulEntry
  * @typedef {import('contentful').EntrySys} EntrySys
@@ -33,9 +32,7 @@ export function processContentfulData(data = {}) {
 
 	// Parse each content type
 
-	const pages = /** @type {PageEntry[]} */ (
-		pagesRaw.map((rawPage) => parseContentEntry(rawPage))
-	);
+	const pages = /** @type {PageEntry[]} */ pagesRaw.map((rawPage) => parseContentEntry(rawPage));
 	const services = /** @type {ServiceEntry[]} */ servicesRaw.map((rawService) =>
 		parseContentEntry(rawService),
 	);
@@ -73,35 +70,24 @@ export const parseImageUrls = (data) => {
  * that resolve their 'sections'.
  *
  * @param {ContentfulEntry} rawEntry The raw Contentful entry
- * @return PostEntry | PageEntry | ServiceEntry
+ * @return {PostEntry | PageEntry | ServiceEntry}
  */
 export function parseContentEntry(rawEntry) {
 	const meta = parseMeta(rawEntry.sys);
-	const { sections = [], /** @type BaseFields */ ...restFields } = rawEntry.fields || {};
+	const { ...restFields } = rawEntry.fields;
 
+	// Unwrap nested fields objects
 	for (const key of Object.keys(restFields)) {
-		// Process only objects that have a 'fields' property
 		if (restFields[key] && typeof restFields[key] === "object" && "fields" in restFields[key]) {
-			// Recursively parse nested content entry as non-top-level (no meta and no sections)
-			restFields[key] = parseNestedContentEntry(restFields[key]).fields;
+			// @ts-expect-error
+			restFields[key] = restFields[key].fields;
 		}
 	}
 
-	// Ensure required fields exist
-	return { meta, fields: { ...restFields, sections: [] } };
-}
+	const fields = /** @type {BaseFields} */ ({ ...restFields });
 
-/**
- * Generic parser for content entries (used for Pages, Services, and Posts)
- * that resolve their 'sections'.
- *
- * @param {ContentfulEntry} rawEntry The raw Contentful entry
- * @return {Partial<PostEntry> | Partial<PageEntry> | Partial<ServiceEntry>}
- */
-export function parseNestedContentEntry(rawEntry) {
-	const { fields } = rawEntry;
 	// Ensure required fields exist
-	return { ...fields };
+	return { meta, fields };
 }
 
 /**
@@ -117,7 +103,7 @@ function parseNavigation(rawNav, pages) {
 	const meta = parseMeta(rawNav?.sys || {});
 	/** @type {EntrySkeletonType['fields']} */
 	const { items = [], ...restFields } = rawNav.fields;
-	/** @type {Partial<PageFields>[]} */
+	/** @type {Partial<NavigationPageFields>[]} */
 	const parsedItems = [];
 
 	for (const pageRef of items) {
@@ -147,6 +133,6 @@ function parseMeta({ id, type, createdAt, updatedAt, locale }) {
 		type,
 		createdAt,
 		updatedAt,
-		locale,
+		locale: locale || "en-US",
 	};
 }
