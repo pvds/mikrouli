@@ -8,7 +8,7 @@ runs:
           uses: actions/cache@v4
           with:
               path: ~/.cache/ms-playwright
-              key: ${{ runner.os }}-playwright-browsers
+              key: ${{ runner.os }}-playwright-browsers-${{ hashFiles('bun.lock') }}
 
         - name: Install browsers
           if: ${{ steps.playwright-cache.outputs.cache-hit != 'true' }}
