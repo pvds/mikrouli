@@ -23,7 +23,8 @@
 		"scripts/**/*.js",
 		"tests/**/*.js",
 		"tests/**/*.ts",
-		"tests/**/*.svelte"
+		"tests/**/*.svelte",
+		"e2e/**/*.js"
 	]
 	// Path aliases are handled by https://svelte.dev/docs/kit/configuration#alias
 	// except $lib which is handled by https://svelte.dev/docs/kit/configuration#files
