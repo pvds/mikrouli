@@ -15,6 +15,9 @@
 - [x] decide on a way to handle images (contentful/local files/Some CDN)
 - [x] decide on using a `content` field (use `---` to divide in sections) or 
   `sections` content type
+- [ ] add reference field to page content type to link to services or other 
+  pages (can be used to get data like slug but also to facilitate nested 
+  navigation and linking)
 
 #### Global
 
