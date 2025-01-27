@@ -58,7 +58,9 @@ export type PageEntry = {
 
 // ### Services
 
-export type ServiceFields = BaseFields;
+export type ServiceFields = BaseFields & {
+	heroImage?: ImageField;
+};
 
 export type ServiceEntry = {
 	meta: Metadata;
