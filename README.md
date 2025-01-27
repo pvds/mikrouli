@@ -239,11 +239,11 @@ The project is modular and organized as follows, also refer to
 ├── images/                   # Soource images for the project
 ├── scripts/                  # Node scripts
 │   ├── assets/               # Asset related scripts
-│   ├   ├── fetch.js          # Fetch CMS images
-│   ├   └── process.js        # Process local and CMS images
+│   │   ├── fetch.js          # Fetch CMS images
+│   │   └── process.js        # Process local and CMS images
 │   ├── content/              # CMS content scripts
-│   ├   ├── fetch.js          # Fetch CMS content
-│   ├   └── process.js        # Process content data
+│   │   ├── fetch.js          # Fetch CMS content
+│   │   └── process.js        # Process content data
 │   ├── test/                 # Testing scripts
 │   └── util/                 # Utility scripts
 ├── src/                      # Svelte source code
@@ -261,7 +261,8 @@ The project is modular and organized as follows, also refer to
 │   │   ├── server/           # Server-only code
 │   │   ├── styles/           # Global styling
 │   │   └── types/            # Typing d.ts files for usage in jsdoc
-│   └── routes/               # SvelteKit route handlers
+│   ├── routes/               # SvelteKit route handlers
+│   └── config.js             # Project configuration constants
 ├── static/                   # Static assets (copied to build)
 │   ├── fonts/                # Font files
 │   ├── images/               # Image assets
@@ -274,7 +275,6 @@ The project is modular and organized as follows, also refer to
 ├── .npmrc                    # npm configuration
 ├── biome.jsonc               # Linting and formatting configuration
 ├── bun.lockb                 # Bun lock file
-├── config.js                 # Project configuration constants
 ├── favicons.json             # Favicon configuration
 ├── jsconfig.json             # JavaScript configuration
 ├── lefthook.yml              # Git hooks configuration
