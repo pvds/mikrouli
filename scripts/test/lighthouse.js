@@ -39,7 +39,7 @@ const reportDir = path.join(REPORTS_PATH_RESOLVED, "lighthouse", timeStamp);
 const startTime = performance.now();
 const serverProcess = startServer(BUILD_DIR, BUILD_CMD, PREVIEW_CMD, PORT);
 
-waitForServer(BASE_URL)
+await waitForServer(BASE_URL)
 	.then(() => {
 		const pagesToAudit = gatherPagesToAudit();
 		logSuccess(`Running tests for ${pagesToAudit.length} page(s)...`);

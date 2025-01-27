@@ -14,7 +14,9 @@ import { runCommand } from "$util/process";
  * @returns {import('node:child_process').ChildProcessWithoutNullStreams} - The server process.
  */
 export const startServer = (buildDir, buildCommand, previewCommand, port) => {
+	console.error("startServer", buildDir, buildCommand, previewCommand, port);
 	const resolvedBuildDir = resolveIfExists(buildDir);
+	console.error("resolvedBuildDir", resolvedBuildDir);
 	if (!resolvedBuildDir) {
 		logInfo("Building project...");
 		runCommand(`bun run ${buildCommand} --logLevel error`);
@@ -41,6 +43,7 @@ export const stopServer = (server) => {
  * @param {string} url - The server URL.
  * @param {number} timeout - Max wait time in milliseconds.
  * @param {number} initialDelay - Initial delay before first check.
+ * @return {Promise<string|void>} - Resolves if statusCode is 200 or 404, rejects otherwise.
  */
 export const waitForServer = async (url, timeout = 10000, initialDelay = 100) => {
 	const baseUrl = new URL(url).origin;
@@ -50,9 +53,10 @@ export const waitForServer = async (url, timeout = 10000, initialDelay = 100) =>
 	while (Date.now() < deadline) {
 		try {
 			await new Promise((resolve, reject) =>
-				get(baseUrl, ({ statusCode = 0 }) =>
-					[200, 404].includes(statusCode) ? resolve : reject,
-				).on("error", reject),
+				get(baseUrl, ({ statusCode = 0 }) => resolve([200, 404].includes(statusCode))).on(
+					"error",
+					reject,
+				),
 			);
 			return logSuccess(`Server is ready at ${url}`);
 		} catch {
