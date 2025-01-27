@@ -6,7 +6,6 @@ let { data } = $props();
 let { title, intro, slug, sections } = data.local;
 </script>
 
-
 <Hero {title} transitionName={slug}>
 	{@html intro}
 </Hero>
