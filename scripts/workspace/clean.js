@@ -1,19 +1,19 @@
 import { exec } from "node:child_process";
 import fs from "node:fs/promises";
 import { promisify } from "node:util";
-import { logError, logInfo, logSuccess } from "$util/log";
+import { logError, logInfo, logSuccess } from "../util/log.js";
 
 const runCommand = promisify(exec);
 
 async function cleanDirectories() {
-	const paths = ["node_modules", "build", ".svelte-kit"];
+	const cleanupDirs = ["node_modules", "build", ".svelte-kit", ".tmp"];
 
 	logInfo("Cleaning caches and output...");
-	for (const path of paths) {
+	for (const dir of cleanupDirs) {
 		try {
-			await fs.rm(path, { recursive: true, force: true });
+			await fs.rm(dir, { recursive: true, force: true });
 		} catch (error) {
-			logError(`Failed to delete ${path}:`, error);
+			logError(`Failed to delete ${dir}:`, error);
 		}
 	}
 	logSuccess("Caches and output cleaned.");
