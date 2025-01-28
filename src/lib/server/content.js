@@ -143,8 +143,11 @@ export const getServiceEntries = () => {
 
 /**
  * Fetch and process a specific blog post by its slug.
+ *
+ * @typedef {import('$types/contentful').PostFields} PostFields
+ * @typedef {import('$types/contentful').Metadata} Metadata
  * @param {string} slug - The slug of the page to fetch.
- * @returns {import('$types/contentful').PostFields} - The processed fields.
+ * @returns {PostFields & {meta: Metadata}} - The processed fields.
  * @throws {Error} - Throws a SvelteKit error if the post is not found.
  */
 export const getPost = (slug) => {
@@ -155,6 +158,7 @@ export const getPost = (slug) => {
 	if (!post) throw error(404, `Blog post with slug '${slug}' not found`);
 
 	return {
+		meta: post.meta,
 		...post.fields,
 		intro: markdownToHtml(post.fields.intro),
 		sections: splitText(markdownToHtml(post.fields.content)),
@@ -170,6 +174,7 @@ export const getPosts = () => {
 
 	return (
 		posts?.map((post) => ({
+			meta: post.meta,
 			...post.fields,
 			intro: markdownToHtml(post.fields.intro),
 		})) || []
