@@ -4,16 +4,17 @@ import Section from "$layout/Section.svelte";
 import { formatDate } from "$lib/helpers/date.js";
 
 let { data } = $props();
-let { meta, title, intro, slug, sections } = data.local;
+let { title, intro, slug, sections } = data.post.fields;
+let { createdAt, updatedAt } = data.post.meta;
 </script>
 
 <Hero title={title} transitionName={slug}>
 	{@html intro}
 	<p class="mt-4 text-base italic text-primary-800">
-		{#if meta.createdAt === meta.updatedAt}
-			Published on {formatDate(meta.createdAt)}
+		{#if createdAt === updatedAt}
+			Published on {formatDate(createdAt)}
 		{:else}
-			Last updated on {formatDate(meta.updatedAt)}
+			Last updated on {formatDate(updatedAt)}
 		{/if}
 	</p>
 </Hero>

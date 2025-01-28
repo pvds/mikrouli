@@ -6,7 +6,7 @@ import { getImageName } from "$lib/helpers/image.js";
 import Image from "$ui/image/Image.svelte";
 
 let { data } = $props();
-let { header, intro, sections } = data.local;
+let { header, intro, sections } = data.page.fields;
 let services = data.services;
 </script>
 
@@ -16,7 +16,7 @@ let services = data.services;
 
 {#each services as service, i}
 	<Section>
-		{@render teaser(service, i)}
+		{@render teaser(service.fields, i)}
 	</Section>
 {/each}
 

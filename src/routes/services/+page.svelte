@@ -6,7 +6,8 @@ import { getImageName } from "$lib/helpers/image.js";
 import Image from "$ui/image/Image.svelte";
 
 let { data } = $props();
-let { header, intro, slug, services } = data.local;
+let { header, intro, slug } = data.page.fields;
+let services = data.services;
 
 /** @type {import("$visuals/WaveSvg.type").WaveProps} */
 const wave = {
@@ -26,7 +27,7 @@ const wave = {
 		classes={`px-8 py-14 ${i % 2 === 1 ? "my-14 bg-secondary-100 text-secondary-800" : ""}`}
 		{...(i % 2 === 1 ? { wave } : {})}
 	>
-		{@render teaser(service, i)}
+		{@render teaser(service.fields, i)}
 	</Section>
 {/each}
 

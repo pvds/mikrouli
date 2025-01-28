@@ -4,7 +4,7 @@ import Section from "$layout/Section.svelte";
 import Image from "$ui/image/Image.svelte";
 
 let { data } = $props();
-let { header, intro, sections } = data.local;
+let { header, intro, sections } = data.page.fields;
 </script>
 
 <Hero title={header} proseClasses="">

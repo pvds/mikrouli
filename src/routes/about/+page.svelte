@@ -3,7 +3,7 @@ import Hero from "$layout/Hero.svelte";
 import Section from "$layout/Section.svelte";
 
 let { data } = $props();
-let { header, intro, sections } = data.local;
+let { header, intro, sections } = data.page.fields;
 </script>
 
 <Hero title={header}>

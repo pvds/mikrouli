@@ -7,5 +7,5 @@ export const load = async ({ route }) => {
 	const posts = getPosts();
 	const seo = getSeo(page);
 
-	return { local: { ...page, posts }, seo };
+	return { page, posts, seo };
 };

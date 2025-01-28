@@ -11,5 +11,5 @@ export const load = async ({ params }) => {
 	const service = getService(slug);
 	const seo = getSeo(service);
 
-	return { local: service, seo };
+	return { service, seo };
 };

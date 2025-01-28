@@ -3,7 +3,7 @@ import Hero from "$layout/Hero.svelte";
 import Section from "$layout/Section.svelte";
 
 let { data } = $props();
-let { title, intro, slug, sections } = data.local;
+let { title, intro, slug, sections } = data.service.fields;
 </script>
 
 <Hero {title} transitionName={slug}>

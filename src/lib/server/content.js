@@ -14,9 +14,14 @@ import { error } from "@sveltejs/kit";
 import { markdownToHtml, splitText } from "./utils.js";
 
 /**
- * TODO: check if we can simplify this
  * @typedef {import('$types/contentful').BaseFieldsRaw} BaseFieldsRaw
  * @typedef {import('$types/contentful').BaseFields} BaseFields
+ * @typedef {import('$types/contentful').PostEntry} PostEntry
+ * @typedef {import('$types/contentful').PageEntry} PageEntry
+ * @typedef {import('$types/contentful').NavigationEntry} NavigationEntry
+ * @typedef {import('$types/contentful').ServiceEntry} ServiceEntry
+ * @typedef {import('$global/seo/Seo.svelte.types').SEOProps} SEOProps
+ * @typedef {import('$types/global').global} GlobalProps
  */
 
 /**
@@ -39,7 +44,7 @@ const preprocessJson = (data) => {
 
 /**
  * Fetch all content data.
- * @returns {import('$types/global').global} - The processed content data.
+ * @returns {GlobalProps} - The processed content data.
  */
 export const getGlobal = () => {
 	return globalData;
@@ -47,29 +52,29 @@ export const getGlobal = () => {
 
 /**
  * Fetch all seo data.
- * @param {import('$types/contentful').BaseFields} [page] - The page data to override the default seo data.
- * @returns {import('$global/seo/Seo.svelte.types').SEOProps} - The processed seo data.
+ * @param {PageEntry} [page] - The page data to override the default seo data.
+ * @returns {SEOProps} - The processed seo data.
  */
 export const getSeo = (page) => {
 	if (!page) return seoData;
 	return {
 		...seoData,
-		title: page.title,
-		description: page.seoDescription,
-		keywords: page.seoKeywords,
-		index: page.seoIndex,
+		title: page.fields.title,
+		description: page.fields.seoDescription,
+		keywords: page.fields.seoKeywords,
+		index: page.fields.seoIndex,
 	};
 };
 
 /**
  * Fetch and process a specific navigation by its slug.
  * @param {string} slug - The slug to fetch.
- * @returns {import('$types/contentful').NavigationEntry} - The processed fields.
+ * @returns {NavigationEntry} - The processed fields.
  * @throws {Error} - Throws a SvelteKit error if the navigation is not found.
  */
 export const getNavigation = (slug) => {
 	const navs = navigationItems;
-	/** @type {import('$types/contentful').NavigationEntry|undefined}*/
+	/** @type {NavigationEntry|undefined}*/
 	const nav = navs?.find((n) => n.fields.slug === slug);
 
 	if (!nav) throw error(404, `Navigation with slug '${slug}' not found`);
@@ -80,54 +85,69 @@ export const getNavigation = (slug) => {
 /**
  * Fetch and process a specific page by its slug.
  * @param {string} slug - The slug to fetch.
- * @returns {import('$types/contentful').PageFields} - The processed fields.
+ * @returns {PageEntry} - The processed fields.
  * @throws {Error} - Throws a SvelteKit error if the page is not found.
  */
 export const getPage = (slug) => {
 	const pages = preprocessJson(pageItems);
-	/** @type {import('$types/contentful').PageEntry|undefined}*/
+	/** @type {PageEntry|undefined}*/
 	const page = pages?.find((p) => p.fields.slug === slug);
 
 	if (!page) throw error(404, `Page with slug '${slug}' not found`);
 
 	return {
-		...page.fields,
-		intro: markdownToHtml(page.fields.intro),
-		sections: splitText(markdownToHtml(page.fields?.content)),
+		...page,
+		...{
+			fields: {
+				...page.fields,
+				intro: markdownToHtml(page.fields.intro),
+				sections: splitText(markdownToHtml(page.fields.content)),
+			},
+		},
 	};
 };
 
 /**
  * Fetch and process a specific service by its slug.
  * @param {string} slug - The slug to fetch.
- * @returns {import('$types/contentful').ServiceFields} - The processed fields.
+ * @returns {ServiceEntry} - The processed fields.
  * @throws {Error} - Throws a SvelteKit error if the service is not found.
  */
 export const getService = (slug) => {
 	const services = preprocessJson(serviceItems);
-	/** @type {import('$types/contentful').ServiceEntry|undefined}*/
+	/** @type {ServiceEntry|undefined}*/
 	const service = services.find((s) => s.fields.slug === slug);
 
 	if (!service) throw error(404, `Service with slug '${slug}' not found`);
 
 	return {
-		...service.fields,
-		intro: markdownToHtml(service.fields.intro),
-		sections: splitText(markdownToHtml(service.fields.content)),
+		...service,
+		...{
+			fields: {
+				...service.fields,
+				intro: markdownToHtml(service.fields.intro),
+				sections: splitText(markdownToHtml(service.fields.content)),
+			},
+		},
 	};
 };
 
 /**
  * Fetch and process all services
- * @returns {import('$types/contentful').ServiceFields[]} - The processed fields.
+ * @returns {ServiceEntry[]} - The processed fields.
  */
 export const getServices = () => {
 	const services = preprocessJson(serviceItems);
 
 	return (
 		services?.map((service) => ({
-			...service.fields,
-			intro: markdownToHtml(service.fields.intro),
+			...service,
+			...{
+				fields: {
+					...service.fields,
+					intro: markdownToHtml(service.fields.intro),
+				},
+			},
 		})) || []
 	);
 };
@@ -144,39 +164,45 @@ export const getServiceEntries = () => {
 /**
  * Fetch and process a specific blog post by its slug.
  *
- * @typedef {import('$types/contentful').PostFields} PostFields
- * @typedef {import('$types/contentful').Metadata} Metadata
  * @param {string} slug - The slug of the page to fetch.
- * @returns {PostFields & {meta: Metadata}} - The processed fields.
+ * @returns {PostEntry} - The processed fields.
  * @throws {Error} - Throws a SvelteKit error if the post is not found.
  */
 export const getPost = (slug) => {
 	const posts = preprocessJson(postItems);
-	/** @type {import('$types/contentful').PostEntry|undefined}*/
+	/** @type {PostEntry|undefined}*/
 	const post = posts?.find((p) => p.fields.slug === slug);
 
 	if (!post) throw error(404, `Blog post with slug '${slug}' not found`);
 
 	return {
-		meta: post.meta,
-		...post.fields,
-		intro: markdownToHtml(post.fields.intro),
-		sections: splitText(markdownToHtml(post.fields.content)),
+		...post,
+		...{
+			fields: {
+				...post.fields,
+				intro: markdownToHtml(post.fields.intro),
+				sections: splitText(markdownToHtml(post.fields.content)),
+			},
+		},
 	};
 };
 
 /**
  * Fetch and process all blog posts.
- * @returns {import('$types/contentful').PostFields[]} - The processed fields.
+ * @returns {PostEntry[]} - The processed fields.
  */
 export const getPosts = () => {
 	const posts = preprocessJson(postItems);
 
 	return (
 		posts?.map((post) => ({
-			meta: post.meta,
-			...post.fields,
-			intro: markdownToHtml(post.fields.intro),
+			...post,
+			...{
+				fields: {
+					...post.fields,
+					intro: markdownToHtml(post.fields.intro),
+				},
+			},
 		})) || []
 	);
 };

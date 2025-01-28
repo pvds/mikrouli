@@ -6,7 +6,8 @@ import { getImageName } from "$lib/helpers/image";
 import Image from "$ui/image/Image.svelte";
 
 let { data } = $props();
-let { header, intro, slug, posts } = data.local; // Destructure `posts` from `local`
+let { header, intro, slug } = data.page.fields; // Destructure `posts` from `local`
+let posts = data.posts;
 
 /** @type {import("$visuals/WaveSvg.type").WaveProps} */
 const wave = {
@@ -27,7 +28,7 @@ const wave = {
 		"py-14"}`}
 		{...(i % 2 === 1 ? { wave } : {})}
 	>
-		{@render teaser(post, i)}
+		{@render teaser(post.fields, i)}
 	</Section>
 {/each}
 

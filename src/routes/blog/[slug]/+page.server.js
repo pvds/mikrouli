@@ -11,5 +11,5 @@ export const load = async ({ params }) => {
 	const post = getPost(slug);
 	const seo = getSeo(post);
 
-	return { local: post, seo };
+	return { post, seo };
 };
