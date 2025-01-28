@@ -39,7 +39,7 @@
  */
 export const formatDate = (dateString, options = {}) => {
 	const date = new Date(dateString);
-	const userLocale = navigator.language || "en-US";
+	const userLocale = navigator?.language || "en-US";
 
 	// Calculate the user's time zone internally
 	const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
