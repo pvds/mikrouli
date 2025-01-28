@@ -14,15 +14,15 @@ let services = data.services;
 	{@html intro}
 </Hero>
 
-{#each sections as section}
-	<Section>
-		<div class="prose prose-base">{@html section}</div>
-	</Section>
-{/each}
-
 {#each services as service, i}
 	<Section>
 		{@render teaser(service, i)}
+	</Section>
+{/each}
+
+{#each sections as section}
+	<Section>
+		<div class="prose prose-base">{@html section}</div>
 	</Section>
 {/each}
 
