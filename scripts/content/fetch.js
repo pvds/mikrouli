@@ -34,8 +34,8 @@ async function fetchContentfulData() {
 		logInfo("Fetching data from cms...");
 
 		// Fetch each content type in parallel
-		const requests = CONTENT_TYPES.map(({ query }) =>
-			client.getEntries({ content_type: query }),
+		const requests = CONTENT_TYPES.map(({ content_type, order }) =>
+			client.getEntries({ content_type, order }),
 		);
 		const results = await Promise.all(requests);
 

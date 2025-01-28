@@ -1,41 +1,6 @@
 [
     {
         "meta": {
-            "id": "7rtbhuq4c4kUdrRUGSXm9D",
-            "type": "Entry",
-            "createdAt": "2020-12-21T16:49:18.569Z",
-            "updatedAt": "2025-01-09T08:15:20.133Z",
-            "locale": "en-US"
-        },
-        "fields": {
-            "title": "Primary",
-            "slug": "primary",
-            "items": [
-                {
-                    "title": "Services",
-                    "header": "Explore Ways We Can Work Together",
-                    "slug": "services"
-                },
-                {
-                    "title": "Blog",
-                    "header": "Insights to Support Your Journey",
-                    "slug": "blog"
-                },
-                {
-                    "title": "Contact",
-                    "header": "Contact Me to Take the First Step",
-                    "slug": "contact"
-                },
-                {
-                    "title": "About",
-                    "header": "Get to Know Me",
-                    "slug": "about"
-                }
-            ]
-        }
-    },
-    {
-        "meta": {
             "id": "1HR15phB5u1biNFJLqOW2K",
             "type": "Entry",
             "createdAt": "2025-01-09T07:47:18.583Z",
@@ -65,6 +30,41 @@
                     "title": "Blog",
                     "header": "Insights to Support Your Journey",
                     "slug": "blog"
+                }
+            ]
+        }
+    },
+    {
+        "meta": {
+            "id": "7rtbhuq4c4kUdrRUGSXm9D",
+            "type": "Entry",
+            "createdAt": "2020-12-21T16:49:18.569Z",
+            "updatedAt": "2025-01-09T08:15:20.133Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Primary",
+            "slug": "primary",
+            "items": [
+                {
+                    "title": "Services",
+                    "header": "Explore Ways We Can Work Together",
+                    "slug": "services"
+                },
+                {
+                    "title": "Blog",
+                    "header": "Insights to Support Your Journey",
+                    "slug": "blog"
+                },
+                {
+                    "title": "Contact",
+                    "header": "Contact Me to Take the First Step",
+                    "slug": "contact"
+                },
+                {
+                    "title": "About",
+                    "header": "Get to Know Me",
+                    "slug": "about"
                 }
             ]
         }

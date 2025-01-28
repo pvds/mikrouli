@@ -1,49 +1,16 @@
 [
     {
         "meta": {
-            "id": "37va85fpU9i3eD9r36ZvvP",
-            "type": "Entry",
-            "createdAt": "2025-01-07T13:23:00.820Z",
-            "updatedAt": "2025-01-27T22:00:02.455Z",
-            "locale": "en-US"
-        },
-        "fields": {
-            "title": "Couples Therapy",
-            "slug": "couples-therapy",
-            "seoIndex": true,
-            "seoDescription": "I work with couples of all backgrounds to improve communication, resolve conflicts, and strengthen their connection.",
-            "header": "Couples Therapy",
-            "heroImage": {
-                "title": "Couples therapy",
-                "description": "Couple sitting on a chairs holding hands with the therapist on the background looking at them",
-                "file": {
-                    "url": "//images.ctfassets.net/fnyi5t75mv2d/3BXeBrZUBDv5IQnMNdbgps/246ee6cf81ad4e92fa65e6959534b8e8/couples-therapy.jpg",
-                    "details": {
-                        "size": 201926,
-                        "image": {
-                            "width": 1920,
-                            "height": 1080
-                        }
-                    },
-                    "fileName": "couples-therapy.jpg",
-                    "contentType": "image/jpeg"
-                }
-            },
-            "intro": "Every relationship has its own dynamics and struggles. I work with couples of\nall backgrounds to improve communication, resolve conflicts, and strengthen\ntheir connection.",
-            "content": "## Enhancing Communication\nEffective communication is the foundation of a healthy relationship. In couples therapy, we focus on learning how to express needs, listen actively, and foster mutual understanding without fear of judgment.\n\n---\n\n## Resolving Conflict Constructively\nAll couples face disagreements, but it's how they navigate them that makes a difference. Therapy helps partners approach conflicts with empathy, developing tools to manage disagreements in a constructive and respectful way.\n\n---\n\n## Strengthening Emotional Bonds\nRelationships thrive on connection and trust. By exploring what brings you together and what may be pushing you apart, we work on strengthening the emotional foundation that supports a fulfilling partnership.\n"
-        }
-    },
-    {
-        "meta": {
             "id": "1jrEYUK6AF7a2NvJ41IthV",
             "type": "Entry",
             "createdAt": "2025-01-07T13:22:20.499Z",
-            "updatedAt": "2025-01-27T22:00:02.368Z",
+            "updatedAt": "2025-01-27T23:59:16.979Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "Individual Therapy",
             "slug": "individual-therapy",
+            "order": 1,
             "seoIndex": true,
             "seoDescription": "For those seeking personal growth and clarity, individual therapy offers a space to explore challenges and patterns that may be holding you back. ",
             "header": "Individual Therapy",
@@ -72,12 +39,13 @@
             "id": "7tTIOTk3UaWgvlYkn51HF2",
             "type": "Entry",
             "createdAt": "2025-01-07T13:23:36.337Z",
-            "updatedAt": "2025-01-27T22:00:02.354Z",
+            "updatedAt": "2025-01-27T23:59:31.905Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "Family Therapy",
             "slug": "family-therapy",
+            "order": 2,
             "seoIndex": true,
             "seoDescription": "I help families uncover and change unhelpful patterns, creating healthier ways of relating and supporting each other.",
             "header": "Family Therapy",
@@ -99,6 +67,41 @@
             },
             "intro": "Families operate as systems, and sometimes those systems get stuck. I help\nfamilies uncover and change unhelpful patterns, creating healthier ways of\nrelating and supporting each other.",
             "content": "## Understanding Family Dynamics\nEvery family has its own unique patterns and ways of interacting. In family therapy, we take a closer look at how roles, expectations, and communication styles influence relationships, helping each member gain deeper insight into their part in the system.\n\n---\n\n## Breaking Unhelpful Patterns\nOften, families get caught in recurring cycles that can feel impossible to break. By identifying these patterns, we work together to develop new, more effective ways of relating that promote connection and support within the family.\n\n---\n\n## Building Stronger Connections\nThe goal of family therapy is to foster deeper connections and create a more supportive environment. Through practical strategies and compassionate guidance, your family can develop healthier ways of being together.\n"
+        }
+    },
+    {
+        "meta": {
+            "id": "37va85fpU9i3eD9r36ZvvP",
+            "type": "Entry",
+            "createdAt": "2025-01-07T13:23:00.820Z",
+            "updatedAt": "2025-01-27T23:59:41.611Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Couples Therapy",
+            "slug": "couples-therapy",
+            "order": 3,
+            "seoIndex": true,
+            "seoDescription": "I work with couples of all backgrounds to improve communication, resolve conflicts, and strengthen their connection.",
+            "header": "Couples Therapy",
+            "heroImage": {
+                "title": "Couples therapy",
+                "description": "Couple sitting on a chairs holding hands with the therapist on the background looking at them",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/3BXeBrZUBDv5IQnMNdbgps/246ee6cf81ad4e92fa65e6959534b8e8/couples-therapy.jpg",
+                    "details": {
+                        "size": 201926,
+                        "image": {
+                            "width": 1920,
+                            "height": 1080
+                        }
+                    },
+                    "fileName": "couples-therapy.jpg",
+                    "contentType": "image/jpeg"
+                }
+            },
+            "intro": "Every relationship has its own dynamics and struggles. I work with couples of\nall backgrounds to improve communication, resolve conflicts, and strengthen\ntheir connection.",
+            "content": "## Enhancing Communication\nEffective communication is the foundation of a healthy relationship. In couples therapy, we focus on learning how to express needs, listen actively, and foster mutual understanding without fear of judgment.\n\n---\n\n## Resolving Conflict Constructively\nAll couples face disagreements, but it's how they navigate them that makes a difference. Therapy helps partners approach conflicts with empathy, developing tools to manage disagreements in a constructive and respectful way.\n\n---\n\n## Strengthening Emotional Bonds\nRelationships thrive on connection and trust. By exploring what brings you together and what may be pushing you apart, we work on strengthening the emotional foundation that supports a fulfilling partnership.\n"
         }
     }
 ]

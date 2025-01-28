@@ -20,25 +20,6 @@
     },
     {
         "meta": {
-            "id": "3rFQxFehQrVUuxDH8StNup",
-            "type": "Entry",
-            "createdAt": "2024-12-27T23:40:02.880Z",
-            "updatedAt": "2025-01-17T14:00:04.579Z",
-            "locale": "en-US"
-        },
-        "fields": {
-            "title": "Home",
-            "slug": "home",
-            "seoIndex": true,
-            "seoDescription": "Mikrouli systemic therapy is supportive space for clarity and positive change and navigate life’s challenges.",
-            "seoKeywords": "therapy, positive change, clarity, support, systemic",
-            "header": "Creating Positive Change in Your Relationships and Life",
-            "intro": "Life can feel complicated, whether you’re navigating relationships, work challenges, or cultural transitions. \n\nI’m Eleni Papamikrouli, a systemic therapist working with individuals, couples, and families. While I specialize in supporting internationals and expats, I welcome anyone seeking clarity and connection in their life.",
-            "content": "## Your Journey Starts Here\n\nAt the heart of my practice is the belief that every client’s experience is unique. I work to create a safe, supportive space where you can explore your challenges, uncover strengths, and find new paths forward. Whether you’re feeling stuck, overwhelmed, or simply curious about change, I’m here to help you navigate your personal journey.\n\n---\n\n### A Personalized Approach\n\nMy approach is both holistic and tailored to you. I blend empathy with practical strategies drawn from systemic therapy to help you understand the patterns in your relationships, work, and personal life. This collaborative process is designed to empower you to make lasting, positive changes.\n\n---\n\n### What You Can Expect\n\n- **Clarity and Insight:** We work together to gain a clear understanding of your current challenges and where you want to go.\n- **Actionable Strategies:** You’ll leave our sessions equipped with real-life tools to navigate change.\n- **A Caring Partnership:** I am committed to supporting you through every stage of your journey, with sensitivity to your unique experiences.\n- **Global Perspective:** While I specialize in supporting internationals and expats, my practice is open to anyone seeking growth, balance, and connection.\n\n---\n\n### Let's Begin\n\nEvery step you take is an investment in a more fulfilling future. I invite you to explore the services offered, learn more about the transformative power of systemic therapy, and discover how you can begin creating positive change in your life.\n"
-        }
-    },
-    {
-        "meta": {
             "id": "61Vdx8qP4ItFip29IZbe9u",
             "type": "Entry",
             "createdAt": "2024-12-27T22:59:24.373Z",
@@ -54,6 +35,25 @@
             "header": "Get to Know Me",
             "intro": "I’m Eleni Papamikrouli, a systemic therapist working with individuals, couples, and families. Originally from Greece, I’ve lived in the Netherlands for over 15 years, giving me a unique perspective on the experiences of internationals and expats. That said, I work with people from all walks of life, offering a safe and supportive space for anyone seeking change.",
             "content": "## My approach \nI'm practical and collaborative. I combine curiosity with empathy to help clients explore their challenges and find ways forward. You don’t need to be perfect or have all the answers—therapy is about working together to create clarity and change.\n\n---\n\n## Why Systemic Therapy?\nSystemic therapy focuses on the patterns and systems we live in, rather than labeling or diagnosing individuals. It’s not about finding fault but about exploring how dynamics work and where we can make meaningful shifts. My role is to guide you in uncovering possibilities and building solutions that fit your life."
+        }
+    },
+    {
+        "meta": {
+            "id": "2skTvZuf4xUYpfqA45Vz1O",
+            "type": "Entry",
+            "createdAt": "2024-12-27T23:38:56.621Z",
+            "updatedAt": "2025-01-17T01:00:03.102Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Blog",
+            "slug": "blog",
+            "seoIndex": true,
+            "seoDescription": "Read insightful articles offering tools and perspectives to navigate life’s challenges and foster personal growth for individuals and families.",
+            "seoKeywords": "blog, insights, therapy, growth, guidance",
+            "header": "Insights to Support Your Journey",
+            "intro": "Therapy is about understanding ourselves and the systems we live in. Whether you're an international, an expat, or simply someone navigating life’s challenges, these articles offer insights and tools to support your journey.\n",
+            "content": "You'll discover concise, insightful articles that offer practical tools and fresh perspectives—whether you're an international, an expat, or simply navigating life's challenges. Each post is designed to empower you with the clarity and strategies you need for personal growth."
         }
     },
     {
@@ -77,10 +77,29 @@
     },
     {
         "meta": {
+            "id": "3rFQxFehQrVUuxDH8StNup",
+            "type": "Entry",
+            "createdAt": "2024-12-27T23:40:02.880Z",
+            "updatedAt": "2025-01-17T14:00:04.579Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Home",
+            "slug": "home",
+            "seoIndex": true,
+            "seoDescription": "Mikrouli systemic therapy is supportive space for clarity and positive change and navigate life’s challenges.",
+            "seoKeywords": "therapy, positive change, clarity, support, systemic",
+            "header": "Creating Positive Change in Your Relationships and Life",
+            "intro": "Life can feel complicated, whether you’re navigating relationships, work challenges, or cultural transitions. \n\nI’m Eleni Papamikrouli, a systemic therapist working with individuals, couples, and families. While I specialize in supporting internationals and expats, I welcome anyone seeking clarity and connection in their life.",
+            "content": "## Your Journey Starts Here\n\nAt the heart of my practice is the belief that every client’s experience is unique. I work to create a safe, supportive space where you can explore your challenges, uncover strengths, and find new paths forward. Whether you’re feeling stuck, overwhelmed, or simply curious about change, I’m here to help you navigate your personal journey.\n\n---\n\n### A Personalized Approach\n\nMy approach is both holistic and tailored to you. I blend empathy with practical strategies drawn from systemic therapy to help you understand the patterns in your relationships, work, and personal life. This collaborative process is designed to empower you to make lasting, positive changes.\n\n---\n\n### What You Can Expect\n\n- **Clarity and Insight:** We work together to gain a clear understanding of your current challenges and where you want to go.\n- **Actionable Strategies:** You’ll leave our sessions equipped with real-life tools to navigate change.\n- **A Caring Partnership:** I am committed to supporting you through every stage of your journey, with sensitivity to your unique experiences.\n- **Global Perspective:** While I specialize in supporting internationals and expats, my practice is open to anyone seeking growth, balance, and connection.\n\n---\n\n### Let's Begin\n\nEvery step you take is an investment in a more fulfilling future. I invite you to explore the services offered, learn more about the transformative power of systemic therapy, and discover how you can begin creating positive change in your life.\n"
+        }
+    },
+    {
+        "meta": {
             "id": "3Dq1BUqylcl2pQweRSAvc6",
             "type": "Entry",
             "createdAt": "2024-12-27T23:01:22.902Z",
-            "updatedAt": "2025-01-17T01:00:03.108Z",
+            "updatedAt": "2025-01-27T22:30:30.016Z",
             "locale": "en-US"
         },
         "fields": {
@@ -92,25 +111,6 @@
             "header": "Explore Ways We Can Work Together",
             "intro": "I provide therapy for anyone seeking to improve their relationships, navigate challenges, or better understand themselves. While I bring a unique perspective to working with internationals and expats, my services are open to all who want to create positive change.",
             "content": "## Discover Our Approach\n\nWe believe that every individual’s journey is unique, and effective therapy should honor your personal story while offering practical tools to create positive change.\n\nOur services are designed with flexibility and empathy in mind. Whether you're looking to improve your relationships, overcome personal challenges, or simply gain clarity about your life direction, our tailored approach supports your growth every step of the way.\n"
-        }
-    },
-    {
-        "meta": {
-            "id": "2skTvZuf4xUYpfqA45Vz1O",
-            "type": "Entry",
-            "createdAt": "2024-12-27T23:38:56.621Z",
-            "updatedAt": "2025-01-17T01:00:03.102Z",
-            "locale": "en-US"
-        },
-        "fields": {
-            "title": "Blog",
-            "slug": "blog",
-            "seoIndex": true,
-            "seoDescription": "Read insightful articles offering tools and perspectives to navigate life’s challenges and foster personal growth for individuals and families.",
-            "seoKeywords": "blog, insights, therapy, growth, guidance",
-            "header": "Insights to Support Your Journey",
-            "intro": "Therapy is about understanding ourselves and the systems we live in. Whether you're an international, an expat, or simply someone navigating life’s challenges, these articles offer insights and tools to support your journey.\n",
-            "content": "You'll discover concise, insightful articles that offer practical tools and fresh perspectives—whether you're an international, an expat, or simply navigating life's challenges. Each post is designed to empower you with the clarity and strategies you need for personal growth."
         }
     }
 ]
