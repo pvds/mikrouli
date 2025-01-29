@@ -13,7 +13,7 @@ const links = [
 
 <div class="footer relative mt-75">
 	<div
-		class="absolute z-1 w-full min-w-5xl bottom-0 overflow-hidden pointer-events-none">
+		class="absolute z-1 w-full min-w-6xl bottom-0 overflow-hidden pointer-events-none">
 		<svg class="w-[inherit] h-96" xmlns="http://www.w3.org/2000/svg"
 			 viewBox="0 0 1440 690" preserveAspectRatio="none">
 			<path class="fill-primary-200" fill-opacity=".3"
