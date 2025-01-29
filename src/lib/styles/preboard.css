@@ -104,12 +104,12 @@ body {
 	text-wrap: var(--default-heading-text-wrap, balance);
 }
 
-/* Position list markers inside
+/* Position list markers outside
    ====================================================================== */
 ol,
 ul,
 menu {
-	list-style-position: inside;
+	list-style-position: outside;
 }
 
 /* Use a more readable underline style for all links + offset
