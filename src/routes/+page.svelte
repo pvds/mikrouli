@@ -51,8 +51,6 @@ const wave = {
 			<Image
 				image={getImageName(service.heroImage.file.fileName)}
 				alt={service.heroImage.description}
-				aspectRatio={`${service.heroImage.file.details.image.width}/
-					${service.heroImage.file.details.image.height}`}
 				sizes="20rem"
 				heightClass="h-[--spacing(48)]"
 				priority={(i <= 1)}

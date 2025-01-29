@@ -42,8 +42,6 @@ const wave = {
 			<div class="flex-none min-w-[20rem]">
 				<Image
 					image={getImageName(post.heroImage.file.fileName)}
-					aspectRatio={`${post.heroImage.file.details.image.width}/
-					${post.heroImage.file.details.image.height}`}
 					alt={post.heroImage.description}
 					sizes="20rem"
 					priority={(i <= 1)}

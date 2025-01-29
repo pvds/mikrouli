@@ -9,7 +9,8 @@ import { safeIncrement } from "$util/process";
 import { escapeRegex } from "$util/regex";
 import pLimit from "p-limit";
 import sharp from "sharp";
-import { generatePlaceholder, writePlaceholders } from "./placeholders";
+import { writeMetadata } from "./metadata";
+import { generatePlaceholder } from "./placeholders";
 
 /**
  * Main function to process images.
@@ -31,6 +32,8 @@ export async function processImages(
 	const limit = pLimit(concurrency);
 	/** @type {Record<string, string>} */
 	const placeholders = {};
+	/** @type {Record<string, {placeholder: string, width:string, height:string, hasAlpha:boolean}>} */
+	const metaData = {};
 	/** @type {Record<string, number>} */
 	const counts = { generated: 0, skipped: 0, deleted: 0 };
 
@@ -44,7 +47,16 @@ export async function processImages(
 			const baseName = path.parse(file).name;
 			const image = sharp(inputPath);
 			await generateImages(image, baseName, { format, quality, outDir, counts, force });
-			placeholders[baseName] = /** @type {string} */ (await generatePlaceholder(inputPath));
+
+			// Collect metadata for the image
+			const { width, height, hasAlpha } = await image.metadata();
+			const placeholder = /** @type {string} */ (await generatePlaceholder(inputPath));
+			metaData[baseName] = {
+				placeholder: placeholder,
+				width: width?.toString() || "",
+				height: height?.toString() || "",
+				hasAlpha: hasAlpha || false,
+			};
 		}),
 	);
 
@@ -58,7 +70,7 @@ export async function processImages(
 	logMessage(`Deleted ${counts.deleted} stale ${category} images`);
 	logDebug(`Optimizing ${category} images took ${measure(startTime)} seconds`);
 
-	await writePlaceholders(category, placeholders);
+	await writeMetadata(category, metaData);
 }
 
 /**

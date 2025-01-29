@@ -5,7 +5,7 @@
 // ##################################################
 
 // Files
-export const PLACEHOLDERS_FILE = "placeholders.json";
+export const METADATA_FILE = "metadata.json";
 export const IMAGES_FILE = "images.json";
 
 // Directories
