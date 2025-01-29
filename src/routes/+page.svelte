@@ -49,7 +49,10 @@ let services = data.services;
 		<div style="view-transition-name: {service.slug}">
 			<h2 class="mb-4 text-3xl font-bold">{service.title}</h2>
 			<div class="prose prose-base">{@html service.intro}</div>
-			<span class="inline-block mt-4 text-primary-700 hover:underline">Read more →</span>
+			<span
+				class="inline-block mt-4 font-semibold transition-colors hover:underline group-hover:text-accent-600">Read more
+				<span class="inline-block group-hover:animate-wiggle">→</span>
+			</span>
 		</div>
 	</a>
 {/snippet}
