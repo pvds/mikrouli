@@ -11,14 +11,7 @@ let { type = "page" } = $props();
 
 /** @type {HTMLDialogElement|null} */
 let dialog = $state(null);
-
-function openDialog() {
-	dialog?.showModal();
-}
-
-function closeDialog() {
-	dialog?.close();
-}
+let isLoading = $state(true);
 
 /**
  * Function to get the booking URL
@@ -53,12 +46,18 @@ function getBooking(title = false) {
 
 <button
 	class="px-4 py-2 rounded-lg bg-primary-800 text-white hover:bg-primary-900"
-	onclick={openDialog}
+	onclick={() => dialog?.showModal()}
 >
 	{getBooking(true)}
 </button>
 <Dialog bind:dialogElement={dialog} classes="bg-primary-950" fullscreen>
-	<div id="root"></div>
+
+	{#if isLoading}
+		<div class="absolute inset-0 flex items-center justify-center">
+			<div class="w-10 h-10 border-4 border-transparent border-t-white rounded-full animate-spin"></div>
+		</div>
+	{/if}
+
 	<iframe
 		title="Book a session"
 		src={getBooking()}
@@ -66,11 +65,12 @@ function getBooking(title = false) {
 		height="100%"
 		class="w-full h-full"
 		loading="lazy"
+		onload={() => isLoading = false}
 	></iframe>
 	{#snippet header()}
 		<footer class="z-1 flex flex-row-reverse justify-start bg-primary-950">
 			<button
-				onclick={closeDialog}
+				onclick={() => dialog?.close()}
 				class="py-4 px-6 text-sm text-primary-200 hover:text-primary-50"
 				aria-label="Close"
 			>
@@ -85,5 +85,3 @@ function getBooking(title = false) {
 		</footer>
 	{/snippet}
 </Dialog>
-
-
