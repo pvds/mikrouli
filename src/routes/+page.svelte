@@ -17,6 +17,12 @@ const wave = {
 	color: "secondary-100",
 	opacity: 1,
 };
+
+/**
+ * @param {number} i
+ * @returns {boolean}
+ */
+const oddLast = (i) => services.length % 2 === 1 && i === services.length - 1;
 </script>
 
 <Hero title={header}>
@@ -25,7 +31,7 @@ const wave = {
 
 <Section>
 	<div
-		class="grid grid-cols-[repeat(auto-fill,minmax(--spacing(80),1fr))] gap-x-[min(5vw,--spacing(12))] gap-y-12">
+		class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-12">
 	{#each services as service, i}
 		{@render teaser(service.fields, i)}
 	{/each}
@@ -56,7 +62,8 @@ const wave = {
 	/** @type {number} */ i
 )}
 	<a href={`${base}/services/${service.slug}`}
-	   class="group flex flex-col gap-4">
+	   class="group flex flex-col gap-4 col-span-2 {oddLast(i) &&
+	   'sm:col-start-2 lg:col-start-auto'}">
 		{#if service.heroImage}
 			<Image
 				image={getImageName(service.heroImage.file.fileName)}
