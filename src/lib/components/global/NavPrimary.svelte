@@ -1,6 +1,7 @@
 <script>
 import { base } from "$app/paths";
 import { isCurrentPage } from "$lib/helpers/page";
+import BookingDialog from "$ui/BookingDialog.svelte";
 import WaveCss from "$visuals/WaveCss.svelte";
 
 /** @typedef {{ href: string, label: string, title: string | undefined }} NavItem */
@@ -15,8 +16,14 @@ const navItemsBase = menu.fields.items.map(({ slug, title, header }) => ({
 	title: header,
 }));
 /** @type NavItem */
-const navItemHome = { href: `${base}/`, label: "Home", title: "Mikrouli home page" };
+const navItemHome = { href: base, label: "Home", title: "Mikrouli home page" };
 const navItemsWithHome = [navItemHome, ...navItemsBase];
+const bookingCta = {
+	text: "Book a Session",
+	textShort: "Book",
+	textLong: "Book a Session with me",
+	classes: "px-4 py-2  inset-shadow-xs inset-shadow-accent-800 hover:inset-shadow-primary-950",
+};
 </script>
 <nav class="nav-primary ml-auto"
 	 aria-label="Main navigation">
@@ -27,15 +34,19 @@ const navItemsWithHome = [navItemHome, ...navItemsBase];
 </nav>
 
 {#snippet navMenu(/** @type NavItem[] */ navItems, /** @type string */ classes)}
-	<ul class="flex {classes}">
+	<ul class="flex {classes} items-center justify-end overflow-x-auto">
 	{#each navItems as { href, label, title }}
 		<li class="grow">
 			<a {href} {title} aria-current={isCurrentPage(href) ? "page" : undefined}
 			   class="nav-menu__link inline-block w-full text-center px-3 py-1 font-semibold
+			   {href === base && 'max-sm:hidden'}
 				{isCurrentPage(href) ? 'text-primary-50' :
 				'text-primary-200 hover:text-primary-50'}">{label}</a>
 		</li>
 	{/each}
+		<li class="grow">
+			<BookingDialog type="book" cta={bookingCta}/>
+		</li>
 	</ul>
 {/snippet}
 
