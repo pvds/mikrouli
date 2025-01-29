@@ -30,7 +30,7 @@ let {
 } = $props();
 
 const IMAGE_DIR = "/images";
-const POSITION_CLASSES = "absolute object-center object-cover";
+const POSITION_CLASSES = "absolute object-[50%_25%] object-cover";
 
 let loaded = $state(true);
 /** @type {HTMLImageElement|undefined} */
