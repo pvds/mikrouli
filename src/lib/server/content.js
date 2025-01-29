@@ -31,15 +31,13 @@ import { markdownToHtml, splitText } from "./utils.js";
  * @returns {Array<T & { fields: BaseFields }>} Processed data with sections.
  */
 const preprocessJson = (data) => {
-	return data.map((item) => {
-		return {
-			...item,
-			fields: {
-				...item.fields,
-				sections: [],
-			},
-		};
-	});
+	return data.map((item) => ({
+		...item,
+		fields: {
+			...item.fields,
+			sections: [],
+		},
+	}));
 };
 
 /**
@@ -97,12 +95,10 @@ export const getPage = (slug) => {
 
 	return {
 		...page,
-		...{
-			fields: {
-				...page.fields,
-				intro: markdownToHtml(page.fields.intro),
-				sections: splitText(markdownToHtml(page.fields.content)),
-			},
+		fields: {
+			...page.fields,
+			intro: markdownToHtml(page.fields.intro),
+			sections: splitText(markdownToHtml(page.fields.content)),
 		},
 	};
 };
@@ -122,12 +118,10 @@ export const getService = (slug) => {
 
 	return {
 		...service,
-		...{
-			fields: {
-				...service.fields,
-				intro: markdownToHtml(service.fields.intro),
-				sections: splitText(markdownToHtml(service.fields.content)),
-			},
+		fields: {
+			...service.fields,
+			intro: markdownToHtml(service.fields.intro),
+			sections: splitText(markdownToHtml(service.fields.content)),
 		},
 	};
 };
@@ -142,11 +136,9 @@ export const getServices = () => {
 	return (
 		services?.map((service) => ({
 			...service,
-			...{
-				fields: {
-					...service.fields,
-					intro: markdownToHtml(service.fields.intro),
-				},
+			fields: {
+				...service.fields,
+				intro: markdownToHtml(service.fields.intro),
 			},
 		})) || []
 	);
@@ -177,12 +169,10 @@ export const getPost = (slug) => {
 
 	return {
 		...post,
-		...{
-			fields: {
-				...post.fields,
-				intro: markdownToHtml(post.fields.intro),
-				sections: splitText(markdownToHtml(post.fields.content)),
-			},
+		fields: {
+			...post.fields,
+			intro: markdownToHtml(post.fields.intro),
+			sections: splitText(markdownToHtml(post.fields.content)),
 		},
 	};
 };
@@ -197,11 +187,9 @@ export const getPosts = () => {
 	return (
 		posts?.map((post) => ({
 			...post,
-			...{
-				fields: {
-					...post.fields,
-					intro: markdownToHtml(post.fields.intro),
-				},
+			fields: {
+				...post.fields,
+				intro: markdownToHtml(post.fields.intro),
 			},
 		})) || []
 	);
