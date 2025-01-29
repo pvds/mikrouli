@@ -39,7 +39,7 @@ onDestroy(() => {
 		<svg class="w-[inherit] h-20"
 			 xmlns="http://www.w3.org/2000/svg"
 			 viewBox="0 0 1440 690" preserveAspectRatio="none">
-			<path class="fill-primary-900"
+			<path class="fill-primary-900 drop-shadow-2xl"
 				  d="M1440 0v438c-142 18-284 35-415 31-130-4-249-30-355-84S472 249 362 216c-109-33-236-18-362-3V0h1440Z"/>
 		</svg>
 	</div>
