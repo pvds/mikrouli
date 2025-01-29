@@ -161,11 +161,17 @@
 	--ease-out: cubic-bezier(0, 0, 0.2, 1);
 	--ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
-	--transition-duration-fastest: 100ms;
-	--transition-duration-fast: var(--default-transition-duration, 150ms);
+	--transition-delay-shortest: 100ms;
+	--transition-delay-short: 150ms;
+	--transition-delay-normal: 250ms;
+	--transition-delay-long: 350ms;
+	--transition-delay-longest: 500ms;
+
+	--transition-duration-shortest: 100ms;
+	--transition-duration-short: var(--default-transition-duration, 150ms);
 	--transition-duration-normal: 250ms;
-	--transition-duration-slow: 350ms;
-	--transition-duration-slowest: 500ms;
+	--transition-duration-long: 350ms;
+	--transition-duration-longest: 500ms;
 
 	--animate-spin: spin 1s linear infinite;
 	--animate-ping: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
@@ -202,6 +208,17 @@
 		50% {
 			transform: none;
 			animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+		}
+	}
+
+	@keyframes scaleIn {
+		from {
+			opacity: 0;
+			transform: scale(0.8);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1);
 		}
 	}
 
