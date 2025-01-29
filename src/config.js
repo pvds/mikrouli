@@ -46,6 +46,45 @@ export const THRESHOLDS = {
 	seo: 100,
 };
 
+// Booking
+const BOOKING_URL = "https://mikrouli.setmore.com";
+const BOOKING_PATH = "/book";
+const BOOKING_INTAKE_PATH =
+	"/book?step=time-slot&products=6e0f678a-c1ef-49ae-bc6e-0087886e4e22&type=service&staff=cbd74a17-ccea-4b29-98a7-b7f90abc10e2&staffSelected=true";
+const BOOKING_SESSION_PATH =
+	"/book?step=time-slot&products=09def0c7-8a39-48de-8167-5d6bff597020&type=service&staff=cbd74a17-ccea-4b29-98a7-b7f90abc10e2&staffSelected=true";
+const BOOKING_PAGE_CTA = "View Booking page";
+const BOOKING_BOOK_CTA = "Schedule a Session";
+const BOOKING_INTAKE_CTA = "Schedule an Intake";
+const BOOKING_SESSION_CTA = "Schedule a Therapy Session";
+
+/**
+ * @typedef {{cta: string, url: string}} BookingOption
+ * @return {{
+ * page: BookingOption,
+ * book: BookingOption,
+ * intake: BookingOption,
+ * session: BookingOption}}}
+ **/
+export const BOOKING_OPTIONS = {
+	page: {
+		cta: BOOKING_PAGE_CTA,
+		url: BOOKING_URL,
+	},
+	book: {
+		cta: BOOKING_BOOK_CTA,
+		url: BOOKING_URL + BOOKING_PATH,
+	},
+	intake: {
+		cta: BOOKING_INTAKE_CTA,
+		url: BOOKING_URL + BOOKING_INTAKE_PATH,
+	},
+	session: {
+		cta: BOOKING_SESSION_CTA,
+		url: BOOKING_URL + BOOKING_SESSION_PATH,
+	},
+};
+
 // Ports
 export const PORT = 4173;
 export const DEBUG_PORT = 9222;
