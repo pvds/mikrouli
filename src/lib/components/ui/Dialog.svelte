@@ -26,7 +26,7 @@ let {
 </script>
 
 <dialog
-	bind:this={dialogElement} onclose={() => console.log("closed", dialogElement?.open)}
+	bind:this={dialogElement}
 	class="rounded-3xl inset-0 m-auto border-none {fullscreen && 'h-full w-full'}
 	{classes} max-w-[min(120ch,calc(--spacing(-16)+100%))] max-h-[min(120ch,calc(--spacing(-16)+100%))]
 	backdrop:bg-primary-950/50"
