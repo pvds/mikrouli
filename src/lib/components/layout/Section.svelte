@@ -2,8 +2,8 @@
 /**
  * @typedef {Object} Props
  * @property {string} [classes]
- * @property {'sm'|'md'|'lg'|'custom'} [size='md']
- * @property {'primary'|'secondary'} [theme='md']
+ * @property {'sm'|'md'|'lg'|undefined} [size='md']
+ * @property {'primary'|'secondary'} [theme='primary']
  * @property {string} [customSpacing]
  * @property {boolean} [wave=false]
  * @property {import('svelte').Snippet} [children]
@@ -12,62 +12,44 @@
 import WaveSvg from "$visuals/WaveSvg.svelte";
 
 /** @type {Props} */
-let { classes, size = "md", theme, customSpacing, wave, children } = $props();
+let {
+	classes = "",
+	size = "md",
+	theme = "primary",
+	customSpacing,
+	wave = false,
+	children,
+} = $props();
 
+const spacingX = "px-4 sm:px-6 md:px-8";
 const spacingY = {
-	sm: {
-		default: "py-6 md:py-10",
-		wave: "md:py-2 my-10",
-	},
-	md: {
-		default: "py-10 md:py-16",
-		wave: "md:py-6 my-14",
-	},
-	lg: {
-		default: "py-14 md:py-20",
-		wave: "md:py-10 my-18",
-	},
+	sm: { default: "py-6 md:py-10", wave: "md:py-2 my-10" },
+	md: { default: "py-10 md:py-16", wave: "md:py-6 my-14" },
+	lg: { default: "py-14 md:py-20", wave: "md:py-10 my-18" },
 };
 
-let spacing = $derived(() => {
-	let vertical = "";
-	const horizontal = "px-4 sm:px-6 md:px-8";
-	switch (size) {
-		case "sm":
-			vertical = wave ? spacingY.sm.wave : spacingY.sm.default;
-			break;
-		case "md":
-			vertical = wave ? spacingY.md.wave : spacingY.md.default;
-			break;
-		case "lg":
-			vertical = wave ? spacingY.lg.wave : spacingY.lg.default;
-			break;
-		default:
-			vertical = wave ? spacingY.md.wave : spacingY.md.default;
-	}
-	return customSpacing ? customSpacing : `${vertical} ${horizontal}`;
-});
+/** Compute spacing dynamically */
+let spacing = $derived(
+	() => customSpacing || `${wave ? spacingY[size].wave : spacingY[size].default} ${spacingX}`,
+);
 
-let themeClasses = $derived(() => {
-	switch (theme) {
-		case "primary":
-			return "bg-primary-100 text-primary-800";
-		case "secondary":
-			return "bg-secondary-100 text-secondary-800";
-		default:
-			return wave ? "bg-secondary-100 text-secondary-800" : "";
-	}
-});
-let waveColor = $derived(() => {
-	switch (theme) {
-		case "primary":
-			return "primary-100";
-		case "secondary":
-			return "secondary-100";
-		default:
-			return "secondary-100";
-	}
-});
+/** Theme-based classes */
+let themeClasses = $derived(
+	() =>
+		({
+			primary: "bg-primary-100 text-primary-800",
+			secondary: "bg-secondary-100 text-secondary-800",
+		})[theme] || (wave ? "bg-secondary-100 text-secondary-800" : ""),
+);
+
+/** Wave color */
+let waveColor = $derived(
+	() =>
+		({
+			primary: "primary-100",
+			secondary: "secondary-100",
+		})[theme] || "secondary-100",
+);
 </script>
 
 <section class="relative {classes} {spacing()} {themeClasses()}">
@@ -76,7 +58,7 @@ let waveColor = $derived(() => {
 			<WaveSvg color={waveColor()}>
 				{@render children?.()}
 			</WaveSvg>
-	    {:else}
+		{:else}
 			{@render children?.()}
 		{/if}
 	</div>
