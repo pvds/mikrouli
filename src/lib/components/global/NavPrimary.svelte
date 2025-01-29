@@ -22,7 +22,7 @@ const bookingCta = {
 	text: "Book a Session",
 	textShort: "Book",
 	textLong: "Book a Session with me",
-	classes: "px-4 py-2  inset-shadow-xs inset-shadow-accent-800 hover:inset-shadow-primary-950",
+	classes: "px-4 py-2 inset-shadow-xs inset-shadow-accent-800 hover:inset-shadow-primary-950",
 };
 </script>
 <nav class="nav-primary ml-auto"
@@ -38,7 +38,7 @@ const bookingCta = {
 	{#each navItems as { href, label, title }}
 		<li class="grow">
 			<a {href} {title} aria-current={isCurrentPage(href) ? "page" : undefined}
-			   class="nav-menu__link inline-block w-full text-center px-3 py-1 font-semibold
+			   class="nav-menu__link inline-block w-full text-center px-3 py-1 font-semibold transition-colors
 			   {href === base && 'max-sm:hidden'}
 				{isCurrentPage(href) ? 'text-primary-50' :
 				'text-primary-200 hover:text-primary-50'}">{label}</a>
