@@ -20,7 +20,7 @@ const getBookingUrl = () => BOOKING_OPTIONS[type].url;
 </script>
 
 <button
-	class="px-4 py-2 rounded-lg bg-accent-700 text-white hover:bg-accent-800"
+	class="px-4 py-2 rounded-full transition-all bg-accent-600 text-white hover:bg-accent-700 inset-shadow-xs inset-shadow-accent-700 drop-shadow-sm shadow-accent-900"
 	onclick={() => dialog?.showModal()}
 >
 	{getBookingCta()}
