@@ -2,13 +2,21 @@
 import { BOOKING_OPTIONS, BOOKING_URL } from "$config";
 import Dialog from "$ui/Dialog.svelte";
 
+/** @typedef {object} CustomCta
+ *  @property {string} text
+ *  @property {string} textShort
+ *  @property {string} textLong
+ *  @property {string} [classes]
+ */
+
 /**
  * @typedef {Object} Props
  * @property {'page'|'book'|'intake'|'session'} [type='page']
+ * @property {CustomCta} [cta]
  */
 
 /** @type {Props} */
-let { type = "page" } = $props();
+let { type = "page", cta } = $props();
 
 /** @type {HTMLDialogElement|null} */
 let dialog = $state(null);
@@ -20,10 +28,17 @@ const getBookingUrl = () => BOOKING_OPTIONS[type].url;
 </script>
 
 <button
-	class="px-4 py-2 rounded-full transition-all bg-accent-600 text-white hover:bg-accent-700 inset-shadow-xs inset-shadow-accent-700 drop-shadow-sm shadow-accent-900"
+	class="{cta?.classes ? cta.classes : 'px-4 py-2'}
+	rounded-full transition-all font-semibold bg-accent-600  hover:bg-accent-700 text-white"
 	onclick={() => dialog?.showModal()}
 >
-	{getBookingCta()}
+	{#if cta}
+		<span class="xs:hidden">{cta.textShort}</span>
+		<span class="max-xs:hidden min-lg:hidden">{cta.text}</span>
+		<span class="max-lg:hidden">{cta.textLong}</span>
+	{:else}
+		{getBookingCta()}
+	{/if}
 </button>
 <Dialog bind:dialogElement={dialog} classes="bg-primary-900" fullscreen>
 
