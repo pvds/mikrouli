@@ -2,17 +2,17 @@
 /**
  * @typedef {Object} Props
  * @property {string} [classes]
- * @property {'sm'|'md'|'lg'|'custom'} [size='md']
- * @property {'primary'|'secondary'} [theme='md']
+ * @property {'sm'|'md'|'lg'|undefined} [size='md']
+ * @property {'primary'|'secondary'|'default'} [theme='default']
  * @property {string} [customSpacing]
- * @property {boolean} [wave=false]
+ * @property {boolean} [wave]
  * @property {import('svelte').Snippet} [children]
  */
 
 import WaveSvg from "$visuals/WaveSvg.svelte";
 
 /** @type {Props} */
-let { classes, size = "md", theme, customSpacing, wave, children } = $props();
+let { classes, size = "md", theme = "default", customSpacing, wave, children } = $props();
 
 const spacingY = {
 	sm: {
