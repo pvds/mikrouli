@@ -164,13 +164,13 @@
 
 	--transition-delay-shortest: 100ms;
 	--transition-delay-short: 150ms;
-	--transition-delay-normal: 250ms;
+	--transition-delay-normal: var(--default-transition-delay, 250ms);
 	--transition-delay-long: 350ms;
 	--transition-delay-longest: 500ms;
 
 	--transition-duration-shortest: 100ms;
-	--transition-duration-short: var(--default-transition-duration, 150ms);
-	--transition-duration-normal: 250ms;
+	--transition-duration-short: 150ms;
+	--transition-duration-normal: var(--default-transition-duration, 250ms);
 	--transition-duration-long: 350ms;
 	--transition-duration-longest: 500ms;
 
@@ -255,7 +255,8 @@
 
 	/* === DEFAULTS === */
 	--default-heading-text-wrap: balance;
-	--default-transition-duration: 150ms;
+	--default-transition-duration: 250ms;
+	--default-transition-delay: 250ms;
 	--default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	--default-font-family: var(--font-sans);
 	--default-mono-font-family: var(--font-mono);
