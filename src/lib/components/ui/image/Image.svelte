@@ -54,7 +54,7 @@ const srcset = (sizes) =>
 	<picture>
 		<source srcset={srcset(IMAGE_SIZES)} sizes={sizes} type="image/webp" />
 		<img
-			class="{POSITION_CLASSES} transition-opacity opacity-0 duration-300 {classes}"
+			class="{POSITION_CLASSES} transition-all opacity-0 {classes}"
 			src={`${base}${directory}/${image}-1280.webp`}
 			{alt}
 			bind:this={img}
