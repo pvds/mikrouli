@@ -2,7 +2,6 @@
 /**
  * @typedef {Object} Props
  * @property {string} [classes]
- * @property {boolean} [blocking=false]
  * @property {boolean} [fullscreen=false]
  * @property {HTMLDialogElement|null} dialogElement
  * @property {import('svelte').Snippet} [children]
@@ -14,8 +13,8 @@
 
 /** @type {Props} */
 let {
-	fullscreen = false,
 	classes = "",
+	fullscreen = false,
 	dialogElement = $bindable(),
 	children,
 	header,
@@ -23,13 +22,27 @@ let {
 	footer,
 	footerContent,
 } = $props();
+
+/**
+ * Handle backdrop click to close the dialog
+ * NB this only works if the dialog is modal (dialog.showModal())
+ * @param {MouseEvent} event
+ */
+function handleBackdropClick(event) {
+	if (event.target === dialogElement) {
+		dialogElement?.close();
+	}
+}
 </script>
 
-<dialog
-	bind:this={dialogElement}
-	class="rounded-3xl inset-0 m-auto border-none {fullscreen && 'h-full w-full'}
-	{classes} max-w-[min(120ch,calc(--spacing(-16)+100%))] max-h-[min(120ch,calc(--spacing(-16)+100%))]
-	backdrop:bg-primary-950/50"
+<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_noninteractive_element_interactions
+ 	(native dialog is already accessible, closing on backdrop click is an enhancement ) -->
+<dialog bind:this={dialogElement}
+	onclick={handleBackdropClick}
+	class="rounded-3xl inset-0 m-auto border-none {fullscreen && 'h-full w-full'} {classes}
+	max-w-[min(120ch,calc(--spacing(-16)+100%))] max-h-[min(120ch,calc(--spacing(-16)+100%))]
+	max-sm:max-w-[calc(--spacing(-4)+100%)] max-sm:max-h-[calc(--spacing(-4)+100%)] max-sm:rounded-lg
+	backdrop:bg-primary-950/50 backdrop:cursor-pointer backdrop:grayscale"
 >
 	<div class="flex flex-col h-full">
 		{#if header}
