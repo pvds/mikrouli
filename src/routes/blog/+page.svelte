@@ -23,11 +23,7 @@ const wave = {
 </Hero>
 
 {#each posts as post, i}
-	<Section
-		classes={`px-8 ${i % 2 === 1 ? "py-10 my-14 bg-secondary-100 text-secondary-800" :
-		"py-14"}`}
-		{...(i % 2 === 1 && { wave })}
-	>
+	<Section wave={i % 2 === 1}>
 		{@render teaser(post.fields, i)}
 	</Section>
 {/each}

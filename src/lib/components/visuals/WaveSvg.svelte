@@ -15,7 +15,7 @@
 let {
 	direction = "both",
 	alignment = "left",
-	color = "primary-100",
+	color = "secondary-100",
 	height = 30,
 	opacity = 1,
 	children,
@@ -36,7 +36,7 @@ const alignmentClass = alignment === "left" ? "left-0" : "right-0";
 			</svg>
 		</div>
 	{/if}
-	<div class="wave__content {color} relative z-2 py-8">
+	<div class="wave__content relative z-2 py-8">
 		{@render children?.()}
 	</div>
 	{#if direction === 'bottom' || direction === 'both'}

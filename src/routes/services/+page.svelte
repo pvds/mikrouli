@@ -23,10 +23,7 @@ const wave = {
 </Hero>
 
 {#each services as service, i}
-	<Section
-		classes={`px-8 py-14 ${i % 2 === 1 ? "my-14 bg-secondary-100 text-secondary-800" : ""}`}
-		{...(i % 2 === 1 ? { wave } : {})}
-	>
+	<Section wave={i % 2 === 1}>
 		{@render teaser(service.fields, i)}
 	</Section>
 {/each}

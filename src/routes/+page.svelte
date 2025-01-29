@@ -10,14 +10,6 @@ let { data } = $props();
 let { header, intro, sections } = data.page.fields;
 let services = data.services;
 
-/** @type {import("$visuals/WaveSvg.type").WaveProps} */
-const wave = {
-	direction: "both",
-	alignment: "left",
-	color: "secondary-100",
-	opacity: 1,
-};
-
 /**
  * @param {number} i
  * @returns {boolean}
@@ -39,11 +31,7 @@ const oddLast = (i) => services.length % 2 === 1 && i === services.length - 1;
 </Section>
 
 {#each sections as section, i}
-	<Section
-		classes={`px-8 ${i % 2 === 0 ? "py-10 my-14 bg-secondary-100 text-secondary-800" :
-		"py-14"}`}
-		{...(i % 2 === 0 && { wave })}
-	>
+	<Section wave={i % 2 === 0}>
 		<div
 			class="prose prose-lg marker:text-accent-600 prose-strong:text-accent-600 prose-strong:font-bold prose-headings:text-3xl prose-headings:font-semibold">{@html
 			section}</div>
