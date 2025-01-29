@@ -54,14 +54,15 @@ export const splitText = (text, identifier = "<hr>") => {
  *
  * Also prepends base path to relative links
  * @param {string|undefined} markdown - The Markdown text to convert.
+ * @param {boolean} breaks - Whether to convert newlines to <br> tags.
  * @return {string} - The HTML content.
  */
-export const markdownToHtml = (markdown) => {
+export const markdownToHtml = (markdown, breaks = false) => {
 	if (!markdown) return "";
 
 	marked.use(gfmHeadingId({ prefix: "heading-" }));
 	const htmlProcessor = processSync(
-		(input) => marked(input, { async: false, breaks: true }),
+		(input) => marked(input, { async: false, breaks }),
 		obfuscateEmails,
 		prependBasePath,
 	);
