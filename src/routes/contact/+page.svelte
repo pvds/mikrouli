@@ -15,7 +15,8 @@ let { header, intro, sections } = data.page.fields;
 	<Section>
 		<div class="prose prose-base">{@html section}</div>
 		{#if i === 0}
-			<BookingDialog />
+			<BookingDialog type="intake" />
+			<BookingDialog type="session" />
 		{/if}
 	</Section>
 {/each}
