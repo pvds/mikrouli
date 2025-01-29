@@ -1,6 +1,7 @@
 <script>
 import Hero from "$layout/Hero.svelte";
 import Section from "$layout/Section.svelte";
+import BookingDialog from "$ui/BookingDialog.svelte";
 
 let { data } = $props();
 let { header, intro, sections } = data.page.fields;
@@ -10,8 +11,11 @@ let { header, intro, sections } = data.page.fields;
 	{@html intro}
 </Hero>
 
-{#each sections as section}
+{#each sections as section, i}
 	<Section>
 		<div class="prose prose-base">{@html section}</div>
+		{#if i === 0}
+			<BookingDialog />
+		{/if}
 	</Section>
 {/each}
