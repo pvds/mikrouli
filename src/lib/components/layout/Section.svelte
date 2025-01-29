@@ -14,6 +14,7 @@ import WaveSvg from "$visuals/WaveSvg.svelte";
 /** @type {Props} */
 let { classes, size = "md", theme = "default", customSpacing, wave, children } = $props();
 
+const spacingX = "px-4 sm:px-6 md:px-8";
 const spacingY = {
 	sm: {
 		default: "py-6 md:py-10",
@@ -31,7 +32,6 @@ const spacingY = {
 
 let spacing = $derived(() => {
 	let vertical = "";
-	const horizontal = "px-4 sm:px-6 md:px-8";
 	switch (size) {
 		case "sm":
 			vertical = wave ? spacingY.sm.wave : spacingY.sm.default;
@@ -45,7 +45,7 @@ let spacing = $derived(() => {
 		default:
 			vertical = wave ? spacingY.md.wave : spacingY.md.default;
 	}
-	return customSpacing ? customSpacing : `${vertical} ${horizontal}`;
+	return customSpacing ? customSpacing : `${vertical} ${spacingX}`;
 });
 
 let themeClasses = $derived(() => {
