@@ -15,8 +15,10 @@ let { header, intro, sections } = data.page.fields;
 	<Section>
 		<div class="prose prose-base">{@html section}</div>
 		{#if i === 0}
-			<BookingDialog type="intake" />
-			<BookingDialog type="session" />
+			<div class="flex gap-2 mt-6">
+				<BookingDialog type="intake" />
+				<BookingDialog type="session" />
+			</div>
 		{/if}
 	</Section>
 {/each}
