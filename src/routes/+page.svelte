@@ -3,6 +3,7 @@ import { base } from "$app/paths";
 import Hero from "$layout/Hero.svelte";
 import Section from "$layout/Section.svelte";
 import { getImageName } from "$lib/helpers/image.js";
+import BookingDialog from "$ui/BookingDialog.svelte";
 import Image from "$ui/image/Image.svelte";
 
 let { data } = $props();
@@ -37,7 +38,14 @@ const wave = {
 		"py-14"}`}
 		{...(i % 2 === 0 && { wave })}
 	>
-		<div class="prose prose-base">{@html section}</div>
+		<div class="prose prose-lg prose-headings:text-3xl">{@html section}</div>
+		{#if i === sections.length - 1}
+			<div class="flex flex-wrap gap-4 mt-8">
+				<BookingDialog type="intake"/>
+				<a href={`${base}/contact`}
+				   class="py-2 px-4 font-semibold transition-colors hover:underline group-hover:text-accent-600">Get in contact</a>
+			</div>
+		{/if}
 	</Section>
 {/each}
 
