@@ -18,6 +18,9 @@
 - [ ] add reference field to page content type to link to services or other 
   pages (can be used to get data like slug but also to facilitate nested 
   navigation and linking)
+- [ ] implement shortcodes for contentful (like `{{dialog:booking(intake)}}` to 
+  include a booking dialog and `{{embed:youtube(https://youtube.com/...)}}` 
+  to embed a youtube video)
 
 #### Global
 
