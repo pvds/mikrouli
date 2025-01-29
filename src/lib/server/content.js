@@ -1,19 +1,6 @@
-/** @type {import("$types/contentful").NavigationEntry[]}*/
-import navigationItems from "$data/generated/navigation.json";
-/** @type {import("$types/contentful").PageEntry[]}*/
-import pageItems from "$data/generated/pages.json";
-/** @type {import("$types/contentful").PostEntry[]}*/
-import postItems from "$data/generated/posts.json";
-/** @type {import("$types/contentful").ServiceEntry[]}*/
-import serviceItems from "$data/generated/services.json";
-/** @type {import("$types/global").global}*/
-import globalData from "$data/global.json";
-/** @type {import("$global/seo/Seo.svelte.types").SEOProps}*/
-import seoData from "$data/seo.json";
-import { error } from "@sveltejs/kit";
-import { markdownToHtml, splitText } from "./utils.js";
-
 /**
+ * @file This file contains functions to fetch and process content data.
+ *
  * @typedef {import('$types/contentful').BaseFieldsRaw} BaseFieldsRaw
  * @typedef {import('$types/contentful').BaseFields} BaseFields
  * @typedef {import('$types/contentful').PostEntry} PostEntry
@@ -23,6 +10,21 @@ import { markdownToHtml, splitText } from "./utils.js";
  * @typedef {import('$global/seo/Seo.svelte.types').SEOProps} SEOProps
  * @typedef {import('$types/global').global} GlobalProps
  */
+
+/** @type {NavigationEntry[]}*/
+import navigationItems from "$data/generated/navigation.json";
+/** @type {PageEntry[]}*/
+import pageItems from "$data/generated/pages.json";
+/** @type {PostEntry[]}*/
+import postItems from "$data/generated/posts.json";
+/** @type {ServiceEntry[]}*/
+import serviceItems from "$data/generated/services.json";
+/** @type {GlobalProps}*/
+import globalData from "$data/global.json";
+/** @type {SEOProps}*/
+import seoData from "$data/seo.json";
+import { error } from "@sveltejs/kit";
+import { markdownToHtml, splitText } from "./utils.js";
 
 /**
  * Preprocess JSON data to ensure `sections` field exists.
