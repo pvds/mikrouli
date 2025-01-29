@@ -47,7 +47,7 @@ export const THRESHOLDS = {
 };
 
 // Booking
-const BOOKING_URL = "https://mikrouli.setmore.com";
+export const BOOKING_URL = "https://mikrouli.setmore.com";
 const BOOKING_PATH = "/book";
 const BOOKING_INTAKE_PATH =
 	"/book?step=time-slot&products=6e0f678a-c1ef-49ae-bc6e-0087886e4e22&type=service&staff=cbd74a17-ccea-4b29-98a7-b7f90abc10e2&staffSelected=true";
