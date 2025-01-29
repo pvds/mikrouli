@@ -39,10 +39,15 @@ function handleBackdropClick(event) {
  	(native dialog is already accessible, closing on backdrop click is an enhancement ) -->
 <dialog bind:this={dialogElement}
 	onclick={handleBackdropClick}
-	class="rounded-3xl inset-0 m-auto border-none {fullscreen && 'h-full w-full'} {classes}
+	class="inset-0 m-auto border-none {fullscreen && 'h-full w-full'} {classes}
 	max-w-[min(120ch,calc(--spacing(-16)+100%))] max-h-[min(120ch,calc(--spacing(-16)+100%))]
-	max-sm:max-w-[calc(--spacing(-4)+100%)] max-sm:max-h-[calc(--spacing(-4)+100%)] max-sm:rounded-lg
-	backdrop:bg-primary-950/50 backdrop:cursor-pointer backdrop:grayscale"
+	max-sm:max-w-[calc(--spacing(-4)+100%)] max-sm:max-h-[calc(--spacing(-4)+100%)]
+	rounded-3xl max-sm:rounded-lg
+	transition-all transition-discrete duration-short open:delay-short open:duration-long
+	starting:open:opacity-0 starting:open:scale-75 open:opacity-100 open:scale-100
+	scale-75 opacity-0
+	backdrop:bg-primary-950/50 backdrop:cursor-pointer backdrop:grayscale backdrop:opacity-0
+	starting:open:backdrop:opacity-0 open:backdrop:opacity-100 open:backdrop:delay-short backdrop:duration-short"
 >
 	<div class="flex flex-col h-full">
 		{#if header}
