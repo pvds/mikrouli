@@ -41,6 +41,22 @@ const getBookingUrl = () => BOOKING_OPTIONS[type].url;
 	{/if}
 </button>
 <Dialog bind:dialogElement={dialog} classes="bg-primary-900" fullscreen>
+	{#snippet header()}
+		<header class="z-1 flex flex-row-reverse justify-start bg-primary-900">
+			<button
+				onclick={() => dialog?.close()}
+				class="py-4 px-6 text-sm font-semibold text-primary-200 hover:text-primary-50"
+				aria-label="Close"
+			>
+				Close Dialog
+			</button>
+			<a href={getBookingUrl()} target="_blank"
+			   class="py-4 px-6 text-sm font-semibold text-primary-200 hover:text-primary-50"
+			>
+				Open in a New Tab
+			</a>
+		</header>
+	{/snippet}
 
 	{#if iframeState === "loading"}
 		<div class="absolute inset-0 flex items-center justify-center">
@@ -69,20 +85,4 @@ const getBookingUrl = () => BOOKING_OPTIONS[type].url;
 		onload={() => (iframeState = "loaded")}
 		onerror={() => (iframeState = "failed")}
 	></iframe>
-	{#snippet header()}
-		<footer class="z-1 flex flex-row-reverse justify-start bg-primary-900">
-			<button
-				onclick={() => dialog?.close()}
-				class="py-4 px-6 text-sm text-primary-200 hover:text-primary-50"
-				aria-label="Close"
-			>
-				Close Dialog
-			</button>
-			<a href={getBookingUrl()} target="_blank"
-			   class="py-4 px-6 text-sm text-primary-200 hover:text-primary-50"
-			>
-				Open in a New Tab
-			</a>
-		</footer>
-	{/snippet}
 </Dialog>
