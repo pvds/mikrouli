@@ -26,9 +26,9 @@ const wave = {
 <Section>
 	<div
 		class="grid grid-cols-[repeat(auto-fill,minmax(--spacing(80),1fr))] gap-x-[min(5vw,--spacing(12))] gap-y-12">
-{#each services as service, i}
+	{#each services as service, i}
 		{@render teaser(service.fields, i)}
-{/each}
+	{/each}
 	</div>
 </Section>
 
@@ -38,7 +38,9 @@ const wave = {
 		"py-14"}`}
 		{...(i % 2 === 0 && { wave })}
 	>
-		<div class="prose prose-lg prose-headings:text-3xl">{@html section}</div>
+		<div
+			class="prose prose-lg marker:text-accent-600 prose-strong:text-accent-600 prose-strong:font-bold prose-headings:text-3xl prose-headings:font-semibold">{@html
+			section}</div>
 		{#if i === sections.length - 1}
 			<div class="flex flex-wrap gap-4 mt-8">
 				<BookingDialog type="intake"/>
