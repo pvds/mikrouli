@@ -44,6 +44,7 @@
 	--spacing: 0.25rem;
 
 	/* === BREAKPOINTS === */
+	--breakpoint-xs: 32rem;
 	--breakpoint-sm: 40rem;
 	--breakpoint-md: 48rem;
 	--breakpoint-lg: 64rem;
