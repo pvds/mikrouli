@@ -31,7 +31,7 @@ const getBookingUrl = () => BOOKING_OPTIONS[type].url;
 		<div class="absolute inset-0 flex items-center justify-center">
 			<div class="w-10 h-10 border-4 border-transparent border-t-white rounded-full animate-spin"></div>
 		</div>
-	{:else if iframeState !== "failed"}
+	{:else if iframeState === "failed"}
 		<div class="absolute inset-0 flex items-center justify-center bg-primary-900">
 			<section>
 				<h1 class="text-3xl">Failed to load the booking form.</h1>
