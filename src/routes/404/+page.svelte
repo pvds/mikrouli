@@ -13,7 +13,7 @@ let { header, intro, sections } = data.page.fields;
 			{@html intro}
 		</div>
 		<div class="flex-none w-xs flex items-center">
-			<Image image="chair" alt="Armchair" sizes="20rem" priority={true}/>
+			<Image image="chair" alt="Armchair" sizes="20rem" usePlaceholder={false} priority={true}/>
 		</div>
 	</div>
 </Hero>
