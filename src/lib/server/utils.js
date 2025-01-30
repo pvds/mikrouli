@@ -1,6 +1,7 @@
 import { base } from "$app/paths";
 import { marked } from "marked";
 import { gfmHeadingId } from "marked-gfm-heading-id";
+import { parseShortcodes } from "./shortcodes/shortcodes.js";
 
 /**
  * Compose multiple functions into a single function.
@@ -62,6 +63,7 @@ export const markdownToHtml = (markdown, breaks = false) => {
 
 	marked.use(gfmHeadingId({ prefix: "heading-" }));
 	const htmlProcessor = processSync(
+		parseShortcodes,
 		(input) => marked(input, { async: false, breaks }),
 		obfuscateEmails,
 		prependBasePath,

@@ -28,6 +28,8 @@ export const IMAGE_EXTENSIONS = [
 // URL
 export const URL_SUBFOLDER_STAGING = "/mikrouli";
 export const URL_SUBFOLDER_PRODUCTION = "";
+export const URL_BASE_STAGING = "https://pvdv.github.io/mikrouli";
+export const URL_BASE_PRODUCTION = "https://mikrouli.com";
 
 // Contentful
 /** @type {{id: string, content_type: string, order: any}[]} */
