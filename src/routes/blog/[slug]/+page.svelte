@@ -1,12 +1,14 @@
 <script>
+import { base } from "$app/paths";
 import Hero from "$layout/Hero.svelte";
 import Section from "$layout/Section.svelte";
 import { formatDate } from "$lib/helpers/date.js";
 import { onMount } from "svelte";
 
 let { data } = $props();
-let { title, intro, slug, sections } = data.post.fields;
-let { createdAt, updatedAt } = data.post.meta;
+let { title, intro, slug, sections } = $derived(data.post.fields);
+let { createdAt, updatedAt } = $derived(data.post.meta);
+let { prev, next } = $derived(data.post);
 
 let created = $state("");
 let updated = $state("");
@@ -33,3 +35,20 @@ onMount(() => {
 		{@html section}
 	</Section>
 {/each}
+
+{#if prev || next}
+	<Section innerClasses="flex flex-wrap justify-between">
+		{#if prev}
+			<a href={`${base}/blog/${prev.fields.slug}`}
+			   class="inline-block flex-auto group mr-2 py-2 font-semibold text-primary-800 hover:text-accent-600">
+				<span class="inline-block mr-1 group-hover:animate-wiggle-left">&larr;</span>{prev.fields.title}
+			</a>
+		{/if}
+		{#if next}
+			<a href={`${base}/blog/${next.fields.slug}`}
+			   class="inline-block flex-auto text-right group ml-2 py-2 font-semibold text-primary-800 hover:text-accent-600">
+				{next.fields.title}<span class="inline-block ml-1 group-hover:animate-wiggle-right">&rarr;</span>
+			</a>
+		{/if}
+	</Section>
+{/if}

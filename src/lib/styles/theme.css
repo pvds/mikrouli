@@ -178,7 +178,8 @@
 	--animate-ping: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
 	--animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 	--animate-bounce: bounce 1s infinite;
-	--animate-wiggle: wiggle 1s infinite;
+	--animate-wiggle-right: wiggle-right 1s infinite;
+	--animate-wiggle-left: wiggle-left 1s infinite;
 
 	@keyframes spin {
 		to {
@@ -213,10 +214,22 @@
 		}
 	}
 
-	@keyframes wiggle {
+	@keyframes wiggle-left {
 		0%,
 		100% {
-			transform: translateX(0);
+			transform: none;
+			animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+		}
+		50% {
+			transform: translateX(-25%);
+			animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+		}
+	}
+
+	@keyframes wiggle-right {
+		0%,
+		100% {
+			transform: none;
 			animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
 		}
 		50% {

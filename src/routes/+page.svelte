@@ -66,7 +66,7 @@ const oddLast = (i) => services.length % 2 === 1 && i === services.length - 1;
 			<div class="prose prose-base">{@html service.intro}</div>
 			<span
 				class="inline-block mt-4 font-semibold transition-colors hover:underline group-hover:text-accent-600">Read more
-				<span class="inline-block group-hover:animate-wiggle">→</span>
+				<span class="inline-block group-hover:animate-wiggle-right">&rarr;</span>
 			</span>
 		</div>
 	</a>

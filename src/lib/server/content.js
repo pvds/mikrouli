@@ -38,6 +38,8 @@ const preprocessJson = (data) => {
 		fields: {
 			...item.fields,
 			sections: [],
+			prev: undefined,
+			next: undefined,
 		},
 	}));
 };
@@ -164,10 +166,12 @@ export const getServiceEntries = () => {
  */
 export const getPost = (slug) => {
 	const posts = preprocessJson(postItems);
-	/** @type {PostEntry|undefined}*/
-	const post = posts?.find((p) => p.fields.slug === slug);
+	const index = posts.findIndex((p) => p.fields.slug === slug);
 
-	if (!post) throw error(404, `Blog post with slug '${slug}' not found`);
+	if (index === -1) throw error(404, `Blog post with slug '${slug}' not found`);
+	const post = posts[index];
+	const prev = index > 0 ? posts[index - 1] : undefined;
+	const next = index < posts.length - 1 ? posts[index + 1] : undefined;
 
 	return {
 		...post,
@@ -176,6 +180,8 @@ export const getPost = (slug) => {
 			intro: markdownToHtml(post.fields.intro),
 			sections: splitText(markdownToHtml(post.fields.content)),
 		},
+		prev,
+		next,
 	};
 };
 
