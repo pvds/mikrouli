@@ -60,10 +60,10 @@ const srcset = (sizes) =>
 >
 	{#if !hasAlpha && placeholder}
 	<img src={placeholder} {alt}
-		 class="{POSITION_CLASSES} {classes} {height} {width}"
+		 class="{POSITION_CLASSES} {classes} {height} {width} transition-all"
 		 loading={priority ? "eager" : "lazy"}
 		 fetchpriority={priority ? "high" : null}/>
-	<div class="{POSITION_CLASSES} backdrop-blur-xl {classes}"></div>
+	<div class="{POSITION_CLASSES} {classes} backdrop-blur-xl transition-all"></div>
 	{/if}
 	<picture>
 		<source srcset={srcset(IMAGE_SIZES)} sizes={sizes} type="image/webp" />
