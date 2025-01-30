@@ -21,20 +21,18 @@ const oddLast = (i) => services.length % 2 === 1 && i === services.length - 1;
 	{@html intro}
 </Hero>
 
-<Section>
-	<div
-		class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-12">
+<Section innerClasses="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-12">
 	{#each services as service, i}
 		{@render teaser(service.fields, i)}
 	{/each}
-	</div>
 </Section>
 
 {#each sections as section, i}
 	<Section wave={i % 2 === 0}>
-		<div
-			class="prose prose-lg marker:text-accent-600 prose-strong:text-accent-600 prose-strong:font-bold prose-headings:text-3xl prose-headings:font-semibold">{@html
-			section}</div>
+		<div class="prose prose-lg marker:text-accent-600 prose-strong:text-accent-600
+			prose-strong:font-bold prose-headings:text-3xl prose-headings:font-semibold">
+			{@html section}
+		</div>
 		{#if i === sections.length - 1}
 			<div class="flex flex-wrap gap-4 mt-8">
 				<BookingDialog type="intake"/>

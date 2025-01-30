@@ -43,7 +43,7 @@ onDestroy(() => {
 				  d="M1440 0v438c-142 18-284 35-415 31-130-4-249-30-355-84S472 249 362 216c-109-33-236-18-362-3V0h1440Z"/>
 		</svg>
 	</div>
-	<Section classes="relative z-3" customSpacing="px-4 py-6">
+	<Section classes="z-3" customSpacing="px-4 py-6">
 		<header class="flex items-center gap-4">
 			{@render children()}
 		</header>

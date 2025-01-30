@@ -11,8 +11,8 @@ let { title, intro, slug, sections } = data.service.fields;
 </Hero>
 
 {#each sections as section}
-	<Section>
-		<div class="prose prose-base">{@html section}</div>
+	<Section innerClasses="prose prose-base">
+		{@html section}
 	</Section>
 {/each}
 

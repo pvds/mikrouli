@@ -1,7 +1,8 @@
 <script>
 /**
  * @typedef {Object} Props
- * @property {string} [classes]
+ * @property {string} [classes] on outer <section>, use styling the section (position, z-index, etc.)
+ * @property {string} [innerClasses] on inner <div>, use for styling the content (grid, flex, etc.)
  * @property {'sm'|'md'|'lg'} [size='md']
  * @property {'primary'|'secondary'|'default'} [theme='default']
  * @property {string} [customSpacing]
@@ -12,7 +13,15 @@
 import WaveSvg from "$visuals/WaveSvg.svelte";
 
 /** @type {Props} */
-let { classes, size = "md", theme = "default", customSpacing, wave, children } = $props();
+let {
+	classes,
+	innerClasses,
+	size = "md",
+	theme = "default",
+	customSpacing,
+	wave,
+	children,
+} = $props();
 
 const spacingX = "px-4 sm:px-6 md:px-8";
 const spacingY = {
@@ -43,7 +52,7 @@ let waveColor = $derived(WAVE_COLORS[theme]);
 </script>
 
 <section class="relative {classes} {spacing} {themeClasses}">
-	<div class="max-w-6xl mx-auto">
+	<div class="max-w-6xl mx-auto {innerClasses}">
 		{#if wave}
 			<WaveSvg color={waveColor}>
 				{@render children?.()}

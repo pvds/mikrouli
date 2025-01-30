@@ -11,7 +11,7 @@ const links = [
 ];
 </script>
 
-<div class="footer relative mt-75">
+<div class="footer relative mt-64 md:mt-56">
 	<div
 		class="absolute z-1 w-full min-w-6xl bottom-0 overflow-hidden pointer-events-none">
 		<svg class="w-[inherit] h-96" xmlns="http://www.w3.org/2000/svg"
@@ -27,8 +27,7 @@ const links = [
 		</svg>
 	</div>
 
-	<Section
-		classes="relative px-6 py-10 z-2">
+	<Section classes="z-2">
 		<footer class="font-bold">
 			<nav class="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4">
 				{#each links as { href, label }}

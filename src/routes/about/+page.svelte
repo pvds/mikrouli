@@ -11,7 +11,7 @@ let { header, intro, sections } = data.page.fields;
 </Hero>
 
 {#each sections as section}
-	<Section>
-		<div class="prose prose-base">{@html section}</div>
+	<Section innerClasses="prose prose-base">
+		{@html section}
 	</Section>
 {/each}
