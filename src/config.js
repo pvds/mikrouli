@@ -37,7 +37,7 @@ export const CONTENT_TYPES = [
 	{ id: "navigation", content_type: "navigation", order: "fields.title" },
 	{ id: "pages", content_type: "page", order: "fields.title" },
 	{ id: "services", content_type: "service", order: "fields.order" },
-	{ id: "posts", content_type: "post", order: "sys.createdAt" },
+	{ id: "posts", content_type: "post", order: "-sys.createdAt" },
 ];
 
 // Lighthouse
