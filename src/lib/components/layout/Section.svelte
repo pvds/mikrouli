@@ -37,7 +37,7 @@ const THEME_CLASSES = {
 	default: "",
 };
 const WAVE_COLORS = {
-	primary: "secondary-lighter",
+	primary: "primary-lighter",
 	secondary: "secondary-lighter",
 	default: "secondary-lighter",
 };
