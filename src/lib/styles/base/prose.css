@@ -1,0 +1,5 @@
+.prose {
+	iframe {
+		border-radius: var(--radius-md);
+	}
+}
