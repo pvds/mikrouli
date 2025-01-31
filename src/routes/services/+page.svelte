@@ -8,14 +8,6 @@ import Image from "$ui/image/Image.svelte";
 let { data } = $props();
 let { header, intro, slug } = data.page.fields;
 let services = data.services;
-
-/** @type {import("$visuals/WaveSvg.type").WaveProps} */
-const wave = {
-	direction: "both",
-	alignment: "left",
-	color: "secondary-lighter",
-	opacity: 1,
-};
 </script>
 
 <Hero title={header}>
