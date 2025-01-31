@@ -32,8 +32,7 @@ onDestroy(() => {
 });
 </script>
 
-<div
-	class="header relative transition-all md:sticky {isCompact ? 'md:-top-4' : 'md:top-0'} z-3">
+<div class="header relative transition-all md:sticky {isCompact ? 'md:-top-4' : 'md:top-0'} z-3">
 	<div
 		class="header-wave absolute z-2 w-full min-w-6xl border-t-40 border-t-primary-darkest left-0 overflow-hidden pointer-events-none">
 		<svg class="w-[inherit] h-20"
