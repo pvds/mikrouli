@@ -25,6 +25,8 @@
 #### Global
 
 - [ ] build in logic to ensure staging is not indexed but production is.
+- [ ] overwrite default typography (prose) variables, colors for sure
+- [ ] use rem for font sizes, but not for dimensions and spacing (use px/em)
 
 #### Homepage
 
