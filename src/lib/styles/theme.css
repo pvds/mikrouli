@@ -1,13 +1,13 @@
-/* Grayscale Design palette: https://grayscale.design/app?lums=97.44,90.97,79.53,61.14,42.57,28.39,18.04,12.66,8.15,4.72,1.63&palettes=%23000000,%23359497,%2349a17a,%23e66f43&filters=0%7C0,0%7C0,0%7C0,0%7C4&names=black,primary,secondary,accent&labels=,,, */
+/* Grayscale Design palette: https://grayscale.design/app?lums=97.44,90.97,79.53,61.14,42.57,24.17,18.13,13.10,8.15,4.72,1.63&palettes=%23000000,%23359497,%2349a17a,%23e66f43&filters=0%7C0,0%7C0,0%7C0,0%7C4&names=black,primary,secondary,accent&labels=,,, */
 :root {
 	--grayscale-50: hsl(0, 0%, 98.80%);
 	--grayscale-100: hsl(0, 0%, 96.10%);
 	--grayscale-200: hsl(0, 0%, 90.60%);
 	--grayscale-300: hsl(0, 0%, 80.40%);
 	--grayscale-400: hsl(0, 0%, 68.20%);
-	--grayscale-500: hsl(0, 0%, 56.90%);
+	--grayscale-500: hsl(0, 0%, 52.90%);
 	--grayscale-600: hsl(0, 0%, 46.30%);
-	--grayscale-700: hsl(0, 0%, 39.20%);
+	--grayscale-700: hsl(0, 0%, 39.60%);
 	--grayscale-800: hsl(0, 0%, 31.80%);
 	--grayscale-900: hsl(0, 0%, 23.90%);
 	--grayscale-950: hsl(0, 0%, 13.30%);
@@ -17,9 +17,9 @@
 	--black-200: hsl(0, 0%, 90.78%);
 	--black-300: hsl(0, 0%, 80.58%);
 	--black-400: hsl(0, 0%, 68.43%);
-	--black-500: hsl(0, 0%, 57.00%);
+	--black-500: hsl(0, 0%, 53.00%);
 	--black-600: hsl(0, 0%, 46.47%);
-	--black-700: hsl(0, 0%, 39.41%);
+	--black-700: hsl(0, 0%, 39.80%);
 	--black-800: hsl(0, 0%, 31.96%);
 	--black-900: hsl(0, 0%, 24.00%);
 	--black-950: hsl(0, 0%, 13.52%);
@@ -29,9 +29,9 @@
 	--primary-200: hsl(182, 48.00%, 86.88%);
 	--primary-300: hsl(182, 48.00%, 72.64%);
 	--primary-400: hsl(182, 48.00%, 54.17%);
-	--primary-500: hsl(182, 48.00%, 43.19%);
-	--primary-600: hsl(182, 48.00%, 35.07%);
-	--primary-700: hsl(182, 48.00%, 29.78%);
+	--primary-500: hsl(182, 48.00%, 40.00%);
+	--primary-600: hsl(182, 48.00%, 35.10%);
+	--primary-700: hsl(182, 48.00%, 30.19%);
 	--primary-800: hsl(182, 48.00%, 23.97%);
 	--primary-900: hsl(182, 48.00%, 18.41%);
 	--primary-950: hsl(182, 48.00%, 10.42%);
@@ -41,9 +41,9 @@
 	--secondary-200: hsl(153, 37.60%, 87.97%);
 	--secondary-300: hsl(153, 37.60%, 75.34%);
 	--secondary-400: hsl(153, 37.60%, 59.10%);
-	--secondary-500: hsl(153, 37.60%, 46.00%);
-	--secondary-600: hsl(153, 37.60%, 37.22%);
-	--secondary-700: hsl(153, 37.60%, 31.55%);
+	--secondary-500: hsl(153, 37.60%, 42.89%);
+	--secondary-600: hsl(153, 37.60%, 37.47%);
+	--secondary-700: hsl(153, 37.60%, 32.31%);
 	--secondary-800: hsl(153, 37.60%, 25.51%);
 	--secondary-900: hsl(153, 37.60%, 19.52%);
 	--secondary-950: hsl(153, 37.60%, 10.99%);
@@ -53,9 +53,9 @@
 	--accent-200: hsl(16, 88.50%, 91.57%);
 	--accent-300: hsl(16, 84.50%, 82.70%);
 	--accent-400: hsl(16, 80.50%, 70.83%);
-	--accent-500: hsl(16, 76.50%, 58.24%);
-	--accent-600: hsl(16, 80.50%, 45.24%);
-	--accent-700: hsl(16, 84.50%, 37.94%);
+	--accent-500: hsl(16, 76.50%, 53.03%);
+	--accent-600: hsl(16, 80.50%, 45.29%);
+	--accent-700: hsl(16, 84.50%, 38.57%);
 	--accent-800: hsl(16, 88.50%, 30.68%);
 	--accent-900: hsl(16, 92.50%, 23.32%);
 	--accent-950: hsl(16, 96.50%, 13.27%);
@@ -63,29 +63,29 @@
 
 @theme default {
 	/* === COLORS === */
+	--color-white: hsl(0, 0%, 100%);
 	--color-black: var(--black-950);
-	--color-white: var(--black-50);
 
-	--color-primary-dark: var(--primary-700);
-	--color-primary-darker: var(--primary-800);
-	--color-primary-darkest: var(--primary-900);
 	--color-primary-lightest: var(--primary-50);
 	--color-primary-lighter: var(--primary-100);
 	--color-primary-light: var(--primary-200);
+	--color-primary-dark: var(--primary-700);
+	--color-primary-darker: var(--primary-800);
+	--color-primary-darkest: var(--primary-900);
 
-	--color-secondary-dark: var(--secondary-700);
-	--color-secondary-darker: var(--secondary-800);
-	--color-secondary-darkest: var(--secondary-900);
 	--color-secondary-lightest: var(--secondary-50);
 	--color-secondary-lighter: var(--secondary-100);
 	--color-secondary-light: var(--secondary-200);
+	--color-secondary-dark: var(--secondary-700);
+	--color-secondary-darker: var(--secondary-800);
+	--color-secondary-darkest: var(--secondary-900);
 
-	--color-accent-dark: var(--accent-600);
-	--color-accent-darker: var(--accent-800);
-	--color-accent-darkest: var(--accent-900);
 	--color-accent-lightest: var(--accent-50);
 	--color-accent-lighter: var(--accent-100);
 	--color-accent-light: var(--accent-200);
+	--color-accent-dark: var(--accent-700);
+	--color-accent-darker: var(--accent-800);
+	--color-accent-darkest: var(--accent-900);
 
 	/* === SPACING === */
 	--spacing: 0.25rem;
