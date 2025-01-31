@@ -13,7 +13,7 @@ let posts = data.posts;
 const wave = {
 	direction: "both",
 	alignment: "left",
-	color: "secondary-100",
+	color: "secondary-lighter",
 	opacity: 1,
 };
 </script>
@@ -50,7 +50,7 @@ const wave = {
 			<h2 class="mb-4 text-3xl font-bold">{post.title}</h2>
 			<div class="prose prose-base">{@html post.intro}</div>
 			<span
-				class="inline-block mt-4 font-semibold transition-colors hover:underline group-hover:text-accent-600">Read more
+				class="inline-block mt-4 font-semibold transition-colors hover:underline group-hover:text-accent-dark">Read more
 				<span class="inline-block group-hover:animate-wiggle">→</span>
 			</span>
 		</div>

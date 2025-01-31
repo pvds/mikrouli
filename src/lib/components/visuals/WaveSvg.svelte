@@ -15,7 +15,7 @@
 let {
 	direction = "both",
 	alignment = "left",
-	color = "secondary-100",
+	color = "secondary-lighter",
 	height = 30,
 	opacity = 1,
 	children,

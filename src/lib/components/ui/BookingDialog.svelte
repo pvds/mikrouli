@@ -29,7 +29,7 @@ const getBookingUrl = () => BOOKING_OPTIONS[type].url;
 
 <button
 	class="{cta?.classes ? cta.classes : 'px-4 py-2'}
-	rounded-full transition-all font-semibold bg-accent-600  hover:bg-accent-700 text-white"
+	rounded-full transition-all font-semibold bg-accent-dark  hover:bg-accent-darker text-white"
 	onclick={() => dialog?.showModal()}
 >
 	{#if cta}
@@ -40,18 +40,18 @@ const getBookingUrl = () => BOOKING_OPTIONS[type].url;
 		{getBookingCta()}
 	{/if}
 </button>
-<Dialog bind:dialogElement={dialog} classes="bg-primary-900" fullscreen>
+<Dialog bind:dialogElement={dialog} classes="bg-primary-darkest" fullscreen>
 	{#snippet header()}
-		<header class="z-1 flex flex-row-reverse justify-start bg-primary-900">
+		<header class="z-1 flex flex-row-reverse justify-start bg-primary-darkest">
 			<button
 				onclick={() => dialog?.close()}
-				class="py-4 px-6 text-sm font-semibold text-primary-200 hover:text-primary-50"
+				class="py-4 px-6 text-sm font-semibold text-primary-light hover:text-primary-lightest"
 				aria-label="Close"
 			>
 				Close Dialog
 			</button>
 			<a href={getBookingUrl()} target="_blank"
-			   class="py-4 px-6 text-sm font-semibold text-primary-200 hover:text-primary-50"
+			   class="py-4 px-6 text-sm font-semibold text-primary-light hover:text-primary-lightest"
 			>
 				Open in a New Tab
 			</a>
@@ -63,7 +63,7 @@ const getBookingUrl = () => BOOKING_OPTIONS[type].url;
 			<div class="w-10 h-10 border-4 border-transparent border-t-white rounded-full animate-spin"></div>
 		</div>
 	{:else if iframeState === "failed"}
-		<div class="absolute inset-0 flex items-center justify-center bg-primary-800">
+		<div class="absolute inset-0 flex items-center justify-center bg-primary-darker">
 			<section>
 				<h1 class="text-3xl">Failed to load the booking form.</h1>
 				<a href={BOOKING_URL} target="_blank" onclick={() => dialog?.close()}

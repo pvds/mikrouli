@@ -22,14 +22,14 @@ const bookingCta = {
 	text: "Book a Session",
 	textShort: "Book",
 	textLong: "Book a Session with me",
-	classes: "px-4 py-2 inset-shadow-xs inset-shadow-accent-800 hover:inset-shadow-primary-950",
+	classes: "px-4 py-2 inset-shadow-xs inset-shadow-accent-darkest hover:inset-shadow-black",
 };
 </script>
 <nav class="nav-primary ml-auto"
 	 aria-label="Main navigation">
-		<div class="md:hidden w-full fixed left-0 bottom-0 bg-primary-900 px-1 py-2">
+		<div class="md:hidden w-full fixed left-0 bottom-0 bg-primary-darkest px-1 py-2">
 			<WaveCss height={10}/> {@render navMenu(navItemsWithHome, "justify-around")}</div>
-		<div class="max-md:hidden relative bg-primary-900">
+		<div class="max-md:hidden relative bg-primary-darkest">
 			{@render navMenu(navItemsBase, "gap-2")}</div>
 </nav>
 
@@ -40,8 +40,8 @@ const bookingCta = {
 			<a {href} {title} aria-current={isCurrentPage(href) ? "page" : undefined}
 			   class="nav-menu__link inline-block w-full text-center px-3 py-1 font-semibold transition-colors
 			   {href === base && 'max-sm:hidden'}
-				{isCurrentPage(href) ? 'text-primary-50' :
-				'text-primary-200 hover:text-primary-50'}">{label}</a>
+				{isCurrentPage(href) ? 'text-primary-lightest' :
+				'text-primary-light hover:text-primary-lightest'}">{label}</a>
 		</li>
 	{/each}
 		<li class="grow">

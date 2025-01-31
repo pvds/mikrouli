@@ -21,7 +21,7 @@ onMount(() => {
 
 <Hero title={title} transitionName={slug}>
 	{@html intro}
-	<p class="mt-4 text-base italic text-primary-800">
+	<p class="mt-4 text-base italic text-primary-darker">
 		{#if createdAt === updatedAt}
 			{created}
 		{:else}
@@ -40,13 +40,13 @@ onMount(() => {
 	<Section innerClasses="flex flex-wrap justify-between">
 		{#if prev}
 			<a href={`${base}/blog/${prev.fields.slug}`}
-			   class="inline-block flex-auto group mr-2 py-2 font-semibold text-primary-800 hover:text-accent-600">
+			   class="inline-block flex-auto group mr-2 py-2 font-semibold text-primary-darker hover:text-accent-dark">
 				<span class="inline-block mr-1 group-hover:animate-wiggle-left">&larr;</span>{prev.fields.title}
 			</a>
 		{/if}
 		{#if next}
 			<a href={`${base}/blog/${next.fields.slug}`}
-			   class="inline-block flex-auto text-right group ml-2 py-2 font-semibold text-primary-800 hover:text-accent-600">
+			   class="inline-block flex-auto text-right group ml-2 py-2 font-semibold text-primary-darker hover:text-accent-dark">
 				{next.fields.title}<span class="inline-block ml-1 group-hover:animate-wiggle-right">&rarr;</span>
 			</a>
 		{/if}

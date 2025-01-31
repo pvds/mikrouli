@@ -35,11 +35,11 @@ onDestroy(() => {
 <div
 	class="header relative transition-all md:sticky {isCompact ? 'md:-top-4' : 'md:top-0'} z-3">
 	<div
-		class="header-wave absolute z-2 w-full min-w-6xl border-t-40 border-t-primary-900 left-0 overflow-hidden pointer-events-none">
+		class="header-wave absolute z-2 w-full min-w-6xl border-t-40 border-t-primary-darkest left-0 overflow-hidden pointer-events-none">
 		<svg class="w-[inherit] h-20"
 			 xmlns="http://www.w3.org/2000/svg"
 			 viewBox="0 0 1440 690" preserveAspectRatio="none">
-			<path class="fill-primary-900 drop-shadow-2xl"
+			<path class="fill-primary-darkest drop-shadow-2xl"
 				  d="M1440 0v438c-142 18-284 35-415 31-130-4-249-30-355-84S472 249 362 216c-109-33-236-18-362-3V0h1440Z"/>
 		</svg>
 	</div>

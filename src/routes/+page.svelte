@@ -29,7 +29,7 @@ const oddLast = (i) => services.length % 2 === 1 && i === services.length - 1;
 
 {#each sections as section, i}
 	<Section wave={i % 2 === 0}>
-		<div class="prose prose-lg marker:text-accent-600 prose-strong:text-accent-600
+		<div class="prose prose-lg marker:text-accent-dark prose-strong:text-accent-dark
 			prose-strong:font-bold prose-headings:text-3xl prose-headings:font-semibold">
 			{@html section}
 		</div>
@@ -37,7 +37,7 @@ const oddLast = (i) => services.length % 2 === 1 && i === services.length - 1;
 			<div class="flex flex-wrap gap-4 mt-8">
 				<BookingDialog type="intake"/>
 				<a href={`${base}/contact`}
-				   class="py-2 px-4 font-semibold transition-colors hover:underline group-hover:text-accent-600">Get in contact</a>
+				   class="py-2 px-4 font-semibold transition-colors hover:underline group-hover:text-accent-dark">Get in contact</a>
 			</div>
 		{/if}
 	</Section>
@@ -65,7 +65,7 @@ const oddLast = (i) => services.length % 2 === 1 && i === services.length - 1;
 			<h2 class="mb-4 text-3xl font-bold">{service.title}</h2>
 			<div class="prose prose-base">{@html service.intro}</div>
 			<span
-				class="inline-block mt-4 font-semibold transition-colors hover:underline group-hover:text-accent-600">Read more
+				class="inline-block mt-4 font-semibold transition-colors hover:underline group-hover:text-accent-dark">Read more
 				<span class="inline-block group-hover:animate-wiggle-right">&rarr;</span>
 			</span>
 		</div>

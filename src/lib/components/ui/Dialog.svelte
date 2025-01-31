@@ -46,7 +46,7 @@ function handleBackdropClick(event) {
 	transition-all transition-discrete duration-short open:delay-shortest open:duration-long
 	starting:open:opacity-0 starting:open:scale-95 open:opacity-100 open:scale-100
 	scale-50 opacity-0
-	backdrop:bg-primary-950/50 backdrop:cursor-pointer backdrop:grayscale backdrop:opacity-0
+	backdrop:bg-black/60 backdrop:cursor-pointer backdrop:grayscale backdrop:opacity-0
 	starting:open:backdrop:opacity-0 open:backdrop:opacity-100 backdrop:duration-short"
 >
 	<div class="flex flex-col h-full">
