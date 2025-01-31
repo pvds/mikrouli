@@ -42,16 +42,16 @@ const getBookingUrl = () => BOOKING_OPTIONS[type].url;
 </button>
 <Dialog bind:dialogElement={dialog} classes="bg-primary-darkest" fullscreen>
 	{#snippet header()}
-		<header class="z-1 flex flex-row-reverse justify-start bg-primary-darkest">
+		<header class="p-2 z-1 flex flex-row-reverse justify-start bg-primary-darkest gap-2">
 			<button
 				onclick={() => dialog?.close()}
-				class="py-4 px-6 text-sm font-semibold text-primary-light hover:text-primary-lightest"
+				class="py-2 px-4 rounded-full text-sm font-semibold hover:bg-primary-darker text-primary-light hover:text-primary-lightest"
 				aria-label="Close"
 			>
 				Close Dialog
 			</button>
 			<a href={getBookingUrl()} target="_blank"
-			   class="py-4 px-6 text-sm font-semibold text-primary-light hover:text-primary-lightest"
+			   class="py-2 px-4 rounded-full text-sm font-semibold hover:bg-primary-darker text-primary-light hover:text-primary-lightest"
 			>
 				Open in a New Tab
 			</a>
