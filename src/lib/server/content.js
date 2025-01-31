@@ -138,13 +138,15 @@ export const getServices = () => {
 	const services = preprocessJson(serviceItems);
 
 	return (
-		services?.map((service) => ({
-			...service,
-			fields: {
-				...service.fields,
-				intro: markdownToHtml(service.fields.intro),
-			},
-		})) || []
+		services
+			?.filter((service) => !service.fields?.hidden)
+			.map((service) => ({
+				...service,
+				fields: {
+					...service.fields,
+					intro: markdownToHtml(service.fields.intro),
+				},
+			})) || []
 	);
 };
 
@@ -193,13 +195,15 @@ export const getPosts = () => {
 	const posts = preprocessJson(postItems);
 
 	return (
-		posts?.map((post) => ({
-			...post,
-			fields: {
-				...post.fields,
-				intro: markdownToHtml(post.fields.intro),
-			},
-		})) || []
+		posts
+			?.filter((service) => !service.fields?.hidden)
+			.map((post) => ({
+				...post,
+				fields: {
+					...post.fields,
+					intro: markdownToHtml(post.fields.intro),
+				},
+			})) || []
 	);
 };
 

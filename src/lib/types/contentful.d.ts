@@ -14,6 +14,7 @@ export type BaseFieldsRaw = {
 	seoDescription: string;
 	seoKeywords?: string;
 	seoIndex: boolean;
+	hidden?: boolean;
 	header?: string;
 	intro: string;
 	content?: string;
