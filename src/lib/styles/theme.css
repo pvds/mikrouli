@@ -1,6 +1,6 @@
 @theme default {
 	/* === COLORS === */
-	/* Grayscale Design palette: https://grayscale.design/app?lums=95.66,88.55,79.53,61.14,42.57,28.39,18.04,12.66,8.15,4.72,1.63&palettes=%23000000,%23359497,%2349a17a,%23e66f43&filters=0%7C0,0%7C0,0%7C0,0%7C4&names=black,primary,secondary,accent&labels=,,, */
+	/* Grayscale Design palette: https://grayscale.design/app?lums=97.44,90.97,79.53,61.14,42.57,28.39,18.04,12.66,8.15,4.72,1.63&palettes=%23000000,%23359497,%2349a17a,%23e66f43&filters=0%7C0,0%7C0,0%7C0,0%7C4&names=black,primary,secondary,accent&labels=,,, */
 	--color-black-50: hsl(0, 0%, 99.00%);
 	--color-black-100: hsl(0, 0%, 96.00%);
 	--color-black-200: hsl(0, 0%, 90.78%);
