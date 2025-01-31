@@ -34,11 +34,11 @@ const bookingCta = {
 </nav>
 
 {#snippet navMenu(/** @type NavItem[] */ navItems, /** @type string */ classes)}
-	<ul class="flex {classes} items-center justify-end overflow-x-auto">
+	<ul class="flex {classes} items-center justify-end">
 	{#each navItems as { href, label, title }}
 		<li class="grow">
 			<a {href} {title} aria-current={isCurrentPage(href) ? "page" : undefined}
-			   class="nav-menu__link inline-block w-full text-center px-3 py-1 font-semibold transition-colors
+			   class="nav-menu__link inline-block w-full text-center px-3 py-1 font-semibold transition-all
 			   {href === base && 'max-sm:hidden'}
 				{isCurrentPage(href) ? 'text-primary-lightest' :
 				'text-primary-light hover:text-primary-lightest'}">{label}</a>
