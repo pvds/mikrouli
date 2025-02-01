@@ -44,7 +44,7 @@ let services = data.services;
 			<div class="prose prose-base">{@html service.intro}</div>
 			<span
 				class="inline-block mt-4 font-semibold transition-colors hover:underline group-hover:text-accent-dark">Read more
-				<span class="inline-block group-hover:animate-wiggle">→</span>
+				<span class="inline-block group-hover:animate-wiggle-right">→</span>
 			</span>
 		</div>
 	</a>

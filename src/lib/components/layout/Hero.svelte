@@ -26,7 +26,7 @@ let { title, transitionName, proseClasses = "prose prose-xl font-semibold", chil
 	</div>
 
 	<Section
-		classes="relative z-1 bg-primary-light text-primary-darker"
+		classes="relative z-1 bg-primary-light"
 		customSpacing="-my-8 px-10 pt-12 md:pt-20 pb-4 md:pb-8">
 		<div style={transitionName && `view-transition-name:${transitionName}`}></div>
 		{#if title}

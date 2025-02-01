@@ -1,0 +1,39 @@
+/* Typography plugin */
+@utility prose {
+	--tw-prose-body: var(--color-primary-darkest);
+	--tw-prose-headings: var(--color-primary-darkest);
+	--tw-prose-lead: var(--color-primary-darker);
+	--tw-prose-links: var(--color-primary-darkest);
+	--tw-prose-bold: var(--color-primary-darkest);
+	--tw-prose-counters: var(--color-primary-dark);
+	--tw-prose-bullets: var(--color-primary-light);
+	--tw-prose-hr: var(--color-primary-lighter);
+	--tw-prose-quotes: var(--color-primary-darkest);
+	--tw-prose-quote-borders: var(--color-primary-lighter);
+	--tw-prose-captions: var(--color-primary-dark);
+	--tw-prose-kbd: var(--color-primary-darkest);
+	--tw-prose-kbd-shadows: 0 0 0;
+	--tw-prose-code: var(--color-primary-darkest);
+	--tw-prose-pre-code: var(--color-primary-lighter);
+	--tw-prose-pre-bg: var(--color-primary-darker);
+	--tw-prose-th-borders: var(--color-primary-light);
+	--tw-prose-td-borders: var(--color-primary-lighter);
+	--tw-prose-invert-body: var(--color-primary-light);
+	--tw-prose-invert-headings: var(--color-white);
+	--tw-prose-invert-lead: var(--color-primary-dark);
+	--tw-prose-invert-links: var(--color-white);
+	--tw-prose-invert-bold: var(--color-white);
+	--tw-prose-invert-counters: var(--color-primary-dark);
+	--tw-prose-invert-bullets: var(--color-primary-darker);
+	--tw-prose-invert-hr: var(--color-primary-darkest);
+	--tw-prose-invert-quotes: var(--color-primary-lighter);
+	--tw-prose-invert-quote-borders: var(--color-primary-darkest);
+	--tw-prose-invert-captions: var(--color-primary-dark);
+	--tw-prose-invert-kbd: var(--color-white);
+	--tw-prose-invert-kbd-shadows: 255 255 255;
+	--tw-prose-invert-code: var(--color-white);
+	--tw-prose-invert-pre-code: var(--color-primary-light);
+	--tw-prose-invert-pre-bg: rgb(0 0 0 / 50%);
+	--tw-prose-invert-th-borders: var(--color-primary-darker);
+	--tw-prose-invert-td-borders: var(--color-primary-darkest);
+}

@@ -18,23 +18,25 @@
 - [ ] add reference field to page content type to link to services or other 
   pages (can be used to get data like slug but also to facilitate nested 
   navigation and linking)
-- [ ] implement shortcodes for contentful (like `{{dialog:booking(intake)}}` to 
-  include a booking dialog and `{{embed:youtube(https://youtube.com/...)}}` 
+- [x] implement shortcodes for contentful ~~(like `{{dialog:booking(intake)}}` to 
+  include a booking dialog~~ and `{{embed:youtube(https://youtube.com/...)}}` 
   to embed a youtube video)
+- [ ] explore migrating to mdsvex to allow for svelte components in markdown
 
 #### Global
 
 - [ ] build in logic to ensure staging is not indexed but production is.
-- [ ] overwrite default typography (prose) variables, colors for sure
+- [x] overwrite default typography (prose) variables, colors for sure
+- [ ] consider using custom utility classes for generated content (prose) 
+  instead of typography plugin
 - [ ] use rem for font sizes, but not for dimensions and spacing (use px/em)
 
 #### Homepage
 
-- [ ] add Services section
+- [x] add Services section
 - [ ] add Testimonials section
 - [ ] add Contact section
 - [ ] add Blog section
-- [ ] make Footer section
 
 #### Services
 

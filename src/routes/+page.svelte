@@ -30,7 +30,7 @@ const oddLast = (i) => services.length % 2 === 1 && i === services.length - 1;
 {#each sections as section, i}
 	<Section wave={i % 2 === 0}>
 		<div class="prose prose-lg marker:text-accent-dark prose-strong:text-accent-dark
-			prose-strong:font-bold prose-headings:text-3xl prose-headings:font-semibold">
+			prose-strong:font-bold prose-headings:text-3xl prose-headings:font-bold">
 			{@html section}
 		</div>
 		{#if i === sections.length - 1}
