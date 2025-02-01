@@ -13,7 +13,7 @@ import Image from "./image/Image.svelte";
 /** @type {Props} */
 let { service, priority = false } = $props();
 </script>
-<article class="group flex flex-col gap-4">
+<article class="group relative flex flex-col gap-4">
 	{#if service.heroImage}
 		<Image
 			image={getImageName(service.heroImage.file.fileName)}
@@ -29,7 +29,8 @@ let { service, priority = false } = $props();
 		<h3 class="mb-4 text-2xl font-bold">{service.title}</h3>
 		<div class="prose prose-base">{@html service.intro}</div>
 		<a href={`${base}/services/${service.slug}`}
-			class="inline-block mt-4 font-semibold transition-colors hover:underline group-hover:text-accent-dark">Read more
+			class="inline-block mt-4 font-semibold transition-all hover:underline group-hover:text-accent-dark
+					after:content[''] after:absolute after:inset-0">Read more
 			<span class="inline-block group-hover:animate-wiggle-right">&rarr;</span>
 		</a>
 	</div>
