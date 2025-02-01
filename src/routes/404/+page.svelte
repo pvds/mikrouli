@@ -1,6 +1,6 @@
 <script>
+import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
-import Section from "$layout/Section.svelte";
 import Image from "$ui/image/Image.svelte";
 
 let { data } = $props();
@@ -19,7 +19,7 @@ let { header, intro, sections } = data.page.fields;
 </Hero>
 
 {#each sections as section}
-	<Section innerClasses="prose prose-base">
+	<ContentSection prose size="sm">
 		{@html section}
-	</Section>
+	</ContentSection>
 {/each}

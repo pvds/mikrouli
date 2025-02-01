@@ -8,11 +8,13 @@ import Section from "./Section.svelte";
  * @property {Snippet} [footer]
  * @property {Snippet} children
  * @property {number} [index]
+ * @property {boolean} [prose]
+ * @property {'sm'|'md'|'lg'} [size='md']
  * @property {'odd'|'even'} [wave='odd']
  */
 
 /** @type {Props} */
-let { header, footer, children, index, wave = "odd" } = $props();
+let { header, footer, children, index, wave = "odd", prose = false, size = "md" } = $props();
 
 /** @param {number|undefined} i */
 const hasWave = (i) => {
@@ -21,10 +23,10 @@ const hasWave = (i) => {
 };
 </script>
 
-<Section wave={hasWave(index)}>
+<Section wave={hasWave(index)} {size}>
 	{@render header?.()}
-	<div class="prose prose-lg marker:text-accent-dark prose-strong:text-accent-dark
-			prose-strong:font-bold prose-headings:text-3xl prose-headings:font-bold">
+	<div class="{prose ?
+	'prose prose-lg marker:text-accent-dark prose-strong:text-accent-dark prose-strong:font-bold prose-headings:text-3xl prose-headings:font-bold' : ''}">
 		{@render children?.()}
 	</div>
 	{@render footer?.()}

@@ -1,18 +1,26 @@
 <script>
 import { base } from "$app/paths";
+import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
 import Section from "$layout/Section.svelte";
 import { getImageName } from "$lib/helpers/image";
 import Image from "$ui/image/Image.svelte";
 
 let { data } = $props();
-let { header, intro, slug } = data.page.fields; // Destructure `posts` from `local`
+let { header, intro, slug, sections } = data.page.fields; // Destructure `posts` from `local`
 let posts = data.posts;
 </script>
 
 <Hero title={header}>
 	{@html intro}
 </Hero>
+
+<!--TODO: Decide whether to add content sections-->
+<!--{#each sections as section}-->
+<!--	<ContentSection prose size="sm">-->
+<!--		{@html section}-->
+<!--	</ContentSection>-->
+<!--{/each}-->
 
 {#each posts as post, i}
 	<Section wave={i % 2 === 1}>

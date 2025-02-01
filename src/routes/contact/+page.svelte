@@ -1,4 +1,6 @@
 <script>
+import { base } from "$app/paths";
+import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
 import Section from "$layout/Section.svelte";
 import BookingDialog from "$ui/BookingDialog.svelte";
@@ -12,13 +14,14 @@ let { header, intro, sections } = data.page.fields;
 </Hero>
 
 {#each sections as section, i}
-	<Section>
-		<div class="prose prose-base">{@html section}</div>
-		{#if i === 0}
-			<div class="flex flex-wrap gap-2 mt-6">
-				<BookingDialog type="intake" />
-				<BookingDialog type="session" />
-			</div>
-		{/if}
-	</Section>
+	<ContentSection footer={i === 0 ? footerCta : undefined} prose size="sm">
+		{@html section}
+	</ContentSection>
 {/each}
+
+{#snippet footerCta()}
+	<div class="flex flex-wrap gap-2 mt-6">
+		<BookingDialog type="intake" />
+		<BookingDialog type="session" />
+	</div>
+{/snippet}
