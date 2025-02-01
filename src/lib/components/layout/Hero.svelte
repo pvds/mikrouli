@@ -1,4 +1,6 @@
 <script>
+import Section from "./Section.svelte";
+
 /**
  * @typedef {Object} Props
  * @property {string|undefined} title
@@ -6,8 +8,6 @@
  * @property {string|undefined} [proseClasses="prose prose-xl font-semibold"]
  * @property {import('svelte').Snippet} [children]
  */
-
-import Section from "./Section.svelte";
 
 /** @type {Props} */
 let { title, transitionName, proseClasses = "prose prose-xl font-semibold", children } = $props();
