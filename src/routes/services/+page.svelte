@@ -1,6 +1,6 @@
 <script>
 import Hero from "$layout/Hero.svelte";
-import ServiceSection from "$layout/ServiceSection.svelte";
+import ServicesSection from "$layout/ServicesSection.svelte";
 
 let { data } = $props();
 let { header, intro } = data.page.fields;
@@ -11,4 +11,4 @@ let services = data.services;
 	{@html intro}
 </Hero>
 
-<ServiceSection {services}/>
+<ServicesSection {services}/>
