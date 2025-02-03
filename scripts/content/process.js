@@ -90,6 +90,7 @@ export function parseContentEntry(rawEntry) {
 					processedSections.push(sectionEntry.fields);
 				}
 			}
+			// @ts-expect-error
 			restFields[key] = processedSections;
 		} else if (
 			restFields[key] &&
@@ -97,6 +98,7 @@ export function parseContentEntry(rawEntry) {
 			"fields" in restFields[key]
 		) {
 			// Unwrap any nested single content entry.
+			// @ts-expect-error
 			restFields[key] = restFields[key].fields;
 		}
 	}

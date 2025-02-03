@@ -151,7 +151,7 @@ export const getServiceEntries = () => {
  * @throws {Error} - Throws a SvelteKit error if the post is not found.
  */
 export const getPost = (slug) => {
-	const posts = preprocessJson(postItems);
+	const posts = /** @type {PostEntry[]} */ preprocessJson(postItems);
 	const index = posts.findIndex((p) => p.fields.slug === slug);
 
 	if (index === -1) throw error(404, `Blog post with slug '${slug}' not found`);
@@ -179,7 +179,7 @@ export const getPost = (slug) => {
 };
 
 export const getPosts = () => {
-	const posts = preprocessJson(postItems);
+	const posts = /** @type {PostEntry[]} */ preprocessJson(postItems);
 
 	return (
 		posts
@@ -204,27 +204,6 @@ export const getPostEntries = () => {
 };
 
 /**
- * Processes nested section entries by converting each section's content.
- *
- * @param {SectionEntry[]} sections Array of nested section entries.
- * @return {SectionFields[]} Processed sections containing only the section fields.
- */
-function processNestedSections(sections) {
-	/** @type {SectionFields[]} */
-	const processed = [];
-	for (const section of sections) {
-		// Ensure section and its fields exist before processing.
-		if (section.fields && typeof section.fields.content === "string") {
-			processed.push({
-				...section.fields,
-				content: markdownToHtml(section.fields.content),
-			});
-		}
-	}
-	return processed;
-}
-
-/**
  * Processes a single content entry by converting its markdown fields.
  *
  * @param {{ meta: Metadata,fields: BaseFields }} entry A content entry parsed from Contentful.
@@ -233,7 +212,7 @@ function processNestedSections(sections) {
 function processEntryMarkdown(entry) {
 	const sections = entry.fields.sections?.map((section) => ({
 		...section,
-		content: markdownToHtml(section.content),
+		content: markdownToHtml(section.fields.content),
 	}));
 
 	return {

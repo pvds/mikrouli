@@ -37,15 +37,8 @@ export type SectionEntry = {
 	fields: SectionFields;
 };
 
-export type BaseFields = Omit<BaseFieldsRaw, "sections"> & {
-	/**
-	 * The split content from the raw "content" field.
-	 */
+export type BaseFields = BaseFieldsRaw & {
 	contentSections: string[];
-	/**
-	 * Nested section entries (processed via parseContentEntry) containing only the section fields.
-	 */
-	sections?: SectionFields[];
 };
 
 export type BaseFieldsMinimal = Pick<BaseFieldsRaw, "title" | "header" | "slug">;
