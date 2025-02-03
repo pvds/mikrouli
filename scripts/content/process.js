@@ -1,14 +1,14 @@
 /**
  * @typedef {import('$lib/types/contentful').ContentfulData} ContentfulData
+ * @typedef {import('$lib/types/contentful').BaseEntry} BaseEntry
+ * @typedef {import('$lib/types/contentful').BaseFields} BaseFields
+ * @typedef {import('$lib/types/contentful').BaseFieldsMinimal} BaseFieldsMinimal
  * @typedef {import('$lib/types/contentful').PageEntry} PageEntry
  * @typedef {import('$lib/types/contentful').PageFields} PageFields
  * @typedef {import('$lib/types/contentful').ServiceEntry} ServiceEntry
  * @typedef {import('$lib/types/contentful').PostEntry} PostEntry
  * @typedef {import('$lib/types/contentful').NavigationEntry} NavigationEntry
  * @typedef {import('$lib/types/contentful').NavigationFields} NavigationFields
- * @typedef {import('$lib/types/contentful').NavigationPageFields} NavigationPageFields
- * @typedef {import('$lib/types/contentful').BaseEntry} BaseEntry
- * @typedef {import('$lib/types/contentful').BaseFields} BaseFields
  * @typedef {import('$lib/types/contentful').Metadata} Metadata
  * @typedef {import('contentful').Entry} ContentfulEntry
  * @typedef {import('contentful').EntrySys} EntrySys
@@ -120,7 +120,7 @@ function parseNavigation(rawNav, pages) {
 	const meta = parseMeta(rawNav?.sys || {});
 	/** @type {EntrySkeletonType['fields']} */
 	const { items = [], ...restFields } = rawNav.fields;
-	/** @type {Partial<NavigationPageFields>[]} */
+	/** @type {Partial<BaseFieldsMinimal>[]} */
 	const parsedItems = [];
 
 	for (const pageRef of items) {

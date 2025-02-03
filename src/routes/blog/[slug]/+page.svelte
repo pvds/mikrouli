@@ -6,7 +6,7 @@ import { formatDate } from "$lib/helpers/date.js";
 import { onMount } from "svelte";
 
 let { data } = $props();
-let { title, intro, slug, sections } = $derived(data.post.fields);
+let { title, intro, slug, contentSections } = $derived(data.post.fields);
 let { createdAt, updatedAt } = $derived(data.post.meta);
 let { prev, next } = $derived(data.post);
 
@@ -30,7 +30,7 @@ onMount(() => {
 	</p>
 </Hero>
 
-{#each sections as section}
+{#each contentSections as section}
 	<Section innerClasses="prose prose-base">
 		{@html section}
 	</Section>

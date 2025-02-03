@@ -6,7 +6,7 @@ import ServicesSection from "$layout/ServicesSection.svelte";
 import BookingDialog from "$ui/BookingDialog.svelte";
 
 let { data } = $props();
-let { header, intro, sections } = data.page.fields;
+let { header, intro, contentSections } = data.page.fields;
 let services = data.services;
 </script>
 
@@ -16,8 +16,8 @@ let services = data.services;
 
 <ServicesSection {services}/>
 
-{#each sections as section, i}
-	<ContentSection footer={i === sections.length - 1 ? footerCta : undefined} index={i}
+{#each contentSections as section, i}
+	<ContentSection footer={i === contentSections.length - 1 ? footerCta : undefined} index={i}
 					wave="even" prose>
 		{@html section}
 	</ContentSection>

@@ -7,6 +7,8 @@
  * @typedef {import('$types/contentful').PageEntry} PageEntry
  * @typedef {import('$types/contentful').NavigationEntry} NavigationEntry
  * @typedef {import('$types/contentful').ServiceEntry} ServiceEntry
+ * @typedef {import('$lib/types/contentful').SectionEntry} SectionEntry
+ * @typedef {import('$lib/types/contentful').SectionFields} SectionFields
  * @typedef {import('$global/seo/Seo.svelte.types').SEOProps} SEOProps
  * @typedef {import('$types/global').global} GlobalProps
  */
@@ -151,16 +153,20 @@ export const getPost = (slug) => {
 	const index = posts.findIndex((p) => p.fields.slug === slug);
 
 	if (index === -1) throw error(404, `Blog post with slug '${slug}' not found`);
-	const post = posts[index];
-	const processedPost = processEntryMarkdown(post);
-	const processedPrev = index > 0 ? processEntryMarkdown(posts[index - 1]) : undefined;
-	const processedNext =
-		index < posts.length - 1 ? processEntryMarkdown(posts[index + 1]) : undefined;
+	/** @type {PostEntry} */
+	const post = processEntryMarkdown(posts[index]);
+	const minimalFields = (entry) => ({
+		title: entry.fields.title,
+		header: entry.fields.header,
+		slug: entry.fields.slug,
+	});
+	const prev = index > 0 ? minimalFields(posts[index - 1]) : undefined;
+	const next = index < posts.length - 1 ? minimalFields(posts[index + 1]) : undefined;
 
 	return {
-		...processedPost,
-		prev: processedPrev,
-		next: processedNext,
+		...post,
+		prev,
+		next,
 	};
 };
 
@@ -192,23 +198,19 @@ export const getPostEntries = () => {
 /**
  * Processes nested section entries by converting each section's content.
  *
- * @param {any[]} sections Array of nested section entries.
- * @return {any[]} Processed sections.
+ * @param {SectionEntry[]} sections Array of nested section entries.
+ * @return {SectionFields[]} Processed sections containing only the section fields.
  */
 function processNestedSections(sections) {
+	/** @type {SectionFields[]} */
 	const processed = [];
 	for (const section of sections) {
 		// Ensure section and its fields exist before processing.
-		if (section?.fields && typeof section.fields.content === "string") {
+		if (section.fields && typeof section.fields.content === "string") {
 			processed.push({
-				...section,
-				fields: {
-					...section.fields,
-					content: markdownToHtml(section.fields.content),
-				},
+				...section.fields,
+				content: markdownToHtml(section.fields.content),
 			});
-		} else {
-			processed.push(section);
 		}
 	}
 	return processed;
@@ -217,8 +219,9 @@ function processNestedSections(sections) {
 /**
  * Processes a single content entry by converting its markdown fields.
  *
- * @param {any} entry A content entry parsed from Contentful.
- * @return {any} The entry with markdown converted.
+ * @template T extends { fields: BaseFields }
+ * @param {T} entry A content entry parsed from Contentful.
+ * @return {T} The entry with markdown converted.
  */
 function processEntryMarkdown(entry) {
 	return {

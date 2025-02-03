@@ -4,7 +4,7 @@ import Hero from "$layout/Hero.svelte";
 import Image from "$ui/image/Image.svelte";
 
 let { data } = $props();
-let { header, intro, sections } = data.page.fields;
+let { header, intro, contentSections } = data.page.fields;
 </script>
 
 <Hero title={header} proseClasses="">
@@ -18,7 +18,7 @@ let { header, intro, sections } = data.page.fields;
 	</div>
 </Hero>
 
-{#each sections as section}
+{#each contentSections as section}
 	<ContentSection prose size="sm">
 		{@html section}
 	</ContentSection>
