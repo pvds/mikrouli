@@ -18,15 +18,42 @@ export type BaseFieldsRaw = {
 	header?: string;
 	intro: string;
 	content?: string;
+	sections?: SectionFields[];
 };
 
 export type BaseFields = BaseFieldsRaw & {
-	sections: string[];
+	contentSections: string[];
+	sections?: SectionFields[];
+};
+
+export type BaseFieldsMinimal = Pick<BaseFieldsRaw, "title" | "header" | "slug">;
+
+export type BaseEntryRaw = {
+	meta: Metadata;
+	fields: BaseFieldsRaw;
 };
 
 export type BaseEntry = {
 	meta: Metadata;
 	fields: BaseFields;
+};
+
+// ### Section
+
+export type SectionFields = {
+	title: string;
+	header?: string;
+	content: string;
+	image?: ImageField;
+};
+
+/**
+ * A SectionEntry represents the raw nested entry.
+ * (After processing in content.js, only the SectionFields are kept.)
+ */
+export type SectionEntry = {
+	meta: Metadata;
+	fields: SectionFields;
 };
 
 // ### ImageField
@@ -77,18 +104,16 @@ export type PostFields = BaseFields & {
 export type PostEntry = {
 	meta: Metadata;
 	fields: PostFields;
-	prev?: PostEntry;
-	next?: PostEntry;
+	prev?: BaseFieldsMinimal;
+	next?: BaseFieldsMinimal;
 };
 
 // ### Navigations
 
-export type NavigationPageFields = Pick<PageFieldsRaw, "title" | "header" | "slug">;
-
 export type NavigationFields = {
 	title: string;
 	slug: string;
-	items: NavigationPageFields[];
+	items: BaseFieldsMinimal[];
 };
 
 export type NavigationEntry = {

@@ -1,14 +1,14 @@
 /**
  * @typedef {import('$lib/types/contentful').ContentfulData} ContentfulData
+ * @typedef {import('$lib/types/contentful').BaseFields} BaseFields
+ * @typedef {import('$lib/types/contentful').BaseFieldsMinimal} BaseFieldsMinimal
+ * @typedef {import('$lib/types/contentful').SectionEntry} SectionEntry
  * @typedef {import('$lib/types/contentful').PageEntry} PageEntry
  * @typedef {import('$lib/types/contentful').PageFields} PageFields
  * @typedef {import('$lib/types/contentful').ServiceEntry} ServiceEntry
  * @typedef {import('$lib/types/contentful').PostEntry} PostEntry
  * @typedef {import('$lib/types/contentful').NavigationEntry} NavigationEntry
  * @typedef {import('$lib/types/contentful').NavigationFields} NavigationFields
- * @typedef {import('$lib/types/contentful').NavigationPageFields} NavigationPageFields
- * @typedef {import('$lib/types/contentful').BaseEntry} BaseEntry
- * @typedef {import('$lib/types/contentful').BaseFields} BaseFields
  * @typedef {import('$lib/types/contentful').Metadata} Metadata
  * @typedef {import('contentful').Entry} ContentfulEntry
  * @typedef {import('contentful').EntrySys} EntrySys
@@ -17,7 +17,7 @@
 
 /**
  * Transform the raw Contentful data into a structured shape
- * that matches our type definitions in d.ts.
+ * that matches our type definitions.
  *
  * @param {Record<string, ContentfulEntry[]>} data The raw Contentful data
  * @return ContentfulData
@@ -31,12 +31,15 @@ export function processContentfulData(data = {}) {
 	const navigationRaw = data.navigation || emptyEntries;
 
 	// Parse each content type
-
-	const pages = /** @type {PageEntry[]} */ pagesRaw.map((rawPage) => parseContentEntry(rawPage));
-	const services = /** @type {ServiceEntry[]} */ servicesRaw.map((rawService) =>
-		parseContentEntry(rawService),
+	const pages = /** @type {PageEntry[]} */ (
+		pagesRaw.map((rawPage) => parseContentEntry(rawPage))
 	);
-	const posts = /** @type {PostEntry[]} */ postsRaw.map((rawPost) => parseContentEntry(rawPost));
+	const services = /** @type {ServiceEntry[]} */ (
+		servicesRaw.map((rawService) => parseContentEntry(rawService))
+	);
+	const posts = /** @type {PostEntry[]} */ (
+		postsRaw.map((rawPost) => parseContentEntry(rawPost))
+	);
 	const navigation = navigationRaw.map((rawNav) => parseNavigation(rawNav, pages));
 	const images = parseImageUrls(data);
 
@@ -67,26 +70,28 @@ export const parseImageUrls = (data) => {
 
 /**
  * Generic parser for content entries (used for Pages, Services, and Posts)
- * that resolve their 'sections'.
+ * that also parses any nested section entries.
  *
- * @param {ContentfulEntry} rawEntry The raw Contentful entry
- * @return {PostEntry | PageEntry | ServiceEntry}
+ * @param {ContentfulEntry} rawEntry The raw Contentful entry.
+ * @returns {PostEntry | PageEntry | ServiceEntry | SectionEntry} The processed entry.
  */
 export function parseContentEntry(rawEntry) {
 	const meta = parseMeta(rawEntry.sys);
-	const { ...restFields } = rawEntry.fields;
+	/** @type {Record<string, unknown>} */
+	const restFields = { ...rawEntry.fields };
 
-	// Unwrap nested fields objects
 	for (const key of Object.keys(restFields)) {
-		if (restFields[key] && typeof restFields[key] === "object" && "fields" in restFields[key]) {
-			// @ts-expect-error
-			restFields[key] = restFields[key].fields;
+		const value = restFields[key];
+		if (key === "sections" && Array.isArray(value)) {
+			restFields[key] = value
+				.filter(isContentfulEntry)
+				.map((entry) => parseContentEntry(entry).fields);
+		} else if (isContentfulEntry(value)) {
+			restFields[key] = value.fields;
 		}
 	}
 
-	const fields = /** @type {BaseFields} */ ({ ...restFields });
-
-	// Ensure required fields exist
+	const fields = /** @type {BaseFields} */ (restFields);
 	return { meta, fields };
 }
 
@@ -103,7 +108,7 @@ function parseNavigation(rawNav, pages) {
 	const meta = parseMeta(rawNav?.sys || {});
 	/** @type {EntrySkeletonType['fields']} */
 	const { items = [], ...restFields } = rawNav.fields;
-	/** @type {Partial<NavigationPageFields>[]} */
+	/** @type {Partial<BaseFieldsMinimal>[]} */
 	const parsedItems = [];
 
 	for (const pageRef of items) {
@@ -113,12 +118,8 @@ function parseNavigation(rawNav, pages) {
 		parsedItems.push({ title, header, slug });
 	}
 
-	const fields = { ...restFields, items: parsedItems };
-
-	return {
-		meta,
-		fields,
-	};
+	const fields = /** @type {NavigationFields} */ { ...restFields, items: parsedItems };
+	return { meta, fields };
 }
 
 /**
@@ -135,4 +136,13 @@ function parseMeta({ id, type, createdAt, updatedAt, locale }) {
 		updatedAt,
 		locale: locale || "en-US",
 	};
+}
+
+/**
+ * Checks if a value is a Contentful entry.
+ * @param {unknown} obj
+ * @returns {obj is ContentfulEntry}
+ */
+function isContentfulEntry(obj) {
+	return obj !== null && typeof obj === "object" && "fields" in obj && "sys" in obj;
 }

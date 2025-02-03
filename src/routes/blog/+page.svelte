@@ -12,8 +12,8 @@ let posts = data.posts;
 	{@html intro}
 </Hero>
 
-<!--TODO: Decide whether to add content sections-->
-<!--{#each sections as section}-->
+<!--TODO: Decide whether to add contentSections-->
+<!--{#each contentSections as section}-->
 <!--	<ContentSection prose size="sm">-->
 <!--		{@html section}-->
 <!--	</ContentSection>-->

@@ -16,17 +16,21 @@ let services = data.services;
 
 <ServicesSection {services}/>
 
-{#each sections as section, i}
-	<ContentSection footer={i === sections.length - 1 ? footerCta : undefined} index={i}
-					wave="even" prose>
-		{@html section}
-	</ContentSection>
-	{#snippet footerCta()}
-		<div class="flex flex-wrap gap-4 mt-8">
-			<BookingDialog type="intake"/>
-			<a href={`${base}/contact`}
-			   class="py-2 px-4 font-semibold transition-colors hover:underline group-hover:text-accent-dark">Get in contact</a>
-		</div>
-	{/snippet}
-{/each}
+{#if sections}
+	{#each sections as section, i}
+		<ContentSection footer={i === sections.length - 1 ? footerCta : undefined} index={i}
+						wave="even" prose>
+				<h2 class="text-3xl font-bold">{section.title}</h2>
+			{@html section.content}
+		</ContentSection>
+	{/each}
+{/if}
+
+{#snippet footerCta()}
+	<div class="flex flex-wrap gap-4 mt-8">
+		<BookingDialog type="intake"/>
+		<a href={`${base}/contact`}
+		   class="py-2 px-4 font-semibold transition-colors hover:underline group-hover:text-accent-dark">Get in contact</a>
+	</div>
+{/snippet}
 
