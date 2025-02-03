@@ -118,7 +118,7 @@ function parseNavigation(rawNav, pages) {
 		parsedItems.push({ title, header, slug });
 	}
 
-	const fields = { ...restFields, items: parsedItems };
+	const fields = /** @type {NavigationFields} */ { ...restFields, items: parsedItems };
 	return { meta, fields };
 }
 
