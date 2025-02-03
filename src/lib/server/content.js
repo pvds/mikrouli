@@ -9,7 +9,6 @@
  * @typedef {import('$types/contentful').PageEntry} PageEntry
  * @typedef {import('$types/contentful').NavigationEntry} NavigationEntry
  * @typedef {import('$types/contentful').ServiceEntry} ServiceEntry
- * @typedef {import('$lib/types/contentful').SectionEntry} SectionEntry
  * @typedef {import('$lib/types/contentful').SectionFields} SectionFields
  * @typedef {import('$global/seo/Seo.svelte.types').SEOProps} SEOProps
  * @typedef {import('$types/global').global} GlobalProps
@@ -89,7 +88,7 @@ export const getNavigation = (slug) => {
  * @throws {Error} - Throws a SvelteKit error if the page is not found.
  */
 export const getPage = (slug) => {
-	const pages = preprocessJson(pageItems);
+	const pages = /** @type {PageEntry[]} */ preprocessJson(pageItems);
 	/** @type {PageEntry|undefined} */
 	const page = pages?.find((p) => p.fields.slug === slug);
 
@@ -212,7 +211,7 @@ export const getPostEntries = () => {
 function processEntryMarkdown(entry) {
 	const sections = entry.fields.sections?.map((section) => ({
 		...section,
-		content: markdownToHtml(section.fields.content),
+		content: markdownToHtml(section.content),
 	}));
 
 	return {

@@ -4,13 +4,14 @@
             "id": "73rcZJ4hT1YtU28TI15VZp",
             "type": "Entry",
             "createdAt": "2025-01-08T02:59:42.227Z",
-            "updatedAt": "2025-01-22T14:03:45.842Z",
+            "updatedAt": "2025-02-03T10:08:27.312Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "404",
             "slug": "404",
             "seoIndex": false,
+            "hidden": false,
             "seoDescription": "Oops! The page you’re looking for couldn’t be found. Check your link or navigate back to discover our helpful content.",
             "seoKeywords": "404, error, missing, not-found, navigation",
             "header": "404 - Page not found",
@@ -23,13 +24,14 @@
             "id": "61Vdx8qP4ItFip29IZbe9u",
             "type": "Entry",
             "createdAt": "2024-12-27T22:59:24.373Z",
-            "updatedAt": "2025-01-17T14:00:04.270Z",
+            "updatedAt": "2025-02-03T10:08:27.279Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "About",
             "slug": "about",
             "seoIndex": true,
+            "hidden": false,
             "seoDescription": "Learn about Eleni, a systemic therapist with an international perspective dedicated to helping clients build healthier relationships.",
             "seoKeywords": "therapist, systemic, international, expat, relationships",
             "header": "Get to Know Me",
@@ -42,13 +44,14 @@
             "id": "2skTvZuf4xUYpfqA45Vz1O",
             "type": "Entry",
             "createdAt": "2024-12-27T23:38:56.621Z",
-            "updatedAt": "2025-01-17T01:00:03.102Z",
+            "updatedAt": "2025-02-03T10:08:27.243Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "Blog",
             "slug": "blog",
             "seoIndex": true,
+            "hidden": false,
             "seoDescription": "Read insightful articles offering tools and perspectives to navigate life’s challenges and foster personal growth for individuals and families.",
             "seoKeywords": "blog, insights, therapy, growth, guidance",
             "header": "Insights to Support Your Journey",
@@ -61,13 +64,14 @@
             "id": "2FmTPol4nxNb4Q0elgN4oG",
             "type": "Entry",
             "createdAt": "2024-12-28T00:14:21.086Z",
-            "updatedAt": "2025-01-29T03:20:18.899Z",
+            "updatedAt": "2025-02-03T10:08:27.468Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "Contact",
             "slug": "contact",
             "seoIndex": true,
+            "hidden": false,
             "seoDescription": "Reach out for accessible therapy support. Contact me to begin your journey toward personal change and well-being.",
             "seoKeywords": "system therapy, contact, support, counseling, healing",
             "header": "Contact Me to Take the First Step",
@@ -80,18 +84,53 @@
             "id": "3rFQxFehQrVUuxDH8StNup",
             "type": "Entry",
             "createdAt": "2024-12-27T23:40:02.880Z",
-            "updatedAt": "2025-01-17T14:00:04.579Z",
+            "updatedAt": "2025-02-03T11:33:55.881Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "Home",
             "slug": "home",
             "seoIndex": true,
+            "hidden": false,
             "seoDescription": "Mikrouli systemic therapy is supportive space for clarity and positive change and navigate life’s challenges.",
             "seoKeywords": "therapy, positive change, clarity, support, systemic",
             "header": "Creating Positive Change in Your Relationships and Life",
             "intro": "Life can feel complicated, whether you’re navigating relationships, work challenges, or cultural transitions. \n\nI’m Eleni Papamikrouli, a systemic therapist working with individuals, couples, and families. While I specialize in supporting internationals and expats, I welcome anyone seeking clarity and connection in their life.",
-            "content": "## Your Journey Starts Here\n\nAt the heart of my practice is the belief that every client’s experience is unique. I work to create a safe, supportive space where you can explore your challenges, uncover strengths, and find new paths forward. Whether you’re feeling stuck, overwhelmed, or simply curious about change, I’m here to help you navigate your personal journey.\n\n---\n\n### A Personalized Approach\n\nMy approach is both holistic and tailored to you. I blend empathy with practical strategies drawn from systemic therapy to help you understand the patterns in your relationships, work, and personal life. This collaborative process is designed to empower you to make lasting, positive changes.\n\n---\n\n### What You Can Expect\n\n- **Clarity and Insight:** We work together to gain a clear understanding of your current challenges and where you want to go.\n- **Actionable Strategies:** You’ll leave our sessions equipped with real-life tools to navigate change.\n- **A Caring Partnership:** I am committed to supporting you through every stage of your journey, with sensitivity to your unique experiences.\n- **Global Perspective:** While I specialize in supporting internationals and expats, my practice is open to anyone seeking growth, balance, and connection.\n\n---\n\n### Let's Begin\n\nEvery step you take is an investment in a more fulfilling future. I invite you to explore the services offered, learn more about the transformative power of systemic therapy, and discover how you can begin creating positive change in your life.\n"
+            "content": "## Your Journey Starts Here\n\nAt the heart of my practice is the belief that every client’s experience is unique. I work to create a safe, supportive space where you can explore your challenges, uncover strengths, and find new paths forward. Whether you’re feeling stuck, overwhelmed, or simply curious about change, I’m here to help you navigate your personal journey.\n\n---\n\n### A Personalized Approach\n\nMy approach is both holistic and tailored to you. I blend empathy with practical strategies drawn from systemic therapy to help you understand the patterns in your relationships, work, and personal life. This collaborative process is designed to empower you to make lasting, positive changes.\n\n---\n\n### What You Can Expect\n\n- **Clarity and Insight:** We work together to gain a clear understanding of your current challenges and where you want to go.\n- **Actionable Strategies:** You’ll leave our sessions equipped with real-life tools to navigate change.\n- **A Caring Partnership:** I am committed to supporting you through every stage of your journey, with sensitivity to your unique experiences.\n- **Global Perspective:** While I specialize in supporting internationals and expats, my practice is open to anyone seeking growth, balance, and connection.\n\n---\n\n### Let's Begin\n\nEvery step you take is an investment in a more fulfilling future. I invite you to explore the services offered, learn more about the transformative power of systemic therapy, and discover how you can begin creating positive change in your life.\n",
+            "sections": [
+                {
+                    "title": "Your Journey Starts Here",
+                    "content": "At the heart of my practice is the belief that every client’s experience is unique. I work to create a safe, supportive space where you can explore your challenges, uncover strengths, and find new paths forward. Whether you’re feeling stuck, overwhelmed, or simply curious about change, I’m here to help you navigate your personal journey.",
+                    "image": {
+                        "title": "Living abroad",
+                        "description": "Woman dragging a suitcase",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/1vfLQiL9QT9uF2ngrnRAPL/842e41090c0429ce5c2929c95ba11f04/living-abroad.jpg",
+                            "details": {
+                                "size": 88349,
+                                "image": {
+                                    "width": 1280,
+                                    "height": 720
+                                }
+                            },
+                            "fileName": "living-abroad.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
+                },
+                {
+                    "title": "A Personalized Approach",
+                    "content": "My approach is both holistic and tailored to you. I blend empathy with practical strategies drawn from systemic therapy to help you understand the patterns in your relationships, work, and personal life. This collaborative process is designed to empower you to make lasting, positive changes."
+                },
+                {
+                    "title": "What you can expect",
+                    "content": "- **Clarity and Insight:** We work together to gain a clear understanding of your current challenges and where you want to go.\n- **Actionable Strategies:** You’ll leave our sessions equipped with real-life tools to navigate change.\n- **A Caring Partnership:** I am committed to supporting you through every stage of your journey, with sensitivity to your unique experiences.\n- **Global Perspective:** While I specialize in supporting internationals and expats, my practice is open to anyone seeking growth, balance, and connection."
+                },
+                {
+                    "title": "Let's Begin",
+                    "content": "Every step you take is an investment in a more fulfilling future. I invite you to explore the services offered, learn more about the transformative power of systemic therapy, and discover how you can begin creating positive change in your life.\n"
+                }
+            ]
         }
     },
     {
@@ -99,13 +138,14 @@
             "id": "3Dq1BUqylcl2pQweRSAvc6",
             "type": "Entry",
             "createdAt": "2024-12-27T23:01:22.902Z",
-            "updatedAt": "2025-01-27T22:30:30.016Z",
+            "updatedAt": "2025-02-03T10:06:31.494Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "Services",
             "slug": "services",
             "seoIndex": true,
+            "hidden": false,
             "seoDescription": "Discover tailored therapy services to improve relationships, overcome challenges, and support personal growth for clients from all walks of life.",
             "seoKeywords": "therapy, services, counseling, growth, relationships",
             "header": "Explore Ways We Can Work Together",

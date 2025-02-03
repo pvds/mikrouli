@@ -1,8 +1,8 @@
 /**
  * @typedef {import('$lib/types/contentful').ContentfulData} ContentfulData
- * @typedef {import('$lib/types/contentful').BaseEntry} BaseEntry
  * @typedef {import('$lib/types/contentful').BaseFields} BaseFields
  * @typedef {import('$lib/types/contentful').BaseFieldsMinimal} BaseFieldsMinimal
+ * @typedef {import('$lib/types/contentful').SectionEntry} SectionEntry
  * @typedef {import('$lib/types/contentful').PageEntry} PageEntry
  * @typedef {import('$lib/types/contentful').PageFields} PageFields
  * @typedef {import('$lib/types/contentful').ServiceEntry} ServiceEntry
@@ -73,7 +73,7 @@ export const parseImageUrls = (data) => {
  * that also resolves any nested section entries.
  *
  * @param {ContentfulEntry} rawEntry The raw Contentful entry
- * @return {PostEntry | PageEntry | ServiceEntry}
+ * @return {PostEntry | PageEntry | ServiceEntry | SectionEntry}
  */
 export function parseContentEntry(rawEntry) {
 	const meta = parseMeta(rawEntry.sys);
@@ -86,11 +86,10 @@ export function parseContentEntry(rawEntry) {
 			const rawSections = restFields[key];
 			const processedSections = [];
 			for (const sectionEntry of rawSections) {
-				if (sectionEntry && typeof sectionEntry === "object" && "fields" in sectionEntry) {
-					processedSections.push(sectionEntry.fields);
-				}
+				// @ts-expect-error
+				const processedSection = parseContentEntry(sectionEntry);
+				if (processedSection) processedSections.push(processedSection.fields);
 			}
-			// @ts-expect-error
 			restFields[key] = processedSections;
 		} else if (
 			restFields[key] &&

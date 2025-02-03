@@ -4,7 +4,7 @@
             "id": "1jrEYUK6AF7a2NvJ41IthV",
             "type": "Entry",
             "createdAt": "2025-01-07T13:22:20.499Z",
-            "updatedAt": "2025-01-27T23:59:16.979Z",
+            "updatedAt": "2025-02-03T10:08:27.665Z",
             "locale": "en-US"
         },
         "fields": {
@@ -12,6 +12,7 @@
             "slug": "individual-therapy",
             "order": 1,
             "seoIndex": true,
+            "hidden": false,
             "seoDescription": "For those seeking personal growth and clarity, individual therapy offers a space to explore challenges and patterns that may be holding you back. ",
             "header": "Individual Therapy",
             "heroImage": {
@@ -39,7 +40,7 @@
             "id": "7tTIOTk3UaWgvlYkn51HF2",
             "type": "Entry",
             "createdAt": "2025-01-07T13:23:36.337Z",
-            "updatedAt": "2025-01-27T23:59:31.905Z",
+            "updatedAt": "2025-02-03T10:08:27.712Z",
             "locale": "en-US"
         },
         "fields": {
@@ -47,6 +48,7 @@
             "slug": "family-therapy",
             "order": 2,
             "seoIndex": true,
+            "hidden": false,
             "seoDescription": "I help families uncover and change unhelpful patterns, creating healthier ways of relating and supporting each other.",
             "header": "Family Therapy",
             "heroImage": {
@@ -74,7 +76,7 @@
             "id": "37va85fpU9i3eD9r36ZvvP",
             "type": "Entry",
             "createdAt": "2025-01-07T13:23:00.820Z",
-            "updatedAt": "2025-01-27T23:59:41.611Z",
+            "updatedAt": "2025-02-03T10:06:14.295Z",
             "locale": "en-US"
         },
         "fields": {
@@ -82,6 +84,7 @@
             "slug": "couples-therapy",
             "order": 3,
             "seoIndex": true,
+            "hidden": false,
             "seoDescription": "I work with couples of all backgrounds to improve communication, resolve conflicts, and strengthen their connection.",
             "header": "Couples Therapy",
             "heroImage": {

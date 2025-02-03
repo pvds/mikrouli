@@ -18,7 +18,7 @@ export type BaseFieldsRaw = {
 	header?: string;
 	intro: string;
 	content?: string;
-	sections?: SectionEntry[];
+	sections?: SectionFields[];
 };
 
 export type SectionFields = {
@@ -39,14 +39,10 @@ export type SectionEntry = {
 
 export type BaseFields = BaseFieldsRaw & {
 	contentSections: string[];
+	sections?: SectionFields[];
 };
 
 export type BaseFieldsMinimal = Pick<BaseFieldsRaw, "title" | "header" | "slug">;
-
-export type BaseEntry = {
-	meta: Metadata;
-	fields: BaseFields;
-};
 
 // ### ImageField
 

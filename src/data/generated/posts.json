@@ -22,13 +22,14 @@
             "id": "3JNNx7W7oR8vIgTdggece",
             "type": "Entry",
             "createdAt": "2024-12-28T06:00:04.415Z",
-            "updatedAt": "2025-01-19T11:41:21.962Z",
+            "updatedAt": "2025-02-03T10:08:27.074Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "Strengthening Communication in Relationships",
             "slug": "strengthening-communication-in-relationships",
             "seoIndex": true,
+            "hidden": false,
             "seoDescription": "Systemic therapy can help you shift how you talk and listen.",
             "heroImage": {
                 "title": "Communicating in relationships",
@@ -55,13 +56,14 @@
             "id": "4K3cTBNASwMkrwkSSWm68w",
             "type": "Entry",
             "createdAt": "2024-12-28T06:00:04.384Z",
-            "updatedAt": "2025-01-19T11:58:30.071Z",
+            "updatedAt": "2025-02-03T10:08:27.159Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "Why Therapy Isn’t About Fixing You",
             "slug": "why-therapy-isnt-about-fixing-you",
             "seoIndex": true,
+            "hidden": false,
             "seoDescription": "Many people think therapy is about diagnosing problems. Systemic therapy offers a different perspective—it’s about working with the systems around you.",
             "heroImage": {
                 "title": "Therapy is about acceptance",
@@ -88,13 +90,14 @@
             "id": "3kryEmO4yykbYKbByiWU8i",
             "type": "Entry",
             "createdAt": "2024-12-28T06:00:04.205Z",
-            "updatedAt": "2025-01-19T12:06:05.669Z",
+            "updatedAt": "2025-02-03T10:06:14.213Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "Cultural Sensitivity in Therapy",
             "slug": "cultural-sensitivity-in-therapy",
             "seoIndex": true,
+            "hidden": false,
             "seoDescription": "Your cultural background matters. Therapy that acknowledges this can help you feel understood and supported in meaningful ways.",
             "heroImage": {
                 "title": "Cultural Sensitivity",
@@ -121,13 +124,14 @@
             "id": "4YPPEYrLxfl646mWntSl1O",
             "type": "Entry",
             "createdAt": "2024-12-28T06:00:04.003Z",
-            "updatedAt": "2025-01-30T07:09:07.980Z",
+            "updatedAt": "2025-02-03T10:08:27.198Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "Adapting to Life Abroad",
             "slug": "adapting-to-life-abroad",
             "seoIndex": true,
+            "hidden": false,
             "seoDescription": "The expat experience is full of transitions and challenges. Here are some systemic tools to help you find stability and connection in a new culture.",
             "heroImage": {
                 "title": "Living abroad",
@@ -154,13 +158,14 @@
             "id": "1FcZOjCAszzKaiJxOAvKxA",
             "type": "Entry",
             "createdAt": "2024-12-28T06:00:03.284Z",
-            "updatedAt": "2025-01-19T11:52:50.539Z",
+            "updatedAt": "2025-02-03T10:08:27.118Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "Understanding the Systems That Shape Us",
             "slug": "understanding-the-systems-that-shape-us",
             "seoIndex": true,
+            "hidden": false,
             "seoDescription": "From families to workplaces, the systems we live in affect us deeply. Explore how systemic therapy helps you navigate these dynamics.",
             "heroImage": {
                 "title": "Forms of therapy",
@@ -187,13 +192,14 @@
             "id": "5EA7KMYDmrAL2qk5VLuJdo",
             "type": "Entry",
             "createdAt": "2024-12-28T06:00:03.222Z",
-            "updatedAt": "2025-01-19T01:34:52.482Z",
+            "updatedAt": "2025-02-03T10:08:26.999Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "Breaking Unhelpful Family Patterns",
             "slug": "breaking-unhelpful-family-patterns",
             "seoIndex": true,
+            "hidden": false,
             "seoDescription": "Families are systems, and sometimes those systems get stuck. Learn how systemic therapy can help untangle unhealthy patterns and create space for change.",
             "heroImage": {
                 "title": "Breaking generational patterns",
