@@ -12,7 +12,7 @@ import metadata from "$data/generated/metadata.json";
  * @property {string} [classes]
  * @property {string} [heightClass]
  * @property {string} [widthClass]
- * @property {boolean} [isCMS]
+ * @property {boolean} [isLocal]
  *
  * @typedef {Record<string, {placeholder: string, width:string, height:string, hasAlpha:boolean}>} Metadata
  */
@@ -21,12 +21,12 @@ import metadata from "$data/generated/metadata.json";
 let {
 	image,
 	alt,
-	sizes = "(max-width: 768px) 100vw, 50vw",
+	sizes,
 	priority,
 	classes,
 	heightClass = "h-full",
 	widthClass = "w-full",
-	isCMS = false,
+	isLocal = false,
 } = $props();
 
 const IMAGE_DIR = "/images";
@@ -38,8 +38,8 @@ let img = $state(undefined);
 
 const height = $derived(heightClass ? heightClass : "h-full");
 const width = $derived(widthClass ? widthClass : "w-full");
-const directory = $derived(`${IMAGE_DIR}/${isCMS ? "cms" : "local"}`);
-const metaCategory = $derived(/** @type Metadata */ (isCMS ? metadata.cms : metadata.local));
+const directory = $derived(`${IMAGE_DIR}/${isLocal ? "local" : "cms"}`);
+const metaCategory = $derived(/** @type Metadata */ (isLocal ? metadata.local : metadata.cms));
 const meta = $derived(metaCategory[image]);
 const placeholder = $derived(meta?.placeholder);
 const aspectRatio = $derived(`${meta.width}/${meta.height}`);
@@ -55,7 +55,7 @@ const srcset = (sizes) =>
 </script>
 
 {#if loaded}
-<div class="relative {height} {width}"
+<div class="relative {height} {width} not-prose"
 	 style={`aspect-ratio: ${aspectRatio};`}
 >
 	{#if !hasAlpha && placeholder}

@@ -22,7 +22,6 @@ let { service, priority = false } = $props();
 			heightClass="h-[--spacing(48)]"
 			{priority}
 			classes="rounded-md not-group-hover:grayscale"
-			isCMS={true}
 		/>
 	{/if}
 	<div style="view-transition-name: {service.slug}">

@@ -23,7 +23,6 @@ let { post, priority = false } = $props();
 				sizes="20rem"
 				{priority}
 				classes="rounded-md not-group-hover:grayscale"
-				isCMS={true}
 			/>
 		</div>
 	{/if}
