@@ -83,13 +83,11 @@ export function parseContentEntry(rawEntry) {
 	for (const key of Object.keys(restFields)) {
 		// If this is the new nested sections field, process each nested entry recursively.
 		if (key === "sections" && Array.isArray(restFields[key])) {
-			const rawSections = rawEntry.fields.sections;
+			const rawSections = restFields[key];
 			const processedSections = [];
 			for (const sectionEntry of rawSections) {
 				if (sectionEntry && typeof sectionEntry === "object" && "fields" in sectionEntry) {
-					processedSections.push(parseContentEntry(sectionEntry));
-				} else {
-					processedSections.push(sectionEntry);
+					processedSections.push(sectionEntry.fields);
 				}
 			}
 			restFields[key] = processedSections;

@@ -3,6 +3,8 @@
  *
  * @typedef {import('$types/contentful').BaseFieldsRaw} BaseFieldsRaw
  * @typedef {import('$types/contentful').BaseFields} BaseFields
+ * @typedef {import('$types/contentful').BaseFieldsMinimal} BaseFieldsMinimal
+ * @typedef {import('$types/contentful').Metadata} Metadata
  * @typedef {import('$types/contentful').PostEntry} PostEntry
  * @typedef {import('$types/contentful').PageEntry} PageEntry
  * @typedef {import('$types/contentful').NavigationEntry} NavigationEntry
@@ -34,9 +36,9 @@ const preprocessJson = (data) => {
 		fields: {
 			...item.fields,
 			contentSections: [],
-			prev: undefined,
-			next: undefined,
 		},
+		prev: undefined,
+		next: undefined,
 	}));
 };
 
@@ -155,7 +157,13 @@ export const getPost = (slug) => {
 	if (index === -1) throw error(404, `Blog post with slug '${slug}' not found`);
 	/** @type {PostEntry} */
 	const post = processEntryMarkdown(posts[index]);
-	const minimalFields = (entry) => ({
+
+	/**
+	 * Extract minimal fields from a post entry.
+	 * @param {BaseFields} entry
+	 * @return {BaseFieldsMinimal}
+	 */
+	const minimalFields = (/** @type {PostEntry} */ entry) => ({
 		title: entry.fields.title,
 		header: entry.fields.header,
 		slug: entry.fields.slug,
@@ -219,20 +227,22 @@ function processNestedSections(sections) {
 /**
  * Processes a single content entry by converting its markdown fields.
  *
- * @template T extends { fields: BaseFields }
- * @param {T} entry A content entry parsed from Contentful.
- * @return {T} The entry with markdown converted.
+ * @param {{ meta: Metadata,fields: BaseFields }} entry A content entry parsed from Contentful.
+ * @returns {{ meta: Metadata,fields: BaseFields }} The entry with markdown converted.
  */
 function processEntryMarkdown(entry) {
+	const sections = entry.fields.sections?.map((section) => ({
+		...section,
+		content: markdownToHtml(section.content),
+	}));
+
 	return {
 		...entry,
 		fields: {
 			...entry.fields,
 			intro: markdownToHtml(entry.fields.intro),
 			contentSections: splitText(markdownToHtml(entry.fields.content)),
-			sections: entry.fields.sections
-				? processNestedSections(entry.fields.sections)
-				: entry.fields.sections,
+			sections,
 		},
 	};
 }

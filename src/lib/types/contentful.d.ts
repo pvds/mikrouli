@@ -103,8 +103,8 @@ export type PostFields = BaseFields & {
 export type PostEntry = {
 	meta: Metadata;
 	fields: PostFields;
-	prev?: PostEntry;
-	next?: PostEntry;
+	prev?: BaseFieldsMinimal;
+	next?: BaseFieldsMinimal;
 };
 
 // ### Navigations

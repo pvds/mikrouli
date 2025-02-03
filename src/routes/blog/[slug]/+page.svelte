@@ -39,15 +39,15 @@ onMount(() => {
 {#if prev || next}
 	<Section innerClasses="flex flex-wrap justify-between">
 		{#if prev}
-			<a href={`${base}/blog/${prev.fields.slug}`}
+			<a href={`${base}/blog/${prev.slug}`}
 			   class="inline-block flex-auto group mr-2 py-2 font-semibold text-primary-darker hover:text-accent-dark">
-				<span class="inline-block mr-1 group-hover:animate-wiggle-left">&larr;</span>{prev.fields.title}
+				<span class="inline-block mr-1 group-hover:animate-wiggle-left">&larr;</span>{prev.title}
 			</a>
 		{/if}
 		{#if next}
-			<a href={`${base}/blog/${next.fields.slug}`}
+			<a href={`${base}/blog/${next.slug}`}
 			   class="inline-block flex-auto text-right group ml-2 py-2 font-semibold text-primary-darker hover:text-accent-dark">
-				{next.fields.title}<span class="inline-block ml-1 group-hover:animate-wiggle-right">&rarr;</span>
+				{next.title}<span class="inline-block ml-1 group-hover:animate-wiggle-right">&rarr;</span>
 			</a>
 		{/if}
 	</Section>
