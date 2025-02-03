@@ -70,39 +70,28 @@ export const parseImageUrls = (data) => {
 
 /**
  * Generic parser for content entries (used for Pages, Services, and Posts)
- * that also resolves any nested section entries.
+ * that also parses any nested section entries.
  *
- * @param {ContentfulEntry} rawEntry The raw Contentful entry
- * @return {PostEntry | PageEntry | ServiceEntry | SectionEntry}
+ * @param {ContentfulEntry} rawEntry The raw Contentful entry.
+ * @returns {PostEntry | PageEntry | ServiceEntry | SectionEntry} The processed entry.
  */
 export function parseContentEntry(rawEntry) {
 	const meta = parseMeta(rawEntry.sys);
+	/** @type {Record<string, unknown>} */
 	const restFields = { ...rawEntry.fields };
 
-	// Process each field in the entry.
 	for (const key of Object.keys(restFields)) {
-		// If this is the new nested sections field, process each nested entry recursively.
-		if (key === "sections" && Array.isArray(restFields[key])) {
-			const rawSections = restFields[key];
-			const processedSections = [];
-			for (const sectionEntry of rawSections) {
-				// @ts-expect-error
-				const processedSection = parseContentEntry(sectionEntry);
-				if (processedSection) processedSections.push(processedSection.fields);
-			}
-			restFields[key] = processedSections;
-		} else if (
-			restFields[key] &&
-			typeof restFields[key] === "object" &&
-			"fields" in restFields[key]
-		) {
-			// Unwrap any nested single content entry.
-			// @ts-expect-error
-			restFields[key] = restFields[key].fields;
+		const value = restFields[key];
+		if (key === "sections" && Array.isArray(value)) {
+			restFields[key] = value
+				.filter(isContentfulEntry)
+				.map((entry) => parseContentEntry(entry).fields);
+		} else if (isContentfulEntry(value)) {
+			restFields[key] = value.fields;
 		}
 	}
 
-	const fields = /** @type {BaseFields} */ ({ ...restFields });
+	const fields = /** @type {BaseFields} */ (restFields);
 	return { meta, fields };
 }
 
@@ -147,4 +136,13 @@ function parseMeta({ id, type, createdAt, updatedAt, locale }) {
 		updatedAt,
 		locale: locale || "en-US",
 	};
+}
+
+/**
+ * Checks if a value is a Contentful entry.
+ * @param {unknown} obj
+ * @returns {obj is ContentfulEntry}
+ */
+function isContentfulEntry(obj) {
+	return obj !== null && typeof obj === "object" && "fields" in obj && "sys" in obj;
 }
