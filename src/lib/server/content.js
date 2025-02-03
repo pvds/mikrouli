@@ -3,6 +3,8 @@
  *
  * @typedef {import('$types/contentful').BaseFieldsRaw} BaseFieldsRaw
  * @typedef {import('$types/contentful').BaseFields} BaseFields
+ * @typedef {import('$types/contentful').BaseEntry} BaseEntry
+ * @typedef {import('$types/contentful').BaseEntryRaw} BaseEntryRaw
  * @typedef {import('$types/contentful').BaseFieldsMinimal} BaseFieldsMinimal
  * @typedef {import('$types/contentful').Metadata} Metadata
  * @typedef {import('$types/contentful').PostEntry} PostEntry
@@ -25,12 +27,11 @@ import { markdownToHtml, splitText } from "./utils.js";
 
 /**
  * Preprocess JSON data to ensure the 'contentSections' field exists.
- * @template T
- * @param {Array<T & { fields: BaseFieldsRaw }>} data - Array of content entries.
- * @returns {Array<T & { fields: BaseFields }>} Processed data.
+ * @param {BaseEntryRaw[]} data - Array of content entries.
+ * @returns {BaseEntry[]} Processed data.
  */
 const preprocessJson = (data) => {
-	return data.map((item) => ({
+	return data?.map((item) => ({
 		...item,
 		fields: {
 			...item.fields,
@@ -192,8 +193,8 @@ export const getPostEntries = () => {
 /**
  * Processes a single content entry by converting its markdown fields.
  *
- * @param {{ meta: Metadata,fields: BaseFields }} entry A content entry parsed from Contentful.
- * @returns {{ meta: Metadata,fields: BaseFields }} The entry with markdown converted.
+ * @param {BaseEntry} entry A content entry parsed from Contentful.
+ * @returns {BaseEntry} The entry with markdown converted.
  */
 function processEntryMarkdown(entry) {
 	const sections = entry.fields.sections?.map((section) => ({
