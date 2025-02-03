@@ -160,10 +160,10 @@ export const getPost = (slug) => {
 
 	/**
 	 * Extract minimal fields from a post entry.
-	 * @param {BaseFields} entry
+	 * @param {PostEntry} entry
 	 * @return {BaseFieldsMinimal}
 	 */
-	const minimalFields = (/** @type {PostEntry} */ entry) => ({
+	const minimalFields = (entry) => ({
 		title: entry.fields.title,
 		header: entry.fields.header,
 		slug: entry.fields.slug,
