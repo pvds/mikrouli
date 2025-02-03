@@ -18,10 +18,23 @@ export type BaseFieldsRaw = {
 	header?: string;
 	intro: string;
 	content?: string;
+	sections?: SectionEntry[];
+};
+
+export type SectionFields = {
+	title: string;
+	header?: string;
+	content: string;
+	image?: ImageField;
+};
+
+export type SectionEntry = {
+	meta: Metadata;
+	fields: SectionFields;
 };
 
 export type BaseFields = BaseFieldsRaw & {
-	sections: string[];
+	contentSections: string[];
 };
 
 export type BaseEntry = {

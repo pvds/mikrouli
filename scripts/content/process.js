@@ -17,7 +17,7 @@
 
 /**
  * Transform the raw Contentful data into a structured shape
- * that matches our type definitions in d.ts.
+ * that matches our type definitions.
  *
  * @param {Record<string, ContentfulEntry[]>} data The raw Contentful data
  * @return ContentfulData
@@ -31,12 +31,15 @@ export function processContentfulData(data = {}) {
 	const navigationRaw = data.navigation || emptyEntries;
 
 	// Parse each content type
-
-	const pages = /** @type {PageEntry[]} */ pagesRaw.map((rawPage) => parseContentEntry(rawPage));
-	const services = /** @type {ServiceEntry[]} */ servicesRaw.map((rawService) =>
-		parseContentEntry(rawService),
+	const pages = /** @type {PageEntry[]} */ (
+		pagesRaw.map((rawPage) => parseContentEntry(rawPage))
 	);
-	const posts = /** @type {PostEntry[]} */ postsRaw.map((rawPost) => parseContentEntry(rawPost));
+	const services = /** @type {ServiceEntry[]} */ (
+		servicesRaw.map((rawService) => parseContentEntry(rawService))
+	);
+	const posts = /** @type {PostEntry[]} */ (
+		postsRaw.map((rawPost) => parseContentEntry(rawPost))
+	);
 	const navigation = navigationRaw.map((rawNav) => parseNavigation(rawNav, pages));
 	const images = parseImageUrls(data);
 
@@ -67,26 +70,40 @@ export const parseImageUrls = (data) => {
 
 /**
  * Generic parser for content entries (used for Pages, Services, and Posts)
- * that resolve their 'sections'.
+ * that also resolves any nested section entries.
  *
  * @param {ContentfulEntry} rawEntry The raw Contentful entry
  * @return {PostEntry | PageEntry | ServiceEntry}
  */
 export function parseContentEntry(rawEntry) {
 	const meta = parseMeta(rawEntry.sys);
-	const { ...restFields } = rawEntry.fields;
+	const restFields = { ...rawEntry.fields };
 
-	// Unwrap nested fields objects
+	// Process each field in the entry.
 	for (const key of Object.keys(restFields)) {
-		if (restFields[key] && typeof restFields[key] === "object" && "fields" in restFields[key]) {
-			// @ts-expect-error
+		// If this is the new nested sections field, process each nested entry recursively.
+		if (key === "sections" && Array.isArray(restFields[key])) {
+			const rawSections = rawEntry.fields.sections;
+			const processedSections = [];
+			for (const sectionEntry of rawSections) {
+				if (sectionEntry && typeof sectionEntry === "object" && "fields" in sectionEntry) {
+					processedSections.push(parseContentEntry(sectionEntry));
+				} else {
+					processedSections.push(sectionEntry);
+				}
+			}
+			restFields[key] = processedSections;
+		} else if (
+			restFields[key] &&
+			typeof restFields[key] === "object" &&
+			"fields" in restFields[key]
+		) {
+			// Unwrap any nested single content entry.
 			restFields[key] = restFields[key].fields;
 		}
 	}
 
 	const fields = /** @type {BaseFields} */ ({ ...restFields });
-
-	// Ensure required fields exist
 	return { meta, fields };
 }
 
@@ -114,11 +131,7 @@ function parseNavigation(rawNav, pages) {
 	}
 
 	const fields = { ...restFields, items: parsedItems };
-
-	return {
-		meta,
-		fields,
-	};
+	return { meta, fields };
 }
 
 /**
