@@ -2,13 +2,16 @@
 import { base } from "$app/paths";
 import Section from "$layout/Section.svelte";
 
-const links = [
-	{ href: `${base}/contact`, label: "Get in contact" },
-	{ href: `${base}/about`, label: "About me" },
-	{ href: `${base}/`, label: "FAQ" },
-	{ href: `${base}/`, label: "Support" },
-	{ href: `${base}/blog`, label: "Blog" },
-];
+/** @typedef {{ href: string, label: string, title: string | undefined }} NavItem */
+
+/** @type {{ menu: import('$types/contentful').NavigationEntry }} */
+let { menu } = $props();
+
+const navItems = menu.fields.items.map(({ slug, title, header }) => ({
+	href: `${base}/${slug}`,
+	label: title,
+	title: header,
+}));
 </script>
 
 <div class="footer relative mt-64 md:mt-56">
@@ -30,8 +33,9 @@ const links = [
 	<Section classes="z-2">
 		<footer class="font-bold">
 			<nav class="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4">
-				{#each links as { href, label }}
-					<a class="text-center" {href}>{label}</a>
+				{#each navItems as { href, label, title }}
+					<a class="text-center text-primary-darker hover:text-primary-darkest" {href}
+					   {title}>{label}</a>
 				{/each}
 			</nav>
 		</footer>
