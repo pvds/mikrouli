@@ -86,6 +86,8 @@ let linkedData = $derived(
 	},
 );
 
+// $inspect(linkedData);
+
 let ldScript = $derived(
 	`<script type="application/ld+json">${JSON.stringify(linkedData)}${"<"}/script>`,
 );
