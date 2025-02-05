@@ -237,8 +237,9 @@ function getServicesPage(page, seoData, services) {
 }
 
 /**
- * Generate base JSON-LD for a page.
- * Returns a WebPage with breadcrumb.
+ * Generate the base JSON‑LD for a page.
+ * Returns a WebPage with a breadcrumb list.
+ *
  * @param {PageEntry} page - The page entry.
  * @param {SEOProps} seoData - The SEO data.
  * @param {AllowedPageTypes} pageType - The specific page type.
@@ -246,20 +247,19 @@ function getServicesPage(page, seoData, services) {
  * @returns {ExtendedWebPage | ExtendedCollectionPage}
  */
 function getBasePage(page, seoData, pageType, extraCrumb) {
-	const slug = page.fields.slug;
-	const url = `${URL_BASE_PRODUCTION}/${slug}`;
+	const defaultUrl = `${URL_BASE_PRODUCTION}/${page.fields.slug}`;
+	const canonicalUrl = extraCrumb ? extraCrumb.item : defaultUrl;
 	/** @type {ExtendedWebPage | ExtendedCollectionPage} */
 	const base = {
 		"@context": "https://schema.org",
-		"@type": /** @type {AllowedPageTypes} */ (pageType),
+		"@type": pageType,
 		name: page.fields.title,
 		description: page.fields.seoDescription,
-		url: url,
+		url: canonicalUrl,
 		mainEntityOfPage: {
 			"@type": "WebPage",
-			"@id": url,
+			"@id": canonicalUrl,
 		},
-
 		breadcrumb: {
 			"@type": "BreadcrumbList",
 			itemListElement: [
@@ -273,7 +273,7 @@ function getBasePage(page, seoData, pageType, extraCrumb) {
 					"@type": "ListItem",
 					position: 2,
 					name: page.fields.title,
-					item: url,
+					item: extraCrumb ? getParentUrl(extraCrumb.item) : defaultUrl,
 				},
 			],
 		},
@@ -313,4 +313,14 @@ function getImage(image) {
 				url: `${URL_BASE_PRODUCTION}/images/cms/${getImageName(image.file.fileName)}-${IMAGE_THUMBNAIL_SIZE}.${IMAGE_EXT}`,
 			}
 		: undefined;
+}
+
+/**
+ * Helper function to get the parent URL by removing its last segment.
+ * For example, given "https://example.com/blog/post", it returns "https://example.com/blog".
+ * @param {string} url - The full URL.
+ * @returns {string} - The parent URL.
+ */
+function getParentUrl(url) {
+	return url.split("/").slice(0, -1).join("/");
 }
