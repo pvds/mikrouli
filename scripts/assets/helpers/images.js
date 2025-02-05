@@ -30,8 +30,6 @@ export async function processImages(
 	const inDir = path.join(IMAGE_INPUT_PATH_RESOLVED, category);
 	const outDir = path.join(IMAGE_OUTPUT_PATH_RESOLVED, category);
 	const limit = pLimit(concurrency);
-	/** @type {Record<string, string>} */
-	const placeholders = {};
 	/** @type {Record<string, {placeholder: string, width:string, height:string, hasAlpha:boolean}>} */
 	const metaData = {};
 	/** @type {Record<string, number>} */
