@@ -1,11 +1,9 @@
 /**
- * @file This file contains functions to fetch and process content data.
+ * @file This file contains the JSON-LD generator functions.
  *
  * @typedef {import('$types/contentful').PostEntry} PostEntry
  * @typedef {import('$types/contentful').PageEntry} PageEntry
  * @typedef {import('$types/contentful').ServiceEntry} ServiceEntry
- * @typedef {import('$types/contentful').ImageField} ImageField
- * @typedef {import('$global/seo/Seo.svelte.types').SEOProps} SEOProps
  * @typedef {import('$global/seo/Seo.svelte.types').JsonLdType} JsonLdType
  *
  * // Schema-dts types:
@@ -15,10 +13,6 @@
  * @typedef {import('schema-dts').Organization} Organization
  * @typedef {import('schema-dts').Service} Service
  * @typedef {import('schema-dts').CollectionPage} CollectionPage
- * @typedef {import('schema-dts').ImageObject} ImageObject
- * @typedef {import('schema-dts').BreadcrumbList} BreadcrumbList
- * @typedef {import('schema-dts').CreativeWork} CreativeWork
- * @typedef {import('schema-dts').ListItem} ListItem
  *
  * // Allowed values for page type.
  * @typedef {"WebPage" | "ContactPage" | "AboutPage" | "CollectionPage"} AllowedPageTypes
@@ -32,7 +26,6 @@
  * @typedef {Organization & { "@context": string }} ExtendedOrganization
  * @typedef {Service & { "@context": string }} ExtendedService
  * @typedef {CollectionPage & { "@context": string }} ExtendedCollectionPage
- * @typedef {ImageObject & { "@context": string }} ExtendedImageObject
  */
 
 import {
@@ -42,10 +35,7 @@ import {
 	CONTACT_PHONE,
 	CONTACT_POSTAL,
 	CONTACT_STREET,
-	IMAGE_EXT,
-	IMAGE_THUMBNAIL_SIZE,
 	ORG_LINKEDIN,
-	ORG_LOGO_URL,
 	ORG_NAME,
 	ORG_TWITTER,
 	ORG_VAT_ID,
@@ -57,7 +47,7 @@ import {
 	SITE_PREVIEW_URL,
 	URL_BASE_PRODUCTION,
 } from "$config";
-import { getImageName } from "../helpers/image.js";
+import { getImage, getOrgLogo, getParentUrl, iso8601Date } from "./jsonld.helpers.js";
 
 /**
  * Generate JSON-LD based on the page type.
@@ -136,10 +126,7 @@ function getBlogPostPage(post) {
 		publisher: {
 			"@type": "Organization",
 			name: ORG_NAME,
-			logo: {
-				"@type": "ImageObject",
-				url: `${URL_BASE_PRODUCTION}/${ORG_LOGO_URL}`,
-			},
+			logo: getOrgLogo(),
 		},
 		image: getImage(post.fields.heroImage),
 	};
@@ -170,10 +157,7 @@ function getServicePage(service) {
 			"@type": "Organization",
 			name: ORG_NAME,
 			url: URL_BASE_PRODUCTION,
-			logo: {
-				"@type": "ImageObject",
-				url: `${URL_BASE_PRODUCTION}/${ORG_LOGO_URL}`,
-			},
+			logo: getOrgLogo(),
 		},
 		image: getImage(service.fields.heroImage),
 	};
@@ -235,10 +219,7 @@ function getServicesPage(page, services) {
 					"@type": "Organization",
 					name: ORG_NAME,
 					url: URL_BASE_PRODUCTION,
-					logo: {
-						"@type": "ImageObject",
-						url: `${URL_BASE_PRODUCTION}/${ORG_LOGO_URL}`,
-					},
+					logo: getOrgLogo(),
 				},
 				image: getImage(service.fields.heroImage),
 			},
@@ -277,20 +258,7 @@ function getHomePage(page) {
 				"@id": `${URL_BASE_PRODUCTION}/#organization`,
 				name: ORG_NAME,
 				url: URL_BASE_PRODUCTION,
-				logo: {
-					"@type": "ImageObject",
-					url: `${URL_BASE_PRODUCTION}/${ORG_LOGO_URL}`,
-					width: {
-						"@type": "QuantitativeValue",
-						value: 48,
-						unitText: "pixels",
-					},
-					height: {
-						"@type": "QuantitativeValue",
-						value: 48,
-						unitText: "pixels",
-					},
-				},
+				logo: getOrgLogo(),
 				sameAs: [ORG_TWITTER, ORG_LINKEDIN],
 				founder: [
 					{
@@ -384,38 +352,4 @@ function getBasePage(page, pageType, extraCrumb) {
 		});
 	}
 	return base;
-}
-
-/**
- * Remove milliseconds from the date string.
- * @param {string} date - The date string.
- * @return {string} The date string without milliseconds.
- */
-function iso8601Date(date) {
-	return date.replace(/\.\d{3}Z$/, "Z");
-}
-
-/**
- * Get the image object for JSON-LD.
- * @param {ImageField|undefined} image
- * @return {ExtendedImageObject|undefined}
- */
-function getImage(image) {
-	return image
-		? {
-				"@context": "https://schema.org",
-				"@type": "ImageObject",
-				url: `${URL_BASE_PRODUCTION}/images/cms/${getImageName(image.file.fileName)}-${IMAGE_THUMBNAIL_SIZE}.${IMAGE_EXT}`,
-			}
-		: undefined;
-}
-
-/**
- * Helper function to get the parent URL by removing its last segment.
- * For example, given "https://example.com/blog/post", it returns "https://example.com/blog".
- * @param {string} url - The full URL.
- * @returns {string} - The parent URL.
- */
-function getParentUrl(url) {
-	return url.split("/").slice(0, -1).join("/");
 }
