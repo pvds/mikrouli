@@ -85,15 +85,6 @@ export type SEOProps = {
 	author?: string;
 
 	/**
-	 * The name of the entity (e.g., person, organization).
-	 *
-	 * - Keep concise and accurate; used in structured data for rich search results.
-	 *
-	 * @default ""
-	 */
-	name?: string;
-
-	/**
 	 * The type of the schema (e.g., website, article).
 	 *
 	 * - Generally use `"website"` for home pages and `"article"` for blog posts.
@@ -128,30 +119,6 @@ export type SEOProps = {
 	openGraph?: boolean;
 
 	/**
-	 * Whether to include schema.org structured data.
-	 * - Enable to help search engines understand your content and boost rich results.
-	 *
-	 * @default false
-	 */
-	schemaOrg?: boolean;
-
-	/**
-	 * The schema type(s) for the page.
-	 * - Common values include `"Person"` or `"Organization"`. Usually one type suffices.
-	 *
-	 * @default ["Person", "Organization"]
-	 */
-	schemaType?: string[];
-
-	/**
-	 * Social media URLs associated with the page or entity.
-	 * - Should be full, valid URLs for each social platform (e.g., Facebook, Twitter).
-	 *
-	 * @default []
-	 */
-	socials?: string[];
-
-	/**
 	 * Additional JSON-LD data to include in the structured data.
 	 * - Use to extend the schema.org markup with custom properties if needed.
 	 *
@@ -165,68 +132,6 @@ export type SEOProps = {
 	children?: import("svelte").Snippet;
 };
 
-export type SeoLinkedData = {
-	/**
-	 * The JSON-LD context, typically "https://schema.org".
-	 * - Always use the standard context unless you require customization.
-	 */
-	"@context": string;
-
-	/**
-	 * The type of the schema entity.
-	 * - Use one or more types that best represent the content (e.g., "Website", "Article").
-	 */
-	"@type": string | string[];
-
-	/**
-	 * The name of the entity (e.g., person, organization).
-	 * - Should be concise, descriptive, and match the entity in your content.
-	 */
-	name: string;
-
-	/**
-	 * The URL of the entity or page.
-	 * - Must be an absolute URL.
-	 */
-	url: string;
-
-	/**
-	 * The URL of the main image.
-	 * - The image should meet recommended dimensions (e.g., 1200×630 pixels for social sharing).
-	 */
-	image: string;
-
-	/**
-	 * The logo of the entity as an ImageObject.
-	 * - Provide an ImageObject with the logo’s URL and its dimensions. Ensure the logo is clear.
-	 */
-	logo: {
-		/** Specifies that the type is an ImageObject. */
-		"@type": "ImageObject";
-
-		/** The URL of the logo. */
-		url: string;
-
-		/** The width of the logo in pixels. */
-		width: number;
-
-		/** The height of the logo in pixels. */
-		height: number;
-	};
-
-	/**
-	 * Social media URLs associated with the entity.
-	 * - List all relevant social media profile URLs.
-	 */
-	sameAs: string[];
-
-	/**
-	 * Additional JSON-LD properties.
-	 * - Use for any extra structured data you need to describe your content further.
-	 */
-	[key: string]: unknown;
-};
-
 /**
  * The type of json-ld data to include in the structured data.
  *
@@ -234,6 +139,7 @@ export type SeoLinkedData = {
  */
 export type JsonLdType =
 	| "WebPage"
+	| "HomePage"
 	| "ContactPage"
 	| "AboutPage"
 	| "BlogPage"

@@ -11,6 +11,7 @@
  * // Schema-dts types:
  * @typedef {import('schema-dts').BlogPosting} BlogPosting
  * @typedef {import('schema-dts').WebPage} WebPage
+ * @typedef {import('schema-dts').WebSite} WebSite
  * @typedef {import('schema-dts').Organization} Organization
  * @typedef {import('schema-dts').Service} Service
  * @typedef {import('schema-dts').CollectionPage} CollectionPage
@@ -22,7 +23,10 @@
  * // Allowed values for page type.
  * @typedef {"WebPage" | "ContactPage" | "AboutPage" | "CollectionPage"} AllowedPageTypes
  *
- * // Extended types (we add an "@context" property)
+ * // Homepage
+ * @typedef {{ "@context": string, "@graph": (WebSite | Organization)[] }} HomePage
+ *
+ * // Extended types (we add a "@context" property)
  * @typedef {BlogPosting & { "@context": string }} ExtendedBlogPosting
  * @typedef {WebPage & { "@context": string }} ExtendedWebPage
  * @typedef {Organization & { "@context": string }} ExtendedOrganization
@@ -31,7 +35,25 @@
  * @typedef {ImageObject & { "@context": string }} ExtendedImageObject
  */
 
-import { IMAGE_EXT, IMAGE_THUMBNAIL_SIZE, URL_BASE_PRODUCTION } from "$config";
+import {
+	CONTACT_CITY,
+	CONTACT_COUNTRY,
+	CONTACT_EMAIL,
+	CONTACT_PHONE,
+	CONTACT_POSTAL,
+	CONTACT_STREET,
+	IMAGE_EXT,
+	IMAGE_THUMBNAIL_SIZE,
+	ORG_LINKEDIN,
+	ORG_TWITTER,
+	ORG_VAT_ID,
+	OWNER_IMAGE,
+	OWNER_JOB_TITLE,
+	OWNER_LINKEDIN,
+	OWNER_NAME,
+	OWNER_TWITTER,
+	URL_BASE_PRODUCTION,
+} from "$config";
 import { getImageName } from "../helpers/image.js";
 
 /**
@@ -40,24 +62,26 @@ import { getImageName } from "../helpers/image.js";
  * @param {SEOProps} seoData
  * @param {JsonLdType} jsonLdType - The type of JSON-LD.
  * @param {PostEntry[]|ServiceEntry[]} [items=[]] - Optional array of items for collection pages.
- * @returns {ExtendedBlogPosting | ExtendedWebPage | ExtendedOrganization | ExtendedService | ExtendedCollectionPage | undefined}
+ * @returns {ExtendedBlogPosting | ExtendedWebPage | ExtendedOrganization | ExtendedService | ExtendedCollectionPage | HomePage | undefined}
  */
-export const getJsonLd = (entry, seoData, jsonLdType = "Organization", items = []) => {
+export const getJsonLd = (entry, seoData, jsonLdType = "WebPage", items = []) => {
 	switch (jsonLdType) {
-		case "BlogPostPage":
-			return getBlogPostPage(entry, seoData);
+		case "WebPage":
+			return getPage(entry, seoData);
+		case "HomePage":
+			return getHomePage(entry, seoData);
+		case "ServicesPage":
+			return getServicesPage(entry, seoData, items);
 		case "ServicePage":
 			return getServicePage(entry, seoData);
+		case "BlogPostPage":
+			return getBlogPostPage(entry, seoData);
+		case "BlogPage":
+			return getBlogPage(entry, seoData, items);
 		case "ContactPage":
 			return getContactPage(entry, seoData);
 		case "AboutPage":
 			return getAboutPage(entry, seoData);
-		case "WebPage":
-			return getPage(entry, seoData);
-		case "BlogPage":
-			return getBlogPage(entry, seoData, items);
-		case "ServicesPage":
-			return getServicesPage(entry, seoData, items);
 		default:
 			return undefined;
 	}
@@ -234,6 +258,88 @@ function getServicesPage(page, seoData, services) {
 		}));
 	}
 	return base;
+}
+
+/**
+ * Generate JSON-LD for the Homepage using @graph.
+ * This returns a JSON-LD object with separate nodes for the WebSite and Organization.
+ *
+ * @param {PageEntry} page - The homepage entry data.
+ * @param {SEOProps} seoData - The SEO data.
+ * @returns {HomePage}
+ */
+function getHomePage(page, seoData) {
+	return {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "WebSite",
+				"@id": `${URL_BASE_PRODUCTION}/#website`,
+				url: URL_BASE_PRODUCTION,
+				name: seoData.siteName,
+				image: `${URL_BASE_PRODUCTION}/${seoData.imageURL}`,
+				publisher: {
+					"@id": `${URL_BASE_PRODUCTION}/#organization`,
+				},
+			},
+			{
+				"@type": "Organization",
+				"@id": `${URL_BASE_PRODUCTION}/#organization`,
+				name: seoData.siteName,
+				url: URL_BASE_PRODUCTION,
+				logo: {
+					"@type": "ImageObject",
+					url: `${URL_BASE_PRODUCTION}/${seoData.logo}`,
+					width: {
+						"@type": "QuantitativeValue",
+						value: 48,
+						unitText: "pixels",
+					},
+					height: {
+						"@type": "QuantitativeValue",
+						value: 48,
+						unitText: "pixels",
+					},
+				},
+				sameAs: [ORG_TWITTER, ORG_LINKEDIN],
+				founder: [
+					{
+						"@type": "Person",
+						name: OWNER_NAME,
+						jobTitle: OWNER_JOB_TITLE,
+						worksFor: {
+							"@type": "Organization",
+							name: seoData.siteName,
+							url: URL_BASE_PRODUCTION,
+						},
+						sameAs: [OWNER_LINKEDIN, OWNER_TWITTER],
+						image: `${URL_BASE_PRODUCTION}/${OWNER_IMAGE}`,
+						alumniOf: [
+							{
+								"@type": "EducationalOrganization",
+								name: "University of Athens",
+							},
+							{
+								"@type": "EducationalOrganization",
+								name: "Leiden University",
+							},
+						],
+						knowsAbout: ["Systemic Therapy", "Family Therapy", "Mental Health"],
+					},
+				],
+				telephone: CONTACT_PHONE,
+				email: CONTACT_EMAIL,
+				address: {
+					"@type": "PostalAddress",
+					streetAddress: CONTACT_STREET,
+					addressLocality: CONTACT_CITY,
+					postalCode: CONTACT_POSTAL,
+					addressCountry: CONTACT_COUNTRY,
+				},
+				vatID: ORG_VAT_ID,
+			},
+		],
+	};
 }
 
 /**

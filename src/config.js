@@ -4,6 +4,28 @@
 // - for dynamic values use `dyn.js`
 // ##################################################
 
+// Organization details
+export const ORG_SITE_NAME = "Mikrouli";
+export const ORG_LOGO_URL = "images/logo.svg";
+export const ORG_VAT_ID = "FR12345678901";
+export const ORG_TWITTER = "https://twitter.com/mikrouli";
+export const ORG_LINKEDIN = "https://linkedin.com/company/mikrouli";
+
+// Owner details
+export const OWNER_NAME = "Eleni Papamikrouli";
+export const OWNER_JOB_TITLE = "Systemic Therapist";
+export const OWNER_IMAGE = "images/eleni-papamikrouli.jpg";
+export const OWNER_LINKEDIN = "https://www.linkedin.com/in/eleni-papamikrouli";
+export const OWNER_TWITTER = "https://twitter.com/yourprofile";
+
+// Contact details
+export const CONTACT_PHONE = "+31 6 1944 6263";
+export const CONTACT_EMAIL = "contact@mikrouli.nl";
+export const CONTACT_STREET = "Virulypad 61";
+export const CONTACT_CITY = "Leiden";
+export const CONTACT_POSTAL = "2316 ZT";
+export const CONTACT_COUNTRY = "NL";
+
 // Files
 export const METADATA_FILE = "metadata.json";
 export const IMAGES_FILE = "images.json";
@@ -32,6 +54,10 @@ export const URL_SUBFOLDER_STAGING = "/mikrouli";
 export const URL_SUBFOLDER_PRODUCTION = "";
 export const URL_BASE_STAGING = "https://pvdv.github.io/mikrouli";
 export const URL_BASE_PRODUCTION = "https://mikrouli.nl";
+
+// Ports
+export const PORT = 4173;
+export const DEBUG_PORT = 9222;
 
 // Contentful
 /** @type {{id: string, content_type: string, order: any}[]} */
@@ -88,7 +114,3 @@ export const BOOKING_OPTIONS = {
 		url: BOOKING_URL + BOOKING_SESSION_PATH,
 	},
 };
-
-// Ports
-export const PORT = 4173;
-export const DEBUG_PORT = 9222;

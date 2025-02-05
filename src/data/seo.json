@@ -11,45 +11,5 @@
 	"openGraph": true,
 	"schemaOrg": true,
 	"schemaType": ["Organization", "WebSite"],
-	"socials": ["https://twitter.com/mikrouli", "https://linkedin.com/company/mikrouli"],
-	"jsonld": {
-		"founder": [
-			{
-				"@type": "Person",
-				"name": "Eleni Papamikrouli",
-				"jobTitle": "Systemic Therapist",
-				"worksFor": {
-					"@type": "Organization",
-					"name": "Mikrouli",
-					"url": "https://mikrouli.nl"
-				},
-				"sameAs": [
-					"https://www.linkedin.com/in/eleni-papamikrouli",
-					"https://twitter.com/yourprofile"
-				],
-				"image": "https://mikrouli.nl/images/eleni-papamikrouli.jpg",
-				"alumniOf": [
-					{
-						"@type": "EducationalOrganization",
-						"name": "University of Athens"
-					},
-					{
-						"@type": "EducationalOrganization",
-						"name": "Leiden University"
-					}
-				],
-				"knowsAbout": ["Systemic Therapy", "Family Therapy", "Mental Health"]
-			}
-		],
-		"telephone": "+31 6 1944 6263",
-		"email": "contact@mikrouli.nl",
-		"address": {
-			"@type": "PostalAddress",
-			"streetAddress": "Virulypad 61",
-			"addressLocality": "Leiden",
-			"postalCode": "2316 ZT",
-			"addressCountry": "NL"
-		},
-		"vatID": "FR12345678901"
-	}
+	"socials": ["https://twitter.com/mikrouli", "https://linkedin.com/company/mikrouli"]
 }

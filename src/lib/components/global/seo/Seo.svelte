@@ -47,8 +47,6 @@ let imageURL = $derived(prependURL(page.data.seo.imageURL));
 let logo = $derived(prependURL(page.data.seo.logo));
 /** @type {SEOProps['author']} */
 let author = $derived(page.data.seo.author);
-/** @type {SEOProps['name']} */
-let name = $derived(page.data.seo.name);
 /** @type {SEOProps['type']} */
 let type = $derived(page.data.seo.type || "website");
 /** @type {SEOProps['index']} */
@@ -57,39 +55,13 @@ let index = $derived(page.data.seo.index);
 let twitter = $derived(page.data.seo.twitter || false);
 /** @type {SEOProps['openGraph']} */
 let openGraph = $derived(page.data.seo.openGraph || false);
-/** @type {SEOProps['schemaOrg']} */
-let schemaOrg = $derived(page.data.seo.schemaOrg || false);
-/** @type {SEOProps['schemaType']} */
-let schemaType = $derived(page.data.seo.schemaType || ["WebSite"]);
-/** @type {SEOProps['socials']} */
-let socials = $derived(page.data.seo.socials || []);
 /** @type {SEOProps['jsonld']} */
 let jsonld = $derived(page.data.seo.jsonld);
 
-// Reactive data bindings
-let linkedData = $derived(
-	/** @type {import('./Seo.svelte.types.js').SeoLinkedData} */
-	{
-		"@context": "https://schema.org",
-		"@type": schemaType && schemaType.length > 1 ? schemaType : schemaType?.[0],
-		name: name,
-		url: page.url.origin,
-		image: imageURL,
-		logo: {
-			"@type": "ImageObject",
-			url: logo,
-			width: 48,
-			height: 48,
-		},
-		sameAs: socials,
-		...jsonld,
-	},
-);
-
-// $inspect(linkedData);
+// $inspect(jsonld);
 
 let ldScript = $derived(
-	`<script type="application/ld+json">${JSON.stringify(linkedData)}${"<"}/script>`,
+	`<script type="application/ld+json">${JSON.stringify(jsonld)}${"<"}/script>`,
 );
 
 if (import.meta.env.MODE === "development") {
@@ -151,7 +123,7 @@ if (import.meta.env.MODE === "development") {
 		{/if}
 	{/if}
 	{@render children?.()}
-	{#if schemaOrg && (socials?.length || logo || name)}
+	{#if jsonld}
 		{@html ldScript}
 	{/if}
 </svelte:head>

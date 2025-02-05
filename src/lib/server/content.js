@@ -55,11 +55,11 @@ export const getGlobal = () => {
 /**
  * Fetch all SEO data.
  * @param {PageEntry|PostEntry|ServiceEntry} [entry] - The page data to override the default SEO data.
- * @param {JsonLdType} [jsonLdType="Organization"] - The ld+json type to use.
+ * @param {JsonLdType} [jsonLdType="WebPage"] - The ld+json type to use.
  * @param {PostEntry[]|ServiceEntry[]} [items=[]] - Optional array of items for collection pages.
  * @returns {SEOProps} - The processed SEO data.
  */
-export const getSeo = (entry, jsonLdType = "Organization", items = []) => {
+export const getSeo = (entry, jsonLdType = "WebPage", items = []) => {
 	const data = /** @type {SEOProps} */ seoData;
 	if (!entry) return data;
 	const jsonld = getJsonLd(entry, data, jsonLdType, items);
@@ -69,7 +69,7 @@ export const getSeo = (entry, jsonLdType = "Organization", items = []) => {
 		description: entry.fields.seoDescription,
 		keywords: entry.fields.seoKeywords,
 		index: entry.fields.seoIndex,
-		jsonld: jsonld || data.jsonld,
+		jsonld: jsonld,
 	};
 };
 

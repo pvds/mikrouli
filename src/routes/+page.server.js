@@ -5,7 +5,7 @@ export const load = async () => {
 	const slug = "home";
 	const page = getPage(slug);
 	const services = getServices();
-	const seo = getSeo(page);
+	const seo = getSeo(page, "HomePage");
 
 	return { page, services, seo };
 };
