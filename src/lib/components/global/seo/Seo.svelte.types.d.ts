@@ -227,12 +227,17 @@ export type SeoLinkedData = {
 	[key: string]: unknown;
 };
 
+/**
+ * The type of json-ld data to include in the structured data.
+ *
+ * NB. This is not an exact mapping of the schema.org types.
+ */
 export type JsonLdType =
-	| "BlogPosting"
-	| "Organization"
-	| "Service"
+	| "WebPage"
 	| "ContactPage"
 	| "AboutPage"
-	| "WebPage"
-	| "BlogCollection"
-	| "ServiceCollection";
+	| "BlogPage"
+	| "BlogPostPage"
+	| "ServicesPage"
+	| "ServicePage"
+	| "Organization";

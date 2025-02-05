@@ -5,7 +5,7 @@ export const load = async ({ route }) => {
 	const slug = route.id.replace("/", "");
 	const page = getPage(slug);
 	const posts = getPosts();
-	const seo = getSeo(page, "BlogCollection", posts);
+	const seo = getSeo(page, "BlogPage", posts);
 
 	return { page, posts, seo };
 };

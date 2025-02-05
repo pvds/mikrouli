@@ -9,7 +9,7 @@ export const entries = async () => {
 export const load = async ({ params }) => {
 	const { slug } = params;
 	const post = getPost(slug);
-	const seo = getSeo(post, "BlogPosting");
+	const seo = getSeo(post, "BlogPostPage");
 
 	return { post, seo };
 };

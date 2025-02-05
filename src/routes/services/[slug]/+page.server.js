@@ -9,7 +9,7 @@ export const entries = async () => {
 export const load = async ({ params }) => {
 	const { slug } = params;
 	const service = getService(slug);
-	const seo = getSeo(service, "Service");
+	const seo = getSeo(service, "ServicePage");
 
 	return { service, seo };
 };

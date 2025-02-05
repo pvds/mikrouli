@@ -44,20 +44,20 @@ import { getImageName } from "../helpers/image.js";
  */
 export const getJsonLd = (entry, seoData, jsonLdType = "Organization", items = []) => {
 	switch (jsonLdType) {
-		case "BlogPosting":
-			return getBlogPosting(entry, seoData);
-		case "Service":
-			return getService(entry, seoData);
+		case "BlogPostPage":
+			return getBlogPostPage(entry, seoData);
+		case "ServicePage":
+			return getServicePage(entry, seoData);
 		case "ContactPage":
 			return getContactPage(entry, seoData);
 		case "AboutPage":
 			return getAboutPage(entry, seoData);
 		case "WebPage":
 			return getPage(entry, seoData);
-		case "BlogCollection":
-			return getBlogCollection(entry, seoData, items);
-		case "ServiceCollection":
-			return getServiceCollection(entry, seoData, items);
+		case "BlogPage":
+			return getBlogPage(entry, seoData, items);
+		case "ServicesPage":
+			return getServicesPage(entry, seoData, items);
 		default:
 			return undefined;
 	}
@@ -100,7 +100,7 @@ function getAboutPage(page, seoData) {
  * @param {SEOProps} seoData
  * @returns {ExtendedWebPage}
  */
-function getBlogPosting(post, seoData) {
+function getBlogPostPage(post, seoData) {
 	const blogData = {
 		"@type": "BlogPosting",
 		headline: post.fields.header,
@@ -139,7 +139,7 @@ function getBlogPosting(post, seoData) {
  * @param {SEOProps} seoData
  * @returns {ExtendedWebPage}
  */
-function getService(service, seoData) {
+function getServicePage(service, seoData) {
 	const serviceData = {
 		"@type": "Service",
 		name: service.fields.title,
@@ -172,7 +172,7 @@ function getService(service, seoData) {
  * @param {PostEntry[]} posts - An array of blog posts.
  * @returns {ExtendedCollectionPage}
  */
-function getBlogCollection(page, seoData, posts) {
+function getBlogPage(page, seoData, posts) {
 	/** @type {ExtendedCollectionPage} */
 	const base = /** @type {ExtendedCollectionPage} */ (
 		getBasePage(page, seoData, "CollectionPage")
@@ -195,33 +195,42 @@ function getBlogCollection(page, seoData, posts) {
 
 /**
  * Generate JSON-LD for a Service Collection page.
- * We now map each service directly as a Service object.
+ * Each service is now wrapped in a WebPage whose mainEntity is a Service.
  * @param {PageEntry} page - The services overview page entry.
  * @param {SEOProps} seoData
  * @param {ServiceEntry[]} services - An array of services.
  * @returns {ExtendedCollectionPage}
  */
-function getServiceCollection(page, seoData, services) {
+function getServicesPage(page, seoData, services) {
 	/** @type {ExtendedCollectionPage} */
 	const base = /** @type {ExtendedCollectionPage} */ (
 		getBasePage(page, seoData, "CollectionPage")
 	);
 	if (services.length) {
-		// @ts-expect-error
 		base.hasPart = services.map((service) => ({
-			"@type": "Service", // TODO: should be a "WebPage" with a "mainEntity" of type "Service"
+			"@type": "WebPage",
 			name: service.fields.title,
 			description: service.fields.seoDescription,
-			provider: {
-				"@type": "Organization",
-				name: seoData.siteName,
-				url: URL_BASE_PRODUCTION,
-				logo: {
-					"@type": "ImageObject",
-					url: seoData.logo,
+			mainEntity: {
+				"@type": "Service",
+				name: service.fields.title,
+				description: service.fields.seoDescription,
+				serviceType: "Therapy",
+				provider: {
+					"@type": "Organization",
+					name: seoData.siteName,
+					url: URL_BASE_PRODUCTION,
+					logo: {
+						"@type": "ImageObject",
+						url: seoData.logo,
+					},
 				},
+				image: getImage(service.fields.heroImage),
 			},
-			image: getImage(service.fields.heroImage),
+			mainEntityOfPage: {
+				"@type": "WebPage",
+				"@id": `${URL_BASE_PRODUCTION}/services/${service.fields.slug}`,
+			},
 		}));
 	}
 	return base;
@@ -250,6 +259,7 @@ function getBasePage(page, seoData, pageType, extraCrumb) {
 			"@type": "WebPage",
 			"@id": url,
 		},
+
 		breadcrumb: {
 			"@type": "BreadcrumbList",
 			itemListElement: [
@@ -269,7 +279,7 @@ function getBasePage(page, seoData, pageType, extraCrumb) {
 		},
 	};
 	// @ts-expect-error
-	const breadCrumbList = /** @type {ListItem[]} */ base.breadcrumb?.itemListElement;
+	const breadCrumbList = base.breadcrumb?.itemListElement;
 	if (extraCrumb && breadCrumbList?.length) {
 		breadCrumbList.push({
 			"@type": "ListItem",
