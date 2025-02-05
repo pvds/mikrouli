@@ -7,6 +7,31 @@
  * @typedef {import('$types/contentful').ImageField} ImageField
  * @typedef {import('$global/seo/Seo.svelte.types').SEOProps} SEOProps
  * @typedef {import('$global/seo/Seo.svelte.types').JsonLdType} JsonLdType
+ *
+ * // Schema-dts types:
+ * @typedef {import('schema-dts').BlogPosting} BlogPosting
+ * @typedef {import('schema-dts').WebPage} WebPage
+ * @typedef {import('schema-dts').Organization} Organization
+ * @typedef {import('schema-dts').Service} Service
+ * @typedef {import('schema-dts').CollectionPage} CollectionPage
+ * @typedef {import('schema-dts').CreativeWork} CreativeWork
+ * @typedef {import('schema-dts').ImageObject} ImageObject
+ * @typedef {import('schema-dts').BreadcrumbList} BreadcrumbList
+ * @typedef {import('schema-dts').ListItem} ListItem
+ *
+ *
+ * Allowed values for page type.
+ * @typedef {"WebPage" | "ContactPage" | "AboutPage" | "CollectionPage"} AllowedPageTypes
+ *
+ *
+ * // Extended types that include "@context" property.
+ *
+ * @typedef {BlogPosting & { "@context": string }} ExtendedBlogPosting
+ * @typedef {WebPage & { "@context": string }} ExtendedWebPage
+ * @typedef {Organization & { "@context": string }} ExtendedOrganization
+ * @typedef {Service & { "@context": string }} ExtendedService
+ * @typedef {CollectionPage & { "@context": string }} ExtendedCollectionPage
+ * @typedef {ImageObject & { "@context": string }} ExtendedImageObject
  */
 
 import { IMAGE_EXT, IMAGE_THUMBNAIL_SIZE, URL_BASE_PRODUCTION } from "$config";
@@ -18,7 +43,7 @@ import { getImageName } from "../helpers/image.js";
  * @param {SEOProps} seoData
  * @param {JsonLdType} jsonLdType - The type of JSON-LD.
  * @param {PostEntry[]|ServiceEntry[]} [items=[]] - Optional array of items for collection pages.
- * @returns {object|undefined} JSON-LD object.
+ * @returns {ExtendedBlogPosting | ExtendedWebPage | ExtendedOrganization | ExtendedService | ExtendedCollectionPage | undefined}
  */
 export const getJsonLd = (entry, seoData, jsonLdType = "Organization", items = []) => {
 	switch (jsonLdType) {
@@ -45,7 +70,7 @@ export const getJsonLd = (entry, seoData, jsonLdType = "Organization", items = [
  * Generate JSON-LD for a generic WebPage.
  * @param {PageEntry} page - The page entry.
  * @param {SEOProps} seoData - The SEO data.
- * @returns {object} JSON-LD for WebPage.
+ * @returns {ExtendedWebPage}
  */
 function getPage(page, seoData) {
 	return getBasePage(page, seoData, "WebPage");
@@ -55,7 +80,7 @@ function getPage(page, seoData) {
  * Generate JSON-LD for a Contact Page.
  * @param {PageEntry} page - The page entry.
  * @param {SEOProps} seoData - The SEO data.
- * @returns {object} JSON-LD for ContactPage.
+ * @returns {ExtendedWebPage}
  */
 function getContactPage(page, seoData) {
 	return getBasePage(page, seoData, "ContactPage");
@@ -65,7 +90,7 @@ function getContactPage(page, seoData) {
  * Generate JSON-LD for an About Page.
  * @param {PageEntry} page - The page entry.
  * @param {SEOProps} seoData - The SEO data.
- * @returns {object} JSON-LD for AboutPage.
+ * @returns {ExtendedWebPage}
  */
 function getAboutPage(page, seoData) {
 	return getBasePage(page, seoData, "AboutPage");
@@ -75,12 +100,14 @@ function getAboutPage(page, seoData) {
  * Generate JSON-LD for a Blog Overview Page (CollectionPage with BlogPosting items).
  * @param {PageEntry} page - The blog overview page entry.
  * @param {SEOProps} seoData
- * @param {Array<PostEntry>} posts - An array of blog posts.
- * @returns {object} JSON-LD for a CollectionPage with BlogPosting items.
+ * @param {PostEntry[]} posts - An array of blog posts.
+ * @returns {ExtendedCollectionPage}
  */
 function getBlogCollection(page, seoData, posts) {
-	/** @type {Record<string, any>} */
-	const base = /** @type {Record<string, any>} */ getBasePage(page, seoData, "CollectionPage");
+	/** @type {ExtendedCollectionPage} */
+	const base = /** @type {ExtendedCollectionPage} */ (
+		getBasePage(page, seoData, "CollectionPage")
+	);
 	if (posts.length) {
 		base.hasPart = posts.map((post) => ({
 			"@type": "BlogPosting",
@@ -101,12 +128,14 @@ function getBlogCollection(page, seoData, posts) {
  * Generate JSON-LD for a Services Overview Page (CollectionPage with Service items).
  * @param {PageEntry} page - The services overview page entry.
  * @param {SEOProps} seoData
- * @param {Array<ServiceEntry>} services - An array of services.
- * @returns {object} JSON-LD for a CollectionPage with Service items.
+ * @param {ServiceEntry[]} services - An array of services.
+ * @returns {ExtendedCollectionPage}
  */
 function getServiceCollection(page, seoData, services) {
-	/** @type {Record<string, any>} */
-	const base = /** @type {Record<string, any>} */ getBasePage(page, seoData, "CollectionPage");
+	/** @type {ExtendedCollectionPage} */
+	const base = /** @type {ExtendedCollectionPage} */ (
+		getBasePage(page, seoData, "CollectionPage")
+	);
 	if (services.length) {
 		base.hasPart = services.map((service) => ({
 			"@type": "Service",
@@ -134,10 +163,11 @@ function getServiceCollection(page, seoData, services) {
  * Generate JSON-LD for a Blog Posting.
  * @param {PostEntry} post - The post entry.
  * @param {SEOProps} seoData
- * @returns {object} JSON-LD for BlogPosting.
+ * @returns {ExtendedBlogPosting}
  */
 function getBlogPosting(post, seoData) {
 	const image = getImage(post.fields.heroImage);
+	/** @type {ExtendedBlogPosting} */
 	return {
 		"@context": "https://schema.org",
 		"@type": "BlogPosting",
@@ -157,7 +187,7 @@ function getBlogPosting(post, seoData) {
 				url: seoData.logo,
 			},
 		},
-		image,
+		image: image,
 		mainEntityOfPage: {
 			"@type": "WebPage",
 			"@id": `${URL_BASE_PRODUCTION}/blog/${post.fields.slug}`,
@@ -192,11 +222,11 @@ function getBlogPosting(post, seoData) {
  * Generate JSON-LD for a Service.
  * @param {ServiceEntry} service - The service entry.
  * @param {SEOProps} seoData
- * @returns {object} JSON-LD for Service.
+ * @returns {ExtendedService}
  */
 function getService(service, seoData) {
 	const image = getImage(service.fields.heroImage);
-
+	/** @type {ExtendedService} */
 	return {
 		"@context": "https://schema.org",
 		"@type": "Service",
@@ -212,7 +242,7 @@ function getService(service, seoData) {
 				url: seoData.logo,
 			},
 		},
-		image,
+		image: image,
 		mainEntityOfPage: {
 			"@type": "WebPage",
 			"@id": `${URL_BASE_PRODUCTION}/services/${service.fields.slug}`,
@@ -247,15 +277,16 @@ function getService(service, seoData) {
  * Generate base JSON-LD for a page.
  * @param {PageEntry} page - The page entry.
  * @param {SEOProps} seoData - The SEO data.
- * @param {string} pageType - The specific page type (e.g., "AboutPage", "ContactPage", or "WebPage").
- * @returns {object} Base JSON-LD object.
+ * @param {AllowedPageTypes} pageType - The specific page type.
+ * @returns {ExtendedWebPage | ExtendedCollectionPage}
  */
 function getBasePage(page, seoData, pageType) {
-	const slug = page.fields.slug; // Use dynamic slug from your entry
+	const slug = page.fields.slug;
 	const url = `${URL_BASE_PRODUCTION}/${slug}`;
-	return {
+	/** @type {ExtendedWebPage | ExtendedCollectionPage} */
+	const base = {
 		"@context": "https://schema.org",
-		"@type": pageType,
+		"@type": /** @type {AllowedPageTypes} */ (pageType),
 		name: page.fields.title,
 		description: page.fields.seoDescription,
 		url: url,
@@ -281,10 +312,11 @@ function getBasePage(page, seoData, pageType) {
 			],
 		},
 	};
+	return base;
 }
 
 /**
- * Remove milliseconds from the date string
+ * Remove milliseconds from the date string.
  * @param {string} date - The date string.
  * @return {string} The date string without milliseconds.
  */
@@ -295,11 +327,12 @@ function iso8601Date(date) {
 /**
  * Get the image object for JSON-LD.
  * @param {ImageField|undefined} image
- * @return {{"@type": string, url: string} | undefined} The image object.
+ * @return {ExtendedImageObject|undefined}
  */
 function getImage(image) {
 	return image
 		? {
+				"@context": "https://schema.org",
 				"@type": "ImageObject",
 				url: `${URL_BASE_PRODUCTION}/images/cms/${getImageName(image.file.fileName)}-${IMAGE_THUMBNAIL_SIZE}.${IMAGE_EXT}`,
 			}
