@@ -16,6 +16,7 @@
  * @typedef {import('$types/global').global} GlobalProps
  */
 
+import { URL_BASE_PRODUCTION } from "$config";
 import navigationItems from "$data/generated/navigation.json";
 import pageItems from "$data/generated/pages.json";
 import postItems from "$data/generated/posts.json";
@@ -23,6 +24,7 @@ import serviceItems from "$data/generated/services.json";
 import globalData from "$data/global.json";
 import seoData from "$data/seo.json";
 import { error } from "@sveltejs/kit";
+import { getImageName } from "../helpers/image.js";
 import { markdownToHtml, splitText } from "./utils.js";
 
 /**
@@ -52,17 +54,143 @@ export const getGlobal = () => {
 
 /**
  * Fetch all seo data.
- * @param {PageEntry} [page] - The page data to override the default seo data.
+ * @param {PageEntry|PostEntry|ServiceEntry} [entry] - The page data to override the default seo data.
+ * @param {'BlogPosting'|'Organization'|'Service'} [jsonLdType="Organization"] - The ld+json type to
+ * use.
  * @returns {SEOProps} - The processed seo data.
  */
-export const getSeo = (page) => {
-	if (!page) return seoData;
+export const getSeo = (entry, jsonLdType = "Organization") => {
+	const data = /** @type {SEOProps} */ seoData;
+	if (!entry) return data;
+	let jsonld = {};
+	switch (jsonLdType) {
+		case "BlogPosting":
+			{
+				/** @type {PostEntry} */
+				const post = entry;
+				const image = post.fields.heroImage
+					? {
+							"@type": "ImageObject",
+							url: `${URL_BASE_PRODUCTION}/images/cms/${getImageName(post.fields.heroImage.file.fileName)}-320.webp`,
+						}
+					: undefined;
+				jsonld = {
+					"@context": "https://schema.org",
+					"@type": "BlogPosting",
+					headline: post.fields.header,
+					description: post.fields.seoDescription,
+					datePublished: post.meta.createdAt.replace(/\.\d{3}Z$/, "Z"),
+					dateModified: post.meta.updatedAt.replace(/\.\d{3}Z$/, "Z"),
+					author: {
+						"@type": "Person",
+						name: data.author,
+					},
+					publisher: {
+						"@type": "Organization",
+						name: data.siteName,
+						logo: {
+							"@type": "ImageObject",
+							url: data.logo,
+						},
+					},
+					image,
+					mainEntityOfPage: {
+						"@type": "WebPage",
+						"@id": `${URL_BASE_PRODUCTION}/blog/${post.fields.slug}`,
+					},
+					breadcrumb: {
+						"@type": "BreadcrumbList",
+						itemListElement: [
+							{
+								"@type": "ListItem",
+								position: 1,
+								name: "Home",
+								item: `${URL_BASE_PRODUCTION}/`,
+							},
+							{
+								"@type": "ListItem",
+								position: 2,
+								name: "Blog",
+								item: `${URL_BASE_PRODUCTION}/blog`,
+							},
+							{
+								"@type": "ListItem",
+								position: 3,
+								name: post.fields.title,
+								item: `${URL_BASE_PRODUCTION}/blog/${post.fields.slug}`,
+							},
+						],
+					},
+				};
+			}
+			break;
+		case "Service":
+			{
+				/** @type {ServiceEntry} */
+				const service = entry;
+				const image = service.fields.heroImage
+					? {
+							"@type": "ImageObject",
+							url: `${URL_BASE_PRODUCTION}/images/cms/${getImageName(service.fields.heroImage.file.fileName)}-320.webp`,
+						}
+					: undefined;
+				jsonld = {
+					"@context": "https://schema.org",
+					"@type": "Service",
+					name: service.fields.title,
+					description: service.fields.seoDescription,
+					serviceType: "Therapy",
+					provider: {
+						"@type": "Organization",
+						name: data.siteName,
+						url: URL_BASE_PRODUCTION,
+						logo: {
+							"@type": "ImageObject",
+							url: data.logo,
+						},
+					},
+					image,
+					mainEntityOfPage: {
+						"@type": "WebPage",
+						"@id": `${URL_BASE_PRODUCTION}/services/${service.fields.slug}`,
+					},
+					breadcrumb: {
+						"@type": "BreadcrumbList",
+						itemListElement: [
+							{
+								"@type": "ListItem",
+								position: 1,
+								name: "Home",
+								item: `${URL_BASE_PRODUCTION}/`,
+							},
+							{
+								"@type": "ListItem",
+								position: 2,
+								name: "Services",
+								item: `${URL_BASE_PRODUCTION}/services`,
+							},
+							{
+								"@type": "ListItem",
+								position: 3,
+								name: service.fields.title,
+								item: `${URL_BASE_PRODUCTION}/services/${service.fields.slug}`,
+							},
+						],
+					},
+				};
+			}
+			break;
+		default:
+			jsonld = {};
+			break;
+	}
 	return {
-		...seoData,
-		title: page.fields.title,
-		description: page.fields.seoDescription,
-		keywords: page.fields.seoKeywords,
-		index: page.fields.seoIndex,
+		...data,
+		title: entry.fields.title,
+		description: entry.fields.seoDescription,
+		keywords: entry.fields.seoKeywords,
+		index: entry.fields.seoIndex,
+		jsonld: jsonld || data.jsonld,
 	};
 };
 

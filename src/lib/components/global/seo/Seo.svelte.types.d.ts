@@ -157,7 +157,7 @@ export type SEOProps = {
 	 *
 	 * @default {}
 	 */
-	jsonld?: Record<string, unknown>;
+	jsonld?: object;
 
 	/**
 	 * Renderable children for the component.
