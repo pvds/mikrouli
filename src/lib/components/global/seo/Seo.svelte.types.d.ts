@@ -226,3 +226,13 @@ export type SeoLinkedData = {
 	 */
 	[key: string]: unknown;
 };
+
+export type JsonLdType =
+	| "BlogPosting"
+	| "Organization"
+	| "Service"
+	| "ContactPage"
+	| "AboutPage"
+	| "WebPage"
+	| "BlogCollection"
+	| "ServiceCollection";

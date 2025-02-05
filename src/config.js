@@ -17,7 +17,9 @@ export const BUILD_DIR_STAGING = "build/staging";
 export const JSON_OUTPUT_DIR = "src/data/generated";
 
 // Image processing
+export const IMAGE_EXT = "webp";
 export const IMAGE_SIZES = [320, 640, 1280, 1920];
+export const IMAGE_THUMBNAIL_SIZE = IMAGE_SIZES[0];
 export const IMAGE_FILENAME_TEMPLATE = "{base}-{size}.{ext}";
 // biome-ignore format: better for readability
 export const IMAGE_EXTENSIONS = [

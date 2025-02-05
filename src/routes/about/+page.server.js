@@ -3,8 +3,8 @@ import { getPage, getSeo } from "$lib/server/content.js";
 /** @type {import('./$types').PageServerLoad} */
 export const load = async ({ route }) => {
 	const slug = route.id.replace("/", "");
-	const page = getPage(slug); // Fetch and process the specific page
-	const seo = getSeo(page);
+	const page = getPage(slug);
+	const seo = getSeo(page, "AboutPage");
 
 	return { page, seo };
 };

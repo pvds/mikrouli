@@ -1,6 +1,6 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { IMAGE_EXTENSIONS, IMAGE_FILENAME_TEMPLATE, IMAGE_SIZES } from "$config";
+import { IMAGE_EXT, IMAGE_EXTENSIONS, IMAGE_FILENAME_TEMPLATE, IMAGE_SIZES } from "$config";
 import { CPU_COUNT, IMAGE_INPUT_PATH_RESOLVED, IMAGE_OUTPUT_PATH_RESOLVED } from "$util/dyn";
 import { directoryExists, fileExists, prepareDir } from "$util/file";
 import { logDebug, logError, logHeader, logInfo, logMessage, logSuccess } from "$util/log";
@@ -23,7 +23,7 @@ import { generatePlaceholder } from "./placeholders";
  */
 export async function processImages(
 	category,
-	{ format = "webp", quality = 80, concurrency = CPU_COUNT, force = false } = {},
+	{ format = IMAGE_EXT, quality = 80, concurrency = CPU_COUNT, force = false } = {},
 ) {
 	logInfo(`Optimizing ${category} images...`);
 	const startTime = performance.now();
