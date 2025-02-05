@@ -242,7 +242,7 @@ function getServicesPage(page, seoData, services) {
  * @param {PageEntry} page - The page entry.
  * @param {SEOProps} seoData - The SEO data.
  * @param {AllowedPageTypes} pageType - The specific page type.
- * @param {{name: string, item: string}=} extraCrumb - Optional extra breadcrumb item.
+ * @param {{name: string, item: string}} [extraCrumb] - Optional extra breadcrumb item.
  * @returns {ExtendedWebPage | ExtendedCollectionPage}
  */
 function getBasePage(page, seoData, pageType, extraCrumb) {
