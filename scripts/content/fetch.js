@@ -85,4 +85,4 @@ function writeJsonFile(filePath, data, spacing = 0) {
 	fs.writeFileSync(filePath, JSON.stringify(data, null, spacing));
 }
 
-fetchContentfulData();
+await fetchContentfulData();
