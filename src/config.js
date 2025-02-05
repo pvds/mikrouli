@@ -4,27 +4,51 @@
 // - for dynamic values use `dyn.js`
 // ##################################################
 
-// Organization details
-export const ORG_SITE_NAME = "Mikrouli";
+// URL
+export const URL_SUBFOLDER_STAGING = "/mikrouli";
+export const URL_SUBFOLDER_PRODUCTION = "";
+export const URL_BASE_STAGING = "https://pvdv.github.io/mikrouli";
+export const URL_BASE_PRODUCTION = "https://mikrouli.nl";
+
+// Site
+export const SITE_PREVIEW_URL = "images/preview.webp";
+
+// Organization
+export const ORG_NAME = "Mikrouli";
+export const ORG_SLOGAN = "Systemic Therapy for Individuals, Families, and Organizations";
 export const ORG_LOGO_URL = "images/logo.svg";
 export const ORG_VAT_ID = "FR12345678901";
 export const ORG_TWITTER = "https://twitter.com/mikrouli";
 export const ORG_LINKEDIN = "https://linkedin.com/company/mikrouli";
 
-// Owner details
+// Owner
 export const OWNER_NAME = "Eleni Papamikrouli";
 export const OWNER_JOB_TITLE = "Systemic Therapist";
 export const OWNER_IMAGE = "images/eleni-papamikrouli.jpg";
 export const OWNER_LINKEDIN = "https://www.linkedin.com/in/eleni-papamikrouli";
 export const OWNER_TWITTER = "https://twitter.com/yourprofile";
 
-// Contact details
+// Contact
 export const CONTACT_PHONE = "+31 6 1944 6263";
 export const CONTACT_EMAIL = "contact@mikrouli.nl";
 export const CONTACT_STREET = "Virulypad 61";
 export const CONTACT_CITY = "Leiden";
 export const CONTACT_POSTAL = "2316 ZT";
 export const CONTACT_COUNTRY = "NL";
+
+// SEO
+/** @type {import('$global/seo/Seo.svelte.types').SEOProps} */
+export const DEFAULT_SEO = {
+	titleSlogan: ORG_SLOGAN,
+	siteName: ORG_NAME,
+	imageURL: "images/preview.webp",
+	logo: ORG_LOGO_URL,
+	author: OWNER_NAME,
+	type: "website",
+	index: false,
+	twitter: true,
+	openGraph: true,
+};
 
 // Files
 export const METADATA_FILE = "metadata.json";
@@ -48,12 +72,6 @@ export const IMAGE_EXTENSIONS = [
 	"avif", "dz", "fits", "gif", "heif", "input", "jpeg", "jpg", "jp2", "jxl",
 	"magick", "openslide", "pdf", "png", "ppm", "raw", "svg", "tiff", "tif", "v", "webp",
 ];
-
-// URL
-export const URL_SUBFOLDER_STAGING = "/mikrouli";
-export const URL_SUBFOLDER_PRODUCTION = "";
-export const URL_BASE_STAGING = "https://pvdv.github.io/mikrouli";
-export const URL_BASE_PRODUCTION = "https://mikrouli.nl";
 
 // Ports
 export const PORT = 4173;

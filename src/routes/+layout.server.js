@@ -1,4 +1,4 @@
-import { getGlobal, getNavigation, getSeo } from "$lib/server/content.js";
+import { getNavigation, getSeo } from "$lib/server/content.js";
 
 export const prerender = true;
 
@@ -10,7 +10,6 @@ export const load = async () => {
 	};
 	const seo = getSeo();
 	return {
-		global: getGlobal(),
 		local: { nav },
 		seo,
 	};

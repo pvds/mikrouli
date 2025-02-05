@@ -45,6 +45,8 @@ import {
 	IMAGE_EXT,
 	IMAGE_THUMBNAIL_SIZE,
 	ORG_LINKEDIN,
+	ORG_LOGO_URL,
+	ORG_NAME,
 	ORG_TWITTER,
 	ORG_VAT_ID,
 	OWNER_IMAGE,
@@ -52,6 +54,7 @@ import {
 	OWNER_LINKEDIN,
 	OWNER_NAME,
 	OWNER_TWITTER,
+	SITE_PREVIEW_URL,
 	URL_BASE_PRODUCTION,
 } from "$config";
 import { getImageName } from "../helpers/image.js";
@@ -59,29 +62,28 @@ import { getImageName } from "../helpers/image.js";
 /**
  * Generate JSON-LD based on the page type.
  * @param {PageEntry|PostEntry|ServiceEntry} entry - The entry data.
- * @param {SEOProps} seoData
  * @param {JsonLdType} jsonLdType - The type of JSON-LD.
  * @param {PostEntry[]|ServiceEntry[]} [items=[]] - Optional array of items for collection pages.
  * @returns {ExtendedBlogPosting | ExtendedWebPage | ExtendedOrganization | ExtendedService | ExtendedCollectionPage | HomePage | undefined}
  */
-export const getJsonLd = (entry, seoData, jsonLdType = "WebPage", items = []) => {
+export const getJsonLd = (entry, jsonLdType = "WebPage", items = []) => {
 	switch (jsonLdType) {
 		case "WebPage":
-			return getPage(entry, seoData);
+			return getPage(entry);
 		case "HomePage":
-			return getHomePage(entry, seoData);
+			return getHomePage(entry);
 		case "ServicesPage":
-			return getServicesPage(entry, seoData, items);
+			return getServicesPage(entry, items);
 		case "ServicePage":
-			return getServicePage(entry, seoData);
+			return getServicePage(entry);
 		case "BlogPostPage":
-			return getBlogPostPage(entry, seoData);
+			return getBlogPostPage(entry);
 		case "BlogPage":
-			return getBlogPage(entry, seoData, items);
+			return getBlogPage(entry, items);
 		case "ContactPage":
-			return getContactPage(entry, seoData);
+			return getContactPage(entry);
 		case "AboutPage":
-			return getAboutPage(entry, seoData);
+			return getAboutPage(entry);
 		default:
 			return undefined;
 	}
@@ -90,41 +92,37 @@ export const getJsonLd = (entry, seoData, jsonLdType = "WebPage", items = []) =>
 /**
  * Generate JSON-LD for a generic WebPage.
  * @param {PageEntry} page - The page entry.
- * @param {SEOProps} seoData - The SEO data.
  * @returns {ExtendedWebPage}
  */
-function getPage(page, seoData) {
-	return getBasePage(page, seoData, "WebPage");
+function getPage(page) {
+	return getBasePage(page, "WebPage");
 }
 
 /**
  * Generate JSON-LD for a Contact Page.
  * @param {PageEntry} page - The page entry.
- * @param {SEOProps} seoData - The SEO data.
  * @returns {ExtendedWebPage}
  */
-function getContactPage(page, seoData) {
-	return getBasePage(page, seoData, "ContactPage");
+function getContactPage(page) {
+	return getBasePage(page, "ContactPage");
 }
 
 /**
  * Generate JSON-LD for an About Page.
  * @param {PageEntry} page - The page entry.
- * @param {SEOProps} seoData - The SEO data.
  * @returns {ExtendedWebPage}
  */
-function getAboutPage(page, seoData) {
-	return getBasePage(page, seoData, "AboutPage");
+function getAboutPage(page) {
+	return getBasePage(page, "AboutPage");
 }
 
 /**
  * Generate JSON-LD for an individual Blog Post page.
  * The output is a WebPage with breadcrumb and a mainEntity that is a BlogPosting.
  * @param {PostEntry} post - The blog post entry.
- * @param {SEOProps} seoData
  * @returns {ExtendedWebPage}
  */
-function getBlogPostPage(post, seoData) {
+function getBlogPostPage(post) {
 	const blogData = {
 		"@type": "BlogPosting",
 		headline: post.fields.header,
@@ -133,21 +131,21 @@ function getBlogPostPage(post, seoData) {
 		dateModified: iso8601Date(post.meta.updatedAt),
 		author: {
 			"@type": "Person",
-			name: seoData.author,
+			name: OWNER_NAME,
 		},
 		publisher: {
 			"@type": "Organization",
-			name: seoData.siteName,
+			name: ORG_NAME,
 			logo: {
 				"@type": "ImageObject",
-				url: seoData.logo,
+				url: `${URL_BASE_PRODUCTION}/${ORG_LOGO_URL}`,
 			},
 		},
 		image: getImage(post.fields.heroImage),
 	};
 	// Pass an extra breadcrumb item (e.g. the blog post title) as the third crumb.
 	/** @type {ExtendedWebPage} */
-	const base = getBasePage(post, seoData, "WebPage", {
+	const base = getBasePage(post, "WebPage", {
 		name: post.fields.header || post.fields.title,
 		item: `${URL_BASE_PRODUCTION}/blog/${post.fields.slug}`,
 	});
@@ -160,10 +158,9 @@ function getBlogPostPage(post, seoData) {
  * Generate JSON-LD for an individual Service page.
  * The output is a WebPage with breadcrumb and a mainEntity that is a Service.
  * @param {ServiceEntry} service - The service entry.
- * @param {SEOProps} seoData
  * @returns {ExtendedWebPage}
  */
-function getServicePage(service, seoData) {
+function getServicePage(service) {
 	const serviceData = {
 		"@type": "Service",
 		name: service.fields.title,
@@ -171,17 +168,17 @@ function getServicePage(service, seoData) {
 		serviceType: "Therapy",
 		provider: {
 			"@type": "Organization",
-			name: seoData.siteName,
+			name: ORG_NAME,
 			url: URL_BASE_PRODUCTION,
 			logo: {
 				"@type": "ImageObject",
-				url: seoData.logo,
+				url: `${URL_BASE_PRODUCTION}/${ORG_LOGO_URL}`,
 			},
 		},
 		image: getImage(service.fields.heroImage),
 	};
 	/** @type {ExtendedWebPage} */
-	const base = getBasePage(service, seoData, "WebPage", {
+	const base = getBasePage(service, "WebPage", {
 		name: service.fields.title,
 		item: `${URL_BASE_PRODUCTION}/services/${service.fields.slug}`,
 	});
@@ -192,15 +189,12 @@ function getServicePage(service, seoData) {
 /**
  * Generate JSON-LD for a Blog Collection page.
  * @param {PageEntry} page - The blog overview page entry.
- * @param {SEOProps} seoData
  * @param {PostEntry[]} posts - An array of blog posts.
  * @returns {ExtendedCollectionPage}
  */
-function getBlogPage(page, seoData, posts) {
+function getBlogPage(page, posts) {
 	/** @type {ExtendedCollectionPage} */
-	const base = /** @type {ExtendedCollectionPage} */ (
-		getBasePage(page, seoData, "CollectionPage")
-	);
+	const base = /** @type {ExtendedCollectionPage} */ (getBasePage(page, "CollectionPage"));
 	if (posts.length) {
 		base.hasPart = posts.map((post) => ({
 			"@type": "BlogPosting",
@@ -221,15 +215,12 @@ function getBlogPage(page, seoData, posts) {
  * Generate JSON-LD for a Service Collection page.
  * Each service is now wrapped in a WebPage whose mainEntity is a Service.
  * @param {PageEntry} page - The services overview page entry.
- * @param {SEOProps} seoData
  * @param {ServiceEntry[]} services - An array of services.
  * @returns {ExtendedCollectionPage}
  */
-function getServicesPage(page, seoData, services) {
+function getServicesPage(page, services) {
 	/** @type {ExtendedCollectionPage} */
-	const base = /** @type {ExtendedCollectionPage} */ (
-		getBasePage(page, seoData, "CollectionPage")
-	);
+	const base = /** @type {ExtendedCollectionPage} */ (getBasePage(page, "CollectionPage"));
 	if (services.length) {
 		base.hasPart = services.map((service) => ({
 			"@type": "WebPage",
@@ -242,11 +233,11 @@ function getServicesPage(page, seoData, services) {
 				serviceType: "Therapy",
 				provider: {
 					"@type": "Organization",
-					name: seoData.siteName,
+					name: ORG_NAME,
 					url: URL_BASE_PRODUCTION,
 					logo: {
 						"@type": "ImageObject",
-						url: seoData.logo,
+						url: `${URL_BASE_PRODUCTION}/${ORG_LOGO_URL}`,
 					},
 				},
 				image: getImage(service.fields.heroImage),
@@ -265,10 +256,9 @@ function getServicesPage(page, seoData, services) {
  * This returns a JSON-LD object with separate nodes for the WebSite and Organization.
  *
  * @param {PageEntry} page - The homepage entry data.
- * @param {SEOProps} seoData - The SEO data.
  * @returns {HomePage}
  */
-function getHomePage(page, seoData) {
+function getHomePage(page) {
 	return {
 		"@context": "https://schema.org",
 		"@graph": [
@@ -276,8 +266,8 @@ function getHomePage(page, seoData) {
 				"@type": "WebSite",
 				"@id": `${URL_BASE_PRODUCTION}/#website`,
 				url: URL_BASE_PRODUCTION,
-				name: seoData.siteName,
-				image: `${URL_BASE_PRODUCTION}/${seoData.imageURL}`,
+				name: ORG_NAME,
+				image: `${URL_BASE_PRODUCTION}/${SITE_PREVIEW_URL}`,
 				publisher: {
 					"@id": `${URL_BASE_PRODUCTION}/#organization`,
 				},
@@ -285,11 +275,11 @@ function getHomePage(page, seoData) {
 			{
 				"@type": "Organization",
 				"@id": `${URL_BASE_PRODUCTION}/#organization`,
-				name: seoData.siteName,
+				name: ORG_NAME,
 				url: URL_BASE_PRODUCTION,
 				logo: {
 					"@type": "ImageObject",
-					url: `${URL_BASE_PRODUCTION}/${seoData.logo}`,
+					url: `${URL_BASE_PRODUCTION}/${ORG_LOGO_URL}`,
 					width: {
 						"@type": "QuantitativeValue",
 						value: 48,
@@ -309,7 +299,7 @@ function getHomePage(page, seoData) {
 						jobTitle: OWNER_JOB_TITLE,
 						worksFor: {
 							"@type": "Organization",
-							name: seoData.siteName,
+							name: ORG_NAME,
 							url: URL_BASE_PRODUCTION,
 						},
 						sameAs: [OWNER_LINKEDIN, OWNER_TWITTER],
@@ -347,12 +337,11 @@ function getHomePage(page, seoData) {
  * Returns a WebPage with a breadcrumb list.
  *
  * @param {PageEntry} page - The page entry.
- * @param {SEOProps} seoData - The SEO data.
  * @param {AllowedPageTypes} pageType - The specific page type.
  * @param {{name: string, item: string}} [extraCrumb] - Optional extra breadcrumb item.
  * @returns {ExtendedWebPage | ExtendedCollectionPage}
  */
-function getBasePage(page, seoData, pageType, extraCrumb) {
+function getBasePage(page, pageType, extraCrumb) {
 	const defaultUrl = `${URL_BASE_PRODUCTION}/${page.fields.slug}`;
 	const canonicalUrl = extraCrumb ? extraCrumb.item : defaultUrl;
 	/** @type {ExtendedWebPage | ExtendedCollectionPage} */

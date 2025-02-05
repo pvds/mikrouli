@@ -17,12 +17,11 @@
  * @typedef {import('$types/global').global} GlobalProps
  */
 
+import { DEFAULT_SEO } from "$config";
 import navigationItems from "$data/generated/navigation.json";
 import pageItems from "$data/generated/pages.json";
 import postItems from "$data/generated/posts.json";
 import serviceItems from "$data/generated/services.json";
-import globalData from "$data/global.json";
-import seoData from "$data/seo.json";
 import { error } from "@sveltejs/kit";
 import { getJsonLd } from "./jsonld.js";
 import { markdownToHtml, splitText } from "./utils.js";
@@ -45,14 +44,6 @@ const preprocessJson = (data) => {
 };
 
 /**
- * Fetch all content data.
- * @returns {GlobalProps} - The processed content data.
- */
-export const getGlobal = () => {
-	return globalData;
-};
-
-/**
  * Fetch all SEO data.
  * @param {PageEntry|PostEntry|ServiceEntry} [entry] - The page data to override the default SEO data.
  * @param {JsonLdType} [jsonLdType="WebPage"] - The ld+json type to use.
@@ -60,11 +51,10 @@ export const getGlobal = () => {
  * @returns {SEOProps} - The processed SEO data.
  */
 export const getSeo = (entry, jsonLdType = "WebPage", items = []) => {
-	const data = /** @type {SEOProps} */ seoData;
-	if (!entry) return data;
-	const jsonld = getJsonLd(entry, data, jsonLdType, items);
+	if (!entry) return DEFAULT_SEO;
+	const jsonld = getJsonLd(entry, jsonLdType, items);
 	return {
-		...data,
+		...DEFAULT_SEO,
 		title: entry.fields.title,
 		description: entry.fields.seoDescription,
 		keywords: entry.fields.seoKeywords,
