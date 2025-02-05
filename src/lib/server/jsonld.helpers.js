@@ -3,10 +3,17 @@
  *
  * @typedef {import('$types/contentful').ImageField} ImageField
  * @typedef {import('schema-dts').ImageObject} ImageObject
+ * @typedef {import('schema-dts').Organization} Organization
  * @typedef {ImageObject & { "@context": string }} ExtendedImageObject
  */
 
-import { IMAGE_EXT, IMAGE_THUMBNAIL_SIZE, ORG_LOGO_URL, URL_BASE_PRODUCTION } from "$config";
+import {
+	IMAGE_EXT,
+	IMAGE_THUMBNAIL_SIZE,
+	ORG_LOGO_URL,
+	ORG_NAME,
+	URL_BASE_PRODUCTION,
+} from "$config";
 import { getImageName } from "../helpers/image.js";
 
 /**
@@ -61,5 +68,19 @@ export function getOrgLogo() {
 			value: 48,
 			unitText: "pixels",
 		},
+	};
+}
+
+/**
+ * Create an Organization object with optional URL.
+ *
+ * @return {Organization}
+ */
+export function getOrganization() {
+	return {
+		"@type": "Organization",
+		name: ORG_NAME,
+		logo: getOrgLogo(),
+		url: URL_BASE_PRODUCTION,
 	};
 }

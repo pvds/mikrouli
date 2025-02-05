@@ -47,7 +47,13 @@ import {
 	SITE_PREVIEW_URL,
 	URL_BASE_PRODUCTION,
 } from "$config";
-import { getImage, getOrgLogo, getParentUrl, iso8601Date } from "./jsonld.helpers.js";
+import {
+	getImage,
+	getOrgLogo,
+	getOrganization,
+	getParentUrl,
+	iso8601Date,
+} from "./jsonld.helpers.js";
 
 /**
  * Generate JSON-LD based on the page type.
@@ -123,11 +129,7 @@ function getBlogPostPage(post) {
 			"@type": "Person",
 			name: OWNER_NAME,
 		},
-		publisher: {
-			"@type": "Organization",
-			name: ORG_NAME,
-			logo: getOrgLogo(),
-		},
+		publisher: getOrganization(),
 		image: getImage(post.fields.heroImage),
 	};
 	// Pass an extra breadcrumb item (e.g. the blog post title) as the third crumb.
@@ -153,12 +155,7 @@ function getServicePage(service) {
 		name: service.fields.title,
 		description: service.fields.seoDescription,
 		serviceType: "Therapy",
-		provider: {
-			"@type": "Organization",
-			name: ORG_NAME,
-			url: URL_BASE_PRODUCTION,
-			logo: getOrgLogo(),
-		},
+		provider: getOrganization(),
 		image: getImage(service.fields.heroImage),
 	};
 	/** @type {ExtendedWebPage} */
@@ -215,12 +212,7 @@ function getServicesPage(page, services) {
 				name: service.fields.title,
 				description: service.fields.seoDescription,
 				serviceType: "Therapy",
-				provider: {
-					"@type": "Organization",
-					name: ORG_NAME,
-					url: URL_BASE_PRODUCTION,
-					logo: getOrgLogo(),
-				},
+				provider: getOrganization(),
 				image: getImage(service.fields.heroImage),
 			},
 			mainEntityOfPage: {
