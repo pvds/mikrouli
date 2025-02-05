@@ -14,18 +14,15 @@
  * @typedef {import('schema-dts').Organization} Organization
  * @typedef {import('schema-dts').Service} Service
  * @typedef {import('schema-dts').CollectionPage} CollectionPage
- * @typedef {import('schema-dts').CreativeWork} CreativeWork
  * @typedef {import('schema-dts').ImageObject} ImageObject
  * @typedef {import('schema-dts').BreadcrumbList} BreadcrumbList
+ * @typedef {import('schema-dts').CreativeWork} CreativeWork
  * @typedef {import('schema-dts').ListItem} ListItem
  *
- *
- * Allowed values for page type.
+ * // Allowed values for page type.
  * @typedef {"WebPage" | "ContactPage" | "AboutPage" | "CollectionPage"} AllowedPageTypes
  *
- *
- * // Extended types that include "@context" property.
- *
+ * // Extended types (we add an "@context" property)
  * @typedef {BlogPosting & { "@context": string }} ExtendedBlogPosting
  * @typedef {WebPage & { "@context": string }} ExtendedWebPage
  * @typedef {Organization & { "@context": string }} ExtendedOrganization
@@ -97,7 +94,79 @@ function getAboutPage(page, seoData) {
 }
 
 /**
- * Generate JSON-LD for a Blog Overview Page (CollectionPage with BlogPosting items).
+ * Generate JSON-LD for an individual Blog Post page.
+ * The output is a WebPage with breadcrumb and a mainEntity that is a BlogPosting.
+ * @param {PostEntry} post - The blog post entry.
+ * @param {SEOProps} seoData
+ * @returns {ExtendedWebPage}
+ */
+function getBlogPosting(post, seoData) {
+	const blogData = {
+		"@type": "BlogPosting",
+		headline: post.fields.header,
+		description: post.fields.seoDescription,
+		datePublished: iso8601Date(post.meta.createdAt),
+		dateModified: iso8601Date(post.meta.updatedAt),
+		author: {
+			"@type": "Person",
+			name: seoData.author,
+		},
+		publisher: {
+			"@type": "Organization",
+			name: seoData.siteName,
+			logo: {
+				"@type": "ImageObject",
+				url: seoData.logo,
+			},
+		},
+		image: getImage(post.fields.heroImage),
+	};
+	// Pass an extra breadcrumb item (e.g. the blog post title) as the third crumb.
+	/** @type {ExtendedWebPage} */
+	const base = getBasePage(post, seoData, "WebPage", {
+		name: post.fields.header || post.fields.title,
+		item: `${URL_BASE_PRODUCTION}/blog/${post.fields.slug}`,
+	});
+	// Use a simple cast to bypass the type error.
+	base.mainEntity = /** @type {any} */ (blogData);
+	return base;
+}
+
+/**
+ * Generate JSON-LD for an individual Service page.
+ * The output is a WebPage with breadcrumb and a mainEntity that is a Service.
+ * @param {ServiceEntry} service - The service entry.
+ * @param {SEOProps} seoData
+ * @returns {ExtendedWebPage}
+ */
+function getService(service, seoData) {
+	const serviceData = {
+		"@type": "Service",
+		name: service.fields.title,
+		description: service.fields.seoDescription,
+		serviceType: "Therapy",
+		provider: {
+			"@type": "Organization",
+			name: seoData.siteName,
+			url: URL_BASE_PRODUCTION,
+			logo: {
+				"@type": "ImageObject",
+				url: seoData.logo,
+			},
+		},
+		image: getImage(service.fields.heroImage),
+	};
+	/** @type {ExtendedWebPage} */
+	const base = getBasePage(service, seoData, "WebPage", {
+		name: service.fields.title,
+		item: `${URL_BASE_PRODUCTION}/services/${service.fields.slug}`,
+	});
+	base.mainEntity = /** @type {any} */ (serviceData);
+	return base;
+}
+
+/**
+ * Generate JSON-LD for a Blog Collection page.
  * @param {PageEntry} page - The blog overview page entry.
  * @param {SEOProps} seoData
  * @param {PostEntry[]} posts - An array of blog posts.
@@ -125,7 +194,8 @@ function getBlogCollection(page, seoData, posts) {
 }
 
 /**
- * Generate JSON-LD for a Services Overview Page (CollectionPage with Service items).
+ * Generate JSON-LD for a Service Collection page.
+ * We now map each service directly as a Service object.
  * @param {PageEntry} page - The services overview page entry.
  * @param {SEOProps} seoData
  * @param {ServiceEntry[]} services - An array of services.
@@ -137,8 +207,9 @@ function getServiceCollection(page, seoData, services) {
 		getBasePage(page, seoData, "CollectionPage")
 	);
 	if (services.length) {
+		// @ts-expect-error
 		base.hasPart = services.map((service) => ({
-			"@type": "Service",
+			"@type": "Service", // TODO: should be a "WebPage" with a "mainEntity" of type "Service"
 			name: service.fields.title,
 			description: service.fields.seoDescription,
 			provider: {
@@ -150,137 +221,22 @@ function getServiceCollection(page, seoData, services) {
 					url: seoData.logo,
 				},
 			},
-			mainEntityOfPage: {
-				"@type": "WebPage",
-				"@id": `${URL_BASE_PRODUCTION}/services/${service.fields.slug}`,
-			},
+			image: getImage(service.fields.heroImage),
 		}));
 	}
 	return base;
 }
 
 /**
- * Generate JSON-LD for a Blog Posting.
- * @param {PostEntry} post - The post entry.
- * @param {SEOProps} seoData
- * @returns {ExtendedBlogPosting}
- */
-function getBlogPosting(post, seoData) {
-	const image = getImage(post.fields.heroImage);
-	/** @type {ExtendedBlogPosting} */
-	return {
-		"@context": "https://schema.org",
-		"@type": "BlogPosting",
-		headline: post.fields.header,
-		description: post.fields.seoDescription,
-		datePublished: iso8601Date(post.meta.createdAt),
-		dateModified: iso8601Date(post.meta.updatedAt),
-		author: {
-			"@type": "Person",
-			name: seoData.author,
-		},
-		publisher: {
-			"@type": "Organization",
-			name: seoData.siteName,
-			logo: {
-				"@type": "ImageObject",
-				url: seoData.logo,
-			},
-		},
-		image: image,
-		mainEntityOfPage: {
-			"@type": "WebPage",
-			"@id": `${URL_BASE_PRODUCTION}/blog/${post.fields.slug}`,
-		},
-		breadcrumb: {
-			"@type": "BreadcrumbList",
-			itemListElement: [
-				{
-					"@type": "ListItem",
-					position: 1,
-					name: "Home",
-					item: `${URL_BASE_PRODUCTION}/`,
-				},
-				{
-					"@type": "ListItem",
-					position: 2,
-					name: "Blog",
-					item: `${URL_BASE_PRODUCTION}/blog`,
-				},
-				{
-					"@type": "ListItem",
-					position: 3,
-					name: post.fields.title,
-					item: `${URL_BASE_PRODUCTION}/blog/${post.fields.slug}`,
-				},
-			],
-		},
-	};
-}
-
-/**
- * Generate JSON-LD for a Service.
- * @param {ServiceEntry} service - The service entry.
- * @param {SEOProps} seoData
- * @returns {ExtendedService}
- */
-function getService(service, seoData) {
-	const image = getImage(service.fields.heroImage);
-	/** @type {ExtendedService} */
-	return {
-		"@context": "https://schema.org",
-		"@type": "Service",
-		name: service.fields.title,
-		description: service.fields.seoDescription,
-		serviceType: "Therapy",
-		provider: {
-			"@type": "Organization",
-			name: seoData.siteName,
-			url: URL_BASE_PRODUCTION,
-			logo: {
-				"@type": "ImageObject",
-				url: seoData.logo,
-			},
-		},
-		image: image,
-		mainEntityOfPage: {
-			"@type": "WebPage",
-			"@id": `${URL_BASE_PRODUCTION}/services/${service.fields.slug}`,
-		},
-		breadcrumb: {
-			"@type": "BreadcrumbList",
-			itemListElement: [
-				{
-					"@type": "ListItem",
-					position: 1,
-					name: "Home",
-					item: `${URL_BASE_PRODUCTION}/`,
-				},
-				{
-					"@type": "ListItem",
-					position: 2,
-					name: "Services",
-					item: `${URL_BASE_PRODUCTION}/services`,
-				},
-				{
-					"@type": "ListItem",
-					position: 3,
-					name: service.fields.title,
-					item: `${URL_BASE_PRODUCTION}/services/${service.fields.slug}`,
-				},
-			],
-		},
-	};
-}
-
-/**
  * Generate base JSON-LD for a page.
+ * Returns a WebPage with breadcrumb.
  * @param {PageEntry} page - The page entry.
  * @param {SEOProps} seoData - The SEO data.
  * @param {AllowedPageTypes} pageType - The specific page type.
+ * @param {{name: string, item: string}=} extraCrumb - Optional extra breadcrumb item.
  * @returns {ExtendedWebPage | ExtendedCollectionPage}
  */
-function getBasePage(page, seoData, pageType) {
+function getBasePage(page, seoData, pageType, extraCrumb) {
 	const slug = page.fields.slug;
 	const url = `${URL_BASE_PRODUCTION}/${slug}`;
 	/** @type {ExtendedWebPage | ExtendedCollectionPage} */
@@ -312,6 +268,16 @@ function getBasePage(page, seoData, pageType) {
 			],
 		},
 	};
+	// @ts-expect-error
+	const breadCrumbList = /** @type {ListItem[]} */ base.breadcrumb?.itemListElement;
+	if (extraCrumb && breadCrumbList?.length) {
+		breadCrumbList.push({
+			"@type": "ListItem",
+			position: breadCrumbList.length + 1,
+			name: extraCrumb.name,
+			item: extraCrumb.item,
+		});
+	}
 	return base;
 }
 
