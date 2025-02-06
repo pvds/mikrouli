@@ -9,6 +9,8 @@
  * @typedef {import('$lib/types/contentful').PostEntry} PostEntry
  * @typedef {import('$lib/types/contentful').NavigationEntry} NavigationEntry
  * @typedef {import('$lib/types/contentful').NavigationFields} NavigationFields
+ * @typedef {import('$lib/types/contentful').ReviewEntry} ReviewEntry
+ * @typedef {import('$lib/types/contentful').ReviewFields} ReviewFields
  * @typedef {import('$lib/types/contentful').Metadata} Metadata
  * @typedef {import('contentful').Entry} ContentfulEntry
  * @typedef {import('contentful').EntrySys} EntrySys
@@ -28,6 +30,7 @@ export function processContentfulData(data = {}) {
 	const pagesRaw = data.pages || emptyEntries;
 	const servicesRaw = data.services || emptyEntries;
 	const postsRaw = data.posts || emptyEntries;
+	const reviewsRaw = data.reviews || emptyEntries;
 	const navigationRaw = data.navigation || emptyEntries;
 
 	// Parse each content type
@@ -40,10 +43,13 @@ export function processContentfulData(data = {}) {
 	const posts = /** @type {PostEntry[]} */ (
 		postsRaw.map((rawPost) => parseContentEntry(rawPost))
 	);
+	const reviews = /** @type {ReviewEntry[]} */ (
+		reviewsRaw.map((rawReview) => parseReviewEntry(rawReview))
+	);
 	const navigation = navigationRaw.map((rawNav) => parseNavigation(rawNav, pages));
 	const images = parseImageUrls(data);
 
-	return { navigation, pages, services, posts, images };
+	return { navigation, pages, services, posts, reviews, images };
 }
 
 /**
@@ -92,6 +98,24 @@ export function parseContentEntry(rawEntry) {
 	}
 
 	const fields = /** @type {BaseFields} */ (restFields);
+	return { meta, fields };
+}
+
+/**
+ * Parse a review entry.
+ * Only includes names of non-anonymous reviewers.
+ * @param {ContentfulEntry} rawReview The raw review entry
+ * @return ReviewEntry
+ */
+function parseReviewEntry(rawReview) {
+	const meta = parseMeta(rawReview.sys);
+	const { reviewer, ...fields } = /** @type {ReviewFields} */ rawReview.fields;
+
+	// Exclude reviewer field if anonymous
+	if (!fields.anonymous) {
+		fields.reviewer = reviewer;
+	}
+
 	return { meta, fields };
 }
 

@@ -134,6 +134,25 @@
     },
     {
         "meta": {
+            "id": "2xwny12qOrT02aJi13HvYR",
+            "type": "Entry",
+            "createdAt": "2025-02-06T09:16:10.547Z",
+            "updatedAt": "2025-02-06T10:39:18.449Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Reviews",
+            "slug": "reviews",
+            "seoIndex": true,
+            "hidden": false,
+            "seoDescription": "Discover how systemic therapy with Eleni at Mikrouli has transformed lives. Read heartfelt reviews from clients who found clarity, healing, and growth.",
+            "header": "What Our Clients Say",
+            "intro": "At Mikrouli, we believe that every journey of healing and self-discovery is unique. Through systemic therapy, Eleni has helped individuals and families uncover deep-rooted patterns, heal past wounds, and create meaningful change in their lives.\n\nWe are honored to share the experiences of those who have trusted Eleni with their personal growth. Their heartfelt words reflect the transformative impact of her guidance and the safe, nurturing space she provides.\n\nRead their stories below and see how systemic therapy can bring clarity, empowerment, and healing.",
+            "content": "## Share Your Experience with Mikrouli\n\nYour journey matters to us. If you’ve had a session with Eleni and would like to share your experience, we would be truly grateful for your feedback.\nWe believe that every story has the power to inspire and help others on their own path.\n\nFor now, you can send your review via email, and we will carefully include it on our website. Your review can be anonymous if you prefer—just mention it in your message.\n\n{{link url=\"mailto:hello@mikrouli.nl?subject=Review%20for%20Systemic%20Therapy%20at%20Mikrouli&body=Dear%20Eleni,%0A%0AI%20would%20like%20to%20share%20my%20experience%20with%20systemic%20therapy%20at%20Mikrouli.%20Here%20are%20my%20review%20details:%0A%0A-%20**Reviewer%20Name**%20(or%20write%20Anonymous):%20%0A-%20**Age**%20(optional):%20%0A-%20**Nationality**%20(optional):%20%0A-%20**Review**:%20%0A-%20**Rating**%20(1-10):%20%0A%0AI%20understand%20that%20my%20review%20may%20be%20shared%20on%20the%20Mikrouli%20website,%20and%20I%20confirm%20whether%20I%20want%20to%20remain%20anonymous.\" text=\"Mail your experience\" variant=\"primary\"}}\n\n> We are also in the process of integrating Trustpilot to make it even easier for you to leave a review in the future. Until then, we deeply appreciate your time and words.\n\nThank you for being part of our journey."
+        }
+    },
+    {
+        "meta": {
             "id": "3Dq1BUqylcl2pQweRSAvc6",
             "type": "Entry",
             "createdAt": "2024-12-27T23:01:22.902Z",

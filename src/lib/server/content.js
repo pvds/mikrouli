@@ -10,6 +10,7 @@
  * @typedef {import('$types/contentful').PostEntry} PostEntry
  * @typedef {import('$types/contentful').PageEntry} PageEntry
  * @typedef {import('$types/contentful').NavigationEntry} NavigationEntry
+ * @typedef {import('$types/contentful').ReviewEntry} ReviewEntry
  * @typedef {import('$types/contentful').ServiceEntry} ServiceEntry
  * @typedef {import('$lib/types/contentful').SectionFields} SectionFields
  * @typedef {import('$global/seo/Seo.svelte.types').SEOProps} SEOProps
@@ -21,6 +22,7 @@ import { DEFAULT_SEO } from "$config";
 import navigationItems from "$data/generated/navigation.json";
 import pageItems from "$data/generated/pages.json";
 import postItems from "$data/generated/posts.json";
+import reviewItems from "$data/generated/reviews.json";
 import serviceItems from "$data/generated/services.json";
 import { error } from "@sveltejs/kit";
 import { getJsonLd } from "./jsonld.js";
@@ -77,6 +79,17 @@ export const getNavigation = (slug) => {
 	if (!nav) throw error(404, `Navigation with slug '${slug}' not found`);
 
 	return nav;
+};
+
+/**
+ * Fetch and process all reviews.
+ * @param {number} [limit=0] - The number of reviews to return.
+ * @returns {ReviewEntry[]}
+ */
+export const getReviews = (limit = 0) => {
+	const reviews = /** @type {ReviewEntry[]} */ reviewItems;
+	if (limit > 0) return reviews.slice(0, limit);
+	return reviews;
 };
 
 /**

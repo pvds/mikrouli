@@ -4,7 +4,7 @@
             "id": "1HR15phB5u1biNFJLqOW2K",
             "type": "Entry",
             "createdAt": "2025-01-09T07:47:18.583Z",
-            "updatedAt": "2025-01-09T07:47:18.583Z",
+            "updatedAt": "2025-02-06T09:27:53.546Z",
             "locale": "en-US"
         },
         "fields": {
@@ -30,6 +30,11 @@
                     "title": "Blog",
                     "header": "Insights to Support Your Journey",
                     "slug": "blog"
+                },
+                {
+                    "title": "Reviews",
+                    "header": "What Our Clients Say",
+                    "slug": "reviews"
                 }
             ]
         }

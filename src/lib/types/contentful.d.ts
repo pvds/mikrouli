@@ -121,11 +121,28 @@ export type NavigationEntry = {
 	fields: NavigationFields;
 };
 
+// ### Reviews
+
+export type ReviewFields = {
+	reviewer?: string;
+	anonymous: boolean;
+	age?: number;
+	nationality?: string;
+	review: string;
+	rating: number;
+};
+
+export type ReviewEntry = {
+	meta: Metadata;
+	fields: ReviewFields;
+};
+
 // ### Data
 export type ContentfulData = {
 	navigation: NavigationEntry[];
 	pages: PageEntry[];
 	services: ServiceEntry[];
 	posts: PostEntry[];
+	reviews: ReviewEntry[];
 	images: string[];
 };
