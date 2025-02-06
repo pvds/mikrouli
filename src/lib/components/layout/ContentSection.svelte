@@ -33,10 +33,10 @@ const hasWave = (i) => {
 };
 </script>
 
-<Section wave={hasWave(index)} {size}>
+<Section wave={hasWave(index)} {size} {classes}>
 	{@render header?.()}
-	<div class="{classes}{prose ?
-	' prose prose-lg marker:text-accent-dark prose-strong:text-accent-dark prose-strong:font-bold prose-headings:text-3xl prose-headings:font-bold' : ''}">
+	<div class="{prose ?
+	'prose prose-lg marker:text-accent-dark prose-strong:text-accent-dark prose-strong:font-bold prose-headings:text-3xl prose-headings:font-bold' : ''}">
 		{@render children?.()}
 	</div>
 	{@render footer?.()}

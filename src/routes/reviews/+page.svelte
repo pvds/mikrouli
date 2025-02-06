@@ -30,7 +30,7 @@ let reviews = data.reviews;
 </Section>
 
 {#each contentSections as section}
-	<ContentSection prose size="sm" index={1} classes="mb-10">
+	<ContentSection prose size="sm" index={1} classes="mb-40">
 		{@html section}
 	</ContentSection>
 {/each}
