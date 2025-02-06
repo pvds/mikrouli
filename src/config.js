@@ -38,7 +38,7 @@ export const CONTACT_COUNTRY = "NL";
 
 // SEO
 /** @type {import('$global/seo/Seo.svelte.types').SEOProps} */
-export const DEFAULT_SEO = {
+export const SEO_DEFAULT = {
 	titleSlogan: ORG_SLOGAN,
 	siteName: ORG_NAME,
 	imageURL: "images/preview.webp",
@@ -49,6 +49,7 @@ export const DEFAULT_SEO = {
 	twitter: true,
 	openGraph: true,
 };
+export const SEO_AGGREGATE_RATING = false;
 
 // Files
 export const METADATA_FILE = "metadata.json";

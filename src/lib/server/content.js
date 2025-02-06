@@ -18,7 +18,7 @@
  * @typedef {import('$types/global').global} GlobalProps
  */
 
-import { DEFAULT_SEO } from "$config";
+import { SEO_DEFAULT } from "$config";
 import navigationItems from "$data/generated/navigation.json";
 import pageItems from "$data/generated/pages.json";
 import postItems from "$data/generated/posts.json";
@@ -53,10 +53,10 @@ const preprocessJson = (data) => {
  * @returns {SEOProps} - The processed SEO data.
  */
 export const getSeo = (entry, jsonLdType = "WebPage", items = []) => {
-	if (!entry) return DEFAULT_SEO;
+	if (!entry) return SEO_DEFAULT;
 	const jsonld = getJsonLd(entry, jsonLdType, items);
 	return {
-		...DEFAULT_SEO,
+		...SEO_DEFAULT,
 		title: entry.fields.title,
 		description: entry.fields.seoDescription,
 		keywords: entry.fields.seoKeywords,
