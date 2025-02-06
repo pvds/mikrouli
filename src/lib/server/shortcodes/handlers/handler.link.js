@@ -18,8 +18,8 @@ export function linkHandler(attributes) {
 
 	/** @type {{[key: string]: string}} */
 	const variants = {
-		primary: "px-4 bg-accent-600 hover:bg-accent-700 text-white no-underline rounded-full",
-		secondary: "hover:text-accent-600 underline underline-offset-2",
+		primary: "px-4 bg-accent-dark hover:bg-accent-darker text-white no-underline rounded-full",
+		secondary: "hover:text-accent-dark underline underline-offset-2",
 	};
 	const baseClasses =
 		"shortcode-link [&+a]:ml-4 inline-block py-2 font-semibold" + " transition-color";
