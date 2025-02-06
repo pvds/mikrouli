@@ -30,7 +30,7 @@ let title = $derived(
 	constructTitle(
 		page.data.seo.title || page.data.local.title,
 		page.data.seo.titleSlogan,
-		page.data.seo.name,
+		page.data.seo.siteName,
 	),
 );
 /** @type {SEOProps['description']} */
