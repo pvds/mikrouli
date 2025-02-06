@@ -8,8 +8,8 @@
 	--tw-prose-counters: var(--color-primary-dark);
 	--tw-prose-bullets: var(--color-primary-light);
 	--tw-prose-hr: var(--color-primary-lighter);
-	--tw-prose-quotes: var(--color-primary-darkest);
-	--tw-prose-quote-borders: var(--color-primary-lighter);
+	--tw-prose-quotes: var(--color-primary-darker);
+	--tw-prose-quote-borders: var(--color-primary-dark);
 	--tw-prose-captions: var(--color-primary-dark);
 	--tw-prose-kbd: var(--color-primary-darkest);
 	--tw-prose-kbd-shadows: 0 0 0;
