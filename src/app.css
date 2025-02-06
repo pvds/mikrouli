@@ -11,5 +11,8 @@
 /* === PLUGINS === */
 @plugin "@tailwindcss/typography";
 
+/* === SOURCES === */
+@source "../src/";
+
 /* === LAYERS === */
 @layer theme, base, components, utilities;
