@@ -26,7 +26,7 @@ export type BaseFields = BaseFieldsRaw & {
 	sections?: SectionFields[];
 };
 
-export type BaseFieldsMinimal = Pick<BaseFieldsRaw, "title" | "header" | "slug">;
+export type BaseFieldsMinimal = Pick<BaseFieldsRaw, "title" | "header" | "slug" | "hidden">;
 
 export type BaseEntryRaw = {
 	meta: Metadata;

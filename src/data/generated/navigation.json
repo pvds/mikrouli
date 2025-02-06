@@ -14,27 +14,32 @@
                 {
                     "title": "Services",
                     "header": "Explore Ways We Can Work Together",
-                    "slug": "services"
+                    "slug": "services",
+                    "hidden": false
                 },
                 {
                     "title": "About",
                     "header": "Get to Know Me",
-                    "slug": "about"
+                    "slug": "about",
+                    "hidden": false
                 },
                 {
                     "title": "Contact",
                     "header": "Contact Me to Take the First Step",
-                    "slug": "contact"
+                    "slug": "contact",
+                    "hidden": false
                 },
                 {
                     "title": "Blog",
                     "header": "Insights to Support Your Journey",
-                    "slug": "blog"
+                    "slug": "blog",
+                    "hidden": false
                 },
                 {
                     "title": "Reviews",
                     "header": "What Our Clients Say",
-                    "slug": "reviews"
+                    "slug": "reviews",
+                    "hidden": true
                 }
             ]
         }
@@ -54,22 +59,26 @@
                 {
                     "title": "Services",
                     "header": "Explore Ways We Can Work Together",
-                    "slug": "services"
+                    "slug": "services",
+                    "hidden": false
                 },
                 {
                     "title": "Blog",
                     "header": "Insights to Support Your Journey",
-                    "slug": "blog"
+                    "slug": "blog",
+                    "hidden": false
                 },
                 {
                     "title": "Contact",
                     "header": "Contact Me to Take the First Step",
-                    "slug": "contact"
+                    "slug": "contact",
+                    "hidden": false
                 },
                 {
                     "title": "About",
                     "header": "Get to Know Me",
-                    "slug": "about"
+                    "slug": "about",
+                    "hidden": false
                 }
             ]
         }

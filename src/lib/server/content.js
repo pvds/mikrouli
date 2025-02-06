@@ -77,6 +77,9 @@ export const getNavigation = (slug) => {
 	const nav = navs?.find((n) => n.fields.slug === slug);
 
 	if (!nav) throw error(404, `Navigation with slug '${slug}' not found`);
+	nav.fields.items = nav.fields.items?.filter((item) => {
+		return !item.hidden;
+	});
 
 	return nav;
 };

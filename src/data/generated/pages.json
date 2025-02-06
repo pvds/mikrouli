@@ -137,14 +137,14 @@
             "id": "2xwny12qOrT02aJi13HvYR",
             "type": "Entry",
             "createdAt": "2025-02-06T09:16:10.547Z",
-            "updatedAt": "2025-02-06T10:39:18.449Z",
+            "updatedAt": "2025-02-06T12:11:04.281Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "Reviews",
             "slug": "reviews",
-            "seoIndex": true,
-            "hidden": false,
+            "seoIndex": false,
+            "hidden": true,
             "seoDescription": "Discover how systemic therapy with Eleni at Mikrouli has transformed lives. Read heartfelt reviews from clients who found clarity, healing, and growth.",
             "header": "What Our Clients Say",
             "intro": "At Mikrouli, we believe that every journey of healing and self-discovery is unique. Through systemic therapy, Eleni has helped individuals and families uncover deep-rooted patterns, heal past wounds, and create meaningful change in their lives.\n\nWe are honored to share the experiences of those who have trusted Eleni with their personal growth. Their heartfelt words reflect the transformative impact of her guidance and the safe, nurturing space she provides.\n\nRead their stories below and see how systemic therapy can bring clarity, empowerment, and healing.",

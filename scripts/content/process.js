@@ -138,8 +138,8 @@ function parseNavigation(rawNav, pages) {
 	for (const pageRef of items) {
 		const found = pages.find((p) => p?.meta?.id === pageRef?.sys?.id);
 		if (!found) continue;
-		const { title, header, slug } = found.fields;
-		parsedItems.push({ title, header, slug });
+		const { title, header, slug, hidden } = found.fields;
+		parsedItems.push({ title, header, slug, hidden });
 	}
 
 	const fields = /** @type {NavigationFields} */ { ...restFields, items: parsedItems };
