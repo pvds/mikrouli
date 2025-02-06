@@ -49,7 +49,7 @@ export const SEO_DEFAULT = {
 	twitter: true,
 	openGraph: true,
 };
-export const SEO_AGGREGATE_RATING = false;
+export const SEO_USE_AGGREGATE_RATING = false;
 
 // Files
 export const METADATA_FILE = "metadata.json";

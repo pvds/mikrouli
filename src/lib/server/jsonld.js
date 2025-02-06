@@ -48,6 +48,7 @@ import {
 	URL_BASE_PRODUCTION,
 } from "$config";
 import {
+	getAggregateRating,
 	getImage,
 	getOrgLogo,
 	getOrganization,
@@ -63,26 +64,40 @@ import {
  * @returns {ExtendedBlogPosting | ExtendedWebPage | ExtendedOrganization | ExtendedService | ExtendedCollectionPage | HomePage | undefined}
  */
 export const getJsonLd = (entry, jsonLdType = "WebPage", items = []) => {
+	let jsonld;
 	switch (jsonLdType) {
 		case "WebPage":
-			return getPage(entry);
+			jsonld = getPage(entry);
+			break;
 		case "HomePage":
-			return getHomePage(entry);
+			jsonld = getHomePage(entry);
+			break;
 		case "ServicesPage":
-			return getServicesPage(entry, items);
+			jsonld = getServicesPage(entry, items);
+			break;
 		case "ServicePage":
-			return getServicePage(entry);
+			jsonld = getServicePage(entry);
+			break;
 		case "BlogPostPage":
-			return getBlogPostPage(entry);
+			jsonld = getBlogPostPage(entry);
+			break;
 		case "BlogPage":
-			return getBlogPage(entry, items);
+			jsonld = getBlogPage(entry, items);
+			break;
 		case "ContactPage":
-			return getContactPage(entry);
+			jsonld = getContactPage(entry);
+			break;
 		case "AboutPage":
-			return getAboutPage(entry);
-		default:
-			return undefined;
+			jsonld = getAboutPage(entry);
+			break;
 	}
+	if (jsonld && !("@graph" in jsonld)) {
+		// Extra global properties for all types except ones using @graph; these need to be
+		// assigned in the appropriate type.
+		jsonld.aggregateRating = getAggregateRating();
+	}
+
+	return jsonld;
 };
 
 /**
@@ -244,6 +259,7 @@ function getHomePage(page) {
 				publisher: {
 					"@id": `${URL_BASE_PRODUCTION}/#organization`,
 				},
+				aggregateRating: getAggregateRating(),
 			},
 			{
 				"@type": "Organization",
