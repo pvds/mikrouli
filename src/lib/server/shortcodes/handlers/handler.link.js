@@ -22,7 +22,7 @@ export function linkHandler(attributes) {
 		secondary: "hover:text-accent-dark underline underline-offset-2",
 	};
 	const baseClasses =
-		"shortcode-link [&+a]:ml-4 inline-block py-2 font-semibold" + " transition-color";
+		"shortcode-link [&+a]:ml-4 inline-block py-2 text-base font-semibold transition-color";
 	const variantClasses = variants[variant] || variants.secondary;
 	const classes = `${baseClasses} ${variantClasses}`;
 
