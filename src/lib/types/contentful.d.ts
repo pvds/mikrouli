@@ -19,6 +19,7 @@ export type BaseFieldsRaw = {
 	intro: string;
 	content?: string;
 	sections?: SectionFields[];
+	outro?: string;
 };
 
 export type BaseFields = BaseFieldsRaw & {
