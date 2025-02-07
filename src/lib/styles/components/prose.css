@@ -15,5 +15,10 @@
 
 	li {
 		text-wrap-style: balance;
+
+		strong:first-of-type {
+			color: var(--color-accent-dark);
+			font-weight: var(--font-weight-bold);
+		}
 	}
 }

@@ -45,7 +45,7 @@ const proseSizeClasses = (size) =>
 <Section wave={hasWave(index)} {size} {classes}>
 	{@render header?.()}
 	<div class="{prose ?
-	'prose marker:text-accent-dark prose-strong:text-accent-dark prose-strong:font-bold prose-headings:font-bold' : ''} {proseSizeClasses(size)}">
+	'prose marker:text-accent-dark prose-headings:font-bold' : ''} {proseSizeClasses(size)}">
 		{@render children?.()}
 	</div>
 	{@render footer?.()}
