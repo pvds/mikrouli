@@ -4,6 +4,8 @@ import { isExternalUrl } from "../../../helpers/url.js";
  * Link shortcode handler
  * @param {{url: string, text: string, variant: string}} attributes
  * @return {string}
+ * @example
+ * [link url="https://example.com" text="Example" variant="primary"]
  */
 export function linkHandler(attributes) {
 	const { url, text, variant = "secondary" } = attributes;

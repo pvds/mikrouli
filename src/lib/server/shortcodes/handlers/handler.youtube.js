@@ -11,6 +11,8 @@
  *
  * @param {Attributes} attributes
  * @return {string}
+ * @example
+ * [youtube url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" title="Rick Astley - Never Gonna Give You Up" width="560" height="315" priority="true" controls="true"]
  */
 export function youtubeHandler(attributes) {
 	const { url, title, width, height, priority, controls } = attributes;
