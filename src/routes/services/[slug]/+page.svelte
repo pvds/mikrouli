@@ -11,7 +11,7 @@ let { title, intro, slug, contentSections } = data.service.fields;
 </Hero>
 
 {#each contentSections as section}
-	<ContentSection prose>
+	<ContentSection prose size="lg">
 		{@html section}
 	</ContentSection>
 {/each}
