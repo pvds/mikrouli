@@ -1,5 +1,6 @@
 <script>
 import { base } from "$app/paths";
+import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
 import Section from "$layout/Section.svelte";
 import { formatDate } from "$lib/helpers/date.js";
@@ -31,9 +32,9 @@ onMount(() => {
 </Hero>
 
 {#each contentSections as section}
-	<Section innerClasses="prose prose-base">
+	<ContentSection prose size="lg">
 		{@html section}
-	</Section>
+	</ContentSection>
 {/each}
 
 {#if prev || next}
