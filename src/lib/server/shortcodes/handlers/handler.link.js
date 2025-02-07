@@ -2,7 +2,13 @@ import { isExternalUrl } from "../../../helpers/url.js";
 
 /**
  * Link shortcode handler
- * @param {{url: string, text: string, variant: string}} attributes
+ *
+ * @typedef {Object} Attributes
+ * @property {string} url
+ * @property {string} text
+ * @property {'primary'|'secondary'|'tertiary'} [variant="secondary"]
+ *
+ * @param {Attributes} attributes
  * @return {string}
  * @example
  * [link url="https://example.com" text="Example" variant="primary"]
@@ -22,7 +28,10 @@ export function linkHandler(attributes) {
 	/** @type {{[key: string]: string}} */
 	const variants = {
 		primary: "px-4 bg-accent-dark hover:bg-accent-darker text-white no-underline rounded-full",
-		secondary: "hover:text-accent-dark underline underline-offset-2",
+		secondary:
+			"px-4 bg-primary-dark hover:bg-primary-darker text-white no-underline" +
+			" rounded-full",
+		tertiary: "hover:text-accent-dark underline underline-offset-2",
 	};
 	const baseClasses =
 		"shortcode-link [&+a]:ml-4 inline-block py-2 text-base font-semibold transition-color";
