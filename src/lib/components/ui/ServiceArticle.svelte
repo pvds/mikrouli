@@ -18,8 +18,8 @@ let { service, priority = false } = $props();
 		<Image
 			image={getImageName(service.heroImage.file.fileName)}
 			alt={service.heroImage.description}
-			sizes="20rem"
-			heightClass="h-[--spacing(48)]"
+			sizes="(max-width: 40em) 100vw, (max-width: 64em) 50vw, 22rem"
+			heightClass="h-[12rem]"
 			{priority}
 			classes="rounded-md not-group-hover:grayscale"
 		/>
