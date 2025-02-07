@@ -32,16 +32,16 @@ const spacingY = {
 	lg: { default: "py-10 md:py-14", wave: "md:py-10 my-22", title: "mb-8 md:mb-10" },
 };
 
-const THEME_WAVE_DEFAULT = "bg-secondary-lighter text-secondary-darker";
 const THEME_CLASSES = {
 	primary: "bg-primary-lighter text-primary-darker",
 	secondary: "bg-secondary-lighter text-secondary-darker",
 	default: "",
 };
+const THEME_WAVE_DEFAULT = THEME_CLASSES.primary;
 const WAVE_COLORS = {
 	primary: "primary-lighter",
 	secondary: "secondary-lighter",
-	default: "secondary-lighter",
+	default: "primary-lighter",
 };
 
 let spacing = $derived(

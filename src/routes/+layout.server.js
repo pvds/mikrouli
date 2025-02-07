@@ -10,7 +10,7 @@ export const load = async () => {
 	};
 	const seo = getSeo();
 	return {
-		local: { nav },
+		nav,
 		seo,
 	};
 };

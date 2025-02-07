@@ -12,7 +12,7 @@ import Section from "./Section.svelte";
 let { services } = $props();
 </script>
 
-<Section title="My Services">
+<Section title="How I Can Support You">
 	<div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-12">
 	{#each services as service, i}
 		<div class="col-span-2 {oddLastEntry(services.length, i) &&

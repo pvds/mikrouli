@@ -9,7 +9,7 @@ import Seo from "$global/seo/Seo.svelte";
 import "../app.css";
 
 let { children, data } = $props();
-let { nav } = data.local;
+let { nav } = data;
 
 const disableViewTransitions = true;
 

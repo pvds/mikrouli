@@ -2,6 +2,7 @@
 import { base } from "$app/paths";
 import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
+import Outro from "$layout/Outro.svelte";
 import Section from "$layout/Section.svelte";
 import { formatDate } from "$lib/helpers/date.js";
 import { onMount } from "svelte";

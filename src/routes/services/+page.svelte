@@ -1,10 +1,11 @@
 <script>
 import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
+import Outro from "$layout/Outro.svelte";
 import ServicesSection from "$layout/ServicesSection.svelte";
 
 let { data } = $props();
-let { header, intro, contentSections } = data.page.fields;
+let { header, intro, contentSections, outro } = data.page.fields;
 let services = data.services;
 </script>
 
@@ -18,5 +19,8 @@ let services = data.services;
 	</ContentSection>
 {/each}
 
-
 <ServicesSection {services}/>
+
+{#if outro}
+	<Outro>{@html outro}</Outro>
+{/if}

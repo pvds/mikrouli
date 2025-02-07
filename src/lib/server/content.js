@@ -222,6 +222,7 @@ function processEntryMarkdown(entry) {
 			intro: markdownToHtml(entry.fields.intro),
 			contentSections: splitText(markdownToHtml(entry.fields.content)),
 			sections,
+			outro: markdownToHtml(entry.fields.outro),
 		},
 	};
 }

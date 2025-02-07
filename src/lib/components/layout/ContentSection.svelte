@@ -10,6 +10,7 @@ import Section from "./Section.svelte";
  * @property {Snippet} children
  * @property {number} [index]
  * @property {string} [classes=""]
+ * @property {'primary'|'secondary'|'default'} [theme='default']
  * @property {'odd'|'even'} [wave='odd']
  * @property {'sm'|'md'|'lg'} [size='md']
  * @property {boolean} [prose=false]
@@ -22,6 +23,7 @@ let {
 	children,
 	index,
 	classes = "",
+	theme = "default",
 	wave = "odd",
 	prose = false,
 	size = "md",
@@ -42,7 +44,7 @@ const proseSizeClasses = (size) =>
 	})[size] || PROSE_CLASSES_MD;
 </script>
 
-<Section wave={hasWave(index)} {size} {classes}>
+<Section wave={hasWave(index)} {size} {classes} {theme}>
 	{@render header?.()}
 	<div class="{prose ?
 	'prose marker:text-accent-dark prose-headings:font-bold' : ''} {proseSizeClasses(size)}">

@@ -1,10 +1,12 @@
 <script>
+import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
+import Outro from "$layout/Outro.svelte";
 import Section from "$layout/Section.svelte";
 import BlogArticle from "$ui/BlogArticle.svelte";
 
 let { data } = $props();
-let { header, intro } = data.page.fields;
+let { header, intro, contentSections, outro } = data.page.fields;
 let posts = data.posts;
 </script>
 
@@ -13,14 +15,19 @@ let posts = data.posts;
 </Hero>
 
 <!--TODO: Decide whether to add contentSections-->
-<!--{#each contentSections as section}-->
-<!--	<ContentSection prose size="sm">-->
-<!--		{@html section}-->
-<!--	</ContentSection>-->
-<!--{/each}-->
+{#each contentSections as section}
+	<ContentSection prose>
+		{@html section}
+	</ContentSection>
+{/each}
 
 {#each posts as post, i}
-	<Section wave={i % 2 === 1}>
+	<Section wave={i % 2 === 0} theme={i % 2 === 0 ? "primary" : "default"}>
 		<BlogArticle post={post.fields} priority={i <= 3}/>
 	</Section>
 {/each}
+
+{#if outro}
+	<Outro>{@html outro}</Outro>
+{/if}
+
