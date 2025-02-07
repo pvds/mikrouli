@@ -13,7 +13,7 @@ let { header, intro, contentSections, outro } = data.page.fields;
 </Hero>
 
 {#each contentSections as section, i}
-	<ContentSection footer={i === 0 ? footerCta : undefined} prose size="lg">
+	<ContentSection footer={i === 0 ? footerCta : undefined} prose size="lg" index={i}>
 		{@html section}
 	</ContentSection>
 {/each}

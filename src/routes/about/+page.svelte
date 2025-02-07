@@ -11,8 +11,8 @@ let { header, intro, contentSections, outro } = data.page.fields;
 	{@html intro}
 </Hero>
 
-{#each contentSections as section}
-	<ContentSection prose size="lg">
+{#each contentSections as section, i}
+	<ContentSection prose size="lg" index={i}>
 		{@html section}
 	</ContentSection>
 {/each}
