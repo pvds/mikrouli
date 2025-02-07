@@ -68,12 +68,6 @@
     }
   },
   "cms": {
-    "communication-relationships": {
-      "placeholder": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAQCdASoQAAkAAsBMJQBOgCIey9n6TYAA/vg0Nh5FBGLYPzDywPL2LE1D2gP7XZbOuRkq8+QatbA8OfAecgBu8AA=",
-      "width": "1280",
-      "height": "720",
-      "hasAlpha": false
-    },
     "couples-therapy": {
       "placeholder": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAAAwAgCdASoQAAkAAsBMJYwCdH8AFe+D/Sp7KAD+kYTVOw06GGfdzuajOnSbUYOYPXgXVaaXiVQbrj1MiYaiySWq5Z+nQd11mAAAAA==",
       "width": "1920",
@@ -84,12 +78,6 @@
       "placeholder": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAAAQAgCdASoQAA0AAsBMJQBWAB4bPRYEp/8AAP73ESU0YhNbgATSjM8kCs/nOyj1W4MvX8Qd2Ae2K+C8oOFhS2msKgAAAA==",
       "width": "1024",
       "height": "812",
-      "hasAlpha": false
-    },
-    "families-in-therapy": {
-      "placeholder": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADQAQCdASoQAAsAAsBMJQBOgCHf3HSAAAD+9zzT4eYk2Tf11PetMaalNzsSAAAA",
-      "width": "1254",
-      "height": "836",
       "hasAlpha": false
     },
     "family-therapy": {
@@ -116,10 +104,22 @@
       "height": "720",
       "hasAlpha": false
     },
+    "relationship-communication": {
+      "placeholder": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAABwAQCdASoQAAgAAsBMJZwAAOeBAAD+4NcJCkNmOX4jghQkvBfkn6ovElxTnmkfgA64AAAA",
+      "width": "2500",
+      "height": "1250",
+      "hasAlpha": false
+    },
+    "systemic-constellations": {
+      "placeholder": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAAAQAgCdASoQAAkAAsBMJaACdAEClqOyltcAAP7vrlFy5l0jrmP2XeOpAdvnIw1QC3noZYU7MejH2Ea3lunC9IRlp4rFo5YAAAA=",
+      "width": "2600",
+      "height": "1463",
+      "hasAlpha": false
+    },
     "therapy-acceptance": {
-      "placeholder": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAADQAQCdASoQAAcAAsBMJZQCdADdE64HAAD+667hHeddOXUdPzonqds198c5gXLThLfCz866ThJYAAAA",
-      "width": "1140",
-      "height": "500",
+      "placeholder": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAACwAQCdASoQAAgAAsBMJQBOgBbKvYBAAP71BLrDA2ogd9jq5rt9QfA+xFoA/zWqcTCwl/uLSACyWJjvAAA=",
+      "width": "2560",
+      "height": "1350",
       "hasAlpha": false
     }
   }

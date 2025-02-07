@@ -1,4 +1,5 @@
 <script>
+import { SPACING_X_CLASSES } from "$config";
 import Section from "./Section.svelte";
 
 /**
@@ -10,7 +11,12 @@ import Section from "./Section.svelte";
  */
 
 /** @type {Props} */
-let { title, transitionName, proseClasses = "prose prose-xl font-semibold", children } = $props();
+let {
+	title,
+	transitionName,
+	proseClasses = "prose prose-xl font-semibold text-balance",
+	children,
+} = $props();
 </script>
 
 <div class="hero relative mb-24">
@@ -27,7 +33,7 @@ let { title, transitionName, proseClasses = "prose prose-xl font-semibold", chil
 
 	<Section
 		classes="relative z-1 bg-primary-light"
-		customSpacing="-my-8 px-10 pt-12 md:pt-20 pb-4 md:pb-8">
+		customSpacing="-my-8 {SPACING_X_CLASSES} pt-12 md:pt-20 pb-4 md:pb-8">
 		<div style={transitionName && `view-transition-name:${transitionName}`}></div>
 		{#if title}
 			<h1 class="text-4xl mb-4 font-bold">{title}</h1>

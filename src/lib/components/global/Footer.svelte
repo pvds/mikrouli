@@ -14,7 +14,7 @@ const navItems = menu.fields.items.map(({ slug, title, header }) => ({
 }));
 </script>
 
-<div class="footer relative mt-64 md:mt-56">
+<div class="footer relative mt-72 md:mt-80">
 	<div
 		class="absolute z-1 w-full min-w-6xl bottom-0 overflow-hidden pointer-events-none">
 		<svg class="w-[inherit] h-96" xmlns="http://www.w3.org/2000/svg"

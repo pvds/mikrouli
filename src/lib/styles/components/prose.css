@@ -1,0 +1,19 @@
+.prose {
+	max-width: var(--container-prose);
+
+	iframe {
+		border-radius: var(--radius-md);
+	}
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		text-wrap-style: pretty;
+	}
+
+	li {
+		text-wrap-style: balance;
+	}
+}

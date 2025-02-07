@@ -1,4 +1,5 @@
 <script>
+import { PROSE_CLASSES_LG, PROSE_CLASSES_MD, PROSE_CLASSES_SM } from "$config";
 import Section from "./Section.svelte";
 
 /**
@@ -31,12 +32,20 @@ const hasWave = (i) => {
 	if (!i && i !== 0) return false;
 	return (wave === "odd" && i % 2 === 1) || (wave === "even" && i % 2 === 0);
 };
+
+/** @param {'sm'|'md'|'lg'} size */
+const proseSizeClasses = (size) =>
+	({
+		sm: PROSE_CLASSES_SM,
+		md: PROSE_CLASSES_MD,
+		lg: PROSE_CLASSES_LG,
+	})[size] || PROSE_CLASSES_MD;
 </script>
 
 <Section wave={hasWave(index)} {size} {classes}>
 	{@render header?.()}
 	<div class="{prose ?
-	'prose prose-lg marker:text-accent-dark prose-strong:text-accent-dark prose-strong:font-bold prose-headings:text-3xl prose-headings:font-bold' : ''}">
+	'prose marker:text-accent-dark prose-strong:text-accent-dark prose-strong:font-bold prose-headings:font-bold' : ''} {proseSizeClasses(size)}">
 		{@render children?.()}
 	</div>
 	{@render footer?.()}

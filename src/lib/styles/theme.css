@@ -112,7 +112,7 @@
 	--container-5xl: 64em;
 	--container-6xl: 72em;
 	--container-7xl: 80em;
-	--container-prose: 65ch;
+	--container-prose: 75ch;
 
 	/* === FONT === */
 	--font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",

@@ -88,6 +88,16 @@ export const CONTENT_TYPES = [
 	{ id: "reviews", content_type: "review", order: "-sys.createdAt" },
 ];
 
+// Spacing
+export const SPACING_X_CLASSES = "px-4 sm:px-6 md:px-8";
+
+// Prose
+export const PROSE_CLASSES_SM =
+	"prose-sm prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-h5:text-base";
+export const PROSE_CLASSES_MD = "prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg";
+export const PROSE_CLASSES_LG =
+	"prose-lg prose-h2:text-3xl prose-h3:text-2xl prose-h4:text-xl prose-h5:text-lg";
+
 // Lighthouse
 export const THRESHOLDS = {
 	performance: 99,

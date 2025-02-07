@@ -1,8 +1,6 @@
 <script>
-import { base } from "$app/paths";
 import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
-import Section from "$layout/Section.svelte";
 import BookingDialog from "$ui/BookingDialog.svelte";
 
 let { data } = $props();
@@ -14,7 +12,7 @@ let { header, intro, contentSections } = data.page.fields;
 </Hero>
 
 {#each contentSections as section, i}
-	<ContentSection footer={i === 0 ? footerCta : undefined} prose size="sm">
+	<ContentSection footer={i === 0 ? footerCta : undefined} prose>
 		{@html section}
 	</ContentSection>
 {/each}

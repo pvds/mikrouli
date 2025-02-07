@@ -19,7 +19,7 @@ let services = data.services;
 {#if sections}
 	{#each sections as section, i}
 		<ContentSection footer={i === sections.length - 1 ? footerCta : undefined} index={i}
-						wave="even" prose>
+						wave="even" size="lg" prose>
 				<h2 class="text-3xl font-bold">{section.title}</h2>
 			{@html section.content}
 		</ContentSection>

@@ -1,6 +1,6 @@
 <script>
+import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
-import Section from "$layout/Section.svelte";
 
 let { data } = $props();
 let { title, intro, slug, contentSections } = data.service.fields;
@@ -11,8 +11,7 @@ let { title, intro, slug, contentSections } = data.service.fields;
 </Hero>
 
 {#each contentSections as section}
-	<Section innerClasses="prose prose-base">
+	<ContentSection prose>
 		{@html section}
-	</Section>
+	</ContentSection>
 {/each}
-

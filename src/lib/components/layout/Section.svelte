@@ -11,6 +11,7 @@
  * @property {import('svelte').Snippet} [children]
  */
 
+import { SPACING_X_CLASSES } from "$config";
 import WaveSvg from "$visuals/WaveSvg.svelte";
 
 /** @type {Props} */
@@ -25,11 +26,10 @@ let {
 	children,
 } = $props();
 
-const spacingX = "px-4 sm:px-6 md:px-8";
 const spacingY = {
-	sm: { default: "py-6 md:py-10", wave: "md:py-2 my-10", title: "mb-4 md:md-6" },
-	md: { default: "py-10 md:py-16", wave: "md:py-6 my-14", title: "mb-6 md:mb-8" },
-	lg: { default: "py-14 md:py-20", wave: "md:py-10 my-18", title: "mb-8 md:mb-10" },
+	sm: { default: "py-2 md:py-6", wave: "md:py-2 my-14", title: "mb-4 md:md-6" },
+	md: { default: "py-6 md:py-10", wave: "md:py-6 my-18", title: "mb-6 md:mb-8" },
+	lg: { default: "py-10 md:py-14", wave: "md:py-10 my-22", title: "mb-8 md:mb-10" },
 };
 
 const THEME_WAVE_DEFAULT = "bg-secondary-lighter text-secondary-darker";
@@ -45,7 +45,7 @@ const WAVE_COLORS = {
 };
 
 let spacing = $derived(
-	customSpacing || `${wave ? spacingY[size].wave : spacingY[size].default} ${spacingX}`,
+	customSpacing || `${wave ? spacingY[size].wave : spacingY[size].default} ${SPACING_X_CLASSES}`,
 );
 let titleSpacing = $derived(spacingY[size].title);
 let themeClasses = $derived(
