@@ -1,12 +1,22 @@
 /**
- * Variable font with full range and options
- * https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap
+ * Font face declarations for Nunito Sans
+ * https://fonts.google.com/specimen/Nunito+Sans
  *
- * Variable font with minimal options
- * https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400..700;1,400..700&display=swap
+ * For optimal balance between performance and visual quality:
+ * 1. preload the "latin-minimal" font in "app.html" for the most common characters (avoid FOUT and CLS)
+ * 2. font-face load the "latin" font for the full range of "latin" characters
+ * 3. font-face load the "latin-ext" font for the full range of "latin-ext" characters
+ * 4. font-face load the "greek" font for the full range of "greek" characters (not used yet)
+ * 5. font-face load the "greek-ext" font for the full range of "greek-ext" characters (not used yet)
  *
  * Minimal font for preload:
- * https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200..1000;1,200..1000&display=swap&text=%20%21%22%23%24%25%26%27%28%29%2A%2B%2C-./0123456789%3A%3B%3C%3D%3E%3F%40ABCDEFGHIJKLMNOPQRSTUVWXYZ%5B%5C%5D%5E_%60abcdefghijklmnopqrstuvwxyz%7B%7C%7D~%C2%A0%CA%BB%CA%BC%E2%80%93%E2%80%94%E2%80%98%E2%80%99%E2%80%9C%E2%80%9D%E2%80%A6%E2%82%AC%E2%88%92
+ * https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200..1000;1,200..1000&text=%20%21%22%23%24%25%26%27%28%29%2A%2B%2C-./0123456789%3A%3B%3C%3D%3E%3F%40ABCDEFGHIJKLMNOPQRSTUVWXYZ%5B%5C%5D%5E_%60abcdefghijklmnopqrstuvwxyz%7B%7C%7D~%C2%A0%CA%BB%CA%BC%E2%80%93%E2%80%94%E2%80%98%E2%80%99%E2%80%9C%E2%80%9D%E2%80%A6%E2%82%AC%E2%88%92
+ *
+ * Variable fonts with minimal options
+ * https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200..1000;1,200..1000
+ *
+ * Variable font with full range and options
+ * https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wdth,wght,YTLC@0,6..12,75..125,200..1000,440..540;1,6..12,75..125,200..1000,440..540
  */
 
 /* latin minimal */
