@@ -4,6 +4,25 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+	<style>
+    /**
+     * Minimize layout shifts
+     * Tweaked using https://codepen.io/pvds/pen/RNbXqyd
+     */
+    @font-face {
+     font-family: "Arial Fallback";
+     src: local(Arial);
+     size-adjust: 101.1%;
+     ascent-override: 109.1%;
+     descent-override: -35.3%;
+     line-gap-override: normal;
+    }
+
+    html,:host {
+	  font-family: "Nunito","Arial Fallback",sans-serif;
+	}
+    </style>
+
     <link rel="preload" as="font" href="%sveltekit.assets%/fonts/nunito-latin-minimal.woff2"
 		  type="font/woff2" crossorigin="anonymous">
 
