@@ -20,7 +20,7 @@ let { post, priority = false } = $props();
 			<Image
 				image={getImageName(post.heroImage.file.fileName)}
 				alt={post.heroImage.description}
-				sizes="(max-width: 48em) 90vw, (max-width: 56em) 16rem, (max-width: 64em) 20rem, 24rem"
+				sizes="(max-width: 48em) 80vw, (max-width: 56em) 16rem, (max-width: 64em) 20rem, 24rem"
 				heightClass="h-[12rem]"
 				{priority}
 				classes="rounded-md not-group-hover:grayscale"
