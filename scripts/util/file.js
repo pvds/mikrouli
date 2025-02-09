@@ -25,9 +25,8 @@ export const writeJSON = (filePath, data) =>
 export const prepareDir = (dirPath, remove = false) => {
 	if (fs.existsSync(dirPath) && remove) {
 		fs.rmSync(dirPath, { recursive: true, force: true });
-	} else {
-		fs.mkdirSync(dirPath, { recursive: true });
 	}
+	fs.mkdirSync(dirPath, { recursive: true });
 };
 
 /**
