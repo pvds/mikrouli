@@ -1,23 +1,26 @@
-import { METADATA_OUTPUT_PATH_RESOLVED } from "$util/dyn.js";
-import { readJSON, writeJSON } from "$util/file.js";
+import path from "node:path";
+import { IMAGES_METADATA_OUTPUT_PATH_RESOLVED } from "$util/dyn.js";
+import { prepareDir, writeJSON } from "$util/file.js";
 import { logInfo, logSuccess } from "$util/log.js";
 
 /**
- * Overwrite placeholders for a specific category in the JSON file.
- *
- * @param {string} category - The category key (e.g., "cms" or "local").
- * @param {Record<string, {placeholder: string, width:string, height:string, hasAlpha:boolean}>} metadata - An object containing images metadata.
+ * Writes metadata for each image as a separate JSON file.
+ * @param {string} category - The category (e.g., "cms" or "local").
+ * @param {Record<string, { placeholder: string, width: string, height: string, hasAlpha: boolean }>} metadata - The image metadata.
  */
-export const writeMetadata = (category, metadata) => {
-	logInfo("\n", `Writing ${category} images metadata...`);
-	const metadataFileContents =
-		/** @type {Record<string, Record<string, {placeholder: string, width:string, height:string, hasAlpha:boolean}> | string>} */ (
-			readJSON(METADATA_OUTPUT_PATH_RESOLVED)
-		);
+export const writeMetadata = async (category, metadata) => {
+	logInfo(`\nWriting ${category} images metadata...`);
 
-	// Sort placeholders alphabetically and assign to the category
-	metadataFileContents[category] = Object.fromEntries(Object.entries(metadata).sort());
+	const outputDir = path.join(IMAGES_METADATA_OUTPUT_PATH_RESOLVED, category);
+	prepareDir(outputDir, true);
 
-	writeJSON(METADATA_OUTPUT_PATH_RESOLVED, metadataFileContents);
-	logSuccess(`Wrote ${category} images metadata`);
+	// Write each image metadata to its own file
+	await Promise.all(
+		Object.entries(metadata).map(async ([imageName, meta]) => {
+			const filePath = path.join(outputDir, `${imageName}.json`);
+			await writeJSON(filePath, meta);
+		}),
+	);
+
+	logSuccess(`Wrote ${category} images metadata to separate files`);
 };

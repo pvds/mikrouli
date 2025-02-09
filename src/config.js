@@ -52,7 +52,6 @@ export const SEO_DEFAULT = {
 export const SEO_USE_AGGREGATE_RATING = false;
 
 // Files
-export const METADATA_FILE = "metadata.json";
 export const IMAGES_FILE = "images.json";
 
 // Directories

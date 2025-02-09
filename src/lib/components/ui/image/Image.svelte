@@ -1,7 +1,6 @@
 <script>
 import { base } from "$app/paths";
 import { IMAGE_SIZES } from "$config";
-import metadata from "$data/generated/metadata.json";
 
 /**
  * @typedef {Object} Props
@@ -14,7 +13,7 @@ import metadata from "$data/generated/metadata.json";
  * @property {string} [widthClass]
  * @property {boolean} [isLocal]
  *
- * @typedef {Record<string, {placeholder: string, width:string, height:string, hasAlpha:boolean}>} Metadata
+ * @typedef {{placeholder: string, width:string, height:string, hasAlpha:boolean}} Metadata
  */
 
 /** @type {Props} */
@@ -34,16 +33,31 @@ const POSITION_CLASSES = "absolute object-[50%_25%] object-cover";
 
 let loaded = $state(true);
 /** @type {HTMLImageElement|undefined} */
-let img = $state(undefined);
+let img = $state();
+/** @type {Metadata|undefined} */
+let meta = $state();
 
 const height = $derived(heightClass ? heightClass : "h-full");
 const width = $derived(widthClass ? widthClass : "w-full");
 const directory = $derived(`${IMAGE_DIR}/${isLocal ? "local" : "cms"}`);
-const metaCategory = $derived(/** @type Metadata */ (isLocal ? metadata.local : metadata.cms));
-const meta = $derived(metaCategory[image]);
+
 const placeholder = $derived(meta?.placeholder);
-const aspectRatio = $derived(`${meta.width}/${meta.height}`);
+const aspectRatio = $derived(meta ? `${meta.width}/${meta.height}` : "1/1");
 const hasAlpha = $derived(meta?.hasAlpha);
+
+const loadMetadata = async () => {
+	try {
+		const metadata = await import(
+			`$data/generated/meta/${isLocal ? "local" : "cms"}/${image}.json`
+		);
+		meta = metadata.default;
+	} catch (error) {
+		console.error("Failed to load image metadata:", error);
+		loaded = false;
+	}
+};
+
+loadMetadata();
 
 /**
  * Generate a `srcset` string for responsive images
@@ -53,7 +67,6 @@ const hasAlpha = $derived(meta?.hasAlpha);
 const srcset = (sizes) =>
 	sizes.map((size) => `${base}${directory}/${image}-${size}.webp ${size}w`).join(", ");
 </script>
-
 {#if loaded}
 <div class="relative {height} {width} not-prose"
 	 style={`aspect-ratio: ${aspectRatio};`}
