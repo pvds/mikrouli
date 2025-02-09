@@ -34,8 +34,8 @@ onDestroy(() => {
 
 <div class="header relative transition-all md:sticky {isCompact ? 'md:-top-4' : 'md:top-0'} z-3">
 	<div
-		class="header-wave absolute z-2 w-full min-w-6xl border-t-40 border-t-primary-darkest left-0 overflow-hidden pointer-events-none">
-		<svg class="w-[inherit] h-20"
+		class="header-wave absolute z-2 w-full min-w-6xl border-t-primary-darkest left-0 overflow-hidden transition-all pointer-events-none {isCompact ? 'border-t-54' : 'border-t-40'}">
+		<svg class="w-[inherit] transition-all {isCompact ? 'h-8' : 'h-20'}"
 			 xmlns="http://www.w3.org/2000/svg"
 			 viewBox="0 0 1440 690" preserveAspectRatio="none">
 			<path class="fill-primary-darkest drop-shadow-2xl"
