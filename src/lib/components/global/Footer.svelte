@@ -16,7 +16,7 @@ const navItems = menu.fields.items.map(({ slug, title, header }) => ({
 
 <div class="footer relative mt-72 md:mt-80">
 	<div
-		class="absolute z-1 w-full min-w-6xl bottom-0 overflow-hidden pointer-events-none">
+		class="absolute z-1 w-full min-w-6xl bottom-[calc(100%-8rem)] overflow-hidden pointer-events-none">
 		<svg class="w-[inherit] h-96" xmlns="http://www.w3.org/2000/svg"
 			 viewBox="0 0 1440 690" preserveAspectRatio="none">
 			<path class="fill-primary-light" fill-opacity=".3"
@@ -30,12 +30,11 @@ const navItems = menu.fields.items.map(({ slug, title, header }) => ({
 		</svg>
 	</div>
 
-	<Section classes="z-2">
-		<footer class="font-bold">
-			<nav class="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4">
+	<Section classes="z-2 bg-primary-light">
+		<footer>
+			<nav class="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4 pb-4">
 				{#each navItems as { href, label, title }}
-					<a class="text-center text-primary-darker hover:text-primary-darkest" {href}
-					   {title}>{label}</a>
+					<a {href} {title} class="text-center font-bold text-primary-darker hover:text-primary-darkest">{label}</a>
 				{/each}
 			</nav>
 		</footer>
