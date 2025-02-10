@@ -43,7 +43,7 @@ onDestroy(() => {
 		</svg>
 	</div>
 	<Section classes="z-3" customSpacing="px-4 py-6">
-		<header class="flex items-baseline gap-4">
+		<header class="flex gap-4">
 			{@render children()}
 		</header>
 	</Section>
