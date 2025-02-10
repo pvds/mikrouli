@@ -13,8 +13,8 @@
         "@tailwindcss/language-server": "^0.14.3",
         "@tailwindcss/typography": "^0.5.16",
         "@tailwindcss/vite": "^4.0.5",
-        "contentful": "^11.4.5",
-        "marked": "^15.0.6",
+        "contentful": "^11.4.6",
+        "marked": "^15.0.7",
         "marked-gfm-heading-id": "^4.1.1",
         "p-limit": "^6.2.0",
         "playwright": "^1.50.1",
@@ -358,7 +358,7 @@
 
     "configstore": ["configstore@5.0.1", "", { "dependencies": { "dot-prop": "^5.2.0", "graceful-fs": "^4.1.2", "make-dir": "^3.0.0", "unique-string": "^2.0.0", "write-file-atomic": "^3.0.0", "xdg-basedir": "^4.0.0" } }, "sha512-aMKprgk5YhBNyH25hj8wGt2+D52Sw1DRRIzqBwLp2Ya9mFmY8KPvvtvmna8SxVR9JMZ4kzMD68N22vlaRpkeFA=="],
 
-    "contentful": ["contentful@11.4.5", "", { "dependencies": { "@contentful/content-source-maps": "^0.11.7", "@contentful/rich-text-types": "^16.6.1", "axios": "^1.7.9", "contentful-resolve-response": "^1.9.0", "contentful-sdk-core": "^9.0.1", "json-stringify-safe": "^5.0.1", "type-fest": "^4.0.0" } }, "sha512-SC4yb5YXpiwq3msnBYmKrgi8oxSQW2q6RBwl8KLP/lmd5KQfoHHPEWokV6V0xJrH0bOXmNXXaxF0ouq2Gyu+Vg=="],
+    "contentful": ["contentful@11.4.6", "", { "dependencies": { "@contentful/content-source-maps": "^0.11.7", "@contentful/rich-text-types": "^16.6.1", "axios": "^1.7.9", "contentful-resolve-response": "^1.9.0", "contentful-sdk-core": "^9.0.1", "json-stringify-safe": "^5.0.1", "type-fest": "^4.0.0" } }, "sha512-e+jnVTIBDvahn9xR7qndgCKYZi/iig8BaP9CK/mzBWi5F9iad+fZDmV2N5J0aj9qJtDrgDjIt3OgYHuWOpVBWA=="],
 
     "contentful-resolve-response": ["contentful-resolve-response@1.9.2", "", { "dependencies": { "fast-copy": "^2.1.7" } }, "sha512-VTY1hZGh29yspBeveJ62cuDf+cw9Iq/NcKWBdNHjTq8hvgxz+E19+Pej3LW/02o98+D0XcKfcPYXIpm4lHY+eg=="],
 
@@ -570,7 +570,7 @@
 
     "make-dir": ["make-dir@3.1.0", "", { "dependencies": { "semver": "^6.0.0" } }, "sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw=="],
 
-    "marked": ["marked@15.0.6", "", { "bin": { "marked": "bin/marked.js" } }, "sha512-Y07CUOE+HQXbVDCGl3LXggqJDbXDP2pArc2C1N1RRMN0ONiShoSsIInMd5Gsxupe7fKLpgimTV+HOJ9r7bA+pg=="],
+    "marked": ["marked@15.0.7", "", { "bin": { "marked": "bin/marked.js" } }, "sha512-dgLIeKGLx5FwziAnsk4ONoGwHwGPJzselimvlVskE9XLN4Orv9u2VA3GWw/lYUqjfA0rUT/6fqKwfZJapP9BEg=="],
 
     "marked-gfm-heading-id": ["marked-gfm-heading-id@4.1.1", "", { "dependencies": { "github-slugger": "^2.0.0" }, "peerDependencies": { "marked": ">=13 <16" } }, "sha512-EeQZieAQmsI6c2tWLx0ETd0VjPwLV8qi+HT0dIsfVMERm0rCIuXfRvZXJbo1SgUi++lmuR1LVY+QzgNiLNvVpw=="],
 
