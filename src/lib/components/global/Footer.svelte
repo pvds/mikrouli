@@ -46,8 +46,9 @@ const navContact = contact.fields.items.map(({ title, longTitle, url, isExternal
 	<Section classes="z-2 bg-primary-light">
 		<footer
 			class="grid grid-cols-[repeat(auto-fill,minmax(10rem,1fr))] md:grid-cols-[repeat(auto-fill,minmax(28vw,1fr))] gap-x-[5vw]  md:gap-x-[2vw] gap-y-8 pb-4 mr-[max(10rem,30vw)] md:mr-[min(15rem,30vw)]">
-			<nav>
-				<strong class="font-bold inline-block mb-2">{pages.fields.title}</strong>
+			<nav aria-labelledby={pages.meta.id}>
+				<strong id={pages.meta.id}
+						class="font-bold inline-block mb-2">{pages.fields.title}</strong>
 				<ul class="grid md-mid:grid-cols-2 gap-x-4 gap-y-2">
 				{#each navPages as { href, label, title }}
 					<li>
@@ -57,8 +58,9 @@ const navContact = contact.fields.items.map(({ title, longTitle, url, isExternal
 				{/each}
 				</ul>
 			</nav>
-			<nav>
-				<strong class="font-bold inline-block mb-2">{contact.fields.title}</strong>
+			<nav aria-labelledby={contact.meta.id}>
+				<strong id={contact.meta.id}
+						class="font-bold inline-block mb-2">{contact.fields.title}</strong>
 				<ul class="grid md-mid:grid-cols-2 gap-x-4 gap-y-2">
 				{#each navContact as { href, label, title }}
 					<li>
