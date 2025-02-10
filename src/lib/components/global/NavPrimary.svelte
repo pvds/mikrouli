@@ -37,7 +37,7 @@ const bookingCta = {
 	{#each navItems as { href, label, title, target }}
 		<li class="grow">
 			<a {href} {title} {target} aria-current={isCurrentPage(href) ? "page" : undefined}
-			   class="nav-menu__link inline-block w-full text-center px-3 py-1 font-semibold transition-all
+			   class="nav-menu__link inline-block w-full text-center px-2 lg:px-4 py-1 font-semibold transition-all
 			   {href === base && 'max-sm:hidden'}
 				{isCurrentPage(href) ? 'text-primary-lightest' :
 				'text-primary-light hover:text-primary-lightest'}">{label}</a>

@@ -15,6 +15,7 @@ export const SITE_PREVIEW_URL = "images/preview.webp";
 
 // Organization
 export const ORG_NAME = "Mikrouli";
+export const ORG_NAME_SUFFIX = "Systemic Therapy";
 export const ORG_SLOGAN = "New Perspectives, Meaningful Change";
 export const ORG_DESCRIPTION = "Systemic Therapy for Individuals, Families, and Organizations";
 export const ORG_LOGO_URL = "images/logo.svg";
