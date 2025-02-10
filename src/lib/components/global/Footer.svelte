@@ -1,8 +1,7 @@
 <script>
 import { base } from "$app/paths";
 import Section from "$layout/Section.svelte";
-
-/** @typedef {{ href: string, label: string, title: string | undefined }} NavItem */
+import Image from "$ui/image/Image.svelte";
 
 /** @type {{ menu: import('$types/contentful').NavigationEntry }} */
 let { menu } = $props();
@@ -32,11 +31,19 @@ const navItems = menu.fields.items.map(({ slug, title, header }) => ({
 
 	<Section classes="z-2 bg-primary-light">
 		<footer>
-			<nav class="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4 pb-4">
+			<nav class="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4 pb-4 mr-[30vw]">
 				{#each navItems as { href, label, title }}
 					<a {href} {title} class="text-center font-bold text-primary-darker hover:text-primary-darkest">{label}</a>
 				{/each}
 			</nav>
+			<div class="absolute bottom-0 right-0">
+			<Image image="eleni-papamikrouli"
+				   sizes="(max-width: 48em) max(10rem,30vw), min(15rem,30vw)"
+				   isLocal
+				   alt="Portrait of Eleni Papamikrouli"
+				   widthClass="w-[max(10rem,30vw)] md:w-[min(15rem,30vw)]"
+				   classes="grayscale-75 drop-shadow-[0_0_24px_rgba(24,68,70,.25)]" />
+			</div>
 		</footer>
 	</Section>
 </div>
