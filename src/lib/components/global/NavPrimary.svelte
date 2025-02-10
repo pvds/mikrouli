@@ -3,19 +3,18 @@ import { base } from "$app/paths";
 import { isCurrentPage } from "$lib/helpers/page";
 import BookingDialog from "$ui/BookingDialog.svelte";
 import WaveCss from "$visuals/WaveCss.svelte";
+import { toNavItems } from "../../helpers/nav.js";
 
-/** @typedef {{ href: string, label: string, title: string | undefined }} NavItem */
+/**
+ * @typedef {import('$types/contentful').NavigationEntry} NavigationEntry
+ * @typedef {import('$types/content').NavigationItem} NavigationItem
+ */
 
-/** @type {{ menu: import('$types/contentful').NavigationEntry }} */
+/** @type {{ menu: NavigationEntry }} */
 let { menu } = $props();
 
-/** @type NavItem[] */
-const navItemsBase = menu.fields.items.map(({ title, longTitle, url, isExternal }) => ({
-	href: isExternal ? url : `${base}/${url}`,
-	label: title,
-	title: longTitle,
-}));
-/** @type NavItem */
+const navItemsBase = toNavItems(menu.fields.items);
+/** @type NavigationItem */
 const navItemHome = { href: base, label: "Home", title: "Mikrouli home page" };
 const navItemsWithHome = [navItemHome, ...navItemsBase];
 const bookingCta = {
@@ -33,11 +32,11 @@ const bookingCta = {
 			{@render navMenu(navItemsBase, "gap-2")}</div>
 </nav>
 
-{#snippet navMenu(/** @type NavItem[] */ navItems, /** @type string */ classes)}
+{#snippet navMenu(/** @type NavigationItem[] */ navItems, /** @type string */ classes)}
 	<ul class="flex {classes} items-center justify-end">
-	{#each navItems as { href, label, title }}
+	{#each navItems as { href, label, title, target }}
 		<li class="grow">
-			<a {href} {title} aria-current={isCurrentPage(href) ? "page" : undefined}
+			<a {href} {title} {target} aria-current={isCurrentPage(href) ? "page" : undefined}
 			   class="nav-menu__link inline-block w-full text-center px-3 py-1 font-semibold transition-all
 			   {href === base && 'max-sm:hidden'}
 				{isCurrentPage(href) ? 'text-primary-lightest' :

@@ -1,7 +1,7 @@
 <script>
-import { base } from "$app/paths";
 import Section from "$layout/Section.svelte";
 import Image from "$ui/image/Image.svelte";
+import { toNavItems } from "../../helpers/nav.js";
 
 /**
  * @typedef {import('$types/contentful').NavigationEntry} NavigationEntry
@@ -14,17 +14,8 @@ import Image from "$ui/image/Image.svelte";
 /** @type {Props} */
 let { pages, contact } = $props();
 
-const navPages = pages.fields.items.map(({ title, longTitle, url, isExternal }) => ({
-	href: isExternal ? url : `${base}/${url}`,
-	label: title,
-	title: longTitle,
-}));
-
-const navContact = contact.fields.items.map(({ title, longTitle, url, isExternal }) => ({
-	href: isExternal ? url : `${base}/${url}`,
-	label: title,
-	title: longTitle,
-}));
+const navPages = toNavItems(pages.fields.items);
+const navContact = toNavItems(contact.fields.items);
 </script>
 
 <div class="footer relative mt-72 md:mt-80">
@@ -52,9 +43,9 @@ const navContact = contact.fields.items.map(({ title, longTitle, url, isExternal
 				<strong id={pages.meta.id}
 						class="font-bold inline-block mb-2">{pages.fields.title}</strong>
 				<ul class="grid min-[28em]:max-xs-mid:grid-cols-2 md-mid:grid-cols-2 gap-x-4 gap-y-2">
-				{#each navPages as { href, label, title }}
+				{#each navPages as { href, label, title, target }}
 					<li>
-						<a {href} {title}
+						<a {href} {title} {target}
 						   class="font-semibold text-primary-darker hover:underline hover:text-accent-darker">{label}</a>
 					</li>
 				{/each}
@@ -65,9 +56,9 @@ const navContact = contact.fields.items.map(({ title, longTitle, url, isExternal
 						class="font-bold inline-block mb-2">{contact.fields.title}</strong>
 				<ul
 					class="grid min-[28em]:max-xs-mid:grid-cols-2 md-mid:grid-cols-2 gap-x-4 gap-y-2">
-				{#each navContact as { href, label, title }}
+				{#each navContact as { href, label, title, target }}
 					<li>
-						<a {href} {title}
+						<a {href} {title} {target}
 						   class="font-semibold text-primary-darker hover:underline hover:text-accent-darker">{label}</a>
 					</li>
 				{/each}

@@ -2,17 +2,13 @@
 import { BOOKING_OPTIONS, BOOKING_URL } from "$config";
 import Dialog from "$ui/Dialog.svelte";
 
-/** @typedef {object} CustomCta
- *  @property {string} text
- *  @property {string} textShort
- *  @property {string} textLong
- *  @property {string} [classes]
- */
-
 /**
+ * @typedef {import("$types/content").BookingType} BookingType
+ * @typedef {import("$types/content").BookingCta} BookingCta
+ *
  * @typedef {Object} Props
- * @property {'page'|'book'|'intake'|'session'} [type='page']
- * @property {CustomCta} [cta]
+ * @property {BookingType} [type='page']
+ * @property {BookingCta} [cta]
  */
 
 /** @type {Props} */

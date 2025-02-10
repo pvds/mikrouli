@@ -15,7 +15,8 @@ export const SITE_PREVIEW_URL = "images/preview.webp";
 
 // Organization
 export const ORG_NAME = "Mikrouli";
-export const ORG_SLOGAN = "Systemic Therapy for Individuals, Families, and Organizations";
+export const ORG_SLOGAN = "New Perspectives, Meaningful Change";
+export const ORG_DESCRIPTION = "Systemic Therapy for Individuals, Families, and Organizations";
 export const ORG_LOGO_URL = "images/logo.svg";
 export const ORG_VAT_ID = "FR12345678901";
 export const ORG_TWITTER = "https://twitter.com/mikrouli";
@@ -78,7 +79,7 @@ export const PORT = 4173;
 export const DEBUG_PORT = 9222;
 
 // Contentful
-/** @type {{id: string, content_type: string, order: any}[]} */
+/** @type {import('$types/contentful').ContentFulContentType[]} */
 export const CONTENT_TYPES = [
 	{ id: "navigation", content_type: "navigation", order: "fields.title" },
 	{ id: "pages", content_type: "page", order: "fields.title" },
@@ -118,12 +119,8 @@ const BOOKING_INTAKE_CTA = "Schedule an Intake";
 const BOOKING_SESSION_CTA = "Schedule a Therapy Session";
 
 /**
- * @typedef {{cta: string, url: string}} BookingOption
- * @return {{
- * page: BookingOption,
- * book: BookingOption,
- * intake: BookingOption,
- * session: BookingOption}}}
+ * @typedef {import('$types/content').BookingOptions} BookingOptions
+ * @return {BookingOptions}
  **/
 export const BOOKING_OPTIONS = {
 	page: {

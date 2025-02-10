@@ -4,6 +4,7 @@ import { IMAGE_SIZES } from "$config";
 import { onMount } from "svelte";
 
 /**
+ * @typedef {import('$types/content').ImageMeta} ImageMeta
  * @typedef {Object} Props
  * @property {string} image
  * @property {string} alt
@@ -13,8 +14,6 @@ import { onMount } from "svelte";
  * @property {string} [heightClass]
  * @property {string} [widthClass]
  * @property {boolean} [isLocal]
- *
- * @typedef {{placeholder: string, width:string, height:string, hasAlpha:boolean}} Metadata
  */
 
 /** @type {Props} */
@@ -35,7 +34,7 @@ const POSITION_CLASSES = "absolute object-[50%_25%] object-cover";
 let loaded = $state(false);
 /** @type {HTMLImageElement|undefined} */
 let img = $state();
-/** @type {Metadata|undefined} */
+/** @type {ImageMeta|undefined} */
 let meta = $state();
 
 const height = $derived(heightClass ? heightClass : "h-full");

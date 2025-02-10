@@ -168,3 +168,10 @@ export type ContentfulData = {
 	reviews: ReviewEntry[];
 	images: string[];
 };
+
+export type ContentFulContentType = {
+	id: string;
+	content_type: string;
+	// biome-ignore lint/suspicious/noExplicitAny: Tricky contentful type
+	order: any;
+};
