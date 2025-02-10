@@ -5,8 +5,10 @@ const production = target === "production";
 
 const CSP_YOUTUBE = "https://www.youtube.com";
 const CSP_SETMORE = "https://mikrouli.setmore.com";
+const CSP_UMAMI = "https://cloud.umami.is/script.js";
 const CSP_WHITELIST = {
 	frames: [CSP_YOUTUBE, CSP_SETMORE],
+	scriptAttr: [CSP_UMAMI], // Ensures script attributes work
 	media: [CSP_YOUTUBE], // Ensures video playback works
 };
 const CSP_REPORT_URI = production ? "/" : "/mikrouli";
@@ -14,13 +16,14 @@ const CSP_REPORT_URI = production ? "/" : "/mikrouli";
 const CSP = {
 	"default-src": ["self"], // Default policy for loading resources
 	"script-src": ["self", "unsafe-inline"], // No external scripts
+	"script-src-elem": ["self", ...CSP_WHITELIST.scriptAttr], // Only allow whitelisted script attributes
 	"style-src": ["self", "unsafe-inline"], // No external styles
 	"img-src": ["self", "data:"], // No external images
 	"connect-src": ["self"], // No external fetch requests
 	"font-src": ["self"], // No external fonts
 	"object-src": ["none"], // Blocks Flash, ActiveX, etc.
-	"frame-src": ["self", ...CSP_WHITELIST.frames],
-	"media-src": ["self", ...CSP_WHITELIST.media],
+	"frame-src": ["self", ...CSP_WHITELIST.frames], // Only allow frames from these sources
+	"media-src": ["self", ...CSP_WHITELIST.media], // Only allow media from these sources
 	"frame-ancestors": ["none"], // Prevents embedding in iframes
 };
 
