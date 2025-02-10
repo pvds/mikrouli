@@ -87,7 +87,7 @@
             "id": "3rFQxFehQrVUuxDH8StNup",
             "type": "Entry",
             "createdAt": "2024-12-27T23:40:02.880Z",
-            "updatedAt": "2025-02-07T17:11:38.410Z",
+            "updatedAt": "2025-02-09T21:06:41.498Z",
             "locale": "en-US"
         },
         "fields": {
@@ -97,12 +97,12 @@
             "hidden": false,
             "seoDescription": "Systemic therapy for individuals, couples, families, and parents. Understand patterns, improve relationships, and create change. Free 15-min intake.",
             "seoKeywords": "systemic therapy, therapy services, counseling services, individual therapy, couples therapy, family therapy, parenting support, online therapy, relationship counseling",
-            "header": "Creating Positive Change in Your Relationships and Life",
+            "header": "New Perspectives, Meaningful Change",
             "intro": "Life can feel overwhelming, whether you're navigating relationships, work challenges, or personal transitions.  \n\nI’m Eleni Papamikrouli, a systemic therapist supporting individuals, couples, and families. My practice offers a space for clarity, connection, and growth—wherever you are in your journey.  \n",
             "sections": [
                 {
                     "title": "Your Journey Starts Here",
-                    "content": "Therapy is an opportunity to **gain clarity, explore patterns, and create meaningful change.** Whether you're feeling stuck, overwhelmed, or simply curious about self-growth, I offer a safe, supportive space to help you navigate your personal journey.  \n\n> No matter where you are in your journey, therapy is a place to reflect, grow, and move forward in a way that feels right for you.  \n\nAs a systemic therapist, I focus on how relationships, past experiences, and environments shape our lives. Together, we work **not to \"fix\" problems, but to understand them in a way that leads to new possibilities.**\n\n{{ link url=\"/services\" text=\"Explore my services\" variant=\"primary\"}}",
+                    "content": "Therapy is a chance to __explore patterns, gain clarity, and create meaningful change__. You might feel stuck, overwhelmed, or simply curious about personal growth. I provide a safe, empathetic environment where we can examine your challenges and discover what’s possible. \n\n> No matter where you are, therapy is a space to reflect, grow, and move forward at a pace that feels right to you.\n\nAs a systemic therapist, I focus on how relationships, past experiences, and cultural contexts shape our lives.\n\n{{ link url=\"/services\" text=\"Explore my services\" variant=\"primary\"}}",
                     "image": {
                         "title": "Living abroad",
                         "description": "Woman dragging a suitcase",
@@ -122,19 +122,19 @@
                 },
                 {
                     "title": "My Approach",
-                    "content": "I’m **Eleni Papamikrouli**, a systemic therapist with a background in psychology and health psychology. Originally from Greece, I’ve lived in the Netherlands since 2007, where I’ve worked with individuals, couples, and families from diverse backgrounds.  \n\nMy approach is **collaborative, practical, and grounded in curiosity.** I help clients explore the patterns that shape their experiences, offering new perspectives and actionable strategies to create lasting change.  \n\nI believe therapy is not about \"fixing\"—it’s about gaining insight, discovering strengths, and developing ways to live in alignment with your values.  \n\n{{ link url=\"/about\" text=\"Learn more about me\" }}"
+                    "content": "I’m Eleni Papamikrouli, a systemic therapist with a background in psychology and health psychology. Originally from Greece, I’ve lived in the Netherlands since 2007, working with people from diverse cultures and life stages.\n\n> Therapy is not about \"fixing\" you—it’s about gaining insight, discovering strengths, and developing ways to live in alignment with your values.\n\nMy style is collaborative, practical, and grounded in curiosity. I help you identify and shift the patterns that shape your experiences, offering new perspectives for lasting change.  \n\n{{ link url=\"/about\" text=\"Learn more about me\" }}"
                 },
                 {
                     "title": "Ready to get in touch?",
-                    "content": "Taking the first step toward therapy or counseling can feel like a big decision, but you don’t have to do it alone. Whether you're exploring therapy for personal growth, relationship support, family dynamics, or parenting guidance, I’m here to help.  \n\nI offer a **free 15-minute intake session**, where we can talk about what’s on your mind, answer your questions, and see if this feels like the right fit for you. This is a space for you to share your concerns, get a sense of how I work, and explore what you hope to gain from therapy or counseling—without any pressure or commitment.  \n\nAll sessions take place **online**, making it easy to access support in a way that fits into your life. If you’re ready to start the conversation, I welcome you to reach out.  \n\n{{ link url=\"/contact\" text=\"Get in touch\" }}"
+                    "content": "Taking the first step toward therapy or counseling can feel like a big decision, but you don’t have to do it alone. Whether you're exploring therapy for personal growth, relationship support, family dynamics, or parenting guidance, I’m here to help.  \n\n> All sessions are online, so therapy can easily fit into your life. If you’re ready to start, I welcome you to reach out.\n\nI offer a free 15-minute intake session, giving us a chance to discuss your concerns, answer questions, and see if this is the right fit for you—without any pressure.\n\n{{ link url=\"/contact\" text=\"Get in touch\" }}"
                 },
                 {
                     "title": "Insights & Reflections",
-                    "content": "Growth doesn’t only happen in therapy—it happens in the moments of self-reflection, in the conversations we have, and in the ways we begin to see things differently.  \n\nI regularly share thoughts, insights, and resources on **systemic therapy, relationships, parenting, and personal development**. My blog is a space where you can explore different perspectives, find practical tools, and gain a deeper understanding of the patterns that shape our lives.  \n\nWhether you're looking for guidance, reassurance, or simply curious about different approaches to mental and emotional well-being, the blog is a great place to start.  \n\n{{ link url=\"/blog\" text=\"Explore my blog\" }}"
+                    "content": "Real change happens in the moments we step back, reflect, and see ourselves differently. On my blog, I share perspectives and reflections on systemic therapy, relationships, parenting, and personal development.\n\nWhether you’re seeking guidance, reassurance, or just a new viewpoint, my blog can be a helpful starting point for understanding the patterns that shape your life.\n\n{{ link url=\"/blog\" text=\"Explore my blog\" }}"
                 },
                 {
                     "title": "Taking the first step",
-                    "content": "Therapy is an investment in yourself, your relationships, and your future. Wherever you are in your journey, I invite you to explore, reflect, and take the next step at your own pace.  \n\nIf you’re ready to begin, I’m here to support you. Let’s start the conversation. "
+                    "content": "Therapy is an investment in yourself, your relationships, and your future. Wherever you are in your journey, I invite you to explore, reflect, and take the next step at your own pace.  \n\n__If you’re ready to begin, I’m here to support you.__"
                 }
             ]
         }
