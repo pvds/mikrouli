@@ -28,18 +28,19 @@ developer experience and user-centric design.
 
 - **[SvelteKit](https://kit.svelte.dev/):** Framework for building modern web
   applications.
-- **[Tailwind CSS](https://tailwindcss.com/):** Utility-first CSS framework.
 - **[Bun](https://bun.sh/):** High-performance JavaScript runtime and package
   manager.
 - **[Vite](https://vitejs.dev/):** High-speed build tool.
+
+### Styling
+- **[Tailwind CSS](https://tailwindcss.com/):** Utility-first CSS framework.
 
 ### Testing and Quality Assurance
 
 - **[Vitest](https://vitest.dev/):** Unit testing framework.
 - **[Playwright](https://playwright.dev/):** End-to-end testing tool.
 - **[Biome](https://biomejs.dev/):** Linting and formatting.
-- **[Lefthook](https://evilmartians.com/opensource/lefthook):** Git hooks for
-  automated checks.
+- **[Lefthook](https://evilmartians.com/opensource/lefthook):** Git hooks for automated checks.
 
 ### Hosting and CMS
 
@@ -47,6 +48,9 @@ developer experience and user-centric design.
 - **[Netlify](https://www.netlify.com/):** Production environment host
 - **[Contentful](https://www.contentful.com/):** Headless CMS for managing
   content.
+
+### Analytics and Monitoring
+- **[Umami](https://umami.is/):** Privacy-focused analytics.
 
 ---
 
