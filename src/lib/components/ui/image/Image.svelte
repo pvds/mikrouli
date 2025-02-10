@@ -1,6 +1,7 @@
 <script>
 import { base } from "$app/paths";
 import { IMAGE_SIZES } from "$config";
+import { onMount } from "svelte";
 
 /**
  * @typedef {Object} Props
@@ -31,7 +32,7 @@ let {
 const IMAGE_DIR = "/images";
 const POSITION_CLASSES = "absolute object-[50%_25%] object-cover";
 
-let loaded = $state(true);
+let loaded = $state(false);
 /** @type {HTMLImageElement|undefined} */
 let img = $state();
 /** @type {Metadata|undefined} */
@@ -51,6 +52,7 @@ const loadMetadata = async () => {
 			`$data/generated/meta/${isLocal ? "local" : "cms"}/${image}.json`
 		);
 		meta = metadata.default;
+		loaded = true;
 	} catch (error) {
 		console.error("Failed to load image metadata:", error);
 		loaded = false;
@@ -58,6 +60,7 @@ const loadMetadata = async () => {
 };
 
 loadMetadata();
+onMount(() => {});
 
 /**
  * Generate a `srcset` string for responsive images

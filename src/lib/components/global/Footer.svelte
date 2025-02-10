@@ -3,13 +3,27 @@ import { base } from "$app/paths";
 import Section from "$layout/Section.svelte";
 import Image from "$ui/image/Image.svelte";
 
-/** @type {{ menu: import('$types/contentful').NavigationEntry }} */
-let { menu } = $props();
+/**
+ * @typedef {import('$types/contentful').NavigationEntry} NavigationEntry
+ *
+ * @typedef {Object} Props
+ * @property {NavigationEntry} pages
+ * @property {NavigationEntry} contact
+ **/
 
-const navItems = menu.fields.items.map(({ slug, title, header }) => ({
-	href: `${base}/${slug}`,
+/** @type {Props} */
+let { pages, contact } = $props();
+
+const navPages = pages.fields.items.map(({ title, longTitle, url, isExternal }) => ({
+	href: isExternal ? url : `${base}/${url}`,
 	label: title,
-	title: header,
+	title: longTitle,
+}));
+
+const navContact = contact.fields.items.map(({ title, longTitle, url, isExternal }) => ({
+	href: isExternal ? url : `${base}/${url}`,
+	label: title,
+	title: longTitle,
 }));
 </script>
 
@@ -30,20 +44,38 @@ const navItems = menu.fields.items.map(({ slug, title, header }) => ({
 	</div>
 
 	<Section classes="z-2 bg-primary-light">
-		<footer>
-			<nav class="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4 pb-4 mr-[30vw]">
-				{#each navItems as { href, label, title }}
-					<a {href} {title} class="text-center font-bold text-primary-darker hover:text-primary-darkest">{label}</a>
+		<footer
+			class="grid grid-cols-[repeat(auto-fill,minmax(10rem,1fr))] md:grid-cols-[repeat(auto-fill,minmax(28vw,1fr))] gap-x-[5vw]  md:gap-x-[2vw] gap-y-8 pb-4 mr-[max(10rem,30vw)] md:mr-[min(15rem,30vw)]">
+			<nav>
+				<strong class="font-bold inline-block mb-2">{pages.fields.title}</strong>
+				<ul class="grid md-mid:grid-cols-2 gap-x-4 gap-y-2">
+				{#each navPages as { href, label, title }}
+					<li>
+						<a {href} {title}
+						   class="font-semibold text-primary-darker hover:underline hover:text-accent-darker">{label}</a>
+					</li>
 				{/each}
+				</ul>
 			</nav>
-			<div class="absolute bottom-0 right-0">
-			<Image image="eleni-papamikrouli"
-				   sizes="(max-width: 48em) max(10rem,30vw), min(15rem,30vw)"
-				   isLocal
-				   alt="Portrait of Eleni Papamikrouli"
-				   widthClass="w-[max(10rem,30vw)] md:w-[min(15rem,30vw)]"
-				   classes="grayscale-75 drop-shadow-[0_0_24px_rgba(24,68,70,.25)]" />
-			</div>
+			<nav>
+				<strong class="font-bold inline-block mb-2">{contact.fields.title}</strong>
+				<ul class="grid md-mid:grid-cols-2 gap-x-4 gap-y-2">
+				{#each navContact as { href, label, title }}
+					<li>
+						<a {href} {title}
+						   class="font-semibold text-primary-darker hover:underline hover:text-accent-darker">{label}</a>
+					</li>
+				{/each}
+				</ul>
+			</nav>
 		</footer>
+		<div class="absolute bottom-0 right-0">
+		<Image image="eleni-papamikrouli"
+			   sizes="(max-width: 48em) max(10rem,30vw), min(15rem,30vw)"
+			   isLocal
+			   alt="Portrait of Eleni Papamikrouli"
+			   widthClass="w-[max(10rem,30vw)] md:w-[min(15rem,30vw)]"
+			   classes="grayscale-75 drop-shadow-[0_0_24px_rgba(24,68,70,.25)]" />
+		</div>
 	</Section>
 </div>

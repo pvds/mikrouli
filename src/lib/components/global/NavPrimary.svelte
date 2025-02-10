@@ -10,10 +10,10 @@ import WaveCss from "$visuals/WaveCss.svelte";
 let { menu } = $props();
 
 /** @type NavItem[] */
-const navItemsBase = menu.fields.items.map(({ slug, title, header }) => ({
-	href: `${base}/${slug}`,
+const navItemsBase = menu.fields.items.map(({ title, longTitle, url, isExternal }) => ({
+	href: isExternal ? url : `${base}/${url}`,
 	label: title,
-	title: header,
+	title: longTitle,
 }));
 /** @type NavItem */
 const navItemHome = { href: base, label: "Home", title: "Mikrouli home page" };

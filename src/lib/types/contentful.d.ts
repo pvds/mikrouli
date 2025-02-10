@@ -109,12 +109,33 @@ export type PostEntry = {
 	next?: BaseFieldsMinimal;
 };
 
+// ### Links
+
+export type LinkFields = {
+	title: string;
+	url: string;
+};
+
+export type LinkEntry = {
+	meta: Metadata;
+	fields: LinkFields;
+};
+
 // ### Navigations
+
+export type NavigationFieldEntries = PageEntry | LinkEntry;
+export type NavigationFieldItems = {
+	title: string;
+	longTitle?: string;
+	url: string;
+	hidden: boolean;
+	isExternal: boolean;
+};
 
 export type NavigationFields = {
 	title: string;
 	slug: string;
-	items: BaseFieldsMinimal[];
+	items: NavigationFieldItems[];
 };
 
 export type NavigationEntry = {

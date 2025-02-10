@@ -6,7 +6,8 @@ export const prerender = true;
 export const load = async () => {
 	const nav = {
 		primary: getNavigation("primary"),
-		footer: getNavigation("footer"),
+		footerPages: getNavigation("footer-pages"),
+		footerContact: getNavigation("footer-contact"),
 	};
 	const seo = getSeo();
 	return {

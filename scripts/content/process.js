@@ -7,8 +7,11 @@
  * @typedef {import('$lib/types/contentful').PageFields} PageFields
  * @typedef {import('$lib/types/contentful').ServiceEntry} ServiceEntry
  * @typedef {import('$lib/types/contentful').PostEntry} PostEntry
+ * @typedef {import('$lib/types/contentful').LinkEntry} LinkEntry
  * @typedef {import('$lib/types/contentful').NavigationEntry} NavigationEntry
  * @typedef {import('$lib/types/contentful').NavigationFields} NavigationFields
+ * @typedef {import('$lib/types/contentful').NavigationFieldItems} NavigationFieldItems
+ * @typedef {import('$lib/types/contentful').NavigationFieldEntries} NavigationFieldEntries
  * @typedef {import('$lib/types/contentful').ReviewEntry} ReviewEntry
  * @typedef {import('$lib/types/contentful').ReviewFields} ReviewFields
  * @typedef {import('$lib/types/contentful').Metadata} Metadata
@@ -131,15 +134,22 @@ function parseReviewEntry(rawReview) {
 function parseNavigation(rawNav, pages) {
 	const meta = parseMeta(rawNav?.sys || {});
 	/** @type {EntrySkeletonType['fields']} */
-	const { items = [], ...restFields } = rawNav.fields;
-	/** @type {Partial<BaseFieldsMinimal>[]} */
+	const { /** @type {NavigationFieldEntries[]} */ items = [], ...restFields } = rawNav.fields;
+	/** @type {Partial<NavigationFieldItems>[]} */
 	const parsedItems = [];
 
-	for (const pageRef of items) {
-		const found = pages.find((p) => p?.meta?.id === pageRef?.sys?.id);
-		if (!found) continue;
-		const { title, header, slug, hidden } = found.fields;
-		parsedItems.push({ title, header, slug, hidden });
+	for (const item of items) {
+		const page = pages.find((p) => p?.meta?.id === item?.sys?.id);
+
+		if (page) {
+			// Page fields
+			const { title, header, slug, hidden } = page.fields;
+			parsedItems.push({ title, longTitle: header, url: slug, hidden, isExternal: false });
+		} else {
+			// Link fields
+			const { title, url } = item.fields;
+			parsedItems.push({ title, longTitle: title, url, hidden: false, isExternal: true });
+		}
 	}
 
 	const fields = /** @type {NavigationFields} */ { ...restFields, items: parsedItems };
