@@ -6,9 +6,11 @@ const production = target === "production";
 const CSP_YOUTUBE = "https://www.youtube.com";
 const CSP_SETMORE = "https://mikrouli.setmore.com";
 const CSP_UMAMI = "https://cloud.umami.is/script.js";
+const CSP_UMAMI_API = "https://api-gateway.umami.dev/api/send";
 const CSP_WHITELIST = {
-	frames: [CSP_YOUTUBE, CSP_SETMORE],
-	scriptAttr: [CSP_UMAMI], // Ensures script attributes work
+	scriptElem: [CSP_UMAMI], // Ensures script attributes work
+	connect: [CSP_UMAMI_API], // Ensures Umami API works
+	frames: [CSP_YOUTUBE, CSP_SETMORE], // Ensures iframes work
 	media: [CSP_YOUTUBE], // Ensures video playback works
 };
 const CSP_REPORT_URI = production ? "/" : "/mikrouli";
@@ -16,10 +18,10 @@ const CSP_REPORT_URI = production ? "/" : "/mikrouli";
 const CSP = {
 	"default-src": ["self"], // Default policy for loading resources
 	"script-src": ["self", "unsafe-inline"], // No external scripts
-	"script-src-elem": ["self", ...CSP_WHITELIST.scriptAttr], // Only allow whitelisted script attributes
+	"script-src-elem": ["self", ...CSP_WHITELIST.scriptElem], // Only allow whitelisted script el
 	"style-src": ["self", "unsafe-inline"], // No external styles
 	"img-src": ["self", "data:"], // No external images
-	"connect-src": ["self"], // No external fetch requests
+	"connect-src": ["self", ...CSP_WHITELIST.connect], // Load urls using script interfaces
 	"font-src": ["self"], // No external fonts
 	"object-src": ["none"], // Blocks Flash, ActiveX, etc.
 	"frame-src": ["self", ...CSP_WHITELIST.frames], // Only allow frames from these sources
