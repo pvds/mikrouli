@@ -43,13 +43,15 @@ const navContact = contact.fields.items.map(({ title, longTitle, url, isExternal
 		</svg>
 	</div>
 
-	<Section classes="z-2 bg-primary-light">
+	<Section classes="z-2 bg-primary-light"
+			 innerClasses="relative py-6 md:py-10 px-4 sm:px-6 md:px-8"
+			 customSpacing="p-0">
 		<footer
-			class="grid grid-cols-[repeat(auto-fill,minmax(10rem,1fr))] md:grid-cols-[repeat(auto-fill,minmax(28vw,1fr))] gap-x-[5vw]  md:gap-x-[2vw] gap-y-8 pb-4 mr-[max(10rem,30vw)] md:mr-[min(15rem,30vw)]">
+			class="grid xs-mid:grid-cols-2 gap-x-4 gap-y-8 pb-4 mr-[max(10rem,30vw)] md:mr-[min(15rem,30vw)]">
 			<nav aria-labelledby={pages.meta.id}>
 				<strong id={pages.meta.id}
 						class="font-bold inline-block mb-2">{pages.fields.title}</strong>
-				<ul class="grid md-mid:grid-cols-2 gap-x-4 gap-y-2">
+				<ul class="grid min-[28em]:max-xs-mid:grid-cols-2 md-mid:grid-cols-2 gap-x-4 gap-y-2">
 				{#each navPages as { href, label, title }}
 					<li>
 						<a {href} {title}
@@ -61,7 +63,8 @@ const navContact = contact.fields.items.map(({ title, longTitle, url, isExternal
 			<nav aria-labelledby={contact.meta.id}>
 				<strong id={contact.meta.id}
 						class="font-bold inline-block mb-2">{contact.fields.title}</strong>
-				<ul class="grid md-mid:grid-cols-2 gap-x-4 gap-y-2">
+				<ul
+					class="grid min-[28em]:max-xs-mid:grid-cols-2 md-mid:grid-cols-2 gap-x-4 gap-y-2">
 				{#each navContact as { href, label, title }}
 					<li>
 						<a {href} {title}

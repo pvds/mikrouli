@@ -92,6 +92,7 @@
 
 	/* === BREAKPOINTS === */
 	--breakpoint-xs: 32em;
+	--breakpoint-xs-mid: 36em;
 	--breakpoint-sm: 40em;
 	--breakpoint-md: 48em;
 	--breakpoint-md-mid: 56em;
