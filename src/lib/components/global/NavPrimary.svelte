@@ -21,14 +21,15 @@ const bookingCta = {
 	text: "Book a Session",
 	textShort: "Book",
 	textLong: "Book a Session with me",
-	classes: "px-4 py-2 inset-shadow-xs inset-shadow-accent-darkest hover:inset-shadow-black",
+	classes:
+		"px-3 md-mid:px-4 py-1 md-mid:py-2 inset-shadow-xs inset-shadow-accent-darkest hover:inset-shadow-black",
 };
 </script>
 <nav class="nav-primary ml-auto"
 	 aria-label="Main navigation">
 		<div class="md:hidden w-full fixed left-0 bottom-0 bg-primary-darkest px-1 py-2">
 			<WaveCss height={10}/> {@render navMenu(navItemsWithHome, "justify-around")}</div>
-		<div class="max-md:hidden relative bg-primary-darkest">
+		<div class="max-md:hidden md:max-md-mid:mt-1 relative bg-primary-darkest">
 			{@render navMenu(navItemsBase, "gap-2")}</div>
 </nav>
 
@@ -37,7 +38,7 @@ const bookingCta = {
 	{#each navItems as { href, label, title, target }}
 		<li class="grow">
 			<a {href} {title} {target} aria-current={isCurrentPage(href) ? "page" : undefined}
-			   class="nav-menu__link inline-block w-full text-center px-2 lg:px-4 py-1 font-semibold transition-all
+			   class="nav-menu__link inline-block w-full text-center px-1 md-mid:px-4 py-1 font-semibold transition-all
 			   {href === base && 'max-sm:hidden'}
 				{isCurrentPage(href) ? 'text-primary-lightest' :
 				'text-primary-light hover:text-primary-lightest'}">{label}</a>
