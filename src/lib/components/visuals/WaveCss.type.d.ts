@@ -35,4 +35,15 @@ export type WaveProps = {
 	 * @default false
 	 */
 	invert?: boolean;
+
+	/**
+	 * Position of the wave relative to the container.
+	 * @default false
+	 */
+	inside?: boolean;
+
+	/**
+	 * The wave’s color.
+	 */
+	color?: string;
 };

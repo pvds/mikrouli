@@ -18,7 +18,7 @@
 	--tw-prose-pre-bg: var(--color-primary-darker);
 	--tw-prose-th-borders: var(--color-primary-light);
 	--tw-prose-td-borders: var(--color-primary-lighter);
-	--tw-prose-invert-body: var(--color-primary-light);
+	--tw-prose-invert-body: var(--color-primary-lighter);
 	--tw-prose-invert-headings: var(--color-white);
 	--tw-prose-invert-lead: var(--color-primary-dark);
 	--tw-prose-invert-links: var(--color-white);
@@ -32,7 +32,7 @@
 	--tw-prose-invert-kbd: var(--color-white);
 	--tw-prose-invert-kbd-shadows: 255 255 255;
 	--tw-prose-invert-code: var(--color-white);
-	--tw-prose-invert-pre-code: var(--color-primary-light);
+	--tw-prose-invert-pre-code: var(--color-primary-lighter);
 	--tw-prose-invert-pre-bg: rgb(0 0 0 / 50%);
 	--tw-prose-invert-th-borders: var(--color-primary-darker);
 	--tw-prose-invert-td-borders: var(--color-primary-darkest);

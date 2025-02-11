@@ -1,7 +1,15 @@
 <script>
 /** @typedef {import('./WaveCss.type').WaveProps} Wave */
 /** @type Wave */
-let { width = "100%", height = 20, frequency = 1, phase = 45, invert = false } = $props();
+let {
+	width = "100%",
+	height = 20,
+	frequency = 1,
+	phase = 45,
+	invert = false,
+	inside = false,
+	color = "bg-primary-darkest",
+} = $props();
 
 const exponent = 0.6; // higher means steeper exponential curve
 const factor = 3.5; // higher means more points
@@ -23,5 +31,9 @@ const clipPath = $derived(() => {
 });
 </script>
 
-<div style="width: {width}; height: {height}px; clip-path: {clipPath()};"
-	 class="wave overflow-hidden absolute left-0 {invert ? 'top-full' : 'bottom-full'}  bg-primary-darkest"></div>
+<div style="width: {width}; height: var(--height); clip-path: {clipPath()}; --height: {height}px"
+	 class="wave overflow-hidden absolute left-0 {invert ? inside ?
+	 'bottom-[calc(100%-var(--height))]' : 'top-full' : inside ?
+	 `top-[calc(100%-var(--height))]` :
+	 'bottom-full'} {color}"></div>
+
