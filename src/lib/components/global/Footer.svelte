@@ -18,7 +18,7 @@ const navPages = toNavItems(pages.fields.items);
 const navContact = toNavItems(contact.fields.items);
 </script>
 
-<div class="footer relative mt-72 md:mt-80">
+<footer class="footer relative mt-72 md:mt-80">
 	<div
 		class="absolute z-1 w-full min-w-6xl bottom-[calc(100%-8rem)] overflow-hidden pointer-events-none">
 		<svg class="w-[inherit] h-96" xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@ const navContact = toNavItems(contact.fields.items);
 	<Section classes="z-2 bg-primary-light"
 			 innerClasses="relative py-6 md:py-10 px-4 sm:px-6 md:px-8"
 			 customSpacing="p-0">
-		<footer
+		<div
 			class="grid xs-mid:grid-cols-2 gap-x-4 gap-y-8 pb-4 mr-[max(10rem,30vw)] md:mr-[min(15rem,30vw)]">
 			<nav aria-labelledby={pages.meta.id}>
 				<strong id={pages.meta.id}
@@ -64,7 +64,7 @@ const navContact = toNavItems(contact.fields.items);
 				{/each}
 				</ul>
 			</nav>
-		</footer>
+		</div>
 		<div class="absolute bottom-0 right-0">
 		<Image image="eleni-papamikrouli"
 			   sizes="(max-width: 48em) max(10rem,30vw), min(15rem,30vw)"
@@ -74,4 +74,4 @@ const navContact = toNavItems(contact.fields.items);
 			   classes="grayscale-75 drop-shadow-[0_0_24px_rgba(24,68,70,.25)]" />
 		</div>
 	</Section>
-</div>
+</footer>
