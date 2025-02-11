@@ -8,11 +8,12 @@ import Section from "./Section.svelte";
  * @typedef {Object} Props
  * @property {ServiceEntry[]|PostEntry[]} items
  * @property {'services'|'blog'} slug
+ * @property {boolean} [priority=false]
  * @property {string} title
  */
 
 /** @type {Props} */
-let { items, slug, title } = $props();
+let { items, slug, title, priority } = $props();
 </script>
 
 <Section {title}>
@@ -20,7 +21,7 @@ let { items, slug, title } = $props();
 	{#each items as item, i}
 		<div class="col-span-2 {oddLastEntry(items.length, i) &&
 		'sm:col-start-2 lg:col-start-auto'} {i === 3 && slug === 'blog' && 'lg:hidden'}">
-			<TeaserArticle item={item.fields} {slug} priority={i <= 3}/>
+			<TeaserArticle item={item.fields} {slug} priority={priority && i <= 3}/>
 		</div>
 	{/each}
 	</div>
