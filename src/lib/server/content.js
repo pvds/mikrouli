@@ -129,16 +129,18 @@ export const getService = (slug) => {
 
 /**
  * Fetch and process all services
+ * @param {string} [exclude] - The slug to exclude from the results.
  * @returns {ServiceEntry[]} - The processed fields.
  */
-export const getServices = () => {
-	const services = preprocessJson(serviceItems);
+export const getServices = (exclude) => {
+	let services = preprocessJson(serviceItems);
 
-	return (
-		services
-			?.filter((service) => !service.fields?.hidden)
-			.map((service) => processEntryMarkdown(service)) || []
-	);
+	if (exclude) services = services.filter((service) => service.fields.slug !== exclude);
+	services = services
+		.filter((service) => !service.fields?.hidden)
+		.map((service) => processEntryMarkdown(service));
+
+	return services || [];
 };
 
 /**
