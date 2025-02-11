@@ -1,5 +1,6 @@
 <script>
 import { base } from "$app/paths";
+import { U_NBSP } from "$config";
 import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
 import Section from "$layout/Section.svelte";
@@ -11,8 +12,8 @@ let { data } = $props();
 let { title, intro, slug, contentSections, heroImage } = $derived(data.post.fields);
 let { createdAt, updatedAt } = $derived(data.post.meta);
 let { prev, next } = $derived(data.post);
-let created = $state("");
-let updated = $state("");
+let created = $state(U_NBSP);
+let updated = $state(U_NBSP);
 
 onMount(() => {
 	created = `Published on ${formatDate(createdAt)}`;

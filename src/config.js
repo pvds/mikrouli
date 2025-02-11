@@ -151,3 +151,6 @@ export const BUTTON_THEME = {
 	secondary: "border-2 border-primary-darker font-semibold hover:inset-ring-1 rounded-full",
 	tertiary: "hover:text-accent-dark font-semibold  underline underline-offset-2",
 };
+
+// Unicode
+export const U_NBSP = "\u00A0";
