@@ -28,7 +28,8 @@ const bookingCta = {
 <nav class="nav-primary ml-auto"
 	 aria-label="Main navigation">
 		<div class="md:hidden w-full fixed left-0 bottom-0 bg-primary-darkest px-1 py-2">
-			<WaveCss height={10}/> {@render navMenu(navItemsWithHome, "justify-around")}</div>
+			<WaveCss height={10} color="bg-primary-darkest"/> {@render navMenu(navItemsWithHome,
+			"justify-around")}</div>
 		<div class="max-md:hidden relative bg-primary-darkest">
 			{@render navMenu(navItemsBase, "gap-2")}</div>
 </nav>

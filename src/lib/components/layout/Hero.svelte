@@ -35,5 +35,5 @@ let { title, proseClasses, children, image, imageAlt, imagePositionClass } = $pr
 			{@render children?.()}
 		</div>
 	</Section>
-	<WaveCss height={25} inside color="bg-white"/>
+	<WaveCss height={25} inside/>
 </div>

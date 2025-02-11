@@ -8,7 +8,7 @@ let {
 	phase = 45,
 	invert = false,
 	inside = false,
-	color = "bg-primary-darkest",
+	color = "bg-primary-lightest",
 } = $props();
 
 const exponent = 0.6; // higher means steeper exponential curve
