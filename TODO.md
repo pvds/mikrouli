@@ -75,6 +75,10 @@
 - [ ] image sync is based on image name > same image name but different 
   image is not detected
 
+### Refactor
+
+- [ ] merge Hero and HeroImage components
+
 ### Tests
 
 - [x] axe and lighthouse tests should reuse logic
