@@ -8,7 +8,6 @@ import Section from "$layout/Section.svelte";
 import TeaserSection from "$layout/TeaserSection.svelte";
 import { formatDate } from "$lib/helpers/date.js";
 import { getImageName } from "$lib/helpers/image.js";
-import Image from "$ui/image/Image.svelte";
 import { onMount } from "svelte";
 
 let { data } = $props();
@@ -49,13 +48,13 @@ onMount(() => {
 	<Section innerClasses="flex flex-wrap justify-between">
 		{#if prev}
 			<a href={`${base}/blog/${prev.slug}`}
-			   class="inline-block group mr-auto pr-4 py-2 font-semibold text-primary-darker hover:text-accent-dark">
+			   class="inline-block group mr-auto pr-4 py-2 font-semibold md-mid:text-xl text-primary-darker hover:text-accent-dark">
 				<span class="inline-block mr-1 group-hover:animate-wiggle-left">&larr;</span>{prev.title}
 			</a>
 		{/if}
 		{#if next}
 			<a href={`${base}/blog/${next.slug}`}
-			   class="inline-block text-right group ml-auto pl-4 py-2 font-semibold md:text-xl text-primary-darker hover:text-accent-dark">
+			   class="inline-block group ml-auto pl-4 py-2 font-semibold md-mid:text-xl text-primary-darker hover:text-accent-dark text-right">
 				{next.title}<span class="inline-block ml-1 group-hover:animate-wiggle-right">&rarr;</span>
 			</a>
 		{/if}
