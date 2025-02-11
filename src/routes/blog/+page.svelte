@@ -34,4 +34,4 @@ let services = data.services;
 	<Outro>{@html outro}</Outro>
 {/if}
 
-<TeaserSection items={services} slug="services" title="My latest insights"/>
+<TeaserSection items={services} slug="services" title="How I Can Support You"/>
