@@ -78,7 +78,9 @@ export type ImageField = {
 
 // ### Pages
 
-export type PageFields = BaseFields;
+export type PageFields = BaseFields & {
+	heroImage?: ImageField;
+};
 
 export type PageEntry = {
 	meta: Metadata;
