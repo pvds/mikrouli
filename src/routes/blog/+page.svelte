@@ -14,7 +14,6 @@ let posts = data.posts;
 	{@html intro}
 </Hero>
 
-<!--TODO: Decide whether to add contentSections-->
 {#each contentSections as section}
 	<ContentSection prose>
 		{@html section}
