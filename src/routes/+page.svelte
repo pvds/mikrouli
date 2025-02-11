@@ -38,5 +38,5 @@ let posts = data.posts;
 	</div>
 {/snippet}
 
-<TeaserSection items={posts} slug="blog" title="Latest posts"/>
+<TeaserSection items={posts} slug="blog" title="My latest insights"/>
 

@@ -2,10 +2,12 @@
 import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
 import Outro from "$layout/Outro.svelte";
+import TeaserSection from "$layout/TeaserSection.svelte";
 import BookingDialog from "$ui/BookingDialog.svelte";
 
 let { data } = $props();
 let { header, intro, contentSections, outro } = data.page.fields;
+let posts = data.posts;
 </script>
 
 <Hero title={header}>
@@ -28,3 +30,5 @@ let { header, intro, contentSections, outro } = data.page.fields;
 {#if outro}
 	<Outro>{@html outro}</Outro>
 {/if}
+
+<TeaserSection items={posts} slug="blog" title="My latest insights"/>

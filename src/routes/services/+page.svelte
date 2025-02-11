@@ -7,6 +7,7 @@ import TeaserSection from "$layout/TeaserSection.svelte";
 let { data } = $props();
 let { header, intro, contentSections, outro } = data.page.fields;
 let services = data.services;
+let posts = data.posts;
 </script>
 
 <Hero title={header}>
@@ -14,7 +15,7 @@ let services = data.services;
 </Hero>
 
 {#each contentSections as section}
-	<ContentSection prose>
+	<ContentSection prose size="lg">
 		{@html section}
 	</ContentSection>
 {/each}
@@ -24,3 +25,5 @@ let services = data.services;
 {#if outro}
 	<Outro>{@html outro}</Outro>
 {/if}
+
+<TeaserSection items={posts} slug="blog" title="My latest insights"/>

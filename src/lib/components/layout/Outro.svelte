@@ -11,7 +11,7 @@ import ContentSection from "./ContentSection.svelte";
 let { children } = $props();
 </script>
 
-<ContentSection prose theme="secondary" index={1}>
+<ContentSection prose theme="secondary" size="lg" index={1}>
 	{@render children?.()}
 	{#snippet footer()}
 		<div class="flex flex-wrap gap-2 mt-6">

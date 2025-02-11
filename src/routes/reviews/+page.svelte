@@ -2,10 +2,12 @@
 import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
 import Section from "$layout/Section.svelte";
+import TeaserSection from "$layout/TeaserSection.svelte";
 
 let { data } = $props();
 let { header, intro, contentSections } = data.page.fields;
 let reviews = data.reviews;
+let posts = data.posts;
 </script>
 
 <Hero title={header}>
@@ -30,7 +32,9 @@ let reviews = data.reviews;
 </Section>
 
 {#each contentSections as section}
-	<ContentSection prose size="sm" index={1} classes="mb-40">
+	<ContentSection prose index={1}>
 		{@html section}
 	</ContentSection>
 {/each}
+
+<TeaserSection items={posts} slug="blog" title="My latest insights"/>

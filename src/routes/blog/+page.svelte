@@ -3,11 +3,13 @@ import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
 import Outro from "$layout/Outro.svelte";
 import Section from "$layout/Section.svelte";
+import TeaserSection from "$layout/TeaserSection.svelte";
 import BlogArticle from "$ui/BlogArticle.svelte";
 
 let { data } = $props();
 let { header, intro, contentSections, outro } = data.page.fields;
 let posts = data.posts;
+let services = data.services;
 </script>
 
 <Hero title={header}>
@@ -30,3 +32,4 @@ let posts = data.posts;
 	<Outro>{@html outro}</Outro>
 {/if}
 
+<TeaserSection items={services} slug="services" title="My latest insights"/>
