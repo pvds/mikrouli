@@ -33,7 +33,7 @@ let {
 
 	<Section
 		classes="relative z-1 bg-primary-light"
-		customSpacing="-my-8 {SPACING_X_CLASSES} pt-16 md:pt-24 pb-4 md:pb-6">
+		customSpacing="-my-8 {SPACING_X_CLASSES} pt-16 md:pt-20 pb-4 md:pb-6">
 		<div style={transitionName && `view-transition-name:${transitionName}`}></div>
 		{#if title}
 			<h1 class="text-4xl mb-4 font-bold">{title}</h1>
