@@ -20,14 +20,14 @@ let {
 	image,
 	imageAlt,
 	transitionName,
-	proseClasses = "prose prose-invert prose-xl font-semibold text-balance",
+	proseClasses = "prose prose-invert prose-xl md:prose-2xl font-semibold text-balance",
 	children,
 } = $props();
 </script>
 
 <div class="hero relative mb-12 -mt-8">
 	<div class="absolute inset-0">
-		<Image {image} alt={imageAlt} sizes="50vw"></Image>
+		<Image {image} alt={imageAlt} sizes="50vw" priority></Image>
 	</div>
 	<div class="absolute inset-0 bg-[var(--primary-950)]/85"></div>
 	<Section
@@ -37,11 +37,9 @@ let {
 		{#if title}
 			<h1 class="text-4xl mb-4 md:mb-6 font-bold text-white">{title}</h1>
 		{/if}
-		<div class="{proseClasses}">
+		<div class="{proseClasses}" style="--container-prose: 50ch;">
 			{@render children?.()}
 		</div>
 	</Section>
 	<WaveCss height={20} inside color="bg-white"/>
 </div>
-
-

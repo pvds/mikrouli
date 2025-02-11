@@ -18,7 +18,7 @@ let { prev, next } = $derived(data.post);
 	<HeroImage title={title} image={getImageName(heroImage.file.fileName)} imageAlt={heroImage.title}
 		transitionName={slug}>
 		{@html intro}
-		<p class="mt-4 text-base italic text-primary-lightest">
+		<p class="mt-4 text-base italic text-primary-light">
 			{#if createdAt === updatedAt}
 				{`Published on ${formatDate(createdAt)}`}
 			{:else}
