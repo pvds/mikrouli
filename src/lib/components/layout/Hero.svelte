@@ -14,7 +14,7 @@ import Section from "./Section.svelte";
 let {
 	title,
 	transitionName,
-	proseClasses = "prose prose-xl md:prose-2xl font-semibold text-balance",
+	proseClasses = "prose prose-xl font-semibold text-balance",
 	children,
 } = $props();
 </script>

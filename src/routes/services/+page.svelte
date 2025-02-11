@@ -2,7 +2,7 @@
 import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
 import Outro from "$layout/Outro.svelte";
-import ServicesSection from "$layout/ServicesSection.svelte";
+import TeaserSection from "$layout/TeaserSection.svelte";
 
 let { data } = $props();
 let { header, intro, contentSections, outro } = data.page.fields;
@@ -19,7 +19,7 @@ let services = data.services;
 	</ContentSection>
 {/each}
 
-<ServicesSection {services}/>
+<TeaserSection items={services} slug="services" title="How I Can Support You"/>
 
 {#if outro}
 	<Outro>{@html outro}</Outro>

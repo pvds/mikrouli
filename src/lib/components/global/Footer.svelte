@@ -41,7 +41,7 @@ const navContact = toNavItems(contact.fields.items);
 			class="grid xs-mid:grid-cols-2 gap-x-4 gap-y-8 pb-4 mr-[max(10rem,30vw)] md:mr-[min(15rem,30vw)]">
 			<nav aria-labelledby={pages.meta.id}>
 				<strong id={pages.meta.id}
-						class="font-bold inline-block mb-2">{pages.fields.title}</strong>
+						class="sm:text-lg font-bold inline-block mb-2">{pages.fields.title}</strong>
 				<ul class="grid min-[28em]:max-xs-mid:grid-cols-2 md-mid:grid-cols-2 gap-x-4 gap-y-2">
 				{#each navPages as { href, label, title, target }}
 					<li>
@@ -53,7 +53,7 @@ const navContact = toNavItems(contact.fields.items);
 			</nav>
 			<nav aria-labelledby={contact.meta.id}>
 				<strong id={contact.meta.id}
-						class="font-bold inline-block mb-2">{contact.fields.title}</strong>
+						class="sm:text-lg font-bold inline-block mb-2">{contact.fields.title}</strong>
 				<ul
 					class="grid min-[28em]:max-xs-mid:grid-cols-2 md-mid:grid-cols-2 gap-x-4 gap-y-2">
 				{#each navContact as { href, label, title, target }}

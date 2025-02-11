@@ -3,20 +3,21 @@ import { base } from "$app/paths";
 import { BUTTON_THEME } from "$config";
 import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
-import ServicesSection from "$layout/ServicesSection.svelte";
+import TeaserSection from "$layout/TeaserSection.svelte";
 import { svgIcon } from "$lib/helpers/icon";
 import BookingDialog from "$ui/BookingDialog.svelte";
 
 let { data } = $props();
 let { header, intro, sections } = data.page.fields;
 let services = data.services;
+let posts = data.posts;
 </script>
 
 <Hero title={header}>
 	{@html intro}
 </Hero>
 
-<ServicesSection {services}/>
+<TeaserSection items={services} slug="services" title="How I Can Support You"/>
 
 {#if sections}
 	{#each sections as section, i}
@@ -36,4 +37,6 @@ let services = data.services;
 			contact{@html svgIcon("internal")}</a>
 	</div>
 {/snippet}
+
+<TeaserSection items={posts} slug="blog" title="Latest posts"/>
 

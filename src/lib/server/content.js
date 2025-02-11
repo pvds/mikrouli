@@ -90,8 +90,8 @@ export const getNavigation = (slug) => {
  * @returns {ReviewEntry[]}
  */
 export const getReviews = (limit = 0) => {
-	const reviews = /** @type {ReviewEntry[]} */ reviewItems;
-	if (limit > 0) return reviews.slice(0, limit);
+	let reviews = /** @type {ReviewEntry[]} */ reviewItems;
+	if (limit > 0) reviews = reviews.slice(0, limit);
 	return reviews;
 };
 
@@ -185,13 +185,17 @@ export const getPost = (slug) => {
 	};
 };
 
-export const getPosts = () => {
-	const posts = /** @type {PostEntry[]} */ preprocessJson(postItems);
+/**
+ * Fetch and process blog posts.
+ * @param {number} [limit=0] - The number of posts to return.
+ * @return {PostEntry[]}
+ */
+export const getPosts = (limit = 0) => {
+	let posts = /** @type {PostEntry[]} */ preprocessJson(postItems);
+	posts = posts?.filter((post) => !post.fields?.hidden).map((post) => processEntryMarkdown(post));
+	if (limit > 0) posts = posts.slice(0, limit);
 
-	return (
-		posts?.filter((post) => !post.fields?.hidden).map((post) => processEntryMarkdown(post)) ||
-		[]
-	);
+	return posts || [];
 };
 
 /**
