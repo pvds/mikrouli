@@ -15,8 +15,8 @@ let { children } = $props();
 	{@render children?.()}
 	{#snippet footer()}
 		<div class="flex flex-wrap gap-2 mt-6">
-			<BookingDialog type="intake" ctaIcon="calendar" />
-			<BookingDialog type="session" ctaTheme="secondary" ctaIcon="calendar" />
+			<BookingDialog type="intake" ctaIcon="internal" />
+			<BookingDialog type="session" ctaTheme="secondary" ctaIcon="internal" />
 		</div>
 	{/snippet}
 </ContentSection>
