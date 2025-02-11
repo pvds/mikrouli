@@ -12,7 +12,8 @@ let posts = data.posts;
 </script>
 
 {#if heroImage}
-	<HeroImage title={header} image={getImageName(heroImage.file.fileName)} imageAlt={heroImage.title}>
+	<HeroImage title={header} image={getImageName(heroImage.file.fileName)}
+			   imageAlt={heroImage.title} positionClass="object-[100%_75%]">
 		{@html intro}
 	</HeroImage>
 {:else}

@@ -22,6 +22,7 @@ let { item, slug, priority = false } = $props();
 			alt={item.heroImage.description}
 			sizes="(max-width: 40em) 80vw, (max-width: 64em) 40vw, 22rem"
 			heightClass="h-[12rem]"
+			positionClass="object-[50%_25%]"
 			{priority}
 			classes="rounded-md not-group-hover:grayscale"
 		/>

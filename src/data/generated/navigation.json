@@ -97,7 +97,7 @@
             "id": "7rtbhuq4c4kUdrRUGSXm9D",
             "type": "Entry",
             "createdAt": "2020-12-21T16:49:18.569Z",
-            "updatedAt": "2025-01-09T08:15:20.133Z",
+            "updatedAt": "2025-02-11T17:35:49.942Z",
             "locale": "en-US"
         },
         "fields": {
@@ -119,16 +119,16 @@
                     "isExternal": false
                 },
                 {
-                    "title": "Contact",
-                    "longTitle": "Contact Me to Take the First Step",
-                    "url": "contact",
+                    "title": "About",
+                    "longTitle": "Get to Know Me",
+                    "url": "about",
                     "hidden": false,
                     "isExternal": false
                 },
                 {
-                    "title": "About",
-                    "longTitle": "Get to Know Me",
-                    "url": "about",
+                    "title": "Contact",
+                    "longTitle": "Contact Me to Take the First Step",
+                    "url": "contact",
                     "hidden": false,
                     "isExternal": false
                 }

@@ -10,6 +10,7 @@ import Section from "./Section.svelte";
  * @property {string} image
  * @property {string} imageAlt
  * @property {string} [transitionName]
+ * @property {string} [positionClass]
  * @property {string|undefined} [proseClasses="prose prose-xl font-semibold"]
  * @property {import('svelte').Snippet} [children]
  */
@@ -20,6 +21,7 @@ let {
 	image,
 	imageAlt,
 	transitionName,
+	positionClass = "object-center",
 	proseClasses = "prose prose-invert prose-xl md:prose-2xl font-semibold text-balance",
 	children,
 } = $props();
@@ -27,7 +29,7 @@ let {
 
 <div class="hero relative mb-12 -mt-8">
 	<div class="absolute inset-0">
-		<Image {image} alt={imageAlt} sizes="50vw" priority></Image>
+		<Image {image} alt={imageAlt} sizes="50vw" priority {positionClass}/>
 	</div>
 	<div class="absolute inset-0 bg-[var(--primary-950)]/85"></div>
 	<Section

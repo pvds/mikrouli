@@ -11,7 +11,7 @@ let { title, intro, slug, contentSections, outro, heroImage } = data.service.fie
 
 {#if heroImage}
 	<HeroImage title={title} image={getImageName(heroImage.file.fileName)} imageAlt={heroImage.title}
-			   transitionName={slug}>
+			   transitionName={slug} positionClass="object-[0%_25%]">
 		{@html intro}
 	</HeroImage>
 {:else}

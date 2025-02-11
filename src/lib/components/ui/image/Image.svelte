@@ -13,6 +13,7 @@ import { onMount } from "svelte";
  * @property {string} [classes]
  * @property {string} [heightClass]
  * @property {string} [widthClass]
+ * @property {string} [positionClass]
  * @property {boolean} [isLocal]
  */
 
@@ -25,11 +26,12 @@ let {
 	classes,
 	heightClass = "h-full",
 	widthClass = "w-full",
+	positionClass = "object-center",
 	isLocal = false,
 } = $props();
 
 const IMAGE_DIR = "/images";
-const POSITION_CLASSES = "absolute object-[50%_25%] object-cover";
+const POSITION_CLASSES = "absolute object-cover";
 
 let loaded = $state(false);
 /** @type {HTMLImageElement|undefined} */
@@ -75,17 +77,17 @@ const srcset = (sizes) =>
 >
 	{#if !hasAlpha && placeholder}
 	<img src={placeholder} {alt}
-		 class="{POSITION_CLASSES} {classes} {height} {width} transition-all"
+		 class="{POSITION_CLASSES} {positionClass} {classes} {height} {width} transition-all"
 		 loading={priority ? "eager" : "lazy"}
 		 fetchpriority={priority ? "high" : null}/>
-	<div class="{POSITION_CLASSES} {classes} backdrop-blur-xl transition-all"></div>
+	<div class="{POSITION_CLASSES} {positionClass} {classes} backdrop-blur-xl transition-all"></div>
 	{/if}
 	<picture>
 		<source srcset={srcset(IMAGE_SIZES)} sizes={sizes} type="image/webp" />
 		<img
 			bind:this={img}
 			{alt}
-			class="{POSITION_CLASSES} {classes} {height} {width} transition-all opacity-0"
+			class="{POSITION_CLASSES} {positionClass} {classes} {height} {width} transition-all opacity-0"
 			src={`${base}${directory}/${image}-1280.webp`}
 			loading={priority ? "eager" : "lazy"}
 			fetchpriority={priority ? "high" : null}
