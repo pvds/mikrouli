@@ -1,4 +1,4 @@
-import { getPost, getPostEntries, getSeo } from "$lib/server/content.js";
+import { getPage, getPost, getPostEntries, getSeo, getServices } from "$lib/server/content.js";
 
 /** @type {import('./$types').EntryGenerator} */
 export const entries = async () => {
@@ -9,7 +9,9 @@ export const entries = async () => {
 export const load = async ({ params }) => {
 	const { slug } = params;
 	const post = getPost(slug);
+	const page = getPage("blog");
+	const services = getServices();
 	const seo = getSeo(post, "BlogPostPage");
 
-	return { post, seo };
+	return { post, outro: page.fields.outro, services, seo };
 };
