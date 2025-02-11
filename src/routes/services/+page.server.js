@@ -4,7 +4,7 @@ import { getPage, getPosts, getSeo, getServices } from "$lib/server/content.js";
 export const load = async ({ route }) => {
 	const slug = route.id.replace("/", "");
 	const page = getPage(slug);
-	const posts = getPosts(3);
+	const posts = getPosts(4);
 	const services = getServices();
 	const seo = getSeo(page, "ServicesPage", services);
 
