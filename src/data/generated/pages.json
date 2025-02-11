@@ -61,7 +61,7 @@
             "id": "2skTvZuf4xUYpfqA45Vz1O",
             "type": "Entry",
             "createdAt": "2024-12-27T23:38:56.621Z",
-            "updatedAt": "2025-02-07T17:19:54.339Z",
+            "updatedAt": "2025-02-11T21:29:37.904Z",
             "locale": "en-US"
         },
         "fields": {
@@ -72,6 +72,22 @@
             "seoDescription": "Read insightful articles offering tools and perspectives to navigate life’s challenges and foster personal growth for individuals and families.",
             "seoKeywords": "blog, insights, therapy, growth, guidance",
             "header": "Insights to Support Your Journey",
+            "heroImage": {
+                "title": "Eleni landscape - Mani sunset",
+                "description": "Me looking left with a sunset on the background",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/6C8RJ4E6ckQZIPcGbFscRW/c6ccafa58f8e7b09e1dd3ae3840ebecf/IMG_20160806_202106.jpeg",
+                    "details": {
+                        "size": 1031182,
+                        "image": {
+                            "width": 1920,
+                            "height": 1080
+                        }
+                    },
+                    "fileName": "IMG_20160806_202106.jpeg",
+                    "contentType": "image/jpeg"
+                }
+            },
             "intro": "Growth happens in the way we reflect, connect, and see things differently. These articles offer **thoughts, insights, and practical guidance** on systemic therapy, relationships, parenting, and personal development.  \n",
             "content": "## Exploring Patterns, Perspectives & Growth  \nSystemic therapy looks beyond individual struggles to explore the **patterns, relationships, and dynamics** that shape everyday life. These articles provide:  \n\n- **New perspectives** on relationships, family, and personal growth.  \n- **Practical tools** to navigate challenges with clarity.  \n- **Reflections on systemic therapy** and its role in daily experiences.  \n\nWhether you're looking for guidance or simply a fresh way to approach life’s complexities, these articles offer insight and support.  \n",
             "outro": "## Stay Curious, Keep Exploring  \nGrowth isn’t just about big moments—it’s about the small shifts in perspective that shape how we navigate life. My blog is a space for **insights, reflections, and practical guidance** on systemic therapy, relationships, parenting, and personal development.  \n\nWhether you’re here for guidance, reassurance, or simply a fresh perspective, I invite you to explore, reflect, and take what resonates with you.  \n\nIf a topic sparks something in you or you’d like to explore your journey further, I’m here to help.  \n"
