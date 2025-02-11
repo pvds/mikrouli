@@ -90,7 +90,7 @@
             "id": "3kryEmO4yykbYKbByiWU8i",
             "type": "Entry",
             "createdAt": "2024-12-28T06:00:04.205Z",
-            "updatedAt": "2025-02-07T09:21:22.509Z",
+            "updatedAt": "2025-02-11T13:52:49.450Z",
             "locale": "en-US"
         },
         "fields": {
@@ -100,19 +100,19 @@
             "hidden": false,
             "seoDescription": "Your cultural background matters. Therapy that acknowledges this can help you feel understood and supported in meaningful ways.",
             "heroImage": {
-                "title": "Cultural Sensitivity",
-                "description": "A group of people from different cultures with word clouds above them containing the word \"hello\" in different languages",
+                "title": "Cultural sensitivity",
+                "description": "A group of people from different cultures standing in a circle holding puzzle pieces",
                 "file": {
-                    "url": "//images.ctfassets.net/fnyi5t75mv2d/5F9MMOxG1KSwvPWSYMuAjp/ed836cf126768f57d6a917d3e7cc1c9a/cultural-sensitivity.webp",
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/1WVg6iEmMt4VAO1LsoXqIf/73f6c38e78f6ba4330bc9649100b2a4b/cultural-sensitivity.jpg",
                     "details": {
-                        "size": 73572,
+                        "size": 216097,
                         "image": {
-                            "width": 1024,
-                            "height": 812
+                            "width": 1600,
+                            "height": 900
                         }
                     },
-                    "fileName": "cultural-sensitivity.webp",
-                    "contentType": "image/webp"
+                    "fileName": "cultural-sensitivity.jpg",
+                    "contentType": "image/jpeg"
                 }
             },
             "intro": "Your cultural background matters. Therapy that acknowledges this can help you feel understood and supported in meaningful ways.\n",
