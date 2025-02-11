@@ -12,6 +12,13 @@ let { data } = $props();
 let { title, intro, slug, contentSections, heroImage } = $derived(data.post.fields);
 let { createdAt, updatedAt } = $derived(data.post.meta);
 let { prev, next } = $derived(data.post);
+let created = $state("");
+let updated = $state("");
+
+onMount(() => {
+	created = `Published on ${formatDate(createdAt)}`;
+	updated = `Last updated on ${formatDate(updatedAt)}`;
+});
 </script>
 
 {#if heroImage}
@@ -20,9 +27,9 @@ let { prev, next } = $derived(data.post);
 		{@html intro}
 		<p class="mt-4 text-base italic text-primary-light">
 			{#if createdAt === updatedAt}
-				{`Published on ${formatDate(createdAt)}`}
+				{created}
 			{:else}
-				{`Last updated on ${formatDate(updatedAt)}`}
+				{updated}
 			{/if}
 		</p>
 	</HeroImage>
@@ -31,9 +38,9 @@ let { prev, next } = $derived(data.post);
 		{@html intro}
 		<p class="mt-4 text-base italic text-primary-darker">
 			{#if createdAt === updatedAt}
-				{`Published on ${formatDate(createdAt)}`}
+				{created}
 			{:else}
-				{`Last updated on ${formatDate(updatedAt)}`}
+				{updated}
 			{/if}
 		</p>
 	</Hero>
