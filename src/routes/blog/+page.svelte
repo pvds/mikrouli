@@ -17,7 +17,7 @@ let services = data.services;
 </Hero>
 
 {#each contentSections as section}
-	<ContentSection prose>
+	<ContentSection prose size="lg">
 		{@html section}
 	</ContentSection>
 {/each}
