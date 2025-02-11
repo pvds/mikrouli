@@ -16,13 +16,13 @@ let posts = data.posts;
 	{@html intro}
 </Hero>
 
+<TeaserSection items={services} priority slug="services" title="How I Can Support You"/>
+
 {#each contentSections as section}
 	<ContentSection prose size="lg">
 		{@html section}
 	</ContentSection>
 {/each}
-
-<TeaserSection items={services} priority slug="services" title="How I Can Support You"/>
 
 {#if outro}
 	<Outro>{@html outro}</Outro>

@@ -18,17 +18,18 @@ let services = data.services;
 	{@html intro}
 </Hero>
 
+{#each posts as post, i}
+	<Section wave={i % 2 === 1} theme={i % 2 === 1 ? "primary" : "default"}>
+		<BlogArticle post={post.fields} priority={i <= 3}/>
+	</Section>
+{/each}
+
 {#each contentSections as section}
 	<ContentSection prose size="lg">
 		{@html section}
 	</ContentSection>
 {/each}
 
-{#each posts as post, i}
-	<Section wave={i % 2 === 0} theme={i % 2 === 0 ? "primary" : "default"}>
-		<BlogArticle post={post.fields} priority={i <= 3}/>
-	</Section>
-{/each}
 
 {#if outro}
 	<Outro>{@html outro}</Outro>
