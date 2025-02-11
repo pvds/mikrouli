@@ -33,7 +33,7 @@ const clipPath = $derived(() => {
 
 <div style="width: {width}; height: var(--height); clip-path: {clipPath()}; --height: {height}px"
 	 class="wave overflow-hidden absolute left-0 {invert ? inside ?
-	 'bottom-[calc(100%-var(--height))]' : 'top-full' : inside ?
-	 `top-[calc(100%-var(--height))]` :
+	 'bottom-[calc(100%-var(--height)+1px)]' : 'top-full' : inside ?
+	 `top-[calc(100%-var(--height)+1px)]` :
 	 'bottom-full'} {color}"></div>
 
