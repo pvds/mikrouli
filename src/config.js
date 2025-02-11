@@ -141,3 +141,13 @@ export const BOOKING_OPTIONS = {
 		url: BOOKING_URL + BOOKING_SESSION_PATH,
 	},
 };
+
+/**
+ * Button themes
+ * @type {{primary: string, secondary: string, tertiary: string}}
+ */
+export const BUTTON_THEME = {
+	primary: "bg-accent-dark hover:bg-accent-darker font-semibold text-white rounded-full",
+	secondary: "border-2 border-primary-darker font-semibold hover:inset-ring-1 rounded-full",
+	tertiary: "hover:text-accent-dark font-semibold  underline underline-offset-2",
+};

@@ -1,18 +1,23 @@
 <script>
-import { BOOKING_OPTIONS, BOOKING_URL } from "$config";
+import { BOOKING_OPTIONS, BOOKING_URL, BUTTON_THEME } from "$config";
+import { svgIcon } from "$lib/helpers/icon";
 import Dialog from "$ui/Dialog.svelte";
 
 /**
  * @typedef {import("$types/content").BookingType} BookingType
  * @typedef {import("$types/content").BookingCta} BookingCta
+ * @typedef {import("$types/content").CtaTheme} CtaTheme
+ * @typedef {import("$types/content").CtaIcon} CtaIcon
  *
  * @typedef {Object} Props
  * @property {BookingType} [type='page']
  * @property {BookingCta} [cta]
+ * @property {CtaTheme} [ctaTheme='primary']
+ * @property {CtaIcon} [ctaIcon]
  */
 
 /** @type {Props} */
-let { type = "page", cta } = $props();
+let { type = "page", cta, ctaTheme = "primary", ctaIcon } = $props();
 
 /** @type {HTMLDialogElement|null} */
 let dialog = $state(null);
@@ -24,8 +29,8 @@ const getBookingUrl = () => BOOKING_OPTIONS[type].url;
 </script>
 
 <button
-	class="{cta?.classes ? cta.classes : 'px-4 py-2'}
-	rounded-full transition-all font-semibold bg-accent-dark  hover:bg-accent-darker text-white"
+	class="group {cta?.classes ? cta.classes : 'px-4 py-2'}
+	transition-all {BUTTON_THEME[ctaTheme]}"
 	onclick={() => dialog?.showModal()}
 >
 	{#if cta}
@@ -34,6 +39,9 @@ const getBookingUrl = () => BOOKING_OPTIONS[type].url;
 		<span class="max-lg:hidden">{cta.textLong}</span>
 	{:else}
 		{getBookingCta()}
+	{/if}
+	{#if ctaIcon}
+		{@html svgIcon(ctaIcon)}
 	{/if}
 </button>
 <Dialog bind:dialogElement={dialog} classes="bg-primary-darkest" fullscreen>

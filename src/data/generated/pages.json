@@ -102,7 +102,7 @@
             "sections": [
                 {
                     "title": "Your Journey Starts Here",
-                    "content": "Therapy is a chance to __explore patterns, gain clarity, and create meaningful change__. You might feel stuck, overwhelmed, or simply curious about personal growth. I provide a safe, empathetic environment where we can examine your challenges and discover what’s possible. \n\n> No matter where you are, therapy is a space to reflect, grow, and move forward at a pace that feels right to you.\n\nAs a systemic therapist, I focus on how relationships, past experiences, and cultural contexts shape our lives.\n\n{{ link url=\"/services\" text=\"Explore my services\" variant=\"primary\"}}",
+                    "content": "Therapy is a chance to __explore patterns, gain clarity, and create meaningful change__. You might feel stuck, overwhelmed, or simply curious about personal growth. I provide a safe, empathetic environment where we can examine your challenges and discover what’s possible. \n\n> No matter where you are, therapy is a space to reflect, grow, and move forward at a pace that feels right to you.\n\nAs a systemic therapist, I focus on how relationships, past experiences, and cultural contexts shape our lives.\n\n{{ link url=\"/services\" text=\"Explore my services\"}}",
                     "image": {
                         "title": "Living abroad",
                         "description": "Woman dragging a suitcase",

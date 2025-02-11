@@ -1,8 +1,10 @@
 <script>
 import { base } from "$app/paths";
+import { BUTTON_THEME } from "$config";
 import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
 import ServicesSection from "$layout/ServicesSection.svelte";
+import { svgIcon } from "$lib/helpers/icon";
 import BookingDialog from "$ui/BookingDialog.svelte";
 
 let { data } = $props();
@@ -28,9 +30,10 @@ let services = data.services;
 
 {#snippet footerCta()}
 	<div class="flex flex-wrap gap-4 mt-8">
-		<BookingDialog type="intake"/>
+		<BookingDialog type="intake" ctaIcon="calendar"/>
 		<a href={`${base}/contact`}
-		   class="py-2 px-4 font-semibold transition-colors hover:underline group-hover:text-accent-dark">Get in contact</a>
+		   class="group py-2 px-4 font-semibold transition-colors {BUTTON_THEME.secondary}">Get in
+			contact{@html svgIcon("internal")}</a>
 	</div>
 {/snippet}
 

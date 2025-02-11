@@ -38,3 +38,8 @@ export type BookingOptions = {
 	intake: BookingOption;
 	session: BookingOption;
 };
+
+// Call to Action
+
+export type CtaIcon = "external" | "internal" | "calendar" | "dialog";
+export type CtaTheme = "primary" | "secondary" | "tertiary";
