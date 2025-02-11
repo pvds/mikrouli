@@ -60,8 +60,9 @@ const loadMetadata = async () => {
 	}
 };
 
-loadMetadata();
-onMount(() => {});
+onMount(() => {
+	loadMetadata();
+});
 
 /**
  * Generate a `srcset` string for responsive images
@@ -71,10 +72,10 @@ onMount(() => {});
 const srcset = (sizes) =>
 	sizes.map((size) => `${base}${directory}/${image}-${size}.webp ${size}w`).join(", ");
 </script>
-{#if loaded}
-<div class="relative {height} {width} not-prose"
+<div class="relative {height} {width} not-prose {loaded ? '' : 'bg-black/10 rounded-md'}"
 	 style={`aspect-ratio: ${aspectRatio};`}
 >
+{#if loaded}
 	{#if !hasAlpha && placeholder}
 	<img src={placeholder} {alt}
 		 class="{POSITION_CLASSES} {positionClass} {classes} {height} {width} transition-all"
@@ -95,5 +96,5 @@ const srcset = (sizes) =>
 			onerror={() => loaded = false}
 		/>
 	</picture>
-</div>
 {/if}
+</div>
