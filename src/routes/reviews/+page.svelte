@@ -3,14 +3,16 @@ import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
 import Section from "$layout/Section.svelte";
 import TeaserSection from "$layout/TeaserSection.svelte";
+import { getImageName } from "$lib/helpers/image.js";
 
 let { data } = $props();
-let { header, intro, contentSections } = data.page.fields;
+let { header, intro, contentSections, heroImage } = data.page.fields;
 let reviews = data.reviews;
 let posts = data.posts;
 </script>
 
-<Hero title={header}>
+<Hero title={header} image={heroImage ? getImageName(heroImage.file.fileName) : undefined}
+	  imageAlt={heroImage ? heroImage.title : undefined} imagePositionClass="object-[100%_75%]">
 	{@html intro}
 </Hero>
 

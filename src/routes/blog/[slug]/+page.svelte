@@ -2,7 +2,6 @@
 import { base } from "$app/paths";
 import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
-import HeroImage from "$layout/HeroImage.svelte";
 import Section from "$layout/Section.svelte";
 import { formatDate } from "$lib/helpers/date.js";
 import { getImageName } from "$lib/helpers/image.js";
@@ -21,30 +20,17 @@ onMount(() => {
 });
 </script>
 
-{#if heroImage}
-	<HeroImage title={title} image={getImageName(heroImage.file.fileName)} imageAlt={heroImage.title}
-		transitionName={slug} positionClass="object-[0%_25%]">
-		{@html intro}
-		<p class="mt-4 text-base italic text-primary-light">
-			{#if createdAt === updatedAt}
-				{created}
-			{:else}
-				{updated}
-			{/if}
-		</p>
-	</HeroImage>
-{:else}
-	<Hero title={title} transitionName={slug}>
-		{@html intro}
-		<p class="mt-4 text-base italic text-primary-darker">
-			{#if createdAt === updatedAt}
-				{created}
-			{:else}
-				{updated}
-			{/if}
-		</p>
-	</Hero>
-{/if}
+<Hero {title} image={heroImage ? getImageName(heroImage.file.fileName) : undefined}
+	  imageAlt={heroImage ? heroImage.title : undefined} imagePositionClass="object-[0%_25%]">
+	{@html intro}
+	<p class="mt-4 text-base italic text-primary-light">
+		{#if createdAt === updatedAt}
+			{created}
+		{:else}
+			{updated}
+		{/if}
+	</p>
+</Hero>
 
 {#each contentSections as section}
 	<ContentSection prose size="lg">
