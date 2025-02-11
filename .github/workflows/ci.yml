@@ -47,8 +47,7 @@ on:
 
 concurrency:
     # Group by PR number for pull requests, branch name for pushes, or event name for dispatches
-    group: ${{ github.event.pull_request.number || (github.event_name == 'push' ? github.ref_name
-        : github.event_name) }}
+    group: "${{ github.event.pull_request.number || (github.event_name == 'push' && github.ref_name) || github.event_name }}"
     cancel-in-progress: true
 
 jobs:
