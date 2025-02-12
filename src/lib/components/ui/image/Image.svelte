@@ -72,8 +72,8 @@ onMount(() => {
 const srcset = (sizes) =>
 	sizes.map((size) => `${base}${directory}/${image}-${size}.webp ${size}w`).join(", ");
 </script>
-<div class="relative {height} {width} not-prose {loaded ? '' : 'bg-black/10 rounded-md'}"
-	 style={`aspect-ratio: ${aspectRatio};`}
+<div class="relative {height} {width} not-prose {loaded ? '' :
+'bg-black/10 animate-pulse rounded-md'}" style={`aspect-ratio: ${aspectRatio};`}
 >
 {#if loaded}
 	{#if !hasAlpha && placeholder}
