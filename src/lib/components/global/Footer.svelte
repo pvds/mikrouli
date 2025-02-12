@@ -19,7 +19,7 @@ const navPages = toNavItems(pages.fields.items);
 const navContact = toNavItems(contact.fields.items);
 </script>
 
-<footer class="footer group relative mt-72 md:mt-80">
+<footer class="footer relative mt-72 md:mt-80">
 	<div
 		class="absolute z-1 w-full min-w-6xl bottom-[calc(100%-8rem)] overflow-hidden pointer-events-none">
 		<svg class="w-[inherit] h-96" xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +70,7 @@ const navContact = toNavItems(contact.fields.items);
 				isLocal
 				alt="Portrait of Eleni Papamikrouli"
 				widthClass="w-[max(10rem,30vw)] md:w-[min(15rem,30vw)]"
-				classes="not-group-hover:grayscale-50 translate-z-0 drop-shadow-[0_0_48px_rgba(24,68,70,.6)]" />
+				classes="translate-z-0 drop-shadow-[0_0_48px_rgba(24,68,70,.6)]" />
 		</a>
 	</Section>
 </footer>
