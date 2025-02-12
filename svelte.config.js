@@ -13,7 +13,9 @@ const CSP_WHITELIST = {
 	frames: [CSP_YOUTUBE, CSP_SETMORE], // Ensures iframes work
 	media: [CSP_YOUTUBE], // Ensures video playback works
 };
-const CSP_REPORT_URI = production ? "/csp-report" : "/mikrouli/csp-report";
+
+// TODO: Implement CSP reporting endpoint
+const CSP_REPORT_ENDPOINT = production ? "/" : "/mikrouli";
 /** @type {import('@sveltejs/kit').CspDirectives} */
 const CSP = {
 	"default-src": ["self"], // Default policy for loading resources
@@ -64,7 +66,7 @@ const config = {
 		},
 		csp: {
 			directives: production ? { ...CSP } : {},
-			reportOnly: { ...CSP, "report-uri": [CSP_REPORT_URI] },
+			reportOnly: { ...CSP, "report-to": [CSP_REPORT_ENDPOINT] },
 		},
 	},
 };
