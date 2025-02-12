@@ -1,7 +1,10 @@
 <script>
 import { base } from "$app/paths";
 import { page } from "$app/state";
+import { DEPLOY_TARGET } from "$env/static/public";
 import { checkSeo } from "./Seo.helper.js";
+
+const isProduction = DEPLOY_TARGET === "production";
 
 /** @typedef {import('./Seo.svelte.types.js').SEOProps} SEOProps */
 
@@ -50,7 +53,7 @@ let author = $derived(page.data.seo.author);
 /** @type {SEOProps['type']} */
 let type = $derived(page.data.seo.type || "website");
 /** @type {SEOProps['index']} */
-let index = $derived(page.data.seo.index);
+let index = $derived(isProduction ? page.data.seo.index : false);
 /** @type {SEOProps['twitter']} */
 let twitter = $derived(page.data.seo.twitter || false);
 /** @type {SEOProps['openGraph']} */

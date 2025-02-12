@@ -46,7 +46,7 @@ const config = {
 			origin: production ? "https://mikrouli.nl" : "https://pvds.github.io",
 		},
 		env: {
-			publicPrefix: "PUBLIC_",
+			publicPrefix: "",
 			privatePrefix: "",
 		},
 		alias: {
