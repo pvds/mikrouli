@@ -33,7 +33,8 @@ let {
 const IMAGE_DIR = "/images";
 const POSITION_CLASSES = "absolute object-cover";
 
-let loaded = $state(false);
+let loadedData = $state(false);
+let loadedImage = $state(false);
 /** @type {HTMLImageElement|undefined} */
 let img = $state();
 /** @type {ImageMeta|undefined} */
@@ -53,16 +54,21 @@ const loadMetadata = async () => {
 			`$data/generated/meta/${isLocal ? "local" : "cms"}/${image}.json`
 		);
 		meta = metadata.default;
-		loaded = true;
+		loadedData = true;
 	} catch (error) {
 		console.error("Failed to load image metadata:", error);
-		loaded = false;
+		loadedData = false;
 	}
 };
 
 onMount(() => {
 	loadMetadata();
 });
+
+const onload = () => {
+	img?.classList.remove("opacity-0");
+	loadedImage = true;
+};
 
 /**
  * Generate a `srcset` string for responsive images
@@ -72,11 +78,11 @@ onMount(() => {
 const srcset = (sizes) =>
 	sizes.map((size) => `${base}${directory}/${image}-${size}.webp ${size}w`).join(", ");
 </script>
-<div class="relative {height} {width} not-prose {loaded ? '' :
+<div class="relative {height} {width} not-prose {loadedData ? '' :
 'bg-black/10 animate-pulse rounded-md'}" style={`aspect-ratio: ${aspectRatio};`}
 >
-{#if loaded}
-	{#if !hasAlpha && placeholder}
+{#if loadedData}
+	{#if !hasAlpha && placeholder && !loadedImage}
 	<img src={placeholder} {alt}
 		 class="{POSITION_CLASSES} {positionClass} {classes} {height} {width} transition-all"
 		 loading={priority ? "eager" : "lazy"}
@@ -92,8 +98,8 @@ const srcset = (sizes) =>
 			src={`${base}${directory}/${image}-1280.webp`}
 			loading={priority ? "eager" : "lazy"}
 			fetchpriority={priority ? "high" : null}
-			onload={() => img?.classList.remove("opacity-0")}
-			onerror={() => loaded = false}
+			{onload}
+			onerror={() => loadedData = false}
 		/>
 	</picture>
 {/if}
