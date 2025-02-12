@@ -3,9 +3,6 @@ import { base } from "$app/paths";
 import { page } from "$app/state";
 import { checkSeo } from "./Seo.helper.js";
 
-const deployTarget = import.meta.env.MODE || "staging";
-const isProduction = deployTarget === "production";
-
 /** @typedef {import('./Seo.svelte.types.js').SEOProps} SEOProps */
 
 /** @type {{children?: import('svelte').Snippet}} */
@@ -53,15 +50,13 @@ let author = $derived(page.data.seo.author);
 /** @type {SEOProps['type']} */
 let type = $derived(page.data.seo.type || "website");
 /** @type {SEOProps['index']} */
-let index = $derived(isProduction ? page.data.seo.index : false);
+let index = $derived(page.data.seo.index);
 /** @type {SEOProps['twitter']} */
 let twitter = $derived(page.data.seo.twitter || false);
 /** @type {SEOProps['openGraph']} */
 let openGraph = $derived(page.data.seo.openGraph || false);
 /** @type {SEOProps['jsonld']} */
 let jsonld = $derived(page.data.seo.jsonld);
-
-// $inspect(jsonld);
 
 let ldScript = $derived(
 	`<script type="application/ld+json">${JSON.stringify(jsonld)}${"<"}/script>`,
