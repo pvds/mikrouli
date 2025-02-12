@@ -13,7 +13,7 @@ const CSP_WHITELIST = {
 	frames: [CSP_YOUTUBE, CSP_SETMORE], // Ensures iframes work
 	media: [CSP_YOUTUBE], // Ensures video playback works
 };
-const CSP_REPORT_URI = production ? "/" : "/mikrouli";
+const CSP_REPORT_URI = production ? "/csp-report" : "/mikrouli/csp-report";
 /** @type {import('@sveltejs/kit').CspDirectives} */
 const CSP = {
 	"default-src": ["self"], // Default policy for loading resources
@@ -63,7 +63,7 @@ const config = {
 			register: false,
 		},
 		csp: {
-			directives: { ...CSP },
+			directives: production ? { ...CSP } : {},
 			reportOnly: { ...CSP, "report-uri": [CSP_REPORT_URI] },
 		},
 	},

@@ -28,7 +28,7 @@ let posts = data.posts;
 			   priority
 			   alt="Portrait of Eleni Papamikrouli"
 			   widthClass="md:w-[min(25rem,40vw)]"
-			   classes="drop-shadow-[0_0_48px_rgba(24,68,70,.6)]" />
+			   classes="translate-z-0 drop-shadow-[0_0_48px_rgba(24,68,70,.6)]" />
 	</a>
 </Hero>
 
