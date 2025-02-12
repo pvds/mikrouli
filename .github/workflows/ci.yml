@@ -1,4 +1,4 @@
-name: CI
+name: Build & Deploy
 
 env:
     BUN_VERSION: 1.2.0
