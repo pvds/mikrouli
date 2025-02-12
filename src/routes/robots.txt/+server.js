@@ -4,6 +4,7 @@ const baseRules = `
 # Block private directories
 Disallow: /admin/
 Disallow: /private/
+Disallow: /tracking/
 
 # Example of blocking a specific bot
 User-agent: BadBot
