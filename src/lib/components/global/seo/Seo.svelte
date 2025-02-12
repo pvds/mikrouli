@@ -1,10 +1,10 @@
 <script>
 import { base } from "$app/paths";
 import { page } from "$app/state";
-import { DEPLOY_TARGET } from "$env/static/public";
 import { checkSeo } from "./Seo.helper.js";
 
-const isProduction = DEPLOY_TARGET === "production";
+const deployTarget = import.meta.env.MODE || "staging";
+const isProduction = deployTarget === "production";
 
 /** @typedef {import('./Seo.svelte.types.js').SEOProps} SEOProps */
 
