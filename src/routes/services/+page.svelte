@@ -21,8 +21,9 @@ let posts = data.posts;
 	<a href={`${base}/about`} aria-label="Learn more about me"
 	   class="relative block md:absolute mx-auto md:mx-[inherit] -mt-10 w-1/2 md:w-2/5 md:bottom-0 md:right-0 -bottom-16">
 		<Image image="eleni-papamikrouli"
-			   sizes="max(25rem,40vw)"
+			   sizes="max-width(48em) 50vw,max(25rem,40vw)"
 			   isLocal
+			   priority
 			   alt="Portrait of Eleni Papamikrouli"
 			   widthClass="md:w-[min(25rem,40vw)]"
 			   classes="drop-shadow-[0_0_48px_rgba(24,68,70,.6)]" />
