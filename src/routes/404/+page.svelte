@@ -8,11 +8,11 @@ let { data } = $props();
 let { header, intro, contentSections, heroImage } = data.page.fields;
 </script>
 
-<Hero title={header} proseClasses="" image={heroImage ? getImageName(heroImage.file.fileName) :
+<Hero title={header} proseClasses=" " image={heroImage ? getImageName(heroImage.file.fileName) :
 undefined}
 	  imageAlt={heroImage ? heroImage.title : undefined} imagePositionClass="object-[100%_75%]">
 	<div class="flex flex-col md:flex-row items-center">
-		<div class="flex-1 prose prose-lg font-semibold">
+		<div class="flex-1 prose prose-lg marker:text-accent-dark font-semibold">
 			{@html intro}
 		</div>
 		<div class="flex-none w-xs flex items-center">
@@ -22,7 +22,7 @@ undefined}
 </Hero>
 
 {#each contentSections as section}
-	<ContentSection prose size="sm">
+	<ContentSection prose>
 		{@html section}
 	</ContentSection>
 {/each}
