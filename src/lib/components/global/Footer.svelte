@@ -71,7 +71,7 @@ const navContact = toNavItems(contact.fields.items);
 			   		isLocal
 			   		alt="Portrait of Eleni Papamikrouli"
 			   		widthClass="w-[max(10rem,30vw)] md:w-[min(15rem,30vw)]"
-			   		classes="grayscale-50 group-hover:grayscale-0 drop-shadow-[0_0_48px_rgba(24,68,70,.6)]" />
+			   		classes="not-group-hover:grayscale-50 drop-shadow-[0_0_48px_rgba(24,68,70,.6)]" />
 			</a>
 		</div>
 	</Section>

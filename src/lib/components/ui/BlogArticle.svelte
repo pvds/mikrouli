@@ -23,7 +23,7 @@ let { post, priority = false } = $props();
 				sizes="(max-width: 48em) 80vw, (max-width: 56em) 16rem, (max-width: 64em) 20rem"
 				heightClass="h-[12rem]"
 				{priority}
-				classes="rounded-md not-group-hover:grayscale"
+				classes="rounded-md not-group-hover:grayscale-50"
 			/>
 		</div>
 	{/if}
