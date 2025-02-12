@@ -6,24 +6,23 @@ export type SEOProps = {
 	 * The title of the page.
 	 * - Optimal length: **50–60 characters**.
 	 * - Avoid exceeding 60 characters to prevent truncation in SERPs.
-	 *
 	 * @default ""
 	 */
 	title?: string;
+
+	/**
+	 * The category of the page.
+	 * - Use to categorize the page content for SEO purposes.
+	 * - Often this is the parent page, such as "Blog" for blog posts.
+	 * @default ""
+	 */
+	category?: string;
 
 	/**
 	 * Helps to construct the title.
 	 * @default undefined
 	 */
 	titleConstructor?: () => string;
-
-	/**
-	 * The title parent of the page.
-	 * - Often used as a tagline; keep it short (typically under **40 characters**).
-	 *
-	 * @default ""
-	 */
-	titleSlogan?: string;
 
 	/**
 	 * The description of the page.

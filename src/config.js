@@ -41,7 +41,6 @@ export const CONTACT_COUNTRY = "NL";
 // SEO
 /** @type {import('$global/seo/Seo.svelte.types').SEOProps} */
 export const SEO_DEFAULT = {
-	titleSlogan: ORG_SLOGAN,
 	siteName: ORG_NAME,
 	imageURL: "images/preview.webp",
 	logo: ORG_LOGO_URL,

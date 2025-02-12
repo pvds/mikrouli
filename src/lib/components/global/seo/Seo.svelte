@@ -1,6 +1,7 @@
 <script>
 import { base } from "$app/paths";
 import { page } from "$app/state";
+import { ORG_NAME, ORG_NAME_SUFFIX, ORG_SLOGAN } from "$config";
 import { checkSeo } from "./Seo.helper.js";
 
 /** @typedef {import('./Seo.svelte.types.js').SEOProps} SEOProps */
@@ -10,15 +11,17 @@ let { children } = $props();
 
 /**
  * @param {string} title title of the current page
- * @param {string} slogan site slogan
- * @param {string} name site name
+ * @param {string} [category] category of the current page
  * @param {string} [separator] separator between title, parent, and slogan
  * @returns {string} the constructed title
  */
-const constructTitle = (title, slogan, name, separator = " - ") => {
-	if (!name || !slogan) return "";
+const constructTitle = (title, category, separator = " - ") => {
+	const space = " ";
 	const isHome = page.url.pathname === `${base}/`;
-	return isHome || !title ? name + separator + slogan : title + separator + name;
+	const categoryPart = category ? `${category} ${separator} ` : "";
+	return isHome || !title
+		? ORG_NAME + separator + ORG_NAME_SUFFIX + separator + ORG_SLOGAN
+		: title + separator + categoryPart + ORG_NAME + space + ORG_NAME_SUFFIX;
 };
 /**
  * @param {string} url the URL to prepend
@@ -26,13 +29,8 @@ const constructTitle = (title, slogan, name, separator = " - ") => {
  */
 const prependURL = (url) => (url?.startsWith("http") ? url : `${page.url.origin}${base}/${url}`);
 
-let title = $derived(
-	constructTitle(
-		page.data.seo.title || page.data.local.title,
-		page.data.seo.titleSlogan,
-		page.data.seo.siteName,
-	),
-);
+/** @type {SEOProps['title']} */
+let title = $derived(constructTitle(page.data.seo.title, page.data.seo.category));
 /** @type {SEOProps['description']} */
 let description = $derived(page.data.seo.description);
 /** @type {SEOProps['keywords']} */

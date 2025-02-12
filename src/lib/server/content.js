@@ -55,9 +55,19 @@ const preprocessJson = (data) => {
 export const getSeo = (entry, jsonLdType = "WebPage", items = []) => {
 	if (!entry) return SEO_DEFAULT;
 	const jsonld = getJsonLd(entry, jsonLdType, items);
+	let category;
+	switch (jsonLdType) {
+		case "BlogPostPage":
+			category = "Blog";
+			break;
+		case "ServicePage":
+			category = "Services";
+			break;
+	}
 	return {
 		...SEO_DEFAULT,
 		title: entry.fields.title,
+		category,
 		description: entry.fields.seoDescription,
 		keywords: entry.fields.seoKeywords,
 		index: entry.fields.seoIndex,
