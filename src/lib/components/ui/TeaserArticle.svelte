@@ -24,7 +24,7 @@ let { item, slug, priority = false } = $props();
 			heightClass="h-[12rem]"
 			positionClass="object-[50%_25%]"
 			{priority}
-			classes="rounded-md not-group-hover:grayscale-75"
+			classes="rounded-md not-group-hover:grayscale-50"
 		/>
 	{/if}
 	<div style="view-transition-name: {item.slug}">
