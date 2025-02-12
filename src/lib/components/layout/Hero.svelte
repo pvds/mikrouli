@@ -25,7 +25,7 @@ let { title, proseClasses, children, image, imageAlt, imagePositionClass } = $pr
 	</div>
 	<div class="absolute inset-0 bg-[var(--primary-950)]/85"></div>
 	{/if}
-	<Section classes="relative {!image && 'bg-primary-light'}"
+	<Section classes="relative {!image && 'bg-primary-light'} overflow-hidden"
 			 customSpacing="{SPACING_X_CLASSES} {image ? 'py-20 md:py-30' : 'py-16 md:py-24'}">
 		{#if title}
 			<h1 class="text-4xl mb-6 font-bold" class:text-white={image}>{title}</h1>

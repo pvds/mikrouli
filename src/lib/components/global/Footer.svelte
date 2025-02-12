@@ -64,15 +64,13 @@ const navContact = toNavItems(contact.fields.items);
 				</ul>
 			</nav>
 		</div>
-		<div class="absolute bottom-0 right-0">
-			<a href={`${base}/about`} aria-label="Learn more about me">
-				<Image image="eleni-papamikrouli"
-			   		sizes="(max-width: 48em) max(10rem,30vw), min(15rem,30vw)"
-			   		isLocal
-			   		alt="Portrait of Eleni Papamikrouli"
-			   		widthClass="w-[max(10rem,30vw)] md:w-[min(15rem,30vw)]"
-			   		classes="not-group-hover:grayscale-50 drop-shadow-[0_0_48px_rgba(24,68,70,.6)]" />
-			</a>
-		</div>
+		<a href={`${base}/about`} aria-label="Learn more about me" class="absolute bottom-0 right-0">
+			<Image image="eleni-papamikrouli"
+				sizes="(max-width: 48em) max(10rem,30vw), min(15rem,30vw)"
+				isLocal
+				alt="Portrait of Eleni Papamikrouli"
+				widthClass="w-[max(10rem,30vw)] md:w-[min(15rem,30vw)]"
+				classes="not-group-hover:grayscale-50 drop-shadow-[0_0_48px_rgba(24,68,70,.6)]" />
+		</a>
 	</Section>
 </footer>
