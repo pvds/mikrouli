@@ -17,7 +17,7 @@
 	"scripts": {
 		"prepare": "lefthook install",
 		"postinstall": "bun run sync",
-		"start": "vite dev --open & bun run watch",
+		"start": "vite dev --open //localhost:3000 --host & bun run watch",
 		"start:prod": "bun run build:prod && bun run preview:prod --open",
 		"build": "vite build",
 		"build:prod": "DEPLOY_TARGET=production vite build --mode production",
@@ -64,7 +64,8 @@
 		"svelte-check": "^4.1.4",
 		"tailwindcss": "^4.0.6",
 		"typescript": "^5.7.3",
-		"vite": "^6.1.0"
+		"vite": "^6.1.0",
+		"vite-plugin-browser-sync": "^4.0.0"
 	},
 	"trustedDependencies": [
 		"@biomejs/biome",
