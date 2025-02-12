@@ -16,7 +16,8 @@ export function GET() {
 	const isProduction = process.env.DEPLOY_TARGET === "production";
 
 	// Apply dynamic indexing rule
-	const indexingRule = isProduction ? "Allow: /" : "Disallow: /";
+	// const indexingRule = isProduction ? "Allow: /" : "Disallow: /";
+	const indexingRule = "Disallow: /";
 
 	// Combine the dynamic rule with the static rules
 	const content = `User-agent: *\n${indexingRule}\n\n${baseRules.trim()}`;
