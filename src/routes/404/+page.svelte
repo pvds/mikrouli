@@ -5,7 +5,7 @@ import { getImageName } from "$lib/helpers/image.js";
 import Image from "$ui/image/Image.svelte";
 
 let { data } = $props();
-let { header, intro, contentSections, heroImage } = data.page.fields;
+let { header, intro, sections, contentSections, heroImage } = data.page.fields;
 </script>
 
 <Hero title={header} proseClasses=" " image={heroImage ? getImageName(heroImage.file.fileName) :
@@ -21,8 +21,17 @@ undefined}
 	</div>
 </Hero>
 
-{#each contentSections as section}
-	<ContentSection prose>
-		{@html section}
-	</ContentSection>
-{/each}
+{#if sections?.length}
+	{#each sections as section, i}
+		<ContentSection prose index={i}>
+			<h2 class="text-3xl font-bold">{section.title}</h2>
+			{@html section.content}
+		</ContentSection>
+	{/each}
+{:else}
+	{#each contentSections as section, i}
+		<ContentSection prose index={i}>
+			{@html section}
+		</ContentSection>
+	{/each}
+{/if}

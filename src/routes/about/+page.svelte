@@ -6,7 +6,7 @@ import TeaserSection from "$layout/TeaserSection.svelte";
 import { getImageName } from "$lib/helpers/image.js";
 
 let { data } = $props();
-let { header, intro, contentSections, outro, heroImage } = data.page.fields;
+let { header, intro, sections, contentSections, outro, heroImage } = data.page.fields;
 let posts = data.posts;
 </script>
 
@@ -15,11 +15,20 @@ let posts = data.posts;
 	{@html intro}
 </Hero>
 
-{#each contentSections as section, i}
+{#if sections?.length}
+	{#each sections as section, i}
+	<ContentSection prose size="lg" index={i}>
+		<h2 class="text-3xl font-bold">{section.title}</h2>
+		{@html section.content}
+	</ContentSection>
+	{/each}
+{:else}
+	{#each contentSections as section, i}
 	<ContentSection prose size="lg" index={i}>
 		{@html section}
 	</ContentSection>
-{/each}
+	{/each}
+{/if}
 
 {#if outro}
 	<Outro>{@html outro}</Outro>

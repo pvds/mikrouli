@@ -10,7 +10,7 @@ import BookingDialog from "$ui/BookingDialog.svelte";
 import Image from "$ui/image/Image.svelte";
 
 let { data } = $props();
-let { header, intro, sections, heroImage } = data.page.fields;
+let { header, intro, sections, contentSections, heroImage } = data.page.fields;
 let services = data.services;
 let posts = data.posts;
 </script>
@@ -34,13 +34,19 @@ let posts = data.posts;
 
 <TeaserSection items={services} priority slug="services" title="How I Can Support You"/>
 
-{#if sections}
+{#if sections?.length}
 	{#each sections as section, i}
-		<ContentSection footer={i === sections.length - 1 ? footerCta : undefined} index={i}
-						wave="even" size="lg" prose>
-				<h2 class="text-3xl font-bold">{section.title}</h2>
-			{@html section.content}
-		</ContentSection>
+	<ContentSection footer={i === sections.length - 1 ? footerCta : undefined} index={i}
+					wave="even" size="lg" prose>
+		<h2 class="text-3xl font-bold">{section.title}</h2>
+		{@html section.content}
+	</ContentSection>
+	{/each}
+{:else}
+	{#each contentSections as section, i}
+	<ContentSection prose size="lg" index={i} wave="even">
+		{@html section}
+	</ContentSection>
 	{/each}
 {/if}
 
