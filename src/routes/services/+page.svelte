@@ -14,20 +14,19 @@ let posts = data.posts;
 </script>
 
 <Hero title={header} image={heroImage ? getImageName(heroImage.file.fileName) : undefined}
-	  imageAlt={heroImage ? heroImage.title : undefined} imagePositionClass="object-[100%_75%]">
-	<div class="md:w-3/5 lg:w-3/4">
-		{@html intro}
-	</div>
-	<a href={`${base}/about`} aria-label="Learn more about me"
-	   class="relative block md:absolute mx-auto md:mx-[inherit] -mt-10 w-1/2 md:w-2/5 md:bottom-0 md:right-0 -bottom-16">
-		<Image image="eleni-papamikrouli"
-			   sizes="max-width(48em) 50vw,max(25rem,40vw)"
-			   isLocal
-			   priority
-			   alt="Portrait of Eleni Papamikrouli"
-			   widthClass="md:w-[min(25rem,40vw)]"
-			   classes="drop-shadow-[0_0_48px_rgba(24,68,70,.6)]" />
-	</a>
+	  imageAlt={heroImage ? heroImage.title : undefined} imagePositionClass="object-[100%_75%]" sideAbsolute>
+	{@html intro}
+	{#snippet side()}
+		<a href={`${base}/about`} aria-label="Learn more about me">
+			<Image image="eleni-papamikrouli"
+				   sizes="max-width(48em) clamp(10rem,50vw,15rem),min(20rem,25vw)"
+				   isLocal
+				   priority
+				   alt="Portrait of Eleni Papamikrouli"
+				   widthClass="w-[clamp(10rem,50vw,15rem)] md:w-[min(20rem,25vw)]"
+				   classes="translate-z-0 drop-shadow-[0_0_48px_rgba(24,68,70,.6)]" />
+		</a>
+	{/snippet}
 </Hero>
 
 <TeaserSection items={services} priority slug="services" title="How I Can Support You"/>
