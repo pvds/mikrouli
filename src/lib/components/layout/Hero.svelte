@@ -25,9 +25,7 @@ const spacingY = $derived(() => ({
 	bottom: sideAbsolute ? (image ? "-bottom-20 md:-bottom-30" : "-bottom-16 md:-bottom-24") : "",
 }));
 
-const sideClasses = $derived(
-	sideAbsolute ? "md:absolute md:right-0 w-[clamp(10rem,50vw,15rem)]" : "",
-);
+const sideClasses = $derived(sideAbsolute ? "md:absolute md:right-0" : "");
 </script>
 
 <div class="hero relative mb-12 -mt-8">
