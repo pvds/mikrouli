@@ -31,7 +31,7 @@ on:
             - "lefthook.yml"
             - "favicons.json"
     repository_dispatch:
-        types: [contentful-content-changed]
+        types: [ContentUpdate]
     workflow_dispatch:
         inputs:
             deploy_staging:
