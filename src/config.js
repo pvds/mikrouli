@@ -19,16 +19,21 @@ export const ORG_NAME_SUFFIX = "Systemic Therapy";
 export const ORG_SLOGAN = "New Perspectives, Meaningful Change";
 export const ORG_DESCRIPTION = "Systemic Therapy for Individuals, Families, and Organizations";
 export const ORG_LOGO_URL = "images/logo.svg";
-export const ORG_VAT_ID = "FR12345678901";
+export const ORG_VAT_ID = ""; // no tax requirements yet
 export const ORG_TWITTER = "https://twitter.com/mikrouli";
 export const ORG_LINKEDIN = "https://linkedin.com/company/mikrouli";
+export const ORG_INSTAGRAM = "https://instagram.com/mikrouli";
+export const ORG_FACEBOOK = "https://facebook.com/mikrouli";
+export const ORG_SAMEAS = [ORG_LINKEDIN];
 
 // Owner
 export const OWNER_NAME = "Eleni Papamikrouli";
 export const OWNER_JOB_TITLE = "Systemic Therapist";
 export const OWNER_IMAGE = "images/eleni-papamikrouli.jpg";
 export const OWNER_LINKEDIN = "https://www.linkedin.com/in/eleni-papamikrouli";
-export const OWNER_TWITTER = "https://twitter.com/yourprofile";
+export const OWNER_TWITTER = "https://twitter.com/eleni-papamikrouli";
+export const OWNER_INSTAGRAM = "https://instagram.com/eleni-papamikrouli";
+export const OWNER_SAMEAS = [OWNER_LINKEDIN];
 
 // Contact
 export const CONTACT_PHONE = "+31 6 1944 6263";
@@ -42,12 +47,12 @@ export const CONTACT_COUNTRY = "NL";
 /** @type {import('$global/seo/Seo.svelte.types').SEOProps} */
 export const SEO_DEFAULT = {
 	siteName: ORG_NAME,
-	imageURL: "images/preview.webp",
+	imageURL: SITE_PREVIEW_URL,
 	logo: ORG_LOGO_URL,
 	author: OWNER_NAME,
 	type: "website",
 	index: false,
-	twitter: true,
+	twitter: false,
 	openGraph: true,
 };
 export const SEO_USE_AGGREGATE_RATING = false;

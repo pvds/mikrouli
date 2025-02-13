@@ -35,15 +35,13 @@ import {
 	CONTACT_PHONE,
 	CONTACT_POSTAL,
 	CONTACT_STREET,
-	ORG_LINKEDIN,
 	ORG_NAME,
-	ORG_TWITTER,
+	ORG_SAMEAS,
 	ORG_VAT_ID,
 	OWNER_IMAGE,
 	OWNER_JOB_TITLE,
-	OWNER_LINKEDIN,
 	OWNER_NAME,
-	OWNER_TWITTER,
+	OWNER_SAMEAS,
 	SITE_PREVIEW_URL,
 	URL_BASE_PRODUCTION,
 } from "$config";
@@ -267,7 +265,7 @@ function getHomePage(page) {
 				name: ORG_NAME,
 				url: URL_BASE_PRODUCTION,
 				logo: getOrgLogo(),
-				sameAs: [ORG_TWITTER, ORG_LINKEDIN],
+				sameAs: ORG_SAMEAS,
 				founder: [
 					{
 						"@type": "Person",
@@ -278,7 +276,7 @@ function getHomePage(page) {
 							name: ORG_NAME,
 							url: URL_BASE_PRODUCTION,
 						},
-						sameAs: [OWNER_LINKEDIN, OWNER_TWITTER],
+						sameAs: OWNER_SAMEAS,
 						image: `${URL_BASE_PRODUCTION}/${OWNER_IMAGE}`,
 						alumniOf: [
 							{
