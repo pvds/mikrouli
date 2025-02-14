@@ -1,10 +1,11 @@
 <script>
 import { base } from "$app/paths";
 import { IMAGE_SIZES } from "$config";
-import { onMount } from "svelte";
+import metadata from "$data/generated/meta/images.json";
 
 /**
  * @typedef {import('$types/content').ImageMeta} ImageMeta
+ * @typedef {Record<string, ImageMeta>} Metadata
  * @typedef {Object} Props
  * @property {string} image
  * @property {string} alt
@@ -24,21 +25,26 @@ let {
 	sizes,
 	priority,
 	classes,
+	isLocal = false,
 	heightClass = "h-full",
 	widthClass = "w-full",
 	positionClass = "object-center",
-	isLocal = false,
 } = $props();
 
 const IMAGE_DIR = "/images";
 const POSITION_CLASSES = "absolute object-cover";
 
-let loadedData = $state(false);
+const usePlaceholder = false;
+
+let loadedData = $state(true);
 let loadedImage = $state(false);
 /** @type {HTMLImageElement|undefined} */
 let img = $state();
-/** @type {ImageMeta|undefined} */
-let meta = $state();
+// /** @type {ImageMeta|undefined} */
+// let meta = $state();
+
+const metaCategory = $derived(/** @type Metadata */ (isLocal ? metadata.local : metadata.cms));
+const meta = $derived(metaCategory[image]);
 
 const height = $derived(heightClass ? heightClass : "h-full");
 const width = $derived(widthClass ? widthClass : "w-full");
@@ -48,22 +54,22 @@ const placeholder = $derived(meta?.placeholder);
 const aspectRatio = $derived(meta ? `${meta.width}/${meta.height}` : "1/1");
 const hasAlpha = $derived(meta?.hasAlpha);
 
-const loadMetadata = async () => {
-	try {
-		const metadata = await import(
-			`$data/generated/meta/${isLocal ? "local" : "cms"}/${image}.json`
-		);
-		meta = metadata.default;
-		loadedData = true;
-	} catch (error) {
-		console.error("Failed to load image metadata:", error);
-		loadedData = false;
-	}
-};
+// const loadMetadata = async () => {
+// 	try {
+// 		const metadata = await import(
+// 			`$data/generated/meta/${isLocal ? "local" : "cms"}/${image}.json`
+// 		);
+// 		meta = metadata.default;
+// 		loadedData = true;
+// 	} catch (error) {
+// 		console.error("Failed to load image metadata:", error);
+// 		loadedData = false;
+// 	}
+// };
 
-onMount(() => {
-	loadMetadata();
-});
+// onMount(() => {
+// 	loadMetadata();
+// });
 
 const onload = () => {
 	img?.classList.remove("opacity-0");
@@ -78,11 +84,11 @@ const onload = () => {
 const srcset = (sizes) =>
 	sizes.map((size) => `${base}${directory}/${image}-${size}.webp ${size}w`).join(", ");
 </script>
-<div class="relative {height} {width} not-prose {loadedData ? '' :
+<div class="relative {height} {width} not-prose {loadedImage || hasAlpha ? '' :
 'bg-black/10 animate-pulse rounded-md'}" style={`aspect-ratio: ${aspectRatio};`}
 >
 {#if loadedData}
-	{#if !hasAlpha && placeholder && !loadedImage}
+	{#if usePlaceholder && placeholder && !hasAlpha && !loadedImage}
 	<img src={placeholder} {alt}
 		 class="{POSITION_CLASSES} {positionClass} {classes} {height} {width} transition-all"
 		 loading={priority ? "eager" : "lazy"}
@@ -99,7 +105,7 @@ const srcset = (sizes) =>
 			loading={priority ? "eager" : "lazy"}
 			fetchpriority={priority ? "high" : null}
 			{onload}
-			onerror={() => loadedData = false}
+			onerror={() => loadedImage = false}
 		/>
 	</picture>
 {/if}
