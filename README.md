@@ -52,6 +52,10 @@ developer experience and user-centric design.
 ### Analytics and Monitoring
 - **[Umami](https://umami.is/):** Privacy-focused analytics.
 
+### Email
+- **[forwardemail](https://forwardemail.net):** Privacy focussed email 
+  service provider
+
 ---
 
 ## Getting Started
