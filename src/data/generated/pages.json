@@ -191,7 +191,7 @@
                 },
                 {
                     "title": "Get to know me",
-                    "content": "I’m Eleni Papamikrouli, originally from Greece. I’ve lived in the Netherlands since 2007. I hold a master’s in psychology and study systemic therapy in both countries.\n\n> Therapy offers insight, reveals strengths, and explores values.\n\nMy approach is practical, collaborative, and curious."
+                    "content": "I’m Eleni Papamikrouli, originally from Greece. I’ve lived in the Netherlands since 2007. I hold a master’s in psychology and study systemic therapy in both countries.\n\n> Therapy offers insight, reveals strengths, and explores values.\n\nMy approach is practical, collaborative, and curious.\n\n{{ link url=\"/about\" text=\"Learn more about me\" }}"
                 },
                 {
                     "title": "Ready to get in touch?",
