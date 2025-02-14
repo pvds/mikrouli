@@ -39,7 +39,6 @@ let services = data.services;
 	{/each}
 {/if}
 
-
 {#if outro}
 	<Outro>{@html outro}</Outro>
 {/if}
