@@ -40,8 +40,6 @@ let loadedData = $state(true);
 let loadedImage = $state(false);
 /** @type {HTMLImageElement|undefined} */
 let img = $state();
-// /** @type {ImageMeta|undefined} */
-// let meta = $state();
 
 const metaCategory = $derived(/** @type Metadata */ (isLocal ? metadata.local : metadata.cms));
 const meta = $derived(metaCategory[image]);
@@ -54,6 +52,14 @@ const placeholder = $derived(meta?.placeholder);
 const aspectRatio = $derived(meta ? `${meta.width}/${meta.height}` : "1/1");
 const hasAlpha = $derived(meta?.hasAlpha);
 
+const onload = () => {
+	img?.classList.remove("opacity-0");
+	loadedImage = true;
+};
+
+// Dynamic import causes a loading delay, keep for future reference
+// /** @type {ImageMeta|undefined} */
+// let meta = $state();
 // const loadMetadata = async () => {
 // 	try {
 // 		const metadata = await import(
@@ -66,15 +72,9 @@ const hasAlpha = $derived(meta?.hasAlpha);
 // 		loadedData = false;
 // 	}
 // };
-
 // onMount(() => {
 // 	loadMetadata();
 // });
-
-const onload = () => {
-	img?.classList.remove("opacity-0");
-	loadedImage = true;
-};
 
 /**
  * Generate a `srcset` string for responsive images
@@ -84,6 +84,7 @@ const onload = () => {
 const srcset = (sizes) =>
 	sizes.map((size) => `${base}${directory}/${image}-${size}.webp ${size}w`).join(", ");
 </script>
+
 <div class="relative {height} {width} not-prose {loadedImage || hasAlpha ? '' :
 'bg-black/10 animate-pulse rounded-md'}" style={`aspect-ratio: ${aspectRatio};`}
 >
