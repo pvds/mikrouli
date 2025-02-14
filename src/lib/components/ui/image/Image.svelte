@@ -2,7 +2,6 @@
 import { base } from "$app/paths";
 import { IMAGE_SIZES } from "$config";
 import metadata from "$data/generated/meta/images.json";
-import { onMount } from "svelte";
 
 /**
  * @typedef {import('$types/content').ImageMeta} ImageMeta
@@ -34,6 +33,8 @@ let {
 
 const IMAGE_DIR = "/images";
 const POSITION_CLASSES = "absolute object-cover";
+
+const usePlaceholder = false;
 
 let loadedData = $state(true);
 let loadedImage = $state(false);
@@ -87,7 +88,7 @@ const srcset = (sizes) =>
 'bg-black/10 animate-pulse rounded-md'}" style={`aspect-ratio: ${aspectRatio};`}
 >
 {#if loadedData}
-	{#if !hasAlpha && placeholder && !loadedImage}
+	{#if usePlaceholder && placeholder && !hasAlpha && !loadedImage}
 	<img src={placeholder} {alt}
 		 class="{POSITION_CLASSES} {positionClass} {classes} {height} {width} transition-all"
 		 loading={priority ? "eager" : "lazy"}
