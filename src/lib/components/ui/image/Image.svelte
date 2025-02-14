@@ -31,32 +31,6 @@ let {
 	positionClass = "object-center",
 } = $props();
 
-const IMAGE_DIR = "/images";
-const POSITION_CLASSES = "absolute object-cover";
-
-const usePlaceholder = false;
-
-let loadedData = $state(true);
-let loadedImage = $state(false);
-/** @type {HTMLImageElement|undefined} */
-let img = $state();
-
-const metaCategory = $derived(/** @type Metadata */ (isLocal ? metadata.local : metadata.cms));
-const meta = $derived(metaCategory[image]);
-
-const height = $derived(heightClass ? heightClass : "h-full");
-const width = $derived(widthClass ? widthClass : "w-full");
-const directory = $derived(`${IMAGE_DIR}/${isLocal ? "local" : "cms"}`);
-
-const placeholder = $derived(meta?.placeholder);
-const aspectRatio = $derived(meta ? `${meta.width}/${meta.height}` : "1/1");
-const hasAlpha = $derived(meta?.hasAlpha);
-
-const onload = () => {
-	img?.classList.remove("opacity-0");
-	loadedImage = true;
-};
-
 // Dynamic import causes a loading delay, keep for future reference
 // /** @type {ImageMeta|undefined} */
 // let meta = $state();
@@ -76,6 +50,25 @@ const onload = () => {
 // 	loadMetadata();
 // });
 
+const IMAGE_DIR = "/images";
+const POSITION_CLASSES = "absolute object-cover";
+
+const usePlaceholder = false;
+
+let loadedData = $state(true);
+let loadedImage = $state(false);
+
+const metaCategory = $derived(/** @type Metadata */ (isLocal ? metadata.local : metadata.cms));
+const meta = $derived(metaCategory[image]);
+
+const height = $derived(heightClass ? heightClass : "h-full");
+const width = $derived(widthClass ? widthClass : "w-full");
+const directory = $derived(`${IMAGE_DIR}/${isLocal ? "local" : "cms"}`);
+
+const placeholder = $derived(meta?.placeholder);
+const aspectRatio = $derived(meta ? `${meta.width}/${meta.height}` : "1/1");
+const hasAlpha = $derived(meta?.hasAlpha);
+
 /**
  * Generate a `srcset` string for responsive images
  * @param {number[]} sizes
@@ -86,8 +79,7 @@ const srcset = (sizes) =>
 </script>
 
 <div class="relative {height} {width} not-prose {loadedImage || hasAlpha ? '' :
-'bg-black/10 animate-pulse rounded-md'}" style={`aspect-ratio: ${aspectRatio};`}
->
+'bg-black/10 animate-pulse rounded-md'}" style={`aspect-ratio: ${aspectRatio};`}>
 	{#if loadedData}
 		{#if usePlaceholder && placeholder && !hasAlpha && !loadedImage}
 			<img src={placeholder} {alt}
@@ -98,14 +90,12 @@ const srcset = (sizes) =>
 		{/if}
 		<picture>
 			<source srcset={srcset(IMAGE_SIZES)} sizes={sizes} type="image/webp" />
-			<img
-				bind:this={img}
-				{alt}
-				class="{POSITION_CLASSES} {positionClass} {classes} {height} {width} transition-all opacity-0"
-				src={`${base}${directory}/${image}-1280.webp`}
+			<img src={`${base}${directory}/${image}-1280.webp`} {alt}
+				class="{POSITION_CLASSES} {positionClass} {classes} {height} {width}"
+				class:opacity-0={!loadedImage}
 				loading={priority ? "eager" : "lazy"}
 				fetchpriority={priority ? "high" : null}
-				{onload}
+				onload={() => loadedImage = true}
 				onerror={() => loadedImage = false}
 			/>
 		</picture>
