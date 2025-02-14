@@ -122,6 +122,15 @@ export const getPage = (slug) => {
 };
 
 /**
+ * Fetch and process blog post slugs for generating dynamic routes.
+ * @return {{ slug: string }[]} - An array of objects with a slug property.
+ **/
+export const getPageEntries = () => {
+	const pages = pageItems;
+	return pages?.map((page) => ({ slug: page.fields.slug })) || [];
+};
+
+/**
  * Fetch and process a specific service by its slug.
  * @param {string} slug - The slug to fetch.
  * @returns {ServiceEntry} - The processed fields.
