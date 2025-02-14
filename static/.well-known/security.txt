@@ -3,4 +3,4 @@
 Contact: https://pvdsteen.com
 Preferred-Languages: en, fr, de
 Canonical: https://mikrouli.nl/.well-known/security.txt
-Policy: https://mikrouli.nl/security-policy.md
+Policy: https://mikrouli.nl/security
