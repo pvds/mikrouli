@@ -13,8 +13,7 @@ export function GET() {
 	const isProduction = process.env.DEPLOY_TARGET === "production";
 
 	// Apply dynamic indexing rules
-	// TODO: remove "Disallow: /" for production when site is ready to launch
-	const indexingRule = isProduction ? "Disallow: /" : "Disallow: /";
+	const indexingRule = isProduction ? "" : "Disallow: /";
 	const sitemapRule = isProduction
 		? `Sitemap: ${URL_BASE_PRODUCTION}/sitemap.xml`
 		: `Sitemap: ${URL_BASE_STAGING}/sitemap.xml`;
