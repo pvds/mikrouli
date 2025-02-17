@@ -37,7 +37,7 @@ const sideClasses = $derived(sideAbsolute ? "md:absolute md:right-0" : "");
 	<div class="absolute inset-0">
 		<Image {image} alt={imageAlt} sizes="50vw" priority positionClass={imagePositionClass}/>
 	</div>
-	<div class="absolute inset-0 bg-[var(--primary-950)]/60"></div>
+	<div class="absolute inset-0 bg-[var(--primary-950)]/75"></div>
 	{/if}
 	<Section classes="{!image && 'bg-primary-light'} overflow-hidden"
 			customSpacing="{SPACING_X_CLASSES} {spacingY().padding}"
