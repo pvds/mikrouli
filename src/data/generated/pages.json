@@ -221,18 +221,18 @@
                     "title": "Your Journey Starts Here",
                     "content": "Therapy offers space to gain clarity and explore change.\n\n> A space to reflect, understand, and move forward in a way that feels right for you.\n\nSpecialising in systemic therapy, I examine how relationships, experiences, and culture shape life.\n\n{{ link url=\"/services\" text=\"Explore my services\"}}",
                     "image": {
-                        "title": "Living abroad",
-                        "description": "Woman dragging a suitcase",
+                        "title": "Paper boat on water",
+                        "description": "Folded paper boat floating on the water",
                         "file": {
-                            "url": "//images.ctfassets.net/fnyi5t75mv2d/1vfLQiL9QT9uF2ngrnRAPL/842e41090c0429ce5c2929c95ba11f04/living-abroad.jpg",
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/2BiJV6JlqHsI4ind1SMxOa/a3577f775afd703cd2e9e95f6d4c3a07/pexels-dhananjay-naik-3149699-5665616.jpg",
                             "details": {
-                                "size": 88349,
+                                "size": 1009457,
                                 "image": {
-                                    "width": 1280,
-                                    "height": 720
+                                    "width": 6000,
+                                    "height": 4000
                                 }
                             },
-                            "fileName": "living-abroad.jpg",
+                            "fileName": "pexels-dhananjay-naik-3149699-5665616.jpg",
                             "contentType": "image/jpeg"
                         }
                     }

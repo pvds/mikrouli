@@ -32,12 +32,6 @@
       "height": "1080",
       "hasAlpha": false
     },
-    "couples-therapy": {
-      "placeholder": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAAAwAgCdASoQAAkAAsBMJYwCdH8AFe+D/Sp7KAD+kYTVOw06GGfdzuajOnSbUYOYPXgXVaaXiVQbrj1MiYaiySWq5Z+nQd11mAAAAA==",
-      "width": "1920",
-      "height": "1080",
-      "hasAlpha": false
-    },
     "cultural-sensitivity": {
       "placeholder": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAAAQAgCdASoQAAkAAsBMJZACdAEWgYy9BYtIAP7xsmKeTXnWkNKV40rpU9ewxwxpLnRy/7i4s3Nc7aXKsAAAAA==",
       "width": "1600",
@@ -50,22 +44,10 @@
       "height": "1080",
       "hasAlpha": false
     },
-    "family-therapy": {
-      "placeholder": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAACwAQCdASoQAAsAAsBMJZQAAtmwzQ8AAPl5jZVvIdhC1c3FqERbBGfTOdAlQuLcNXVms+IyD+nveY5kgDB0AAAA",
-      "width": "2121",
-      "height": "1414",
-      "hasAlpha": false
-    },
     "generational-patterns": {
       "placeholder": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACwAQCdASoQAAgAAsBMJZwCdADF4J0AAP75x9oX5XhF8zz8QrZXLUa1uwAUAAAA",
       "width": "1200",
       "height": "600",
-      "hasAlpha": false
-    },
-    "individual-therapy": {
-      "placeholder": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAACQAQCdASoQAAsAAsBMJZQCdABoXJAA/uhsZNgcddBTBmqzJefbf9UH4M1+3fBQv7HnCG6POU9BkUFugXUmPtkn4+irN+H7Y6I+ptAA",
-      "width": "1200",
-      "height": "800",
       "hasAlpha": false
     },
     "living-abroad": {
@@ -78,6 +60,30 @@
       "placeholder": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADwAQCdASoQAAsAAsBMJYwCdACqQF5XKgAA/vmZFG3971fmn8CsP1A8yph/hkFeYIyc86HvD3A92G6KGF+dY+lgxYFgXO7z5KRveQp2gAA=",
       "width": "1200",
       "height": "825",
+      "hasAlpha": false
+    },
+    "pexels-dhananjay-naik-3149699-5665616": {
+      "placeholder": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAADwAQCdASoQAAsAAsBMJYwCdAEO9EUf2zAA/vIWzE5f0N9XwP4kCrn6Zz5PqepMMGsi/Awa5r02oAAA",
+      "width": "6000",
+      "height": "4000",
+      "hasAlpha": false
+    },
+    "pexels-shkrabaanthony-5217833": {
+      "placeholder": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAAAwAgCdASoQAAsAAsBMJQBOgCK3nceTbiFoAAD42wQIMwqEsEo7XH5M2FMGPNMRoDXu8lST6AKEM98AG1gAAA==",
+      "width": "4000",
+      "height": "2667",
+      "hasAlpha": false
+    },
+    "pexels-shvets-production-7176319": {
+      "placeholder": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAACwAQCdASoQAAsAAsBMJZQCdABqcMsAAP7qXFTTO4mbvwsAz70MATWkFrgJuq/y+bnL41aO6xbUm80ASlhaBGm3OZAAAA==",
+      "width": "6240",
+      "height": "4160",
+      "hasAlpha": false
+    },
+    "pexels-shvetsa-11368530": {
+      "placeholder": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAACwAQCdASoQAAsAAsBMJQBOgBsyZhQAAP71naehlquSBzysJmzfuzgjBOyjpkF2O53aqrEH3tkmveL/9rhUi8cLBAAAAA==",
+      "width": "6240",
+      "height": "4160",
       "hasAlpha": false
     },
     "relationship-communication": {
