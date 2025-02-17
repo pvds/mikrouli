@@ -1,13 +1,15 @@
 <script>
 import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
+import Outro from "$layout/Outro.svelte";
 import Section from "$layout/Section.svelte";
 import TeaserSection from "$layout/TeaserSection.svelte";
 import { getImageName } from "$lib/helpers/image.js";
 
 let { data } = $props();
-let { header, intro, sections, contentSections, heroImage } = data.page.fields;
+let { header, intro, sections, contentSections, heroImage, outro, outroImage } = data.page.fields;
 let reviews = data.reviews;
+let services = data.services;
 let posts = data.posts;
 </script>
 
@@ -48,3 +50,12 @@ let posts = data.posts;
 {/if}
 
 <TeaserSection items={posts} slug="blog" title="My latest insights"/>
+
+{#if outro}
+	<Outro image={outroImage}>
+		{@html outro}
+	</Outro>
+{/if}
+
+<TeaserSection items={services} slug="services" title="How I Can Support You"/>
+

@@ -8,7 +8,7 @@ import { getImageName } from "$lib/helpers/image.js";
 import BlogArticle from "$ui/BlogArticle.svelte";
 
 let { data } = $props();
-let { header, intro, sections, contentSections, outro, heroImage } = data.page.fields;
+let { header, intro, sections, contentSections, outro, heroImage, outroImage } = data.page.fields;
 let posts = data.posts;
 let services = data.services;
 </script>
@@ -39,7 +39,9 @@ let services = data.services;
 {/if}
 
 {#if outro}
-	<Outro>{@html outro}</Outro>
+	<Outro image={outroImage}>
+		{@html outro}
+	</Outro>
 {/if}
 
 <TeaserSection items={services} slug="services" title="How I Can Support You"/>

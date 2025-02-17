@@ -6,7 +6,7 @@ import TeaserSection from "$layout/TeaserSection.svelte";
 import { getImageName } from "$lib/helpers/image.js";
 
 let { data } = $props();
-let { header, intro, sections, contentSections, outro, heroImage } = data.page.fields;
+let { header, intro, sections, contentSections, outro, heroImage, outroImage } = data.page.fields;
 let posts = data.posts;
 </script>
 
@@ -30,7 +30,9 @@ let posts = data.posts;
 {/if}
 
 {#if outro}
-	<Outro>{@html outro}</Outro>
+	<Outro image={outroImage}>
+		{@html outro}
+	</Outro>
 {/if}
 
 <TeaserSection items={posts} slug="blog" title="My latest insights"/>

@@ -14,7 +14,7 @@ let { data } = $props();
 let { title, intro, sections, contentSections, heroImage } = $derived(data.post.fields);
 let { createdAt, updatedAt } = $derived(data.post.meta);
 let { prev, next } = $derived(data.post);
-let outro = $derived(data.outro);
+let { outro, outroImage } = $derived(data.page);
 let services = $derived(data.services);
 
 let created = $state(U_NBSP);
@@ -70,7 +70,9 @@ onMount(() => {
 {/if}
 
 {#if outro}
-	<Outro>{@html outro}</Outro>
+	<Outro image={outroImage}>
+		{@html outro}
+	</Outro>
 {/if}
 
 <TeaserSection items={services} slug="services" title="How I Can Support You"/>

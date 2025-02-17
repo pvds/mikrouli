@@ -86,6 +86,12 @@
       "height": "1250",
       "hasAlpha": false
     },
+    "starting-therapy-1": {
+      "placeholder": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAADwAQCdASoQAAkAAsBMJQBOgCHPQNdAHUAA/o7M/+S+r10ZHAOZtBNsUcneqyChorTTdNX0l3P4k4LhmmvtcCBzyIAAAA==",
+      "width": "1858",
+      "height": "1024",
+      "hasAlpha": true
+    },
     "starting-therapy-3": {
       "placeholder": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAAAQAgCdASoQAAoAAsBMJZgCdAEVcP375sgAAP6ZbWCuB08VM+68/TXwsWBqFO5PNCaL0ZZHUttUh+XlHV8ZQzsF1irHPjdyB8SKWcAA",
       "width": "800",

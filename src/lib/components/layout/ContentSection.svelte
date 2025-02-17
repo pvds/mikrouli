@@ -10,9 +10,10 @@ import Section from "./Section.svelte";
  * @typedef {import('$types/content').SectionTheme} SectionTheme
  * @typedef {import('$types/content').SectionSize} SectionSize
  * @typedef {Object} Props
+ * @property {Snippet} children
+ * @property {Snippet} [contentFooter]
  * @property {Snippet} [header]
  * @property {Snippet} [footer]
- * @property {Snippet} children
  * @property {Image} [image]
  * @property {string} [title]
  * @property {number} [index]
@@ -30,6 +31,7 @@ let {
 	header,
 	footer,
 	children,
+	contentFooter,
 	index,
 	image,
 	title,
@@ -62,24 +64,29 @@ const proseThemeClasses = proseInvert ? "prose-invert" : "";
 <Section wave={hasWave(index)} {size} {classes} {theme}>
 	{@render header?.()}
 	<div class="flex gap-16">
-		<div class="flex-1 {prose ? 'prose marker:text-accent-dark prose-headings:font-bold' : ''}
-		 	{proseThemeClasses} {proseSizeClasses(size)} {proseClasses}">
+		<div class="flex-1">
 			{#if title}
-			<h2 class="mb-[1.25em] text-2xl md:text-3xl font-bold not-prose">{title}</h2>
+			<h2 class="mb-[1.25em] text-2xl md:text-3xl font-bold">{title}</h2>
 			{/if}
-			{@render children?.()}
+			<div class="{prose ? 'prose marker:text-accent-dark prose-headings:font-bold' : ''}
+		 	{proseThemeClasses} {proseSizeClasses(size)} {proseClasses}"
+				 style={!image ? "--container-prose: 65ch" : ""}>
+				{@render children?.()}
+			</div>
+			{@render contentFooter?.()}
 		</div>
+
+		{#if image}
 		<div class="flex-auto max-md-mid:hidden self-center justify-self-center">
-			{#if image}
 				<Image image={getImageName(image.file.fileName)}
 					   sizes="20rem"
 					   alt={image.title}
-					   widthClass="w-full max-w-[50vw]"
+					   widthClass="w-full max-w-[calc(45vw)]"
 					   heightClass="h-full"
 					   maskIndex={index !== undefined ? index + 2 : undefined}
 					   classes="translate-z-0" />
-			{/if}
 		</div>
+		{/if}
 	</div>
 	{@render footer?.()}
 </Section>

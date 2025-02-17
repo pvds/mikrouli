@@ -13,5 +13,5 @@ export const load = async ({ params }) => {
 	const services = getServices();
 	const seo = getSeo(post, "BlogPostPage");
 
-	return { post, outro: page.fields.outro, services, seo };
+	return { post, page: page.fields, services, seo };
 };

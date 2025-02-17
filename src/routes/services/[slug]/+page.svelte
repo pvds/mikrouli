@@ -22,7 +22,9 @@ let services = $derived(data.services);
 {/each}
 
 {#if outro}
-	<Outro>{@html outro}</Outro>
+	<Outro image={heroImage}>
+		{@html outro}
+	</Outro>
 {/if}
 
 <TeaserSection items={services} slug="services" title="Discover my other services" />

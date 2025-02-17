@@ -1,11 +1,12 @@
 <script>
 import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
+import Outro from "$layout/Outro.svelte";
 import { getImageName } from "$lib/helpers/image.js";
 import Image from "$ui/image/Image.svelte";
 
 let { data } = $props();
-let { header, intro, sections, contentSections, heroImage } = data.page.fields;
+let { header, intro, sections, contentSections, heroImage, outro, outroImage } = data.page.fields;
 </script>
 
 <Hero title={header} proseClasses=" " image={heroImage ? getImageName(heroImage.file.fileName) :
@@ -33,4 +34,10 @@ undefined}
 			{@html section}
 		</ContentSection>
 	{/each}
+{/if}
+
+{#if outro}
+	<Outro image={outroImage}>
+		{@html outro}
+	</Outro>
 {/if}

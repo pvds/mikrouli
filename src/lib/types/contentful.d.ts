@@ -80,6 +80,7 @@ export type ImageField = {
 
 export type PageFields = BaseFields & {
 	heroImage?: ImageField;
+	outroImage?: ImageField;
 };
 
 export type PageEntry = {

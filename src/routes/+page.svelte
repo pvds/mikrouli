@@ -1,16 +1,14 @@
 <script>
 import { base } from "$app/paths";
-import { BUTTON_THEME } from "$config";
 import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
+import Outro from "$layout/Outro.svelte";
 import TeaserSection from "$layout/TeaserSection.svelte";
-import { svgIcon } from "$lib/helpers/icon";
 import { getImageName } from "$lib/helpers/image.js";
-import BookingDialog from "$ui/BookingDialog.svelte";
 import Image from "$ui/image/Image.svelte";
 
 let { data } = $props();
-let { header, intro, sections, contentSections, heroImage } = data.page.fields;
+let { header, intro, sections, contentSections, heroImage, outro, outroImage } = data.page.fields;
 let services = data.services;
 let posts = data.posts;
 
@@ -39,10 +37,7 @@ const isLastSection = (i) => sections && i === sections.length - 1;
 
 {#if sections?.length}
 	{#each sections as section, i}
-	<ContentSection footer={isLastSection(i) ? footerCta : undefined} index={i}
-					wave="even" size="lg" theme={isLastSection(i) ? "primaryDark" : "default"}
-					prose proseInvert={isLastSection(i)}
-					image={section.image} title={section.title}>
+	<ContentSection index={i} wave="even" size="lg" prose image={section.image} title={section.title}>
 		{@html section.content}
 	</ContentSection>
 	{/each}
@@ -54,14 +49,11 @@ const isLastSection = (i) => sections && i === sections.length - 1;
 	{/each}
 {/if}
 
-{#snippet footerCta()}
-	<div class="flex flex-wrap gap-4 mt-8">
-		<BookingDialog type="intake" ctaIcon="calendar"/>
-		<a href={`${base}/contact`}
-		   class="group py-2 px-4 font-semibold transition-colors {BUTTON_THEME.secondary}">Get in
-			contact{@html svgIcon("internal")}</a>
-	</div>
-{/snippet}
+{#if outro}
+	<Outro image={outroImage}>
+		{@html outro}
+	</Outro>
+{/if}
 
 <TeaserSection items={posts} slug="blog" title="My latest insights"/>
 
