@@ -68,6 +68,12 @@
       "height": "4000",
       "hasAlpha": false
     },
+    "pexels-gustavo-fring-7447259": {
+      "placeholder": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAAAQAgCdASoQAAsAAsBMJYwCdADiVM928j8AAP7ta2K9s4+YuTCQextO7QQumXanjCaXp2qN/ROvbuOA8fDa6NSjsL2IAA==",
+      "width": "5760",
+      "height": "3840",
+      "hasAlpha": false
+    },
     "pexels-shkrabaanthony-5217833": {
       "placeholder": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAAAwAgCdASoQAAsAAsBMJQBOgCK3nceTbiFoAAD42wQIMwqEsEo7XH5M2FMGPNMRoDXu8lST6AKEM98AG1gAAA==",
       "width": "4000",
@@ -76,12 +82,6 @@
     },
     "pexels-shvets-production-7176319": {
       "placeholder": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAACwAQCdASoQAAsAAsBMJZQCdABqcMsAAP7qXFTTO4mbvwsAz70MATWkFrgJuq/y+bnL41aO6xbUm80ASlhaBGm3OZAAAA==",
-      "width": "6240",
-      "height": "4160",
-      "hasAlpha": false
-    },
-    "pexels-shvetsa-11368530": {
-      "placeholder": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAACwAQCdASoQAAsAAsBMJQBOgBsyZhQAAP71naehlquSBzysJmzfuzgjBOyjpkF2O53aqrEH3tkmveL/9rhUi8cLBAAAAA==",
       "width": "6240",
       "height": "4160",
       "hasAlpha": false
