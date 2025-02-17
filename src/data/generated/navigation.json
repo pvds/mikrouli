@@ -1,20 +1,27 @@
 [
     {
         "meta": {
-            "id": "1HR15phB5u1biNFJLqOW2K",
+            "id": "7rtbhuq4c4kUdrRUGSXm9D",
             "type": "Entry",
-            "createdAt": "2025-01-09T07:47:18.583Z",
-            "updatedAt": "2025-02-10T12:58:00.569Z",
+            "createdAt": "2020-12-21T16:49:18.569Z",
+            "updatedAt": "2025-02-17T11:06:52.175Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "Discover more",
-            "slug": "footer-pages",
+            "slug": "primary",
             "items": [
                 {
                     "title": "Services",
                     "longTitle": "Explore Ways We Can Work Together",
                     "url": "services",
+                    "hidden": false,
+                    "isExternal": false
+                },
+                {
+                    "title": "Blog",
+                    "longTitle": "Insights to Support Your Journey",
+                    "url": "blog",
                     "hidden": false,
                     "isExternal": false
                 },
@@ -31,20 +38,6 @@
                     "url": "contact",
                     "hidden": false,
                     "isExternal": false
-                },
-                {
-                    "title": "Blog",
-                    "longTitle": "Insights to Support Your Journey",
-                    "url": "blog",
-                    "hidden": false,
-                    "isExternal": false
-                },
-                {
-                    "title": "Reviews",
-                    "longTitle": "What Our Clients Say",
-                    "url": "reviews",
-                    "hidden": true,
-                    "isExternal": false
                 }
             ]
         }
@@ -54,11 +47,11 @@
             "id": "1Dm7gZYKCKJ09YCMUc0zu8",
             "type": "Entry",
             "createdAt": "2025-02-10T08:16:30.377Z",
-            "updatedAt": "2025-02-10T12:55:30.906Z",
+            "updatedAt": "2025-02-17T11:12:16.655Z",
             "locale": "en-US"
         },
         "fields": {
-            "title": "How to get in contact",
+            "title": "Get in contact",
             "slug": "footer-contact",
             "items": [
                 {
@@ -94,42 +87,42 @@
     },
     {
         "meta": {
-            "id": "7rtbhuq4c4kUdrRUGSXm9D",
+            "id": "1HR15phB5u1biNFJLqOW2K",
             "type": "Entry",
-            "createdAt": "2020-12-21T16:49:18.569Z",
-            "updatedAt": "2025-02-11T17:35:49.942Z",
+            "createdAt": "2025-01-09T07:47:18.583Z",
+            "updatedAt": "2025-02-17T11:09:02.431Z",
             "locale": "en-US"
         },
         "fields": {
-            "title": "Primary",
-            "slug": "primary",
+            "title": "Links",
+            "slug": "footer-pages",
             "items": [
                 {
-                    "title": "Services",
-                    "longTitle": "Explore Ways We Can Work Together",
-                    "url": "services",
+                    "title": "Reviews",
+                    "longTitle": "What Our Clients Say",
+                    "url": "reviews",
+                    "hidden": true,
+                    "isExternal": false
+                },
+                {
+                    "title": "Terms of Service",
+                    "longTitle": "Terms of Service",
+                    "url": "terms-of-service",
                     "hidden": false,
                     "isExternal": false
                 },
                 {
-                    "title": "Blog",
-                    "longTitle": "Insights to Support Your Journey",
-                    "url": "blog",
+                    "title": "Privacy Policy",
+                    "longTitle": "Your privacy is important to me",
+                    "url": "privacy",
                     "hidden": false,
                     "isExternal": false
                 },
                 {
-                    "title": "About",
-                    "longTitle": "Get to Know Me",
-                    "url": "about",
-                    "hidden": false,
-                    "isExternal": false
-                },
-                {
-                    "title": "Contact",
-                    "longTitle": "Contact Me to Take the First Step",
-                    "url": "contact",
-                    "hidden": false,
+                    "title": "Security Policy",
+                    "longTitle": "Your security is important to me",
+                    "url": "security",
+                    "hidden": true,
                     "isExternal": false
                 }
             ]

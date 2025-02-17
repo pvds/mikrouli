@@ -8,13 +8,15 @@ import { toNavItems } from "../../helpers/nav.js";
  * @typedef {import('$types/contentful').NavigationEntry} NavigationEntry
  *
  * @typedef {Object} Props
+ * @property {NavigationEntry} primary
  * @property {NavigationEntry} pages
  * @property {NavigationEntry} contact
  **/
 
 /** @type {Props} */
-let { pages, contact } = $props();
+let { primary, pages, contact } = $props();
 
+const navPrimary = toNavItems(primary.fields.items);
 const navPages = toNavItems(pages.fields.items);
 const navContact = toNavItems(contact.fields.items);
 </script>
@@ -38,11 +40,11 @@ const navContact = toNavItems(contact.fields.items);
 			 customSpacing="p-0">
 		<div
 			class="grid xs-mid:grid-cols-2 gap-x-4 gap-y-8 pb-4 mr-[max(10rem,30vw)] md:mr-[min(15rem,30vw)]">
-			<nav aria-labelledby={pages.meta.id}>
-				<strong id={pages.meta.id}
-						class="sm:text-lg font-bold inline-block mb-2">{pages.fields.title}</strong>
+			<nav aria-labelledby={primary.meta.id}>
+				<strong id={primary.meta.id}
+						class="sm:text-lg font-bold inline-block mb-2">{primary.fields.title}</strong>
 				<ul class="grid min-[28em]:max-xs-mid:grid-cols-2 md-mid:grid-cols-2 gap-x-4 gap-y-2">
-				{#each navPages as { href, label, title, target }}
+				{#each navPrimary as { href, label, title, target }}
 					<li>
 						<a {href} {title} {target}
 						   class="font-semibold text-primary-darker hover:underline hover:text-accent-darker">{label}</a>
@@ -61,6 +63,19 @@ const navContact = toNavItems(contact.fields.items);
 						   class="font-semibold text-primary-darker hover:underline hover:text-accent-darker">{label}</a>
 					</li>
 				{/each}
+				</ul>
+			</nav>
+			<nav aria-labelledby={pages.meta.id} class="xs-mid:col-span-2 md-mid:col-span-2">
+				<strong id={pages.meta.id}
+						class="sm:text-lg font-bold inline-block mb-2">{pages.fields.title}</strong>
+				<ul
+					class="grid grid-cols-1 min-[28em]:grid-cols-2 md-mid:grid-cols-4 gap-x-4 gap-y-2">
+					{#each navPages as { href, label, title, target }}
+						<li>
+							<a {href} {title} {target}
+							   class="font-semibold text-primary-darker hover:underline hover:text-accent-darker">{label}</a>
+						</li>
+					{/each}
 				</ul>
 			</nav>
 		</div>
