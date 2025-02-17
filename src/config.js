@@ -122,7 +122,7 @@ const BOOKING_SESSION_PATH =
 const BOOKING_PAGE_CTA = "View Booking page";
 const BOOKING_BOOK_CTA = "Schedule a Session";
 const BOOKING_INTAKE_CTA = "Schedule an Intake";
-const BOOKING_SESSION_CTA = "Schedule a Therapy Session";
+const BOOKING_SESSION_CTA = "Schedule a Session";
 
 /**
  * @typedef {import('$types/content').BookingOptions} BookingOptions
