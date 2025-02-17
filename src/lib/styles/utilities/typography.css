@@ -37,3 +37,11 @@
 	--tw-prose-invert-th-borders: var(--color-primary-darker);
 	--tw-prose-invert-td-borders: var(--color-primary-darkest);
 }
+
+/* Override until https://github.com/tailwindlabs/tailwindcss-typography/issues/383 is fixed */
+.prose > :first-child {
+	margin-top: 0 !important;
+}
+.prose > :last-child {
+	margin-bottom: 0 !important;
+}
