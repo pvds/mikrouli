@@ -95,7 +95,7 @@ class:drop-shadow-[0_6px_18px_rgba(0,0,0,0.25)]={loadedImage && maskIndex}>
 		<picture>
 			<source srcset={srcset(IMAGE_SIZES)} sizes={sizes} type="image/webp" />
 			<img src={`${base}${directory}/${image}-1280.webp`} {alt}
-				class="{POSITION_CLASSES} {positionClass} {classes} {height} {width}"
+				class="{POSITION_CLASSES} {positionClass} {classes} {height} {width} transition-all"
 				class:opacity-0={!loadedImage}
 				loading={priority ? "eager" : "lazy"}
 				fetchpriority={priority ? "high" : null}
