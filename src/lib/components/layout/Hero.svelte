@@ -24,8 +24,8 @@ const spacingY = $derived(() => ({
 	padding: image ? "pt-14 pb-18 sm:pt-20 sm:pb-24 md:pt-30 md:pb-34" : "py-10 sm:py-16 md:py-24",
 	bottom: sideAbsolute
 		? image
-			? "max-md:-bottom-20 max-xs:-mt-8 sm:-mt-6 md:-bottom-30"
-			: "max-md:-bottom-16 max-xs:-mt-8 sm:-mt-6 md:-bottom-24"
+			? "-bottom-18 sm:-bottom-24 md:-bottom-34 max-sm:-mt-8 sm:-mt-6"
+			: "-bottom-10 sm:-bottom-16 md:-bottom-24 max-sm:-mt-8 sm:-mt-6"
 		: "",
 }));
 
