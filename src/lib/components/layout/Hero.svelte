@@ -22,7 +22,11 @@ let { title, proseClasses, children, side, sideAbsolute, image, imageAlt, imageP
 
 const spacingY = $derived(() => ({
 	padding: image ? "py-20 md:py-30" : "py-16 md:py-24",
-	bottom: sideAbsolute ? (image ? "-bottom-20 md:-bottom-30" : "-bottom-16 md:-bottom-24") : "",
+	bottom: sideAbsolute
+		? image
+			? "max-md:-bottom-20 max-md:-mt-5 md:-bottom-30"
+			: "max-md:-bottom-16 max-md:-mt-5 md:-bottom-24"
+		: "",
 }));
 
 const sideClasses = $derived(sideAbsolute ? "md:absolute md:right-0" : "");
@@ -40,10 +44,11 @@ const sideClasses = $derived(sideAbsolute ? "md:absolute md:right-0" : "");
 			innerClasses={sideAbsolute ? 'relative' : 'flex'}>
 		<div>
 			{#if title}
-				<h1 class="text-4xl mb-6 font-bold" class:text-white={image}>{title}</h1>
+				<h1 class="text-3xl md:text-4xl mb-6 font-bold" class:text-white={image}>{title}</h1>
 			{/if}
 			<div class="{side ? 'md:w-8/12 md:pr-4' : ''}">
-				<div class="{proseClasses || 'prose prose-xl font-semibold text-balance'}"
+				<div class="{proseClasses ||
+				'prose prose-lg md:prose-xl font-semibold text-balance'}"
 					 class:prose-invert={image} style="--container-prose: 65ch">
 					{@render children?.()}
 				</div>
