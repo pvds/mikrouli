@@ -28,7 +28,7 @@ const isLastSection = (i) => sections && i === sections.length - 1;
 			   priority
 			   alt="Portrait of Eleni Papamikrouli"
 			   widthClass="w-[clamp(10rem,50vw,15rem)] md:w-[min(20rem,25vw)]"
-			   classes="translate-z-0 drop-shadow-[0_0_48px_rgba(24,68,70,.6)] top-4 hover:-top-0" />
+			   classes="translate-z-0 drop-shadow-[0_0_48px_rgba(24,68,70,.6)] top-4 hover:-top-0 transition-[top]" />
 	</a>
 	{/snippet}
 </Hero>
