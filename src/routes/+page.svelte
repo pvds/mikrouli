@@ -11,9 +11,6 @@ let { data } = $props();
 let { header, intro, sections, contentSections, heroImage, outro, outroImage } = data.page.fields;
 let services = data.services;
 let posts = data.posts;
-
-/** @param {number} i */
-const isLastSection = (i) => sections && i === sections.length - 1;
 </script>
 
 <Hero title={header} image={heroImage ? getImageName(heroImage.file.fileName) : undefined}
@@ -28,7 +25,7 @@ const isLastSection = (i) => sections && i === sections.length - 1;
 			   priority
 			   alt="Portrait of Eleni Papamikrouli"
 			   widthClass="w-[clamp(10rem,50vw,15rem)] md:w-[min(20rem,25vw)]"
-			   classes="translate-z-0 drop-shadow-[0_0_48px_rgba(24,68,70,.6)] top-4 hover:-top-0 transition-[top]" />
+			   classes="translate-z-0 drop-shadow-[0_0_48px_rgba(24,68,70,.6)] sm:top-4 sm:hover:-top-0 transition-[top]" />
 	</a>
 	{/snippet}
 </Hero>
