@@ -24,7 +24,7 @@
             "id": "61Vdx8qP4ItFip29IZbe9u",
             "type": "Entry",
             "createdAt": "2024-12-27T22:59:24.373Z",
-            "updatedAt": "2025-02-17T11:54:00.893Z",
+            "updatedAt": "2025-02-17T15:12:23.076Z",
             "locale": "en-US"
         },
         "fields": {
@@ -32,8 +32,8 @@
             "slug": "about",
             "seoIndex": true,
             "hidden": false,
-            "seoDescription": "Learn about Eleni Papamikrouli, a systemic therapist helping individuals, couples, families, and parents understand relational patterns and navigate change.",
-            "seoKeywords": "Eleni Papamikrouli, systemic therapist, systems therapy, therapy services, individual therapy, couples therapy, family therapy, parenting support, online therapy",
+            "seoDescription": "About Eleni, MSc psychologist specialising in systemic therapy with individuals, couples, families, and parents.",
+            "seoKeywords": "Eleni Papamikrouli, systemic therapy, systems therapy, therapy services, individual therapy, couples therapy, family therapy, parenting support, online therapy",
             "header": "Get to Know Me",
             "heroImage": {
                 "title": "Eleni landscape - Mani",
@@ -63,7 +63,7 @@
                 },
                 {
                     "title": "About my Experience",
-                    "content": "I trained in systemic therapy in the Netherlands and Greece, working with individuals, couples, and families. My approach is practical and collaborative—I help clients explore, gain clarity, and move forward in ways that fit their lives.\n\nAs an expat, I understand cultural transitions and identity shifts. While I work with all clients, I value how change, belonging, and adaptation shape well-being.\n\nI also support a non-profit for adult children of parents with psychological challenges or addictions, reinforcing my belief in resilience, breaking patterns, and rewriting narratives in ways that feel empowering and connected."
+                    "content": "As an MSc psychologist, I specialise in systemic therapy, working with individuals, couples, parents, and families. My approach is practical and collaborative—I help clients explore, gain clarity, and move forward in ways that fit their lives.\n\nAs an expat, I understand cultural transitions and identity shifts. While I work with all clients, I value how change, belonging, and adaptation shape well-being.\n\nI also support a non-profit for adult children of parents with psychological challenges or addictions, reinforcing my belief in resilience, breaking patterns, and rewriting narratives in ways that feel empowering and connected."
                 },
                 {
                     "title": "About Systemic Therapy",
@@ -204,7 +204,7 @@
             "id": "3rFQxFehQrVUuxDH8StNup",
             "type": "Entry",
             "createdAt": "2024-12-27T23:40:02.880Z",
-            "updatedAt": "2025-02-17T11:37:54.426Z",
+            "updatedAt": "2025-02-17T15:06:47.457Z",
             "locale": "en-US"
         },
         "fields": {
@@ -215,11 +215,11 @@
             "seoDescription": "Systemic therapy for individuals, couples, families, and parents. Understand patterns, improve relationships, and create change. Free 15-min intake.",
             "seoKeywords": "systemic therapy, therapy services, counseling services, individual therapy, couples therapy, family therapy, parenting support, online therapy, relationship counseling",
             "header": "New Perspectives, Meaningful Change",
-            "intro": "Life is full of change, challenges, and relationships that shape us. \n\nI’m Eleni Papamikrouli, a systemic therapist offering space to explore patterns, strengthen connections, and gain clarity—at your own pace.",
+            "intro": "Life is full of change, challenges, and relationships that shape us. \n\nI’m Eleni Papamikrouli, an MSc Psychologist with specialising in systemic therapy; offering space to explore patterns, strengthen connections, and gain clarity—at your own pace.",
             "sections": [
                 {
                     "title": "Your Journey Starts Here",
-                    "content": "Therapy offers space to gain clarity and explore change.\n\n> A space to reflect, understand, and move forward in a way that feels right for you.\n\nAs a systemic therapist, I examine how relationships, experiences, and culture shape life.\n\n{{ link url=\"/services\" text=\"Explore my services\"}}",
+                    "content": "Therapy offers space to gain clarity and explore change.\n\n> A space to reflect, understand, and move forward in a way that feels right for you.\n\nSpecialising in systemic therapy, I examine how relationships, experiences, and culture shape life.\n\n{{ link url=\"/services\" text=\"Explore my services\"}}",
                     "image": {
                         "title": "Living abroad",
                         "description": "Woman dragging a suitcase",

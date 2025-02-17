@@ -17,12 +17,12 @@
             "id": "36OLI8lslbR7BFB23VDe0J",
             "type": "Entry",
             "createdAt": "2025-02-13T09:10:59.357Z",
-            "updatedAt": "2025-02-13T09:25:22.347Z",
+            "updatedAt": "2025-02-17T15:09:48.786Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "About my Experience",
-            "content": "I trained in systemic therapy in the Netherlands and Greece, working with individuals, couples, and families. My approach is practical and collaborative—I help clients explore, gain clarity, and move forward in ways that fit their lives.\n\nAs an expat, I understand cultural transitions and identity shifts. While I work with all clients, I value how change, belonging, and adaptation shape well-being.\n\nI also support a non-profit for adult children of parents with psychological challenges or addictions, reinforcing my belief in resilience, breaking patterns, and rewriting narratives in ways that feel empowering and connected."
+            "content": "As an MSc psychologist, I specialise in systemic therapy, working with individuals, couples, parents, and families. My approach is practical and collaborative—I help clients explore, gain clarity, and move forward in ways that fit their lives.\n\nAs an expat, I understand cultural transitions and identity shifts. While I work with all clients, I value how change, belonging, and adaptation shape well-being.\n\nI also support a non-profit for adult children of parents with psychological challenges or addictions, reinforcing my belief in resilience, breaking patterns, and rewriting narratives in ways that feel empowering and connected."
         }
     },
     {
@@ -153,12 +153,12 @@
             "id": "2HRRM3fcmX01Y4bLVVQgMg",
             "type": "Entry",
             "createdAt": "2025-02-03T08:21:15.266Z",
-            "updatedAt": "2025-02-12T19:52:20.348Z",
+            "updatedAt": "2025-02-17T15:13:04.381Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "Your Journey Starts Here",
-            "content": "Therapy offers space to gain clarity and explore change.\n\n> A space to reflect, understand, and move forward in a way that feels right for you.\n\nAs a systemic therapist, I examine how relationships, experiences, and culture shape life.\n\n{{ link url=\"/services\" text=\"Explore my services\"}}",
+            "content": "Therapy offers space to gain clarity and explore change.\n\n> A space to reflect, understand, and move forward in a way that feels right for you.\n\nSpecialising in systemic therapy, I examine how relationships, experiences, and culture shape life.\n\n{{ link url=\"/services\" text=\"Explore my services\"}}",
             "image": {
                 "title": "Living abroad",
                 "description": "Woman dragging a suitcase",
