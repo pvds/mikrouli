@@ -10,7 +10,7 @@
         "@sveltejs/adapter-static": "^3.0.8",
         "@sveltejs/kit": "^2.17.2",
         "@sveltejs/vite-plugin-svelte": "^5.0.3",
-        "@tailwindcss/language-server": "^0.14.4",
+        "@tailwindcss/language-server": "^0.14.5",
         "@tailwindcss/typography": "^0.5.16",
         "@tailwindcss/vite": "^4.0.6",
         "contentful": "^11.5.0",
@@ -260,7 +260,7 @@
 
     "@sveltejs/vite-plugin-svelte-inspector": ["@sveltejs/vite-plugin-svelte-inspector@4.0.1", "", { "dependencies": { "debug": "^4.3.7" }, "peerDependencies": { "@sveltejs/vite-plugin-svelte": "^5.0.0", "svelte": "^5.0.0", "vite": "^6.0.0" } }, "sha512-J/Nmb2Q2y7mck2hyCX4ckVHcR5tu2J+MtBEQqpDrrgELZ2uvraQcK/ioCV61AqkdXFgriksOKIceDcQmqnGhVw=="],
 
-    "@tailwindcss/language-server": ["@tailwindcss/language-server@0.14.4", "", { "bin": { "tailwindcss-language-server": "bin/tailwindcss-language-server" } }, "sha512-k68y2UvC5HlbE9P87mAbLB4R0AdK8rz3YrIRRsXJRPv2XVUJD7xRmQprjFm3qwwLOZchJ6cE4yLljd0T5B05GQ=="],
+    "@tailwindcss/language-server": ["@tailwindcss/language-server@0.14.5", "", { "bin": { "tailwindcss-language-server": "bin/tailwindcss-language-server" } }, "sha512-fRRciuwqalVub2ZBpC1zS5KM7tUmNnRtNAG6fzfBntJDfEBihTemxz8OQgwEJyK4cDa5VzdJFASWW1+ExxpvzQ=="],
 
     "@tailwindcss/node": ["@tailwindcss/node@4.0.6", "", { "dependencies": { "enhanced-resolve": "^5.18.0", "jiti": "^2.4.2", "tailwindcss": "4.0.6" } }, "sha512-jb6E0WeSq7OQbVYcIJ6LxnZTeC4HjMvbzFBMCrQff4R50HBlo/obmYNk6V2GCUXDeqiXtvtrQgcIbT+/boB03Q=="],
 
