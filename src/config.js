@@ -91,6 +91,7 @@ export const CONTENT_TYPES = [
 	{ id: "services", content_type: "service", order: "fields.order" },
 	{ id: "posts", content_type: "post", order: "-sys.createdAt" },
 	{ id: "reviews", content_type: "review", order: "-sys.createdAt" },
+	{ id: "sections", content_type: "section", order: "-sys.createdAt" },
 ];
 
 // Spacing

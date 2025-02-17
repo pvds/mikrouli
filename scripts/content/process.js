@@ -35,6 +35,7 @@ export function processContentfulData(data = {}) {
 	const postsRaw = data.posts || emptyEntries;
 	const reviewsRaw = data.reviews || emptyEntries;
 	const navigationRaw = data.navigation || emptyEntries;
+	const sectionsRaw = data.sections || emptyEntries;
 
 	// Parse each content type
 	const pages = /** @type {PageEntry[]} */ (
@@ -46,13 +47,16 @@ export function processContentfulData(data = {}) {
 	const posts = /** @type {PostEntry[]} */ (
 		postsRaw.map((rawPost) => parseContentEntry(rawPost))
 	);
+	const sections = /** @type {SectionEntry[]} */ (
+		sectionsRaw.map((rawSection) => parseContentEntry(rawSection))
+	);
 	const reviews = /** @type {ReviewEntry[]} */ (
 		reviewsRaw.map((rawReview) => parseReviewEntry(rawReview))
 	);
 	const navigation = navigationRaw.map((rawNav) => parseNavigation(rawNav, pages));
 	const images = parseImageUrls(data);
 
-	return { navigation, pages, services, posts, reviews, images };
+	return { navigation, pages, services, posts, reviews, sections, images };
 }
 
 /**

@@ -168,6 +168,7 @@ export type ContentfulData = {
 	services: ServiceEntry[];
 	posts: PostEntry[];
 	reviews: ReviewEntry[];
+	sections: SectionEntry[];
 	images: string[];
 };
 

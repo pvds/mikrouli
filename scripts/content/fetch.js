@@ -51,8 +51,13 @@ async function fetchContentfulData() {
 
 		// Write raw data to a file
 		// Only for debugging purposes in dev mode
-		// if (!isProd) writeJsonFile(path.resolve(process.cwd(),"src/data/generated/content.json"), rawData, 4);
-		// if (!isProd) writeJsonFile(path.resolve(process.cwd(),"src/data/generated/images.json"), processedData.images, 4);
+		// if (!IS_PROD)
+		// 	writeJsonFile(
+		// 		path.resolve(process.cwd(), "src/data/generated/content.json"),
+		// 		rawData,
+		// 		4,
+		// 	);
+		// if (!IS_PROD) writeJsonFile(path.resolve(process.cwd(),"src/data/generated/images.json"), processedData.images, 4);
 
 		// Pretty-print in dev, minify in production
 		const spacing = !IS_PROD ? 4 : 0;
