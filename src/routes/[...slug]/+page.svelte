@@ -8,8 +8,8 @@ import { getImageName } from "$lib/helpers/image.js";
 import { onMount } from "svelte";
 
 let { data } = $props();
-let { header, intro, sections, contentSections, outro, heroImage } = data.page.fields;
-let { updatedAt } = data.page.meta;
+let { header, intro, sections, contentSections, outro, heroImage } = $derived(data.page.fields);
+let { updatedAt } = $derived(data.page.meta);
 let updated = $state(U_NBSP);
 
 onMount(() => {

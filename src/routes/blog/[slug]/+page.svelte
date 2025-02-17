@@ -14,8 +14,8 @@ let { data } = $props();
 let { title, intro, sections, contentSections, heroImage } = $derived(data.post.fields);
 let { createdAt, updatedAt } = $derived(data.post.meta);
 let { prev, next } = $derived(data.post);
-let outro = data.outro;
-let services = data.services;
+let outro = $derived(data.outro);
+let services = $derived(data.services);
 
 let created = $state(U_NBSP);
 let updated = $state(U_NBSP);
