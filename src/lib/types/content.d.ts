@@ -43,3 +43,16 @@ export type BookingOptions = {
 
 export type CtaIcon = "external" | "internal" | "calendar" | "dialog";
 export type CtaTheme = "primary" | "secondary" | "tertiary";
+
+// Section
+
+export type SectionSize = "sm" | "md" | "lg";
+export type SectionTheme =
+	| "primary"
+	| "primaryDark"
+	| "secondary"
+	| "secondaryDark"
+	| "accent"
+	| "accentDark"
+	| "accentSoft"
+	| "default";

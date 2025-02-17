@@ -19,7 +19,7 @@ function toggleTracking() {
 </script>
 
 <div class="mx-auto px-8 pt-8 md:pt-24 prose prose-strong:font-bold marker:text-accent-dark">
-	<h1 class="text-3xl">Configure Analytics tracking</h1>
+	<h1 class="text-2xl md:text-3xl">Configure Analytics tracking</h1>
 	<p>
 		In order to avoid tracking your own visits, you can disable tracking.<br/>
 		<strong>Tracking is <span class="text-accent-dark font-black">{isDisabled ? "DISABLED" :

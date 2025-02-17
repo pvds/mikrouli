@@ -28,7 +28,7 @@ onNavigate((navigation) => {
 <Seo/>
 
 <div
-	class="relative overflow-clip flex flex-col app min-h-svh bg-primary-lightest text-primary-darkest">
+	class="relative overflow-clip flex flex-col app min-h-svh bg-mimosa-lightest text-primary-darkest">
 	<Skip />
 
 	<Header>

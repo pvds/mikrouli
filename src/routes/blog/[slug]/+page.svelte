@@ -11,7 +11,7 @@ import { getImageName } from "$lib/helpers/image.js";
 import { onMount } from "svelte";
 
 let { data } = $props();
-let { title, intro, contentSections, heroImage } = $derived(data.post.fields);
+let { title, intro, sections, contentSections, heroImage } = $derived(data.post.fields);
 let { createdAt, updatedAt } = $derived(data.post.meta);
 let { prev, next } = $derived(data.post);
 let outro = data.outro;
@@ -38,11 +38,19 @@ onMount(() => {
 	</p>
 </Hero>
 
-{#each contentSections as section}
-	<ContentSection prose size="lg">
-		{@html section}
-	</ContentSection>
-{/each}
+{#if sections?.length}
+	{#each sections as section, i}
+		<ContentSection prose proseClasses="max-w-full!" index={i} title={section.title}>
+			{@html section.content}
+		</ContentSection>
+	{/each}
+{:else}
+	{#each contentSections as section, i}
+		<ContentSection prose proseClasses="max-w-full!" index={i}>
+			{@html section}
+		</ContentSection>
+	{/each}
+{/if}
 
 {#if prev || next}
 	<Section innerClasses="flex flex-wrap justify-between">

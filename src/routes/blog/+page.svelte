@@ -19,15 +19,14 @@ let services = data.services;
 </Hero>
 
 {#each posts as post, i}
-	<Section wave={i % 2 === 1} theme={i % 2 === 1 ? "primary" : "default"}>
+	<Section wave={i % 2 === 1}>
 		<BlogArticle post={post.fields} priority={i <= 3}/>
 	</Section>
 {/each}
 
 {#if sections?.length}
 	{#each sections as section, i}
-		<ContentSection prose size="lg" index={i}>
-			<h2 class="text-3xl font-bold">{section.title}</h2>
+		<ContentSection prose size="lg" index={i} title={section.title}>
 			{@html section.content}
 		</ContentSection>
 	{/each}

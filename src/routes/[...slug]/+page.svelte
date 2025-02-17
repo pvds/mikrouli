@@ -27,8 +27,7 @@ onMount(() => {
 
 {#if sections?.length}
 	{#each sections as section, i}
-		<ContentSection prose proseClasses="max-w-full!" index={i}>
-			<h2 class="text-3xl font-bold">{section.title}</h2>
+		<ContentSection prose proseClasses="max-w-full!" index={i} title={section.title}>
 			{@html section.content}
 		</ContentSection>
 	{/each}

@@ -34,8 +34,7 @@ let posts = data.posts;
 
 {#if sections?.length}
 	{#each sections as section, i}
-		<ContentSection prose size="lg" index={i}>
-			<h2 class="text-3xl font-bold">{section.title}</h2>
+		<ContentSection prose size="lg" index={i} title={section.title}>
 			{@html section.content}
 		</ContentSection>
 	{/each}

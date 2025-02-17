@@ -1,16 +1,16 @@
-/* Grayscale Design palette: https://grayscale.design/app?lums=97.44,90.97,79.53,61.14,42.57,24.17,18.13,13.10,8.15,4.72,1.63&palettes=%23000000,%23359497,%2349a17a,%23e66f43&filters=0%7C0,0%7C0,0%7C0,0%7C4&names=black,primary,secondary,accent&labels=,,, */
+/* Grayscale Design palette: https://grayscale.design/app?lums=97.44,90.97,79.53,61.14,42.57,24.17,18.13,13.10,8.15,4.72,1.63&palettes=%23e0a030,%23000000,%23359497,%2349a17a,%23e66f43&filters=0%7C0,0%7C0,0%7C0,0%7C0,0%7C4&names=mimosa,black,primary,secondary,accent&labels=,,,, */
 :root {
-	--grayscale-50: hsl(0, 0%, 98.80%);
-	--grayscale-100: hsl(0, 0%, 96.10%);
-	--grayscale-200: hsl(0, 0%, 90.60%);
-	--grayscale-300: hsl(0, 0%, 80.40%);
-	--grayscale-400: hsl(0, 0%, 68.20%);
-	--grayscale-500: hsl(0, 0%, 52.90%);
-	--grayscale-600: hsl(0, 0%, 46.30%);
-	--grayscale-700: hsl(0, 0%, 39.60%);
-	--grayscale-800: hsl(0, 0%, 31.80%);
-	--grayscale-900: hsl(0, 0%, 23.90%);
-	--grayscale-950: hsl(0, 0%, 13.30%);
+	--mimosa-50: hsl(38, 73.90%, 98.53%);
+	--mimosa-100: hsl(38, 73.90%, 94.70%);
+	--mimosa-200: hsl(38, 73.90%, 87.22%);
+	--mimosa-300: hsl(38, 73.90%, 73.38%);
+	--mimosa-400: hsl(38, 73.90%, 55.31%);
+	--mimosa-500: hsl(38, 73.90%, 40.70%);
+	--mimosa-600: hsl(38, 73.90%, 35.54%);
+	--mimosa-700: hsl(38, 73.90%, 30.63%);
+	--mimosa-800: hsl(38, 73.90%, 24.40%);
+	--mimosa-900: hsl(38, 73.90%, 18.60%);
+	--mimosa-950: hsl(38, 73.90%, 10.48%);
 
 	--black-50: hsl(0, 0%, 99.00%);
 	--black-100: hsl(0, 0%, 96.00%);
@@ -65,6 +65,13 @@
 	/* === COLORS === */
 	--color-white: hsl(0, 0%, 100%);
 	--color-black: var(--black-950);
+
+	--color-mimosa-lightest: var(--mimosa-50);
+	--color-mimosa-lighter: var(--mimosa-100);
+	--color-mimosa-light: var(--mimosa-200);
+	--color-mimosa-dark: var(--mimosa-700);
+	--color-mimosa-darker: var(--mimosa-800);
+	--color-mimosa-darkest: var(--mimosa-900);
 
 	--color-primary-lightest: var(--primary-50);
 	--color-primary-lighter: var(--primary-100);

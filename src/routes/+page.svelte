@@ -13,6 +13,9 @@ let { data } = $props();
 let { header, intro, sections, contentSections, heroImage } = data.page.fields;
 let services = data.services;
 let posts = data.posts;
+
+/** @param {number} i */
+const isLastSection = (i) => sections && i === sections.length - 1;
 </script>
 
 <Hero title={header} image={heroImage ? getImageName(heroImage.file.fileName) : undefined}
@@ -36,9 +39,10 @@ let posts = data.posts;
 
 {#if sections?.length}
 	{#each sections as section, i}
-	<ContentSection footer={i === sections.length - 1 ? footerCta : undefined} index={i}
-					wave="even" size="lg" prose>
-		<h2 class="text-3xl font-bold">{section.title}</h2>
+	<ContentSection footer={isLastSection(i) ? footerCta : undefined} index={i}
+					wave="even" size="lg" theme={isLastSection(i) ? "primaryDark" : "default"}
+					prose proseInvert={isLastSection(i)}
+					image={section.image} title={section.title}>
 		{@html section.content}
 	</ContentSection>
 	{/each}

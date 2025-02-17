@@ -18,8 +18,7 @@ let posts = data.posts;
 
 {#if sections?.length}
 	{#each sections as section, i}
-		<ContentSection footer={i === 0 ? footerCta : undefined} prose size="lg" index={i}>
-			<h2 class="text-3xl font-bold">{section.title}</h2>
+		<ContentSection footer={i === 0 ? footerCta : undefined} prose size="lg" index={i} title={section.title}>
 			{@html section.content}
 		</ContentSection>
 	{/each}

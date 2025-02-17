@@ -69,7 +69,7 @@ const getBookingUrl = () => BOOKING_OPTIONS[type].url;
 	{:else if iframeState === "failed"}
 		<div class="absolute inset-0 flex items-center justify-center bg-primary-darker">
 			<section>
-				<h1 class="text-3xl">Failed to load the booking form.</h1>
+				<h1 class="text-2xl md:text-3xl">Failed to load the booking form.</h1>
 				<a href={BOOKING_URL} target="_blank" onclick={() => dialog?.close()}
 				   class="inline-block mt-4 py-4 text-lg underline"
 				>
