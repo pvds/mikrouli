@@ -191,11 +191,43 @@
                 },
                 {
                     "title": "Get to know me",
-                    "content": "I’m Eleni Papamikrouli, originally from Greece. I’ve lived in the Netherlands since 2007. I hold a master’s in psychology and study systemic therapy in both countries.\n\n> Therapy offers insight, reveals strengths, and explores values.\n\nMy approach is practical, collaborative, and curious.\n\n{{ link url=\"/about\" text=\"Learn more about me\" }}"
+                    "content": "I’m Eleni Papamikrouli, originally from Greece. I’ve lived in the Netherlands since 2007. I hold a master’s in psychology and study systemic therapy in both countries.\n\n> Therapy offers insight, reveals strengths, and explores values.\n\nMy approach is practical, collaborative, and curious.\n\n{{ link url=\"/about\" text=\"Learn more about me\" }}",
+                    "image": {
+                        "title": "Eleni - Selfie 1",
+                        "description": "Selfie of Eleni ",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/70obUQ3NpVkjj3OYnQOXcv/48df68bb94011fd4a3ed3bd0c88d1f28/IMG_0062.jpg",
+                            "details": {
+                                "size": 1751312,
+                                "image": {
+                                    "width": 3088,
+                                    "height": 2320
+                                }
+                            },
+                            "fileName": "IMG_0062.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
                 },
                 {
                     "title": "Ready to get in touch?",
-                    "content": "Starting therapy can feel like a big step, but you don’t have to do it alone. Whether for personal growth, relationships, or parenting, I offer support.\n\n> All sessions are online, making therapy easy to fit into your life.\n\nA free 15-minute intake lets us discuss concerns and see if it’s the right fit—no pressure.\n\n{{ link url=\"/contact\" text=\"Get in touch\" }}"
+                    "content": "Starting therapy can feel like a big step, but you don’t have to do it alone. Whether for personal growth, relationships, or parenting, I offer support.\n\n> All sessions are online, making therapy easy to fit into your life.\n\nA free 15-minute intake lets us discuss concerns and see if it’s the right fit—no pressure.\n\n{{ link url=\"/contact\" text=\"Get in touch\" }}",
+                    "image": {
+                        "title": "Starting therapy - 1",
+                        "description": "Woman waving to her Therapist during her first online session",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/5HKTr1encWXhJoahOayCR9/0f18bf0b4ac5c68530f974e9e9afa2d2/starting-therapy-3.jpg",
+                            "details": {
+                                "size": 143284,
+                                "image": {
+                                    "width": 800,
+                                    "height": 500
+                                }
+                            },
+                            "fileName": "starting-therapy-3.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
                 },
                 {
                     "title": "Insights & Reflections",
@@ -251,7 +283,7 @@
             "id": "buA2LeSueHcT0D4eUBIDF",
             "type": "Entry",
             "createdAt": "2025-02-14T09:05:50.935Z",
-            "updatedAt": "2025-02-14T09:16:50.694Z",
+            "updatedAt": "2025-02-14T14:25:02.688Z",
             "locale": "en-US"
         },
         "fields": {
