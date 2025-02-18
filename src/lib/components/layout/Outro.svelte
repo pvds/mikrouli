@@ -15,7 +15,7 @@ import ContentSection from "./ContentSection.svelte";
 let { image, children } = $props();
 </script>
 
-<ContentSection prose proseInvert theme="primaryDark" size="lg" index={1} {image}>
+<ContentSection prose proseInvert theme="primaryDark" size="lg" index={1} {image} imagePosition="end">
 	{@render children?.()}
 	{#snippet contentFooter()}
 		<div class="flex flex-wrap gap-2 mt-6">

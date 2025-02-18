@@ -30,21 +30,23 @@ let posts = data.posts;
 	{/snippet}
 </Hero>
 
-<TeaserSection items={services} priority slug="services" title="How I Can Support You"/>
 
 {#if sections?.length}
 	{#each sections as section, i}
-		<ContentSection prose size="lg" index={i} title={section.title}>
+		<ContentSection prose size="md" index={i} title={section.header || section.title}
+						image={section.image}>
 			{@html section.content}
 		</ContentSection>
 	{/each}
 {:else}
 	{#each contentSections as section, i}
-		<ContentSection prose size="lg" index={i}>
+		<ContentSection prose size="md" index={i}>
 			{@html section}
 		</ContentSection>
 	{/each}
 {/if}
+
+<TeaserSection items={services} priority slug="services" title="How I Can Support You"/>
 
 {#if outro}
 	<Outro image={outroImage}>

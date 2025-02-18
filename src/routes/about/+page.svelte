@@ -17,15 +17,16 @@ let posts = data.posts;
 
 {#if sections?.length}
 	{#each sections as section, i}
-	<ContentSection prose size="lg" index={i} title={section.title}>
-		{@html section.content}
-	</ContentSection>
+		<ContentSection prose size="lg" index={i} title={section.header || section.title}
+						image={section.image}>
+			{@html section.content}
+		</ContentSection>
 	{/each}
 {:else}
 	{#each contentSections as section, i}
-	<ContentSection prose size="lg" index={i}>
-		{@html section}
-	</ContentSection>
+		<ContentSection prose size="lg" index={i}>
+			{@html section}
+		</ContentSection>
 	{/each}
 {/if}
 

@@ -24,13 +24,14 @@ undefined}
 
 {#if sections?.length}
 	{#each sections as section, i}
-		<ContentSection prose index={i} title={section.title}>
+		<ContentSection prose size="lg" index={i} title={section.header || section.title}
+						image={section.image}>
 			{@html section.content}
 		</ContentSection>
 	{/each}
 {:else}
 	{#each contentSections as section, i}
-		<ContentSection prose index={i}>
+		<ContentSection prose size="lg" index={i}>
 			{@html section}
 		</ContentSection>
 	{/each}

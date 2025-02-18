@@ -18,13 +18,14 @@ let posts = data.posts;
 
 {#if sections?.length}
 	{#each sections as section, i}
-		<ContentSection footer={i === 0 ? footerCta : undefined} prose size="lg" index={i} title={section.title}>
+		<ContentSection contentFooter={i === 0 ? footerCta : undefined} prose size="lg" index={i}
+						title={section.header || section.title} image={section.image}>
 			{@html section.content}
 		</ContentSection>
 	{/each}
 {:else}
 	{#each contentSections as section, i}
-		<ContentSection footer={i === 0 ? footerCta : undefined} prose size="lg" index={i}>
+		<ContentSection contentFooter={i === 0 ? footerCta : undefined} prose size="lg" index={i}>
 			{@html section}
 		</ContentSection>
 	{/each}

@@ -6,7 +6,7 @@ import TeaserSection from "$layout/TeaserSection.svelte";
 import { getImageName } from "$lib/helpers/image.js";
 
 let { data } = $props();
-let { title, intro, contentSections, outro, heroImage } = $derived(data.service.fields);
+let { title, intro, sections, contentSections, outro, heroImage } = $derived(data.service.fields);
 let services = $derived(data.services);
 </script>
 
@@ -15,11 +15,20 @@ let services = $derived(data.services);
 	{@html intro}
 </Hero>
 
-{#each contentSections as section, i}
-	<ContentSection prose size="lg" index={i}>
-		{@html section}
-	</ContentSection>
-{/each}
+{#if sections?.length}
+	{#each sections as section, i}
+		<ContentSection prose size="md" index={i} title={section.header || section.title}
+						image={section.image}>
+			{@html section.content}
+		</ContentSection>
+	{/each}
+{:else}
+	{#each contentSections as section, i}
+		<ContentSection prose size="md" index={i}>
+			{@html section}
+		</ContentSection>
+	{/each}
+{/if}
 
 {#if outro}
 	<Outro image={heroImage}>

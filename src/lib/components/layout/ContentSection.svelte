@@ -15,6 +15,7 @@ import Section from "./Section.svelte";
  * @property {Snippet} [header]
  * @property {Snippet} [footer]
  * @property {Image} [image]
+ * @property {'start'|'end'} [imagePosition]
  * @property {string} [title]
  * @property {number} [index]
  * @property {string} [classes=""]
@@ -34,6 +35,7 @@ let {
 	contentFooter,
 	index,
 	image,
+	imagePosition,
 	title,
 	classes = "",
 	theme = "default",
@@ -45,10 +47,10 @@ let {
 } = $props();
 
 /** @param {number|undefined} i */
-const hasWave = (i) => {
-	if (!i && i !== 0) return false;
-	return (wave === "odd" && i % 2 === 1) || (wave === "even" && i % 2 === 0);
-};
+const isOdd = (i) => typeof i === "number" && i % 2 === 1;
+
+/** @param {number|undefined} i */
+const hasWave = (i) => (wave === "odd" ? isOdd(i) : wave === "even" ? !isOdd(i) : false);
 
 /** @param {'sm'|'md'|'lg'} size */
 const proseSizeClasses = (size) =>
@@ -64,6 +66,9 @@ const proseThemeClasses = proseInvert ? "prose-invert" : "";
 <Section wave={hasWave(index)} {size} {classes} {theme}>
 	{@render header?.()}
 	<div class="flex gap-16">
+		{#if imagePosition === 'start' || !imagePosition && isOdd(index)}
+			{@render imageSection()}
+		{/if}
 		<div class="flex-1">
 			{#if title}
 			<h2 class="mb-[1.25em] text-2xl md:text-3xl font-bold">{title}</h2>
@@ -75,18 +80,23 @@ const proseThemeClasses = proseInvert ? "prose-invert" : "";
 			</div>
 			{@render contentFooter?.()}
 		</div>
-
-		{#if image}
-		<div class="flex-auto max-md-mid:hidden self-center justify-self-center">
-				<Image image={getImageName(image.file.fileName)}
-					   sizes="20rem"
-					   alt={image.title}
-					   widthClass="w-full max-w-[calc(45vw)]"
-					   heightClass="h-full"
-					   maskIndex={index !== undefined ? index + 2 : undefined}
-					   classes="translate-z-0" />
-		</div>
+		{#if imagePosition === 'end' || !imagePosition && !isOdd(index)}
+		{@render imageSection()}
 		{/if}
 	</div>
 	{@render footer?.()}
 </Section>
+
+{#snippet imageSection()}
+	{#if image}
+	<div class="flex-auto max-md-mid:hidden self-center justify-self-center">
+		<Image image={getImageName(image.file.fileName)}
+			   sizes="20rem"
+			   alt={image.title}
+			   widthClass="w-full max-w-[calc(45vw)]"
+			   heightClass="h-full"
+			   maskIndex={index !== undefined ? index + 2 : undefined}
+			   classes="translate-z-0" />
+	</div>
+	{/if}
+{/snippet}

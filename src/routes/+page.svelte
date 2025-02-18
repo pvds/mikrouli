@@ -34,7 +34,8 @@ let posts = data.posts;
 
 {#if sections?.length}
 	{#each sections as section, i}
-	<ContentSection index={i} wave="even" size="lg" prose image={section.image} title={section.title}>
+	<ContentSection index={i} wave="even" size="lg" prose title={section.header || section.title}
+					image={section.image}>
 		{@html section.content}
 	</ContentSection>
 	{/each}
