@@ -54,23 +54,92 @@
             "intro": "I’m Eleni Papamikrouli, originally from Greece, living in the Netherlands since 2007. I hold a master’s in psychology and study systemic therapy in both countries.\n\nMy experiences with change and adaptation shape my approach—curious, open, and deeply respectful of every person’s unique story.",
             "sections": [
                 {
-                    "title": "About Mikrouli",
-                    "content": "Mikrouli is more than a therapy practice—it’s a space for **exploration, growth, and connection.**  \n\n> Mikrouli comes from the Greek word \"mikros,\" meaning \"small.\" In systemic therapy, it reflects both **a tender, compassionate way to refer to oneself and loved ones** and **how we exist within larger systems.**  \n\nI offer a warm, supportive, and non-judgmental space. Whether you seek therapy for yourself, your relationship, or your family, we explore together what’s happening and how to create meaningful change.  "
+                    "title": "About - About Mikrouli",
+                    "header": "About Mikrouli",
+                    "content": "Mikrouli is more than a therapy practice—it’s a space for **exploration, growth, and connection.**  \n\n> Mikrouli comes from the Greek word \"mikros,\" meaning \"small.\" In systemic therapy, it reflects both **a tender, compassionate way to refer to oneself and loved ones** and **how we exist within larger systems.**  \n\nI offer a warm, supportive, and non-judgmental space. Whether you seek therapy for yourself, your relationship, or your family, we explore together what’s happening and how to create meaningful change.  ",
+                    "image": {
+                        "title": "Tree on a hill",
+                        "description": "Single tree on a hill with the sun shining from behind",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/305OWagl4MVjJjO5tDSphx/1051debd071f1ececd9b94556eb5d4ff/pexels-viceman-25033690.jpg",
+                            "details": {
+                                "size": 3615125,
+                                "image": {
+                                    "width": 6720,
+                                    "height": 4480
+                                }
+                            },
+                            "fileName": "pexels-viceman-25033690.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
                 },
                 {
-                    "title": "About Me",
-                    "content": "Originally from Greece, I earned a psychology degree in Athens and moved to the Netherlands in 2007 for a master’s in health psychology. There, I discovered systemic therapy—rooted in empathy, collaboration, and relational understanding. It highlights patterns shaping our lives rather than viewing individuals in isolation.\n\nI’m drawn to how we connect, grow, and adapt. My curiosity led me to systemic therapy, where healing happens through connection—with ourselves, others, and the systems around us."
+                    "title": "About - About Me",
+                    "header": "About Me",
+                    "content": "Originally from Greece, I earned a psychology degree in Athens and moved to the Netherlands in 2007 for a master’s in health psychology. There, I discovered systemic therapy—rooted in empathy, collaboration, and relational understanding. It highlights patterns shaping our lives rather than viewing individuals in isolation.\n\nI’m drawn to how we connect, grow, and adapt. My curiosity led me to systemic therapy, where healing happens through connection—with ourselves, others, and the systems around us.",
+                    "image": {
+                        "title": "Eleni - Selfie 1",
+                        "description": "Selfie of Eleni ",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/70obUQ3NpVkjj3OYnQOXcv/48df68bb94011fd4a3ed3bd0c88d1f28/IMG_0062.jpg",
+                            "details": {
+                                "size": 1751312,
+                                "image": {
+                                    "width": 3088,
+                                    "height": 2320
+                                }
+                            },
+                            "fileName": "IMG_0062.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
                 },
                 {
-                    "title": "About my Experience",
-                    "content": "As an MSc psychologist, I specialise in systemic therapy, working with individuals, couples, parents, and families. My approach is practical and collaborative—I help clients explore, gain clarity, and move forward in ways that fit their lives.\n\nAs an expat, I understand cultural transitions and identity shifts. While I work with all clients, I value how change, belonging, and adaptation shape well-being.\n\nI also support a non-profit for adult children of parents with psychological challenges or addictions, reinforcing my belief in resilience, breaking patterns, and rewriting narratives in ways that feel empowering and connected."
+                    "title": "About - About my Experience",
+                    "header": "About my Experience",
+                    "content": "As an MSc psychologist, I specialise in systemic therapy, working with individuals, couples, parents, and families. My approach is practical and collaborative—I help clients explore, gain clarity, and move forward in ways that fit their lives.\n\nAs an expat, I understand cultural transitions and identity shifts. While I work with all clients, I value how change, belonging, and adaptation shape well-being.\n\nI also support a non-profit for adult children of parents with psychological challenges or addictions, reinforcing my belief in resilience, breaking patterns, and rewriting narratives in ways that feel empowering and connected.",
+                    "image": {
+                        "title": "Reflection",
+                        "description": "Woman holding a piece of mirror reflecting her face.",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/2PpJ0Zeib9lS9fbRuvpxH/42638f0fab41c351ac93e13892b1f639/pexels-rccbtn-29219418.jpg",
+                            "details": {
+                                "size": 1098453,
+                                "image": {
+                                    "width": 6240,
+                                    "height": 4160
+                                }
+                            },
+                            "fileName": "pexels-rccbtn-29219418.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
                 },
                 {
-                    "title": "About Systemic Therapy",
-                    "content": "Systemic therapy looks beyond the individual to the **relationships, patterns, and environments** shaping experiences. Rather than treating challenges as isolated problems, we explore:  \n\n- **How relationships influence emotions and behaviors.**  \n- **What patterns keep repeating, and why?**  \n- **Where small shifts can create meaningful change.**  \n\nThis approach is **not about blame—it’s about understanding.** Together, we uncover perspectives, recognize strengths, and build sustainable solutions.  \n\nSystemic therapy supports **personal growth, relationship improvement, and navigating major life transitions.** It makes sense of emotions and behaviors in connection with your broader life experience, rather than focusing on \"fixing\" individual struggles. "
+                    "title": "About - About Systemic Therapy",
+                    "header": "About Systemic Therapy",
+                    "content": "Systemic therapy looks beyond the individual to the **relationships, patterns, and environments** shaping experiences. Rather than treating challenges as isolated problems, we explore:  \n\n- **How relationships influence emotions and behaviors.**  \n- **What patterns keep repeating, and why?**  \n- **Where small shifts can create meaningful change.**  \n\nThis approach is **not about blame—it’s about understanding.** Together, we uncover perspectives, recognize strengths, and build sustainable solutions.  \n\nSystemic therapy supports **personal growth, relationship improvement, and navigating major life transitions.** It makes sense of emotions and behaviors in connection with your broader life experience, rather than focusing on \"fixing\" individual struggles. ",
+                    "image": {
+                        "title": "Colored pawns",
+                        "description": "Five colors pawns, focussing on a blue pawn on the foreground",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/6ugEItOKq9TTXuhdMEbPAS/bff23a49f3d6a860bcbb274a5b73713a/pexels-nietjuhart-776655.jpg",
+                            "details": {
+                                "size": 450296,
+                                "image": {
+                                    "width": 5340,
+                                    "height": 3397
+                                }
+                            },
+                            "fileName": "pexels-nietjuhart-776655.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
                 },
                 {
-                    "title": "About my Therapy Sessions",
+                    "title": "About - About my Therapy Sessions",
+                    "header": "About my Therapy Sessions",
                     "content": "Therapy offers a **flexible, supportive space** to explore challenges, gain insight, and move forward at your pace.  \n\n### What to Expect  \n- **Collaborative Approach** – We explore your experiences together, uncovering patterns and possibilities.  \n- **Safe, Non-Judgmental Space** – A place to express yourself freely and make sense of challenges.  \n- **Reflection and Practical Steps** – Insight matters, but change comes through small, meaningful shifts.  \n\n### The First Session  \nWe discuss what brings you to therapy, your goals, and what feels right for you—no pressure, just space to explore.  \n\n### Frequency and Format  \n- **Online sessions** for flexibility and accessibility.\n- **Scheduling adapts** to your needs—weekly, bi-weekly, or as fits your situation.  \n- **Regular check-ins** ensure therapy stays supportive and relevant.  \n\n{{ link url=\"/contact\" text=\"Contact me for more information\" }}  "
                 }
             ],
@@ -98,7 +167,7 @@
             "id": "2skTvZuf4xUYpfqA45Vz1O",
             "type": "Entry",
             "createdAt": "2024-12-27T23:38:56.621Z",
-            "updatedAt": "2025-02-17T11:53:46.349Z",
+            "updatedAt": "2025-02-18T10:30:11.150Z",
             "locale": "en-US"
         },
         "fields": {
@@ -126,7 +195,29 @@
                 }
             },
             "intro": "Growth happens in the way we reflect, connect, and see things differently. These articles offer **thoughts, insights, and practical guidance** on systemic therapy, relationships, parenting, and personal development.  \n",
-            "content": "## Exploring Patterns, Perspectives & Growth  \nSystemic therapy looks beyond individual struggles to explore the **patterns, relationships, and dynamics** that shape everyday life. These articles provide:  \n\n- **New perspectives** on relationships, family, and personal growth.  \n- **Practical tools** to navigate challenges with clarity.  \n- **Reflections on systemic therapy** and its role in daily experiences.  \n\nWhether you're looking for guidance or simply a fresh way to approach life’s complexities, these articles offer insight and support.  \n",
+            "sections": [
+                {
+                    "title": "Blog - Exploring Patterns, Perspectives & Growth",
+                    "header": "Exploring Patterns, Perspectives & Growth",
+                    "content": "Systemic therapy looks beyond individual struggles to explore the **patterns, relationships, and dynamics** that shape everyday life. These articles provide:  \n\n- **New perspectives** on relationships, family, and personal growth.  \n- **Practical tools** to navigate challenges with clarity.  \n- **Reflections on systemic therapy** and its role in daily experiences.  \n\nWhether you're looking for guidance or simply a fresh way to approach life’s complexities, these articles offer insight and support.  ",
+                    "image": {
+                        "title": "Reflection",
+                        "description": "Woman holding a piece of mirror reflecting her face.",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/2PpJ0Zeib9lS9fbRuvpxH/42638f0fab41c351ac93e13892b1f639/pexels-rccbtn-29219418.jpg",
+                            "details": {
+                                "size": 1098453,
+                                "image": {
+                                    "width": 6240,
+                                    "height": 4160
+                                }
+                            },
+                            "fileName": "pexels-rccbtn-29219418.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
+                }
+            ],
             "outro": "## Stay Curious, Keep Exploring  \nGrowth isn’t just about big moments—it’s about the small shifts in perspective that shape how we navigate life. My blog is a space for **insights, reflections, and practical guidance** on systemic therapy, relationships, parenting, and personal development.  \n\nWhether you’re here for guidance, reassurance, or simply a fresh perspective, I invite you to explore, reflect, and take what resonates with you.  \n\nIf a topic sparks something in you or you’d like to explore your journey further, I’m here to help.  \n",
             "outroImage": {
                 "title": "Starting therapy - 1",
@@ -151,7 +242,7 @@
             "id": "2FmTPol4nxNb4Q0elgN4oG",
             "type": "Entry",
             "createdAt": "2024-12-28T00:14:21.086Z",
-            "updatedAt": "2025-02-17T11:54:12.647Z",
+            "updatedAt": "2025-02-18T10:26:51.700Z",
             "locale": "en-US"
         },
         "fields": {
@@ -179,7 +270,49 @@
                 }
             },
             "intro": "Taking the first step toward therapy can feel daunting, but I’m here to make it as simple as possible. Whether you’re curious about the process or ready to begin, I’d love to hear from you.",
-            "content": "## Get in Touch  \nTaking the first step toward therapy can feel like a big decision, but you don’t have to do it alone. Whether you’re ready to begin or simply have questions, I welcome you to reach out. Therapy is a collaborative process, and our first conversation is a space for you to explore whether this feels like the right fit.  \n\nI offer a **free 15-minute intake session**, where we can talk about what’s on your mind, discuss how therapy might support you, and answer any questions you may have—without any pressure or commitment.  \n\n---\n\n## Contact Details  \n- **Email:** [eleni@mikrouli.nl](mailto:eleni@mikrouli.nl)  \n- **Phone:** [00 31 6 19 44 62 63](tel:+31619446263)\n- **Languages:** Greek, Dutch, English  \n- **Sessions:** Online only  \n\nIf you’d like to schedule a session or have any questions, feel free to reach out by **email or phone.** I aim to respond as soon as possible to ensure you get the support you need.  \n\n---\n\n## What to Expect When You Reach Out  \nReaching out for therapy can sometimes feel like a big step. Here’s what happens after you contact me:  \n\n### **1. Free 15-Minute Intake**  \nOur first conversation is a chance to get to know each other. You can share a bit about what brings you to therapy, ask any questions, and get a sense of how we might work together.  \n\n### **2. Scheduling a Session**  \nIf we decide to move forward, we will schedule an online session at a time that works for you. Since all sessions take place online, you can **access therapy from anywhere** in a way that fits into your life.  \n\n### **3. Preparing for Your First Session**  \nIn our first session, we will explore your needs, expectations, and hopes for therapy. There is no pressure to have everything figured out—this is simply a space to start the conversation.  \n\n---\n\n## Fees and Practical Information  \nUnderstanding the logistics of therapy can help you feel more comfortable about getting started.  \n\n- **Session Length:** Typically 45 minutes  \n- **Session Type:** Online video calls  \n- **Payment Options:** Details provided upon booking  \n\nIf you have any questions about fees or practical arrangements, feel free to reach out—I’m happy to provide more information.  \n\n---\n\n## Accessibility and Confidentiality  \nYour privacy and comfort are important. All sessions are held in a **secure, confidential** online setting, ensuring you can speak openly and feel fully supported.  \n\nI strive to make therapy as accessible as possible. If you have any specific concerns or accessibility needs, please let me know—I’m happy to discuss how we can accommodate them.  ",
+            "sections": [
+                {
+                    "title": "Contact - Get in Touch",
+                    "header": "Get in Touch",
+                    "content": "Taking the first step toward therapy can feel like a big decision, but you don’t have to do it alone. Whether you’re ready to begin or simply have questions, I welcome you to reach out. Therapy is a collaborative process, and our first conversation is a space for you to explore whether this feels like the right fit.  \n\nI offer a **free 15-minute intake session**, where we can talk about what’s on your mind, discuss how therapy might support you, and answer any questions you may have—without any pressure or commitment.  ",
+                    "image": {
+                        "title": "Eleni - Selfie 1",
+                        "description": "Selfie of Eleni ",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/70obUQ3NpVkjj3OYnQOXcv/48df68bb94011fd4a3ed3bd0c88d1f28/IMG_0062.jpg",
+                            "details": {
+                                "size": 1751312,
+                                "image": {
+                                    "width": 3088,
+                                    "height": 2320
+                                }
+                            },
+                            "fileName": "IMG_0062.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
+                },
+                {
+                    "title": "Contact - Contact Details",
+                    "header": "Contact Details",
+                    "content": "- **Email:** [eleni@mikrouli.nl](mailto:eleni@mikrouli.nl)  \n- **Phone:** [00 31 6 19 44 62 63](tel:+31619446263)\n- **Languages:** Greek, Dutch, English  \n- **Sessions:** Online only  \n\nIf you’d like to schedule a session or have any questions, feel free to reach out by **email or phone.** I aim to respond as soon as possible to ensure you get the support you need.  "
+                },
+                {
+                    "title": "Contact - What to expect when you reach out",
+                    "header": "What to expect when you reach out",
+                    "content": "Reaching out for therapy can sometimes feel like a big step. Here’s what happens after you contact me:  \n\n### **1. Free 15-Minute Intake**  \nOur first conversation is a chance to get to know each other. You can share a bit about what brings you to therapy, ask any questions, and get a sense of how we might work together.  \n\n### **2. Scheduling a Session**  \nIf we decide to move forward, we will schedule an online session at a time that works for you. Since all sessions take place online, you can **access therapy from anywhere** in a way that fits into your life.  \n\n### **3. Preparing for Your First Session**  \nIn our first session, we will explore your needs, expectations, and hopes for therapy. There is no pressure to have everything figured out—this is simply a space to start the conversation. "
+                },
+                {
+                    "title": "Contact - Fees and practical information",
+                    "header": "Fees and practical information",
+                    "content": "Understanding the logistics of therapy can help you feel more comfortable about getting started.  \n\n- **Session Length:** Typically 45 minutes  \n- **Session Type:** Online video calls  \n- **Payment Options:** Details provided upon booking  \n\nIf you have any questions about fees or practical arrangements, feel free to reach out—I’m happy to provide more information.  "
+                },
+                {
+                    "title": "Accessibility and Confidentiality",
+                    "header": "Accessibility and Confidentiality",
+                    "content": "Your privacy and comfort are important. All sessions are held in a **secure, confidential** online setting, ensuring you can speak openly and feel fully supported.  \n\nI strive to make therapy as accessible as possible. If you have any specific concerns or accessibility needs, please let me know—I’m happy to discuss how we can accommodate them.  "
+                }
+            ],
             "outro": "## Ready to Take the First Step?  \nIf you’re considering therapy but aren’t sure where to start, a **free 15-minute intake session** is a simple way to explore your options.  \n\nFeel free to send me an **email** or give me a **call**—there’s no pressure, just an opportunity to see if therapy feels like the right step for you.",
             "outroImage": {
                 "title": "Starting therapy - 1",
@@ -218,7 +351,8 @@
             "intro": "Life is full of change, challenges, and relationships that shape us. \n\nI’m Eleni Papamikrouli, an MSc Psychologist specialising in systemic therapy; offering space to explore patterns, strengthen connections, and gain clarity—at your own pace.",
             "sections": [
                 {
-                    "title": "Your Journey Starts Here",
+                    "title": "Home - Your Journey Starts Here",
+                    "header": "Your Journey Starts Here",
                     "content": "Therapy offers space to gain clarity and explore change.\n\n> A space to reflect, understand, and move forward in a way that feels right for you.\n\nSpecialising in systemic therapy, I examine how relationships, experiences, and culture shape life.\n\n{{ link url=\"/services\" text=\"Explore my services\"}}",
                     "image": {
                         "title": "Stepping stones",
@@ -238,7 +372,8 @@
                     }
                 },
                 {
-                    "title": "Get to know me",
+                    "title": "Home - Get to know me",
+                    "header": "Get to know me",
                     "content": "I’m Eleni Papamikrouli, originally from Greece. I’ve lived in the Netherlands since 2007. I hold a master’s in psychology and study systemic therapy in both countries.\n\n> Therapy offers insight, reveals strengths, and explores values.\n\nMy approach is practical, collaborative, and curious.\n\n{{ link url=\"/about\" text=\"Learn more about me\" }}",
                     "image": {
                         "title": "Eleni - Selfie 1",
@@ -258,7 +393,8 @@
                     }
                 },
                 {
-                    "title": "Ready to get in touch?",
+                    "title": "Home - Ready to get in touch?",
+                    "header": "Ready to get in touch?",
                     "content": "Starting therapy can feel like a big step, but you don’t have to do it alone. Whether for personal growth, relationships, or parenting, I offer support.\n\n> All sessions are online, making therapy easy to fit into your life.\n\nA free 15-minute intake lets us discuss concerns and see if it’s the right fit—no pressure.\n\n{{ link url=\"/contact\" text=\"Get in touch\" }}",
                     "image": {
                         "title": "Starting therapy - 1",
@@ -278,7 +414,8 @@
                     }
                 },
                 {
-                    "title": "Insights & Reflections",
+                    "title": "Home - Insights & Reflections",
+                    "header": "Insights & Reflections",
                     "content": "Real change happens when we step back and see ourselves differently. My blog shares insights on systemic therapy, relationships, parenting, and growth.\n\n> Whether you seek guidance, reassurance, or a fresh perspective, my blog explores life’s patterns.\n\n{{ link url=\"/blog\" text=\"Explore my blog\" }}"
                 }
             ],
@@ -380,7 +517,7 @@
             "id": "3Dq1BUqylcl2pQweRSAvc6",
             "type": "Entry",
             "createdAt": "2024-12-27T23:01:22.902Z",
-            "updatedAt": "2025-02-17T15:29:54.285Z",
+            "updatedAt": "2025-02-18T08:25:20.912Z",
             "locale": "en-US"
         },
         "fields": {
@@ -392,7 +529,50 @@
             "seoKeywords": "therapy services, counseling services, individual therapy, couples therapy, family therapy, parenting support, online therapy, relationship counseling, mental health support, personal growth, conflict resolution, stress management, self-awareness",
             "header": "Explore Ways We Can Work Together",
             "intro": "I provide sessions for anyone seeking to improve their relationships, navigate challenges, or better understand themselves. While I bring a unique perspective to internationals and expats, my services are open to all who want to create positive change.",
-            "content": "## Finding the Right Support for You  \nEvery person, couple, and family faces unique challenges. Whether you're looking for **personal growth, relationship support, or parenting guidance**, therapy and counseling can provide clarity, new perspectives, and meaningful change.  \n\nI offer a **collaborative and practical approach**, helping clients explore patterns, strengthen connections, and navigate life’s complexities with greater confidence. My goal is to create a supportive space where you can reflect, gain insight, and take steps toward the changes that feel right for you.  \n\nEach service is tailored to your specific needs, offering guidance in a way that fits your life and circumstances.  ",
+            "sections": [
+                {
+                    "title": "Service - finding the right support",
+                    "header": "Finding the right support",
+                    "content": "Life presents various challenges—personal struggles, relationship dynamics, or parenting complexities. **Sessions offer a space to reflect, gain clarity, and explore meaningful ways forward.**  \n\nI provide **individual, couples, and family sessions**, helping clients:  \n\n- Understand patterns shaping thoughts, emotions, and relationships.  \n- Strengthen communication and deepen connections.  \n- Navigate life changes with greater confidence.  \n\nEach session is tailored to your unique context, ensuring a **collaborative and supportive experience**.  ",
+                    "image": {
+                        "title": "Hand reaching out",
+                        "description": "Hand reaching out with trees in the background and the sun shining between the fingers",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/UW8zIP1Njr6SEqMEKHp0Q/92095ff07cd209481947f2dc891d7945/pexels-rickyrecap-1654698.jpg",
+                            "details": {
+                                "size": 462119,
+                                "image": {
+                                    "width": 4240,
+                                    "height": 2832
+                                }
+                            },
+                            "fileName": "pexels-rickyrecap-1654698.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
+                },
+                {
+                    "title": "Service - A Collaborative Systemic Approach",
+                    "header": "A Collaborative Systemic Approach",
+                    "content": "Rather than seeing challenges in isolation, we explore **how relationships, experiences, and environments influence your situation.** Systemic therapy recognises that struggles don’t exist in a vacuum—they emerge within a broader context.  \n\n### What This Means in Sessions \n- **Relational Awareness** – Understanding how interactions shape experiences.  \n- **Identifying Patterns** – Recognising recurring behaviours and relational dynamics.  \n- **Exploring Possibilities** – Discovering new perspectives and ways to navigate challenges.  \n\nThis process isn’t about “fixing” problems but about **creating new ways of relating—to yourself, others, and your environment.**  ",
+                    "image": {
+                        "title": "Exploring",
+                        "description": "Hand holding a glass sphere with the reflection of the forest background in it",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/72AM4L2a5ESCnaHY416PmA/f67035763d343abc8d73f345827e91c5/pexels-rahulp9800-3764876.jpg",
+                            "details": {
+                                "size": 1652521,
+                                "image": {
+                                    "width": 6000,
+                                    "height": 4000
+                                }
+                            },
+                            "fileName": "pexels-rahulp9800-3764876.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
+                }
+            ],
             "outro": "## Taking the First Step  \nChoosing the right support is a personal decision, and it’s completely normal to have questions before starting.  \n\nI offer a **free 15-minute intake session**, where we can discuss what’s on your mind, explore what kind of support fits your needs, and see if this feels like the right step for you.  \n\nIf you’re ready to begin or simply want to learn more, I welcome you to reach out.  ",
             "outroImage": {
                 "title": "Starting therapy - 1",

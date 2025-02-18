@@ -1,15 +1,594 @@
 [
     {
         "meta": {
-            "id": "6VQj2EKDuK1TtphVsWXWz",
+            "id": "75NTMSYfylZhAvastUIPks",
             "type": "Entry",
-            "createdAt": "2025-02-13T09:10:59.372Z",
-            "updatedAt": "2025-02-13T09:25:22.287Z",
+            "createdAt": "2025-02-18T10:43:16.958Z",
+            "updatedAt": "2025-02-18T11:35:51.825Z",
             "locale": "en-US"
         },
         "fields": {
-            "title": "About Me",
-            "content": "Originally from Greece, I earned a psychology degree in Athens and moved to the Netherlands in 2007 for a master’s in health psychology. There, I discovered systemic therapy—rooted in empathy, collaboration, and relational understanding. It highlights patterns shaping our lives rather than viewing individuals in isolation.\n\nI’m drawn to how we connect, grow, and adapt. My curiosity led me to systemic therapy, where healing happens through connection—with ourselves, others, and the systems around us."
+            "title": "Service - Family - Strengthening Relationships",
+            "header": "Strengthening Relationships",
+            "content": "Families are deeply connected systems—when one person is affected, the whole dynamic shifts. At times, these connections bring closeness and support, but they can also lead to **misunderstandings, tension, or emotional distance.**  \n\nFamily sessions offer a space to **pause, reflect, and explore these dynamics together**, not to assign blame but to better understand how each person’s experiences, emotions, and interactions shape the family as a whole.",
+            "image": {
+                "title": "Wife looking at husband",
+                "description": "Wife looking at her husband with their daughter blurred out in the background",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/18aPRdNz3OFS0bnObqvGUU/702fabed259baad6e5b26c0c369e7207/pexels-shvetsa-11368680.jpg",
+                    "details": {
+                        "size": 2256831,
+                        "image": {
+                            "width": 6240,
+                            "height": 4160
+                        }
+                    },
+                    "fileName": "pexels-shvetsa-11368680.jpg",
+                    "contentType": "image/jpeg"
+                }
+            }
+        }
+    },
+    {
+        "meta": {
+            "id": "549AplwC7zFvqtmW3WE4sE",
+            "type": "Entry",
+            "createdAt": "2025-02-18T10:43:04.231Z",
+            "updatedAt": "2025-02-18T11:58:32.955Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Service - Family - Understanding Family Patterns",
+            "header": "Understanding Family Patterns",
+            "content": "Every family has **unspoken rules, roles, and expectations** that shape daily interactions. Some strengthen relationships, while others may contribute to **stress, recurring conflicts, or emotional disconnection.**  \n\n### Common Family Dynamics We Explore  \n- **Communication styles** – How family members express themselves and where misunderstandings arise.  \n- **Family roles** – Longstanding roles and whether they still serve each person.  \n- **Unspoken expectations** – Hidden assumptions shaping interactions and relationships.  \n\nSeeing these patterns clearly helps families **shift unhelpful cycles** and find more supportive ways to relate to one another.",
+            "image": {
+                "title": "Family dinner - distracted",
+                "description": "Festive dinner table with boy looking distracted and woman focussed on her food.",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/12Q7GjgXGU3H00huqxIXGN/a91f98e8165e4aa4ba464cef197d3322/pexels-cottonbro-5791659.jpg",
+                    "details": {
+                        "size": 3741138,
+                        "image": {
+                            "width": 6000,
+                            "height": 4000
+                        }
+                    },
+                    "fileName": "pexels-cottonbro-5791659.jpg",
+                    "contentType": "image/jpeg"
+                }
+            }
+        }
+    },
+    {
+        "meta": {
+            "id": "2nV2wvSpiGYVwW2jFou6If",
+            "type": "Entry",
+            "createdAt": "2025-02-18T10:42:46.737Z",
+            "updatedAt": "2025-02-18T12:07:24.202Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Service - Family - Breaking Unhelpful Cycles",
+            "header": "Breaking Unhelpful Cycles",
+            "content": "Many families feel stuck in patterns of **miscommunication, unresolved tension, or emotional distance.** Small disagreements may escalate quickly, certain family members may feel unheard, or past wounds may continue to affect present relationships.  \n\n### Some Common Challenges We Work Through\n- **Recurring conflicts** – Arguments that never seem to resolve.  \n- **Parenting struggles** – Balancing guidance and connection.  \n- **Generational patterns** – Unspoken family expectations passed down over time.  \n- **Life transitions** – Adjusting to changes like divorce, blending families, or shifting family roles.  \n\nRather than focusing on **who is right or wrong**, therapy helps uncover **what keeps the cycle going** and how small shifts in communication and perspective can create lasting positive change.",
+            "image": {
+                "title": "Family silhouette",
+                "description": "Black and white silhouette of a family holding hands",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/5MF7icCCUU73IuTLBD6z2B/41e80b7a40ee74e904a552077be285f7/pexels-soner-arkan-277045183-13990288.jpg",
+                    "details": {
+                        "size": 1928153,
+                        "image": {
+                            "width": 6240,
+                            "height": 4160
+                        }
+                    },
+                    "fileName": "pexels-soner-arkan-277045183-13990288.jpg",
+                    "contentType": "image/jpeg"
+                }
+            }
+        }
+    },
+    {
+        "meta": {
+            "id": "4oyls5PYtMFpOHtfcpEMTb",
+            "type": "Entry",
+            "createdAt": "2025-02-18T10:42:32.126Z",
+            "updatedAt": "2025-02-18T12:07:00.609Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Service - Family - Rebuilding Connection and Trust",
+            "header": "Rebuilding Connection and Trust",
+            "content": "Family sessions aren’t just about resolving conflict—it’s about strengthening the **connection, trust, and shared understanding** that help families thrive.  \n\n### How We Work Together:  \n- **Improving communication** – Creating space for honest, open conversations.  \n- **Navigating conflict with awareness** – Moving from frustration to mutual understanding.  \n- **Rebuilding emotional bonds** – Strengthening connection through recognition and validation.  \n\nEvery family is different—there’s no “right” way to be. Instead of rigid solutions, we explore **what works best for your family** so relationships feel more supportive, open, and fulfilling.",
+            "image": {
+                "title": "Family looking at sea",
+                "description": "Black and white photo of a family holding hands standing barefoot on the sand looking at the sea.",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/5gXERT5kG7RIN8jCDS3t79/66659023472bcb7104894a5504d27c1d/pexels-alex360-13032491.jpg",
+                    "details": {
+                        "size": 1930401,
+                        "image": {
+                            "width": 5200,
+                            "height": 3467
+                        }
+                    },
+                    "fileName": "pexels-alex360-13032491.jpg",
+                    "contentType": "image/jpeg"
+                }
+            }
+        }
+    },
+    {
+        "meta": {
+            "id": "4T9SUFxK53kY5VJGctOLQB",
+            "type": "Entry",
+            "createdAt": "2025-02-18T10:40:23.485Z",
+            "updatedAt": "2025-02-18T10:48:08.137Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Service - Individual - A Space for Clarity and Growth",
+            "header": "A Space for Clarity and Growth",
+            "content": "Life can feel overwhelming, leaving you stuck in patterns that no longer serve you. **Therapy isn’t about fixing you—it’s about helping you understand yourself more fully** and reconnecting with your strengths.  \n\n### I create a space where you can \n- **Pause and reflect** without pressure or judgment.  \n- **Understand patterns** in thoughts, emotions, and relationships.  \n- **Gain clarity and choice** in how you move forward.  \n\nYou don’t have to figure everything out alone.",
+            "image": {
+                "title": "Water drops on a leaf",
+                "description": "Water drops on a leaf",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/7jINSfcooFRKZgcRp5FUGe/170c8f8adaa77fe093187fbdaa683cab/pexels-being-the-traveller-579914-2809734.jpg",
+                    "details": {
+                        "size": 1782302,
+                        "image": {
+                            "width": 5184,
+                            "height": 3456
+                        }
+                    },
+                    "fileName": "pexels-being-the-traveller-579914-2809734.jpg",
+                    "contentType": "image/jpeg"
+                }
+            }
+        }
+    },
+    {
+        "meta": {
+            "id": "4NTfOhj6sms2QlsjB79kli",
+            "type": "Entry",
+            "createdAt": "2025-02-18T10:40:10.432Z",
+            "updatedAt": "2025-02-18T10:57:00.426Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Service - Individual - Understanding Your Story in Context",
+            "header": "Understanding Your Story in Context",
+            "content": "The way we experience challenges isn’t random—it’s shaped by our past, relationships, and cultural influences. **Systemic therapy helps you see the bigger picture.**  \n### Instead of focusing on symptoms, we explore  \n- **How past experiences shape your present reactions.**  \n- **Why certain patterns repeat** and how to shift them.  \n- **New ways to approach struggles** that align with who you are.  \n\nThis is not about dwelling on the past but **gaining awareness that gives you more choice in the present.**",
+            "image": {
+                "title": "River delta",
+                "description": "Top down view of a river delta",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/2xgRBELcN6sVtdAAmQAXho/8b1c0f5ea50883333c75915ff42a7640/pexels-jeremy-bishop-1260133-27585250.jpg",
+                    "details": {
+                        "size": 2298625,
+                        "image": {
+                            "width": 4000,
+                            "height": 2995
+                        }
+                    },
+                    "fileName": "pexels-jeremy-bishop-1260133-27585250.jpg",
+                    "contentType": "image/jpeg"
+                }
+            }
+        }
+    },
+    {
+        "meta": {
+            "id": "l6eNx8j5lOIx2JVQzuJ4T",
+            "type": "Entry",
+            "createdAt": "2025-02-18T10:39:55.730Z",
+            "updatedAt": "2025-02-18T11:01:43.807Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Service - Individual - Finding Clarity in Life’s Challenges",
+            "header": "Finding Clarity in Life’s Challenges",
+            "content": "Whether you’re navigating anxiety, self-doubt, or a major transition, therapy provides a space to **step back and explore what’s really happening.**  \n\nSome common themes we can explore together:  \n\n### Emotional Well-being  \n- **Managing anxiety and overthinking** – Feeling more present and grounded.  \n- **Building confidence** – Understanding self-doubt and shifting toward self-acceptance.  \n\n### Life Transitions  \n- **Navigating change** – Career shifts, relationships, personal identity.  \n- **Exploring personal identity** – Gaining clarity on what truly matters to you.  \n\nEach session is **tailored to your unique experiences**—we follow what feels most important to you, at a pace that makes sense.",
+            "image": {
+                "title": "Climber mountain",
+                "description": "Silhouette of a man climbing a mountain white the sun it setting",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/2J7bQjYSq6FZP0LWWlutua/225a4877e3874fc38437f59c9d1326d2/pexels-1585669-3077882.jpg",
+                    "details": {
+                        "size": 541288,
+                        "image": {
+                            "width": 4453,
+                            "height": 2969
+                        }
+                    },
+                    "fileName": "pexels-1585669-3077882.jpg",
+                    "contentType": "image/jpeg"
+                }
+            }
+        }
+    },
+    {
+        "meta": {
+            "id": "3TsdRdflpegyJ6DvGnFGxd",
+            "type": "Entry",
+            "createdAt": "2025-02-18T10:39:32.983Z",
+            "updatedAt": "2025-02-18T11:12:49.582Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Service - Individual - A Collaborative, Practical Approach",
+            "header": "A Collaborative, Practical Approach",
+            "content": "Therapy isn’t about becoming someone different—it’s about becoming more yourself. **Through systemic therapy, we explore not just what you want to change, but how that change can feel meaningful and lasting.**  \n\n### Some of the ways we might work together\n- **Recognizing patterns** – Bringing awareness to thoughts, emotions, and behaviours.  \n- **Developing strategies** – Finding tools that actually fit your life.  \n- **Strengthening resilience** – Navigating difficulties with greater clarity and confidence.  \n\nThere’s no single path to growth. **Together, we explore what works best for you.**",
+            "image": {
+                "title": "Hand reach out help",
+                "description": "Blurred background of a woman with her hand reaching out to you",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/4jVHM9bEsZv8i77sb0BYan/af58dbd48706b4c989915796760f1ad6/pexels-philip-justin-mamelic-1397651-3162828.jpg",
+                    "details": {
+                        "size": 588589,
+                        "image": {
+                            "width": 6000,
+                            "height": 4000
+                        }
+                    },
+                    "fileName": "pexels-philip-justin-mamelic-1397651-3162828.jpg",
+                    "contentType": "image/jpeg"
+                }
+            }
+        }
+    },
+    {
+        "meta": {
+            "id": "19kdoRfuoGIo3VGL5yplea",
+            "type": "Entry",
+            "createdAt": "2025-02-18T10:37:09.048Z",
+            "updatedAt": "2025-02-18T11:34:16.762Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Service - Couples - Strengthening Emotional Bonds",
+            "header": "Strengthening Emotional Bonds",
+            "content": "A fulfilling relationship isn’t just about resolving conflict—it’s about nurturing **connection, trust, and a shared sense of purpose.** Over time, responsibilities, stress, and unresolved tensions can create distance. Therapy provides an opportunity to **reconnect, reflect, and explore what strengthens your bond.**  \n\n### Rebuilding and Deepening Connection  \nSome of the ways we can strengthen your relationship include:  \n- **Rekindling emotional intimacy** – Creating space for affection, appreciation, and shared joy.  \n- **Building trust** – Understanding how to repair and rebuild after challenges.  \n- **Aligning values and goals** – Exploring where your paths intersect and how to move forward together.  \n\nEvery relationship has its own rhythm. Therapy isn’t about fitting into an idealized version of what a relationship “should” be—it’s about **discovering what works best for you as a couple** and creating a partnership that feels fulfilling and supportive for both of you.",
+            "image": {
+                "title": "Couple holding hands",
+                "description": "Couple holding hands",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/Vh3NX7tVbvWekb3k4bDsj/beb62bdbdbd835609d3b4cfa9e897369/pexels-fauxels-3228726.jpg",
+                    "details": {
+                        "size": 2496882,
+                        "image": {
+                            "width": 6000,
+                            "height": 4000
+                        }
+                    },
+                    "fileName": "pexels-fauxels-3228726.jpg",
+                    "contentType": "image/jpeg"
+                }
+            }
+        }
+    },
+    {
+        "meta": {
+            "id": "1i7bm2KgeO5GaIR3oLG7BO",
+            "type": "Entry",
+            "createdAt": "2025-02-18T10:36:51.497Z",
+            "updatedAt": "2025-02-18T11:32:35.230Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Service - Couples - Navigating Conflict with Awareness",
+            "header": "Navigating Conflict with Awareness",
+            "content": "Disagreements are part of any relationship, but when **conflict feels repetitive or emotionally exhausting**, it can create distance instead of resolution. In therapy, we go beyond surface-level arguments to explore **what’s really happening beneath the conflict.**  \n\n### Understanding Conflict Patterns  \nRather than focusing on who is “right” or “wrong,” we explore:  \n- **Miscommunication and assumptions** – Learning to clarify intent before reacting.  \n- **Recurring arguments** – Identifying patterns that keep conflicts unresolved.  \n- **Emotional disconnection** – Addressing feelings of loneliness or disengagement.  \n- **Differences in needs or expectations** – Exploring where each partner is coming from without judgment.  \n\nApproaching conflict with **curiosity instead of criticism** allows couples to express themselves **honestly and respectfully,** fostering a greater sense of partnership.  ",
+            "image": {
+                "title": "Couple awareness",
+                "description": "Couple on a couch, their heads only visible in the reflection of the glass table in front of them",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/6x9okD4t8b0aFi7P82ZUXq/a031b70d65ac5f2f2055a73c5a67a712/pexels-cottonbro-4098179.jpg",
+                    "details": {
+                        "size": 2107932,
+                        "image": {
+                            "width": 5860,
+                            "height": 3907
+                        }
+                    },
+                    "fileName": "pexels-cottonbro-4098179.jpg",
+                    "contentType": "image/jpeg"
+                }
+            }
+        }
+    },
+    {
+        "meta": {
+            "id": "2F80h2YVtXwaWS9LBMskIa",
+            "type": "Entry",
+            "createdAt": "2025-02-18T10:36:09.364Z",
+            "updatedAt": "2025-02-18T11:22:02.836Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Service - Couples - Building Connection and Understanding",
+            "header": "Building Connection and Understanding ",
+            "content": "Communication and connection lie at the heart of every relationship. Over time, even strong couples can struggle to truly hear each other, leading to **misunderstandings, reactive conversations, and unspoken frustrations.**  \n\n### I provide a space where both partners can  \n- Communicate **with clarity and honesty** without fear of judgment.  \n- Recognize the patterns shaping interactions.  \n- Shift from **defensiveness to deeper understanding.**  \n\nThis isn’t about fixing a relationship overnight—it’s about developing **new ways of relating, built on openness, trust, and connection.**  ",
+            "image": {
+                "title": "Couple  silhouette",
+                "description": "Silhouette or a couple holding hands with clouds on the left and clear sky on the right",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/5ZbbLPLclgs0opPSpN90Xo/66db9540152b58101f9552d84de6c82d/pexels-darrell-fraser-1187740-2372128.jpg",
+                    "details": {
+                        "size": 898462,
+                        "image": {
+                            "width": 6720,
+                            "height": 4480
+                        }
+                    },
+                    "fileName": "pexels-darrell-fraser-1187740-2372128.jpg",
+                    "contentType": "image/jpeg"
+                }
+            }
+        }
+    },
+    {
+        "meta": {
+            "id": "2UIUVm9CPyCr5uq6z2TcTo",
+            "type": "Entry",
+            "createdAt": "2025-02-18T10:34:27.941Z",
+            "updatedAt": "2025-02-18T10:34:27.941Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Service - Parents - Strengthening Parent-Child Connection",
+            "header": "Strengthening Parent-Child Connection",
+            "content": "At the heart of parenting is **connection**—the trust and understanding that allow your child to feel seen, heard, and supported. This bond is built through **everyday interactions, communication, and the ability to navigate challenges together.**  \n\n### How parental counselling Can Support You:  \n- **Improving communication** – Strengthening trust and emotional security with your child.  \n- **Setting boundaries with confidence and warmth** – Balancing guidance with respect for your child’s individuality.  \n- **Creating a supportive family environment** – Ensuring that both parents and children feel valued and understood.  \n\nParenting is a continuous learning process. **By taking time to reflect on your own emotions, experiences, and patterns, you naturally strengthen your relationship with your child.** "
+        }
+    },
+    {
+        "meta": {
+            "id": "3C3oLs9Jn8e39wBh33tVDd",
+            "type": "Entry",
+            "createdAt": "2025-02-18T10:33:32.757Z",
+            "updatedAt": "2025-02-18T10:33:32.757Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Service - Parents - Navigating Parenting Challenges",
+            "header": "Navigating Parenting Challenges",
+            "content": "Each stage of parenting brings unique challenges, from early childhood to adolescence and beyond. Some moments feel overwhelming—whether it’s **tantrums, sibling conflicts, setting boundaries, or maintaining emotional balance.**  \n\n### Common Challenges We Can Work Through\n- **Managing parental stress** – Prioritizing self-care while caring for your child.  \n- **Navigating differences in parenting styles** – Strengthening communication between co-parents.  \n- **Supporting your child’s emotional needs** – Fostering security, resilience, and confidence.  \n- **Breaking generational patterns** – Understanding inherited beliefs about parenting and redefining them in a way that feels right for you.  \n\nThis process isn’t about finding **one \"right\" way to parent**—it’s about **finding what works best for your family.**  "
+        }
+    },
+    {
+        "meta": {
+            "id": "6CiE5HxSv3qxeh3cmWgGMP",
+            "type": "Entry",
+            "createdAt": "2025-02-18T10:32:49.738Z",
+            "updatedAt": "2025-02-18T10:32:49.738Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Service - Parents - Understanding Your Parenting Style ",
+            "header": "Understanding Your Parenting Style ",
+            "content": "Each stage of parenting brings unique challenges, from early childhood to adolescence and beyond. Some moments feel overwhelming—whether it’s **tantrums, sibling conflicts, setting boundaries, or maintaining emotional balance.**  \n\n### Common Challenges We Can Work Through\n- **Managing parental stress** – Prioritizing self-care while caring for your child.  \n- **Navigating differences in parenting styles** – Strengthening communication between co-parents.  \n- **Supporting your child’s emotional needs** – Fostering security, resilience, and confidence.  \n- **Breaking generational patterns** – Understanding inherited beliefs about parenting and redefining them in a way that feels right for you.  \n\nThis process isn’t about finding **one \"right\" way to parent**—it’s about **finding what works best for your family.**  "
+        }
+    },
+    {
+        "meta": {
+            "id": "CxulCAfJaVb5aktsuV2Vq",
+            "type": "Entry",
+            "createdAt": "2025-02-18T10:32:20.679Z",
+            "updatedAt": "2025-02-18T10:32:20.679Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Service - Parents - Support for Your Parenting Journey",
+            "header": "Support for Your Parenting Journey",
+            "content": "Parenting is one of life’s most meaningful roles, yet it comes with challenges, uncertainties, and moments of self-doubt. There is no **one-size-fits-all approach**, and at times, it’s natural to feel overwhelmed or in need of support.  \n\nParental counseling offers a space to **reflect, gain clarity, and develop a parenting approach that aligns with your values and family dynamics.**  "
+        }
+    },
+    {
+        "meta": {
+            "id": "4qFjbrXOB3rhOFHyd1gpVa",
+            "type": "Entry",
+            "createdAt": "2025-02-18T10:30:02.840Z",
+            "updatedAt": "2025-02-18T10:30:02.840Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Blog - Exploring Patterns, Perspectives & Growth",
+            "header": "Exploring Patterns, Perspectives & Growth",
+            "content": "Systemic therapy looks beyond individual struggles to explore the **patterns, relationships, and dynamics** that shape everyday life. These articles provide:  \n\n- **New perspectives** on relationships, family, and personal growth.  \n- **Practical tools** to navigate challenges with clarity.  \n- **Reflections on systemic therapy** and its role in daily experiences.  \n\nWhether you're looking for guidance or simply a fresh way to approach life’s complexities, these articles offer insight and support.  ",
+            "image": {
+                "title": "Reflection",
+                "description": "Woman holding a piece of mirror reflecting her face.",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/2PpJ0Zeib9lS9fbRuvpxH/42638f0fab41c351ac93e13892b1f639/pexels-rccbtn-29219418.jpg",
+                    "details": {
+                        "size": 1098453,
+                        "image": {
+                            "width": 6240,
+                            "height": 4160
+                        }
+                    },
+                    "fileName": "pexels-rccbtn-29219418.jpg",
+                    "contentType": "image/jpeg"
+                }
+            }
+        }
+    },
+    {
+        "meta": {
+            "id": "2Fo420YntIsCdlaT5mb0DF",
+            "type": "Entry",
+            "createdAt": "2025-02-18T10:20:41.853Z",
+            "updatedAt": "2025-02-18T10:20:41.853Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Accessibility and Confidentiality",
+            "header": "Accessibility and Confidentiality",
+            "content": "Your privacy and comfort are important. All sessions are held in a **secure, confidential** online setting, ensuring you can speak openly and feel fully supported.  \n\nI strive to make therapy as accessible as possible. If you have any specific concerns or accessibility needs, please let me know—I’m happy to discuss how we can accommodate them.  "
+        }
+    },
+    {
+        "meta": {
+            "id": "4qEYvSRCOeh7QsDPufwCz4",
+            "type": "Entry",
+            "createdAt": "2025-02-18T10:20:10.044Z",
+            "updatedAt": "2025-02-18T10:20:10.044Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Contact - Fees and practical information",
+            "header": "Fees and practical information",
+            "content": "Understanding the logistics of therapy can help you feel more comfortable about getting started.  \n\n- **Session Length:** Typically 45 minutes  \n- **Session Type:** Online video calls  \n- **Payment Options:** Details provided upon booking  \n\nIf you have any questions about fees or practical arrangements, feel free to reach out—I’m happy to provide more information.  "
+        }
+    },
+    {
+        "meta": {
+            "id": "231hldc0qiIK8t7Q3L2Cse",
+            "type": "Entry",
+            "createdAt": "2025-02-18T10:19:37.781Z",
+            "updatedAt": "2025-02-18T10:19:37.781Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Contact - What to expect when you reach out",
+            "header": "What to expect when you reach out",
+            "content": "Reaching out for therapy can sometimes feel like a big step. Here’s what happens after you contact me:  \n\n### **1. Free 15-Minute Intake**  \nOur first conversation is a chance to get to know each other. You can share a bit about what brings you to therapy, ask any questions, and get a sense of how we might work together.  \n\n### **2. Scheduling a Session**  \nIf we decide to move forward, we will schedule an online session at a time that works for you. Since all sessions take place online, you can **access therapy from anywhere** in a way that fits into your life.  \n\n### **3. Preparing for Your First Session**  \nIn our first session, we will explore your needs, expectations, and hopes for therapy. There is no pressure to have everything figured out—this is simply a space to start the conversation. "
+        }
+    },
+    {
+        "meta": {
+            "id": "1cFqfmmedYuLRP3u1YMnNc",
+            "type": "Entry",
+            "createdAt": "2025-02-18T10:18:51.771Z",
+            "updatedAt": "2025-02-18T10:18:51.771Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Contact - Contact Details",
+            "header": "Contact Details",
+            "content": "- **Email:** [eleni@mikrouli.nl](mailto:eleni@mikrouli.nl)  \n- **Phone:** [00 31 6 19 44 62 63](tel:+31619446263)\n- **Languages:** Greek, Dutch, English  \n- **Sessions:** Online only  \n\nIf you’d like to schedule a session or have any questions, feel free to reach out by **email or phone.** I aim to respond as soon as possible to ensure you get the support you need.  "
+        }
+    },
+    {
+        "meta": {
+            "id": "vLj4Bwvm9hd9091fvVSF5",
+            "type": "Entry",
+            "createdAt": "2025-02-18T10:18:06.533Z",
+            "updatedAt": "2025-02-18T10:18:06.533Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Contact - Get in Touch",
+            "header": "Get in Touch",
+            "content": "Taking the first step toward therapy can feel like a big decision, but you don’t have to do it alone. Whether you’re ready to begin or simply have questions, I welcome you to reach out. Therapy is a collaborative process, and our first conversation is a space for you to explore whether this feels like the right fit.  \n\nI offer a **free 15-minute intake session**, where we can talk about what’s on your mind, discuss how therapy might support you, and answer any questions you may have—without any pressure or commitment.  ",
+            "image": {
+                "title": "Eleni - Selfie 1",
+                "description": "Selfie of Eleni ",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/70obUQ3NpVkjj3OYnQOXcv/48df68bb94011fd4a3ed3bd0c88d1f28/IMG_0062.jpg",
+                    "details": {
+                        "size": 1751312,
+                        "image": {
+                            "width": 3088,
+                            "height": 2320
+                        }
+                    },
+                    "fileName": "IMG_0062.jpg",
+                    "contentType": "image/jpeg"
+                }
+            }
+        }
+    },
+    {
+        "meta": {
+            "id": "2OWie1JCjDeyT6HuwmJ7fe",
+            "type": "Entry",
+            "createdAt": "2025-02-18T08:25:03.930Z",
+            "updatedAt": "2025-02-18T09:18:25.214Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Service - A Collaborative Systemic Approach",
+            "header": "A Collaborative Systemic Approach",
+            "content": "Rather than seeing challenges in isolation, we explore **how relationships, experiences, and environments influence your situation.** Systemic therapy recognises that struggles don’t exist in a vacuum—they emerge within a broader context.  \n\n### What This Means in Sessions \n- **Relational Awareness** – Understanding how interactions shape experiences.  \n- **Identifying Patterns** – Recognising recurring behaviours and relational dynamics.  \n- **Exploring Possibilities** – Discovering new perspectives and ways to navigate challenges.  \n\nThis process isn’t about “fixing” problems but about **creating new ways of relating—to yourself, others, and your environment.**  ",
+            "image": {
+                "title": "Exploring",
+                "description": "Hand holding a glass sphere with the reflection of the forest background in it",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/72AM4L2a5ESCnaHY416PmA/f67035763d343abc8d73f345827e91c5/pexels-rahulp9800-3764876.jpg",
+                    "details": {
+                        "size": 1652521,
+                        "image": {
+                            "width": 6000,
+                            "height": 4000
+                        }
+                    },
+                    "fileName": "pexels-rahulp9800-3764876.jpg",
+                    "contentType": "image/jpeg"
+                }
+            }
+        }
+    },
+    {
+        "meta": {
+            "id": "1pU4NZO9T8w7jkZYZAqIaf",
+            "type": "Entry",
+            "createdAt": "2025-02-18T08:24:15.876Z",
+            "updatedAt": "2025-02-18T09:18:25.190Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "Service - finding the right support",
+            "header": "Finding the right support",
+            "content": "Life presents various challenges—personal struggles, relationship dynamics, or parenting complexities. **Sessions offer a space to reflect, gain clarity, and explore meaningful ways forward.**  \n\nI provide **individual, couples, and family sessions**, helping clients:  \n\n- Understand patterns shaping thoughts, emotions, and relationships.  \n- Strengthen communication and deepen connections.  \n- Navigate life changes with greater confidence.  \n\nEach session is tailored to your unique context, ensuring a **collaborative and supportive experience**.  ",
+            "image": {
+                "title": "Hand reaching out",
+                "description": "Hand reaching out with trees in the background and the sun shining between the fingers",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/UW8zIP1Njr6SEqMEKHp0Q/92095ff07cd209481947f2dc891d7945/pexels-rickyrecap-1654698.jpg",
+                    "details": {
+                        "size": 462119,
+                        "image": {
+                            "width": 4240,
+                            "height": 2832
+                        }
+                    },
+                    "fileName": "pexels-rickyrecap-1654698.jpg",
+                    "contentType": "image/jpeg"
+                }
+            }
+        }
+    },
+    {
+        "meta": {
+            "id": "6VQj2EKDuK1TtphVsWXWz",
+            "type": "Entry",
+            "createdAt": "2025-02-13T09:10:59.372Z",
+            "updatedAt": "2025-02-18T09:39:02.569Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "About - About Me",
+            "header": "About Me",
+            "content": "Originally from Greece, I earned a psychology degree in Athens and moved to the Netherlands in 2007 for a master’s in health psychology. There, I discovered systemic therapy—rooted in empathy, collaboration, and relational understanding. It highlights patterns shaping our lives rather than viewing individuals in isolation.\n\nI’m drawn to how we connect, grow, and adapt. My curiosity led me to systemic therapy, where healing happens through connection—with ourselves, others, and the systems around us.",
+            "image": {
+                "title": "Eleni - Selfie 1",
+                "description": "Selfie of Eleni ",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/70obUQ3NpVkjj3OYnQOXcv/48df68bb94011fd4a3ed3bd0c88d1f28/IMG_0062.jpg",
+                    "details": {
+                        "size": 1751312,
+                        "image": {
+                            "width": 3088,
+                            "height": 2320
+                        }
+                    },
+                    "fileName": "IMG_0062.jpg",
+                    "contentType": "image/jpeg"
+                }
+            }
         }
     },
     {
@@ -17,12 +596,29 @@
             "id": "36OLI8lslbR7BFB23VDe0J",
             "type": "Entry",
             "createdAt": "2025-02-13T09:10:59.357Z",
-            "updatedAt": "2025-02-17T15:09:48.786Z",
+            "updatedAt": "2025-02-18T09:39:02.508Z",
             "locale": "en-US"
         },
         "fields": {
-            "title": "About my Experience",
-            "content": "As an MSc psychologist, I specialise in systemic therapy, working with individuals, couples, parents, and families. My approach is practical and collaborative—I help clients explore, gain clarity, and move forward in ways that fit their lives.\n\nAs an expat, I understand cultural transitions and identity shifts. While I work with all clients, I value how change, belonging, and adaptation shape well-being.\n\nI also support a non-profit for adult children of parents with psychological challenges or addictions, reinforcing my belief in resilience, breaking patterns, and rewriting narratives in ways that feel empowering and connected."
+            "title": "About - About my Experience",
+            "header": "About my Experience",
+            "content": "As an MSc psychologist, I specialise in systemic therapy, working with individuals, couples, parents, and families. My approach is practical and collaborative—I help clients explore, gain clarity, and move forward in ways that fit their lives.\n\nAs an expat, I understand cultural transitions and identity shifts. While I work with all clients, I value how change, belonging, and adaptation shape well-being.\n\nI also support a non-profit for adult children of parents with psychological challenges or addictions, reinforcing my belief in resilience, breaking patterns, and rewriting narratives in ways that feel empowering and connected.",
+            "image": {
+                "title": "Reflection",
+                "description": "Woman holding a piece of mirror reflecting her face.",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/2PpJ0Zeib9lS9fbRuvpxH/42638f0fab41c351ac93e13892b1f639/pexels-rccbtn-29219418.jpg",
+                    "details": {
+                        "size": 1098453,
+                        "image": {
+                            "width": 6240,
+                            "height": 4160
+                        }
+                    },
+                    "fileName": "pexels-rccbtn-29219418.jpg",
+                    "contentType": "image/jpeg"
+                }
+            }
         }
     },
     {
@@ -30,12 +626,29 @@
             "id": "3WlvTkYpcRIBaHEi9yRM4P",
             "type": "Entry",
             "createdAt": "2025-02-13T09:10:59.340Z",
-            "updatedAt": "2025-02-13T09:25:22.437Z",
+            "updatedAt": "2025-02-18T09:39:02.537Z",
             "locale": "en-US"
         },
         "fields": {
-            "title": "About Mikrouli",
-            "content": "Mikrouli is more than a therapy practice—it’s a space for **exploration, growth, and connection.**  \n\n> Mikrouli comes from the Greek word \"mikros,\" meaning \"small.\" In systemic therapy, it reflects both **a tender, compassionate way to refer to oneself and loved ones** and **how we exist within larger systems.**  \n\nI offer a warm, supportive, and non-judgmental space. Whether you seek therapy for yourself, your relationship, or your family, we explore together what’s happening and how to create meaningful change.  "
+            "title": "About - About Mikrouli",
+            "header": "About Mikrouli",
+            "content": "Mikrouli is more than a therapy practice—it’s a space for **exploration, growth, and connection.**  \n\n> Mikrouli comes from the Greek word \"mikros,\" meaning \"small.\" In systemic therapy, it reflects both **a tender, compassionate way to refer to oneself and loved ones** and **how we exist within larger systems.**  \n\nI offer a warm, supportive, and non-judgmental space. Whether you seek therapy for yourself, your relationship, or your family, we explore together what’s happening and how to create meaningful change.  ",
+            "image": {
+                "title": "Tree on a hill",
+                "description": "Single tree on a hill with the sun shining from behind",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/305OWagl4MVjJjO5tDSphx/1051debd071f1ececd9b94556eb5d4ff/pexels-viceman-25033690.jpg",
+                    "details": {
+                        "size": 3615125,
+                        "image": {
+                            "width": 6720,
+                            "height": 4480
+                        }
+                    },
+                    "fileName": "pexels-viceman-25033690.jpg",
+                    "contentType": "image/jpeg"
+                }
+            }
         }
     },
     {
@@ -43,25 +656,29 @@
             "id": "TMvlJSFtlimqbtWlei2i2",
             "type": "Entry",
             "createdAt": "2025-02-13T09:10:59.323Z",
-            "updatedAt": "2025-02-13T09:25:22.332Z",
+            "updatedAt": "2025-02-18T10:08:51.266Z",
             "locale": "en-US"
         },
         "fields": {
-            "title": "About Systemic Therapy",
-            "content": "Systemic therapy looks beyond the individual to the **relationships, patterns, and environments** shaping experiences. Rather than treating challenges as isolated problems, we explore:  \n\n- **How relationships influence emotions and behaviors.**  \n- **What patterns keep repeating, and why?**  \n- **Where small shifts can create meaningful change.**  \n\nThis approach is **not about blame—it’s about understanding.** Together, we uncover perspectives, recognize strengths, and build sustainable solutions.  \n\nSystemic therapy supports **personal growth, relationship improvement, and navigating major life transitions.** It makes sense of emotions and behaviors in connection with your broader life experience, rather than focusing on \"fixing\" individual struggles. "
-        }
-    },
-    {
-        "meta": {
-            "id": "6Wg40U4ksV8AmlGriMefcu",
-            "type": "Entry",
-            "createdAt": "2025-02-13T09:10:59.306Z",
-            "updatedAt": "2025-02-13T09:10:59.306Z",
-            "locale": "en-US"
-        },
-        "fields": {
-            "title": "Therapy",
-            "content": "Growth happens through small steps, insights, and shifts in perspective. Therapy offers space to **understand yourself better, explore possibilities, and move forward in a way that feels right for you.**  \n\nWhether you’re facing a specific challenge or seeking clarity, therapy provides support, guidance, and new ways of seeing things. You don’t have to go through it alone."
+            "title": "About - About Systemic Therapy",
+            "header": "About Systemic Therapy",
+            "content": "Systemic therapy looks beyond the individual to the **relationships, patterns, and environments** shaping experiences. Rather than treating challenges as isolated problems, we explore:  \n\n- **How relationships influence emotions and behaviors.**  \n- **What patterns keep repeating, and why?**  \n- **Where small shifts can create meaningful change.**  \n\nThis approach is **not about blame—it’s about understanding.** Together, we uncover perspectives, recognize strengths, and build sustainable solutions.  \n\nSystemic therapy supports **personal growth, relationship improvement, and navigating major life transitions.** It makes sense of emotions and behaviors in connection with your broader life experience, rather than focusing on \"fixing\" individual struggles. ",
+            "image": {
+                "title": "Colored pawns",
+                "description": "Five colors pawns, focussing on a blue pawn on the foreground",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/6ugEItOKq9TTXuhdMEbPAS/bff23a49f3d6a860bcbb274a5b73713a/pexels-nietjuhart-776655.jpg",
+                    "details": {
+                        "size": 450296,
+                        "image": {
+                            "width": 5340,
+                            "height": 3397
+                        }
+                    },
+                    "fileName": "pexels-nietjuhart-776655.jpg",
+                    "contentType": "image/jpeg"
+                }
+            }
         }
     },
     {
@@ -69,11 +686,12 @@
             "id": "2Ut9rt36NSynm7Pmy5g2kI",
             "type": "Entry",
             "createdAt": "2025-02-13T09:10:59.290Z",
-            "updatedAt": "2025-02-13T09:25:22.318Z",
+            "updatedAt": "2025-02-18T09:52:11.564Z",
             "locale": "en-US"
         },
         "fields": {
-            "title": "About my Therapy Sessions",
+            "title": "About - About my Therapy Sessions",
+            "header": "About my Therapy Sessions",
             "content": "Therapy offers a **flexible, supportive space** to explore challenges, gain insight, and move forward at your pace.  \n\n### What to Expect  \n- **Collaborative Approach** – We explore your experiences together, uncovering patterns and possibilities.  \n- **Safe, Non-Judgmental Space** – A place to express yourself freely and make sense of challenges.  \n- **Reflection and Practical Steps** – Insight matters, but change comes through small, meaningful shifts.  \n\n### The First Session  \nWe discuss what brings you to therapy, your goals, and what feels right for you—no pressure, just space to explore.  \n\n### Frequency and Format  \n- **Online sessions** for flexibility and accessibility.\n- **Scheduling adapts** to your needs—weekly, bi-weekly, or as fits your situation.  \n- **Regular check-ins** ensure therapy stays supportive and relevant.  \n\n{{ link url=\"/contact\" text=\"Contact me for more information\" }}  "
         }
     },
@@ -82,11 +700,12 @@
             "id": "1WhCZniZkSekWvatAMlEun",
             "type": "Entry",
             "createdAt": "2025-02-07T16:08:48.490Z",
-            "updatedAt": "2025-02-12T20:01:52.474Z",
+            "updatedAt": "2025-02-18T09:18:25.044Z",
             "locale": "en-US"
         },
         "fields": {
-            "title": "Insights & Reflections",
+            "title": "Home - Insights & Reflections",
+            "header": "Insights & Reflections",
             "content": "Real change happens when we step back and see ourselves differently. My blog shares insights on systemic therapy, relationships, parenting, and growth.\n\n> Whether you seek guidance, reassurance, or a fresh perspective, my blog explores life’s patterns.\n\n{{ link url=\"/blog\" text=\"Explore my blog\" }}"
         }
     },
@@ -95,11 +714,12 @@
             "id": "4QUbt62JY41XDkESuqFL5A",
             "type": "Entry",
             "createdAt": "2025-02-03T11:33:44.141Z",
-            "updatedAt": "2025-02-16T13:35:07.115Z",
+            "updatedAt": "2025-02-18T09:18:25.131Z",
             "locale": "en-US"
         },
         "fields": {
-            "title": "Get to know me",
+            "title": "Home - Get to know me",
+            "header": "Get to know me",
             "content": "I’m Eleni Papamikrouli, originally from Greece. I’ve lived in the Netherlands since 2007. I hold a master’s in psychology and study systemic therapy in both countries.\n\n> Therapy offers insight, reveals strengths, and explores values.\n\nMy approach is practical, collaborative, and curious.\n\n{{ link url=\"/about\" text=\"Learn more about me\" }}",
             "image": {
                 "title": "Eleni - Selfie 1",
@@ -124,11 +744,12 @@
             "id": "10Y67eiXpG60llp0M8MCQA",
             "type": "Entry",
             "createdAt": "2025-02-03T08:22:01.274Z",
-            "updatedAt": "2025-02-16T15:00:13.828Z",
+            "updatedAt": "2025-02-18T09:18:25.155Z",
             "locale": "en-US"
         },
         "fields": {
-            "title": "Ready to get in touch?",
+            "title": "Home - Ready to get in touch?",
+            "header": "Ready to get in touch?",
             "content": "Starting therapy can feel like a big step, but you don’t have to do it alone. Whether for personal growth, relationships, or parenting, I offer support.\n\n> All sessions are online, making therapy easy to fit into your life.\n\nA free 15-minute intake lets us discuss concerns and see if it’s the right fit—no pressure.\n\n{{ link url=\"/contact\" text=\"Get in touch\" }}",
             "image": {
                 "title": "Starting therapy - 1",
@@ -153,11 +774,12 @@
             "id": "2HRRM3fcmX01Y4bLVVQgMg",
             "type": "Entry",
             "createdAt": "2025-02-03T08:21:15.266Z",
-            "updatedAt": "2025-02-17T19:03:56.785Z",
+            "updatedAt": "2025-02-18T09:18:25.237Z",
             "locale": "en-US"
         },
         "fields": {
-            "title": "Your Journey Starts Here",
+            "title": "Home - Your Journey Starts Here",
+            "header": "Your Journey Starts Here",
             "content": "Therapy offers space to gain clarity and explore change.\n\n> A space to reflect, understand, and move forward in a way that feels right for you.\n\nSpecialising in systemic therapy, I examine how relationships, experiences, and culture shape life.\n\n{{ link url=\"/services\" text=\"Explore my services\"}}",
             "image": {
                 "title": "Stepping stones",

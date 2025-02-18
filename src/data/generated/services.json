@@ -4,7 +4,7 @@
             "id": "1jrEYUK6AF7a2NvJ41IthV",
             "type": "Entry",
             "createdAt": "2025-01-07T13:22:20.499Z",
-            "updatedAt": "2025-02-17T20:35:11.961Z",
+            "updatedAt": "2025-02-18T10:40:30.082Z",
             "locale": "en-US"
         },
         "fields": {
@@ -33,7 +33,92 @@
                 }
             },
             "intro": "For those seeking personal growth and clarity, individual sessions offer a space\nto explore challenges and patterns that may be holding you back. Whether you’re\ndealing with anxiety, cultural transitions, or life stress, we’ll work together\nto find new possibilities.",
-            "content": "## A Space for Clarity and Growth \nLife can feel overwhelming, leaving you stuck in patterns that no longer serve you. **Therapy isn’t about fixing you—it’s about helping you understand yourself more fully** and reconnecting with your strengths.  \n\n### I create a space where you can \n- **Pause and reflect** without pressure or judgment.  \n- **Understand patterns** in thoughts, emotions, and relationships.  \n- **Gain clarity and choice** in how you move forward.  \n\nYou don’t have to figure everything out alone.  \n\n---\n\n## Understanding Your Story in Context \nThe way we experience challenges isn’t random—it’s shaped by our past, relationships, and cultural influences. **Systemic therapy helps you see the bigger picture.**  \n### Instead of focusing on symptoms, we explore  \n- **How past experiences shape your present reactions.**  \n- **Why certain patterns repeat** and how to shift them.  \n- **New ways to approach struggles** that align with who you are.  \n\nThis is not about dwelling on the past but **gaining awareness that gives you more choice in the present.**  \n\n---\n\n## Finding Clarity in Life’s Challenges  \nWhether you’re navigating anxiety, self-doubt, or a major transition, therapy provides a space to **step back and explore what’s really happening.**  \n\nSome common themes we can explore together:  \n\n### Emotional Well-being  \n- **Managing anxiety and overthinking** – Feeling more present and grounded.  \n- **Building confidence** – Understanding self-doubt and shifting toward self-acceptance.  \n\n### Life Transitions  \n- **Navigating change** – Career shifts, relationships, personal identity.  \n- **Exploring personal identity** – Gaining clarity on what truly matters to you.  \n\nEach session is **tailored to your unique experiences**—we follow what feels most important to you, at a pace that makes sense.  \n\n---\n\n## A Collaborative, Practical Approach\nTherapy isn’t about becoming someone different—it’s about becoming more yourself. **Through systemic therapy, we explore not just what you want to change, but how that change can feel meaningful and lasting.**  \n\n### Some of the ways we might work together\n- **Recognizing patterns** – Bringing awareness to thoughts, emotions, and behaviors.  \n- **Developing strategies** – Finding tools that actually fit your life.  \n- **Strengthening resilience** – Navigating difficulties with greater clarity and confidence.  \n\nThere’s no single path to growth. **Together, we explore what works best for you.**  \n",
+            "sections": [
+                {
+                    "title": "Service - Individual - A Space for Clarity and Growth",
+                    "header": "A Space for Clarity and Growth",
+                    "content": "Life can feel overwhelming, leaving you stuck in patterns that no longer serve you. **Therapy isn’t about fixing you—it’s about helping you understand yourself more fully** and reconnecting with your strengths.  \n\n### I create a space where you can \n- **Pause and reflect** without pressure or judgment.  \n- **Understand patterns** in thoughts, emotions, and relationships.  \n- **Gain clarity and choice** in how you move forward.  \n\nYou don’t have to figure everything out alone.",
+                    "image": {
+                        "title": "Water drops on a leaf",
+                        "description": "Water drops on a leaf",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/7jINSfcooFRKZgcRp5FUGe/170c8f8adaa77fe093187fbdaa683cab/pexels-being-the-traveller-579914-2809734.jpg",
+                            "details": {
+                                "size": 1782302,
+                                "image": {
+                                    "width": 5184,
+                                    "height": 3456
+                                }
+                            },
+                            "fileName": "pexels-being-the-traveller-579914-2809734.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
+                },
+                {
+                    "title": "Service - Individual - Understanding Your Story in Context",
+                    "header": "Understanding Your Story in Context",
+                    "content": "The way we experience challenges isn’t random—it’s shaped by our past, relationships, and cultural influences. **Systemic therapy helps you see the bigger picture.**  \n### Instead of focusing on symptoms, we explore  \n- **How past experiences shape your present reactions.**  \n- **Why certain patterns repeat** and how to shift them.  \n- **New ways to approach struggles** that align with who you are.  \n\nThis is not about dwelling on the past but **gaining awareness that gives you more choice in the present.**",
+                    "image": {
+                        "title": "River delta",
+                        "description": "Top down view of a river delta",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/2xgRBELcN6sVtdAAmQAXho/8b1c0f5ea50883333c75915ff42a7640/pexels-jeremy-bishop-1260133-27585250.jpg",
+                            "details": {
+                                "size": 2298625,
+                                "image": {
+                                    "width": 4000,
+                                    "height": 2995
+                                }
+                            },
+                            "fileName": "pexels-jeremy-bishop-1260133-27585250.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
+                },
+                {
+                    "title": "Service - Individual - Finding Clarity in Life’s Challenges",
+                    "header": "Finding Clarity in Life’s Challenges",
+                    "content": "Whether you’re navigating anxiety, self-doubt, or a major transition, therapy provides a space to **step back and explore what’s really happening.**  \n\nSome common themes we can explore together:  \n\n### Emotional Well-being  \n- **Managing anxiety and overthinking** – Feeling more present and grounded.  \n- **Building confidence** – Understanding self-doubt and shifting toward self-acceptance.  \n\n### Life Transitions  \n- **Navigating change** – Career shifts, relationships, personal identity.  \n- **Exploring personal identity** – Gaining clarity on what truly matters to you.  \n\nEach session is **tailored to your unique experiences**—we follow what feels most important to you, at a pace that makes sense.",
+                    "image": {
+                        "title": "Climber mountain",
+                        "description": "Silhouette of a man climbing a mountain white the sun it setting",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/2J7bQjYSq6FZP0LWWlutua/225a4877e3874fc38437f59c9d1326d2/pexels-1585669-3077882.jpg",
+                            "details": {
+                                "size": 541288,
+                                "image": {
+                                    "width": 4453,
+                                    "height": 2969
+                                }
+                            },
+                            "fileName": "pexels-1585669-3077882.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
+                },
+                {
+                    "title": "Service - Individual - A Collaborative, Practical Approach",
+                    "header": "A Collaborative, Practical Approach",
+                    "content": "Therapy isn’t about becoming someone different—it’s about becoming more yourself. **Through systemic therapy, we explore not just what you want to change, but how that change can feel meaningful and lasting.**  \n\n### Some of the ways we might work together\n- **Recognizing patterns** – Bringing awareness to thoughts, emotions, and behaviours.  \n- **Developing strategies** – Finding tools that actually fit your life.  \n- **Strengthening resilience** – Navigating difficulties with greater clarity and confidence.  \n\nThere’s no single path to growth. **Together, we explore what works best for you.**",
+                    "image": {
+                        "title": "Hand reach out help",
+                        "description": "Blurred background of a woman with her hand reaching out to you",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/4jVHM9bEsZv8i77sb0BYan/af58dbd48706b4c989915796760f1ad6/pexels-philip-justin-mamelic-1397651-3162828.jpg",
+                            "details": {
+                                "size": 588589,
+                                "image": {
+                                    "width": 6000,
+                                    "height": 4000
+                                }
+                            },
+                            "fileName": "pexels-philip-justin-mamelic-1397651-3162828.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
+                }
+            ],
             "outro": "## Taking the First Step  \nStarting therapy isn’t about having all the answers—it’s about creating a space where you can explore, reflect, and grow. It’s normal to feel unsure about where to begin, but you don’t have to do it alone.  \n\nI offer a **free 15-minute intake session**, where we can talk about what’s on your mind, answer any questions you may have, and see if this feels like the right space for you. There’s no pressure—just an opportunity to take the first step at your own pace.  \n"
         }
     },
@@ -42,7 +127,7 @@
             "id": "7tTIOTk3UaWgvlYkn51HF2",
             "type": "Entry",
             "createdAt": "2025-01-07T13:23:36.337Z",
-            "updatedAt": "2025-02-17T20:30:03.933Z",
+            "updatedAt": "2025-02-18T10:43:22.214Z",
             "locale": "en-US"
         },
         "fields": {
@@ -71,7 +156,92 @@
                 }
             },
             "intro": "Families operate as systems, and sometimes those systems get stuck. I help\nfamilies uncover and change unhelpful patterns, creating healthier ways of\nrelating and supporting each other.",
-            "content": "## Strengthening Relationships  \nFamilies are deeply connected systems—when one person is affected, the whole dynamic shifts. At times, these connections bring closeness and support, but they can also lead to **misunderstandings, tension, or emotional distance.**  \n\nFamily sessions offer a space to **pause, reflect, and explore these dynamics together**, not to assign blame but to better understand how each person’s experiences, emotions, and interactions shape the family as a whole.  \n\n---\n\n## Understanding Family Patterns  \nEvery family has **unspoken rules, roles, and expectations** that shape daily interactions. Some strengthen relationships, while others may contribute to **stress, recurring conflicts, or emotional disconnection.**  \n\n### Common Family Dynamics We Explore  \n- **Communication styles** – How family members express themselves and where misunderstandings arise.  \n- **Family roles** – Longstanding roles and whether they still serve each person.  \n- **Unspoken expectations** – Hidden assumptions shaping interactions and relationships.  \n\nSeeing these patterns clearly helps families **shift unhelpful cycles** and find more supportive ways to relate to one another.  \n\n---\n\n## Breaking Unhelpful Cycles  \nMany families feel stuck in patterns of **miscommunication, unresolved tension, or emotional distance.** Small disagreements may escalate quickly, certain family members may feel unheard, or past wounds may continue to affect present relationships.  \n\n### Some Common Challenges We Work Through\n- **Recurring conflicts** – Arguments that never seem to resolve.  \n- **Parenting struggles** – Balancing guidance and connection.  \n- **Generational patterns** – Unspoken family expectations passed down over time.  \n- **Life transitions** – Adjusting to changes like divorce, blending families, or shifting family roles.  \n\nRather than focusing on **who is right or wrong**, therapy helps uncover **what keeps the cycle going** and how small shifts in communication and perspective can create lasting positive change.  \n\n---\n\n## Rebuilding Connection and Trust  \nFamily sessions aren’t just about resolving conflict—it’s about strengthening the **connection, trust, and shared understanding** that help families thrive.  \n\n### How We Work Together:  \n- **Improving communication** – Creating space for honest, open conversations.  \n- **Navigating conflict with awareness** – Moving from frustration to mutual understanding.  \n- **Rebuilding emotional bonds** – Strengthening connection through recognition and validation.  \n\nEvery family is different—there’s no “right” way to be. Instead of rigid solutions, we explore **what works best for your family** so relationships feel more supportive, open, and fulfilling.  \n",
+            "sections": [
+                {
+                    "title": "Service - Family - Strengthening Relationships",
+                    "header": "Strengthening Relationships",
+                    "content": "Families are deeply connected systems—when one person is affected, the whole dynamic shifts. At times, these connections bring closeness and support, but they can also lead to **misunderstandings, tension, or emotional distance.**  \n\nFamily sessions offer a space to **pause, reflect, and explore these dynamics together**, not to assign blame but to better understand how each person’s experiences, emotions, and interactions shape the family as a whole.",
+                    "image": {
+                        "title": "Wife looking at husband",
+                        "description": "Wife looking at her husband with their daughter blurred out in the background",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/18aPRdNz3OFS0bnObqvGUU/702fabed259baad6e5b26c0c369e7207/pexels-shvetsa-11368680.jpg",
+                            "details": {
+                                "size": 2256831,
+                                "image": {
+                                    "width": 6240,
+                                    "height": 4160
+                                }
+                            },
+                            "fileName": "pexels-shvetsa-11368680.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
+                },
+                {
+                    "title": "Service - Family - Understanding Family Patterns",
+                    "header": "Understanding Family Patterns",
+                    "content": "Every family has **unspoken rules, roles, and expectations** that shape daily interactions. Some strengthen relationships, while others may contribute to **stress, recurring conflicts, or emotional disconnection.**  \n\n### Common Family Dynamics We Explore  \n- **Communication styles** – How family members express themselves and where misunderstandings arise.  \n- **Family roles** – Longstanding roles and whether they still serve each person.  \n- **Unspoken expectations** – Hidden assumptions shaping interactions and relationships.  \n\nSeeing these patterns clearly helps families **shift unhelpful cycles** and find more supportive ways to relate to one another.",
+                    "image": {
+                        "title": "Family dinner - distracted",
+                        "description": "Festive dinner table with boy looking distracted and woman focussed on her food.",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/12Q7GjgXGU3H00huqxIXGN/a91f98e8165e4aa4ba464cef197d3322/pexels-cottonbro-5791659.jpg",
+                            "details": {
+                                "size": 3741138,
+                                "image": {
+                                    "width": 6000,
+                                    "height": 4000
+                                }
+                            },
+                            "fileName": "pexels-cottonbro-5791659.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
+                },
+                {
+                    "title": "Service - Family - Breaking Unhelpful Cycles",
+                    "header": "Breaking Unhelpful Cycles",
+                    "content": "Many families feel stuck in patterns of **miscommunication, unresolved tension, or emotional distance.** Small disagreements may escalate quickly, certain family members may feel unheard, or past wounds may continue to affect present relationships.  \n\n### Some Common Challenges We Work Through\n- **Recurring conflicts** – Arguments that never seem to resolve.  \n- **Parenting struggles** – Balancing guidance and connection.  \n- **Generational patterns** – Unspoken family expectations passed down over time.  \n- **Life transitions** – Adjusting to changes like divorce, blending families, or shifting family roles.  \n\nRather than focusing on **who is right or wrong**, therapy helps uncover **what keeps the cycle going** and how small shifts in communication and perspective can create lasting positive change.",
+                    "image": {
+                        "title": "Family silhouette",
+                        "description": "Black and white silhouette of a family holding hands",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/5MF7icCCUU73IuTLBD6z2B/41e80b7a40ee74e904a552077be285f7/pexels-soner-arkan-277045183-13990288.jpg",
+                            "details": {
+                                "size": 1928153,
+                                "image": {
+                                    "width": 6240,
+                                    "height": 4160
+                                }
+                            },
+                            "fileName": "pexels-soner-arkan-277045183-13990288.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
+                },
+                {
+                    "title": "Service - Family - Rebuilding Connection and Trust",
+                    "header": "Rebuilding Connection and Trust",
+                    "content": "Family sessions aren’t just about resolving conflict—it’s about strengthening the **connection, trust, and shared understanding** that help families thrive.  \n\n### How We Work Together:  \n- **Improving communication** – Creating space for honest, open conversations.  \n- **Navigating conflict with awareness** – Moving from frustration to mutual understanding.  \n- **Rebuilding emotional bonds** – Strengthening connection through recognition and validation.  \n\nEvery family is different—there’s no “right” way to be. Instead of rigid solutions, we explore **what works best for your family** so relationships feel more supportive, open, and fulfilling.",
+                    "image": {
+                        "title": "Family looking at sea",
+                        "description": "Black and white photo of a family holding hands standing barefoot on the sand looking at the sea.",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/5gXERT5kG7RIN8jCDS3t79/66659023472bcb7104894a5504d27c1d/pexels-alex360-13032491.jpg",
+                            "details": {
+                                "size": 1930401,
+                                "image": {
+                                    "width": 5200,
+                                    "height": 3467
+                                }
+                            },
+                            "fileName": "pexels-alex360-13032491.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
+                }
+            ],
             "outro": "## Taking the First Step  \nFamily sessions aren’t about deciding who is at fault—it’s about understanding each other better and finding new ways to move forward together.  \n\nIf you’re wondering whether I could help your family, the first step is simply starting the conversation. I offer a **free 15-minute intake session**, where we can explore your family’s needs, discuss what feels most important to you, and see how therapy could support your unique situation. This is a chance to ask questions and get a sense of what working together might look like.  \n"
         }
     },
@@ -80,7 +250,7 @@
             "id": "37va85fpU9i3eD9r36ZvvP",
             "type": "Entry",
             "createdAt": "2025-01-07T13:23:00.820Z",
-            "updatedAt": "2025-02-17T20:40:02.840Z",
+            "updatedAt": "2025-02-18T10:37:16.044Z",
             "locale": "en-US"
         },
         "fields": {
@@ -109,7 +279,71 @@
                 }
             },
             "intro": "Every relationship has its own dynamics and struggles. I work with couples of\nall backgrounds to improve communication, resolve conflicts, and strengthen\ntheir connection.",
-            "content": "## Building Connection and Understanding  \nCommunication and connection lie at the heart of every relationship. Over time, even strong couples can struggle to truly hear each other, leading to **misunderstandings, reactive conversations, and unspoken frustrations.**  \n\n### I provide a space where both partners can  \n- Communicate **with clarity and honesty** without fear of judgment.  \n- Recognize the patterns shaping interactions.  \n- Shift from **defensiveness to deeper understanding.**  \n\nThis isn’t about fixing a relationship overnight—it’s about developing **new ways of relating, built on openness, trust, and connection.**  \n\n---\n\n## Navigating Conflict with Awareness  \nDisagreements are part of any relationship, but when **conflict feels repetitive or emotionally exhausting**, it can create distance instead of resolution. In therapy, we go beyond surface-level arguments to explore **what’s really happening beneath the conflict.**  \n\n### Understanding Conflict Patterns  \nRather than focusing on who is “right” or “wrong,” we explore:  \n- **Miscommunication and assumptions** – Learning to clarify intent before reacting.  \n- **Recurring arguments** – Identifying patterns that keep conflicts unresolved.  \n- **Emotional disconnection** – Addressing feelings of loneliness or disengagement.  \n- **Differences in needs or expectations** – Exploring where each partner is coming from without judgment.  \n\nApproaching conflict with **curiosity instead of criticism** allows couples to express themselves **honestly and respectfully,** fostering a greater sense of partnership.  \n\n---\n\n## Strengthening Emotional Bonds  \nA fulfilling relationship isn’t just about resolving conflict—it’s about nurturing **connection, trust, and a shared sense of purpose.** Over time, responsibilities, stress, and unresolved tensions can create distance. Therapy provides an opportunity to **reconnect, reflect, and explore what strengthens your bond.**  \n\n### Rebuilding and Deepening Connection  \nSome of the ways we can strengthen your relationship include:  \n- **Rekindling emotional intimacy** – Creating space for affection, appreciation, and shared joy.  \n- **Building trust** – Understanding how to repair and rebuild after challenges.  \n- **Aligning values and goals** – Exploring where your paths intersect and how to move forward together.  \n\nEvery relationship has its own rhythm. Therapy isn’t about fitting into an idealized version of what a relationship “should” be—it’s about **discovering what works best for you as a couple** and creating a partnership that feels fulfilling and supportive for both of you.  \n",
+            "sections": [
+                {
+                    "title": "Service - Couples - Building Connection and Understanding",
+                    "header": "Building Connection and Understanding ",
+                    "content": "Communication and connection lie at the heart of every relationship. Over time, even strong couples can struggle to truly hear each other, leading to **misunderstandings, reactive conversations, and unspoken frustrations.**  \n\n### I provide a space where both partners can  \n- Communicate **with clarity and honesty** without fear of judgment.  \n- Recognize the patterns shaping interactions.  \n- Shift from **defensiveness to deeper understanding.**  \n\nThis isn’t about fixing a relationship overnight—it’s about developing **new ways of relating, built on openness, trust, and connection.**  ",
+                    "image": {
+                        "title": "Couple  silhouette",
+                        "description": "Silhouette or a couple holding hands with clouds on the left and clear sky on the right",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/5ZbbLPLclgs0opPSpN90Xo/66db9540152b58101f9552d84de6c82d/pexels-darrell-fraser-1187740-2372128.jpg",
+                            "details": {
+                                "size": 898462,
+                                "image": {
+                                    "width": 6720,
+                                    "height": 4480
+                                }
+                            },
+                            "fileName": "pexels-darrell-fraser-1187740-2372128.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
+                },
+                {
+                    "title": "Service - Couples - Navigating Conflict with Awareness",
+                    "header": "Navigating Conflict with Awareness",
+                    "content": "Disagreements are part of any relationship, but when **conflict feels repetitive or emotionally exhausting**, it can create distance instead of resolution. In therapy, we go beyond surface-level arguments to explore **what’s really happening beneath the conflict.**  \n\n### Understanding Conflict Patterns  \nRather than focusing on who is “right” or “wrong,” we explore:  \n- **Miscommunication and assumptions** – Learning to clarify intent before reacting.  \n- **Recurring arguments** – Identifying patterns that keep conflicts unresolved.  \n- **Emotional disconnection** – Addressing feelings of loneliness or disengagement.  \n- **Differences in needs or expectations** – Exploring where each partner is coming from without judgment.  \n\nApproaching conflict with **curiosity instead of criticism** allows couples to express themselves **honestly and respectfully,** fostering a greater sense of partnership.  ",
+                    "image": {
+                        "title": "Couple awareness",
+                        "description": "Couple on a couch, their heads only visible in the reflection of the glass table in front of them",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/6x9okD4t8b0aFi7P82ZUXq/a031b70d65ac5f2f2055a73c5a67a712/pexels-cottonbro-4098179.jpg",
+                            "details": {
+                                "size": 2107932,
+                                "image": {
+                                    "width": 5860,
+                                    "height": 3907
+                                }
+                            },
+                            "fileName": "pexels-cottonbro-4098179.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
+                },
+                {
+                    "title": "Service - Couples - Strengthening Emotional Bonds",
+                    "header": "Strengthening Emotional Bonds",
+                    "content": "A fulfilling relationship isn’t just about resolving conflict—it’s about nurturing **connection, trust, and a shared sense of purpose.** Over time, responsibilities, stress, and unresolved tensions can create distance. Therapy provides an opportunity to **reconnect, reflect, and explore what strengthens your bond.**  \n\n### Rebuilding and Deepening Connection  \nSome of the ways we can strengthen your relationship include:  \n- **Rekindling emotional intimacy** – Creating space for affection, appreciation, and shared joy.  \n- **Building trust** – Understanding how to repair and rebuild after challenges.  \n- **Aligning values and goals** – Exploring where your paths intersect and how to move forward together.  \n\nEvery relationship has its own rhythm. Therapy isn’t about fitting into an idealized version of what a relationship “should” be—it’s about **discovering what works best for you as a couple** and creating a partnership that feels fulfilling and supportive for both of you.",
+                    "image": {
+                        "title": "Couple holding hands",
+                        "description": "Couple holding hands",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/Vh3NX7tVbvWekb3k4bDsj/beb62bdbdbd835609d3b4cfa9e897369/pexels-fauxels-3228726.jpg",
+                            "details": {
+                                "size": 2496882,
+                                "image": {
+                                    "width": 6000,
+                                    "height": 4000
+                                }
+                            },
+                            "fileName": "pexels-fauxels-3228726.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
+                }
+            ],
             "outro": "## Taking the First Step  \nCouples sessions aren’t just for relationships in crisis—they’re for any couple wanting to **communicate better, navigate challenges with more ease, and deepen their emotional connection.**  \n\nI offer a **free 15-minute intake session**, where we can talk about what brings you here, what you hope to gain from our sessions, and how we might work together. This is a chance to ask questions and see if these sessions feel like the right step for your relationship—without any commitment or pressure.  \n"
         }
     },
@@ -118,7 +352,7 @@
             "id": "1BywZ2XpvFlYopzwuDqMiI",
             "type": "Entry",
             "createdAt": "2025-02-07T16:35:30.516Z",
-            "updatedAt": "2025-02-17T20:41:50.127Z",
+            "updatedAt": "2025-02-18T10:40:39.180Z",
             "locale": "en-US"
         },
         "fields": {
@@ -147,7 +381,28 @@
                 }
             },
             "intro": "Counseling for parents offers a **non-judgmental space to reflect, gain clarity, and explore new ways of navigating parenthood.** Whether you’re struggling with daily challenges, feeling disconnected, or simply wanting to parent with more confidence, I provide guidance tailored to your unique family dynamics.  \n",
-            "content": "## Parental Counseling: Support for Your Parenting Journey  \nParenting is one of life’s most meaningful roles, yet it comes with challenges, uncertainties, and moments of self-doubt. There is no **one-size-fits-all approach**, and at times, it’s natural to feel overwhelmed or in need of support.  \n\nParental counseling offers a space to **reflect, gain clarity, and develop a parenting approach that aligns with your values and family dynamics.**  \n\n---\n\n## Understanding Your Parenting Style  \nThe way we parent is shaped by **our upbringing, values, and life experiences**. Some of these influences feel aligned with what we want for our children; others create tension or uncertainty.  \n\n### Areas We Explore\n- **Your parenting style** – Understanding how your natural approach shapes family interactions.  \n- **Managing emotional responses** – Recognizing triggers and responding with awareness.  \n- **Balancing structure and flexibility** – Creating a parenting style that supports your child while feeling sustainable for you.  \n\nParenting isn’t about getting everything right—it’s about **adapting, growing, and fostering a meaningful connection with your child.**  \n\n---\n\n## Navigating Parenting Challenges  \nEach stage of parenting brings unique challenges, from early childhood to adolescence and beyond. Some moments feel overwhelming—whether it’s **tantrums, sibling conflicts, setting boundaries, or maintaining emotional balance.**  \n\n### Common Challenges We Can Work Through\n- **Managing parental stress** – Prioritizing self-care while caring for your child.  \n- **Navigating differences in parenting styles** – Strengthening communication between co-parents.  \n- **Supporting your child’s emotional needs** – Fostering security, resilience, and confidence.  \n- **Breaking generational patterns** – Understanding inherited beliefs about parenting and redefining them in a way that feels right for you.  \n\nThis process isn’t about finding **one \"right\" way to parent**—it’s about **finding what works best for your family.**  \n\n---\n\n## Strengthening Parent-Child Connection  \nAt the heart of parenting is **connection**—the trust and understanding that allow your child to feel seen, heard, and supported. This bond is built through **everyday interactions, communication, and the ability to navigate challenges together.**  \n\n### How parental counselling Can Support You:  \n- **Improving communication** – Strengthening trust and emotional security with your child.  \n- **Setting boundaries with confidence and warmth** – Balancing guidance with respect for your child’s individuality.  \n- **Creating a supportive family environment** – Ensuring that both parents and children feel valued and understood.  \n\nParenting is a continuous learning process. **By taking time to reflect on your own emotions, experiences, and patterns, you naturally strengthen your relationship with your child.**  \n",
+            "sections": [
+                {
+                    "title": "Service - Parents - Support for Your Parenting Journey",
+                    "header": "Support for Your Parenting Journey",
+                    "content": "Parenting is one of life’s most meaningful roles, yet it comes with challenges, uncertainties, and moments of self-doubt. There is no **one-size-fits-all approach**, and at times, it’s natural to feel overwhelmed or in need of support.  \n\nParental counseling offers a space to **reflect, gain clarity, and develop a parenting approach that aligns with your values and family dynamics.**  "
+                },
+                {
+                    "title": "Service - Parents - Understanding Your Parenting Style ",
+                    "header": "Understanding Your Parenting Style ",
+                    "content": "Each stage of parenting brings unique challenges, from early childhood to adolescence and beyond. Some moments feel overwhelming—whether it’s **tantrums, sibling conflicts, setting boundaries, or maintaining emotional balance.**  \n\n### Common Challenges We Can Work Through\n- **Managing parental stress** – Prioritizing self-care while caring for your child.  \n- **Navigating differences in parenting styles** – Strengthening communication between co-parents.  \n- **Supporting your child’s emotional needs** – Fostering security, resilience, and confidence.  \n- **Breaking generational patterns** – Understanding inherited beliefs about parenting and redefining them in a way that feels right for you.  \n\nThis process isn’t about finding **one \"right\" way to parent**—it’s about **finding what works best for your family.**  "
+                },
+                {
+                    "title": "Service - Parents - Navigating Parenting Challenges",
+                    "header": "Navigating Parenting Challenges",
+                    "content": "Each stage of parenting brings unique challenges, from early childhood to adolescence and beyond. Some moments feel overwhelming—whether it’s **tantrums, sibling conflicts, setting boundaries, or maintaining emotional balance.**  \n\n### Common Challenges We Can Work Through\n- **Managing parental stress** – Prioritizing self-care while caring for your child.  \n- **Navigating differences in parenting styles** – Strengthening communication between co-parents.  \n- **Supporting your child’s emotional needs** – Fostering security, resilience, and confidence.  \n- **Breaking generational patterns** – Understanding inherited beliefs about parenting and redefining them in a way that feels right for you.  \n\nThis process isn’t about finding **one \"right\" way to parent**—it’s about **finding what works best for your family.**  "
+                },
+                {
+                    "title": "Service - Parents - Strengthening Parent-Child Connection",
+                    "header": "Strengthening Parent-Child Connection",
+                    "content": "At the heart of parenting is **connection**—the trust and understanding that allow your child to feel seen, heard, and supported. This bond is built through **everyday interactions, communication, and the ability to navigate challenges together.**  \n\n### How parental counselling Can Support You:  \n- **Improving communication** – Strengthening trust and emotional security with your child.  \n- **Setting boundaries with confidence and warmth** – Balancing guidance with respect for your child’s individuality.  \n- **Creating a supportive family environment** – Ensuring that both parents and children feel valued and understood.  \n\nParenting is a continuous learning process. **By taking time to reflect on your own emotions, experiences, and patterns, you naturally strengthen your relationship with your child.** "
+                }
+            ],
             "outro": "## Taking the First Step  \nParenting doesn’t come with a step-by-step manual, and sometimes, having support makes all the difference. Counseling for parents provides a **space to reflect, gain clarity, and explore new strategies in a way that feels personal and meaningful.**  \n\nI offer a **free 15-minute intake session**, where we can talk about what’s on your mind, answer any questions, and explore how this support might help you.  \n\nIf you’re ready to begin, I’m here to help. "
         }
     }
