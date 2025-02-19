@@ -533,11 +533,12 @@
             "id": "3Dq1BUqylcl2pQweRSAvc6",
             "type": "Entry",
             "createdAt": "2024-12-27T23:01:22.902Z",
-            "updatedAt": "2025-02-18T08:25:20.912Z",
+            "updatedAt": "2025-02-19T15:01:23.457Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "Services",
+            "menuTitle": "All Services",
             "slug": "services",
             "seoIndex": true,
             "hidden": false,

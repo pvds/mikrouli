@@ -40,7 +40,7 @@ const bookingCta = {
 {#snippet navMenu(/** @type NavigationItem[] */ navItems, /** @type string */ classes, /** @type
  string */ screen)}
 <ul class="flex {classes} items-center justify-end">
-{#each navItems as { href, label, title, target, items }, i}
+{#each navItems as { href, label, title, menuTitle, target, items }, i}
 	<li class="grow {href === base ? 'max-sm:hidden' : ''}">
 		{#if items && screen === "desktop"}
 		<button popovertarget="menu-popover-{screen}-{i}"
@@ -52,11 +52,9 @@ const bookingCta = {
 				<path d="M233 407c13 12 33 12 46 0l192-192a32 32 0 0 0-46-46L256 339 87 169a32 32 0 0 0-46 46l192 192z"/>
 			</svg>
 		</button>
-		{/* @ts-ignore */ null}
 		<ul bind:this={menuPopovers[i]} id="menu-popover-{screen}-{i}" popover="auto"
-			popovertargetaction="toggle"
 			class="[position-anchor:{screen}-{i}] [position-area:end_span-end] mt-1 open:flex open:flex-col gap-1 px-2 md-mid:px-0 py-2 rounded-md bg-primary-darker">
-			<li>{@render NavLink(href, "Overview", title, target, menuPopovers[i], true)}</li>
+			<li>{@render NavLink(href, menuTitle || label, title, target, menuPopovers[i], true)}</li>
 			{#each items as { href, label, title, target }}
 			<li>{@render NavLink(href, label, title, target, menuPopovers[i], true)}</li>
 			{/each}

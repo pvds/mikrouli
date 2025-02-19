@@ -13,9 +13,10 @@ import { base } from "$app/paths";
 export const toNavItems = (navItems) =>
 	navItems
 		.filter(({ hidden }) => !hidden)
-		.map(({ title, longTitle, url, isExternal, items }) => ({
+		.map(({ title, menuTitle, longTitle, url, isExternal, items }) => ({
 			href: isExternal ? url : `${base}/${url}`,
 			label: title,
+			menuTitle,
 			title: title === longTitle ? "" : longTitle,
 			target: isExternal ? "_blank" : undefined,
 			items: items
