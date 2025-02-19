@@ -56,13 +56,13 @@ const bookingCta = {
 		<ul bind:this={menuPopovers[i]} id="menu-popover-{screen}-{i}" popover="auto"
 			popovertargetaction="toggle"
 			class="[position-anchor:{screen}-{i}] [position-area:end_span-end] mt-1 open:flex open:flex-col gap-1 px-2 md-mid:px-0 py-2 rounded-md bg-primary-darker">
-			<li>{@render NavLink(href, "Overview", title, target, menuPopovers[i])}</li>
+			<li>{@render NavLink(href, "Overview", title, target, menuPopovers[i], true)}</li>
 			{#each items as { href, label, title, target }}
-			<li>{@render NavLink(href, label, title, target, menuPopovers[i])}</li>
+			<li>{@render NavLink(href, label, title, target, menuPopovers[i], true)}</li>
 			{/each}
 		</ul>
 		{:else}
-		{@render NavLink(href, label, title, target, null, "text-center")}
+		{@render NavLink(href, label, title, target, null, true, "text-center")}
 		{/if}
 	</li>
 {/each}
@@ -78,12 +78,13 @@ const bookingCta = {
 	/** @type {string|undefined} */ title,
 	/** @type {string|undefined} */ target,
 	/** @type {HTMLUListElement|null} */ menuPopover = null,
+	/** @type {boolean} */ exactMatch = false,
 	/** @type {string} */ classes = "",
 )}
 	<a {href} {title} {target} onclick={menuPopover ? () => menuPopover.hidePopover() : undefined}
-		aria-current={isCurrentPage(href) ? "page" : undefined}
+		aria-current={isCurrentPage(href, true) ? "page" : undefined}
    		class="nav-menu__link inline-block w-full px-1 md-mid:px-4 py-1 font-semibold transition-all {classes}
-		{isCurrentPage(href) ? 'text-primary-lightest' :
+		{isCurrentPage(href, exactMatch) ? 'text-primary-lightest' :
 'text-primary-light hover:text-primary-lightest'}">{label}</a>
 {/snippet}
 <style>
