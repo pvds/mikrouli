@@ -125,11 +125,16 @@ export const getPage = (slug) => {
 
 /**
  * Fetch and process blog post slugs for generating dynamic routes.
+ * @param {string[]} excluded - The slugs to exclude from the results.
  * @return {{ slug: string }[]} - An array of objects with a slug property.
  **/
-export const getPageEntries = () => {
+export const getPageEntries = (excluded) => {
 	const pages = pageItems;
-	return pages?.map((page) => ({ slug: page.fields.slug })) || [];
+	return (
+		pages
+			?.filter((page) => !excluded.includes(page.fields.slug))
+			.map((page) => ({ slug: page.fields.slug })) || []
+	);
 };
 
 /**

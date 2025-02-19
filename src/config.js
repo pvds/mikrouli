@@ -83,6 +83,9 @@ export const IMAGE_EXTENSIONS = [
 export const PORT = 4173;
 export const DEBUG_PORT = 9222;
 
+// Params
+export const PARAMS_PAGES_EXCLUDE = ["home"];
+
 // Contentful
 /** @type {import('$types/contentful').ContentFulContentType[]} */
 export const CONTENT_TYPES = [
