@@ -416,7 +416,23 @@
                 {
                     "title": "Home - Insights & Reflections",
                     "header": "Insights & Reflections",
-                    "content": "Real change happens when we step back and see ourselves differently. My blog shares insights on systemic therapy, relationships, parenting, and growth.\n\n> Whether you seek guidance, reassurance, or a fresh perspective, my blog explores life’s patterns.\n\n{{ link url=\"/blog\" text=\"Explore my blog\" }}"
+                    "content": "Real change happens when we step back and see ourselves differently. My blog shares insights on systemic therapy, relationships, parenting, and growth.\n\n> Whether you seek guidance, reassurance, or a fresh perspective, my blog explores life’s patterns.\n\n{{ link url=\"/blog\" text=\"Explore my blog\" }}",
+                    "image": {
+                        "title": "Reflection",
+                        "description": "Woman holding a piece of mirror reflecting her face.",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/2PpJ0Zeib9lS9fbRuvpxH/42638f0fab41c351ac93e13892b1f639/pexels-rccbtn-29219418.jpg",
+                            "details": {
+                                "size": 1098453,
+                                "image": {
+                                    "width": 6240,
+                                    "height": 4160
+                                }
+                            },
+                            "fileName": "pexels-rccbtn-29219418.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
                 }
             ],
             "outro": "## Taking the first step\n\nTherapy is an investment in yourself, your relationships, and your future. Wherever you are in your journey, there’s space to explore, reflect, and move forward at your own pace.\n\nIf you're ready to begin, I’m ready to support you.",
@@ -589,7 +605,125 @@
                     "fileName": "starting-therapy-3.jpg",
                     "contentType": "image/jpeg"
                 }
-            }
+            },
+            "children": [
+                {
+                    "title": "Individual Session",
+                    "slug": "individual",
+                    "order": 1,
+                    "seoIndex": true,
+                    "hidden": false,
+                    "seoDescription": "Individual session to navigate challenges, reduce stress, and gain clarity. Build resilience, explore patterns, and create change. Free 15-min intake.",
+                    "seoKeywords": "individual therapy, personal growth counseling, stress management therapy, online therapy for individuals, self-discovery therapy, emotional well-being support, overcoming anxiety, building resilience, therapy for life transitions, online mental health",
+                    "header": "Individual Session",
+                    "heroImage": {
+                        "title": "Individual therapy",
+                        "description": "Therapist and client sitting on a couch. Therapist is listening to the client explaining something",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/1cqLQ73RHQhVPQLbBt96ec/e3aecea595e509935445b81d4af1b3c1/pexels-shvets-production-7176319.jpg",
+                            "details": {
+                                "size": 4362468,
+                                "image": {
+                                    "width": 6240,
+                                    "height": 4160
+                                }
+                            },
+                            "fileName": "pexels-shvets-production-7176319.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    },
+                    "intro": "For those seeking personal growth and clarity, individual sessions offer a space\nto explore challenges and patterns that may be holding you back. Whether you’re\ndealing with anxiety, cultural transitions, or life stress, we’ll work together\nto find new possibilities.",
+                    "sections": [],
+                    "outro": "## Taking the First Step  \nStarting therapy isn’t about having all the answers—it’s about creating a space where you can explore, reflect, and grow. It’s normal to feel unsure about where to begin, but you don’t have to do it alone.  \n\nI offer a **free 15-minute intake session**, where we can talk about what’s on your mind, answer any questions you may have, and see if this feels like the right space for you. There’s no pressure—just an opportunity to take the first step at your own pace.  \n"
+                },
+                {
+                    "title": "Couples Session",
+                    "slug": "couples",
+                    "order": 3,
+                    "seoIndex": true,
+                    "hidden": false,
+                    "seoDescription": "Couples therapy to improve communication, resolve conflicts, and strengthen your relationship. Build trust and connection. Free 15-min intake.",
+                    "seoKeywords": "couples therapy, relationship counseling, marriage therapy, communication in relationships, conflict resolution for couples, rebuilding trust, online couples counseling, improving emotional connection, cohabitation challenges, relationship growth",
+                    "header": "Couples Session",
+                    "heroImage": {
+                        "title": "Couples therapy",
+                        "description": "Couples sitting on a couch with the therapist on the foreground looking at them",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/3BXeBrZUBDv5IQnMNdbgps/a25c689ad9b72a60f38e8e1f7d065fc0/pexels-shkrabaanthony-5217833.jpg",
+                            "details": {
+                                "size": 909631,
+                                "image": {
+                                    "width": 4000,
+                                    "height": 2667
+                                }
+                            },
+                            "fileName": "pexels-shkrabaanthony-5217833.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    },
+                    "intro": "Every relationship has its own dynamics and struggles. I work with couples of\nall backgrounds to improve communication, resolve conflicts, and strengthen\ntheir connection.",
+                    "sections": [],
+                    "outro": "## Taking the First Step  \nCouples sessions aren’t just for relationships in crisis—they’re for any couple wanting to **communicate better, navigate challenges with more ease, and deepen their emotional connection.**  \n\nI offer a **free 15-minute intake session**, where we can talk about what brings you here, what you hope to gain from our sessions, and how we might work together. This is a chance to ask questions and see if these sessions feel like the right step for your relationship—without any commitment or pressure.  \n"
+                },
+                {
+                    "title": "Family Session",
+                    "slug": "family",
+                    "order": 2,
+                    "seoIndex": true,
+                    "hidden": false,
+                    "seoDescription": "Family session to improve relationships, break unhelpful patterns, and create a more supportive family dynamic. Strengthen connections. Free 15-min intake. ",
+                    "seoKeywords": "family therapy, family counseling, improving family communication, resolving family conflicts, parenting support, generational patterns in families, sibling relationship counseling, strengthening family bonds, family dynamics therapy, online family therapy",
+                    "header": "Family Session",
+                    "heroImage": {
+                        "title": "Family therapy",
+                        "description": "Family sitting on a couch looking comfortable. Therapist is sitting in front of them.",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/1YwM46m3Ap92Jq8gLeDIV0/f8c32717d6928dae4b69265a98b9b638/pexels-gustavo-fring-7447259.jpg",
+                            "details": {
+                                "size": 3684401,
+                                "image": {
+                                    "width": 5760,
+                                    "height": 3840
+                                }
+                            },
+                            "fileName": "pexels-gustavo-fring-7447259.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    },
+                    "intro": "Families operate as systems, and sometimes those systems get stuck. I help\nfamilies uncover and change unhelpful patterns, creating healthier ways of\nrelating and supporting each other.",
+                    "sections": [],
+                    "outro": "## Taking the First Step  \nFamily sessions aren’t about deciding who is at fault—it’s about understanding each other better and finding new ways to move forward together.  \n\nIf you’re wondering whether I could help your family, the first step is simply starting the conversation. I offer a **free 15-minute intake session**, where we can explore your family’s needs, discuss what feels most important to you, and see how therapy could support your unique situation. This is a chance to ask questions and get a sense of what working together might look like.  \n"
+                },
+                {
+                    "title": "Parental Councelling",
+                    "slug": "parents",
+                    "order": 4,
+                    "seoIndex": false,
+                    "hidden": true,
+                    "seoDescription": "Parenting support & counseling to navigate challenges, manage stress, and strengthen your connection with your child. Online sessions. Free 15-min intake.  ",
+                    "seoKeywords": "parenting counseling, parenting support, parent coaching, online parenting counseling, family counseling, managing parenting stress, improving parent-child connection, co-parenting support, parenting challenges help, online parenting support",
+                    "header": "Parenting Support & Councelling",
+                    "heroImage": {
+                        "title": "Parental Support",
+                        "description": "Parents with their children looking at a book together",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/5jilje88AJiXkBfTOMPC0r/db9b0a83eb8048c226d05d3233bf3b40/pexels-cottonbro-6667307.jpg",
+                            "details": {
+                                "size": 2013426,
+                                "image": {
+                                    "width": 6466,
+                                    "height": 4311
+                                }
+                            },
+                            "fileName": "pexels-cottonbro-6667307.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    },
+                    "intro": "Counseling for parents offers a **non-judgmental space to reflect, gain clarity, and explore new ways of navigating parenthood.** Whether you’re struggling with daily challenges, feeling disconnected, or simply wanting to parent with more confidence, I provide guidance tailored to your unique family dynamics.  \n",
+                    "sections": [],
+                    "outro": "## Taking the First Step  \nParenting doesn’t come with a step-by-step manual, and sometimes, having support makes all the difference. Counseling for parents provides a **space to reflect, gain clarity, and explore new strategies in a way that feels personal and meaningful.**  \n\nI offer a **free 15-minute intake session**, where we can talk about what’s on your mind, answer any questions, and explore how this support might help you.  \n\nIf you’re ready to begin, I’m here to help. "
+                }
+            ]
         }
     },
     {

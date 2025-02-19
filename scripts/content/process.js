@@ -95,7 +95,7 @@ export function parseContentEntry(rawEntry) {
 
 	for (const key of Object.keys(restFields)) {
 		const value = restFields[key];
-		if (key === "sections" && Array.isArray(value)) {
+		if ((key === "sections" || key === "children") && Array.isArray(value)) {
 			restFields[key] = value
 				.filter(isContentfulEntry)
 				.map((entry) => parseContentEntry(entry).fields);
@@ -148,7 +148,25 @@ function parseNavigation(rawNav, pages) {
 		if (page) {
 			// Page fields
 			const { title, header, slug, hidden } = page.fields;
-			parsedItems.push({ title, longTitle: header, url: slug, hidden, isExternal: false });
+
+			const items = page.fields.children?.map((child) => {
+				console.error(child);
+				return {
+					title: child.title,
+					longTitle: child.header,
+					url: `${slug}/${child.slug}`,
+					hidden: false,
+					isExternal: false,
+				};
+			});
+			parsedItems.push({
+				title,
+				longTitle: header,
+				url: slug,
+				hidden,
+				isExternal: false,
+				items,
+			});
 		} else {
 			// Link fields
 			const { title, url } = item.fields;

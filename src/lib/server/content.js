@@ -114,10 +114,12 @@ export const getReviews = (limit = 0) => {
 export const getPage = (slug) => {
 	const pages = /** @type {PageEntry[]} */ preprocessJson(pageItems);
 	/** @type {PageEntry|undefined} */
-	const page = pages?.find((p) => p.fields.slug === slug);
-
+	let page = pages?.find((p) => p.fields.slug === slug);
 	if (!page) throw error(404, `Page with slug '${slug}' not found`);
 
+	// Remove children from the fields object
+	const { children, ...restFields } = page.fields;
+	page = /** @type {PageEntry} */ { ...page, fields: restFields };
 	return processEntryMarkdown(page);
 };
 

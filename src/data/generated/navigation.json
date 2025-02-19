@@ -16,7 +16,37 @@
                     "longTitle": "Explore Ways We Can Work Together",
                     "url": "services",
                     "hidden": false,
-                    "isExternal": false
+                    "isExternal": false,
+                    "items": [
+                        {
+                            "title": "Individual Session",
+                            "longTitle": "Individual Session",
+                            "url": "services/individual",
+                            "hidden": false,
+                            "isExternal": false
+                        },
+                        {
+                            "title": "Couples Session",
+                            "longTitle": "Couples Session",
+                            "url": "services/couples",
+                            "hidden": false,
+                            "isExternal": false
+                        },
+                        {
+                            "title": "Family Session",
+                            "longTitle": "Family Session",
+                            "url": "services/family",
+                            "hidden": false,
+                            "isExternal": false
+                        },
+                        {
+                            "title": "Parental Councelling",
+                            "longTitle": "Parenting Support & Councelling",
+                            "url": "services/parents",
+                            "hidden": false,
+                            "isExternal": false
+                        }
+                    ]
                 },
                 {
                     "title": "Blog",

@@ -244,13 +244,13 @@
             "id": "19kdoRfuoGIo3VGL5yplea",
             "type": "Entry",
             "createdAt": "2025-02-18T10:37:09.048Z",
-            "updatedAt": "2025-02-18T11:34:16.762Z",
+            "updatedAt": "2025-02-18T12:30:10.772Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "Service - Couples - Strengthening Emotional Bonds",
             "header": "Strengthening Emotional Bonds",
-            "content": "A fulfilling relationship isn’t just about resolving conflict—it’s about nurturing **connection, trust, and a shared sense of purpose.** Over time, responsibilities, stress, and unresolved tensions can create distance. Therapy provides an opportunity to **reconnect, reflect, and explore what strengthens your bond.**  \n\n### Rebuilding and Deepening Connection  \nSome of the ways we can strengthen your relationship include:  \n- **Rekindling emotional intimacy** – Creating space for affection, appreciation, and shared joy.  \n- **Building trust** – Understanding how to repair and rebuild after challenges.  \n- **Aligning values and goals** – Exploring where your paths intersect and how to move forward together.  \n\nEvery relationship has its own rhythm. Therapy isn’t about fitting into an idealized version of what a relationship “should” be—it’s about **discovering what works best for you as a couple** and creating a partnership that feels fulfilling and supportive for both of you.",
+            "content": "A fulfilling relationship isn’t just about resolving conflict—it’s about nurturing **connection, trust, and shared purpose.** Responsibilities, stress, and unresolved tensions can create distance. Therapy offers a space to **reconnect, reflect, and strengthen your bond.**  \n\n### Rebuilding and Deepening Connection  \nWays to strengthen your relationship:  \n- **Rekindling intimacy** – Creating space for affection, appreciation, and shared joy.  \n- **Building trust** – Repairing and rebuilding after challenges.  \n- **Aligning values and goals** – Exploring shared direction and moving forward together.  \n\nEvery relationship has its own rhythm. Therapy isn’t about fitting into an ideal—it’s about **discovering what works for you** and creating a fulfilling, supportive partnership.  \n",
             "image": {
                 "title": "Couple holding hands",
                 "description": "Couple holding hands",
@@ -274,13 +274,13 @@
             "id": "1i7bm2KgeO5GaIR3oLG7BO",
             "type": "Entry",
             "createdAt": "2025-02-18T10:36:51.497Z",
-            "updatedAt": "2025-02-18T11:32:35.230Z",
+            "updatedAt": "2025-02-18T12:32:37.791Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "Service - Couples - Navigating Conflict with Awareness",
             "header": "Navigating Conflict with Awareness",
-            "content": "Disagreements are part of any relationship, but when **conflict feels repetitive or emotionally exhausting**, it can create distance instead of resolution. In therapy, we go beyond surface-level arguments to explore **what’s really happening beneath the conflict.**  \n\n### Understanding Conflict Patterns  \nRather than focusing on who is “right” or “wrong,” we explore:  \n- **Miscommunication and assumptions** – Learning to clarify intent before reacting.  \n- **Recurring arguments** – Identifying patterns that keep conflicts unresolved.  \n- **Emotional disconnection** – Addressing feelings of loneliness or disengagement.  \n- **Differences in needs or expectations** – Exploring where each partner is coming from without judgment.  \n\nApproaching conflict with **curiosity instead of criticism** allows couples to express themselves **honestly and respectfully,** fostering a greater sense of partnership.  ",
+            "content": "Disagreements are natural, but when **conflict feels repetitive or draining**, it can create distance. In therapy, we look beyond arguments to explore **what’s beneath them.**  \n\n### Understanding Conflict Patterns  \nInstead of focusing on who is “right” or “wrong,” we explore:  \n- **Miscommunication** – Clarifying intent before reacting.  \n- **Recurring arguments** – Recognizing unresolved patterns.  \n- **Emotional disconnection** – Addressing loneliness or disengagement.  \n- **Different needs or expectations** – Understanding each other without judgment.  \n\nWith **curiosity over criticism,** couples express themselves **honestly and respectfully,** strengthening their partnership.",
             "image": {
                 "title": "Couple awareness",
                 "description": "Couple on a couch, their heads only visible in the reflection of the glass table in front of them",
@@ -700,13 +700,29 @@
             "id": "1WhCZniZkSekWvatAMlEun",
             "type": "Entry",
             "createdAt": "2025-02-07T16:08:48.490Z",
-            "updatedAt": "2025-02-18T09:18:25.044Z",
+            "updatedAt": "2025-02-18T12:18:09.117Z",
             "locale": "en-US"
         },
         "fields": {
             "title": "Home - Insights & Reflections",
             "header": "Insights & Reflections",
-            "content": "Real change happens when we step back and see ourselves differently. My blog shares insights on systemic therapy, relationships, parenting, and growth.\n\n> Whether you seek guidance, reassurance, or a fresh perspective, my blog explores life’s patterns.\n\n{{ link url=\"/blog\" text=\"Explore my blog\" }}"
+            "content": "Real change happens when we step back and see ourselves differently. My blog shares insights on systemic therapy, relationships, parenting, and growth.\n\n> Whether you seek guidance, reassurance, or a fresh perspective, my blog explores life’s patterns.\n\n{{ link url=\"/blog\" text=\"Explore my blog\" }}",
+            "image": {
+                "title": "Reflection",
+                "description": "Woman holding a piece of mirror reflecting her face.",
+                "file": {
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/2PpJ0Zeib9lS9fbRuvpxH/42638f0fab41c351ac93e13892b1f639/pexels-rccbtn-29219418.jpg",
+                    "details": {
+                        "size": 1098453,
+                        "image": {
+                            "width": 6240,
+                            "height": 4160
+                        }
+                    },
+                    "fileName": "pexels-rccbtn-29219418.jpg",
+                    "contentType": "image/jpeg"
+                }
+            }
         }
     },
     {
