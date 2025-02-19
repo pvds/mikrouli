@@ -4,7 +4,9 @@ export type NavigationItem = {
 	href: string;
 	label: string;
 	title?: string;
+	menuTitle?: string;
 	target?: "_blank";
+	items?: NavigationItem[];
 };
 
 // Image

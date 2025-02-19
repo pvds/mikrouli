@@ -13,6 +13,7 @@
             "items": [
                 {
                     "title": "Services",
+                    "menuTitle": "All Services",
                     "longTitle": "Explore Ways We Can Work Together",
                     "url": "services",
                     "hidden": false,
@@ -43,7 +44,7 @@
                             "title": "Parental Councelling",
                             "longTitle": "Parenting Support & Councelling",
                             "url": "services/parents",
-                            "hidden": false,
+                            "hidden": true,
                             "isExternal": false
                         }
                     ]

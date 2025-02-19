@@ -79,6 +79,7 @@ export type ImageField = {
 // ### Pages
 
 export type PageFields = BaseFields & {
+	menuTitle?: string;
 	heroImage?: ImageField;
 	outroImage?: ImageField;
 	children?: (PageFields | ServiceFields)[];
@@ -130,11 +131,12 @@ export type LinkEntry = {
 export type NavigationFieldEntries = PageEntry | LinkEntry;
 export type NavigationFieldItems = {
 	title: string;
+	menuTitle?: string;
 	longTitle?: string;
 	url: string;
 	hidden: boolean;
 	isExternal: boolean;
-	items?: NavigationFieldItems[];
+	items?: items[];
 };
 
 export type NavigationFields = {
