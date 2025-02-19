@@ -134,7 +134,7 @@ export type NavigationFieldItems = {
 	url: string;
 	hidden: boolean;
 	isExternal: boolean;
-	items?: NavigationFieldItems[];
+	items?: items[];
 };
 
 export type NavigationFields = {

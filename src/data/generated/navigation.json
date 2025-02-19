@@ -43,7 +43,7 @@
                             "title": "Parental Councelling",
                             "longTitle": "Parenting Support & Councelling",
                             "url": "services/parents",
-                            "hidden": false,
+                            "hidden": true,
                             "isExternal": false
                         }
                     ]

@@ -155,7 +155,7 @@ function parseNavigation(rawNav, pages) {
 					title: child.title,
 					longTitle: child.header,
 					url: `${slug}/${child.slug}`,
-					hidden: false,
+					hidden: child.hidden,
 					isExternal: false,
 				};
 			});

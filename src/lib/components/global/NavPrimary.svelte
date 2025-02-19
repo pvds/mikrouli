@@ -13,6 +13,9 @@ import { toNavItems } from "../../helpers/nav.js";
 /** @type {{ menu: NavigationEntry }} */
 let { menu } = $props();
 
+/** @type {Record<number,HTMLUListElement>} */
+let menuPopovers = $state([]);
+
 const navItemsBase = toNavItems(menu.fields.items);
 /** @type NavigationItem */
 const navItemHome = { href: base, label: "Home", title: "Mikrouli home page" };
@@ -29,28 +32,60 @@ const bookingCta = {
 	 aria-label="Main navigation">
 		<div class="md:hidden w-full fixed left-0 bottom-0 bg-primary-darkest px-1 py-2">
 			<WaveCss height={10} color="bg-primary-darkest"/> {@render navMenu(navItemsWithHome,
-			"justify-around")}</div>
+			"justify-around", "mobile")}</div>
 		<div class="max-md:hidden relative bg-primary-darkest">
-			{@render navMenu(navItemsBase, "gap-2")}</div>
+			{@render navMenu(navItemsBase, "gap-2", "desktop")}</div>
 </nav>
 
-{#snippet navMenu(/** @type NavigationItem[] */ navItems, /** @type string */ classes)}
-	<ul class="flex {classes} items-center justify-end">
-	{#each navItems as { href, label, title, target }}
-		<li class="grow">
-			<a {href} {title} {target} aria-current={isCurrentPage(href) ? "page" : undefined}
-			   class="nav-menu__link inline-block w-full text-center px-1 md-mid:px-4 py-1 font-semibold transition-all
-			   {href === base && 'max-sm:hidden'}
-				{isCurrentPage(href) ? 'text-primary-lightest' :
-				'text-primary-light hover:text-primary-lightest'}">{label}</a>
-		</li>
-	{/each}
-		<li class="grow">
-			<BookingDialog type="book" cta={bookingCta}/>
-		</li>
-	</ul>
+{#snippet navMenu(/** @type NavigationItem[] */ navItems, /** @type string */ classes, /** @type
+ string */ screen)}
+<ul class="flex {classes} items-center justify-end">
+{#each navItems as { href, label, title, target, items }, i}
+	<li class="grow {href === base ? 'max-sm:hidden' : ''}">
+		{#if items && screen === "desktop"}
+		<button popovertarget="menu-popover-{screen}-{i}"
+				class="[anchor-name:{screen}-{i}] nav-menu__link inline-flex w-full text-center
+				px-1 md-mid:px-4 py-1 font-semibold transition-all {isCurrentPage(href) ? 'text-primary-lightest' :
+				'text-primary-light hover:text-primary-lightest'}" type="button">{label}
+			<svg class="inline w-[.8em] ml-1" xmlns="http://www.w3.org/2000/svg"
+				 viewBox="0 0 512 512">
+				<path d="M233 407c13 12 33 12 46 0l192-192a32 32 0 0 0-46-46L256 339 87 169a32 32 0 0 0-46 46l192 192z"/>
+			</svg>
+		</button>
+		{/* @ts-ignore */ null}
+		<ul bind:this={menuPopovers[i]} id="menu-popover-{screen}-{i}" popover="auto"
+			popovertargetaction="toggle"
+			class="[position-anchor:{screen}-{i}] [position-area:end_span-end] mt-1 open:flex open:flex-col gap-1 px-2 md-mid:px-0 py-2 rounded-md bg-primary-darker">
+			<li>{@render NavLink(href, "Overview", title, target, menuPopovers[i])}</li>
+			{#each items as { href, label, title, target }}
+			<li>{@render NavLink(href, label, title, target, menuPopovers[i])}</li>
+			{/each}
+		</ul>
+		{:else}
+		{@render NavLink(href, label, title, target, null, "text-center")}
+		{/if}
+	</li>
+{/each}
+	<li class="grow-0">
+		<BookingDialog type="book" cta={bookingCta}/>
+	</li>
+</ul>
 {/snippet}
 
+{#snippet NavLink(
+	/** @type string */href,
+	/** @type string */label,
+	/** @type {string|undefined} */ title,
+	/** @type {string|undefined} */ target,
+	/** @type {HTMLUListElement|null} */ menuPopover = null,
+	/** @type {string} */ classes = "",
+)}
+	<a {href} {title} {target} onclick={menuPopover ? () => menuPopover.hidePopover() : undefined}
+		aria-current={isCurrentPage(href) ? "page" : undefined}
+   		class="nav-menu__link inline-block w-full px-1 md-mid:px-4 py-1 font-semibold transition-all {classes}
+		{isCurrentPage(href) ? 'text-primary-lightest' :
+'text-primary-light hover:text-primary-lightest'}">{label}</a>
+{/snippet}
 <style>
 	:root {
 		--nav-primary-top: 0px;
