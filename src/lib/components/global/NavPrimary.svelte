@@ -45,7 +45,8 @@ const bookingCta = {
 		{#if items && screen === "desktop"}
 		<button popovertarget="menu-popover-{screen}-{i}"
 				class="[anchor-name:{screen}-{i}] nav-menu__link inline-flex w-full text-center
-				px-1 md-mid:px-4 py-1 font-semibold transition-all {isCurrentPage(href) ? 'text-primary-lightest' :
+				px-1 md-mid:px-4 py-1 font-semibold transition-all {isCurrentPage(href) ?
+				'text-white' :
 				'text-primary-light hover:text-primary-lightest'}" type="button">{label}
 			<svg class="inline w-[.8em] ml-1" xmlns="http://www.w3.org/2000/svg"
 				 viewBox="0 0 512 512">
@@ -53,7 +54,7 @@ const bookingCta = {
 			</svg>
 		</button>
 		<ul bind:this={menuPopovers[i]} id="menu-popover-{screen}-{i}" popover="auto"
-			class="[position-anchor:{screen}-{i}] [position-area:end_span-end] mt-1 open:flex open:flex-col gap-1 px-2 md-mid:px-0 py-2 rounded-md bg-primary-darker">
+			class="[position-anchor:{screen}-{i}] [position-area:end_span-end] mt-1 open:flex open:flex-col gap-1 px-2 md-mid:px-0 py-2 rounded-md bg-primary-darker shadow-lg shadow-primary-black/25">
 			<li>{@render NavLink(href, menuTitle || label, title, target, menuPopovers[i], true)}</li>
 			{#each items as { href, label, title, target }}
 			<li>{@render NavLink(href, label, title, target, menuPopovers[i], true)}</li>
@@ -82,7 +83,7 @@ const bookingCta = {
 	<a {href} {title} {target} onclick={menuPopover ? () => menuPopover.hidePopover() : undefined}
 		aria-current={isCurrentPage(href, true) ? "page" : undefined}
    		class="nav-menu__link inline-block w-full px-1 md-mid:px-4 py-1 font-semibold transition-all {classes}
-		{isCurrentPage(href, exactMatch) ? 'text-primary-lightest' :
+		{isCurrentPage(href, exactMatch) ? 'text-white' :
 'text-primary-light hover:text-primary-lightest'}">{label}</a>
 {/snippet}
 <style>

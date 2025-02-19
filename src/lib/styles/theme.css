@@ -72,6 +72,7 @@
 	--color-mimosa-dark: var(--mimosa-700);
 	--color-mimosa-darker: var(--mimosa-800);
 	--color-mimosa-darkest: var(--mimosa-900);
+	--color-mimosa-black: var(--mimosa-950);
 
 	--color-primary-lightest: var(--primary-50);
 	--color-primary-lighter: var(--primary-100);
@@ -79,6 +80,7 @@
 	--color-primary-dark: var(--primary-700);
 	--color-primary-darker: var(--primary-800);
 	--color-primary-darkest: var(--primary-900);
+	--color-primary-black: var(--primary-950);
 
 	--color-secondary-lightest: var(--secondary-50);
 	--color-secondary-lighter: var(--secondary-100);
@@ -86,6 +88,7 @@
 	--color-secondary-dark: var(--secondary-700);
 	--color-secondary-darker: var(--secondary-800);
 	--color-secondary-darkest: var(--secondary-900);
+	--color-secondary-black: var(--secondary-950);
 
 	--color-accent-lightest: var(--accent-50);
 	--color-accent-lighter: var(--accent-100);
@@ -93,6 +96,7 @@
 	--color-accent-dark: var(--accent-700);
 	--color-accent-darker: var(--accent-800);
 	--color-accent-darkest: var(--accent-900);
+	--color-accent-black: var(--accent-950);
 
 	/* === SPACING === */
 	--spacing: 0.25rem;
