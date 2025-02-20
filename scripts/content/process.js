@@ -149,16 +149,13 @@ function parseNavigation(rawNav, pages) {
 			// Page fields
 			const { title, menuTitle, header, slug, hidden } = page.fields;
 
-			const items = page.fields.children?.map((child) => {
-				console.error(child);
-				return {
-					title: child.title,
-					longTitle: child.header,
-					url: `${slug}/${child.slug}`,
-					hidden: child.hidden,
-					isExternal: false,
-				};
-			});
+			const items = page.fields.children?.map((child) => ({
+				title: child.title,
+				longTitle: child.header,
+				url: `${slug}/${child.slug}`,
+				hidden: child.hidden,
+				isExternal: false,
+			}));
 			parsedItems.push({
 				title,
 				menuTitle,
