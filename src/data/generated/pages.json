@@ -4,7 +4,7 @@
             "id": "73rcZJ4hT1YtU28TI15VZp",
             "type": "Entry",
             "createdAt": "2025-01-08T02:59:42.227Z",
-            "updatedAt": "2025-02-03T10:08:27.312Z",
+            "updatedAt": "2025-02-20T08:18:28.215Z",
             "locale": "en-US"
         },
         "fields": {
@@ -16,7 +16,13 @@
             "seoKeywords": "404, error, missing, not-found, navigation",
             "header": "404 - Page not found",
             "intro": "Just like in life, we sometimes encounter detours that redirect us to new paths. Let’s make this moment an opportunity to move forward.\n\nYou can:\n- [Return to the homepage](/)\n- [Learn more about me and my approach](/about)\n- [Contact me for support](/contact)\n\n> Take a deep breath, and let’s keep navigating this journey together.",
-            "content": "## Still Stuck?\n\nIf you’re finding yourself here often, don’t hesitate to reach out. I’d love to help you find what you’re looking for—or perhaps we can use this as the first step toward something new.\n\nHere’s how to get in touch:\n\n- **Email**: [eleni@mikrouli.nl](mailto:eleni@mikrouli.nl)\n- **Phone**: 00 31 6 19 44 62 63\n- **Languages**: Greek, Dutch, English\n\nOr, [schedule a session directly](/contact). \n\n> Together, we can start creating clarity and positive change."
+            "sections": [
+                {
+                    "title": "404 page - still stuck",
+                    "header": "Still Stuck?",
+                    "content": "If you’re finding yourself here often, don’t hesitate to reach out. I’d love to help you find what you’re looking for—or perhaps we can use this as the first step toward something new.\n\nHere’s how to get in touch:\n\n- **Email**: [eleni@mikrouli.nl](mailto:eleni@mikrouli.nl)\n- **Phone**: 00 31 6 19 44 62 63\n- **Languages**: Greek, Dutch, English\n\nOr, [schedule a session directly](/contact). \n\n> Together, we can start creating clarity and positive change."
+                }
+            ]
         }
     },
     {

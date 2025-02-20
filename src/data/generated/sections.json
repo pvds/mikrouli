@@ -1,6 +1,20 @@
 [
     {
         "meta": {
+            "id": "4R3Ec4VXUNDSRWREYxy2PO",
+            "type": "Entry",
+            "createdAt": "2025-02-20T07:58:30.433Z",
+            "updatedAt": "2025-02-20T08:15:12.259Z",
+            "locale": "en-US"
+        },
+        "fields": {
+            "title": "404 page - still stuck",
+            "header": "Still Stuck?",
+            "content": "If you’re finding yourself here often, don’t hesitate to reach out. I’d love to help you find what you’re looking for—or perhaps we can use this as the first step toward something new.\n\nHere’s how to get in touch:\n\n- **Email**: [eleni@mikrouli.nl](mailto:eleni@mikrouli.nl)\n- **Phone**: 00 31 6 19 44 62 63\n- **Languages**: Greek, Dutch, English\n\nOr, [schedule a session directly](/contact). \n\n> Together, we can start creating clarity and positive change."
+        }
+    },
+    {
+        "meta": {
             "id": "75NTMSYfylZhAvastUIPks",
             "type": "Entry",
             "createdAt": "2025-02-18T10:43:16.958Z",
