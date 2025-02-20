@@ -9,6 +9,7 @@ import Section from "./Section.svelte";
  * @property {string|undefined} title
  * @property {string|undefined} [proseClasses]
  * @property {import('svelte').Snippet} [children]
+ * @property {import('svelte').Snippet} [contentFooter]
  * @property {import('svelte').Snippet} [side]
  * @property {boolean} [sideAbsolute]
  * @property {string} [image]
@@ -17,8 +18,17 @@ import Section from "./Section.svelte";
  */
 
 /** @type {Props} */
-let { title, proseClasses, children, side, sideAbsolute, image, imageAlt, imagePositionClass } =
-	$props();
+let {
+	title,
+	proseClasses,
+	children,
+	contentFooter,
+	side,
+	sideAbsolute,
+	image,
+	imageAlt,
+	imagePositionClass,
+} = $props();
 
 const spacingY = $derived(() => ({
 	padding: image ? "pt-14 pb-18 sm:pt-20 sm:pb-24 md:pt-30 md:pb-34" : "py-10 sm:py-16 md:py-24",
@@ -56,10 +66,16 @@ const sideClasses = $derived(sideAbsolute ? "md:absolute md:right-0" : "");
 					class:prose-invert={image} style="--container-prose: 65ch">
 					{@render children?.()}
 				</div>
+				{#if contentFooter}
+				<div class="mt-4 md:mt-6 lg:mt-8 -mb-2 md:-mb-4 lg:-mb-6">
+				{@render contentFooter()}
+				</div>
+				{/if}
 			</div>
 		</div>
 		{#if side}
-		<div class="relative md:w-4/12 {sideClasses} {spacingY().bottom}">
+		<div class="relative md:w-4/12 {sideClasses} {spacingY().bottom}"
+			 class:content-center={!sideAbsolute}>
 			{@render side?.()}
 		</div>
 		{/if}

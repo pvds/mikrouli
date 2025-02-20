@@ -157,7 +157,13 @@ export const BOOKING_OPTIONS = {
 export const BUTTON_THEME = {
 	primary: "bg-accent-dark hover:bg-accent-darker font-semibold text-white rounded-full",
 	secondary: "border-2 border-primary-darker font-semibold hover:inset-ring-1 rounded-full",
-	tertiary: "hover:text-accent-dark font-semibold  underline underline-offset-2",
+	tertiary: "hover:text-accent-dark font-semibold underline underline-offset-2",
+};
+
+export const BUTTON_SIZE = {
+	sm: "px-4 py-2 text-sm",
+	md: "max-md:px-4 md:px-5 py-2 max-md:text-sm md:text-base",
+	lg: "max-md:px-4 md:max-lg:px-5 lg:px-6 py-2 max-md:text-sm lg:text-lg",
 };
 
 // Unicode

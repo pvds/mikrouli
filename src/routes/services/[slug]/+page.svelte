@@ -4,6 +4,7 @@ import Hero from "$layout/Hero.svelte";
 import Outro from "$layout/Outro.svelte";
 import TeaserSection from "$layout/TeaserSection.svelte";
 import { getImageName } from "$lib/helpers/image.js";
+import BookingDialog from "$ui/BookingDialog.svelte";
 
 let { data } = $props();
 let { title, intro, sections, contentSections, outro, heroImage } = $derived(data.service.fields);
@@ -13,6 +14,9 @@ let services = $derived(data.services);
 <Hero {title} image={heroImage ? getImageName(heroImage.file.fileName) : undefined}
 	  imageAlt={heroImage ? heroImage.title : undefined} imagePositionClass="object-[0%_25%]">
 	{@html intro}
+	{#snippet contentFooter()}
+		<BookingDialog type="intake" ctaIcon="calendar" ctaSize="lg"/>
+	{/snippet}
 </Hero>
 
 {#if sections?.length}
