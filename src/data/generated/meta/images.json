@@ -128,12 +128,6 @@
       "height": "3397",
       "hasAlpha": false
     },
-    "pexels-philip-justin-mamelic-1397651-3162828": {
-      "placeholder": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAADwAQCdASoQAAsAAsBMJZQCdAEbIves4gAA/vAJ8Ks9Gm/MzicG8gwNSQuJ2tZrz5EX8f1dWT5KCT35Zb0CAAAA",
-      "width": "6000",
-      "height": "4000",
-      "hasAlpha": false
-    },
     "pexels-rahulp9800-3764876": {
       "placeholder": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAAAQAgCdASoQAAsAAsBMJZQC7ADiRFb39oQAAP6qCLl0TnBbHVm5sM708Z52RETOVFYTmqK+CRQDQPCAAAA=",
       "width": "6000",
@@ -174,6 +168,12 @@
       "placeholder": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAADwAQCdASoQAAsAAsBMJaQAAu0L7eCPKcAA/u1rh9oFSK+r+N0wib0Z+MPz8Purb8MOWRlG7prz6nRa++yRBD2JJAAAAA==",
       "width": "6240",
       "height": "4160",
+      "hasAlpha": false
+    },
+    "pexels-veeterzy-38136": {
+      "placeholder": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAACwAQCdASoQAAsAAsBMJYgAAlwlLxlAAP70tCjiZawFtac0AMsOYkdcv+1lZ8W4XQAAAA==",
+      "width": "5760",
+      "height": "3840",
       "hasAlpha": false
     },
     "pexels-viceman-25033690": {
