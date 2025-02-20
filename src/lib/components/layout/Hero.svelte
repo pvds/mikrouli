@@ -44,9 +44,9 @@ const sideClasses = $derived(sideAbsolute ? "md:absolute md:right-0" : "");
 			innerClasses={sideAbsolute ? 'relative' : 'flex'}>
 		<div>
 			{#if title}
-				<h1 class="text-3xl md:text-4xl mb-6 font-bold"
-					class:[text-shadow:2px_2px_4px_rgba(14,38,39,1)]={image}
-					class:text-white={image}>{title}</h1>
+			<h1 class="text-3xl md:text-4xl mb-6 font-bold"
+				class:[text-shadow:2px_2px_4px_rgba(14,38,39,1)]={image}
+				class:text-white={image}>{title}</h1>
 			{/if}
 			<div class="{side ? 'md:w-8/12 md:pr-4' : ''}">
 				<div
@@ -58,9 +58,11 @@ const sideClasses = $derived(sideAbsolute ? "md:absolute md:right-0" : "");
 				</div>
 			</div>
 		</div>
+		{#if side}
 		<div class="relative md:w-4/12 {sideClasses} {spacingY().bottom}">
 			{@render side?.()}
 		</div>
+		{/if}
 	</Section>
 	<WaveCss height={25} inside/>
 </div>
