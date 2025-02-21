@@ -69,7 +69,7 @@ const proseThemeClasses = proseInvert ? "prose-invert" : "";
 		{#if imagePosition === 'start' || !imagePosition && isOdd(index)}
 			{@render imageSection()}
 		{/if}
-		<div class="flex-1">
+		<div class="flex-1 content-center">
 			{#if title}
 			<h2 class="mb-[1.25em] text-2xl md:text-3xl font-bold">{title}</h2>
 			{/if}
@@ -94,7 +94,7 @@ const proseThemeClasses = proseInvert ? "prose-invert" : "";
 			   sizes="20rem"
 			   alt={image.title}
 			   widthClass="w-full max-w-[calc(45vw)]"
-			   heightClass="h-full"
+			   heightClass="h-full max-h-[75vh]"
 			   maskIndex={index !== undefined ? index + 2 : undefined}
 			   classes="translate-z-0" />
 	</div>
