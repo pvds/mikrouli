@@ -248,7 +248,7 @@
             "id": "2FmTPol4nxNb4Q0elgN4oG",
             "type": "Entry",
             "createdAt": "2024-12-28T00:14:21.086Z",
-            "updatedAt": "2025-02-18T10:26:51.700Z",
+            "updatedAt": "2025-02-21T00:48:47.843Z",
             "locale": "en-US"
         },
         "fields": {
@@ -280,7 +280,12 @@
                 {
                     "title": "Contact - Get in Touch",
                     "header": "Get in Touch",
-                    "content": "Taking the first step toward therapy can feel like a big decision, but you don’t have to do it alone. Whether you’re ready to begin or simply have questions, I welcome you to reach out. Therapy is a collaborative process, and our first conversation is a space for you to explore whether this feels like the right fit.  \n\nI offer a **free 15-minute intake session**, where we can talk about what’s on your mind, discuss how therapy might support you, and answer any questions you may have—without any pressure or commitment.  ",
+                    "content": "Taking the first step toward therapy can feel like a big decision, but you don’t have to do it alone. Whether you’re ready to begin or simply have questions, I welcome you to reach out. Therapy is a collaborative process, and our first conversation is a space for you to explore whether this feels like the right fit.  \n\nI offer a **free 15-minute intake session**, where we can talk about what’s on your mind, discuss how therapy might support you, and answer any questions you may have—without any pressure or commitment.  "
+                },
+                {
+                    "title": "Contact - Contact Details",
+                    "header": "Contact Details",
+                    "content": "- **Email:** [eleni@mikrouli.nl](mailto:eleni@mikrouli.nl)  \n- **Phone:** [00 31 6 19 44 62 63](tel:+31619446263)\n- **Languages:** Greek, Dutch, English  \n- **Sessions:** Online only  \n\nIf you’d like to schedule a session or have any questions, feel free to reach out by **email or phone.** I aim to respond as soon as possible to ensure you get the support you need.  ",
                     "image": {
                         "title": "Eleni - Selfie 1",
                         "description": "Selfie of Eleni ",
@@ -299,41 +304,84 @@
                     }
                 },
                 {
-                    "title": "Contact - Contact Details",
-                    "header": "Contact Details",
-                    "content": "- **Email:** [eleni@mikrouli.nl](mailto:eleni@mikrouli.nl)  \n- **Phone:** [00 31 6 19 44 62 63](tel:+31619446263)\n- **Languages:** Greek, Dutch, English  \n- **Sessions:** Online only  \n\nIf you’d like to schedule a session or have any questions, feel free to reach out by **email or phone.** I aim to respond as soon as possible to ensure you get the support you need.  "
-                },
-                {
                     "title": "Contact - What to expect when you reach out",
                     "header": "What to expect when you reach out",
-                    "content": "Reaching out for therapy can sometimes feel like a big step. Here’s what happens after you contact me:  \n\n### **1. Free 15-Minute Intake**  \nOur first conversation is a chance to get to know each other. You can share a bit about what brings you to therapy, ask any questions, and get a sense of how we might work together.  \n\n### **2. Scheduling a Session**  \nIf we decide to move forward, we will schedule an online session at a time that works for you. Since all sessions take place online, you can **access therapy from anywhere** in a way that fits into your life.  \n\n### **3. Preparing for Your First Session**  \nIn our first session, we will explore your needs, expectations, and hopes for therapy. There is no pressure to have everything figured out—this is simply a space to start the conversation. "
+                    "content": "Reaching out for therapy can sometimes feel like a big step. Here’s what happens after you contact me:  \n\n### **1. Free 15-Minute Intake**  \nOur first conversation is a chance to get to know each other. You can share a bit about what brings you to therapy, ask any questions, and get a sense of how we might work together.  \n\n### **2. Scheduling a Session**  \nIf we decide to move forward, we will schedule an online session at a time that works for you. Since all sessions take place online, you can **access therapy from anywhere** in a way that fits into your life.  \n\n### **3. Preparing for Your First Session**  \nIn our first session, we will explore your needs, expectations, and hopes for therapy. There is no pressure to have everything figured out—this is simply a space to start the conversation. ",
+                    "image": {
+                        "title": "Feet on rock in forest",
+                        "description": "Looking down at your feet standing in the forest",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/BeiIlaCxBzA0o07e7F37w/ed8f99c480075532be39519805312496/pexels-emmypaw-9717714.jpg",
+                            "details": {
+                                "size": 3760212,
+                                "image": {
+                                    "width": 4480,
+                                    "height": 6720
+                                }
+                            },
+                            "fileName": "pexels-emmypaw-9717714.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
                 },
                 {
                     "title": "Contact - Fees and practical information",
                     "header": "Fees and practical information",
-                    "content": "Understanding the logistics of therapy can help you feel more comfortable about getting started.  \n\n- **Session Length:** Typically 45 minutes  \n- **Session Type:** Online video calls  \n- **Payment Options:** Details provided upon booking  \n\nIf you have any questions about fees or practical arrangements, feel free to reach out—I’m happy to provide more information.  "
+                    "content": "Understanding the logistics of therapy can help you feel more comfortable about getting started.  \n\n- **Session Length:** Typically 45 minutes  \n- **Session Type:** Online video calls  \n- **Payment Options:** Details provided upon booking  \n\nIf you have any questions about fees or practical arrangements, feel free to reach out—I’m happy to provide more information.  ",
+                    "image": {
+                        "title": "Pillows, tea and a book",
+                        "description": "Cosy scene with pillows, tea and a book",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/6Z17q5GbMoufzcCX1UPBxP/a634a7b5f6318f080b6ff8ff8ddb55d1/pexels-vlada-karpovich-9969240.jpg",
+                            "details": {
+                                "size": 1893276,
+                                "image": {
+                                    "width": 6720,
+                                    "height": 4480
+                                }
+                            },
+                            "fileName": "pexels-vlada-karpovich-9969240.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
                 },
                 {
                     "title": "Accessibility and Confidentiality",
                     "header": "Accessibility and Confidentiality",
-                    "content": "Your privacy and comfort are important. All sessions are held in a **secure, confidential** online setting, ensuring you can speak openly and feel fully supported.  \n\nI strive to make therapy as accessible as possible. If you have any specific concerns or accessibility needs, please let me know—I’m happy to discuss how we can accommodate them.  "
+                    "content": "Your privacy and comfort are important. All sessions are held in a **secure, confidential** online setting, ensuring you can speak openly and feel fully supported.  \n\nI strive to make therapy as accessible as possible. If you have any specific concerns or accessibility needs, please let me know—I’m happy to discuss how we can accommodate them.  ",
+                    "image": {
+                        "title": "Woman video call laptop",
+                        "description": "A person waving in a video call smiling and waving at the laptop camera.",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/3BdgibvRM8GOZFVeisUUw9/390d0154eaa54cfda332a687d1582d0d/pexels-artempodrez-4492135.jpg",
+                            "details": {
+                                "size": 323348,
+                                "image": {
+                                    "width": 3840,
+                                    "height": 2160
+                                }
+                            },
+                            "fileName": "pexels-artempodrez-4492135.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
                 }
             ],
             "outro": "## Ready to Take the First Step?  \nIf you’re considering therapy but aren’t sure where to start, a **free 15-minute intake session** is a simple way to explore your options.  \n\nFeel free to send me an **email** or give me a **call**—there’s no pressure, just an opportunity to see if therapy feels like the right step for you.",
             "outroImage": {
-                "title": "Starting therapy - 1",
-                "description": "Woman waving to her Therapist during her first online session",
+                "title": "starting-therapy-1",
+                "description": "Woman in her living room looking at her phone",
                 "file": {
-                    "url": "//images.ctfassets.net/fnyi5t75mv2d/5HKTr1encWXhJoahOayCR9/0f18bf0b4ac5c68530f974e9e9afa2d2/starting-therapy-3.jpg",
+                    "url": "//images.ctfassets.net/fnyi5t75mv2d/74HZwUnDSmwKUc91Jyobv1/efd122c6be24b7f7eb1061ddbcefe7c5/starting-therapy-1.png",
                     "details": {
-                        "size": 143284,
+                        "size": 3278378,
                         "image": {
-                            "width": 800,
-                            "height": 500
+                            "width": 1858,
+                            "height": 1024
                         }
                     },
-                    "fileName": "starting-therapy-3.jpg",
-                    "contentType": "image/jpeg"
+                    "fileName": "starting-therapy-1.png",
+                    "contentType": "image/png"
                 }
             }
         }
