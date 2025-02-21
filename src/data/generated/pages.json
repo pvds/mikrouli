@@ -280,12 +280,7 @@
                 {
                     "title": "Contact - Get in Touch",
                     "header": "Get in Touch",
-                    "content": "Taking the first step toward therapy can feel like a big decision, but you don’t have to do it alone. Whether you’re ready to begin or simply have questions, I welcome you to reach out. Therapy is a collaborative process, and our first conversation is a space for you to explore whether this feels like the right fit.  \n\nI offer a **free 15-minute intake session**, where we can talk about what’s on your mind, discuss how therapy might support you, and answer any questions you may have—without any pressure or commitment.  "
-                },
-                {
-                    "title": "Contact - Contact Details",
-                    "header": "Contact Details",
-                    "content": "- **Email:** [eleni@mikrouli.nl](mailto:eleni@mikrouli.nl)  \n- **Phone:** [00 31 6 19 44 62 63](tel:+31619446263)\n- **Languages:** Greek, Dutch, English  \n- **Sessions:** Online only  \n\nIf you’d like to schedule a session or have any questions, feel free to reach out by **email or phone.** I aim to respond as soon as possible to ensure you get the support you need.  ",
+                    "content": "Taking the first step toward therapy can feel like a big decision, but you don’t have to do it alone. Whether you’re ready to begin or simply have questions, I welcome you to reach out. Therapy is a collaborative process, and our first conversation is a space for you to explore whether this feels like the right fit.  \n\nI offer a **free 15-minute intake session**, where we can talk about what’s on your mind, discuss how therapy might support you, and answer any questions you may have—without any pressure or commitment.  ",
                     "image": {
                         "title": "Eleni - Selfie 1",
                         "description": "Selfie of Eleni ",
@@ -299,6 +294,27 @@
                                 }
                             },
                             "fileName": "IMG_0062.jpg",
+                            "contentType": "image/jpeg"
+                        }
+                    }
+                },
+                {
+                    "title": "Contact - Contact Details",
+                    "header": "Contact Details",
+                    "content": "- **Email:** [eleni@mikrouli.nl](mailto:eleni@mikrouli.nl)  \n- **Phone:** [00 31 6 19 44 62 63](tel:+31619446263)\n- **Languages:** Greek, Dutch, English  \n- **Sessions:** Online only  \n\nIf you’d like to schedule a session or have any questions, feel free to reach out by **email or phone.** I aim to respond as soon as possible to ensure you get the support you need.  ",
+                    "image": {
+                        "title": "Old phone blanket",
+                        "description": "Vintage rotary phone on a cozy orange blanket",
+                        "file": {
+                            "url": "//images.ctfassets.net/fnyi5t75mv2d/53bD8RcT0jHGplok92CA1E/2881eb16b07c4edea743680803421f89/pexels-leah-newhouse-50725-6480709.jpg",
+                            "details": {
+                                "size": 1851846,
+                                "image": {
+                                    "width": 5472,
+                                    "height": 3648
+                                }
+                            },
+                            "fileName": "pexels-leah-newhouse-50725-6480709.jpg",
                             "contentType": "image/jpeg"
                         }
                     }
