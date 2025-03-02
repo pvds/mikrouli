@@ -15,7 +15,7 @@
 - [x] decide on a way to handle images (contentful/local files/Some CDN)
 - [x] decide on using a `content` field (use `---` to divide in sections) or 
   `sections` content type
-- [ ] add reference field to page content type to link to services or other 
+- [x] add reference field to page content type to link to services or other 
   pages (can be used to get data like slug but also to facilitate nested 
   navigation and linking)
 - [x] implement shortcodes for contentful ~~(like `{{dialog:booking(intake)}}` to 
@@ -25,7 +25,7 @@
 
 #### Global
 
-- [ ] build in logic to ensure staging is not indexed but production is.
+- [ ] **build in logic to ensure staging is not indexed but production is.**
 - [x] overwrite default typography (prose) variables, colors for sure
 - [ ] consider using custom utility classes for generated content (prose) 
   instead of typography plugin
@@ -77,7 +77,7 @@
 
 ### Refactor
 
-- [ ] merge Hero and HeroImage components
+- [x] merge Hero and HeroImage components
 
 ### Tests
 
