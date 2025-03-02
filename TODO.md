@@ -25,7 +25,8 @@
 
 #### Global
 
-- [ ] **build in logic to ensure staging is not indexed but production is.**
+- [ ] **remove disallow from robots route server.js file for production before 
+  launching site**
 - [x] overwrite default typography (prose) variables, colors for sure
 - [ ] consider using custom utility classes for generated content (prose) 
   instead of typography plugin
