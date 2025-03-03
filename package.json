@@ -15,8 +15,7 @@
 		"playwright": "$playwright"
 	},
 	"scripts": {
-		"prepare": "lefthook install",
-		"postinstall": "bun run sync",
+		"prepare": "bun run sync && lefthook install",
 		"start": "vite dev --open http://localhost:3000 --host & bun run watch",
 		"start:prod": "bun run build:prod && bun run preview:prod --open",
 		"build": "vite build",
