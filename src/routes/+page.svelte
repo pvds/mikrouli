@@ -20,7 +20,7 @@ let posts = data.posts;
 	<a href={`${base}/about`} aria-label="Learn more about me"
 	   class="block w-[clamp(10rem,50vw,15rem)] mx-auto">
 		<Image image="eleni-papamikrouli"
-			   sizes="max-width(48em) clamp(10rem,50vw,15rem),min(20rem,25vw)"
+			   sizes="(max-width: 48em) clamp(10rem,50vw,15rem),min(20rem,25vw)"
 			   isLocal
 			   priority
 			   alt="Portrait of Eleni Papamikrouli"
