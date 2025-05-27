@@ -43,9 +43,9 @@ function toggleTracking() {
 		<strong class="text-base">Please note</strong>
 		<ul class="mt-2">
 			<li>You need to <strong>disable tracking for every device and browser
-			combination</strong> you use
+				combination</strong> you use</li>
 			<li>If you <strong>clear your browser data, you will need to disable tracking
-				again</strong>
+				again</strong></li>
 		</ul>
 	</div>
 	{/if}
