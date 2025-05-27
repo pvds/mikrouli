@@ -1,7 +1,7 @@
 name: Build & Deploy
 
 env:
-    BUN_VERSION: 1.2.12
+    BUN_VERSION: 1.2.14
     BUILD_DIR_STAGING: ./build/staging
     BUILD_DIR_PRODUCTION: ./build/production
 
