@@ -58,7 +58,7 @@
 		"marked": "^15.0.12",
 		"marked-gfm-heading-id": "^4.1.2",
 		"p-limit": "^6.2.0",
-		"playwright": "^1.53.1",
+		"playwright": "^1.54.2",
 		"playwright-lighthouse": "^4.0.0",
 		"schema-dts": "^1.1.5",
 		"sharp": "^0.34.3",
