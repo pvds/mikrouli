@@ -1,4 +1,6 @@
 import path from "node:path";
+import { AxeBuilder } from "@axe-core/playwright";
+import pLimit from "p-limit";
 import {
 	BUILD_PATH_PRODUCTION_RESOLVED,
 	BUILD_PATH_STAGING_RESOLVED,
@@ -11,10 +13,10 @@ import { logDebug, logError, logInfo, logSuccess } from "$util/log";
 import { measure } from "$util/measure";
 import { closeBrowser, launchBrowser, navigateToPage } from "$util/playwright";
 import { runCommand } from "$util/process";
-import { AxeBuilder } from "@axe-core/playwright";
-import pLimit from "p-limit";
 
-const BUILD_DIR = IS_PROD ? BUILD_PATH_PRODUCTION_RESOLVED : BUILD_PATH_STAGING_RESOLVED;
+const BUILD_DIR = IS_PROD
+	? BUILD_PATH_PRODUCTION_RESOLVED
+	: BUILD_PATH_STAGING_RESOLVED;
 const timings = {
 	file_discovery: "",
 	analysis: "",
@@ -45,7 +47,13 @@ const analyzePage = async (browser, file, dir) => {
 		}).options({
 			runOnly: {
 				type: "tag",
-				values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "best-practice"],
+				values: [
+					"wcag2a",
+					"wcag2aa",
+					"wcag21a",
+					"wcag21aa",
+					"best-practice",
+				],
 			},
 		});
 
@@ -98,7 +106,9 @@ const analyzePage = async (browser, file, dir) => {
 		// Measure analysis time
 		const startAnalysis = performance.now();
 		const results = await Promise.all(
-			htmlFiles.map((file) => tasks(() => analyzePage(browser, file, buildDir))),
+			htmlFiles.map((file) =>
+				tasks(() => analyzePage(browser, file, buildDir)),
+			),
 		);
 		timings.analysis = measure(startAnalysis);
 
@@ -106,7 +116,8 @@ const analyzePage = async (browser, file, dir) => {
 		for (const { file, violations } of results) {
 			if (violations.length) {
 				hasViolations = true;
-				for (const violation of violations) violationsSummary.push({ file, ...violation });
+				for (const violation of violations)
+					violationsSummary.push({ file, ...violation });
 			}
 		}
 	} catch (error) {

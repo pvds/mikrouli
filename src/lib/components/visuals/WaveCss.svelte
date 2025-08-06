@@ -19,7 +19,9 @@ const amplitude = $derived(height / 2);
 const offset = $derived(height / 2);
 const units = $derived((2 * Math.PI * frequency) / points);
 const radPhase = $derived((phase * Math.PI) / 180);
-const pathBase = $derived(invert ? "polygon(100% 0%, 0% 0%" : "polygon(100% 100%, 0% 100%");
+const pathBase = $derived(
+	invert ? "polygon(100% 0%, 0% 0%" : "polygon(100% 100%, 0% 100%",
+);
 const clipPath = $derived(() => {
 	const pathPoints = Array.from({ length: points + 1 }, (_, i) => {
 		const val = offset + amplitude * Math.cos(i * units + radPhase);

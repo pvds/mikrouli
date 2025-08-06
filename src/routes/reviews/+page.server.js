@@ -1,4 +1,10 @@
-import { getPage, getPosts, getReviews, getSeo, getServices } from "$lib/server/content.js";
+import {
+	getPage,
+	getPosts,
+	getReviews,
+	getSeo,
+	getServices,
+} from "$lib/server/content.js";
 
 /** @type {import('./$types').PageServerLoad} */
 export const load = async ({ route }) => {

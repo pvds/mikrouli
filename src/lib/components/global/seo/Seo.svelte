@@ -27,10 +27,13 @@ const constructTitle = (title, category, separator = " - ") => {
  * @param {string} url the URL to prepend
  * @returns {string} the URL with the origin prepended
  */
-const prependURL = (url) => (url?.startsWith("http") ? url : `${page.url.origin}${base}/${url}`);
+const prependURL = (url) =>
+	url?.startsWith("http") ? url : `${page.url.origin}${base}/${url}`;
 
 /** @type {SEOProps['title']} */
-let title = $derived(constructTitle(page.data.seo.title, page.data.seo.category));
+let title = $derived(
+	constructTitle(page.data.seo.title, page.data.seo.category),
+);
 /** @type {SEOProps['description']} */
 let description = $derived(page.data.seo.description);
 /** @type {SEOProps['keywords']} */

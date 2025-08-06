@@ -80,7 +80,10 @@ const promptForMissingVariables = async (envFilePath, requiredVars = []) => {
 	const emptyVars = getEmptyEnvVariables(envFilePath);
 
 	// Convert everything to a Set so we don't prompt duplicates
-	const allVarsToPrompt = new Set([...requiredVars.filter((k) => !process.env[k]), ...emptyVars]);
+	const allVarsToPrompt = new Set([
+		...requiredVars.filter((k) => !process.env[k]),
+		...emptyVars,
+	]);
 
 	if (allVarsToPrompt.size === 0) {
 		logInfo("No missing environment variables found.");
@@ -91,15 +94,20 @@ const promptForMissingVariables = async (envFilePath, requiredVars = []) => {
 	for (const key of allVarsToPrompt) {
 		logInfo(`- ${key}`);
 	}
-	logMessage("You can skip the prompts by pressing Enter without providing a value");
+	logMessage(
+		"You can skip the prompts by pressing Enter without providing a value",
+	);
 
 	/** @type {Record<string, string>} */
 	const envUpdates = {};
 	for (const key of allVarsToPrompt) {
-		envUpdates[key] = await askQuestion(`Please enter a value for ${key}: `, {
-			required: false,
-			mask: !key?.toLowerCase()?.startsWith("public") || true,
-		});
+		envUpdates[key] = await askQuestion(
+			`Please enter a value for ${key}: `,
+			{
+				required: false,
+				mask: !key?.toLowerCase()?.startsWith("public") || true,
+			},
+		);
 	}
 
 	updateEnvFile(envUpdates, envFilePath);

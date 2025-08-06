@@ -1,4 +1,10 @@
-import { getPage, getPost, getPostEntries, getSeo, getServices } from "$lib/server/content.js";
+import {
+	getPage,
+	getPost,
+	getPostEntries,
+	getSeo,
+	getServices,
+} from "$lib/server/content.js";
 
 /** @type {import('./$types').EntryGenerator} */
 export const entries = async () => {

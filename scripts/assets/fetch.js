@@ -1,15 +1,22 @@
 import fs from "node:fs";
 import https from "node:https";
 import path from "node:path";
-import { IMAGES_JSON_OUTPUT_PATH_RESOLVED, IMAGE_INPUT_PATH_RESOLVED, IS_CMS } from "$util/dyn";
-import { prepareDir } from "$util/file";
 import pLimit from "p-limit";
+import {
+	IMAGE_INPUT_PATH_RESOLVED,
+	IMAGES_JSON_OUTPUT_PATH_RESOLVED,
+	IS_CMS,
+} from "$util/dyn";
+import { prepareDir } from "$util/file";
 
 import { logDebug, logError, logInfo, logSuccess, logWarn } from "$util/log";
 import { withRetry } from "$util/retry";
 
 if (IS_CMS)
-	await syncImages(path.join(IMAGE_INPUT_PATH_RESOLVED, "cms"), IMAGES_JSON_OUTPUT_PATH_RESOLVED);
+	await syncImages(
+		path.join(IMAGE_INPUT_PATH_RESOLVED, "cms"),
+		IMAGES_JSON_OUTPUT_PATH_RESOLVED,
+	);
 
 /**
  * Syncs images with the CMS by downloading missing assets and removing unused ones.
@@ -24,7 +31,8 @@ export async function syncImages(imagesPath, dataPath) {
 		logWarn("No cms image data found");
 		process.exit(0);
 	}
-	if (!fs.existsSync(imagesPath)) fs.mkdirSync(imagesPath, { recursive: true });
+	if (!fs.existsSync(imagesPath))
+		fs.mkdirSync(imagesPath, { recursive: true });
 
 	const cmsImages = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
 	const { missing = [], unused = [] } = checkImages(imagesPath, cmsImages);
@@ -127,7 +135,11 @@ function downloadImage(url, outputPath) {
 		https
 			.get(url, (response) => {
 				if (response.statusCode !== 200) {
-					return reject(new Error(`Failed to download ${url}: ${response.statusCode}`));
+					return reject(
+						new Error(
+							`Failed to download ${url}: ${response.statusCode}`,
+						),
+					);
 				}
 				response.pipe(file);
 				file.on("finish", () => {

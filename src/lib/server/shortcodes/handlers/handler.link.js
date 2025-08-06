@@ -23,7 +23,9 @@ export function linkHandler(attributes) {
 
 	const isExternal = isExternalUrl(url);
 	if (isExternal === null) return "";
-	const externalAttributes = isExternal ? ' target="_blank" rel="noopener noreferrer"' : "";
+	const externalAttributes = isExternal
+		? ' target="_blank" rel="noopener noreferrer"'
+		: "";
 	const externalIcon = isExternal ? svgIcon("external") : svgIcon("internal");
 
 	/** @type {{[key: string]: string}} */

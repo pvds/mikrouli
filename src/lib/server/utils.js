@@ -1,6 +1,6 @@
-import { base } from "$app/paths";
 import { marked } from "marked";
 import { gfmHeadingId } from "marked-gfm-heading-id";
+import { base } from "$app/paths";
 import { parseShortcodes } from "./shortcodes/shortcodes.js";
 
 /**

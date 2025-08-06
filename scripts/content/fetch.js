@@ -1,9 +1,14 @@
 import fs from "node:fs";
 import path from "node:path";
-import { CONTENT_TYPES } from "$config";
-import { CONTENTFUL_ACCESS_TOKEN, CONTENTFUL_SPACE_ID, IS_FORCE, IS_PROD } from "$util/dyn";
-import { logError, logInfo, logSuccess, logWarn } from "$util/log";
 import { createClient } from "contentful";
+import { CONTENT_TYPES } from "$config";
+import {
+	CONTENTFUL_ACCESS_TOKEN,
+	CONTENTFUL_SPACE_ID,
+	IS_FORCE,
+	IS_PROD,
+} from "$util/dyn";
+import { logError, logInfo, logSuccess, logWarn } from "$util/log";
 import { processContentfulData } from "./process";
 
 /** @typedef {import('$lib/types/contentful').ContentfulData} ContentfulData*/
@@ -17,7 +22,10 @@ if (!CONTENTFUL_SPACE_ID || !CONTENTFUL_ACCESS_TOKEN) {
 
 // Create the Contentful client
 /** @type {import('contentful').CreateClientParams} */
-const clientParams = { space: CONTENTFUL_SPACE_ID, accessToken: CONTENTFUL_ACCESS_TOKEN };
+const clientParams = {
+	space: CONTENTFUL_SPACE_ID,
+	accessToken: CONTENTFUL_ACCESS_TOKEN,
+};
 const client = createClient(clientParams);
 
 /**
@@ -64,18 +72,26 @@ async function fetchContentfulData() {
 
 		// Write each transformed content type to its own file
 		for (const { id } of CONTENT_TYPES) {
-			const outputPath = path.resolve(process.cwd(), `src/data/generated/${id}.json`);
+			const outputPath = path.resolve(
+				process.cwd(),
+				`src/data/generated/${id}.json`,
+			);
 
-			const contentType = processedData[/** @type {keyof ContentfulData} */ (id)];
+			const contentType =
+				processedData[/** @type {keyof ContentfulData} */ (id)];
 			writeJsonFile(outputPath, contentType, spacing);
 		}
 
 		// Also store the final list of images we *might* need
-		const imagesPath = path.resolve(process.cwd(), "src/data/generated/images.json");
+		const imagesPath = path.resolve(
+			process.cwd(),
+			"src/data/generated/images.json",
+		);
 		writeJsonFile(imagesPath, processedData.images, spacing);
 		logSuccess("Fetched Contentful data");
 	} catch (error) {
-		if (error instanceof Error) logError("Error fetching cms data:", error.message);
+		if (error instanceof Error)
+			logError("Error fetching cms data:", error.message);
 		process.exit(1);
 	}
 }

@@ -17,7 +17,8 @@ export const SITE_PREVIEW_URL = "images/preview.webp";
 export const ORG_NAME = "Mikrouli";
 export const ORG_NAME_SUFFIX = "Systemic Therapy";
 export const ORG_SLOGAN = "New Perspectives, Meaningful Change";
-export const ORG_DESCRIPTION = "Systemic Therapy for Individuals, Families, and Organizations";
+export const ORG_DESCRIPTION =
+	"Systemic Therapy for Individuals, Families, and Organizations";
 export const ORG_LOGO_URL = "images/logo.svg";
 export const ORG_VAT_ID = ""; // no tax requirements yet
 export const ORG_TWITTER = "https://twitter.com/mikrouli";
@@ -103,7 +104,8 @@ export const SPACING_X_CLASSES = "px-4 sm:px-6 md:px-8";
 // Prose
 export const PROSE_CLASSES_SM =
 	"prose-sm prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-h5:text-base";
-export const PROSE_CLASSES_MD = "prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg";
+export const PROSE_CLASSES_MD =
+	"prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg";
 export const PROSE_CLASSES_LG =
 	"prose-lg prose-h2:text-3xl prose-h3:text-2xl prose-h4:text-xl prose-h5:text-lg";
 
@@ -155,9 +157,12 @@ export const BOOKING_OPTIONS = {
  * @type {{primary: string, secondary: string, tertiary: string}}
  */
 export const BUTTON_THEME = {
-	primary: "bg-accent-dark hover:bg-accent-darker font-semibold text-white rounded-full",
-	secondary: "border-2 border-primary-darker font-semibold hover:inset-ring-1 rounded-full",
-	tertiary: "hover:text-accent-dark font-semibold underline underline-offset-2",
+	primary:
+		"bg-accent-dark hover:bg-accent-darker font-semibold text-white rounded-full",
+	secondary:
+		"border-2 border-primary-darker font-semibold hover:inset-ring-1 rounded-full",
+	tertiary:
+		"hover:text-accent-dark font-semibold underline underline-offset-2",
 };
 
 export const BUTTON_SIZE = {

@@ -28,9 +28,21 @@ let {
 } = $props();
 
 const spacingY = {
-	sm: { default: "md-mid:py-6", wave: "md-mid:py-2 my-14", title: "mb-4 md-mid:mb-6" },
-	md: { default: "py-2 md-mid:py-10", wave: "md-mid:py-6 my-18", title: "mb-6 md-mid:mb-8" },
-	lg: { default: "py-6 md-mid:py-14", wave: "md-mid:py-10 my-22", title: "mb-8 md-mid:mb-10" },
+	sm: {
+		default: "md-mid:py-6",
+		wave: "md-mid:py-2 my-14",
+		title: "mb-4 md-mid:mb-6",
+	},
+	md: {
+		default: "py-2 md-mid:py-10",
+		wave: "md-mid:py-6 my-18",
+		title: "mb-6 md-mid:mb-8",
+	},
+	lg: {
+		default: "py-6 md-mid:py-14",
+		wave: "md-mid:py-10 my-22",
+		title: "mb-8 md-mid:mb-10",
+	},
 };
 
 /** @type {Record<SectionTheme, string>} */
@@ -58,7 +70,8 @@ const WAVE_COLORS = {
 };
 
 let spacing = $derived(
-	customSpacing || `${wave ? spacingY[size].wave : spacingY[size].default} ${SPACING_X_CLASSES}`,
+	customSpacing ||
+		`${wave ? spacingY[size].wave : spacingY[size].default} ${SPACING_X_CLASSES}`,
 );
 let titleSpacing = $derived(spacingY[size].title);
 let themeClasses = $derived(

@@ -7,7 +7,8 @@ import { getImageName } from "$lib/helpers/image.js";
 import BookingDialog from "$ui/BookingDialog.svelte";
 
 let { data } = $props();
-let { header, intro, sections, contentSections, outro, heroImage, outroImage } = data.page.fields;
+let { header, intro, sections, contentSections, outro, heroImage, outroImage } =
+	data.page.fields;
 let posts = data.posts;
 </script>
 

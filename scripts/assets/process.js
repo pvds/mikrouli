@@ -12,7 +12,9 @@ async function executeProcessing() {
 		if (IS_LOCAL) await processImages("local", { force: IS_FORCE });
 		if (IS_CMS) await processImages("cms", { force: IS_FORCE });
 		if (!IS_LOCAL && !IS_CMS) {
-			logWarn("No image processing category specified. Use --local and/or --cms.");
+			logWarn(
+				"No image processing category specified. Use --local and/or --cms.",
+			);
 		}
 	} catch (error) {
 		logError("Error during image processing:", error);

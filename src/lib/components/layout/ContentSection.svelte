@@ -50,7 +50,8 @@ let {
 const isOdd = (i) => typeof i === "number" && i % 2 === 1;
 
 /** @param {number|undefined} i */
-const hasWave = (i) => (wave === "odd" ? isOdd(i) : wave === "even" ? !isOdd(i) : false);
+const hasWave = (i) =>
+	wave === "odd" ? isOdd(i) : wave === "even" ? !isOdd(i) : false;
 
 /** @param {'sm'|'md'|'lg'} size */
 const proseSizeClasses = (size) =>

@@ -1,4 +1,5 @@
 <script>
+import { onMount } from "svelte";
 import { U_NBSP } from "$config";
 import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
@@ -6,12 +7,10 @@ import Outro from "$layout/Outro.svelte";
 import TeaserSection from "$layout/TeaserSection.svelte";
 import { formatDate } from "$lib/helpers/date.js";
 import { getImageName } from "$lib/helpers/image.js";
-import { onMount } from "svelte";
 
 let { data } = $props();
-let { header, intro, sections, contentSections, outro, heroImage, outroImage } = $derived(
-	data.page.fields,
-);
+let { header, intro, sections, contentSections, outro, heroImage, outroImage } =
+	$derived(data.page.fields);
 let { updatedAt } = $derived(data.page.meta);
 let services = $derived(data.services);
 let updated = $state(U_NBSP);

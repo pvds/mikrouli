@@ -19,7 +19,9 @@ export const askQuestion = (query, { required = false, mask = false } = {}) => {
 		input: process.stdin,
 		output: process.stdout,
 	});
-	const ask = (/** @type {(value: string | PromiseLike<string>) => void} */ resolve) => {
+	const ask = (
+		/** @type {(value: string | PromiseLike<string>) => void} */ resolve,
+	) => {
 		rl.question(query, (answerRaw) => {
 			const answer = answerRaw.trim();
 			if (required && !answer) {

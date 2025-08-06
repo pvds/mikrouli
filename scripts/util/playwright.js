@@ -1,5 +1,5 @@
-import { logDebug, logError, logSuccess } from "$util/log";
 import { chromium } from "playwright";
+import { logDebug, logError, logSuccess } from "$util/log";
 
 const chromeTestFlags = [
 	"--password-store=basic", // Prevents Chromium from accessing OS keychain (avoids popups).

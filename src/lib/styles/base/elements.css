@@ -5,7 +5,10 @@
 		var(--default-selection-light, black),
 		var(--default-selection-dark, white)
 	);
-	color: light-dark(var(--default-selection-dark, white), var(--default-selection-light, black));
+	color: light-dark(
+		var(--default-selection-dark, white),
+		var(--default-selection-light, black)
+	);
 }
 
 body {

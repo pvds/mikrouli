@@ -28,7 +28,9 @@ async function cleanDirectories() {
 		fs
 			.rm(dir, { recursive: true, force: true })
 			.then(() => logDebug(`Deleted ${dir}`))
-			.catch((error) => logError(`Failed to delete ${dir}: ${error.message}`)),
+			.catch((error) =>
+				logError(`Failed to delete ${dir}: ${error.message}`),
+			),
 	);
 
 	await Promise.all(deletePromises);

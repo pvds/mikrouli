@@ -11,22 +11,36 @@ import { resolve } from "node:path";
 import {
 	BUILD_DIR_PRODUCTION,
 	BUILD_DIR_STAGING,
-	IMAGES_FILE,
 	IMAGE_INPUT_DIR,
 	IMAGE_OUTPUT_DIR,
+	IMAGES_FILE,
 	JSON_OUTPUT_DIR,
 	REPORTS_DIR,
 } from "$config";
 
 // Paths
 const BASE_DIR = process.env.BASE_DIR || process.cwd();
-export const IMAGES_METADATA_OUTPUT_PATH_RESOLVED = resolve(BASE_DIR, JSON_OUTPUT_DIR, "meta");
-export const IMAGES_JSON_OUTPUT_PATH_RESOLVED = resolve(BASE_DIR, JSON_OUTPUT_DIR, IMAGES_FILE);
+export const IMAGES_METADATA_OUTPUT_PATH_RESOLVED = resolve(
+	BASE_DIR,
+	JSON_OUTPUT_DIR,
+	"meta",
+);
+export const IMAGES_JSON_OUTPUT_PATH_RESOLVED = resolve(
+	BASE_DIR,
+	JSON_OUTPUT_DIR,
+	IMAGES_FILE,
+);
 export const IMAGE_INPUT_PATH_RESOLVED = resolve(BASE_DIR, IMAGE_INPUT_DIR);
 export const IMAGE_OUTPUT_PATH_RESOLVED = resolve(BASE_DIR, IMAGE_OUTPUT_DIR);
 export const REPORTS_PATH_RESOLVED = resolve(BASE_DIR, REPORTS_DIR);
-export const BUILD_PATH_STAGING_RESOLVED = resolve(BASE_DIR, BUILD_DIR_PRODUCTION);
-export const BUILD_PATH_PRODUCTION_RESOLVED = resolve(BASE_DIR, BUILD_DIR_STAGING);
+export const BUILD_PATH_STAGING_RESOLVED = resolve(
+	BASE_DIR,
+	BUILD_DIR_PRODUCTION,
+);
+export const BUILD_PATH_PRODUCTION_RESOLVED = resolve(
+	BASE_DIR,
+	BUILD_DIR_STAGING,
+);
 
 // System
 export const CPU_COUNT = Math.max(2, Math.floor(cpus().length / 2));

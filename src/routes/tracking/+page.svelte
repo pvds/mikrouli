@@ -1,6 +1,6 @@
 <script>
-import { BUTTON_THEME } from "$config";
 import { onMount } from "svelte";
+import { BUTTON_THEME } from "$config";
 
 let isDisabled = $state(false);
 

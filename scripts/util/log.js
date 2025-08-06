@@ -2,7 +2,14 @@
  * A simple logging utility with colored text and background options.
  */
 
-/** @type {{reset: string, text: {black: string, red: string, green: string, yellow: string, blue: string, magenta: string, cyan: string, white: string}, background: {black: string, red: string, green: string, yellow: string, blue: string, magenta: string, cyan: string, white: string}}} */
+/**
+ * @typedef {'black' | 'red' | 'green' | 'yellow' | 'blue' | 'magenta' | 'cyan' | 'white'} Color
+ * @typedef {{ black: string, red: string, green: string, yellow: string, blue: string, magenta: string, cyan: string, white: string }} ColorMap
+ */
+
+/**
+ * @type {{ reset: string, text: ColorMap, background: ColorMap }}
+ */
 const colors = {
 	reset: "\x1b[0m",
 	text: {
@@ -30,16 +37,24 @@ const colors = {
 /**
  * Logs a message with customizable text and background colors.
  * @param {"log"|"info"|"warn"|"error"} type - The type of message to log.
- * @param {string} [textColor='white'] - The color of the text.
- * @param {string|null} [backgroundColor=undefined] - The background color.
+ * @param {Color} [textColor='white'] - The color of the text.
+ * @param {Color|null} [backgroundColor=null] - The background color.
  * @param  {...unknown} messages - Messages to log.
- * @returns {string|void} - The formatted message if type is 'text'.
+ * @returns {void}
  */
-function log(type = "log", textColor = "white", backgroundColor = null, ...messages) {
-	// @ts-expect-error
+function log(
+	type = "log",
+	textColor = "white",
+	backgroundColor = null,
+	...messages
+) {
+	// Ensure only valid color keys are used
 	const textCode = colors.text[textColor] || colors.text.white;
-	// @ts-expect-error
-	const bgCode = backgroundColor ? colors.background[backgroundColor] || "" : "";
+	const bgCode =
+		backgroundColor && colors.background[backgroundColor]
+			? colors.background[backgroundColor]
+			: "";
+
 	const startCode = bgCode + textCode;
 	switch (type) {
 		case "log":
@@ -55,7 +70,8 @@ function log(type = "log", textColor = "white", backgroundColor = null, ...messa
 			console.error(startCode, ...messages, colors.reset);
 			break;
 		default:
-			console.log(startCode, ...(messages + colors.reset));
+			console.log(startCode, ...messages, colors.reset);
+			break;
 	}
 }
 
@@ -74,7 +90,8 @@ export const logDebug = (...messages) => {
  * Use logDebug for messages that should only be logged when DEBUG is true.
  * @param {...unknown} messages
  */
-export const logMessage = (...messages) => log("log", "white", null, ...messages);
+export const logMessage = (...messages) =>
+	log("log", "white", null, ...messages);
 
 /**
  * Logs an informational message with cyan text.
@@ -86,7 +103,8 @@ export const logInfo = (...messages) => log("info", "cyan", null, ...messages);
  * Logs a warning message with yellow text.
  * @param  {...unknown} messages - Messages to log.
  */
-export const logWarn = (...messages) => log("warn", "yellow", null, ...messages);
+export const logWarn = (...messages) =>
+	log("warn", "yellow", null, ...messages);
 
 /**
  * Logs an error message with red text.
@@ -97,7 +115,8 @@ export const logError = (...messages) => log("error", "red", null, ...messages);
 /**
  * Logs a success message with green text.
  * @param  {...unknown} messages - Messages to log. */
-export const logSuccess = (...messages) => log("log", "green", null, ...messages);
+export const logSuccess = (...messages) =>
+	log("log", "green", null, ...messages);
 
 /**
  * Logs a header message with magenta text.
@@ -110,4 +129,5 @@ export const logHeader = (...messages) =>
  * Logs a highlighted message with white text on a blue background.
  * @param  {...unknown} messages - Messages to log.
  */
-export const logHighlight = (...messages) => log("log", "blue", null, ...messages);
+export const logHighlight = (...messages) =>
+	log("log", "blue", null, ...messages);

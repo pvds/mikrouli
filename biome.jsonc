@@ -8,32 +8,35 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": ["src/data/generated"]
+		"includes": ["**", "!src/data/generated"]
 	},
 	"formatter": {
 		"enabled": true,
 		"useEditorconfig": true
 	},
-	"organizeImports": {
-		"enabled": true
-	},
+	"assist": { "actions": { "source": { "organizeImports": "on" } } },
 	"linter": {
 		"enabled": true,
 		"rules": {
 			"recommended": true,
-			"correctness": { "noUnusedImports": { "level": "error" } }
+			"correctness": {
+				"noUnusedImports": { "level": "error" }
+			}
 		}
 	},
 	"overrides": [
 		{
-			"include": ["*.svelte"],
+			"includes": ["**/*.svelte"],
 			"linter": {
 				"rules": {
 					"style": {
 						"useConst": "off",
 						"useImportType": "off"
 					},
-					"correctness": { "noUnusedImports": "off" }
+					"correctness": {
+						"noUnusedImports": "off",
+						"noUnusedVariables": "off"
+					}
 				}
 			}
 		}

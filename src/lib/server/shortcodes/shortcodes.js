@@ -14,11 +14,15 @@ export const parseShortcodes = (text) => {
 	 * Map shortcode names to their handler functions
 	 * @type {Handlers} */
 	const handlers = {
-		youtube: /** @type {(attributes: Record<string, string>) => string} */ (youtubeHandler),
-		link: /** @type {(attributes: Record<string, string>) => string} */ (linkHandler),
+		youtube: /** @type {(attributes: Record<string, string>) => string} */ (
+			youtubeHandler
+		),
+		link: /** @type {(attributes: Record<string, string>) => string} */ (
+			linkHandler
+		),
 	};
 
-	return text.replace(shortcodeRegex, (match, shortcode, attrString) => {
+	return text.replace(shortcodeRegex, (_match, shortcode, attrString) => {
 		const handler = handlers[shortcode];
 		if (!handler) return ""; // If no handler found, remove shortcode
 

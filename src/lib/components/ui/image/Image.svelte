@@ -60,7 +60,9 @@ const usePlaceholder = false;
 let loadedData = $state(true);
 let loadedImage = $state(false);
 
-const metaCategory = $derived(/** @type Metadata */ (isLocal ? metadata.local : metadata.cms));
+const metaCategory = $derived(
+	/** @type Metadata */ (isLocal ? metadata.local : metadata.cms),
+);
 const meta = $derived(metaCategory[image]);
 
 const height = $derived(heightClass ? heightClass : "h-full");
@@ -77,7 +79,9 @@ const hasAlpha = $derived(meta?.hasAlpha);
  * @returns {string}
  */
 const srcset = (sizes) =>
-	sizes.map((size) => `${base}${directory}/${image}-${size}.webp ${size}w`).join(", ");
+	sizes
+		.map((size) => `${base}${directory}/${image}-${size}.webp ${size}w`)
+		.join(", ");
 </script>
 
 <div class="relative {height} {width} not-prose {loadedImage || hasAlpha ? '' :

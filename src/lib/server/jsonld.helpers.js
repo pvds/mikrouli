@@ -101,7 +101,9 @@ export function getAggregateRating() {
 	const bestRating = Math.max(...ratings);
 	const worstRating = Math.min(...ratings);
 	const ratingValue = Number.parseFloat(
-		(ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length).toFixed(1),
+		(
+			ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length
+		).toFixed(1),
 	);
 	const reviewCount = ratings.length;
 

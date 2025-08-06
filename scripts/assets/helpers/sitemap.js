@@ -24,7 +24,9 @@ function generateSitemap() {
 	const command = `bunx svelte-sitemap -d ${baseUrl} -o ${outputDir} --attribution false`;
 
 	try {
-		logInfo(`Generating sitemap for ${isProduction ? "Production" : "Staging"}...`);
+		logInfo(
+			`Generating sitemap for ${isProduction ? "Production" : "Staging"}...`,
+		);
 		runCommand(command);
 		logSuccess("Sitemap generated successfully.");
 	} catch (error) {

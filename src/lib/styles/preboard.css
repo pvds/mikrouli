@@ -146,7 +146,10 @@ a {
 	:focus-visible {
 		/* Use your transition variables if available */
 		transition: outline-offset var(--transition-duration-short, 150ms)
-			var(--default-transition-timing-function, cubic-bezier(0.4, 0, 0.2, 1));
+			var(
+				--default-transition-timing-function,
+				cubic-bezier(0.4, 0, 0.2, 1)
+			);
 	}
 }
 
@@ -164,7 +167,13 @@ a {
 
 /* Make button text unselectable & center it; disabled cursor feedback
    ====================================================================== */
-:where(button, button[type], input[type="button"], input[type="submit"], input[type="reset"]),
+:where(
+		button,
+		button[type],
+		input[type="button"],
+		input[type="submit"],
+		input[type="reset"]
+	),
 :where(input[type="file"])::-webkit-file-upload-button,
 :where(input[type="file"])::file-selector-button {
 	-webkit-tap-highlight-color: transparent;
@@ -185,7 +194,7 @@ a {
 
 /* Disabled cursor feedback for nested labels
    ====================================================================== */
-:where(:disabled, label:has(> :disabled, + disabled)) {
+:where(:disabled, label:has(> :disabled, + [disabled])) {
 	cursor: not-allowed;
 }
 

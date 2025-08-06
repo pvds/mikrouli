@@ -1,14 +1,30 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { IMAGE_EXT, IMAGE_EXTENSIONS, IMAGE_FILENAME_TEMPLATE, IMAGE_SIZES } from "$config";
-import { CPU_COUNT, IMAGE_INPUT_PATH_RESOLVED, IMAGE_OUTPUT_PATH_RESOLVED } from "$util/dyn";
+import pLimit from "p-limit";
+import sharp from "sharp";
+import {
+	IMAGE_EXT,
+	IMAGE_EXTENSIONS,
+	IMAGE_FILENAME_TEMPLATE,
+	IMAGE_SIZES,
+} from "$config";
+import {
+	CPU_COUNT,
+	IMAGE_INPUT_PATH_RESOLVED,
+	IMAGE_OUTPUT_PATH_RESOLVED,
+} from "$util/dyn";
 import { directoryExists, fileExists, prepareDir } from "$util/file";
-import { logDebug, logError, logHeader, logInfo, logMessage, logSuccess } from "$util/log";
+import {
+	logDebug,
+	logError,
+	logHeader,
+	logInfo,
+	logMessage,
+	logSuccess,
+} from "$util/log";
 import { measure } from "$util/measure";
 import { safeIncrement } from "$util/process";
 import { escapeRegex } from "$util/regex";
-import pLimit from "p-limit";
-import sharp from "sharp";
 import { writeMetadata } from "./metadata";
 import { generatePlaceholder } from "./placeholders";
 
@@ -23,7 +39,12 @@ import { generatePlaceholder } from "./placeholders";
  */
 export async function processImages(
 	category,
-	{ format = IMAGE_EXT, quality = 80, concurrency = CPU_COUNT, force = false } = {},
+	{
+		format = IMAGE_EXT,
+		quality = 80,
+		concurrency = CPU_COUNT,
+		force = false,
+	} = {},
 ) {
 	logInfo(`Optimizing ${category} images...`);
 	const startTime = performance.now();
@@ -44,11 +65,19 @@ export async function processImages(
 			const inputPath = path.join(inDir, file);
 			const baseName = path.parse(file).name;
 			const image = sharp(inputPath);
-			await generateImages(image, baseName, { format, quality, outDir, counts, force });
+			await generateImages(image, baseName, {
+				format,
+				quality,
+				outDir,
+				counts,
+				force,
+			});
 
 			// Collect metadata for the image
 			const { width, height, hasAlpha } = await image.metadata();
-			const placeholder = /** @type {string} */ (await generatePlaceholder(inputPath));
+			const placeholder = /** @type {string} */ (
+				await generatePlaceholder(inputPath)
+			);
 			metaData[baseName] = {
 				placeholder: placeholder,
 				width: width?.toString() || "",
@@ -62,11 +91,15 @@ export async function processImages(
 	await deleteStaleImages(category, counts);
 
 	logHeader(`Optimized ${category} images`);
-	logSuccess(`Synced optimized images from ${files.length} ${category} images`);
+	logSuccess(
+		`Synced optimized images from ${files.length} ${category} images`,
+	);
 	logMessage(`Generated ${counts.generated} new ${category} images`);
 	logMessage(`Skipped ${counts.skipped} existing ${category} images`);
 	logMessage(`Deleted ${counts.deleted} stale ${category} images`);
-	logDebug(`Optimizing ${category} images took ${measure(startTime)} seconds`);
+	logDebug(
+		`Optimizing ${category} images took ${measure(startTime)} seconds`,
+	);
 
 	await writeMetadata(category, metaData);
 }
@@ -82,10 +115,18 @@ export async function processImages(
  * @param {Record<string, number>} options.counts - Object to keep track of generated images count.
  * @param {boolean} options.force - Whether to force overwriting existing images.
  */
-async function generateImages(image, baseName, { format, quality, outDir, counts, force }) {
+async function generateImages(
+	image,
+	baseName,
+	{ format, quality, outDir, counts, force },
+) {
 	await Promise.all(
 		IMAGE_SIZES.map(async (size) => {
-			const outputFileName = buildFileName(baseName, size.toString(), format.toString());
+			const outputFileName = buildFileName(
+				baseName,
+				size.toString(),
+				format.toString(),
+			);
 			const outputPath = path.join(outDir, outputFileName);
 
 			if (!force && (await fileExists(outputPath))) {
@@ -96,7 +137,11 @@ async function generateImages(image, baseName, { format, quality, outDir, counts
 
 			await image
 				.clone()
-				.resize({ width: size, fit: sharp.fit.inside, withoutEnlargement: true })
+				.resize({
+					width: size,
+					fit: sharp.fit.inside,
+					withoutEnlargement: true,
+				})
 				.toFormat(format, { quality })
 				.toFile(outputPath)
 				.then(() => {
@@ -104,7 +149,10 @@ async function generateImages(image, baseName, { format, quality, outDir, counts
 					safeIncrement(counts, "generated");
 				})
 				.catch((error) => {
-					logError(`Failed to generate image ${outputFileName}:`, error);
+					logError(
+						`Failed to generate image ${outputFileName}:`,
+						error,
+					);
 				});
 		}),
 	);
@@ -122,14 +170,20 @@ async function deleteStaleImages(category, counts) {
 
 	if (!(await directoryExists(outDir))) return;
 
-	const [baseNames, outFiles] = await Promise.all([getBaseNames(inDir), fs.readdir(outDir)]);
+	const [baseNames, outFiles] = await Promise.all([
+		getBaseNames(inDir),
+		fs.readdir(outDir),
+	]);
 
 	await Promise.all(
 		[...outFiles].map(async (file) => {
 			const match = file.match(processedImageRegex);
 			if (match) {
 				const [, base, size] = match;
-				if (!baseNames.has(base) || !IMAGE_SIZES.includes(Number(size))) {
+				if (
+					!baseNames.has(base) ||
+					!IMAGE_SIZES.includes(Number(size))
+				) {
 					await fs.unlink(path.join(outDir, file));
 					console.info(`Deleted stale: ${file}`);
 					safeIncrement(counts, "deleted");

@@ -44,13 +44,19 @@ const main = async () => {
 	 * 2. Prompt for empty env variables (can be skipped)
 	 */
 	logHeader("Checking for missing environment variables");
-	const requiredVariables = ["CONTENTFUL_SPACE_ID", "CONTENTFUL_ACCESS_TOKEN"];
+	const requiredVariables = [
+		"CONTENTFUL_SPACE_ID",
+		"CONTENTFUL_ACCESS_TOKEN",
+	];
 	await promptForMissingVariables(envFile, requiredVariables);
 	logSuccess(
 		"Environment variables have been checked and updated according to to provided values.",
 	);
 
-	const missingRequiredVariables = getEmptyEnvVariables(envFile, requiredVariables);
+	const missingRequiredVariables = getEmptyEnvVariables(
+		envFile,
+		requiredVariables,
+	);
 	const fetchContent = missingRequiredVariables.length === 0;
 
 	if (!fetchContent) {
@@ -63,7 +69,9 @@ const main = async () => {
 			"\n",
 			"Without these variables, you won't be able to fetch content from Contentful.",
 		);
-		logInfo("Don't panic! We regularly check-in a snapshot of the content to the repository.");
+		logInfo(
+			"Don't panic! We regularly check-in a snapshot of the content to the repository.",
+		);
 	}
 
 	/**

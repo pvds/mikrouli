@@ -6,7 +6,8 @@ import TeaserSection from "$layout/TeaserSection.svelte";
 import { getImageName } from "$lib/helpers/image.js";
 
 let { data } = $props();
-let { header, intro, sections, contentSections, outro, heroImage, outroImage } = data.page.fields;
+let { header, intro, sections, contentSections, outro, heroImage, outroImage } =
+	data.page.fields;
 let posts = data.posts;
 </script>
 

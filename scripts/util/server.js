@@ -45,7 +45,11 @@ export const stopServer = (server) => {
  * @param {number} initialDelay - Initial delay before first check.
  * @return {Promise<string|void>} - Resolves if statusCode is 200 or 404, rejects otherwise.
  */
-export const waitForServer = async (url, timeout = 10000, initialDelay = 100) => {
+export const waitForServer = async (
+	url,
+	timeout = 10000,
+	initialDelay = 100,
+) => {
 	const baseUrl = new URL(url).origin;
 	await setTimeout(initialDelay);
 	const deadline = Date.now() + timeout;
@@ -53,10 +57,9 @@ export const waitForServer = async (url, timeout = 10000, initialDelay = 100) =>
 	while (Date.now() < deadline) {
 		try {
 			await new Promise((resolve, reject) =>
-				get(baseUrl, ({ statusCode = 0 }) => resolve([200, 404].includes(statusCode))).on(
-					"error",
-					reject,
-				),
+				get(baseUrl, ({ statusCode = 0 }) =>
+					resolve([200, 404].includes(statusCode)),
+				).on("error", reject),
 			);
 			return logSuccess(`Server is ready at ${url}`);
 		} catch {

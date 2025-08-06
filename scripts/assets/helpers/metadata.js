@@ -14,14 +14,22 @@ import { logInfo, logSuccess } from "$util/log.js";
 export const writeMetadata = async (category, metadata) => {
 	logInfo(`\nWriting ${category} images metadata...`);
 
-	const outputPath = path.join(IMAGES_METADATA_OUTPUT_PATH_RESOLVED, category);
-	const outputMetadataPath = path.join(IMAGES_METADATA_OUTPUT_PATH_RESOLVED, "images.json");
+	const outputPath = path.join(
+		IMAGES_METADATA_OUTPUT_PATH_RESOLVED,
+		category,
+	);
+	const outputMetadataPath = path.join(
+		IMAGES_METADATA_OUTPUT_PATH_RESOLVED,
+		"images.json",
+	);
 	prepareDir(outputPath, true);
 
 	const metadataFileContents = /** @type {Record<string, Metadata>} */ (
 		readJSON(outputMetadataPath)
 	);
-	metadataFileContents[category] = Object.fromEntries(Object.entries(metadata).sort());
+	metadataFileContents[category] = Object.fromEntries(
+		Object.entries(metadata).sort(),
+	);
 
 	// Write each image metadata to its own file
 	await Promise.all(

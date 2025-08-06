@@ -22,7 +22,7 @@ export const isExternalUrl = (url) => {
 			const baseUrl = new URL(base);
 			return parsedUrl.origin === baseUrl.origin;
 		});
-	} catch (e) {
+	} catch (_e) {
 		// If URL parsing fails, treat the link as external to be safe
 		return null;
 	}

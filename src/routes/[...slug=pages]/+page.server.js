@@ -1,5 +1,10 @@
 import { PARAMS_PAGES_EXCLUDE } from "$config";
-import { getPage, getPageEntries, getSeo, getServices } from "$lib/server/content.js";
+import {
+	getPage,
+	getPageEntries,
+	getSeo,
+	getServices,
+} from "$lib/server/content.js";
 
 /** @type {import('./$types').EntryGenerator} */
 export const entries = async () => {

@@ -7,7 +7,9 @@ import path from "node:path";
  * @returns {Object} - Parsed JSON data.
  */
 export const readJSON = (filePath) =>
-	fs.existsSync(filePath) ? JSON.parse(fs.readFileSync(filePath, "utf-8")) : {};
+	fs.existsSync(filePath)
+		? JSON.parse(fs.readFileSync(filePath, "utf-8"))
+		: {};
 
 /**
  * Write JSON data to a file.
@@ -100,5 +102,8 @@ export const getAllHtmlFiles = (dir, isMinimal = false) => {
 		return [...htmlFiles, ...firstHtmlInDirs];
 	}
 
-	return [...htmlFiles, ...directories.flatMap((subDir) => getAllHtmlFiles(subDir, isMinimal))];
+	return [
+		...htmlFiles,
+		...directories.flatMap((subDir) => getAllHtmlFiles(subDir, isMinimal)),
+	];
 };

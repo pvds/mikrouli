@@ -31,7 +31,9 @@ let {
 } = $props();
 
 const spacingY = $derived(() => ({
-	padding: image ? "pt-14 pb-18 sm:pt-20 sm:pb-24 md:pt-30 md:pb-34" : "py-10 sm:py-16 md:py-24",
+	padding: image
+		? "pt-14 pb-18 sm:pt-20 sm:pb-24 md:pt-30 md:pb-34"
+		: "py-10 sm:py-16 md:py-24",
 	bottom: sideAbsolute
 		? image
 			? "-bottom-18 sm:-bottom-24 md:-bottom-34 max-sm:-mt-8 sm:-mt-6"

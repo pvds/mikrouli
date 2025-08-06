@@ -48,8 +48,8 @@ import {
 import {
 	getAggregateRating,
 	getImage,
-	getOrgLogo,
 	getOrganization,
+	getOrgLogo,
 	getParentUrl,
 	iso8601Date,
 } from "./jsonld.helpers.js";
@@ -188,7 +188,9 @@ function getServicePage(service) {
  */
 function getBlogPage(page, posts) {
 	/** @type {ExtendedCollectionPage} */
-	const base = /** @type {ExtendedCollectionPage} */ (getBasePage(page, "CollectionPage"));
+	const base = /** @type {ExtendedCollectionPage} */ (
+		getBasePage(page, "CollectionPage")
+	);
 	if (posts.length) {
 		base.hasPart = posts.map((post) => ({
 			"@type": "BlogPosting",
@@ -214,7 +216,9 @@ function getBlogPage(page, posts) {
  */
 function getServicesPage(page, services) {
 	/** @type {ExtendedCollectionPage} */
-	const base = /** @type {ExtendedCollectionPage} */ (getBasePage(page, "CollectionPage"));
+	const base = /** @type {ExtendedCollectionPage} */ (
+		getBasePage(page, "CollectionPage")
+	);
 	if (services.length) {
 		base.hasPart = services.map((service) => ({
 			"@type": "WebPage",
@@ -244,6 +248,8 @@ function getServicesPage(page, services) {
  * @param {PageEntry} page - The homepage entry data.
  * @returns {HomePage}
  */
+
+// biome-ignore lint/correctness/noUnusedFunctionParameters: keep page parameter for future use
 function getHomePage(page) {
 	return {
 		"@context": "https://schema.org",
@@ -288,7 +294,11 @@ function getHomePage(page) {
 								name: "Leiden University",
 							},
 						],
-						knowsAbout: ["Systemic Therapy", "Family Therapy", "Mental Health"],
+						knowsAbout: [
+							"Systemic Therapy",
+							"Family Therapy",
+							"Mental Health",
+						],
 					},
 				],
 				telephone: CONTACT_PHONE,
@@ -342,7 +352,9 @@ function getBasePage(page, pageType, extraCrumb) {
 					"@type": "ListItem",
 					position: 2,
 					name: page.fields.title,
-					item: extraCrumb ? getParentUrl(extraCrumb.item) : defaultUrl,
+					item: extraCrumb
+						? getParentUrl(extraCrumb.item)
+						: defaultUrl,
 				},
 			],
 		},

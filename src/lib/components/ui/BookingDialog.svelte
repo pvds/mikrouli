@@ -1,5 +1,10 @@
 <script>
-import { BOOKING_OPTIONS, BOOKING_URL, BUTTON_SIZE, BUTTON_THEME } from "$config";
+import {
+	BOOKING_OPTIONS,
+	BOOKING_URL,
+	BUTTON_SIZE,
+	BUTTON_THEME,
+} from "$config";
 import { svgIcon } from "$lib/helpers/icon";
 import Dialog from "$ui/Dialog.svelte";
 
@@ -19,7 +24,13 @@ import Dialog from "$ui/Dialog.svelte";
  */
 
 /** @type {Props} */
-let { type = "page", cta, ctaSize = "md", ctaTheme = "primary", ctaIcon } = $props();
+let {
+	type = "page",
+	cta,
+	ctaSize = "md",
+	ctaTheme = "primary",
+	ctaIcon,
+} = $props();
 
 /** @type {HTMLDialogElement|null} */
 let dialog = $state(null);

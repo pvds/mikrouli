@@ -2,6 +2,7 @@
 import TeaserArticle from "$ui/TeaserArticle.svelte";
 import { oddLastEntry } from "../../helpers/entry.js";
 import Section from "./Section.svelte";
+
 /**
  * @typedef {import("$types/contentful.js").ServiceEntry } ServiceEntry
  * @typedef {import("$types/contentful.js").PostEntry } PostEntry

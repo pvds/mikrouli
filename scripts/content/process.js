@@ -53,7 +53,9 @@ export function processContentfulData(data = {}) {
 	const reviews = /** @type {ReviewEntry[]} */ (
 		reviewsRaw.map((rawReview) => parseReviewEntry(rawReview))
 	);
-	const navigation = navigationRaw.map((rawNav) => parseNavigation(rawNav, pages));
+	const navigation = navigationRaw.map((rawNav) =>
+		parseNavigation(rawNav, pages),
+	);
 	const images = parseImageUrls(data);
 
 	return { navigation, pages, services, posts, reviews, sections, images };
@@ -73,7 +75,9 @@ export const parseImageUrls = (data) => {
 		.flatMap(({ fields }) => Object.values(fields))
 		// Filter for image fields (which always have a nested fields property)
 		// where file.contentType starts with "image/"
-		.filter((field) => field.fields?.file?.contentType?.startsWith("image/"))
+		.filter((field) =>
+			field.fields?.file?.contentType?.startsWith("image/"),
+		)
 		// Map to the image URL from the unwrapped asset
 		.map((image) => image.fields.file.url);
 
@@ -95,7 +99,10 @@ export function parseContentEntry(rawEntry) {
 
 	for (const key of Object.keys(restFields)) {
 		const value = restFields[key];
-		if ((key === "sections" || key === "children") && Array.isArray(value)) {
+		if (
+			(key === "sections" || key === "children") &&
+			Array.isArray(value)
+		) {
 			restFields[key] = value
 				.filter(isContentfulEntry)
 				.map((entry) => parseContentEntry(entry).fields);
@@ -116,7 +123,8 @@ export function parseContentEntry(rawEntry) {
  */
 function parseReviewEntry(rawReview) {
 	const meta = parseMeta(rawReview.sys);
-	const { reviewer, ...fields } = /** @type {ReviewFields} */ rawReview.fields;
+	const { reviewer, ...fields } =
+		/** @type {ReviewFields} */ rawReview.fields;
 
 	// Exclude reviewer field if anonymous
 	if (!fields.anonymous) {
@@ -138,7 +146,10 @@ function parseReviewEntry(rawReview) {
 function parseNavigation(rawNav, pages) {
 	const meta = parseMeta(rawNav?.sys || {});
 	/** @type {EntrySkeletonType['fields']} */
-	const { /** @type {NavigationFieldEntries[]} */ items = [], ...restFields } = rawNav.fields;
+	const {
+		/** @type {NavigationFieldEntries[]} */ items = [],
+		...restFields
+	} = rawNav.fields;
 	/** @type {Partial<NavigationFieldItems>[]} */
 	const parsedItems = [];
 
@@ -168,11 +179,20 @@ function parseNavigation(rawNav, pages) {
 		} else {
 			// Link fields
 			const { title, url } = item.fields;
-			parsedItems.push({ title, longTitle: title, url, hidden: false, isExternal: true });
+			parsedItems.push({
+				title,
+				longTitle: title,
+				url,
+				hidden: false,
+				isExternal: true,
+			});
 		}
 	}
 
-	const fields = /** @type {NavigationFields} */ { ...restFields, items: parsedItems };
+	const fields = /** @type {NavigationFields} */ {
+		...restFields,
+		items: parsedItems,
+	};
 	return { meta, fields };
 }
 
@@ -198,5 +218,10 @@ function parseMeta({ id, type, createdAt, updatedAt, locale }) {
  * @returns {obj is ContentfulEntry}
  */
 function isContentfulEntry(obj) {
-	return obj !== null && typeof obj === "object" && "fields" in obj && "sys" in obj;
+	return (
+		obj !== null &&
+		typeof obj === "object" &&
+		"fields" in obj &&
+		"sys" in obj
+	);
 }

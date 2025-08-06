@@ -8,7 +8,11 @@ import sharp from "sharp";
  * @returns {Promise<string|sharp.OutputInfo|void>} - Base64 string if `asBase64` is true, otherwise
  * saves to file.
  */
-export const generatePlaceholder = async (inputPath, outputPath = "", asBase64 = true) => {
+export const generatePlaceholder = async (
+	inputPath,
+	outputPath = "",
+	asBase64 = true,
+) => {
 	const quality = 50;
 	const image = sharp(inputPath)
 		.resize({ width: 16 })

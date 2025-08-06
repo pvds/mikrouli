@@ -8,7 +8,8 @@ import { getImageName } from "$lib/helpers/image.js";
 import Image from "$ui/image/Image.svelte";
 
 let { data } = $props();
-let { header, intro, sections, contentSections, heroImage, outro, outroImage } = data.page.fields;
+let { header, intro, sections, contentSections, heroImage, outro, outroImage } =
+	data.page.fields;
 let services = data.services;
 let posts = data.posts;
 </script>

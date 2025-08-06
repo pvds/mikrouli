@@ -7,7 +7,8 @@ import TeaserSection from "$layout/TeaserSection.svelte";
 import { getImageName } from "$lib/helpers/image.js";
 
 let { data } = $props();
-let { header, intro, sections, contentSections, heroImage, outro, outroImage } = data.page.fields;
+let { header, intro, sections, contentSections, heroImage, outro, outroImage } =
+	data.page.fields;
 let reviews = data.reviews;
 let services = data.services;
 let posts = data.posts;

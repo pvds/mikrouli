@@ -7,7 +7,9 @@ import { getImageName } from "$lib/helpers/image.js";
 import BookingDialog from "$ui/BookingDialog.svelte";
 
 let { data } = $props();
-let { title, intro, sections, contentSections, outro, heroImage } = $derived(data.service.fields);
+let { title, intro, sections, contentSections, outro, heroImage } = $derived(
+	data.service.fields,
+);
 let services = $derived(data.services);
 </script>
 

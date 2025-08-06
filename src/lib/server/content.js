@@ -18,13 +18,13 @@
  * @typedef {import('$types/global').global} GlobalProps
  */
 
+import { error } from "@sveltejs/kit";
 import { SEO_DEFAULT } from "$config";
 import navigationItems from "$data/generated/navigation.json";
 import pageItems from "$data/generated/pages.json";
 import postItems from "$data/generated/posts.json";
 import reviewItems from "$data/generated/reviews.json";
 import serviceItems from "$data/generated/services.json";
-import { error } from "@sveltejs/kit";
 import { getJsonLd } from "./jsonld.js";
 import { markdownToHtml, splitText } from "./utils.js";
 
@@ -118,6 +118,7 @@ export const getPage = (slug) => {
 	if (!page) throw error(404, `Page with slug '${slug}' not found`);
 
 	// Remove children from the fields object
+	// biome-ignore lint/correctness/noUnusedVariables: ignorerestsiblings option not working
 	const { children, ...restFields } = page.fields;
 	page = /** @type {PageEntry} */ { ...page, fields: restFields };
 	return processEntryMarkdown(page);
@@ -161,7 +162,10 @@ export const getService = (slug) => {
 export const getServices = (exclude) => {
 	let services = preprocessJson(serviceItems);
 
-	if (exclude) services = services.filter((service) => service.fields.slug !== exclude);
+	if (exclude)
+		services = services.filter(
+			(service) => service.fields.slug !== exclude,
+		);
 	services = services
 		.filter((service) => !service.fields?.hidden)
 		.map((service) => processEntryMarkdown(service));
@@ -189,7 +193,8 @@ export const getPost = (slug) => {
 	const posts = /** @type {PostEntry[]} */ preprocessJson(postItems);
 	const index = posts.findIndex((p) => p.fields.slug === slug);
 
-	if (index === -1) throw error(404, `Blog post with slug '${slug}' not found`);
+	if (index === -1)
+		throw error(404, `Blog post with slug '${slug}' not found`);
 	/** @type {PostEntry} */
 	const post = processEntryMarkdown(posts[index]);
 
@@ -204,7 +209,8 @@ export const getPost = (slug) => {
 		slug: entry.fields.slug,
 	});
 	const prev = index > 0 ? minimalFields(posts[index - 1]) : undefined;
-	const next = index < posts.length - 1 ? minimalFields(posts[index + 1]) : undefined;
+	const next =
+		index < posts.length - 1 ? minimalFields(posts[index + 1]) : undefined;
 
 	return {
 		...post,
@@ -220,7 +226,9 @@ export const getPost = (slug) => {
  */
 export const getPosts = (limit = 0) => {
 	let posts = /** @type {PostEntry[]} */ preprocessJson(postItems);
-	posts = posts?.filter((post) => !post.fields?.hidden).map((post) => processEntryMarkdown(post));
+	posts = posts
+		?.filter((post) => !post.fields?.hidden)
+		.map((post) => processEntryMarkdown(post));
 	if (limit > 0) posts = posts.slice(0, limit);
 
 	return posts || [];

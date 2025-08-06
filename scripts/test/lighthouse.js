@@ -1,4 +1,5 @@
 import path from "node:path";
+import { playAudit } from "playwright-lighthouse";
 import {
 	DEBUG_PORT,
 	PORT,
@@ -19,7 +20,6 @@ import { logError, logHeader, logInfo, logSuccess, logWarn } from "$util/log";
 import { measure } from "$util/measure";
 import { closeBrowser, launchBrowser } from "$util/playwright";
 import { startServer, stopServer, waitForServer } from "$util/server";
-import { playAudit } from "playwright-lighthouse";
 
 const specificIndex = process.argv.indexOf("--specific");
 const specificPath =
@@ -28,7 +28,9 @@ const specificPath =
 		: null;
 
 // Constants
-const BUILD_DIR = IS_PROD ? BUILD_PATH_PRODUCTION_RESOLVED : BUILD_PATH_STAGING_RESOLVED;
+const BUILD_DIR = IS_PROD
+	? BUILD_PATH_PRODUCTION_RESOLVED
+	: BUILD_PATH_STAGING_RESOLVED;
 const SUBFOLDER = IS_PROD ? URL_SUBFOLDER_PRODUCTION : URL_SUBFOLDER_STAGING;
 const BASE_URL = `http://localhost:${PORT}${SUBFOLDER}`;
 const BUILD_CMD = IS_PROD ? "build:prod" : "build";
@@ -109,9 +111,21 @@ async function analyzePage(page, pageUrl) {
 		} = auditResults.lhr.categories;
 
 		logInfo("Results");
-		validateScore("  - Performance", performance.score, THRESHOLDS.performance);
-		validateScore("  - Accessibility", accessibility.score, THRESHOLDS.accessibility);
-		validateScore("  - Best Practices", bestPractices.score, THRESHOLDS["best-practices"]);
+		validateScore(
+			"  - Performance",
+			performance.score,
+			THRESHOLDS.performance,
+		);
+		validateScore(
+			"  - Accessibility",
+			accessibility.score,
+			THRESHOLDS.accessibility,
+		);
+		validateScore(
+			"  - Best Practices",
+			bestPractices.score,
+			THRESHOLDS["best-practices"],
+		);
 		validateScore("  - SEO", seo.score, THRESHOLDS.seo);
 		logInfo(`Report saved: file://${reportFilePath}`);
 	} catch (error) {
@@ -184,6 +198,7 @@ function validateScore(category, score, threshold) {
 		return;
 	}
 	const percentScore = Math.round(score * 100);
-	if (percentScore >= threshold) logSuccess(`${category}: ${percentScore} (>= ${threshold})`);
+	if (percentScore >= threshold)
+		logSuccess(`${category}: ${percentScore} (>= ${threshold})`);
 	else logError(`${category}: ${percentScore} (< ${threshold})`);
 }

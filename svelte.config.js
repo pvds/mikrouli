@@ -45,7 +45,9 @@ const config = {
 			base: production ? "" : "/mikrouli",
 		},
 		prerender: {
-			origin: production ? "https://mikrouli.nl" : "https://pvds.github.io",
+			origin: production
+				? "https://mikrouli.nl"
+				: "https://pvds.github.io",
 		},
 		env: {
 			publicPrefix: "",
