@@ -24,7 +24,7 @@ export const askQuestion = (query, { required = false, mask = false } = {}) => {
 			const answer = answerRaw.trim();
 			if (required && !answer) {
 				logWarn("Value cannot be empty. Please try again.");
-				ask(); // Re-ask until we get a non-empty answer
+				ask(resolve); // Re-ask until we get a non-empty answer
 			} else {
 				rl.close();
 				resolve(answer);
