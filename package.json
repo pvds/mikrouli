@@ -64,7 +64,7 @@
 		"svelte-sitemap": "^2.7.1",
 		"tailwindcss": "^4.1.13",
 		"typescript": "^5.9.2",
-		"vite": "^7.1.5",
+		"vite": "npm:rolldown-vite@latest",
 		"vite-plugin-browser-sync": "^5.0.0"
 	},
 	"trustedDependencies": [
