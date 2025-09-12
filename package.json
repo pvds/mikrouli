@@ -13,7 +13,7 @@
 	},
 	"scripts": {
 		"prepare": "bun run sync && lefthook install",
-		"start": "vite dev --open http://localhost:3000 --host & bun run watch",
+		"start": "vite dev --host",
 		"start:prod": "bun run build:prod && bun run preview:prod --open",
 		"build": "vite build",
 		"postbuild": "DEPLOY_TARGET=staging bun run assets:sitemap",
