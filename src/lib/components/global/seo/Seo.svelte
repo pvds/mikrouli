@@ -1,5 +1,5 @@
 <script>
-import { base } from "$app/paths";
+import { resolve } from "$app/paths";
 import { page } from "$app/state";
 import { ORG_NAME, ORG_NAME_SUFFIX, ORG_SLOGAN } from "$config";
 import { checkSeo } from "./Seo.helper.js";
@@ -17,7 +17,7 @@ let { children } = $props();
  */
 const constructTitle = (title, category, separator = " - ") => {
 	const space = " ";
-	const isHome = page.url.pathname === `${base}/`;
+	const isHome = page.url.pathname === resolve("/");
 	const categoryPart = category ? `${category} ${separator} ` : "";
 	return isHome || !title
 		? ORG_NAME + separator + ORG_NAME_SUFFIX + separator + ORG_SLOGAN
@@ -28,7 +28,7 @@ const constructTitle = (title, category, separator = " - ") => {
  * @returns {string} the URL with the origin prepended
  */
 const prependURL = (url) =>
-	url?.startsWith("http") ? url : `${page.url.origin}${base}/${url}`;
+	url?.startsWith("http") ? url : resolve(`/${url}`);
 
 /** @type {SEOProps['title']} */
 let title = $derived(
