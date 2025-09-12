@@ -5,8 +5,16 @@ import { logDebug, logError, logInfo, logSuccess } from "../util/log.js";
 
 const runCommand = promisify(exec);
 
+const GENERATED_DIRS = ["node_modules", "build", ".svelte-kit", ".tmp"];
+const GENERATED_FILES = ["bun.lock"];
+
 await cleanDirectories().catch((error) => {
-	logError("Clean script failed:", error.message);
+	logError("Clean directories script failed:", error.message);
+	process.exit(1);
+});
+
+await cleanFiles().catch((error) => {
+	logError("Clean files script failed:", error.message);
 	process.exit(1);
 });
 
@@ -21,10 +29,8 @@ await syncSvelteKit().catch((error) => {
 });
 
 async function cleanDirectories() {
-	const cleanupDirs = ["node_modules", "build", ".svelte-kit", ".tmp"];
-
-	logInfo("Cleaning caches and output...");
-	const deletePromises = cleanupDirs.map((dir) =>
+	logInfo("Cleaning generated folders...");
+	const deletePromises = GENERATED_DIRS.map((dir) =>
 		fs
 			.rm(dir, { recursive: true, force: true })
 			.then(() => logDebug(`Deleted ${dir}`))
@@ -34,7 +40,22 @@ async function cleanDirectories() {
 	);
 
 	await Promise.all(deletePromises);
-	logSuccess("Caches and output cleaned.");
+	logSuccess("Generated folders cleaned.");
+}
+
+async function cleanFiles() {
+	logInfo("Cleaning generated files...");
+	const deletePromises = GENERATED_FILES.map((file) =>
+		fs
+			.rm(file, { force: true })
+			.then(() => logDebug(`Deleted ${file}`))
+			.catch((error) =>
+				logError(`Failed to delete ${file}: ${error.message}`),
+			),
+	);
+
+	await Promise.all(deletePromises);
+	logSuccess("Generated files cleaned.");
 }
 
 async function installPackages() {
