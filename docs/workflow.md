@@ -83,7 +83,7 @@ The workflow is defined in `.github/ci.yml` with the following key jobs:
 - Artifacts are uploaded as a Netlify artifact using
   `actions/upload-artifact@v4`.
 - These artifacts are deployed to Netlify at the custom domain
-  [https://mikrouli.nl](https://mikrouli.nl).
+  [https://mikrouli.org](https://mikrouli.org).
 
 ---
 

@@ -2,5 +2,5 @@
 
 Contact: https://pvdsteen.com
 Preferred-Languages: en, fr, de
-Canonical: https://mikrouli.nl/.well-known/security.txt
-Policy: https://mikrouli.nl/security
+Canonical: https://mikrouli.org/.well-known/security.txt
+Policy: https://mikrouli.org/security
