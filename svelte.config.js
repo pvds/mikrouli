@@ -46,7 +46,7 @@ const config = {
 		},
 		prerender: {
 			origin: production
-				? "https://mikrouli.nl"
+				? "https://mikrouli.org"
 				: "https://pvds.github.io",
 		},
 		env: {
