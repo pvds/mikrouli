@@ -1,0 +1,13 @@
+[[redirects]]
+from = "/*"
+to = "https://mikrouli.org/:splat"
+status = 301
+force = true
+conditions = { Host = [
+	"www.mikrouli.org",
+	"mikrouli.netlify.app",
+	"mikrouli.nl",
+	"www.mikrouli.nl",
+	"elenipapam.com",
+	"www.elenipapam.com"
+] }
