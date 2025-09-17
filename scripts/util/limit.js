@@ -64,17 +64,13 @@ export function pLimit(concurrency) {
 
 				// Expose the task's own promise immediately
 				outerResolve(result);
-
-				// Avoid unhandled rejections and always decrement counters
+				// Safely update counters regardless of outcome; avoid unhandled rejections
 				result
-					.then(
-						() => {},
-						() => {},
-					)
-					.then(() => {
+					.finally(() => {
 						activeCount--;
 						queueMicrotask(drain);
-					});
+					})
+					.catch(() => {});
 			};
 
 			if (activeCount < concurrency) {
