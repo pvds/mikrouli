@@ -1,5 +1,5 @@
 /**
- * @typedef {<R>(fn: (...args: unknown[]) => R, ...args: unknown[]) => Promise<Awaited<R>>} LimitCall
+ * @typedef {<R>(fn: (...args: unknown[]) => R, ...args: unknown[]) => Promise<R>} LimitCall
  *
  * @typedef {LimitCall & {
  *   readonly activeCount: number;
@@ -45,40 +45,39 @@ export function pLimit(concurrency) {
 	let activeCount = 0;
 
 	function drain() {
-		while (activeCount < concurrency && queue.length > 0) {
+		while (activeCount < concurrency && queue.length) {
 			const run = queue.shift();
 			if (run) run();
 		}
 	}
 
-	/**
-	 * @param {(...args: unknown[]) => unknown} fn
-	 * @param {...unknown} args
-	 * @returns {Promise<unknown>}
-	 */
-	const limit = (fn, ...args) =>
-		new Promise((outerResolve) => {
-			const start = () => {
-				activeCount++;
-				const result = Promise.resolve().then(() => fn(...args));
+	/** @type {Limit} */
+	const limit = Object.assign(
+		/** @type {LimitCall} */
+		(fn, ...args) =>
+			new Promise((outerResolve) => {
+				const start = () => {
+					activeCount++;
+					const result = Promise.resolve().then(() => fn(...args));
 
-				// Expose the task's own promise immediately
-				outerResolve(result);
-				// Safely update counters regardless of outcome; avoid unhandled rejections
-				result
-					.finally(() => {
-						activeCount--;
-						queueMicrotask(drain);
-					})
-					.catch(() => {});
-			};
+					// Expose the task's own promise immediately
+					outerResolve(result);
+					// Safely update counters regardless of outcome; avoid unhandled rejections
+					result
+						.finally(() => {
+							activeCount--;
+							queueMicrotask(drain);
+						})
+						.catch(() => {});
+				};
 
-			if (activeCount < concurrency) {
-				queueMicrotask(start); // consistent async start
-			} else {
-				queue.push(start);
-			}
-		});
+				if (activeCount < concurrency) {
+					queueMicrotask(start); // consistent async start
+				} else {
+					queue.push(start);
+				}
+			}),
+	);
 
 	Object.defineProperties(limit, {
 		activeCount: { get: () => activeCount },
@@ -90,5 +89,5 @@ export function pLimit(concurrency) {
 		queue.length = 0;
 	};
 
-	return /** @type {Limit} */ (limit);
+	return limit;
 }
