@@ -1,8 +1,5 @@
 /**
- * @typedef {<T extends (...args: any[]) => any>(
- *   fn: T,
- *   ...args: Parameters<T>
- * ) => Promise<Awaited<ReturnType<T>>>} LimitCall
+ * @typedef {<R>(fn: (...args: unknown[]) => R, ...args: unknown[]) => Promise<Awaited<R>>} LimitCall
  *
  * @typedef {LimitCall & {
  *   readonly activeCount: number;
@@ -33,8 +30,8 @@
  *       return await processFile(file);
  *     })
  *   );
- *   const results = [];
- *   for (const t of tasks) results.push(await t);
+ *
+ *   const results = await Promise.all(tasks);
  *   return results;
  * }
  */
@@ -54,14 +51,16 @@ export function pLimit(concurrency) {
 		}
 	}
 
-	/** @type {Limit} */
+	/**
+	 * @param {(...args: unknown[]) => unknown} fn
+	 * @param {...unknown} args
+	 * @returns {Promise<unknown>}
+	 */
 	const limit = (fn, ...args) =>
 		new Promise((outerResolve) => {
 			const start = () => {
 				activeCount++;
-				const result = Promise.resolve().then(() =>
-					/** @type {any} */ (fn)(...args),
-				);
+				const result = Promise.resolve().then(() => fn(...args));
 
 				// Expose the task's own promise immediately
 				outerResolve(result);
@@ -85,7 +84,6 @@ export function pLimit(concurrency) {
 			}
 		});
 
-	// Augment properties, then cast once at the end to satisfy TS
 	Object.defineProperties(limit, {
 		activeCount: { get: () => activeCount },
 		pendingCount: { get: () => queue.length },
