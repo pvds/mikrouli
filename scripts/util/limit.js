@@ -51,9 +51,7 @@ export function pLimit(concurrency) {
 		}
 	}
 
-	/** @type {Limit} */
-	const limit = Object.assign(
-		/** @type {LimitCall} */
+	const limit = /** @type {Limit} */ (
 		(fn, ...args) =>
 			new Promise((outerResolve) => {
 				const start = () => {
@@ -76,7 +74,7 @@ export function pLimit(concurrency) {
 				} else {
 					queue.push(start);
 				}
-			}),
+			})
 	);
 
 	Object.defineProperties(limit, {
