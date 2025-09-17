@@ -1,5 +1,5 @@
 /**
- * @typedef {<R>(fn: (...args: unknown[]) => R, ...args: unknown[]) => Promise<R>} LimitCall
+ * @typedef {<T>(fn: (...args: unknown[]) => T, ...args: unknown[]) => Promise<T>} LimitCall
  *
  * @typedef {LimitCall & {
  *   readonly activeCount: number;
