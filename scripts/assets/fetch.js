@@ -1,13 +1,13 @@
 import fs from "node:fs";
 import https from "node:https";
 import path from "node:path";
-import pLimit from "p-limit";
 import {
 	IMAGE_INPUT_PATH_RESOLVED,
 	IMAGES_JSON_OUTPUT_PATH_RESOLVED,
 	IS_CMS,
 } from "$util/dyn";
 import { prepareDir } from "$util/file";
+import { pLimit } from "$util/limit";
 
 import { logDebug, logError, logInfo, logSuccess, logWarn } from "$util/log";
 import { withRetry } from "$util/retry";

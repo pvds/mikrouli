@@ -8,6 +8,7 @@ await executeProcessing();
 
 // Execute processing based on command-line args
 async function executeProcessing() {
+	console.time("Total image processing time");
 	try {
 		if (IS_LOCAL) await processImages("local", { force: IS_FORCE });
 		if (IS_CMS) await processImages("cms", { force: IS_FORCE });
@@ -19,4 +20,5 @@ async function executeProcessing() {
 	} catch (error) {
 		logError("Error during image processing:", error);
 	}
+	console.timeEnd("Total image processing time");
 }

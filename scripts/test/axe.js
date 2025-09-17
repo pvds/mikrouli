@@ -1,6 +1,5 @@
 import path from "node:path";
 import { AxeBuilder } from "@axe-core/playwright";
-import pLimit from "p-limit";
 import {
 	BUILD_PATH_PRODUCTION_RESOLVED,
 	BUILD_PATH_STAGING_RESOLVED,
@@ -9,6 +8,7 @@ import {
 	IS_PROD,
 } from "$util/dyn";
 import { getAllHtmlFiles, resolveIfExists } from "$util/file";
+import { pLimit } from "$util/limit";
 import { logDebug, logError, logInfo, logSuccess } from "$util/log";
 import { measure } from "$util/measure";
 import { closeBrowser, launchBrowser, navigateToPage } from "$util/playwright";

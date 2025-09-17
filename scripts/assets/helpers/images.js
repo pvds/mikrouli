@@ -1,6 +1,5 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import pLimit from "p-limit";
 import sharp from "sharp";
 import {
 	IMAGE_EXT,
@@ -14,6 +13,7 @@ import {
 	IMAGE_OUTPUT_PATH_RESOLVED,
 } from "$util/dyn";
 import { directoryExists, fileExists, prepareDir } from "$util/file";
+import { pLimit } from "$util/limit";
 import {
 	logDebug,
 	logError,
