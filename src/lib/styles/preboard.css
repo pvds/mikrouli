@@ -84,7 +84,7 @@ body {
      inline-size: 5rem;
    } */
 
-/* Allows textareas to resize in a more flexible way if the browser supports it.
+/* Allows textarea to resize in a more flexible way if the browser supports it.
    ====================================================================== */
 @supports (resize: block) {
 	textarea {
