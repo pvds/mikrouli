@@ -1,3 +1,6 @@
+/* === LAYERS === */
+@layer theme, base, components, utilities;
+
 /* === TAILWIND === */
 @import "tailwindcss/theme" layer(theme);
 @import "tailwindcss/preflight" layer(base);
@@ -17,6 +20,3 @@
 /* === SOURCES === */
 /* biome-ignore lint/suspicious/noUnknownAtRules: biome 2.3 will support custom tailwind at-rules */
 @source "../src/";
-
-/* === LAYERS === */
-@layer theme, base, components, utilities;
