@@ -30,10 +30,7 @@ export const processSync =
  * @return {string} - The updated content with absolute links.
  */
 export const prependBasePath = (content) => {
-	return content.replace(
-		/href="\/(?!\/)(.*?)"/g,
-		`href="${resolve("/")}/$1"`,
-	);
+	return content.replace(/href="\/(?!\/)(.*?)"/g, `href="${resolve("/")}$1"`);
 };
 
 /**
