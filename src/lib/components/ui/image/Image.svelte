@@ -52,10 +52,10 @@ let {
 // 	loadMetadata();
 // });
 
-const IMAGE_DIR = "/images";
+const base = resolve("/");
+const IMAGE_DIR = "images";
 const POSITION_CLASSES = "absolute object-cover";
 
-const base = resolve("/");
 const usePlaceholder = false;
 
 let loadedData = $state(true);
