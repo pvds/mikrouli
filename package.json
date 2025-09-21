@@ -12,6 +12,8 @@
 		"url": "https://github.com/pvds/mikrouli"
 	},
 	"scripts": {
+		"setup": "bun run scripts/workspace/setup.js",
+		"clean": "bun run scripts/workspace/clean.js",
 		"prepare": "bun run sync && lefthook install",
 		"start": "vite dev --host",
 		"start:prod": "bun run build:prod && bun run preview:prod --open",
@@ -37,9 +39,7 @@
 		"assets:fetch": "bun run scripts/assets/fetch.js",
 		"assets:process": "bun run scripts/assets/process.js",
 		"assets:favicons": "bunx realfavicon generate images/icon.svg favicons.json .favicons.json static/pwa",
-		"assets:sitemap": "bun run scripts/assets/helpers/sitemap.js",
-		"workspace:prepare": "bun run scripts/workspace/prepare.js",
-		"workspace:clean": "bun run scripts/workspace/clean.js"
+		"assets:sitemap": "bun run scripts/assets/helpers/sitemap.js"
 	},
 	"devDependencies": {
 		"@axe-core/playwright": "^4.10.2",
