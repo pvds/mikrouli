@@ -32,7 +32,7 @@ function toggleTracking() {
 		<span><span class="font-black">{isDisabled ? "START" : "STOP"}</span> tracking</span>
 		<small class="text-accent-light">This device/browser combination</small>
 	</button>
-	<a href="https://eu.umami.is/share/ZNdZ6PywYGVatvHp/mikrouli.nl" target="_blank" rel="noopener"
+	<a href="https://cloud.umami.is/share/ZNdZ6PywYGVatvHp/mikrouli.org" target="_blank" rel="noopener"
 	   class="px-4 py-2 no-underline transition text-center flex items-center {BUTTON_THEME.secondary}">View
 		Analytics</a>
 	</div>
