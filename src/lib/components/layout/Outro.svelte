@@ -1,5 +1,5 @@
 <script>
-import { base } from "$app/paths";
+import { resolve } from "$app/paths";
 import { BUTTON_THEME } from "$config";
 import BookingDialog from "$ui/BookingDialog.svelte";
 import { svgIcon } from "../../helpers/icon.js";
@@ -20,7 +20,7 @@ let { image, children } = $props();
 	{#snippet contentFooter()}
 		<div class="flex flex-wrap gap-2 mt-6">
 			<BookingDialog type="book" ctaIcon="calendar" />
-			<a href={`${base}/contact`} class="group py-2 px-4 font-semibold transition-colors
+			<a href={resolve('/contact')} class="group py-2 px-4 font-semibold transition-colors
 				{BUTTON_THEME.secondary}">Contact me{@html svgIcon("internal")}</a>
 		</div>
 	{/snippet}

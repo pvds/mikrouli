@@ -1,5 +1,5 @@
 <script>
-import { base } from "$app/paths";
+import { resolve } from "$app/paths";
 import { getImageName } from "../../helpers/image.js";
 import Image from "./image/Image.svelte";
 
@@ -31,7 +31,7 @@ let { post, priority = false } = $props();
 	<div class="max-md:self-start md:self-center" style="view-transition-name: {post.slug}">
 		<h2 class="mb-2 text-2xl md:text-3xl font-bold">{post.title}</h2>
 		<div class="prose md-mid:prose-lg">{@html post.intro}</div>
-		<a href={`${base}/blog/${post.slug}`}
+		<a href={resolve(`/blog/${post.slug}`)}
 		   class="inline-block mt-2 font-semibold transition-all hover:underline group-hover:text-accent-dark after:content[''] after:absolute after:inset-0">Read more
 			<span class="inline-block group-hover:animate-wiggle-right">→</span>
 		</a>

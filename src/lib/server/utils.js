@@ -1,6 +1,6 @@
 import { marked } from "marked";
 import { gfmHeadingId } from "marked-gfm-heading-id";
-import { base } from "$app/paths";
+import { resolve } from "$app/paths";
 import { parseShortcodes } from "./shortcodes/shortcodes.js";
 
 /**
@@ -30,7 +30,10 @@ export const processSync =
  * @return {string} - The updated content with absolute links.
  */
 export const prependBasePath = (content) => {
-	return content.replace(/href="\/(?!\/)(.*?)"/g, `href="${base}/$1"`);
+	return content.replace(
+		/href="\/(?!\/)(.*?)"/g,
+		`href="${resolve("/")}/$1"`,
+	);
 };
 
 /**

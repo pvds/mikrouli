@@ -1,5 +1,5 @@
 <script>
-import { base } from "$app/paths";
+import { resolve } from "$app/paths";
 import { isCurrentPage } from "$lib/helpers/page";
 import BookingDialog from "$ui/BookingDialog.svelte";
 import WaveCss from "$visuals/WaveCss.svelte";
@@ -16,6 +16,7 @@ let { menu } = $props();
 /** @type {Record<number,HTMLUListElement>} */
 let menuPopovers = $state([]);
 
+const base = resolve("/");
 const navItemsBase = toNavItems(menu.fields.items);
 /** @type NavigationItem */
 const navItemHome = { href: base, label: "Home", title: "Mikrouli home page" };

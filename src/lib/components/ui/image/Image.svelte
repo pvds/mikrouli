@@ -1,5 +1,5 @@
 <script>
-import { base } from "$app/paths";
+import { resolve } from "$app/paths";
 import { IMAGE_SIZES } from "$config";
 import metadata from "$data/generated/meta/images.json";
 
@@ -55,6 +55,7 @@ let {
 const IMAGE_DIR = "/images";
 const POSITION_CLASSES = "absolute object-cover";
 
+const base = resolve("/");
 const usePlaceholder = false;
 
 let loadedData = $state(true);

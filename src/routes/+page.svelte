@@ -1,5 +1,5 @@
 <script>
-import { base } from "$app/paths";
+import { resolve } from "$app/paths";
 import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
 import Outro from "$layout/Outro.svelte";
@@ -18,7 +18,7 @@ let posts = data.posts;
 	  imageAlt={heroImage ? heroImage.title : undefined} imagePositionClass="object-[100%_75%]" sideAbsolute>
 	{@html intro}
 	{#snippet side()}
-	<a href={`${base}/about`} aria-label="Learn more about me"
+	<a href={resolve('/about')} aria-label="Learn more about me"
 	   class="block w-[clamp(10rem,50vw,15rem)] mx-auto">
 		<Image image="eleni-papamikrouli"
 			   sizes="(max-width: 48em) clamp(10rem,50vw,15rem),min(20rem,25vw)"

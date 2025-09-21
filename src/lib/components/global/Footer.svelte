@@ -1,5 +1,5 @@
 <script>
-import { base } from "$app/paths";
+import { resolve } from "$app/paths";
 import Section from "$layout/Section.svelte";
 import Image from "$ui/image/Image.svelte";
 import { toNavItems } from "../../helpers/nav.js";
@@ -79,7 +79,7 @@ const navContact = toNavItems(contact.fields.items);
 				</ul>
 			</nav>
 		</div>
-		<a href={`${base}/about`} aria-label="Learn more about me" class="absolute bottom-0 right-0">
+		<a href={resolve('/about')} aria-label="Learn more about me" class="absolute bottom-0 right-0">
 			<Image image="eleni-papamikrouli"
 				sizes="(max-width: 48em) max(10rem,30vw), min(15rem,30vw)"
 				isLocal

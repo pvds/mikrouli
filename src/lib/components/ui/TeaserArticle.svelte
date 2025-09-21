@@ -1,5 +1,5 @@
 <script>
-import { base } from "$app/paths";
+import { resolve } from "$app/paths";
 import { getImageName } from "../../helpers/image.js";
 import Image from "./image/Image.svelte";
 
@@ -30,7 +30,7 @@ let { item, slug, priority = false } = $props();
 	<div style="view-transition-name: {item.slug}">
 		<h3 class="mb-4 text-2xl font-bold">{item.title}</h3>
 		<div class="prose prose-base">{@html item.intro}</div>
-		<a href={`${base}/${slug}/${item.slug}`}
+		<a href={resolve(`/${slug}/${item.slug}`)}
 			class="inline-block mt-4 font-semibold transition-all hover:underline group-hover:text-accent-dark
 					after:content[''] after:absolute after:inset-0">Read more
 			<span class="inline-block group-hover:animate-wiggle-right">&rarr;</span>

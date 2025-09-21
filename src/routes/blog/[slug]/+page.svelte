@@ -1,6 +1,6 @@
 <script>
 import { onMount } from "svelte";
-import { base } from "$app/paths";
+import { resolve } from "$app/paths";
 import { U_NBSP } from "$config";
 import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
@@ -57,13 +57,13 @@ onMount(() => {
 {#if prev || next}
 	<Section innerClasses="flex flex-wrap justify-between">
 		{#if prev}
-			<a href={`${base}/blog/${prev.slug}`}
+			<a href={resolve(`/blog/${prev.slug}`)}
 			   class="inline-block group mr-auto pr-4 py-2 font-semibold md-mid:text-xl text-primary-darker hover:text-accent-dark">
 				<span class="inline-block mr-1 group-hover:animate-wiggle-left">&larr;</span>{prev.title}
 			</a>
 		{/if}
 		{#if next}
-			<a href={`${base}/blog/${next.slug}`}
+			<a href={resolve(`/blog/${next.slug}`)}
 			   class="inline-block group ml-auto pl-4 py-2 font-semibold md-mid:text-xl text-primary-darker hover:text-accent-dark text-right">
 				{next.title}<span class="inline-block ml-1 group-hover:animate-wiggle-right">&rarr;</span>
 			</a>
