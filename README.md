@@ -33,6 +33,7 @@ developer experience and user-centric design.
 - **[Vite](https://vitejs.dev/):** High-speed build tool.
 
 ### Styling
+
 - **[Tailwind CSS](https://tailwindcss.com/):** Utility-first CSS framework.
 
 ### Testing and Quality Assurance
@@ -40,7 +41,8 @@ developer experience and user-centric design.
 - **[Vitest](https://vitest.dev/):** Unit testing framework.
 - **[Playwright](https://playwright.dev/):** End-to-end testing tool.
 - **[Biome](https://biomejs.dev/):** Linting and formatting.
-- **[Lefthook](https://evilmartians.com/opensource/lefthook):** Git hooks for automated checks.
+- **[Lefthook](https://evilmartians.com/opensource/lefthook):** Git hooks for
+  automated checks.
 
 ### Hosting and CMS
 
@@ -50,11 +52,13 @@ developer experience and user-centric design.
   content.
 
 ### Analytics and Monitoring
+
 - **[Umami](https://umami.is/):** Privacy-focused analytics.
 
 ### Email
-- **[forwardemail](https://forwardemail.net):** Privacy focussed email 
-  service provider
+
+- **[forwardemail](https://forwardemail.net):** Privacy focussed email service
+  provider
 
 ---
 
@@ -72,14 +76,12 @@ If you already have all dependencies quick start by running
 
 1. **Install Node.js** (v22 or newer):  
    Follow the [Node.js documentation](https://nodejs.org/).
-
     - macOS: `brew install node` or `brew install nvm`
     - windows: `scoop install nodejs` or use
       [nvm for windows](https://github.com/coreybutler/nvm-windows)
 
 2. **Install Bun** (v1 or newer):  
    Follow the [Bun installation guide](https://bun.sh/).
-
     - macOS/Linux: `brew install oven-sh/bun/bun` or
       `curl -fsSL https://bun.sh/install | bash`
     - windows: `scoop bucket add main` && `scoop install bun` or
@@ -112,78 +114,67 @@ If you already have all dependencies quick start by running
 
 ## Scripts
 
-- **Setup**
+- **Workspace**
 
     ```bash
-    bun run prepare        		# Install git hooks with Lefthook
+    bun run setup				# Prepare the workspace
+    bun run clean				# Clean the workspace
+    ```
+
+- **Prepare**
+
+    ```bash
+    bun run prepare				# Install git hooks with Lefthook
+    bun run sync				# Creates the tsconfig.json and generated types
     ```
 
 - **Development**
 
     ```bash
-    bun run start          		# Start development server and watch for changes
-    bun run start:prod     		# Build and start production server
+    bun run start				# Start development server and watch for changes
+    bun run start:prod			# Build and start production server
     ```
 
 - **Build**
 
     ```bash
-    bun run build              	# Build for staging
-    bun run build:prod   	# Build for production
+    bun run build				# Build for staging
+    bun run build:prod			# Build for production
     ```
 
 - **Preview**
 
     ```bash
-    bun run preview            	# Preview staging build
-    bun run preview:prod 	# Preview production build
+    bun run preview				# Preview staging build
+    bun run preview:prod			# Preview production build
     ```
 
 - **Testing**
 
     ```bash
-    bun run test:lighthouse 	# Run Lighthouse performance tests
-    bun run test:axe        	# Run accessibility tests
-    ```
-
-- **Watching**
-
-    ```bash
-    bun run watch       		# Watch for changes in code
+    bun run test:lighthouse			# Run Lighthouse performance tests
+    bun run test:axe			# Run accessibility tests
     ```
 
 - **Code Quality**
 
     ```bash
-    bun run check         		# Run formatting, Svelte, and script checks
-    bun run check:ci      		# Run checks for CI pipeline
-    bun run check:all      		# Run all checks including build
-    bun run check:format    	# Check code formatting
-    bun run check:lint	    	# Check code linting
-    bun run write          		# Fix formatting issues
-    ```
-
-- **Content Management**
-
-    ```bash
-    bun run content         	# Fetch content and process assets
-    bun run content:fetch   	# Fetch content from CMS
+    bun run check				# Run formatting, Svelte, and script checks
+    bun run check:ci			# Run checks for CI pipeline
+    bun run check:all			# Run all checks including build
+    bun run check:format			# Check code formatting
+    bun run check:lint			# Check code linting
+    bun run watch				# Check code on file changes
+    bun run write				# Fix formatting issues
     ```
 
 - **Asset Management**
 
     ```bash
-    bun run assets          	# Fetch and process images
-    bun run assets:fetch    	# Fetch assets from CMS
-    bun run assets:process  	# Process fetched assets
-    bun run assets:favicons 	# Generate favicons
-    ```
-
-- **Workspace Management**
-
-    ```bash
-    bun run workspace:prepare 	# Prepare the workspace
-    bun run workspace:clean   	# Clean the workspace
+    bun run assets 				# Fetch and process images
+    bun run assets:fetch			# Fetch assets from CMS
+    bun run assets:process			# Process fetched assets
+    bun run assets:favicons			# Generate favicons
     ```
 
 ---
