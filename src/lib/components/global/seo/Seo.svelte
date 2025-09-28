@@ -10,8 +10,8 @@ import { checkSeo } from "./Seo.helper.js";
 let { children } = $props();
 
 /**
- * @param {string} title title of the current page
- * @param {string} [category] category of the current page
+ * @param {string | undefined} title title of the current page
+ * @param {string | undefined} [category] category of the current page
  * @param {string} [separator] separator between title, parent, and slogan
  * @returns {string} the constructed title
  */
@@ -23,12 +23,6 @@ const constructTitle = (title, category, separator = " - ") => {
 		? ORG_NAME + separator + ORG_NAME_SUFFIX + separator + ORG_SLOGAN
 		: title + separator + categoryPart + ORG_NAME + space + ORG_NAME_SUFFIX;
 };
-/**
- * @param {string} url the URL to prepend
- * @returns {string} the URL with the origin prepended
- */
-const prependURL = (url) =>
-	url?.startsWith("http") ? url : resolve(`/${url}`);
 
 /** @type {SEOProps['title']} */
 let title = $derived(
@@ -43,9 +37,13 @@ let canonical = $derived(page.data.seo.canonical || page.url.href);
 /** @type {SEOProps['siteName']} */
 let siteName = $derived(page.data.seo.siteName);
 /** @type {SEOProps['imageURL']} */
-let imageURL = $derived(prependURL(page.data.seo.imageURL));
+let imageURL = $derived(
+	page.data.seo?.imageURL ? resolve(`/${page.data.seo.imageURL}`) : undefined,
+);
 /** @type {SEOProps['logo']} */
-let logo = $derived(prependURL(page.data.seo.logo));
+let logo = $derived(
+	page.data.seo?.logo ? resolve(`/${page.data.seo.logo}`) : undefined,
+);
 /** @type {SEOProps['author']} */
 let author = $derived(page.data.seo.author);
 /** @type {SEOProps['type']} */
