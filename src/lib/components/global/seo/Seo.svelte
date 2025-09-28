@@ -1,5 +1,5 @@
 <script>
-import { resolve } from "$app/paths";
+import { asset, resolve } from "$app/paths";
 import { page } from "$app/state";
 import { ORG_NAME, ORG_NAME_SUFFIX, ORG_SLOGAN } from "$config";
 import { checkSeo } from "./Seo.helper.js";
@@ -38,11 +38,11 @@ let canonical = $derived(page.data.seo.canonical || page.url.href);
 let siteName = $derived(page.data.seo.siteName);
 /** @type {SEOProps['imageURL']} */
 let imageURL = $derived(
-	page.data.seo?.imageURL ? resolve(`/${page.data.seo.imageURL}`) : undefined,
+	page.data.seo?.imageURL ? asset(`/${page.data.seo.imageURL}`) : undefined,
 );
 /** @type {SEOProps['logo']} */
 let logo = $derived(
-	page.data.seo?.logo ? resolve(`/${page.data.seo.logo}`) : undefined,
+	page.data.seo?.logo ? asset(`/${page.data.seo.logo}`) : undefined,
 );
 /** @type {SEOProps['author']} */
 let author = $derived(page.data.seo.author);
