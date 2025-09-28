@@ -43,11 +43,18 @@ const config = {
 		}),
 		paths: {
 			base: production ? "" : "/mikrouli",
+			relative: false,
 		},
 		prerender: {
 			origin: production
 				? "https://mikrouli.org"
 				: "https://pvds.github.io",
+			handleHttpError: ({ path, referrer, message }) => {
+				console.error(
+					`[prerender] ${message} at ${path} (linked from ${referrer})`,
+				);
+				throw new Error(`Prerendering failed, see console for details`);
+			},
 		},
 		env: {
 			publicPrefix: "",
