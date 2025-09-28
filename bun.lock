@@ -473,7 +473,7 @@
 
     "connect-history-api-fallback": ["connect-history-api-fallback@1.6.0", "", {}, "sha512-e54B99q/OUoH64zYYRf3HBP5z24G38h5D3qXu23JGRoigpX5Ss4r9ZnDk3g0Z8uQC2x2lPaJ+UlWBc1ZWBWdLg=="],
 
-    "contentful": ["contentful@11.7.19", "", { "dependencies": { "@contentful/content-source-maps": "^0.11.8", "@contentful/rich-text-types": "^16.6.1", "axios": "^1.11.0", "contentful-resolve-response": "^1.9.0", "contentful-sdk-core": "^9.0.1", "json-stringify-safe": "^5.0.1", "type-fest": "^4.0.0" } }, "sha512-5nRYjU3Pug3iY/s4Ze9XpNoCqLHqYEZwJfABjKon4SovRO/T//jcZjPCiiEugJoR9ATEayOZX69te6u24Kzy6A=="],
+    "contentful": ["contentful@11.8.1", "", { "dependencies": { "@contentful/content-source-maps": "^0.11.33", "@contentful/rich-text-types": "^16.6.1", "axios": "^1.12.2", "contentful-resolve-response": "^1.9.0", "contentful-sdk-core": "^9.0.1", "json-stringify-safe": "^5.0.1", "type-fest": "^4.0.0" } }, "sha512-EoSDFCEfoUgBvSQRZXTGB+lVxNRgWAd+pJMq2lg6zoqRdkt86h2SkUqF652e8sx45ykvlOqH7hC0sg4DG9jpgA=="],
 
     "contentful-resolve-response": ["contentful-resolve-response@1.9.3", "", { "dependencies": { "fast-copy": "^2.1.7" } }, "sha512-1mPTz7bJLZsLdWAOEyjoVKys/eTXa7o3aV3EYLH7sqqF8V1fnRHlJqlDoxGZFsPxQPBYag+V89B1E/HYE0ENnQ=="],
 
