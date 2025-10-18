@@ -1,5 +1,7 @@
+import { existsSync } from "node:fs";
 import { chromium } from "playwright";
 import { logDebug, logError, logSuccess } from "$util/log";
+import { runCommand } from "./process.js";
 
 const chromeTestFlags = [
 	"--password-store=basic", // Prevents Chromium from accessing OS keychain (avoids popups).
@@ -8,11 +10,34 @@ const chromeTestFlags = [
 ];
 
 /**
+ * Ensure Playwright's Chromium shell is installed.
+ * Uses chromium.executablePath() and falls back to install if path is absent or lookup fails.
+ */
+export const ensureChromiumInstalled = async () => {
+	const command = "bunx playwright install chromium --only-shell";
+	try {
+		// Works cross-platform and across Playwright versions that expose this API.
+		// If the path resolves but the file isn't on disk, we install.
+		const exePath = chromium.executablePath?.() ?? null;
+		if (!exePath || !existsSync(exePath)) {
+			logDebug("[playwright] Chromium shell not found. Installing…");
+			await runCommand(command);
+		}
+	} catch {
+		// If executablePath() isn't available or throws for any reason, just install.
+		logDebug("[playwright] Could not resolve Chromium path. Installing…");
+		await runCommand(command);
+	}
+};
+
+/**
  * Launch a headless Chromium browser and attach global event listeners.
  * @param {number} [debugPort=9222]
  * @returns {Promise<{ browser: import('playwright').Browser, page: import('playwright').Page }>}
  */
 export const launchBrowser = async (debugPort = 9222) => {
+	await ensureChromiumInstalled();
+
 	logDebug("Launching browser...");
 
 	const browser = await chromium.launch({
