@@ -4,7 +4,7 @@ import { ORG_NAME, ORG_NAME_SUFFIX } from "$config";
 import Logo from "$visuals/Logo.svelte";
 </script>
 
-<section role="banner">
+<section>
 	<a class="flex gap-3 items-center" href="{resolve('/')}"
 	   aria-label="Go to Mikrouli homepage">
 		<Logo classes="relative bottom-[3px] size-11 fill-primary-light"/>
