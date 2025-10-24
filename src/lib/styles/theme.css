@@ -62,7 +62,6 @@
 }
 
 /* This theme extends from the default theme `@import "tailwindcss/theme" layer(theme)` */
-/* biome-ignore lint/suspicious/noUnknownAtRules: biome 2.3 will support custom tailwind at-rules */
 @theme {
 	/* === COLORS === */
 	--color-\*: initial;
