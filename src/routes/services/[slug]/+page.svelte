@@ -7,39 +7,37 @@ import { getImageName } from "$lib/helpers/image.js";
 import BookingDialog from "$ui/BookingDialog.svelte";
 
 let { data } = $props();
-let { title, intro, sections, contentSections, outro, heroImage } = $derived(
-	data.service.fields,
-);
-let services = $derived(data.services);
+const page = () => data.service.fields;
+const services = () => data.services;
 </script>
 
-<Hero {title} image={heroImage ? getImageName(heroImage.file.fileName) : undefined}
-	  imageAlt={heroImage ? heroImage.title : undefined} imagePositionClass="object-[0%_25%]">
-	{@html intro}
+<Hero title={page().title} image={getImageName(page().heroImage?.file.fileName)}
+	  imageAlt={page().heroImage?.title} imagePositionClass="object-[0%_25%]">
+	{@html page().intro}
 	{#snippet contentFooter()}
 		<BookingDialog type="intake" ctaIcon="calendar" ctaSize="lg"/>
 	{/snippet}
 </Hero>
 
-{#if sections?.length}
-	{#each sections as section, i}
+{#if page().sections?.length}
+	{#each page().sections as section, i}
 		<ContentSection prose size="md" index={i} title={section.header || section.title}
 						image={section.image}>
 			{@html section.content}
 		</ContentSection>
 	{/each}
 {:else}
-	{#each contentSections as section, i}
+	{#each page().contentSections as section, i}
 		<ContentSection prose size="md" index={i}>
 			{@html section}
 		</ContentSection>
 	{/each}
 {/if}
 
-{#if outro}
-	<Outro image={heroImage}>
-		{@html outro}
+{#if page().outro}
+	<Outro image={page().heroImage}>
+		{@html page().outro}
 	</Outro>
 {/if}
 
-<TeaserSection items={services} slug="services" title="Discover my other services" />
+<TeaserSection items={services()} slug="services" title="Discover my other services" />

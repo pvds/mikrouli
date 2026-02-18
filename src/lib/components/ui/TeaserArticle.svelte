@@ -16,16 +16,19 @@ import Image from "./image/Image.svelte";
 let { item, slug, priority = false } = $props();
 </script>
 <article class="group relative flex flex-col gap-4">
-	{#if item.heroImage}
-		<Image
-			image={getImageName(item.heroImage.file.fileName)}
-			alt={item.heroImage.description}
-			sizes="(max-width: 40em) 80vw, (max-width: 64em) 40vw, 22rem"
-			heightClass="h-[12rem]"
-			positionClass="object-[50%_25%]"
-			{priority}
-			classes="rounded-md not-group-hover:grayscale-50"
-		/>
+	{#if item.heroImage?.file?.fileName}
+		{@const image_name = getImageName(item.heroImage.file.fileName)}
+		{#if image_name}
+			<Image
+				image={image_name}
+				alt={item.heroImage.description ?? item.title}
+				sizes="(max-width: 40em) 80vw, (max-width: 64em) 40vw, 22rem"
+				heightClass="h-[12rem]"
+				positionClass="object-[50%_25%]"
+				{priority}
+				classes="rounded-md not-group-hover:grayscale-50"
+			/>
+		{/if}
 	{/if}
 	<div style="view-transition-name: {item.slug}">
 		<h3 class="mb-4 text-2xl font-bold">{item.title}</h3>

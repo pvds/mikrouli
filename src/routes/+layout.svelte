@@ -9,7 +9,7 @@ import Seo from "$global/seo/Seo.svelte";
 import "../app.css";
 
 let { children, data } = $props();
-let { nav } = data;
+const nav = () => data.nav;
 
 const disableViewTransitions = true;
 
@@ -33,12 +33,12 @@ onNavigate((navigation) => {
 
 	<Header>
 		<Branding />
-		<NavPrimary menu={nav.primary}/>
+		<NavPrimary menu={nav().primary}/>
 	</Header>
 
 	<main id="main-content" class="grow" tabindex="-1">
 		{@render children()}
 	</main>
 
-	<Footer primary={nav.primary} contact={nav.footerContact} pages={nav.footerPages}/>
+	<Footer primary={nav().primary} contact={nav().footerContact} pages={nav().footerPages}/>
 </div>

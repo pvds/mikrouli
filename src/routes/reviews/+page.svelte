@@ -7,21 +7,20 @@ import TeaserSection from "$layout/TeaserSection.svelte";
 import { getImageName } from "$lib/helpers/image.js";
 
 let { data } = $props();
-let { header, intro, sections, contentSections, heroImage, outro, outroImage } =
-	data.page.fields;
-let reviews = data.reviews;
-let services = data.services;
-let posts = data.posts;
+const page = () => data.page.fields;
+const reviews = () => data.reviews;
+const services = () => data.services;
+const posts = () => data.posts;
 </script>
 
-<Hero title={header} image={heroImage ? getImageName(heroImage.file.fileName) : undefined}
-	  imageAlt={heroImage ? heroImage.title : undefined} imagePositionClass="object-[100%_75%]">
-	{@html intro}
+<Hero title={page().header} image={getImageName(page().heroImage?.file.fileName)}
+	  imageAlt={page().heroImage?.title} imagePositionClass="object-[100%_75%]">
+	{@html page().intro}
 </Hero>
 
 <Section
 	innerClasses="grid grid-cols-[repeat(auto-fill,minmax(--spacing(80),1fr))] gap-10 md:gap-20">
-{#each reviews as review}
+{#each reviews() as review}
 	<article>
 		<h2 class="mb-1 font-semibold text-2xl">{review.fields.reviewer || "Anonymous"}</h2>
 		<small class="block mb-2 text-base italic text-primary-darker"><strong
@@ -36,28 +35,27 @@ let posts = data.posts;
 {/each}
 </Section>
 
-{#if sections?.length}
-	{#each sections as section, i}
+{#if page().sections?.length}
+	{#each page().sections as section, i}
 		<ContentSection prose size="lg" index={i} title={section.header || section.title}
 						image={section.image}>
 			{@html section.content}
 		</ContentSection>
 	{/each}
 {:else}
-	{#each contentSections as section, i}
+	{#each page().contentSections as section, i}
 		<ContentSection prose size="lg" index={i}>
 			{@html section}
 		</ContentSection>
 	{/each}
 {/if}
 
-<TeaserSection items={posts} slug="blog" title="My latest insights"/>
+<TeaserSection items={posts()} slug="blog" title="My latest insights"/>
 
-{#if outro}
-	<Outro image={outroImage}>
-		{@html outro}
+{#if page().outro}
+	<Outro image={page().outroImage}>
+		{@html page().outro}
 	</Outro>
 {/if}
 
-<TeaserSection items={services} slug="services" title="How I Can Support You"/>
-
+<TeaserSection items={services()} slug="services" title="How I Can Support You"/>

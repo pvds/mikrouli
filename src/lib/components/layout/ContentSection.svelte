@@ -61,7 +61,7 @@ const proseSizeClasses = (size) =>
 		lg: PROSE_CLASSES_LG,
 	})[size] || PROSE_CLASSES_MD;
 
-const proseThemeClasses = proseInvert ? "prose-invert" : "";
+const ProseTheme = () => (proseInvert ? "prose-invert" : "");
 </script>
 
 <Section wave={hasWave(index)} {size} {classes} {theme}>
@@ -75,8 +75,8 @@ const proseThemeClasses = proseInvert ? "prose-invert" : "";
 			<h2 class="mb-[1.25em] text-2xl md:text-3xl font-bold">{title}</h2>
 			{/if}
 			<div class="{prose ? 'prose marker:text-accent-dark prose-headings:font-bold' : ''}
-		 	{proseThemeClasses} {proseSizeClasses(size)} {proseClasses}"
-				 style={!image ? "--container-prose: 65ch" : ""}>
+		 	{ProseTheme()} {proseSizeClasses(size)} {proseClasses}"
+					 style={!image ? "--container-prose: 65ch" : ""}>
 				{@render children?.()}
 			</div>
 			{@render contentFooter?.()}
@@ -89,15 +89,16 @@ const proseThemeClasses = proseInvert ? "prose-invert" : "";
 </Section>
 
 {#snippet imageSection()}
-	{#if image}
-	<div class="flex-auto max-md-mid:hidden self-center justify-self-center">
-		<Image image={getImageName(image.file.fileName)}
+	{@const image_name = getImageName(image?.file.fileName)}
+	{#if image_name}
+		<div class="flex-auto max-md-mid:hidden self-center justify-self-center">
+			<Image image={image_name}
 			   sizes="20rem"
-			   alt={image.title}
+			   alt={image?.title ?? ""}
 			   widthClass="w-full max-w-[calc(45vw)]"
 			   heightClass="h-full max-h-[75vh]"
 			   maskIndex={index !== undefined ? index + 2 : undefined}
 			   classes="translate-z-0" />
-	</div>
-	{/if}
+		</div>
+		{/if}
 {/snippet}

@@ -8,42 +8,41 @@ import { getImageName } from "$lib/helpers/image.js";
 import BlogArticle from "$ui/BlogArticle.svelte";
 
 let { data } = $props();
-let { header, intro, sections, contentSections, outro, heroImage, outroImage } =
-	data.page.fields;
-let posts = data.posts;
-let services = data.services;
+const page = () => data.page.fields;
+const posts = () => data.posts;
+const services = () => data.services;
 </script>
 
-<Hero title={header} image={heroImage ? getImageName(heroImage.file.fileName) : undefined}
-	  imageAlt={heroImage ? heroImage.title : undefined} imagePositionClass="object-[100%_75%]">
-	{@html intro}
+<Hero title={page().header} image={getImageName(page().heroImage?.file.fileName)}
+	  imageAlt={page().heroImage?.title} imagePositionClass="object-[100%_75%]">
+	{@html page().intro}
 </Hero>
 
-{#each posts as post, i}
+{#each posts() as post, i}
 	<Section wave={i % 2 === 1}>
 		<BlogArticle post={post.fields} priority={i <= 3}/>
 	</Section>
 {/each}
 
-{#if sections?.length}
-	{#each sections as section, i}
+{#if page().sections?.length}
+	{#each page().sections as section, i}
 		<ContentSection prose size="lg" index={i} title={section.header || section.title}
 						image={section.image}>
 			{@html section.content}
 		</ContentSection>
 	{/each}
 {:else}
-	{#each contentSections as section, i}
+	{#each page().contentSections as section, i}
 		<ContentSection prose size="lg" index={i}>
 			{@html section}
 		</ContentSection>
 	{/each}
 {/if}
 
-{#if outro}
-	<Outro image={outroImage}>
-		{@html outro}
+{#if page().outro}
+	<Outro image={page().outroImage}>
+		{@html page().outro}
 	</Outro>
 {/if}
 
-<TeaserSection items={services} slug="services" title="How I Can Support You"/>
+<TeaserSection items={services()} slug="services" title="How I Can Support You"/>

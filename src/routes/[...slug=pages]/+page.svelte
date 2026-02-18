@@ -9,44 +9,43 @@ import { formatDate } from "$lib/helpers/date.js";
 import { getImageName } from "$lib/helpers/image.js";
 
 let { data } = $props();
-let { header, intro, sections, contentSections, outro, heroImage, outroImage } =
-	$derived(data.page.fields);
-let { updatedAt } = $derived(data.page.meta);
-let services = $derived(data.services);
+const page = () => data.page.fields;
+const meta = () => data.page.meta;
+const services = () => data.services;
 let updated = $state(U_NBSP);
 
 onMount(() => {
-	updated = `Last updated on ${formatDate(updatedAt)}`;
+	updated = `Last updated on ${formatDate(meta().updatedAt)}`;
 });
 </script>
 
-<Hero title={header} image={heroImage ? getImageName(heroImage.file.fileName) : undefined}
-	  imageAlt={heroImage ? heroImage.title : undefined} imagePositionClass="object-[100%_75%]">
-	{@html intro}
+<Hero title={page().header} image={getImageName(page().heroImage?.file.fileName)}
+	  imageAlt={page().heroImage?.title} imagePositionClass="object-[100%_75%]">
+	{@html page().intro}
 	<p class="mt-4 text-base italic">
 		{updated}
 	</p>
 </Hero>
 
-{#if sections?.length}
-	{#each sections as section, i}
+{#if page().sections?.length}
+	{#each page().sections as section, i}
 		<ContentSection prose size="lg" index={i} title={section.header || section.title}
 						image={section.image}>
 			{@html section.content}
 		</ContentSection>
 	{/each}
 {:else}
-	{#each contentSections as section, i}
+	{#each page().contentSections as section, i}
 		<ContentSection prose proseClasses="max-w-full!" index={i}>
 			{@html section}
 		</ContentSection>
 	{/each}
 {/if}
 
-{#if outro}
-	<Outro image={outroImage}>
-		{@html outro}
+{#if page().outro}
+	<Outro image={page().outroImage}>
+		{@html page().outro}
 	</Outro>
 {/if}
 
-<TeaserSection items={services} slug="services" title="How I Can Support You"/>
+<TeaserSection items={services()} slug="services" title="How I Can Support You"/>

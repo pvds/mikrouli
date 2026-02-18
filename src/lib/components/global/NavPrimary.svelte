@@ -17,10 +17,10 @@ let { menu } = $props();
 let menuPopovers = $state([]);
 
 const base = resolve("/");
-const navItemsBase = toNavItems(menu.fields.items);
+const NavItemsBase = () => toNavItems(menu.fields.items);
 /** @type NavigationItem */
 const navItemHome = { href: base, label: "Home", title: "Mikrouli home page" };
-const navItemsWithHome = [navItemHome, ...navItemsBase];
+const NavItemsWithHome = () => [navItemHome, ...NavItemsBase()];
 const bookingCta = {
 	text: "Book a Session",
 	textShort: "Book",
@@ -32,10 +32,12 @@ const bookingCta = {
 <nav class="nav-primary ml-auto"
 	 aria-label="Main navigation">
 		<div class="md:hidden w-full fixed left-0 bottom-0 bg-primary-darkest px-1 py-2">
-			<WaveCss height={10} color="bg-primary-darkest"/> {@render navMenu(navItemsWithHome,
-			"justify-around", "mobile")}</div>
+			<WaveCss height={10} color="bg-primary-darkest"/>
+			{@render navMenu(NavItemsWithHome(), "justify-around", "mobile")}
+		</div>
 		<div class="max-md:hidden relative bg-primary-darkest">
-			{@render navMenu(navItemsBase, "gap-2", "desktop")}</div>
+			{@render navMenu(NavItemsBase(), "gap-2", "desktop")}
+		</div>
 </nav>
 
 {#snippet navMenu(/** @type NavigationItem[] */ navItems, /** @type string */ classes, /** @type

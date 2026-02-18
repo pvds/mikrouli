@@ -16,17 +16,20 @@ let { post, priority = false } = $props();
 <article
 	class="group relative flex flex-col md:flex-row items-center gap-4">
 	{#if post.heroImage}
-		<div class="flex-none w-full md:w-[16rem] md-mid:w-[20rem]">
-			<Image
-				image={getImageName(post.heroImage.file.fileName)}
-				alt={post.heroImage.description}
-				sizes="(max-width: 48em) 80vw, (max-width: 56em) 16rem, (max-width: 64em) 20rem"
-				heightClass="h-[10rem] md:h-[12rem] md-mid:h-[14rem]"
-				{priority}
-				positionClass="sm-max:object-[100%_25%] object-center"
-				classes="rounded-md not-group-hover:grayscale-50"
-			/>
-		</div>
+		{@const image_name = getImageName(post.heroImage?.file.fileName)}
+		{#if image_name}
+			<div class="flex-none w-full md:w-[16rem] md-mid:w-[20rem]">
+				<Image
+					image={image_name}
+					alt={post.heroImage?.description || ""}
+					sizes="(max-width: 48em) 80vw, (max-width: 56em) 16rem, (max-width: 64em) 20rem"
+					heightClass="h-[10rem] md:h-[12rem] md-mid:h-[14rem]"
+					{priority}
+					positionClass="sm-max:object-[100%_25%] object-center"
+					classes="rounded-md not-group-hover:grayscale-50"
+				/>
+			</div>
+		{/if}
 	{/if}
 	<div class="max-md:self-start md:self-center" style="view-transition-name: {post.slug}">
 		<h2 class="mb-2 text-2xl md:text-3xl font-bold">{post.title}</h2>

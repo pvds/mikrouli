@@ -7,25 +7,24 @@ import { getImageName } from "$lib/helpers/image.js";
 import BookingDialog from "$ui/BookingDialog.svelte";
 
 let { data } = $props();
-let { header, intro, sections, contentSections, outro, heroImage, outroImage } =
-	data.page.fields;
-let posts = data.posts;
+const page = () => data.page.fields;
+const posts = () => data.posts;
 </script>
 
-<Hero title={header} image={heroImage ? getImageName(heroImage.file.fileName) : undefined}
-	  imageAlt={heroImage ? heroImage.title : undefined} imagePositionClass="object-[100%_75%]">
-	{@html intro}
+<Hero title={page().header} image={getImageName(page().heroImage?.file.fileName)}
+	  imageAlt={page().heroImage?.title} imagePositionClass="object-[100%_75%]">
+	{@html page().intro}
 </Hero>
 
-{#if sections?.length}
-	{#each sections as section, i}
+{#if page().sections?.length}
+	{#each page().sections as section, i}
 		<ContentSection contentFooter={i === 0 ? footerCta : undefined} prose size="lg" index={i}
 						title={section.header || section.title} image={section.image}>
 			{@html section.content}
 		</ContentSection>
 	{/each}
 {:else}
-	{#each contentSections as section, i}
+	{#each page().contentSections as section, i}
 		<ContentSection contentFooter={i === 0 ? footerCta : undefined} prose size="lg" index={i}>
 			{@html section}
 		</ContentSection>
@@ -39,10 +38,10 @@ let posts = data.posts;
 	</div>
 {/snippet}
 
-{#if outro}
-	<Outro image={outroImage}>
-		{@html outro}
+{#if page().outro}
+	<Outro image={page().outroImage}>
+		{@html page().outro}
 	</Outro>
 {/if}
 
-<TeaserSection items={posts} slug="blog" title="My latest insights"/>
+<TeaserSection items={posts()} slug="blog" title="My latest insights"/>
