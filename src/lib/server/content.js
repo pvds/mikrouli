@@ -118,7 +118,6 @@ export const getPage = (slug) => {
 	if (!page) throw error(404, `Page with slug '${slug}' not found`);
 
 	// Remove children from the fields object
-	// biome-ignore lint/correctness/noUnusedVariables: ignorerestsiblings option not working
 	const { children, ...restFields } = page.fields;
 	page = /** @type {PageEntry} */ { ...page, fields: restFields };
 	return processEntryMarkdown(page);
