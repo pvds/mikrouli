@@ -118,6 +118,12 @@ Modernize the current Biome setup without switching the project to Oxc. This obj
 
 This is low-risk tooling modernization and should happen before any later Biome-vs-Oxc decision.
 
+#### Future optional migration: Biome -> Oxc
+
+Read: [`07-biome-to-oxc.md`](./07-biome-to-oxc.md)
+
+This is not the default next step. Revisit only after the modernized Biome baseline is stable and the concrete decision gates in the file are satisfied. The migration should happen only if Oxc provides a clear net benefit for Mikrouli's Svelte/Tailwind workflow; do not switch for tool novelty, raw speed, or ecosystem hype alone.
+
 #### 5. SvelteKit 3 + Vite 8 migration cluster
 
 Read: [`02-sveltekit-3-vite-8.md`](./02-sveltekit-3-vite-8.md)
