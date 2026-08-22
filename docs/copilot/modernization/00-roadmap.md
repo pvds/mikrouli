@@ -103,7 +103,22 @@ Key decisions:
 
 This objective does **not** change SvelteKit configuration, migrate to TypeScript, or enable the dormant View Transitions prototype.
 
-#### 4. SvelteKit 3 + Vite 8 migration cluster
+#### 4. Biome modernization
+
+Read: [`06-modernize-biome.md`](./06-modernize-biome.md)
+
+Modernize the current Biome setup without switching the project to Oxc. This objective stays focused on tool-policy cleanup and check reliability:
+
+- migrate deprecated `recommended` syntax to `preset: "recommended"`;
+- remove redundant config defaults such as `files.ignoreUnknown: false`;
+- make `check`, `check:ci`, and `check:all` fail reliably;
+- evaluate whether `--skip-parse-errors` is still needed;
+- keep staged-file hook behavior and supported-file restaging intact;
+- preserve the current CSS/Tailwind and Svelte fallback posture unless a separate opt-in experiment proves a change is worthwhile.
+
+This is low-risk tooling modernization and should happen before any later Biome-vs-Oxc decision.
+
+#### 5. SvelteKit 3 + Vite 8 migration cluster
 
 Read: [`02-sveltekit-3-vite-8.md`](./02-sveltekit-3-vite-8.md)
 
@@ -121,7 +136,7 @@ This is the one deliberately coupled framework batch family. It includes:
 
 The full JSDoc-JavaScript -> TypeScript source conversion is **not** part of this migration.
 
-#### 5. `svelte-sitemap` 4
+#### 6. `svelte-sitemap` 4
 
 Read the sitemap section in [`01-dependency-majors.md`](./01-dependency-majors.md).
 
@@ -131,7 +146,7 @@ After Vite/Kit configuration is stable:
 - preserve target-specific `domain` and `outDir` behavior;
 - remove the old helper/postbuild scripts only after sitemap parity is verified.
 
-#### 6. Bun.WebView prototype
+#### 7. Bun.WebView prototype
 
 Read: [`04-bun-webview-playwright-prototype.md`](./04-bun-webview-playwright-prototype.md)
 
@@ -233,6 +248,7 @@ For Modern Svelte source batches additionally verify:
 | Remaining dependency majors | `01-dependency-majors.md` |
 | Replace Sharp / simplify image pipeline and `Image.svelte` | `03-sharp-to-bun-image.md` |
 | Modern Svelte source idioms / reactivity / class syntax / route prop typing | `05-modern-svelte.md` |
+| Biome modernization / check reliability / parser flags | `06-modernize-biome.md` |
 | SvelteKit 3 / Vite 8 / aliases / Kit config | `02-sveltekit-3-vite-8.md` |
 | Migrate `svelte-sitemap` after Kit/Vite | sitemap section of `01-dependency-majors.md` |
 | Investigate Bun browser automation | `04-bun-webview-playwright-prototype.md` |
