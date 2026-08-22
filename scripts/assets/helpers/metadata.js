@@ -25,7 +25,7 @@ export const writeMetadata = async (category, metadata) => {
 	prepareDir(outputPath, true);
 
 	const metadataFileContents = /** @type {Record<string, Metadata>} */ (
-		readJSON(outputMetadataPath)
+		await readJSON(outputMetadataPath)
 	);
 	metadataFileContents[category] = Object.fromEntries(
 		Object.entries(metadata).sort(),
@@ -40,7 +40,7 @@ export const writeMetadata = async (category, metadata) => {
 	);
 
 	// Sort placeholders alphabetically and assign to the category
-	writeJSON(outputMetadataPath, metadataFileContents);
+	await writeJSON(outputMetadataPath, metadataFileContents);
 
 	logSuccess(`Wrote ${category} images metadata`);
 };

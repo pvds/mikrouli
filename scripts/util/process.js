@@ -1,4 +1,3 @@
-import { execSync } from "node:child_process";
 import { logInfo } from "$util/log";
 
 /**
@@ -15,18 +14,20 @@ export const setupGracefulShutdown = () => {
 };
 
 /**
- * Execute a shell command and log output.
+ * Execute a shell command with inherited stdio.
  * @param {string} command - The shell command to execute.
  */
-export const runCommand = (command) => {
-	try {
-		execSync(command, { stdio: "inherit", env: process.env });
-	} catch (error) {
-		if (error instanceof Error) {
-			throw new Error(error.message);
-		}
-		throw new Error("An unknown error occurred");
-	}
+export const runCommand = async (command) => {
+	const proc = Bun.spawn(command.split(/\s+/).filter(Boolean), {
+		stdout: "inherit",
+		stderr: "inherit",
+		stdin: "inherit",
+	});
+	const exitCode = await proc.exited;
+	if (exitCode !== 0)
+		throw new Error(
+			`Command failed with exit code ${exitCode}: ${command}`,
+		);
 };
 
 /**
