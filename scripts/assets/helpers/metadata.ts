@@ -4,9 +4,10 @@ import { prepareDir, readJSON, writeJSON } from "$util/file.js";
 import { logInfo, logSuccess } from "$util/log.js";
 
 interface ImageMeta {
+	placeholder: string;
 	width: string;
 	height: string;
-	hasTransparency: boolean;
+	hasAlpha: boolean;
 }
 
 type Metadata = Record<string, ImageMeta>;

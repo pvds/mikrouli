@@ -1,201 +1,240 @@
 {
   "local": {
     "chair": {
+      "placeholder": "data:image/webp;base64,UklGRsoAAABXRUJQVlA4WAoAAAAQAAAADwAADwAAQUxQSIwAAAARX6C2bRsWe64pERFQQ3lsPRzVtq02N1HwcR4UUB7/HxoXBYQjoCgADTRxQA6qNKL/AcAOly4FMCui0AWgL6fCB4g+RoVP6DwIo9K3g/3xWF7lrLhcX91dbH+vdz/VPO277j8lLG3f7+Ebs11ZPMdHzHQUnIdmxdTS2bcbl81cqq+CGoTCCk0AAHEMAFZQOCAYAAAAMAEAnQEqEAAQAALATCWkAANwAP74H4AA",
       "width": "1200",
       "height": "1200",
-      "hasTransparency": true
+      "hasAlpha": true
     },
     "eleni-papamikrouli": {
+      "placeholder": "data:image/webp;base64,UklGRvQAAABXRUJQVlA4WAoAAAAQAAAADwAADgAAQUxQSHMAAAARX6CgbRs2VQzt/omIAO0ny7074bbWtid5+VkgDpB7zCNgTccI2lJJbe6zA8QFlGe9f4iI/s+B4s0ql6TB+V4ZSfWfLpLU9jwKyVvDdybFJ2Du2BpjWxjFZ2DpqnwCx0j1D3hMnbYHaMwGgC46g9WL5VsBAFZQOCBaAAAA0AEAnQEqEAAPAALATCWwAnQAtGwZqwAA/qYH5NbHyIXnb6/UxVcqWjMMj4099QJ66kpeP5npoZf6+pzKVO0J9xc3sN+AvfzhHnFyJZL1tFLU0J8f5Q92HgAA",
       "width": "2196",
       "height": "2103",
-      "hasTransparency": true
+      "hasAlpha": true
     }
   },
   "cms": {
     "IMG_0062": {
+      "placeholder": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAAAQAgCdASoQAAwAAsBMJQBOj+ACdU1uN4pIAP63gYULwe1w5mu5U2sizWoE7HYWKW0GHJvka5mtXkXP9LBlo4/WoRjjmYF5FlipffaafbAAAA==",
       "width": "3088",
       "height": "2320",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "IMG_20160806_202106": {
+      "placeholder": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADQAQCdASoQAAkAAsBMJZQCdAEOuox4AAD+sQEBFWS9hBf6I2TGUs7+s584rme+l13RZdjacAA=",
       "width": "1920",
       "height": "1080",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "IMG_20160806_202346": {
+      "placeholder": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADwAQCdASoQAAkAAsBMJYwCdAEPhT8K2AAA/phWaFbq24KhBA/z5dn81FCmJCxQtroaqhIoAAA=",
       "width": "1920",
       "height": "1080",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "cultural-sensitivity": {
+      "placeholder": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAAAQAgCdASoQAAkAAsBMJZACdAEWgYhqqf8oAP7xsmKeTXnWkNKV40rphtewljcT6OMVO+oz/flc6FNs0gFAAA==",
       "width": "1600",
       "height": "900",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "eleni-landscape-3": {
+      "placeholder": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAAAQAgCdASoQAAkAAsBMJZACdAEO1HftDNgAAP6yMP0CgMktD2nfjVBrmdOjXhRBY8Fb82WCCSeRAAAA",
       "width": "1920",
       "height": "1080",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "generational-patterns": {
+      "placeholder": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACwAQCdASoQAAgAAsBMJZwCdADF4J0AAP75x9oX5XhF8zz8QrZXLUa1uwAUAAAA",
       "width": "1200",
       "height": "600",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "living-abroad": {
+      "placeholder": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAABQAgCdASoQAAkAAsBMJbACdLoAArsU3jOAgsAA/tbqonM/PJH+fR8VhsKXWqRn/8NWdrF1W9uVxrkAAAA=",
       "width": "1280",
       "height": "720",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-1585669-3077882": {
+      "placeholder": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAADwAQCdASoQAAsAAsBMJbACdAEVir7ovuwAziogxGJOA6/zqSLssfhzyMy/EPZFf7tzIZl+3TxqRynaKvaRl+gA",
       "width": "4453",
       "height": "2969",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-alex360-13032491": {
+      "placeholder": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAACQAQCdASoQAAsAAsBMJaQAAbsSqYAA+/2aGCtYUNBOiAR1+6kU51NXpQr+6heKm3ANR7AAAAA=",
       "width": "5200",
       "height": "3467",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-artempodrez-4492135": {
+      "placeholder": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAADQAQCdASoQAAkAAsBMJYwCdADa6yuGAAD+9kW47ksG08jKJ2mWWzJThvipikIU0oAk5XQdsRq3uwAA",
       "width": "3840",
       "height": "2160",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-being-the-traveller-579914-2809734": {
+      "placeholder": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADwAQCdASoQAAsAAsBMJagCdAEG+/fNtgAA/vEZaX4nSD5jeM3XjRnE3IduTgZvBvF/6T7cToPa1CQim7UrVHVXWBblbIv5dwAAAA==",
       "width": "5184",
       "height": "3456",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-cottonbro-4098179": {
+      "placeholder": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAADwAQCdASoQAAsAAsBMJZQCsAD0ID0UWQAA/pqqUgE5IMU1P16jSM6XzVX/KriwxEPgvcfelsvfYUVmuUXXgAAA",
       "width": "5860",
       "height": "3907",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-cottonbro-5791659": {
+      "placeholder": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADQAQCdASoQAAsAAsBMJZgCdADJSsLqAAD+7OhdswY1FchRFBWtbzkM+w+wERh4O5r9ALGyyd25c0gPhC21PXotUgT3ZNNVAAA=",
       "width": "6000",
       "height": "4000",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-cottonbro-6667307": {
+      "placeholder": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADQAQCdASoQAAsAAsBMJQBOgBooUNyMAAD+mYBrbGFNYEPIpV14vY+JBtkrWaI/T220w3/XfeLUAoHmM0oPozXJvrw4AAAA",
       "width": "6466",
       "height": "4311",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-darrell-fraser-1187740-2372128": {
+      "placeholder": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAAAQAgCdASoQAAsAAsBMJZQCdAEClOomarAAAP7mwfPgMr1MauilkxtGxL2lUMfsRaBOtN0Ih/sI3wJuzjueHvsytndAAA==",
       "width": "6720",
       "height": "4480",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-emmypaw-9717714": {
+      "placeholder": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAABwBACdASoQABgAPtFYpEuoJSOhsAgBABoJQBOl65As8sJIFFzQugtP9jHLgAD+74H4KGplXyZ/80mccyo969lZ5KYkOCe3rGMHRLeLbay+N3WjLsFDa8hj8ZmpaCaqr5t7IQxQAAA=",
       "width": "4480",
       "height": "6720",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-fauxels-3228726": {
+      "placeholder": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAACwAQCdASoQAAsAAsBMJZACdACQ+bcAAP1PdBmQ/NNnLFsxyyPPmb4vA4Klx3Ks6fu9tCr7YED2w6RXgAA=",
       "width": "6000",
       "height": "4000",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-gustavo-fring-7447259": {
+      "placeholder": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAAAQAgCdASoQAAsAAsBMJYwCdADiVM928j8AAP7ta2K9s4+YuTCQextO7QQumXanjCaXp2qN/ROvbuOA8fDa6NSjsL2IAA==",
       "width": "5760",
       "height": "3840",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-imdat-akgun-2427660-16219230": {
+      "placeholder": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAADwAQCdASoQAA0AAsBMJZwAAu0MCnPmZAAA/vWZSavdXPlCrzoiaHbDY0nBLZVbJFP0AA==",
       "width": "5000",
       "height": "4000",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-jeremy-bishop-1260133-27585250": {
+      "placeholder": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAAAwAgCdASoQAAwAAsBMJbACdAEVzcnxgwvAAAD+rrFR+IoefFxZu8j9+8rF+tzF55ZK6lbT+mLheAAA",
       "width": "4000",
       "height": "2995",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-leah-newhouse-50725-6480709": {
+      "placeholder": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAADQAQCdASoQAAsAAsBMJYgCdADFh4xDoAD+8rTUDqckwfNOz3MRlkZZHBA3ZFETWpguDQHWRcq9PwUAAAA=",
       "width": "5472",
       "height": "3648",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-nietjuhart-776655": {
+      "placeholder": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAADQAQCdASoQAAoAAsBMJQBOgCFID/MMAAD+6EJ3o6xqHL/kYCzzIc2wtrY5BcoDV8lqwgAA",
       "width": "5340",
       "height": "3397",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-rahulp9800-3764876": {
+      "placeholder": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAAAQAgCdASoQAAsAAsBMJZQC7ADiRFa8gr4AAP6qCLl0TnBbHVm5sM708Z52RETOVFaD+LUtc3mQBrgAAAA=",
       "width": "6000",
       "height": "4000",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-rccbtn-29219418": {
+      "placeholder": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAADQAQCdASoQAAsAAsBMJZgCdADD3aVOgAD+g67NM2gMKncNxoub6B9yUU1L+8z87hy5ErzS5N8xMUa+AAA=",
       "width": "6240",
       "height": "4160",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-rickyrecap-1654698": {
+      "placeholder": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADQAQCdASoQAAsAAsBMJYwC7ADsdmaxYAD5QXAoZh55Okt6P6rPF4h/8qAxipy2OUYuFUbTa6RES5nllOm+Q8Uwu2iqo9jV+oAAAA==",
       "width": "4240",
       "height": "2832",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-shkrabaanthony-5217833": {
+      "placeholder": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAADQAQCdASoQAAsAAsBMJQBOgBooqUSSAAD42wtuCCP2UpqArJhFnwiYyvC+CtaXbNPHYlxAE973/GAA",
       "width": "4000",
       "height": "2667",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-shvets-production-7176319": {
+      "placeholder": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAADwAQCdASoQAAsAAsBMJZQCdADwJagYKQAA/QCIlFO4zWyEav4giXMHl7iPegiz8wtIn9HV3kYRjgqC4pA9zID3VAAAAA==",
       "width": "6240",
       "height": "4160",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-shvetsa-11368680": {
+      "placeholder": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAAAQAgCdASoQAAsAAsBMJYgCdAD0j4rwqgoAAP73w3mEKl9MPWH2B0dikDwn+JyAagw2RmxtlaneIIHZgAA=",
       "width": "6240",
       "height": "4160",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-soner-arkan-277045183-13990288": {
+      "placeholder": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAADwAQCdASoQAAsAAsBMJaQAAu0L7eCPKcAA/u1rh9oFSK+r+N0wib0Z+MPz8Purb8MOWRlG7prz6nRa++yRBD2JJAAAAA==",
       "width": "6240",
       "height": "4160",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-veeterzy-38136": {
+      "placeholder": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAADQAQCdASoQAAsAAsBMJYgAAlw2jb51gAD+9LQo4my2XWGVVcVTvkLTf/tZWfFuF0AAAA==",
       "width": "5760",
       "height": "3840",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-viceman-25033690": {
+      "placeholder": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADQAQCdASoQAAsAAsBMJaACdAEOtuMTQAD+63lDNcaDUPMP7sMALLJ4utRoKSymV7KPJwhYwAA=",
       "width": "6720",
       "height": "4480",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "pexels-vlada-karpovich-9969240": {
+      "placeholder": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADwAQCdASoQAAsAAsBMJaACdAC3XNArsHgA/t3fZSkPPcnRz6NPtXTmtv3MyD1mcYz+Y6et/K1VE5meHfE/T5BYHOrORAAA",
       "width": "6720",
       "height": "4480",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "relationship-communication": {
+      "placeholder": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAACQAQCdASoQAAgAAsBMJZwAAQm6aQAA/uDXCQpDZjl+I4IUJLwX5J+qLxJcU45nDgAAAA==",
       "width": "2500",
       "height": "1250",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "starting-therapy-1": {
+      "placeholder": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAQCdASoQAAkAAsBMJQBOgCHPNWka/yAA/o7M/+S+r10ZHAOYfwVy+IQEEYwI5DZ8W8x469JJwXDNNfa4EDnkQAA=",
       "width": "1858",
       "height": "1024",
-      "hasTransparency": false
+      "hasAlpha": true
     },
     "starting-therapy-3": {
+      "placeholder": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADwAQCdASoQAAoAAsBMJZgCdAEO0oKTyGQA/miZbH7Qj0Tyz+HskxpftYFLFgiI3gTXzsLH5Sy1AYuDYHhdYqxz43cgfEilnAA=",
       "width": "800",
       "height": "500",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "systemic-constellations": {
+      "placeholder": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAAAQAgCdASoQAAkAAsBMJaACdAEClqOyltcAAP7vrlFy5l0jrmP2XeOpAdvnIw1QC3noZYU7MejH2Ea3lunC9IRlp4rFo5YAAAA=",
       "width": "2600",
       "height": "1463",
-      "hasTransparency": false
+      "hasAlpha": false
     },
     "therapy-acceptance": {
+      "placeholder": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAADQAQCdASoQAAgAAsBMJQBOgBuKKGJFAAD+9QS6wwNHuXBV5TRvLwZMUtD//qnniLGGoz/aBN4dj7YgAAA=",
       "width": "2560",
       "height": "1350",
-      "hasTransparency": false
+      "hasAlpha": false
     }
   }
 }

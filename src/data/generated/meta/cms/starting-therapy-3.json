@@ -1,5 +1,6 @@
 {
+  "placeholder": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADwAQCdASoQAAoAAsBMJZgCdAEO0oKTyGQA/miZbH7Qj0Tyz+HskxpftYFLFgiI3gTXzsLH5Sy1AYuDYHhdYqxz43cgfEilnAA=",
   "width": "800",
   "height": "500",
-  "hasTransparency": false
+  "hasAlpha": false
 }

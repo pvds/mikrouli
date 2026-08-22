@@ -76,7 +76,11 @@ export const IMAGE_EXT = "webp";
 export const IMAGE_SIZES = [320, 480, 640, 800, 960, 1280, 1920];
 export const IMAGE_THUMBNAIL_SIZE = IMAGE_SIZES[0];
 export const IMAGE_FILENAME_TEMPLATE = "{base}-{size}.{ext}";
-export const IMAGE_SOURCE_EXTENSIONS = ["jpeg", "jpg", "png", "webp"];
+// biome-ignore format: better for readability
+export const IMAGE_EXTENSIONS = [
+	"avif", "dz", "fits", "gif", "heif", "input", "jpeg", "jpg", "jp2", "jxl",
+	"magick", "openslide", "pdf", "png", "ppm", "raw", "svg", "tiff", "tif", "v", "webp",
+];
 
 // Ports
 export const PORT = 4173;

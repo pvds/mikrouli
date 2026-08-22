@@ -34,6 +34,9 @@ const base = resolve("/");
 const IMAGE_DIR = "images";
 const POSITION_CLASSES = "absolute object-cover";
 
+const usePlaceholder = false;
+
+let loadedData = $state(true);
 let loadedImage = $state(false);
 
 type MetadataCollection = Record<string, ImageMeta | undefined>;
@@ -51,9 +54,9 @@ const height = $derived(heightClass ? heightClass : "h-full");
 const width = $derived(widthClass ? widthClass : "w-full");
 const directory = $derived(`${IMAGE_DIR}/${isLocal ? "local" : "cms"}`);
 
+const placeholder = $derived(meta?.placeholder);
 const aspectRatio = $derived(meta ? `${meta.width}/${meta.height}` : "1/1");
-const hasTransparency = $derived(meta?.hasTransparency);
-const showLoadingBackground = $derived(!loadedImage && !hasTransparency);
+const hasAlpha = $derived(meta?.hasAlpha);
 
 const srcset = (sizes: number[]): string =>
 	sizes
@@ -66,24 +69,34 @@ const srcset = (sizes: number[]): string =>
 		"relative not-prose",
 		height,
 		width,
-		showLoadingBackground && "bg-black/10 animate-pulse rounded-md",
+		!loadedImage && !hasAlpha && "bg-black/10 animate-pulse rounded-md",
 		loadedImage && maskIndex && "drop-shadow-[0_6px_18px_rgba(0,0,0,0.25)]",
 	]}
 	style="{`aspect-ratio: ${aspectRatio};`}
 {maskIndex && !loadedImage ? `clip-path: url(#mask${maskIndex});`: ''}"
 >
-	<picture>
-		<source srcset={srcset(IMAGE_SIZES)} sizes={sizes} type="image/webp" />
-		<img src={`${base}${directory}/${image}-1280.webp`} {alt}
-			class={[POSITION_CLASSES, positionClass, classes, height, width, { "opacity-0": !loadedImage }]}
-			loading={priority ? "eager" : "lazy"}
-			decoding={priority ? "sync" : "async"}
-			fetchpriority={priority ? "high" : "auto"}
-			onload={() => loadedImage = true}
-			onerror={() => loadedImage = false}
-			style={maskIndex ? `clip-path: url(#mask${maskIndex});`: ""}
-		/>
-	</picture>
+	{#if loadedData}
+		{#if usePlaceholder && placeholder && !hasAlpha && !loadedImage}
+			<img src={placeholder} {alt}
+				 class={[POSITION_CLASSES, positionClass, classes, height, width, "transition-all"]}
+				 loading={priority ? "eager" : "lazy"}
+				 decoding={priority ? "sync" : "async"}
+				 fetchpriority={priority ? "high" : "auto"}/>
+			<div class={[POSITION_CLASSES, positionClass, classes, "backdrop-blur-xl transition-all"]}></div>
+		{/if}
+		<picture>
+			<source srcset={srcset(IMAGE_SIZES)} sizes={sizes} type="image/webp" />
+			<img src={`${base}${directory}/${image}-1280.webp`} {alt}
+				class={[POSITION_CLASSES, positionClass, classes, height, width, { "opacity-0": !loadedImage }]}
+				loading={priority ? "eager" : "lazy"}
+				decoding={priority ? "sync" : "async"}
+				fetchpriority={priority ? "high" : "auto"}
+				onload={() => loadedImage = true}
+				onerror={() => loadedImage = false}
+				style={maskIndex ? `clip-path: url(#mask${maskIndex});`: ""}
+			/>
+		</picture>
+	{/if}
 </div>
 
 <!-- Steps to create a blob:
