@@ -9,7 +9,7 @@ Disallow: /tracking/
 
 export const prerender = true;
 
-export function GET() {
+export function GET(): Response {
 	const isProduction = process.env.DEPLOY_TARGET === "production";
 
 	// Apply dynamic indexing rules
