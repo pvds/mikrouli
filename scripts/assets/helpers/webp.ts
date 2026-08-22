@@ -1,3 +1,8 @@
+const HEADER_SIZE = 12;
+const METADATA_TYPES = ["ICCP", "EXIF", "XMP "];
+const VP8X_ALPHA_FLAG = 0x10;
+const VP8X_METADATA_FLAGS = 0x20 | 0x08 | 0x04; // ICCP | EXIF | XMP
+
 /**
  * Checks whether WebP bytes contain transparency.
  */
@@ -6,138 +11,91 @@ export function hasWebpTransparency(
 ): boolean {
 	const bytes = toBytes(input);
 
-	if (bytes.length < 12) {
-		throw new Error("Invalid WebP: file too small");
-	}
+	for (const [type, start, size] of webpChunks(bytes)) {
+		if (type === "ALPH") return true;
 
-	if (readFourCC(bytes, 0) !== "RIFF" || readFourCC(bytes, 8) !== "WEBP") {
-		throw new Error("Invalid WebP: missing RIFF/WEBP header");
-	}
-
-	let offset = 12;
-	while (offset + 8 <= bytes.length) {
-		const chunkType = readFourCC(bytes, offset);
-		const chunkSize = readUInt32LE(bytes, offset + 4);
-		const payloadStart = offset + 8;
-		const payloadEnd = payloadStart + chunkSize;
-
-		if (payloadEnd > bytes.length) {
-			throw new Error("Invalid WebP: truncated chunk");
+		if (type === "VP8X") {
+			if (size < 1) throw new Error("Invalid WebP: VP8X chunk too small");
+			if ((bytes[start + 8] & VP8X_ALPHA_FLAG) !== 0) return true;
 		}
 
-		if (chunkType === "VP8X") {
-			if (chunkSize < 1) {
-				throw new Error("Invalid WebP: VP8X chunk too small");
-			}
-
-			const featureFlags = bytes[payloadStart];
-			if ((featureFlags & 0x10) !== 0) return true;
+		if (type === "VP8L") {
+			if (size < 5) throw new Error("Invalid WebP: VP8L chunk too small");
+			if ((readUInt32LE(bytes, start + 9) & (1 << 28)) !== 0) return true;
 		}
-
-		if (chunkType === "ALPH") return true;
-
-		if (chunkType === "VP8L") {
-			if (chunkSize < 5) {
-				throw new Error("Invalid WebP: VP8L chunk too small");
-			}
-
-			const bits = readUInt32LE(bytes, payloadStart + 1);
-			if ((bits & (1 << 28)) !== 0) return true;
-		}
-
-		offset = payloadEnd + (chunkSize & 1);
 	}
 
 	return false;
 }
 
 /**
- * Strips metadata chunks from a WebP file.
- * Removes: ICCP, EXIF, XMP.
+ * Strips ICCP, EXIF and XMP chunks from a WebP file.
+ * Returns the input unchanged when there is nothing to strip.
  */
 export function stripWebpMetadata(
 	input: Uint8Array | ArrayBufferLike,
 ): Uint8Array {
 	const bytes = toBytes(input);
-	assertWebpHeader(bytes);
+	const output = new Uint8Array(bytes.length);
+	output.set(bytes.subarray(0, HEADER_SIZE));
 
-	const keptChunks: Uint8Array[] = [];
-	let offset = 12;
+	let outEnd = HEADER_SIZE;
 	let vp8xFlagsOffset = -1;
 
-	while (offset + 8 <= bytes.length) {
-		const chunkType = readFourCC(bytes, offset);
-		const chunkSize = readUInt32LE(bytes, offset + 4);
-		const payloadStart = offset + 8;
-		const payloadEnd = payloadStart + chunkSize;
+	for (const [type, start, size, end] of webpChunks(bytes)) {
+		if (METADATA_TYPES.includes(type)) continue;
 
-		if (payloadEnd > bytes.length) {
-			throw new Error("Invalid WebP: truncated chunk");
+		if (type === "VP8X") {
+			if (size < 1) throw new Error("Invalid WebP: VP8X chunk too small");
+			vp8xFlagsOffset = outEnd + 8;
 		}
 
-		const chunkEnd = payloadEnd + (chunkSize & 1);
-		if (!["ICCP", "EXIF", "XMP "].includes(chunkType)) {
-			const chunk = bytes.slice(offset, chunkEnd);
-			if (chunkType === "VP8X") {
-				if (chunkSize < 1) {
-					throw new Error("Invalid WebP: VP8X chunk too small");
-				}
-				vp8xFlagsOffset =
-					keptChunks.reduce((sum, item) => sum + item.length, 0) + 8;
-			}
-			keptChunks.push(chunk);
-		}
-
-		offset = chunkEnd;
+		output.set(bytes.subarray(start, end), outEnd);
+		outEnd += end - start;
 	}
 
-	const payloadSize = keptChunks.reduce(
-		(sum, chunk) => sum + chunk.length,
-		0,
-	);
-	const output = new Uint8Array(12 + payloadSize);
+	if (outEnd === bytes.length) return bytes;
 
-	output.set(bytes.slice(0, 4), 0); // RIFF
-	writeUInt32LE(output, 4, payloadSize + 4);
-	output.set(bytes.slice(8, 12), 8); // WEBP
+	if (vp8xFlagsOffset >= 0) output[vp8xFlagsOffset] &= ~VP8X_METADATA_FLAGS;
+	writeUInt32LE(output, 4, outEnd - 8); // RIFF size covers "WEBP" + chunks
 
-	let outOffset = 12;
-	for (const chunk of keptChunks) {
-		output.set(chunk, outOffset);
-		outOffset += chunk.length;
-	}
-
-	// If VP8X is present, clear metadata presence bits to match stripped chunks.
-	if (vp8xFlagsOffset >= 0) {
-		const METADATA_FLAG_MASK = 0x20 | 0x08 | 0x04; // ICCP | EXIF | XMP
-		output[12 + vp8xFlagsOffset] &= ~METADATA_FLAG_MASK;
-	}
-
-	return output;
+	return output.slice(0, outEnd);
 }
 
-function toBytes(input: Uint8Array | ArrayBufferLike): Uint8Array {
-	if (input instanceof Uint8Array) return input;
-	return new Uint8Array(input);
-}
-
-function assertWebpHeader(bytes: Uint8Array): void {
-	if (bytes.length < 12) {
+/**
+ * Iterates RIFF chunks as `[type, start, size, end]`, validating the header,
+ * where `end` includes the odd-size padding byte.
+ */
+function* webpChunks(
+	bytes: Uint8Array,
+): Generator<[string, number, number, number]> {
+	if (bytes.length < HEADER_SIZE) {
 		throw new Error("Invalid WebP: file too small");
 	}
-
 	if (readFourCC(bytes, 0) !== "RIFF" || readFourCC(bytes, 8) !== "WEBP") {
 		throw new Error("Invalid WebP: missing RIFF/WEBP header");
 	}
+
+	let offset = HEADER_SIZE;
+	while (offset + 8 <= bytes.length) {
+		const size = readUInt32LE(bytes, offset + 4);
+		const dataEnd = offset + 8 + size;
+		if (dataEnd > bytes.length) {
+			throw new Error("Invalid WebP: truncated chunk");
+		}
+
+		const end = Math.min(dataEnd + (size & 1), bytes.length);
+		yield [readFourCC(bytes, offset), offset, size, end];
+		offset = end;
+	}
+}
+
+function toBytes(input: Uint8Array | ArrayBufferLike): Uint8Array {
+	return input instanceof Uint8Array ? input : new Uint8Array(input);
 }
 
 function readFourCC(bytes: Uint8Array, offset: number): string {
-	return String.fromCharCode(
-		bytes[offset],
-		bytes[offset + 1],
-		bytes[offset + 2],
-		bytes[offset + 3],
-	);
+	return String.fromCharCode(...bytes.subarray(offset, offset + 4));
 }
 
 function readUInt32LE(bytes: Uint8Array, offset: number): number {
