@@ -1,11 +1,12 @@
 import sharp from "sharp";
+/** @typedef {import('sharp').OutputInfo} OutputInfo */
 
 /**
  * Generate a small blurred placeholder image.
  * @param {string} inputPath - The path to the original image.
  * @param {string} outputPath - The path to save the placeholder (if provided).
  * @param {boolean} asBase64 - Whether to return the image as a base64 string.
- * @returns {Promise<string|sharp.OutputInfo|void>} - Base64 string if `asBase64` is true, otherwise
+ * @returns {Promise<string|OutputInfo|void>} - Base64 string if `asBase64` is true, otherwise
  * saves to file.
  */
 export const generatePlaceholder = async (
