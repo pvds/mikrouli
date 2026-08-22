@@ -18,14 +18,16 @@ const posts = () => data.posts;
 
 {#if page().sections?.length}
 	{#each page().sections as section, i}
-		<ContentSection contentFooter={i === 0 ? footerCta : undefined} prose size="lg" index={i}
+		<ContentSection contentFooter={i === 0 ? /** @type {import("svelte").Snippet<[]>} */
+		(footerCta) : undefined} prose size="lg" index={i}
 						title={section.header || section.title} image={section.image}>
 			{@html section.content}
 		</ContentSection>
 	{/each}
 {:else}
 	{#each page().contentSections as section, i}
-		<ContentSection contentFooter={i === 0 ? footerCta : undefined} prose size="lg" index={i}>
+		<ContentSection contentFooter={i === 0 ? /** @type {import("svelte").Snippet<[]>} */ 
+		(footerCta) : undefined} prose size="lg" index={i}>
 			{@html section}
 		</ContentSection>
 	{/each}
