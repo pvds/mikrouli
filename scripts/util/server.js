@@ -65,6 +65,8 @@ export const waitForServer = async (
 			const { status } = await fetch(baseUrl);
 			if ([200, 404].includes(status))
 				return logSuccess(`Server is ready at ${url}`);
+			logDebug(`Server not ready yet (status: ${status})`);
+			await Bun.sleep(200);
 		} catch {
 			logDebug("Checking server status...");
 			await Bun.sleep(200);

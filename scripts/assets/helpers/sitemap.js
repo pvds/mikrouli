@@ -17,7 +17,7 @@ import { runCommand } from "$util/process.js";
 /**
  * Run the sitemap generation command with the appropriate environment settings.
  */
-function generateSitemap() {
+async function generateSitemap() {
 	const isProduction = process.env.DEPLOY_TARGET === "production";
 	const baseUrl = isProduction ? URL_BASE_PRODUCTION : URL_BASE_STAGING;
 	const outputDir = isProduction ? BUILD_DIR_PRODUCTION : BUILD_DIR_STAGING;
@@ -27,7 +27,7 @@ function generateSitemap() {
 		logInfo(
 			`Generating sitemap for ${isProduction ? "Production" : "Staging"}...`,
 		);
-		runCommand(command);
+		await runCommand(command);
 		logSuccess("Sitemap generated successfully.");
 	} catch (error) {
 		logError("Failed to generate sitemap:", error);
@@ -35,4 +35,4 @@ function generateSitemap() {
 	}
 }
 
-generateSitemap();
+await generateSitemap();
