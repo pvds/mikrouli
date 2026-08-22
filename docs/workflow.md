@@ -69,8 +69,9 @@ Defined in `.github/ci.yml`:
 
 ## Testing
 
-Accessibility and Lighthouse tests run for production deployments:
+Production deployments validate generated HTML before browser-level tests:
 
+- **HTML**: `bun run test:html` (blocking, validates `build/production/**/*.html`)
 - **Accessibility**: `bun run test:axe --minimal --prod` (non-blocking)
 - **Lighthouse**: `bun run test:lighthouse --prod`
 

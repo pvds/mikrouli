@@ -2,7 +2,7 @@
 import type { Snippet } from "svelte";
 import { asset, resolve } from "$app/paths";
 import { page } from "$app/state";
-import { ORG_NAME, ORG_NAME_SUFFIX, ORG_SLOGAN } from "$config";
+import { ORG_NAME, ORG_SLOGAN } from "$config";
 import { checkSeo } from "./Seo.helper.js";
 import type { SEOProps } from "./Seo.svelte.types.js";
 
@@ -13,12 +13,34 @@ const constructTitle = (
 	category: string | undefined,
 	separator: string = " - ",
 ): string => {
-	const space = " ";
 	const isHome = page.url.pathname === resolve("/");
-	const categoryPart = category ? `${category} ${separator} ` : "";
-	return isHome || !title
-		? ORG_NAME + separator + ORG_NAME_SUFFIX + separator + ORG_SLOGAN
-		: title + separator + categoryPart + ORG_NAME + space + ORG_NAME_SUFFIX;
+	const normalize = (value: string | undefined) =>
+		value?.replace(/\s+/g, " ").trim() || "";
+	const truncate = (value: string, maxLength: number): string => {
+		if (value.length <= maxLength) return value;
+		const trimmed = value.slice(0, Math.max(0, maxLength - 1)).trimEnd();
+		return trimmed ? `${trimmed}…` : value;
+	};
+
+	const brand = ORG_NAME;
+	const normalizedTitle = normalize(title);
+	const normalizedCategory = normalize(category);
+
+	if (isHome || !normalizedTitle) {
+		return `${brand}${separator}${ORG_SLOGAN}`;
+	}
+
+	const suffix = normalizedCategory
+		? `${separator}${normalizedCategory}${separator}${brand}`
+		: `${separator}${brand}`;
+	const maxTitleLength = 70;
+	const titleWithSuffix = `${normalizedTitle}${suffix}`;
+	if (titleWithSuffix.length <= maxTitleLength) {
+		return titleWithSuffix;
+	}
+
+	const availableTitleLength = Math.max(0, maxTitleLength - suffix.length);
+	return `${truncate(normalizedTitle, availableTitleLength)}${suffix}`;
 };
 
 let title: SEOProps["title"] = $derived(

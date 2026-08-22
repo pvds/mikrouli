@@ -16,6 +16,9 @@ let { primary, pages, contact }: Props = $props();
 const navPrimary = $derived(toNavItems(primary.fields.items));
 const navPages = $derived(toNavItems(pages.fields.items));
 const navContact = $derived(toNavItems(contact.fields.items));
+const primaryLabelId = $derived(`${primary.fields.slug}-label`);
+const contactLabelId = $derived(`${contact.fields.slug}-label`);
+const pagesLabelId = $derived(`${pages.fields.slug}-label`);
 </script>
 
 <footer class="footer relative mt-72 md:mt-80">
@@ -37,8 +40,8 @@ const navContact = $derived(toNavItems(contact.fields.items));
 			 customSpacing="p-0">
 		<div
 			class="grid xs-mid:grid-cols-2 gap-x-4 gap-y-8 pb-4 mr-[max(10rem,30vw)] md:mr-[min(15rem,30vw)]">
-			<nav aria-labelledby={primary.meta.id}>
-				<strong id={primary.meta.id}
+			<nav aria-labelledby={primaryLabelId}>
+				<strong id={primaryLabelId}
 						class="sm:text-lg font-bold inline-block mb-2">{primary.fields.title}</strong>
 				<ul class="grid min-[28em]:max-xs-mid:grid-cols-2 md-mid:grid-cols-2 gap-x-4 gap-y-2">
 				{#each navPrimary as { href, label, title, target } (href)}
@@ -49,8 +52,8 @@ const navContact = $derived(toNavItems(contact.fields.items));
 				{/each}
 				</ul>
 			</nav>
-			<nav aria-labelledby={contact.meta.id}>
-				<strong id={contact.meta.id}
+			<nav aria-labelledby={contactLabelId}>
+				<strong id={contactLabelId}
 						class="sm:text-lg font-bold inline-block mb-2">{contact.fields.title}</strong>
 				<ul
 					class="grid min-[28em]:max-xs-mid:grid-cols-2 md-mid:grid-cols-2 gap-x-4 gap-y-2">
@@ -62,8 +65,8 @@ const navContact = $derived(toNavItems(contact.fields.items));
 				{/each}
 				</ul>
 			</nav>
-			<nav aria-labelledby={pages.meta.id} class="xs-mid:col-span-2 md-mid:col-span-2">
-				<strong id={pages.meta.id}
+			<nav aria-labelledby={pagesLabelId} class="xs-mid:col-span-2 md-mid:col-span-2">
+				<strong id={pagesLabelId}
 						class="sm:text-lg font-bold inline-block mb-2">{pages.fields.title}</strong>
 				<ul
 					class="grid grid-cols-1 min-[28em]:grid-cols-2 md-mid:grid-cols-4 gap-x-4 gap-y-2">

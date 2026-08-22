@@ -41,6 +41,7 @@ const booking = $derived(BOOKING_OPTIONS[type]);
 	class="group {cta?.classes}
 	transition-all {BUTTON_THEME[ctaTheme]} {BUTTON_SIZE[ctaSize]}"
 	onclick={() => dialog?.showModal()}
+	type="button"
 >
 	{#if cta}
 		<span class="xs:hidden">{cta.textShort}</span>
@@ -55,11 +56,12 @@ const booking = $derived(BOOKING_OPTIONS[type]);
 </button>
 <Dialog bind:dialogElement={dialog} classes="bg-primary-darkest" fullscreen>
 	{#snippet header()}
-		<header class="p-2 z-1 flex flex-row-reverse justify-start bg-primary-darkest gap-2">
+		<div class="p-2 z-1 flex flex-row-reverse justify-start bg-primary-darkest gap-2">
 			<button
 				onclick={() => dialog?.close()}
 				class="py-2 px-4 rounded-full text-sm font-semibold hover:bg-primary-darker text-primary-light hover:text-primary-lightest"
 				aria-label="Close"
+				type="button"
 			>
 				Close Dialog
 			</button>
@@ -68,7 +70,7 @@ const booking = $derived(BOOKING_OPTIONS[type]);
 			>
 				Open in a New Tab
 			</a>
-		</header>
+		</div>
 	{/snippet}
 
 	{#if iframeState === "loading"}
@@ -91,8 +93,6 @@ const booking = $derived(BOOKING_OPTIONS[type]);
 	<iframe
 		title={booking.cta}
 		src={booking.url}
-		width="100%"
-		height="100%"
 		class="w-full h-full"
 		loading="lazy"
 		onload={() => (iframeState = "loaded")}

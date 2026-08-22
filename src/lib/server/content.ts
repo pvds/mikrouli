@@ -179,9 +179,13 @@ export const getPostEntries = (): { slug: string }[] => {
 };
 
 function processEntryMarkdown<T extends BaseEntry>(entry: T): T {
-	const sections = entry.fields.sections?.map((section) => ({
+	const sections = entry.fields.sections?.map((section, index) => ({
 		...section,
-		content: markdownToHtml(section.content),
+		content: markdownToHtml(
+			section.content,
+			false,
+			`heading-section-${index + 1}-`,
+		),
 	}));
 
 	return {

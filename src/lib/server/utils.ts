@@ -28,11 +28,12 @@ export const splitText = (text: string, identifier = "<hr>"): string[] => {
 export const markdownToHtml = (
 	markdown: string | undefined,
 	breaks = false,
+	headingPrefix = "heading-",
 ): string => {
 	if (!markdown) return "";
 
 	const heading_extension = gfmHeadingId({
-		prefix: "heading-",
+		prefix: headingPrefix,
 	}) as MarkedExtension;
 	marked.use(heading_extension);
 	const htmlProcessor = processSync(

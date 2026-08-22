@@ -53,7 +53,7 @@ function handleBackdropClick(event: MouseEvent): void {
 				{@render headerContent()}
 			</header>
 		{/if}
-		<main class="flex-auto">{@render children?.()}</main>
+		<div class="flex-auto">{@render children?.()}</div>
 		{#if footer}
 			<footer>
 				{@render footer()}

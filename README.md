@@ -152,6 +152,7 @@ If you already have all dependencies quick start by running
 - **Testing**
 
     ```bash
+    bun run test:html			# Validate production HTML after bun run build:prod
     bun run test:lighthouse			# Run Lighthouse performance tests
     bun run test:axe			# Run accessibility tests
     ```
