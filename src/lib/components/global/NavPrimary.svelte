@@ -43,7 +43,7 @@ const bookingCta = {
 {#snippet navMenu(/** @type NavigationItem[] */ navItems, /** @type string */ classes, /** @type
  string */ screen)}
 <ul class="flex {classes} items-center justify-end">
-{#each navItems as { href, label, title, menuTitle, target, items }, i}
+{#each navItems as { href, label, title, menuTitle, target, items }, i (href)}
 	<li class="grow {href === base ? 'max-sm:hidden' : ''}">
 		{#if items && screen === "desktop"}
 		<button popovertarget="menu-popover-{screen}-{i}"
@@ -59,7 +59,7 @@ const bookingCta = {
 		<ul bind:this={menuPopovers[i]} id="menu-popover-{screen}-{i}" popover="auto"
 			class="[position-anchor:{screen}-{i}] [position-area:end_span-end] -ml-4 md-mid:-ml-1 mt-1 open:flex open:flex-col md-mid:gap-1 px-3 md-mid:px-1 pt-2 pb-3 rounded-md rounded-bl-3xl rounded-tr-3xl bg-primary-darker shadow-lg shadow-primary-black/25">
 			<li>{@render NavLink(href, menuTitle || label, title, target, menuPopovers[i], true)}</li>
-			{#each items as { href, label, title, target }}
+			{#each items as { href, label, title, target } (href)}
 			<li>{@render NavLink(href, label, title, target, menuPopovers[i], true)}</li>
 			{/each}
 		</ul>

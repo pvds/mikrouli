@@ -19,7 +19,7 @@ const services = $derived(data.services);
 	{@html page.intro}
 </Hero>
 
-{#each posts as post, i}
+{#each posts as post, i (post.fields.slug)}
 	<Section wave={i % 2 === 1}>
 		<BlogArticle post={post.fields} priority={i <= 3}/>
 	</Section>

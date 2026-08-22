@@ -44,7 +44,7 @@ const navContact = $derived(toNavItems(contact.fields.items));
 				<strong id={primary.meta.id}
 						class="sm:text-lg font-bold inline-block mb-2">{primary.fields.title}</strong>
 				<ul class="grid min-[28em]:max-xs-mid:grid-cols-2 md-mid:grid-cols-2 gap-x-4 gap-y-2">
-				{#each navPrimary as { href, label, title, target }}
+				{#each navPrimary as { href, label, title, target } (href)}
 					<li>
 						<a {href} {title} {target}
 						   class="font-semibold text-primary-darker hover:underline hover:text-accent-darker">{label}</a>
@@ -57,7 +57,7 @@ const navContact = $derived(toNavItems(contact.fields.items));
 						class="sm:text-lg font-bold inline-block mb-2">{contact.fields.title}</strong>
 				<ul
 					class="grid min-[28em]:max-xs-mid:grid-cols-2 md-mid:grid-cols-2 gap-x-4 gap-y-2">
-				{#each navContact as { href, label, title, target }}
+				{#each navContact as { href, label, title, target } (href)}
 					<li>
 						<a {href} {title} {target}
 						   class="font-semibold text-primary-darker hover:underline hover:text-accent-darker">{label}</a>
@@ -70,7 +70,7 @@ const navContact = $derived(toNavItems(contact.fields.items));
 						class="sm:text-lg font-bold inline-block mb-2">{pages.fields.title}</strong>
 				<ul
 					class="grid grid-cols-1 min-[28em]:grid-cols-2 md-mid:grid-cols-4 gap-x-4 gap-y-2">
-					{#each navPages as { href, label, title, target }}
+					{#each navPages as { href, label, title, target } (href)}
 						<li>
 							<a {href} {title} {target}
 							   class="font-semibold text-primary-darker hover:underline hover:text-accent-darker">{label}</a>

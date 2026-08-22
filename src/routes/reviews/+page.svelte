@@ -21,7 +21,7 @@ const posts = $derived(data.posts);
 
 <Section
 	innerClasses="grid grid-cols-[repeat(auto-fill,minmax(--spacing(80),1fr))] gap-10 md:gap-20">
-{#each reviews as review}
+{#each reviews as review (review.meta.id)}
 	<article>
 		<h2 class="mb-1 font-semibold text-2xl">{review.fields.reviewer || "Anonymous"}</h2>
 		<small class="block mb-2 text-base italic text-primary-darker"><strong
