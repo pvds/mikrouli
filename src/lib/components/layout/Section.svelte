@@ -1,13 +1,14 @@
 <script>
 /**
  * @typedef {import('$types/content').SectionTheme} SectionTheme
+ * @typedef {import('svelte/elements').ClassValue} ClassValue
  * @typedef {Object} Props
- * @property {string} [classes] on outer <section>, use styling the section (position, z-index, etc.)
- * @property {string} [innerClasses] on inner <div>, use for styling the content (grid, flex, etc.)
+ * @property {ClassValue} [classes] on outer <section>, use styling the section (position, z-index, etc.)
+ * @property {ClassValue} [innerClasses] on inner <div>, use for styling the content (grid, flex, etc.)
  * @property {string} [title]
  * @property {'sm'|'md'|'lg'} [size='md']
  * @property {SectionTheme} [theme='default']
- * @property {string} [customSpacing]
+ * @property {ClassValue} [customSpacing]
  * @property {boolean} [wave]
  * @property {import('svelte').Snippet} [children]
  */
@@ -44,6 +45,9 @@ const spacingY = {
 		title: "mb-8 md-mid:mb-10",
 	},
 };
+const baseSpacing = $derived(
+	wave ? spacingY[size].wave : spacingY[size].default,
+);
 
 /** @type {Record<SectionTheme, string>} */
 const THEME_CLASSES = {
@@ -69,10 +73,7 @@ const WAVE_COLORS = {
 	default: "mimosa-lighter",
 };
 
-let spacing = $derived(
-	customSpacing ||
-		`${wave ? spacingY[size].wave : spacingY[size].default} ${SPACING_X_CLASSES}`,
-);
+let spacing = $derived(customSpacing || [baseSpacing, SPACING_X_CLASSES]);
 let titleSpacing = $derived(spacingY[size].title);
 let themeClasses = $derived(
 	theme !== "default" ? THEME_CLASSES[theme] : wave ? THEME_WAVE_DEFAULT : "",
@@ -80,8 +81,8 @@ let themeClasses = $derived(
 let waveColor = $derived(WAVE_COLORS[theme]);
 </script>
 
-<section class="relative {classes} {spacing} {themeClasses}">
-	<div class="max-w-6xl mx-auto {innerClasses}">
+<section class={["relative", classes, spacing, themeClasses]}>
+	<div class={["max-w-6xl mx-auto", innerClasses]}>
 		{#if wave}
 			<WaveSvg color={waveColor}>
 				{@render content()}
@@ -94,7 +95,7 @@ let waveColor = $derived(WAVE_COLORS[theme]);
 
 {#snippet content()}
 	{#if title}
-		<h2 class="{titleSpacing} text-primary-darkest text-2xl md:text-3xl font-bold">{title}</h2>
+		<h2 class={["text-primary-darkest text-2xl md:text-3xl font-bold", titleSpacing]}>{title}</h2>
 	{/if}
 	{@render children?.()}
 {/snippet}

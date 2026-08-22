@@ -85,23 +85,29 @@ const srcset = (sizes) =>
 		.join(", ");
 </script>
 
-<div class="relative {height} {width} not-prose {loadedImage || hasAlpha ? '' :
-'bg-black/10 animate-pulse rounded-md'}" style="{`aspect-ratio: ${aspectRatio};`}
+<div
+	class={[
+		"relative not-prose",
+		height,
+		width,
+		!loadedImage && !hasAlpha && "bg-black/10 animate-pulse rounded-md",
+		loadedImage && maskIndex && "drop-shadow-[0_6px_18px_rgba(0,0,0,0.25)]",
+	]}
+	style="{`aspect-ratio: ${aspectRatio};`}
 {maskIndex && !loadedImage ? `clip-path: url(#mask${maskIndex});`: ''}"
-class:drop-shadow-[0_6px_18px_rgba(0,0,0,0.25)]={loadedImage && maskIndex}>
+>
 	{#if loadedData}
 		{#if usePlaceholder && placeholder && !hasAlpha && !loadedImage}
 			<img src={placeholder} {alt}
-				 class="{POSITION_CLASSES} {positionClass} {classes} {height} {width} transition-all"
+				 class={[POSITION_CLASSES, positionClass, classes, height, width, "transition-all"]}
 				 loading={priority ? "eager" : "lazy"}
 				 fetchpriority={priority ? "high" : null}/>
-			<div class="{POSITION_CLASSES} {positionClass} {classes} backdrop-blur-xl transition-all"></div>
+			<div class={[POSITION_CLASSES, positionClass, classes, "backdrop-blur-xl transition-all"]}></div>
 		{/if}
 		<picture>
 			<source srcset={srcset(IMAGE_SIZES)} sizes={sizes} type="image/webp" />
 			<img src={`${base}${directory}/${image}-1280.webp`} {alt}
-				class="{POSITION_CLASSES} {positionClass} {classes} {height} {width}"
-				class:opacity-0={!loadedImage}
+				class={[POSITION_CLASSES, positionClass, classes, height, width, { "opacity-0": !loadedImage }]}
 				loading={priority ? "eager" : "lazy"}
 				fetchpriority={priority ? "high" : null}
 				onload={() => loadedImage = true}
