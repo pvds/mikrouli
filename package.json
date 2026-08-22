@@ -50,7 +50,7 @@
 		"assets:fetch": "bun run scripts/assets/fetch.js",
 		"assets:process": "bun run scripts/assets/process.js",
 		"assets:favicons": "bunx realfavicon generate images/icon.svg favicons.json .favicons.json static/pwa",
-		"skills": "bunx skills update -y -a github-copilot"
+		"skills": "bunx skills update -y"
 	},
 	"devDependencies": {
 		"@axe-core/playwright": "^4.13.0",
