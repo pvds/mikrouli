@@ -4,7 +4,7 @@
 
 - Install dependencies with **bun**: `bun install`
 - Run project scripts with **bun**: `bun run <script>`
-- Runtime targets: Node `^26`, Bun `^1.4`
+- Runtime targets: Bun `^1.4`
 
 ## Commands
 
