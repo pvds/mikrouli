@@ -7,6 +7,7 @@
  * 5. Generate processed images and base64 placeholders
  */
 
+import fs from "node:fs";
 import path from "node:path";
 import { getEmptyEnvVariables, promptForMissingVariables } from "$util/env";
 import {
@@ -31,9 +32,9 @@ const main = async () => {
 	const envExampleFile = path.resolve(process.cwd(), ".env.example");
 
 	logHeader("Checking for missing .env file");
-	if (!(await Bun.file(envFile).exists())) {
+	if (!fs.existsSync(envFile)) {
 		logInfo("Missing .env file. Copying .env.example to .env...");
-		await Bun.write(envFile, Bun.file(envExampleFile));
+		fs.copyFileSync(envExampleFile, envFile);
 		logSuccess("Copied .env.example to .env.");
 	} else {
 		logSuccess(".env file already exists.");
@@ -52,7 +53,7 @@ const main = async () => {
 		"Environment variables have been checked and updated according to to provided values.",
 	);
 
-	const missingRequiredVariables = await getEmptyEnvVariables(
+	const missingRequiredVariables = getEmptyEnvVariables(
 		envFile,
 		requiredVariables,
 	);
@@ -79,7 +80,7 @@ const main = async () => {
 
 	if (fetchContent) {
 		logHeader("Fetching content from Contentful");
-		await runCommand("bun run content:fetch --force");
+		runCommand("bun run content:fetch --force");
 		logSuccess("Fetched content from Contentful.");
 	}
 
@@ -89,7 +90,7 @@ const main = async () => {
 
 	if (fetchContent) {
 		logHeader("Fetching images from Contentful");
-		await runCommand("bun run images:fetch --cms");
+		runCommand("bun run images:fetch --cms");
 		logSuccess("Fetched images from Contentful.");
 	}
 
@@ -97,7 +98,7 @@ const main = async () => {
 	 * 5. Generate processed images and base64 placeholders
 	 */
 	logHeader("Generating processed images and base64 placeholders");
-	await runCommand("bun run images:process --local --cms");
+	runCommand("bun run images:process --local --cms");
 	logSuccess("Generated processed images and base64 placeholders.");
 
 	/**

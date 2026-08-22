@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import https from "node:https";
 import path from "node:path";
 import {
 	IMAGE_INPUT_PATH_RESOLVED,
@@ -26,14 +27,14 @@ if (IS_CMS)
  */
 export async function syncImages(imagesPath, dataPath) {
 	logInfo("Syncing images with cms...");
-	if (!(await Bun.file(dataPath).exists())) {
+	if (!fs.existsSync(dataPath)) {
 		logWarn("No cms image data found");
 		process.exit(0);
 	}
 	if (!fs.existsSync(imagesPath))
 		fs.mkdirSync(imagesPath, { recursive: true });
 
-	const cmsImages = await Bun.file(dataPath).json();
+	const cmsImages = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
 	const { missing = [], unused = [] } = checkImages(imagesPath, cmsImages);
 
 	await downloadContentfulAssets(imagesPath, missing);
@@ -128,9 +129,26 @@ async function downloadContentfulAssets(imagesPath, images = []) {
  * @param {string} outputPath - Path to save the downloaded image file.
  * @returns {Promise<void>}
  */
-async function downloadImage(url, outputPath) {
-	const response = await fetch(url);
-	if (!response.ok)
-		throw new Error(`Failed to download ${url}: ${response.status}`);
-	await Bun.write(outputPath, response);
+function downloadImage(url, outputPath) {
+	return new Promise((resolve, reject) => {
+		const file = fs.createWriteStream(outputPath);
+		https
+			.get(url, (response) => {
+				if (response.statusCode !== 200) {
+					return reject(
+						new Error(
+							`Failed to download ${url}: ${response.statusCode}`,
+						),
+					);
+				}
+				response.pipe(file);
+				file.on("finish", () => {
+					file.close((err) => {
+						if (err) reject(err);
+						else resolve();
+					});
+				});
+			})
+			.on("error", (err) => reject(err));
+	});
 }

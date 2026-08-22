@@ -1,6 +1,10 @@
+import { exec } from "node:child_process";
 import fs from "node:fs/promises";
+import { promisify } from "node:util";
 import { errMsg } from "$util/error.js";
 import { logDebug, logError, logInfo, logSuccess } from "$util/log.js";
+
+const runCommand = promisify(exec);
 
 const GENERATED_DIRS = ["node_modules", "build", ".svelte-kit", ".tmp"];
 const GENERATED_FILES = ["bun.lock"];
@@ -45,12 +49,12 @@ export async function cleanGenerated(dirs = [], files = []) {
 
 async function installPackages() {
 	logInfo("Reinstalling packages...");
-	await Bun.$`bun install`;
+	await runCommand("bun install --save-text-lockfile");
 	logSuccess("Packages reinstalled.");
 }
 
 async function syncSvelteKit() {
 	logInfo("Syncing SvelteKit...");
-	await Bun.$`svelte-kit sync`;
+	await runCommand("svelte-kit sync");
 	logSuccess("SvelteKit synced.");
 }

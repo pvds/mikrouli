@@ -62,9 +62,7 @@ let loadedData = $state(true);
 let loadedImage = $state(false);
 
 const metaCategory = $derived(
-	/** @type {Metadata} */ (
-		isLocal ? /** @type {any} */ (metadata).local : metadata.cms
-	),
+	/** @type Metadata */ (isLocal ? metadata.local : metadata.cms),
 );
 const meta = $derived(metaCategory[image]);
 

@@ -39,12 +39,7 @@ const PREVIEW_CMD = IS_PROD ? "preview:prod" : "preview";
 const timeStamp = new Date().toISOString().replace(/[:.]/g, "-");
 const reportDir = path.join(REPORTS_PATH_RESOLVED, "lighthouse", timeStamp);
 const startTime = performance.now();
-const serverProcess = await startServer(
-	BUILD_DIR,
-	BUILD_CMD,
-	PREVIEW_CMD,
-	PORT,
-);
+const serverProcess = startServer(BUILD_DIR, BUILD_CMD, PREVIEW_CMD, PORT);
 
 await waitForServer(BASE_URL)
 	.then(() => {

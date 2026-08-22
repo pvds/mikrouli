@@ -76,10 +76,10 @@ const analyzePage = async (browser, file, dir) => {
 
 	const buildDir =
 		resolveIfExists(BUILD_DIR) ||
-		(await (async () => {
-			await runCommand("vite build --logLevel error");
+		(() => {
+			runCommand("vite build --logLevel error");
 			return resolveIfExists(BUILD_DIR);
-		})());
+		})();
 
 	if (!buildDir) throw new Error("Build directory could not be created.");
 

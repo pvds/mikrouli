@@ -1,3 +1,4 @@
+import fs from "node:fs";
 import { askQuestion } from "$util/cli-question";
 import { logInfo, logMessage } from "$util/log";
 import { escapeRegex } from "$util/regex";
@@ -8,12 +9,13 @@ import { escapeRegex } from "$util/regex";
  *
  * @param {string} envFilePath - The path to the .env file.
  * @param {string[]} requiredVars - If used only these variables will be checked.
- * @returns {Promise<string[]>} - An array of variable names that lack a value.
+ * @returns {string[]} - An array of variable names that lack a value.
  */
-async function getEmptyEnvVariables(envFilePath, requiredVars = []) {
-	if (!(await Bun.file(envFilePath).exists())) return [];
+function getEmptyEnvVariables(envFilePath, requiredVars = []) {
+	if (!fs.existsSync(envFilePath)) return [];
 
-	const emptyVariables = (await Bun.file(envFilePath).text())
+	const emptyVariables = fs
+		.readFileSync(envFilePath, "utf8")
 		.split("\n") // split file into lines
 		.map((lineRaw) => {
 			const line = lineRaw.trim();
@@ -44,9 +46,9 @@ async function getEmptyEnvVariables(envFilePath, requiredVars = []) {
  * @param {Object} envUpdates - Key-value pairs of environment variables to update/append.
  * @param {string} envFilePath - Path to the .env file.
  */
-const updateEnvFile = async (envUpdates, envFilePath) => {
-	let envContent = (await Bun.file(envFilePath).exists())
-		? await Bun.file(envFilePath).text()
+const updateEnvFile = (envUpdates, envFilePath) => {
+	let envContent = fs.existsSync(envFilePath)
+		? fs.readFileSync(envFilePath, { encoding: "utf8" })
 		: "";
 
 	for (const [key, value] of Object.entries(envUpdates)) {
@@ -64,7 +66,7 @@ const updateEnvFile = async (envUpdates, envFilePath) => {
 		process.env[key] = value.toString();
 	}
 
-	await Bun.write(envFilePath, envContent);
+	fs.writeFileSync(envFilePath, envContent, { encoding: "utf8" });
 };
 
 /**
@@ -75,7 +77,7 @@ const updateEnvFile = async (envUpdates, envFilePath) => {
  * @param {string[]} [requiredVars] - List of required environment variables.
  */
 const promptForMissingVariables = async (envFilePath, requiredVars = []) => {
-	const emptyVars = await getEmptyEnvVariables(envFilePath);
+	const emptyVars = getEmptyEnvVariables(envFilePath);
 
 	// Convert everything to a Set so we don't prompt duplicates
 	const allVarsToPrompt = new Set([
@@ -108,7 +110,7 @@ const promptForMissingVariables = async (envFilePath, requiredVars = []) => {
 		);
 	}
 
-	await updateEnvFile(envUpdates, envFilePath);
+	updateEnvFile(envUpdates, envFilePath);
 	logInfo(`Updated ${envFilePath} with missing environment variables.`);
 };
 
