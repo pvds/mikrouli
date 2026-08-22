@@ -7,6 +7,7 @@ import TeaserSection from "$layout/TeaserSection.svelte";
 import { getImageName } from "$lib/helpers/image.js";
 import BlogArticle from "$ui/BlogArticle.svelte";
 
+/** @type {import('./$types').PageProps} */
 let { data } = $props();
 const page = () => data.page.fields;
 const posts = () => data.posts;

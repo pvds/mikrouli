@@ -7,6 +7,7 @@ import TeaserSection from "$layout/TeaserSection.svelte";
 import { getImageName } from "$lib/helpers/image.js";
 import Image from "$ui/image/Image.svelte";
 
+/** @type {import('./$types').PageProps} */
 let { data } = $props();
 const page = () => data.page.fields;
 const services = () => data.services;

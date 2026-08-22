@@ -5,6 +5,7 @@ import Outro from "$layout/Outro.svelte";
 import { getImageName } from "$lib/helpers/image.js";
 import Image from "$ui/image/Image.svelte";
 
+/** @type {import('./$types').PageProps} */
 let { data } = $props();
 const page = () => data.page.fields;
 </script>

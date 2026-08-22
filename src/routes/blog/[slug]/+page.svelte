@@ -10,6 +10,7 @@ import TeaserSection from "$layout/TeaserSection.svelte";
 import { formatDate } from "$lib/helpers/date.js";
 import { getImageName } from "$lib/helpers/image.js";
 
+/** @type {import('./$types').PageProps} */
 let { data } = $props();
 const page = () => data.post.fields;
 const meta = () => data.post.meta;

@@ -5,6 +5,7 @@ import Outro from "$layout/Outro.svelte";
 import TeaserSection from "$layout/TeaserSection.svelte";
 import { getImageName } from "$lib/helpers/image.js";
 
+/** @type {import('./$types').PageProps} */
 let { data } = $props();
 const page = () => data.page.fields;
 const posts = () => data.posts;

@@ -6,6 +6,7 @@ import TeaserSection from "$layout/TeaserSection.svelte";
 import { getImageName } from "$lib/helpers/image.js";
 import BookingDialog from "$ui/BookingDialog.svelte";
 
+/** @type {import('./$types').PageProps} */
 let { data } = $props();
 const page = () => data.page.fields;
 const posts = () => data.posts;

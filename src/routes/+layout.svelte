@@ -8,6 +8,7 @@ import Skip from "$global/Skip.svelte";
 import Seo from "$global/seo/Seo.svelte";
 import "../app.css";
 
+/** @type {import('./$types').LayoutProps} */
 let { children, data } = $props();
 const nav = () => data.nav;
 
