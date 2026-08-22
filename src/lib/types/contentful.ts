@@ -138,9 +138,9 @@ export type NavigationFieldItems = {
 	menuTitle?: string;
 	longTitle?: string;
 	url: string;
-	hidden: boolean;
+	hidden?: boolean;
 	isExternal: boolean;
-	items?: items[];
+	items?: NavigationFieldItems[];
 };
 
 export type NavigationFields = {
