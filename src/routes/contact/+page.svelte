@@ -26,7 +26,7 @@ const posts = () => data.posts;
 	{/each}
 {:else}
 	{#each page().contentSections as section, i}
-		<ContentSection contentFooter={i === 0 ? /** @type {import("svelte").Snippet<[]>} */ 
+		<ContentSection contentFooter={i === 0 ? /** @type {import("svelte").Snippet<[]>} */
 		(footerCta) : undefined} prose size="lg" index={i}>
 			{@html section}
 		</ContentSection>
