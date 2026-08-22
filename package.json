@@ -4,17 +4,19 @@
 	"version": "0.0.1",
 	"type": "module",
 	"engines": {
-		"node": "^24",
-		"bun": "^1.3"
+		"node": "^26",
+		"bun": "^1.4"
 	},
 	"devEngines": {
 		"runtime": {
 			"name": "bun",
-			"onFail": "error"
+			"onFail": "error",
+			"version": "1.4"
 		},
 		"packageManager": {
 			"name": "bun",
-			"onFail": "error"
+			"onFail": "error",
+			"version": "1.4"
 		}
 	},
 	"repository": {
@@ -22,6 +24,7 @@
 		"url": "https://github.com/pvds/mikrouli"
 	},
 	"scripts": {
+		"outdated": "bun outdated",
 		"setup": "bun run scripts/workspace/setup.js",
 		"clean": "bun run scripts/workspace/clean.js",
 		"prepare": "bun run sync && lefthook install",
