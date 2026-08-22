@@ -42,7 +42,6 @@
   `.github/workflows/ci.yml`.
 - Treat `.agents/skills/**` as read-only external dependencies.
 
-## Commit Attribution
+## Commits
 
-Include trailer in AI-assisted commits:
-`Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>`
+You are never allowed to commit
