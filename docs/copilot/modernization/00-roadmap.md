@@ -55,8 +55,8 @@ Every modernization batch must preserve these characteristics unless its scoped 
 5. **Performance.** Existing Lighthouse checks remain a regression gate.
 6. **Web standards first.** Prefer HTML/CSS and platform APIs over extra runtime JavaScript.
 7. **Bun-first tooling.** Prefer Bun runtime/package-manager/native APIs where they are stable and provide equivalent functionality.
-8. **Stability over dependency-count reduction.** Experimental Bun APIs may be prototyped, but must not replace stable production tooling without a later explicit decision.
-9. **One conceptual change per batch.** Never combine unrelated dependency majors, framework migration, image-pipeline replacement, browser-test replacement, and source-language refactoring.
+8. **Stability over dependency-count reduction.** Experimental Bun/Svelte APIs may be prototyped, but must not replace stable production tooling without a later explicit decision.
+9. **One conceptual change per batch.** Never combine unrelated dependency majors, framework migration, image-pipeline replacement, browser-test replacement, source-language refactoring, or broad component redesign.
 10. **Keep `main` deployable.** Each completed batch must leave both staging and production builds usable.
 
 ## Recommended implementation order
@@ -81,7 +81,29 @@ Read: [`03-sharp-to-bun-image.md`](./03-sharp-to-bun-image.md)
 
 Implement Bun.Image beside the existing Sharp pipeline, compare outputs, then remove Sharp only after parity gates pass. This is intentionally done while the framework remains stable.
 
-#### 3. SvelteKit 3 + Vite 8 migration cluster
+This objective owns the structural `Image.svelte` placeholder/loading cleanup. Complete it before the Modern Svelte source pass so two migration plans do not refactor the same component in conflicting ways.
+
+#### 3. Modern Svelte source modernization
+
+Read: [`05-modern-svelte.md`](./05-modern-svelte.md)
+
+Modernize the current stable Svelte 5 source **before** the SvelteKit 3 prerelease migration so source-level reactivity/syntax changes can be validated against the known stable framework baseline.
+
+Key decisions:
+
+- use `$derived` for local values computed from props/state;
+- preserve getter closures only where lazy access itself is the live-reference API;
+- use generated SvelteKit `PageProps` / `LayoutProps` in route components;
+- replace legacy `{@const}` with Svelte 5.56 declaration tags;
+- replace `class:` with clsx-style `class` arrays/objects;
+- use `ClassValue` at shared class-composition boundaries where it materially simplifies callers;
+- prefer stable keys in `{#each}` blocks when a real identity exists;
+- simplify one-off lifecycle ownership without introducing attachments solely for novelty;
+- do not enable experimental Svelte features.
+
+This objective does **not** change SvelteKit configuration, migrate to TypeScript, or enable the dormant View Transitions prototype.
+
+#### 4. SvelteKit 3 + Vite 8 migration cluster
 
 Read: [`02-sveltekit-3-vite-8.md`](./02-sveltekit-3-vite-8.md)
 
@@ -99,7 +121,7 @@ This is the one deliberately coupled framework batch family. It includes:
 
 The full JSDoc-JavaScript -> TypeScript source conversion is **not** part of this migration.
 
-#### 4. `svelte-sitemap` 4
+#### 5. `svelte-sitemap` 4
 
 Read the sitemap section in [`01-dependency-majors.md`](./01-dependency-majors.md).
 
@@ -109,11 +131,41 @@ After Vite/Kit configuration is stable:
 - preserve target-specific `domain` and `outDir` behavior;
 - remove the old helper/postbuild scripts only after sitemap parity is verified.
 
-#### 5. Bun.WebView prototype
+#### 6. Bun.WebView prototype
 
 Read: [`04-bun-webview-playwright-prototype.md`](./04-bun-webview-playwright-prototype.md)
 
 This is **research/prototype only**. Keep Playwright as the stable production/CI implementation while `Bun.WebView` remains experimental.
+
+### Future review — View Transitions prototype
+
+The current root layout intentionally keeps View Transitions disabled through:
+
+```js
+const disableViewTransitions = true;
+```
+
+and some article/teaser markup already contains `view-transition-name`.
+
+Do not enable/remove this code during `05-modern-svelte.md`.
+
+Review it only after the stable Svelte source cleanup and SvelteKit 3 migration are complete, so the decision is based on the final navigation architecture rather than code that is about to change.
+
+At review time:
+
+1. re-check current browser support and progressive-enhancement behavior;
+2. re-check the current SvelteKit navigation/View Transitions guidance;
+3. verify whether the `onNavigate` + `document.startViewTransition` integration is still the recommended shape;
+4. verify transition-name uniqueness across real routes;
+5. verify back/forward navigation and interrupted navigation behavior;
+6. respect `prefers-reduced-motion` and re-run accessibility checks;
+7. compare perceived UX against the extra code/maintenance cost;
+8. decide explicitly to:
+   - enable it;
+   - keep it as a near-term prototype with a concrete reason; or
+   - delete the dormant implementation.
+
+Do not allow permanently disabled code to remain indefinitely without this review.
 
 ### Track B — separate TypeScript project
 
@@ -121,7 +173,22 @@ Read: [`../typescript/typescript-6-migration.md`](../typescript/typescript-6-mig
 
 The full source migration from strict JSDoc JavaScript to TypeScript 6 is a separate project. Recommended timing: after the SvelteKit 3 migration is stable, so the source migration targets the new Kit 3 configuration/type model only once.
 
+The Modern Svelte objective should happen **before** this TypeScript project so the later language conversion translates already-clean Svelte patterns instead of mixing source-language and reactivity refactors.
+
 TypeScript 7 is documented as the future follow-up, not the current migration target, because Svelte's embedded-language tooling still requires TypeScript 6 for the normal stable path as of this research snapshot.
+
+## Why Modern Svelte comes before SvelteKit 3
+
+The ordering is intentional:
+
+1. Mikrouli already has the required stable Svelte 5 baseline.
+2. The source modernization can be validated on the known SvelteKit 2 production baseline.
+3. Reactivity/class/template changes are easier to debug without simultaneous prerelease framework/config changes.
+4. `PageProps` / `LayoutProps` are already supported by current SvelteKit 2.
+5. The SvelteKit 3 migration can then focus only on framework/configuration/module-resolution changes.
+6. The later TypeScript migration receives already-modern component source.
+
+The Sharp migration still comes first because its detailed plan deliberately restructures `Image.svelte`; Modern Svelte should normalize the resulting component once, not compete with that refactor.
 
 ## Core validation gate
 
@@ -150,26 +217,42 @@ For framework migration batches additionally verify manually/automatically:
 - sitemap output uses the correct domain and output directory;
 - GitHub Pages staging and Netlify production build artifacts are structurally unchanged unless an intentional migration requires otherwise.
 
+For Modern Svelte source batches additionally verify:
+
+- client navigation does not reintroduce stale prop-derived values;
+- no new `state_referenced_locally` warnings or suppressions appear;
+- conditional class output is visually equivalent;
+- keyed-list identity is based on real stable keys, never indexes;
+- header observer behavior remains unchanged;
+- `Image.svelte` is audited only after the Sharp/Bun.Image objective establishes its final structure.
+
 ## Agent routing table
 
 | Current task | Read |
 | --- | --- |
 | Remaining dependency majors | `01-dependency-majors.md` |
+| Replace Sharp / simplify image pipeline and `Image.svelte` | `03-sharp-to-bun-image.md` |
+| Modern Svelte source idioms / reactivity / class syntax / route prop typing | `05-modern-svelte.md` |
 | SvelteKit 3 / Vite 8 / aliases / Kit config | `02-sveltekit-3-vite-8.md` |
-| Replace Sharp | `03-sharp-to-bun-image.md` |
+| Migrate `svelte-sitemap` after Kit/Vite | sitemap section of `01-dependency-majors.md` |
 | Investigate Bun browser automation | `04-bun-webview-playwright-prototype.md` |
 | Convert JSDoc JS source to TypeScript | `../typescript/typescript-6-migration.md` |
+| Re-evaluate disabled View Transitions | this roadmap's View Transitions review gate + current root layout |
 
 ## Rules for the coding agent
 
 - Re-check the **published** package version immediately before a prerelease/`next` migration. Do not install an unpublished GitHub branch version merely because this research saw a newer commit there.
 - Prefer official migration tooling where available, but inspect every generated change before accepting it.
+- For Svelte source work, preserve the semantic reason behind existing code. In particular, do not blindly replace every getter closure; classify whether it is a local derivation or an intentional lazy-reference API.
+- Prefer current stable Svelte replacements for old idioms. Do not enable experimental Svelte features merely because they exist.
 - Do not opportunistically redesign components, CSS, content models, deployment architecture, or test semantics during these migrations.
-- Do not suppress type, accessibility, build, or prerender errors just to complete an upgrade.
+- Do not suppress type, accessibility, build, prerender or reactivity warnings just to complete an upgrade.
 - If a parity gate fails, keep the old implementation and stop that scoped migration rather than widening the change.
 - Update this roadmap's status when a scoped objective is completed; keep implementation details in the focused file.
 
 ## Research sources
+
+Framework/tool migration sources:
 
 - SvelteKit v3 development changelog: https://github.com/sveltejs/kit/blob/version-3/packages/kit/CHANGELOG.md
 - SvelteKit v3 configuration validator: https://github.com/sveltejs/kit/blob/version-3/packages/kit/src/core/config/options.js
@@ -180,3 +263,18 @@ For framework migration batches additionally verify manually/automatically:
 - TypeScript 6 release notes: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html
 - TypeScript 7 announcement: https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/
 - Svelte TypeScript docs: https://svelte.dev/docs/svelte/typescript
+
+Modern Svelte sources:
+
+- Svelte best practices: https://svelte.dev/docs/svelte/best-practices
+- `$derived`: https://svelte.dev/docs/svelte/$derived
+- Svelte compiler warnings:
+  https://svelte.dev/docs/svelte/compiler-warnings
+- Svelte class syntax: https://svelte.dev/docs/svelte/class
+- Svelte declaration tags:
+  https://svelte.dev/docs/svelte/declaration-tags
+- Svelte attachments: https://svelte.dev/docs/svelte/@attach
+- SvelteKit route/component types:
+  https://svelte.dev/docs/kit/types
+- Mikrouli closure-refactor history:
+  https://github.com/pvds/mikrouli/commit/7c478955473d676fd913fb1c04386ca00726b022
