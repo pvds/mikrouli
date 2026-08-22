@@ -89,10 +89,10 @@ const proseTheme = $derived(proseInvert ? "prose-invert" : "");
 </Section>
 
 {#snippet imageSection()}
-	{@const image_name = getImageName(image?.file.fileName)}
-	{#if image_name}
+	{const imageName = getImageName(image?.file.fileName)}
+	{#if imageName}
 		<div class="flex-auto max-md-mid:hidden self-center justify-self-center">
-			<Image image={image_name}
+			<Image image={imageName}
 			   sizes="20rem"
 			   alt={image?.title ?? ""}
 			   widthClass="w-full max-w-[calc(45vw)]"
