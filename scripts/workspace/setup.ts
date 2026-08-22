@@ -77,16 +77,16 @@ const main = async (): Promise<void> => {
 
 	if (fetchContent) {
 		logHeader("Fetching images from Contentful");
-		await runCommand("bun run images:fetch --cms");
+		await runCommand("bun run assets:fetch --cms");
 		logSuccess("Fetched images from Contentful.");
 	}
 
 	/**
-	 * 5. Generate processed images and base64 placeholders
+	 * 5. Generate processed images
 	 */
-	logHeader("Generating processed images and base64 placeholders");
-	await runCommand("bun run images:process --local --cms");
-	logSuccess("Generated processed images and base64 placeholders.");
+	logHeader("Generating processed images");
+	await runCommand("bun run assets:process --local --cms");
+	logSuccess("Generated processed images.");
 
 	/**
 	 * 6. Ready for development

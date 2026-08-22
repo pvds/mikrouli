@@ -27,7 +27,6 @@ import { measure } from "$util/measure";
 import { safeIncrement } from "$util/process";
 import { escapeRegex } from "$util/regex";
 import { writeMetadata } from "./metadata";
-import { generatePlaceholder } from "./placeholders";
 
 interface ProcessImagesOptions {
 	format?: Parameters<Sharp["toFormat"]>[0];
@@ -61,7 +60,6 @@ export async function processImages(
 	const metaData: Record<
 		string,
 		{
-			placeholder: string;
 			width: string;
 			height: string;
 			hasAlpha: boolean;
@@ -91,11 +89,7 @@ export async function processImages(
 			});
 
 			const { width, height, hasAlpha } = await image.metadata();
-			const placeholder = (await generatePlaceholder(
-				inputPath,
-			)) as string;
 			metaData[baseName] = {
-				placeholder: placeholder,
 				width: width?.toString() || "",
 				height: height?.toString() || "",
 				hasAlpha: hasAlpha || false,
@@ -140,25 +134,23 @@ async function generateImages(
 				return;
 			}
 
-			await image
-				.clone()
-				.resize({
-					width: size,
-					fit: sharp.fit.inside,
-					withoutEnlargement: true,
-				})
-				.toFormat(format, { quality })
-				.toFile(outputPath)
-				.then(() => {
-					logDebug(`Generated: ${outputFileName}`);
-					safeIncrement(counts, "generated");
-				})
-				.catch((error: Error) => {
-					logError(
-						`Failed to generate image ${outputFileName}:`,
-						error,
-					);
-				});
+			try {
+				await image
+					.clone()
+					.resize({
+						width: size,
+						fit: sharp.fit.inside,
+						withoutEnlargement: true,
+					})
+					.toFormat(format, { quality })
+					.toFile(outputPath);
+
+				logDebug(`Generated: ${outputFileName}`);
+				safeIncrement(counts, "generated");
+			} catch (error) {
+				logError(`Failed to generate image ${outputFileName}:`, error);
+				throw error;
+			}
 		}),
 	);
 }
@@ -220,7 +212,7 @@ function createProcessedImageRegex(): RegExp {
 		`^${escapeRegex(IMAGE_FILENAME_TEMPLATE)
 			.replace("\\{base\\}", "([A-Za-z0-9-_]+)")
 			.replace("\\{size\\}", "(\\d+)")
-			.replace("\\{ext\\}", `(${IMAGE_EXTENSIONS.join("|")})`)}$`,
+			.replace("\\{ext\\}", `(${escapeRegex(IMAGE_EXT)})`)}$`,
 		"i",
 	);
 }

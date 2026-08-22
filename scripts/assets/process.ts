@@ -18,6 +18,7 @@ async function executeProcessing(): Promise<void> {
 		}
 	} catch (error) {
 		logError("Error during image processing:", error);
+		throw error;
 	}
 	console.timeEnd("Total image processing time");
 }

@@ -34,7 +34,6 @@
   },
   "trustedDependencies": [
     "@tailwindcss/oxide",
-    "sharp",
     "@evilmartians/lefthook",
     "@biomejs/biome",
   ],

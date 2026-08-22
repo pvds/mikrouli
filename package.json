@@ -84,8 +84,7 @@
 		"@biomejs/biome",
 		"@evilmartians/lefthook",
 		"@tailwindcss/oxide",
-		"esbuild",
-		"sharp"
+		"esbuild"
 	],
 	"overrides": {
 		"playwright-core": "$playwright"

@@ -73,6 +73,15 @@ export const JSON_OUTPUT_DIR = "src/data/generated";
 
 // Image processing
 export const IMAGE_EXT = "webp";
+const IMAGE_MIME_TYPES: Record<string, string> = {
+	jpg: "image/jpeg",
+	jpeg: "image/jpeg",
+	tif: "image/tiff",
+	tiff: "image/tiff",
+	svg: "image/svg+xml",
+};
+export const IMAGE_MIME_TYPE =
+	IMAGE_MIME_TYPES[IMAGE_EXT] ?? `image/${IMAGE_EXT}`;
 export const IMAGE_SIZES = [320, 480, 640, 800, 960, 1280, 1920];
 export const IMAGE_THUMBNAIL_SIZE = IMAGE_SIZES[0];
 export const IMAGE_FILENAME_TEMPLATE = "{base}-{size}.{ext}";
