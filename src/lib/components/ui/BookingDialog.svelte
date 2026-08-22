@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import {
 	BOOKING_OPTIONS,
 	BOOKING_URL,
@@ -6,36 +6,33 @@ import {
 	BUTTON_THEME,
 } from "$config";
 import { svgIcon } from "$lib/helpers/icon";
+import type {
+	BookingCta,
+	BookingType,
+	CtaIcon,
+	CtaSize,
+	CtaTheme,
+} from "$types/content";
 import Dialog from "$ui/Dialog.svelte";
 
-/**
- * @typedef {import("$types/content").BookingType} BookingType
- * @typedef {import("$types/content").BookingCta} BookingCta
- * @typedef {import("$types/content").CtaTheme} CtaTheme
- * @typedef {import("$types/content").CtaSize} CtaSize
- * @typedef {import("$types/content").CtaIcon} CtaIcon
- *
- * @typedef {Object} Props
- * @property {BookingType} [type='page']
- * @property {BookingCta} [cta]
- * @property {CtaTheme} [ctaTheme='primary']
- * @property {CtaSize} [ctaSize='md']
- * @property {CtaIcon} [ctaIcon]
- */
+interface Props {
+	type?: BookingType;
+	cta?: BookingCta;
+	ctaTheme?: CtaTheme;
+	ctaSize?: CtaSize;
+	ctaIcon?: CtaIcon;
+}
 
-/** @type {Props} */
 let {
 	type = "page",
 	cta,
 	ctaSize = "md",
 	ctaTheme = "primary",
 	ctaIcon,
-} = $props();
+}: Props = $props();
 
-/** @type {HTMLDialogElement|null} */
-let dialog = $state(null);
-/** @type {'loading'|'loaded'|'failed'} */
-let iframeState = $state("loading");
+let dialog = $state<HTMLDialogElement | null>(null);
+let iframeState = $state<"loading" | "loaded" | "failed">("loading");
 
 const booking = $derived(BOOKING_OPTIONS[type]);
 </script>

@@ -1,17 +1,15 @@
-<script>
+<script lang="ts">
 import { resolve } from "$app/paths";
+import type { PostFields } from "$types/contentful";
 import { getImageName } from "../../helpers/image.js";
 import Image from "./image/Image.svelte";
 
-/**
- * @typedef {import("$types/contentful").PostFields } PostFields
- * @typedef {Object} Props
- * @property {PostFields} post
- * @property {boolean} [priority=false]
- */
+interface Props {
+	post: PostFields;
+	priority?: boolean;
+}
 
-/** @type {Props} */
-let { post, priority = false } = $props();
+let { post, priority = false }: Props = $props();
 </script>
 <article
 	class="group relative flex flex-col md:flex-row items-center gap-4">

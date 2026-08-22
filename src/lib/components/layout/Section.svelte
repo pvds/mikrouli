@@ -1,22 +1,21 @@
-<script>
-/**
- * @typedef {import('$types/content').SectionTheme} SectionTheme
- * @typedef {import('svelte/elements').ClassValue} ClassValue
- * @typedef {Object} Props
- * @property {ClassValue} [classes] on outer <section>, use styling the section (position, z-index, etc.)
- * @property {ClassValue} [innerClasses] on inner <div>, use for styling the content (grid, flex, etc.)
- * @property {string} [title]
- * @property {'sm'|'md'|'lg'} [size='md']
- * @property {SectionTheme} [theme='default']
- * @property {ClassValue} [customSpacing]
- * @property {boolean} [wave]
- * @property {import('svelte').Snippet} [children]
- */
-
+<script lang="ts">
+import type { Snippet } from "svelte";
+import type { ClassValue } from "svelte/elements";
 import { SPACING_X_CLASSES } from "$config";
+import type { SectionTheme } from "$types/content";
 import WaveSvg from "$visuals/WaveSvg.svelte";
 
-/** @type {Props} */
+interface Props {
+	classes?: ClassValue;
+	innerClasses?: ClassValue;
+	title?: string;
+	size?: "sm" | "md" | "lg";
+	theme?: SectionTheme;
+	customSpacing?: ClassValue;
+	wave?: boolean;
+	children?: Snippet;
+}
+
 let {
 	classes,
 	innerClasses,
@@ -26,7 +25,7 @@ let {
 	customSpacing,
 	wave,
 	children,
-} = $props();
+}: Props = $props();
 
 const spacingY = {
 	sm: {

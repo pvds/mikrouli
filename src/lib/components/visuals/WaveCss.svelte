@@ -1,6 +1,6 @@
-<script>
-/** @typedef {import('./WaveCss.type').WaveProps} Wave */
-/** @type Wave */
+<script lang="ts">
+import type { WaveProps } from "./WaveCss.type";
+
 let {
 	width = "100%",
 	height = 20,
@@ -9,7 +9,7 @@ let {
 	invert = false,
 	inside = false,
 	color = "bg-primary-lightest",
-} = $props();
+}: WaveProps = $props();
 
 const exponent = 0.6; // higher means steeper exponential curve
 const factor = 3.5; // higher means more points

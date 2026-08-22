@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import { page } from "$app/state";
 import Hero from "$layout/Hero.svelte";
 </script>

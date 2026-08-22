@@ -1,25 +1,27 @@
-<script>
+<script lang="ts">
 import { resolve } from "$app/paths";
 import { isCurrentPage } from "$lib/helpers/page";
+import type { NavigationItem } from "$types/content";
+import type { NavigationEntry } from "$types/contentful";
 import BookingDialog from "$ui/BookingDialog.svelte";
 import WaveCss from "$visuals/WaveCss.svelte";
 import { toNavItems } from "../../helpers/nav.js";
 
-/**
- * @typedef {import('$types/contentful').NavigationEntry} NavigationEntry
- * @typedef {import('$types/content').NavigationItem} NavigationItem
- */
+interface Props {
+	menu: NavigationEntry;
+}
 
-/** @type {{ menu: NavigationEntry }} */
-let { menu } = $props();
+let { menu }: Props = $props();
 
-/** @type {Record<number,HTMLUListElement>} */
-let menuPopovers = $state([]);
+let menuPopovers = $state<HTMLUListElement[]>([]);
 
 const base = resolve("/");
 const navItemsBase = $derived(toNavItems(menu.fields.items));
-/** @type NavigationItem */
-const navItemHome = { href: base, label: "Home", title: "Mikrouli home page" };
+const navItemHome: NavigationItem = {
+	href: base,
+	label: "Home",
+	title: "Mikrouli home page",
+};
 const navItemsWithHome = $derived([navItemHome, ...navItemsBase]);
 const bookingCta = {
 	text: "Book a Session",
@@ -40,8 +42,7 @@ const bookingCta = {
 		</div>
 </nav>
 
-{#snippet navMenu(/** @type NavigationItem[] */ navItems, /** @type string */ classes, /** @type
- string */ screen)}
+{#snippet navMenu(navItems: NavigationItem[], classes: string, screen: string)}
 <ul class="flex {classes} items-center justify-end">
 {#each navItems as { href, label, title, menuTitle, target, items }, i (href)}
 	<li class="grow {href === base ? 'max-sm:hidden' : ''}">
@@ -74,15 +75,7 @@ const bookingCta = {
 </ul>
 {/snippet}
 
-{#snippet NavLink(
-	/** @type string */href,
-	/** @type string */label,
-	/** @type {string|undefined} */ title,
-	/** @type {string|undefined} */ target,
-	/** @type {HTMLUListElement|null} */ menuPopover = null,
-	/** @type {boolean} */ exactMatch = false,
-	/** @type {string} */ classes = "",
-)}
+{#snippet NavLink(href: string, label: string, title?: string, target?: string, menuPopover: HTMLUListElement | null | undefined = undefined, exactMatch: boolean = false, classes: string = "")}
 	<a {href} {title} {target} onclick={menuPopover ? () => menuPopover.hidePopover() : undefined}
 		aria-current={isCurrentPage(href, true) ? "page" : undefined}
    		class="nav-menu__link inline-block w-full px-1 md-mid:px-4 py-1 font-semibold transition-all {classes}

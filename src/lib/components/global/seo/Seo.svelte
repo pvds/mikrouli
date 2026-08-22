@@ -1,21 +1,18 @@
-<script>
+<script lang="ts">
+import type { Snippet } from "svelte";
 import { asset, resolve } from "$app/paths";
 import { page } from "$app/state";
 import { ORG_NAME, ORG_NAME_SUFFIX, ORG_SLOGAN } from "$config";
 import { checkSeo } from "./Seo.helper.js";
+import type { SEOProps } from "./Seo.svelte.types.js";
 
-/** @typedef {import('./Seo.svelte.types.js').SEOProps} SEOProps */
+let { children }: { children?: Snippet } = $props();
 
-/** @type {{children?: import('svelte').Snippet}} */
-let { children } = $props();
-
-/**
- * @param {string | undefined} title title of the current page
- * @param {string | undefined} [category] category of the current page
- * @param {string} [separator] separator between title, parent, and slogan
- * @returns {string} the constructed title
- */
-const constructTitle = (title, category, separator = " - ") => {
+const constructTitle = (
+	title: string | undefined,
+	category: string | undefined,
+	separator: string = " - ",
+): string => {
 	const space = " ";
 	const isHome = page.url.pathname === resolve("/");
 	const categoryPart = category ? `${category} ${separator} ` : "";
@@ -24,20 +21,16 @@ const constructTitle = (title, category, separator = " - ") => {
 		: title + separator + categoryPart + ORG_NAME + space + ORG_NAME_SUFFIX;
 };
 
-/** @type {SEOProps['title']} */
-let title = $derived(
+let title: SEOProps["title"] = $derived(
 	constructTitle(page.data.seo.title, page.data.seo.category),
 );
-/** @type {SEOProps['description']} */
-let description = $derived(page.data.seo.description);
-/** @type {SEOProps['keywords']} */
-let keywords = $derived(page.data.seo.keywords);
-/** @type {SEOProps['canonical']} */
-let canonical = $derived(page.data.seo.canonical || page.url.href);
-/** @type {SEOProps['siteName']} */
-let siteName = $derived(page.data.seo.siteName);
-/** @type {SEOProps['imageURL']} */
-let imageURL = $derived(
+let description: SEOProps["description"] = $derived(page.data.seo.description);
+let keywords: SEOProps["keywords"] = $derived(page.data.seo.keywords);
+let canonical: SEOProps["canonical"] = $derived(
+	page.data.seo.canonical || page.url.href,
+);
+let siteName: SEOProps["siteName"] = $derived(page.data.seo.siteName);
+let imageURL: SEOProps["imageURL"] = $derived(
 	page.data.seo?.imageURL ? asset(`/${page.data.seo.imageURL}`) : undefined,
 );
 /** @type {SEOProps['logo']} */

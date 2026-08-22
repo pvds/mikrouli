@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import { resolve } from "$app/paths";
 import { ORG_NAME, ORG_NAME_SUFFIX } from "$config";
 import Logo from "$visuals/Logo.svelte";

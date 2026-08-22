@@ -1,17 +1,17 @@
-<script>
-/**
- * @typedef {Object} Props
- * @property {string} [classes]
- * @property {boolean} [fullscreen=false]
- * @property {HTMLDialogElement|null} dialogElement
- * @property {import('svelte').Snippet} [children]
- * @property {import('svelte').Snippet} [header]
- * @property {import('svelte').Snippet} [headerContent]
- * @property {import('svelte').Snippet} [footer]
- * @property {import('svelte').Snippet} [footerContent]
- */
+<script lang="ts">
+import type { Snippet } from "svelte";
 
-/** @type {Props} */
+interface Props {
+	classes?: string;
+	fullscreen?: boolean;
+	dialogElement?: HTMLDialogElement | null;
+	children?: Snippet;
+	header?: Snippet;
+	headerContent?: Snippet;
+	footer?: Snippet;
+	footerContent?: Snippet;
+}
+
 let {
 	classes = "",
 	fullscreen = false,
@@ -21,14 +21,9 @@ let {
 	headerContent,
 	footer,
 	footerContent,
-} = $props();
+}: Props = $props();
 
-/**
- * Handle backdrop click to close the dialog
- * NB this only works if the dialog is modal (dialog.showModal())
- * @param {MouseEvent} event
- */
-function handleBackdropClick(event) {
+function handleBackdropClick(event: MouseEvent): void {
 	if (event.target === dialogElement) {
 		dialogElement?.close();
 	}

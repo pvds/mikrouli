@@ -1,25 +1,22 @@
-<script>
+<script lang="ts">
 import { resolve } from "$app/paths";
 import { IMAGE_SIZES } from "$config";
 import metadata from "$data/generated/meta/images.json";
+import type { ImageMeta } from "$types/content";
 
-/**
- * @typedef {import('$types/content').ImageMeta} ImageMeta
- * @typedef {Record<string, ImageMeta>} Metadata
- * @typedef {Object} Props
- * @property {string} image
- * @property {string} alt
- * @property {string} sizes
- * @property {boolean} [priority]
- * @property {number} [maskIndex]
- * @property {string} [classes]
- * @property {string} [heightClass]
- * @property {string} [widthClass]
- * @property {string} [positionClass]
- * @property {boolean} [isLocal]
- */
+interface Props {
+	image: string;
+	alt: string;
+	sizes: string;
+	priority?: boolean;
+	maskIndex?: number;
+	classes?: string;
+	heightClass?: string;
+	widthClass?: string;
+	positionClass?: string;
+	isLocal?: boolean;
+}
 
-/** @type {Props} */
 let {
 	image,
 	alt,
@@ -31,26 +28,7 @@ let {
 	heightClass = "h-full",
 	widthClass = "w-full",
 	positionClass = "object-center",
-} = $props();
-
-// Dynamic import causes a loading delay, keep for future reference
-// /** @type {ImageMeta|undefined} */
-// let meta = $state();
-// const loadMetadata = async () => {
-// 	try {
-// 		const metadata = await import(
-// 			`$data/generated/meta/${isLocal ? "local" : "cms"}/${image}.json`
-// 		);
-// 		meta = metadata.default;
-// 		loadedData = true;
-// 	} catch (error) {
-// 		console.error("Failed to load image metadata:", error);
-// 		loadedData = false;
-// 	}
-// };
-// onMount(() => {
-// 	loadMetadata();
-// });
+}: Props = $props();
 
 const base = resolve("/");
 const IMAGE_DIR = "images";
@@ -61,8 +39,14 @@ const usePlaceholder = false;
 let loadedData = $state(true);
 let loadedImage = $state(false);
 
+type MetadataCollection = Record<string, ImageMeta | undefined>;
+const imageMetadata: {
+	local: MetadataCollection;
+	cms: MetadataCollection;
+} = metadata;
+
 const metaCategory = $derived(
-	/** @type Metadata */ (isLocal ? metadata.local : metadata.cms),
+	isLocal ? imageMetadata.local : imageMetadata.cms,
 );
 const meta = $derived(metaCategory[image]);
 
@@ -74,12 +58,7 @@ const placeholder = $derived(meta?.placeholder);
 const aspectRatio = $derived(meta ? `${meta.width}/${meta.height}` : "1/1");
 const hasAlpha = $derived(meta?.hasAlpha);
 
-/**
- * Generate a `srcset` string for responsive images
- * @param {number[]} sizes
- * @returns {string}
- */
-const srcset = (sizes) =>
+const srcset = (sizes: number[]): string =>
 	sizes
 		.map((size) => `${base}${directory}/${image}-${size}.webp ${size}w`)
 		.join(", ");

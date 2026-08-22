@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import { onMount } from "svelte";
 import { U_NBSP } from "$config";
 import ContentSection from "$layout/ContentSection.svelte";
@@ -7,9 +7,9 @@ import Outro from "$layout/Outro.svelte";
 import TeaserSection from "$layout/TeaserSection.svelte";
 import { formatDate } from "$lib/helpers/date.js";
 import { getImageName } from "$lib/helpers/image.js";
+import type { PageProps } from "./$types";
 
-/** @type {import('./$types').PageProps} */
-let { data } = $props();
+let { data }: PageProps = $props();
 const page = $derived(data.page.fields);
 const meta = $derived(data.page.meta);
 const services = $derived(data.services);

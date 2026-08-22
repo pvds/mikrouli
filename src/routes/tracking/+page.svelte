@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import { onMount } from "svelte";
 import { BUTTON_THEME } from "$config";
 
@@ -8,11 +8,11 @@ onMount(() => {
 	isDisabled = localStorage.getItem("umami.disabled") === "1";
 });
 
-function toggleTracking() {
+function toggleTracking(): void {
 	if (isDisabled) {
-		localStorage.removeItem("umami.disabled"); // Enable tracking
+		localStorage.removeItem("umami.disabled");
 	} else {
-		localStorage.setItem("umami.disabled", "1"); // Disable tracking
+		localStorage.setItem("umami.disabled", "1");
 	}
 	isDisabled = !isDisabled;
 }

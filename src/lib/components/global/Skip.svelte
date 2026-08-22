@@ -1,3 +1,5 @@
+<script lang="ts"></script>
+
 <a
 	href="#main-content"
 	class="z-10 fixed top-0 left-[50%] -translate-x-[50%] -translate-y-full focus:translate-y-0

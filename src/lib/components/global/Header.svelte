@@ -1,15 +1,17 @@
-<script>
+<script lang="ts">
+import type { Snippet } from "svelte";
 import { onMount } from "svelte";
 import Section from "$layout/Section.svelte";
 
-/** @type {IntersectionObserver} */
-let observer;
-/** @type {HTMLDivElement} */
-let sentinel;
+interface Props {
+	children: Snippet;
+}
+
+let observer: IntersectionObserver;
+let sentinel: HTMLDivElement;
 let isCompact = $state(false);
 
-/** @type {{children: import('svelte').Snippet}} */
-let { children } = $props();
+let { children }: Props = $props();
 
 onMount(() => {
 	const observer = new IntersectionObserver(
