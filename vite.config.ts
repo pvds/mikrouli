@@ -8,7 +8,7 @@ import {
 	BUILD_DIR_STAGING,
 	URL_BASE_PRODUCTION,
 	URL_BASE_STAGING,
-} from "./src/config.js";
+} from "./src/config.ts";
 
 const target = process.env.DEPLOY_TARGET || "staging";
 const production = target === "production";
