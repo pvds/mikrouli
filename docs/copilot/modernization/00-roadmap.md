@@ -146,11 +146,11 @@ The full JSDoc-JavaScript -> TypeScript source conversion is **not** part of thi
 
 Read the sitemap section in [`01-dependency-majors.md`](./01-dependency-majors.md).
 
-After Vite/Kit configuration is stable:
+Current state:
 
-- migrate the deprecated CLI/postbuild integration to `svelte-sitemap/vite`;
-- preserve target-specific `domain` and `outDir` behavior;
-- remove the old helper/postbuild scripts only after sitemap parity is verified.
+- sitemap generation uses `svelte-sitemap/vite`;
+- target-specific `domain` and `outDir` behavior stays intact;
+- old helper and postbuild scripts are removed.
 
 #### 7. Bun.WebView prototype
 
