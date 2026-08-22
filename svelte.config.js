@@ -6,7 +6,7 @@ const production = target === "production";
 const CSP_YOUTUBE = "https://www.youtube.com";
 const CSP_SETMORE = "https://mikrouli.setmore.com";
 const CSP_UMAMI = "https://cloud.umami.is/script.js";
-const CSP_UMAMI_API = "https://api-gateway.umami.dev/api/send";
+const CSP_UMAMI_API = "https://gateway.umami.is/api/send";
 const CSP_WHITELIST = {
 	scriptElem: [CSP_UMAMI], // Ensures script attributes work
 	connect: [CSP_UMAMI_API], // Ensures Umami API works
