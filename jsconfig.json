@@ -21,6 +21,7 @@
 		"src/**/*.ts",
 		"src/**/*.svelte",
 		"scripts/**/*.js",
+		"scripts/bun-env.d.ts",
 		"tests/**/*.js",
 		"tests/**/*.ts",
 		"tests/**/*.svelte"

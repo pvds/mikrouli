@@ -1,17 +1,10 @@
 # Using JSDoc for Type Safety in JavaScript
 
-Below is an updated guide that expands on import usage and includes advanced
-tips and best practices discovered from various online resources and official
-documentation.
-
 ---
 
 ## 1. Why JSDoc?
 
-JSDoc provides inline documentation and lightweight type annotations for
-JavaScript code. When combined with TypeScript’s `--checkJs` (or a
-`tsconfig.json` with `"checkJs": true`), it can offer a decent type-checking
-experience without migrating to full TypeScript.
+JSDoc provides lightweight type annotations and inline documentation. Combined with TypeScript's `--checkJs`, it offers type-checking without full TypeScript migration.
 
 ---
 
@@ -19,8 +12,7 @@ experience without migrating to full TypeScript.
 
 ### 2.1 Importing Types from a Module
 
-Often, you’ll want to reference types from external libraries. The core pattern
-uses `@typedef {import('module').Type} LocalName`, for example:
+Reference types using `@typedef {import('module').Type} LocalName`:
 
 ```js
 /**
@@ -28,7 +20,7 @@ uses `@typedef {import('module').Type} LocalName`, for example:
  */
 ```
 
-Then you can use `SvelteSnippet` as a type in the same file:
+Use the type in the file:
 
 ```js
 /** @type {SvelteSnippet} */
@@ -37,8 +29,7 @@ let snippet = someSvelteCode();
 
 ### 2.2 Importing Multiple Types
 
-If you want to import multiple types from the same module, you can define
-multiple typedef lines:
+Define multiple typedef lines or combine:
 
 ```js
 /**
@@ -47,20 +38,9 @@ multiple typedef lines:
  */
 ```
 
-Alternatively, you can combine them:
+### 2.3 Default Exports vs. Named Exports
 
-```js
-/**
- * @typedef {Object} MyTypes
- * @property {import('my-lib').TypeA} A
- * @property {import('my-lib').TypeB} B
- */
-```
-
-### 2.3 Referencing Default Exports vs. Named Exports
-
-Occasionally, you’ll need to import a default export’s type. For example, say
-`my-lib` has a default export class:
+For default exports:
 
 ```js
 /**
@@ -68,12 +48,7 @@ Occasionally, you’ll need to import a default export’s type. For example, sa
  */
 ```
 
-Then you can use `MyDefaultClass` as a type for variables, function parameters,
-etc.
-
 ### 2.4 Namespaced Imports
-
-Some libraries export a namespace or multiple subpaths. For instance:
 
 ```js
 /**
@@ -84,10 +59,7 @@ Some libraries export a namespace or multiple subpaths. For instance:
 
 ---
 
-## 3. Advanced JSDoc Syntax & Usage
-
-Below are some more advanced patterns you can incorporate, based on best
-practices gleaned from community articles and official references.
+## 3. Advanced JSDoc Syntax
 
 ### 3.1 Defining Complex Object Shapes
 
@@ -106,8 +78,6 @@ JSDoc allows you to define deeply nested object shapes:
 
 ### 3.2 Function Expressions and Arrow Functions
 
-For arrow functions, you can attach types using `@type`:
-
 ```js
 /**
  * @type {(name: string) => string}
@@ -115,12 +85,9 @@ For arrow functions, you can attach types using `@type`:
 const greet = (name) => `Hello, \${name}`;
 ```
 
-This ensures editors know that `greet` is a function that expects a string and
-returns a string.
+This ensures editors know that `greet` is a function that expects a string and returns a string.
 
 ### 3.3 Multiple Type Parameters (Generics)
-
-You can specify multiple templates:
 
 ```js
 /**
@@ -134,9 +101,7 @@ function pair(a, b) {
 }
 ```
 
-### 3.4 Overloads with `@overload`
-
-While not as concise as TypeScript, you can approximate function overloads:
+### 3.4 Function Overloads
 
 ```js
 /**
@@ -158,49 +123,41 @@ function echo(value) {
 }
 ```
 
-### 3.5 Extending/Implementing Classes
-
-````js
-/**
-* @class
-* @extends {Array<string>}
-  */
-  class StringArray extends Array {
-  /**
-	* @returns {number}
-	  */
-	  get lengthSquared() {
-	  return this.length * this.length;
-	  }
-	  }
-	  ```
-
-### 3.6 Destructuring Parameters
-
-You can provide JSDoc for destructured objects:
+### 3.5 Extending Classes
 
 ```js
 /**
-* @param {{ name: string, age?: number }} user
-  */
-  function printUserInfo({ name, age }) {
-  console.log(`User: \${name}, Age: \${age}`);
-  }
-````
+ * @class
+ * @extends {Array<string>}
+ */
+class StringArray extends Array {
+	/**
+	 * @returns {number}
+	 */
+	get lengthSquared() {
+		return this.length * this.length;
+	}
+}
+```
+
+### 3.6 Destructuring Parameters
+
+```js
+/**
+ * @param {{ name: string, age?: number }} user
+ */
+function printUserInfo({ name, age }) {
+	console.log(`User: ${name}, Age: ${age}`);
+}
+```
 
 ---
 
 ## 4. Best Practices
 
-### 4.1 Maintain a `tsconfig.json` or `jsconfig.json`
+### 4.1 Maintain `tsconfig.json` or `jsconfig.json`
 
-- **Enable `"checkJs": true`**  
-  This allows TypeScript’s checker to parse and validate your JSDoc in `.js`
-  files.
-- **`"allowJs": true`** (often needed)  
-  Tells TypeScript to process JavaScript files.
-
-Example partial `tsconfig.json`:
+Enable `"checkJs": true` to parse and validate JSDoc:
 
 ```json
 {
@@ -210,224 +167,161 @@ Example partial `tsconfig.json`:
 		"strict": true,
 		"skipLibCheck": true
 	},
-	"include": ["src/**/*"],
-	"exclude": ["node_modules", "**/dist/**"]
+	"include": ["src/**/*"]
 }
 ```
 
-### 4.2 Keep JSDoc Up-to-Date
+### 4.2 Keep JSDoc Updated
 
-- **Sync Doc with Code**: If function parameters change, update your JSDoc
-  comments immediately.
-- **Remove Inaccurate Tags**: Old or misleading tags can cause confusion and
-  type-checking errors.
+- Sync doc with code: update JSDoc immediately when parameters change.
+- Remove inaccurate tags to prevent confusion.
 
 ### 4.3 Use ESLint Plugins
 
-- **`eslint-plugin-jsdoc`**  
-  Enforces consistency and correctness of JSDoc comments.
+`eslint-plugin-jsdoc` enforces consistency and correctness.
 
 ### 4.4 Document at the Right Level
 
-- **Function/Method-Level Comments**: Provide `@param` and `@returns` for all
-  public APIs.
-- **Module/File-Level Comments**: Consider using `@file` or `@module` tags to
-  describe the file’s purpose.
-- **Class Comments**: Use `@class`, `@extends`, `@implements` for clarity on
-  inheritance or interface-like usage.
+- **Function/Method**: Provide `@param` and `@returns`.
+- **Module/File**: Use `@file` or `@module` tags.
+- **Class**: Use `@class`, `@extends`, `@implements`.
 
-### 4.5 Consistency in Typedef Naming
+### 4.5 Consistency in Naming
 
-- **Use PascalCase for Type Definitions**: e.g.,
-  `@typedef {Object} UserAccount`.
-- **Use Meaningful Names**: e.g.,
-  `@typedef {import('svelte').Snippet} SvelteSnippet` should be named to reflect
-  its usage.
+- Use PascalCase for type definitions: `@typedef {Object} UserAccount`
+- Use meaningful names reflecting usage.
 
 ---
 
-## 5. More Advanced Tips (from Online Examples)
+## 5. Advanced Tips
 
-1. **Combining JSDoc With `.d.ts`**  
-   You can supplement your JSDoc with additional `.d.ts` files if you need
-   advanced TypeScript features that JSDoc can’t cover (e.g., advanced mapped
-   types, third-party type augmentations, or global scoping).
+**1. Combining JSDoc With `.d.ts`**
 
-2. **Re-Exporting Types**  
-   Some projects create a dedicated `types.js` or `globals.js` file with all
-   `@typedef` imports, then reference them throughout the codebase. For
-   instance:
+Supplement JSDoc with `.d.ts` files for advanced TypeScript features (mapped types, type augmentation, global scoping).
 
-    ```js
-    // types.js
-    /**
-     * @typedef {import('some-lib').SomeType} SomeType
-     */
-    export {};
-    ```
+**2. Re-Exporting Types**
 
-    Then in other files:
+Create a dedicated `types.js` with all `@typedef` imports:
 
-    ```js
-    /** @type {import('./types').SomeType} */
-    let thing;
-    ```
+```js
+// types.js
+/**
+ * @typedef {import('some-lib').SomeType} SomeType
+ */
+export {};
+```
 
-3. **Svelte-Specific Patterns**
-    - Svelte’s `<script>` tags can be in TypeScript mode, but if you prefer
-      JSDoc:
+Then reference elsewhere:
 
-        ```html
-        <script>
-        	/**
-        	 * @typedef {Object} MyProps
-        	 * @property {string} message
-        	 */
+```js
+/** @type {import('./types').SomeType} */
+let thing;
+```
 
-        	/** @type {MyProps} */
-        	export let props;
-        </script>
-        ```
+**3. Svelte-Specific Patterns**
 
-    - For advanced usage, check
-      [SvelteKit’s type docs](https://kit.svelte.dev/docs/types) which often
-      show JSDoc-based examples.
+```html
+<script>
+	/**
+	 * @typedef {Object} MyProps
+	 * @property {string} message
+	 */
+
+	/** @type {MyProps} */
+	export let props;
+</script>
+```
+
+Check [SvelteKit's type docs](https://kit.svelte.dev/docs/types) for more examples.
 
 ---
 
-## 6. Putting It All Together (Example)
+## 6. Example: Putting It All Together
 
-/\*\* @file
+```js
+/** @file
+ * Demonstrates advanced JSDoc with imports, generics, and best practices.
+ */
 
-- Demonstrates advanced JSDoc usage with imports, destructuring, generics,
-- and best practices. \*/
+/**
+ * @typedef {import('svelte').Snippet} SvelteSnippet
+ * @typedef {import('./myTypes').MyComplexType} MyComplexType
+ */
 
-/\*\*
+/**
+ * @template T
+ * @param {T[]} items
+ * @returns {T}
+ */
+function first(items) {
+	return items[0];
+}
 
-- @typedef {import('svelte').Snippet} SvelteSnippet
-- @typedef {import('./myTypes').MyComplexType} MyComplexType \*/
+/**
+ * @typedef {Object} Props
+ * @property {string} classes
+ * @property {SvelteSnippet} [children]
+ * @property {MyComplexType} extra
+ */
 
-/\*\*
-
-- @template T
-- @param {T[]} items - list of items of generic type T
-- @returns {T} \*/ function first(items) { return items[0]; }
-
-/\*\*
-
-- @typedef {Object} Props
-- @property {string} classes - CSS classes
-- @property {SvelteSnippet} [children] - optional snippet from Svelte
-- @property {MyComplexType} extra - a custom type from a local definition \*/
-
-/\*_ @type {Props} _/ let props = { classes: 'my-class', children: /_ some
-snippet _/, extra: { id: 'xyz', description: 'A custom advanced type usage', },
+/** @type {Props} */
+let props = {
+	classes: 'my-class',
+	children: null,
+	extra: { id: 'xyz', description: 'Custom type usage' },
 };
 
-// Destructure props const { classes, children, extra } = props;
+const { classes, children, extra } = props;
 
-/\*\*
-
-- @param {Props} inputProps
-- @returns {void} \*/ function processProps(inputProps) {
-  console.log(`Classes: \${inputProps.classes}`); if (inputProps.children) {
-  console.log('Has snippet', inputProps.children); } console.log(`Extra: `,
-  inputProps.extra); }
+/**
+ * @param {Props} inputProps
+ * @returns {void}
+ */
+function processProps(inputProps) {
+	console.log(`Classes: ${inputProps.classes}`);
+	if (inputProps.children) {
+		console.log('Has snippet:', inputProps.children);
+	}
+	console.log('Extra:', inputProps.extra);
+}
+```
 
 ---
 
-## 7. Additional Resources
+## 7. Resources
 
-- **JSDoc Official**  
-  [https://jsdoc.app](https://jsdoc.app)
+**Official**
+- [JSDoc Official](https://jsdoc.app)
+- [TypeScript JSDoc Support](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html)
 
-- **TypeScript JSDoc Reference**  
-  [https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html)
+**Cheat Sheets**
+- [JSDoc Syntax Guide](https://github.com/shri/JSDoc-Style-Guide)
+- [JSDoc Tag Reference](https://devhints.io/jsdoc)
+- [VS Code JSDoc Guide](https://code.visualstudio.com/docs/nodejs/working-with-javascript#_intellisense-and-jsdoc)
 
-- **Svelte Documentation**  
-  [https://svelte.dev/docs](https://svelte.dev/docs)  
-  (Check for articles on JSDoc usage and type checking.)
+**Guides & Tutorials**
+- [Boost Javascript with JSDoc Typing](https://dev.to/samuel-braun/boost-your-javascript-with-jsdoc-typing-3hb3)
+- [Using JSDoc in JavaScript](https://blog.logrocket.com/using-jsdoc-javascript/)
+- [JSDoc Type Checking in VS Code](https://mariusschulz.com/blog/jsdoc-type-checking-in-vs-code)
+- [Documenting JavaScript with JSDoc](https://www.digitalocean.com/community/tutorials/documenting-javascript-with-jsdoc)
 
-- **ESLint Plugin JSDoc**  
-  [https://github.com/gajus/eslint-plugin-jsdoc](https://github.com/gajus/eslint-plugin-jsdoc)
+**Advanced**
+- [Advanced JSDoc for TypeScript Users](https://fettblog.eu/typescript-jsdoc-superpowers/)
+- [Svelte JSDoc Guide](https://kit.svelte.dev/docs/types#using-jsdoc)
+- [JSDoc Generics & Advanced Types](https://dmitripavlutin.com/jsdoc-types/)
+
+**Tools**
+- [Documentation Generator](https://documentation.js.org/)
+- [eslint-plugin-jsdoc](https://github.com/gajus/eslint-plugin-jsdoc)
+- [ts-migrate](https://github.com/airbnb/ts-migrate)
 
 ---
 
 ## Conclusion
 
-Using JSDoc in tandem with TypeScript’s `--checkJs` mode can provide excellent
-type insights and editor support with minimal overhead. The key points are:
+Key points:
 
-1. **Import external types** with `@typedef {import('some-lib').Something}`.
-2. **Leverage advanced features** like generics, overloads, and destructuring in
-   JSDoc.
-3. **Use a proper config** (`tsconfig.json` or `jsconfig.json`) with
-   `"checkJs": true`.
-4. **Stay consistent and up-to-date** with your comments to ensure accuracy.
-
-**Happy coding!**
-
----
-
-## JSDoc Resources: Usage, Cheat Sheets, and Best Practices
-
-A concise collection of resources for JSDoc usage, syntax, and best practices.
-
-### Official Documentation
-
-- [JSDoc Official Site](https://jsdoc.app) – Comprehensive reference for all
-  JSDoc tags and usage.
-- [TypeScript JSDoc Support](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html)
-  – How JSDoc integrates with TypeScript for type checking.
-
-### Cheat Sheets & References
-
-- [JSDoc Syntax Cheat Sheet (GitHub)](https://github.com/shri/JSDoc-Style-Guide)
-  – A guide to JSDoc syntax and style.
-- [JSDoc Tag Reference](https://devhints.io/jsdoc) – Quick reference for JSDoc
-  tags.
-- [VS Code JSDoc Guide](https://code.visualstudio.com/docs/nodejs/working-with-javascript#_intellisense-and-jsdoc)
-  – Using JSDoc to enhance IntelliSense.
-
-### Guides & Tutorials
-
-- [Boost your Javascript with JSDoc typing](https://dev.to/samuel-braun/boost-your-javascript-with-jsdoc-typing-3hb3)
-    - extensive comparison of JSDoc and TypeScript.
-- [Using JSDoc in JavaScript (LogRocket)](https://blog.logrocket.com/using-jsdoc-javascript/)
-  – Beginner-friendly guide.
-- [JSDoc Type Checking in VS Code](https://mariusschulz.com/blog/jsdoc-type-checking-in-vs-code)
-  – Enabling `--checkJs` for type safety.
-- [Documenting JavaScript with JSDoc (DigitalOcean)](https://www.digitalocean.com/community/tutorials/documenting-javascript-with-jsdoc)
-  – Practical examples of JSDoc usage.
-
-### Advanced Patterns
-
-- [Advanced JSDoc for TypeScript Users](https://fettblog.eu/typescript-jsdoc-superpowers/)
-  – Explores advanced JSDoc features and TypeScript integration.
-- [Svelte JSDoc Guide](https://kit.svelte.dev/docs/types#using-jsdoc) – JSDoc
-  usage in Svelte projects.
-- [JSDoc Generics & Advanced Types](https://dmitripavlutin.com/jsdoc-types/) –
-  Detailed explanations of generics and templates.
-
-### Tools & Plugins
-
-- [Documentation Generator](https://documentation.js.org/) – Generate HTML docs
-  from JSDoc comments.
-- [eslint-plugin-jsdoc](https://github.com/gajus/eslint-plugin-jsdoc) – Lint
-  JSDoc comments for correctness and consistency.
-- [ts-migrate](https://github.com/airbnb/ts-migrate) – Automate JSDoc to
-  TypeScript migrations.
-
-### Communities & Forums
-
-- [Stack Overflow JSDoc Tag](https://stackoverflow.com/questions/tagged/jsdoc) –
-  Questions and discussions on JSDoc.
-- [Reddit r/JavaScript](https://www.reddit.com/r/javascript/) – Community
-  discussions on JavaScript tools like JSDoc.
-
-### Stay Updated
-
-- [JSDoc GitHub](https://github.com/jsdoc/jsdoc) – Follow for updates.
-- [TypeScript Blog](https://devblogs.microsoft.com/typescript/) – News on JSDoc
-  and TypeScript.
-- [Dev.to JSDoc Posts](https://dev.to/t/jsdoc) – Community articles and guides.
+1. Import external types with `@typedef {import('lib').Type} LocalName`.
+2. Leverage generics, overloads, and destructuring.
+3. Configure `tsconfig.json` / `jsconfig.json` with `"checkJs": true`.
+4. Keep comments consistent and up-to-date.

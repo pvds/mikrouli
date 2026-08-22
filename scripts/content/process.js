@@ -103,9 +103,10 @@ export function parseContentEntry(rawEntry) {
 			(key === "sections" || key === "children") &&
 			Array.isArray(value)
 		) {
-			restFields[key] = value
-				.filter(isContentfulEntry)
-				.map((entry) => parseContentEntry(entry).fields);
+			restFields[key] = value.filter(isContentfulEntry).map((entry) => ({
+				id: entry.sys.id,
+				...parseContentEntry(entry).fields,
+			}));
 		} else if (isContentfulEntry(value)) {
 			restFields[key] = value.fields;
 		}

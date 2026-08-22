@@ -17,10 +17,10 @@ let { item, slug, priority = false } = $props();
 </script>
 <article class="group relative flex flex-col gap-4">
 	{#if item.heroImage?.file?.fileName}
-		{@const image_name = getImageName(item.heroImage.file.fileName)}
-		{#if image_name}
+		{const imageName = getImageName(item.heroImage.file.fileName)}
+		{#if imageName}
 			<Image
-				image={image_name}
+				image={imageName}
 				alt={item.heroImage.description ?? item.title}
 				sizes="(max-width: 40em) 80vw, (max-width: 64em) 40vw, 22rem"
 				heightClass="h-[12rem]"

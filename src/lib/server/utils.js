@@ -61,7 +61,10 @@ export const splitText = (text, identifier = "<hr>") => {
 export const markdownToHtml = (markdown, breaks = false) => {
 	if (!markdown) return "";
 
-	marked.use(gfmHeadingId({ prefix: "heading-" }));
+	const heading_extension =
+		/** @type {import("marked").MarkedExtension} */
+		(gfmHeadingId({ prefix: "heading-" }));
+	marked.use(heading_extension);
 	const htmlProcessor = processSync(
 		parseShortcodes,
 		(input) => marked(input, { async: false, breaks }),

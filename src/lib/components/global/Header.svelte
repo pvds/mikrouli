@@ -1,5 +1,5 @@
 <script>
-import { onDestroy, onMount } from "svelte";
+import { onMount } from "svelte";
 import Section from "$layout/Section.svelte";
 
 /** @type {IntersectionObserver} */
@@ -12,7 +12,7 @@ let isCompact = $state(false);
 let { children } = $props();
 
 onMount(() => {
-	observer = new IntersectionObserver(
+	const observer = new IntersectionObserver(
 		([entry]) => {
 			isCompact = !entry.isIntersecting;
 		},
@@ -22,13 +22,10 @@ onMount(() => {
 	if (sentinel) {
 		observer.observe(sentinel);
 	}
-});
 
-onDestroy(() => {
-	if (observer && sentinel) {
-		observer.unobserve(sentinel);
+	return () => {
 		observer.disconnect();
-	}
+	};
 });
 </script>
 

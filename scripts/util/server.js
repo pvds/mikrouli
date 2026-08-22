@@ -1,6 +1,3 @@
-import { spawn } from "node:child_process";
-import { get } from "node:http";
-import { setTimeout } from "node:timers/promises";
 import { resolveIfExists } from "$util/file";
 import { logDebug, logInfo, logSuccess } from "$util/log";
 import { runCommand } from "$util/process";
@@ -11,28 +8,37 @@ import { runCommand } from "$util/process";
  * @param {string} buildCommand - Command to build the project.
  * @param {string} previewCommand - Command to start the preview server.
  * @param {number} port - Server port number.
- * @returns {import('node:child_process').ChildProcessWithoutNullStreams} - The server process.
+ * @returns {Promise<import('bun').Subprocess>} - The server process.
  */
-export const startServer = (buildDir, buildCommand, previewCommand, port) => {
-	console.error("startServer", buildDir, buildCommand, previewCommand, port);
+export const startServer = async (
+	buildDir,
+	buildCommand,
+	previewCommand,
+	port,
+) => {
 	const resolvedBuildDir = resolveIfExists(buildDir);
-	console.error("resolvedBuildDir", resolvedBuildDir);
 	if (!resolvedBuildDir) {
 		logInfo("Building project...");
-		runCommand(`bun run ${buildCommand} --logLevel error`);
+		await runCommand(`bun run ${buildCommand} --logLevel error`);
 	}
 	logDebug("Starting server...");
-	return spawn("bun", ["run", previewCommand, "--port", port.toString()]);
+	return Bun.spawn(
+		["bun", "run", previewCommand, "--port", port.toString()],
+		{
+			stdout: "inherit",
+			stderr: "inherit",
+		},
+	);
 };
 
 /**
  * Stop the running server process gracefully.
- * @param {import('node:child_process').ChildProcessWithoutNullStreams} server - The server process.
+ * @param {import('bun').Subprocess} server - The server process.
  */
 export const stopServer = (server) => {
 	logDebug("Stopping server...");
-	server.kill("SIGTERM");
-	server.on("close", () => {
+	server.kill();
+	server.exited.then(() => {
 		logSuccess("Server stopped");
 		process.exit(0);
 	});
@@ -43,7 +49,7 @@ export const stopServer = (server) => {
  * @param {string} url - The server URL.
  * @param {number} timeout - Max wait time in milliseconds.
  * @param {number} initialDelay - Initial delay before first check.
- * @return {Promise<string|void>} - Resolves if statusCode is 200 or 404, rejects otherwise.
+ * @return {Promise<void>} - Resolves when server is ready.
  */
 export const waitForServer = async (
 	url,
@@ -51,20 +57,19 @@ export const waitForServer = async (
 	initialDelay = 100,
 ) => {
 	const baseUrl = new URL(url).origin;
-	await setTimeout(initialDelay);
+	await Bun.sleep(initialDelay);
 	const deadline = Date.now() + timeout;
 
 	while (Date.now() < deadline) {
 		try {
-			await new Promise((resolve, reject) =>
-				get(baseUrl, ({ statusCode = 0 }) =>
-					resolve([200, 404].includes(statusCode)),
-				).on("error", reject),
-			);
-			return logSuccess(`Server is ready at ${url}`);
+			const { status } = await fetch(baseUrl);
+			if ([200, 404].includes(status))
+				return logSuccess(`Server is ready at ${url}`);
+			logDebug(`Server not ready yet (status: ${status})`);
+			await Bun.sleep(200);
 		} catch {
 			logDebug("Checking server status...");
-			await setTimeout(200); // Retry after 200ms
+			await Bun.sleep(200);
 		}
 	}
 

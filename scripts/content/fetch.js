@@ -1,4 +1,3 @@
-import fs from "node:fs";
 import path from "node:path";
 import { createClient } from "contentful";
 import { CONTENT_TYPES } from "$config";
@@ -79,7 +78,7 @@ async function fetchContentfulData() {
 
 			const contentType =
 				processedData[/** @type {keyof ContentfulData} */ (id)];
-			writeJsonFile(outputPath, contentType, spacing);
+			await writeJsonFile(outputPath, contentType, spacing);
 		}
 
 		// Also store the final list of images we *might* need
@@ -87,7 +86,7 @@ async function fetchContentfulData() {
 			process.cwd(),
 			"src/data/generated/images.json",
 		);
-		writeJsonFile(imagesPath, processedData.images, spacing);
+		await writeJsonFile(imagesPath, processedData.images, spacing);
 		logSuccess("Fetched Contentful data");
 	} catch (error) {
 		if (error instanceof Error)
@@ -102,8 +101,8 @@ async function fetchContentfulData() {
  * @param {unknown[]}data
  * @param {number} spacing
  */
-function writeJsonFile(filePath, data, spacing = 0) {
-	fs.writeFileSync(filePath, JSON.stringify(data, null, spacing));
+async function writeJsonFile(filePath, data, spacing = 0) {
+	await Bun.write(filePath, JSON.stringify(data, null, spacing));
 }
 
 await fetchContentfulData();

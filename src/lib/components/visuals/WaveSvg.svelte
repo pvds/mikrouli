@@ -20,13 +20,13 @@ let {
 	opacity = 1,
 	children,
 } = $props();
-const AlignmentClass = () => (alignment === "left" ? "left-0" : "right-0");
+const alignmentClass = $derived(alignment === "left" ? "left-0" : "right-0");
 </script>
 
 <div class="wave">
 	{#if direction === 'top' || direction === 'both'}
 		<div
-			class="wave__svg absolute z-1 w-full min-w-6xl {AlignmentClass()} -top-20 overflow-hidden pointer-events-none">
+			class="wave__svg absolute z-1 w-full min-w-6xl {alignmentClass} -top-20 overflow-hidden pointer-events-none">
 			<svg class="w-[inherit]"
 				 style="height: calc({height} * var(--spacing))"
 				 xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ const AlignmentClass = () => (alignment === "left" ? "left-0" : "right-0");
 	</div>
 	{#if direction === 'bottom' || direction === 'both'}
 		<div
-			class="wave__svg absolute z-1 w-full min-w-6xl {AlignmentClass()} -bottom-20 overflow-hidden pointer-events-none">
+			class="wave__svg absolute z-1 w-full min-w-6xl {alignmentClass} -bottom-20 overflow-hidden pointer-events-none">
 			<svg class="w-[inherit]"
 				 style="height: calc({height} * var(--spacing))"
 				 xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +55,7 @@ const AlignmentClass = () => (alignment === "left" ? "left-0" : "right-0");
 <!-- TODO: allow selecting or randomizing selected wave -->
 {#snippet wave()}
 	<div
-		class="wave__svg absolute z-1 w-full min-w-6xl {AlignmentClass()} top-full overflow-hidden pointer-events-none">
+		class="wave__svg absolute z-1 w-full min-w-6xl {alignmentClass} top-full overflow-hidden pointer-events-none">
 		<svg class="w-[inherit]"
 			 style="height: calc({height} * var(--spacing))"
 			 xmlns="http://www.w3.org/2000/svg"

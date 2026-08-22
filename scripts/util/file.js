@@ -4,12 +4,12 @@ import path from "node:path";
 /**
  * Read JSON from a file.
  * @param {string} filePath - Path to the JSON file.
- * @returns {Object} - Parsed JSON data.
+ * @returns {Promise<Object>} - Parsed JSON data.
  */
-export const readJSON = (filePath) =>
-	fs.existsSync(filePath)
-		? JSON.parse(fs.readFileSync(filePath, "utf-8"))
-		: {};
+export const readJSON = async (filePath) => {
+	if (!(await Bun.file(filePath).exists())) return {};
+	return Bun.file(filePath).json();
+};
 
 /**
  * Write JSON data to a file.
@@ -17,7 +17,7 @@ export const readJSON = (filePath) =>
  * @param {Object} data - Data to write.
  */
 export const writeJSON = (filePath, data) =>
-	fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+	Bun.write(filePath, JSON.stringify(data, null, 2));
 
 /**
  * Prepare a directory by ensuring it exists and optionally clearing it.
@@ -36,14 +36,7 @@ export const prepareDir = (dirPath, remove = false) => {
  * @param {string} filePath - Path to the file.
  * @returns {Promise<boolean>} - True if exists, else false.
  */
-export const fileExists = async (filePath) => {
-	try {
-		await fs.promises.access(filePath);
-		return true;
-	} catch {
-		return false;
-	}
-};
+export const fileExists = (filePath) => Bun.file(filePath).exists();
 
 /**
  * Checks if a directory exists.

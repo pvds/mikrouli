@@ -122,16 +122,16 @@ a {
 /* Interactive elements: pointer cursor & touch-action manipulation
    ====================================================================== */
 :where(
-		a[href],
-		area,
-		button,
-		input,
-		label[for],
-		select,
-		summary,
-		textarea,
-		[tabindex]:not([tabindex*="-"])
-	) {
+	a[href],
+	area,
+	button,
+	input,
+	label[for],
+	select,
+	summary,
+	textarea,
+	[tabindex]:not([tabindex*="-"])
+) {
 	cursor: pointer;
 	touch-action: manipulation;
 }
@@ -168,12 +168,12 @@ a {
 /* Make button text unselectable & center it; disabled cursor feedback
    ====================================================================== */
 :where(
-		button,
-		button[type],
-		input[type="button"],
-		input[type="submit"],
-		input[type="reset"]
-	),
+	button,
+	button[type],
+	input[type="button"],
+	input[type="submit"],
+	input[type="reset"]
+),
 :where(input[type="file"])::-webkit-file-upload-button,
 :where(input[type="file"])::file-selector-button {
 	-webkit-tap-highlight-color: transparent;
@@ -183,12 +183,12 @@ a {
 }
 
 :where(
-		button,
-		button[type],
-		input[type="button"],
-		input[type="submit"],
-		input[type="reset"]
-	)[disabled] {
+	button,
+	button[type],
+	input[type="button"],
+	input[type="submit"],
+	input[type="reset"]
+)[disabled] {
 	cursor: not-allowed;
 }
 

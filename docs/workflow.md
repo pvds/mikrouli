@@ -1,135 +1,106 @@
 # CI/CD Workflow for Mikrouli
 
-This repository uses a GitHub Actions-based CI/CD pipeline to automate builds,
-testing, and deployments for both staging (GitHub Pages) and production
-(Netlify). The pipeline is designed to be efficient, flexible, and aligned with
-the project's goals.
+Automated GitHub Actions pipeline for staging (GitHub Pages) and production (Netlify) deployments.
 
 ---
 
 ## Triggers
 
-The conditions for running staging or production deployments depend on the type
-of event triggering the workflow.
-
-| **Trigger**                | **Deploy to Staging** | **Deploy to Production** | **Reasoning**                               |
-| -------------------------- | --------------------- | ------------------------ | ------------------------------------------- |
-| **Push to `main`**         | ✅ Yes                | ❌ No                    | Test changes in staging before production.  |
-| **Pull Request to `main`** | ❌ No                 | ❌ No                    | Manual control over staging and production. |
-| **Contentful Change**      | ❌ No                 | ✅ Yes                   | Keep production updated automatically.      |
-| **Manual Deploy**          | 🔶 Optional           | 🔶 Optional              | Manual control over staging and production. |
+| **Trigger**                | **Deploy to Staging** | **Deploy to Production** | **Why**                                    |
+| -------------------------- | --------------------- | ------------------------ | ------------------------------------------ |
+| **Push to `main`**         | ✅ Yes                | ❌ No                    | Test changes in staging before production. |
+| **Pull Request to `main`** | ❌ No                 | ❌ No                    | Manual control required.                   |
+| **Contentful Change**      | ❌ No                 | ✅ Yes                   | Auto-update production.                    |
+| **Manual Deploy**          | 🔶 Optional           | 🔶 Optional              | Manual control.                            |
 
 ### File and Path Exclusions
 
-The pipeline uses `paths-ignore` to avoid triggering workflows for irrelevant
-changes, such as:
+Workflow uses `paths-ignore` to skip irrelevant changes:
 
 - Documentation: `docs/**`, `*.md`
-- Editor and tool configurations: `.editorconfig`, `.npmrc`, `biome.jsonc`
-- Example and metadata files: `.env.example`, `favicons.json`
+- Config: `.editorconfig`, `.npmrc`, `biome.jsonc`
+- Metadata: `.env.example`, `favicons.json`
 
 ### Staging Deployment
 
-The staging deployment to GitHub Pages is triggered by:
-
+Triggered by:
 - Pushes to `main`
 - Pull requests targeting `main`
-- Manual dispatch with `deploy_staging` set to `true`
+- Manual dispatch
 
 ### Production Deployment
 
-The production deployment to Netlify is triggered by:
-
+Triggered by:
 - Contentful `repository_dispatch` events
-- Manual dispatch with `deploy_production` set to `true`
+- Manual dispatch
 
 ---
 
 ## Configuration
 
-The workflow is defined in `.github/ci.yml` with the following key jobs:
+Defined in `.github/ci.yml`:
 
-1. **`main`**: Builds the project, runs checks, and prepares artifacts for
-   deployment.
-2. **`staging`**: Deploys to GitHub Pages for staging (conditional on changes
-   that affect staging).
-3. **`production`**: Deploys to Netlify for production (conditional on triggers
-   like Contentful updates).
+1. **`main`**: Builds project, runs checks, prepares artifacts.
+2. **`staging`**: Deploys to GitHub Pages (conditional).
+3. **`production`**: Deploys to Netlify (conditional).
 
-### Key Features:
-
-- **Concurrency Control**: Ensures that only the latest workflow for a given
-  branch, PR, or trigger is active, canceling in-progress redundant workflows.
-- **Selective Triggering**: Workflows only run for relevant changes based on
-  file paths, reducing unnecessary executions.
-- **Dynamic Deployments**: Supports manual deployment options for fine-grained
-  control via `workflow_dispatch`.
+**Key Features:**
+- **Concurrency Control**: Only latest workflow runs per branch; cancels redundant jobs.
+- **Selective Triggering**: Runs only for relevant paths.
+- **Dynamic Deployments**: Supports manual control via `workflow_dispatch`.
 
 ---
 
 ## Artifact Management
 
-### Staging Artifacts
+### Staging
 
-- The project is built using `bun run build` for staging.
-- Artifacts are uploaded as a GitHub Pages artifact using
-  `actions/upload-pages-artifact@v3`.
-- These artifacts are deployed to GitHub Pages, accessible via the URL provided
-  by `steps.deployment.outputs.page_url`.
+- Build: `bun run build`
+- Upload: GitHub Pages artifact
+- Deploy: GitHub Pages
 
-### Production Artifacts
+### Production
 
-- The project is built using `bun run build:prod` for production.
-- Artifacts are uploaded as a Netlify artifact using
-  `actions/upload-artifact@v4`.
-- These artifacts are deployed to Netlify at the custom domain
-  [https://mikrouli.org](https://mikrouli.org).
+- Build: `bun run build:prod`
+- Upload: Netlify artifact
+- Deploy: Netlify at https://mikrouli.org
 
 ---
 
-## Testing Flow
+## Testing
 
-The pipeline includes accessibility and Lighthouse performance tests for
-production deployments:
+Accessibility and Lighthouse tests run for production deployments:
 
-- **Accessibility Tests**:
-    - Run using `bun run test:axe --minimal --prod`.
-    - Tests are non-blocking (continue-on-error) and help identify accessibility
-      issues.
-- **Lighthouse Tests**:
-    - Run using `bun run test:lighthouse --prod`.
-    - Lighthouse evaluates key performance metrics.
+- **Accessibility**: `bun run test:axe --minimal --prod` (non-blocking)
+- **Lighthouse**: `bun run test:lighthouse --prod`
 
-Currently, test results are not stored as artifacts or exposed in the pipeline.
-Enhancements can include saving these reports to artifacts for later review.
+Test results are not currently stored. Future enhancement: save reports as artifacts.
 
 ---
 
-## Environment Variables and Secrets
+## Secrets & Environment Variables
 
-Several secrets and environment variables are required for the pipeline to
-function:
+Required for the pipeline:
 
-- **Secrets**:
-    - `CONTENTFUL_SPACE_ID`: Used for fetching content from Contentful.
-    - `CONTENTFUL_ACCESS_TOKEN`: API token for Contentful.
-    - `NETLIFY_AUTH_TOKEN`: Authentication token for deploying to Netlify.
-    - `NETLIFY_SITE_ID`: Identifier for the Netlify site.
-- **Environment Variables**:
-    - `BUN_VERSION`: Specifies the version of Bun to use.
-    - `BUILD_DIR_STAGING`: Directory for staging build artifacts.
-    - `BUILD_DIR_PRODUCTION`: Directory for production build artifacts.
+**Secrets:**
+- `CONTENTFUL_SPACE_ID`: Contentful space
+- `CONTENTFUL_ACCESS_TOKEN`: Contentful API token
+- `NETLIFY_AUTH_TOKEN`: Netlify auth
+- `NETLIFY_SITE_ID`: Netlify site ID
 
-Ensure all secrets are configured in the repository settings before running the
-pipeline.
+**Environment Variables:**
+- `BUN_VERSION`: Bun version
+- `BUILD_DIR_STAGING`: Staging build directory
+- `BUILD_DIR_PRODUCTION`: Production build directory
+
+Configure all secrets in repository settings before running.
+
+---
 
 ## Composite Actions
 
-The pipeline uses composite actions for modular and reusable logic:
+**[Setup Environment](.github/actions/setup/action.yml)**: Sets up Bun and installs dependencies.
 
-1. **[Setup Environment](.github/actions/setup/action.yml)**:
-    - Sets up Bun and installs dependencies.
-2. **[Build and Upload Artifacts](.github/actions/build/action.yml)**:
-    - Builds the project for staging and/or production and uploads artifacts.
-3. **[Run Tests](.github/actions/test/action.yml)**:
-    - Runs Playwright accessibility tests and Lighthouse performance tests.
+**[Build and Upload](.github/actions/build/action.yml)**: Builds and uploads artifacts.
+
+**[Run Tests](.github/actions/test/action.yml)**: Runs accessibility and Lighthouse tests.

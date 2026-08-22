@@ -1,6 +1,9 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import sharp from "sharp";
+/** @typedef {import('sharp').Sharp} Sharp */
+/** @typedef {import('sharp').FormatEnum} FormatEnum */
+/** @typedef {import('sharp').AvailableFormatInfo} AvailableFormatInfo */
 import {
 	IMAGE_EXT,
 	IMAGE_EXTENSIONS,
@@ -32,7 +35,7 @@ import { generatePlaceholder } from "./placeholders";
  * Main function to process images.
  * @param {string} category - The category of images to process.
  * @param {Object} options - Options for processing images.
- * @param {keyof sharp.format | sharp.AvailableFormatInfo} [options.format='webp'] - Desired output image format.
+ * @param {keyof FormatEnum | AvailableFormatInfo} [options.format='webp'] - Desired output image format.
  * @param {number} [options.quality=80] - Quality level for the format.
  * @param {number} [options.concurrency=CPU_COUNT] - Maximum number of concurrent operations.
  * @param {boolean} [options.force=false] - Whether to force overwriting existing images.
@@ -106,10 +109,10 @@ export async function processImages(
 
 /**
  * Generates resized images for different sizes.
- * @param {sharp.Sharp} image - Sharp instance of the image.
+ * @param {Sharp} image - Sharp instance of the image.
  * @param {string} baseName - Base name of the image file.
  * @param {Object} options - Options for generating images.
- * @param {keyof sharp.format | sharp.AvailableFormatInfo} options.format - Desired output image format.
+ * @param {keyof FormatEnum | AvailableFormatInfo} options.format - Desired output image format.
  * @param {number} options.quality - Quality level for the format.
  * @param {string} options.outDir - Output directory path.
  * @param {Record<string, number>} options.counts - Object to keep track of generated images count.
@@ -148,7 +151,7 @@ async function generateImages(
 					logDebug(`Generated: ${outputFileName}`);
 					safeIncrement(counts, "generated");
 				})
-				.catch((error) => {
+				.catch((/** @type {Error} */ error) => {
 					logError(
 						`Failed to generate image ${outputFileName}:`,
 						error,

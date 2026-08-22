@@ -16,11 +16,11 @@ let { post, priority = false } = $props();
 <article
 	class="group relative flex flex-col md:flex-row items-center gap-4">
 	{#if post.heroImage}
-		{@const image_name = getImageName(post.heroImage?.file.fileName)}
-		{#if image_name}
+		{const imageName = getImageName(post.heroImage?.file.fileName)}
+		{#if imageName}
 			<div class="flex-none w-full md:w-[16rem] md-mid:w-[20rem]">
 				<Image
-					image={image_name}
+					image={imageName}
 					alt={post.heroImage?.description || ""}
 					sizes="(max-width: 48em) 80vw, (max-width: 56em) 16rem, (max-width: 64em) 20rem"
 					heightClass="h-[10rem] md:h-[12rem] md-mid:h-[14rem]"
