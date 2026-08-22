@@ -1,17 +1,10 @@
 # Using JSDoc for Type Safety in JavaScript
 
-Below is an updated guide that expands on import usage and includes advanced
-tips and best practices discovered from various online resources and official
-documentation.
-
 ---
 
 ## 1. Why JSDoc?
 
-JSDoc provides inline documentation and lightweight type annotations for
-JavaScript code. When combined with TypeScript’s `--checkJs` (or a
-`tsconfig.json` with `"checkJs": true`), it can offer a decent type-checking
-experience without migrating to full TypeScript.
+JSDoc provides lightweight type annotations and inline documentation. Combined with TypeScript's `--checkJs`, it offers type-checking without full TypeScript migration.
 
 ---
 
@@ -19,8 +12,7 @@ experience without migrating to full TypeScript.
 
 ### 2.1 Importing Types from a Module
 
-Often, you’ll want to reference types from external libraries. The core pattern
-uses `@typedef {import('module').Type} LocalName`, for example:
+Reference types using `@typedef {import('module').Type} LocalName`:
 
 ```js
 /**
@@ -28,7 +20,7 @@ uses `@typedef {import('module').Type} LocalName`, for example:
  */
 ```
 
-Then you can use `SvelteSnippet` as a type in the same file:
+Use the type in the file:
 
 ```js
 /** @type {SvelteSnippet} */
@@ -37,8 +29,7 @@ let snippet = someSvelteCode();
 
 ### 2.2 Importing Multiple Types
 
-If you want to import multiple types from the same module, you can define
-multiple typedef lines:
+Define multiple typedef lines or combine:
 
 ```js
 /**
@@ -47,20 +38,9 @@ multiple typedef lines:
  */
 ```
 
-Alternatively, you can combine them:
+### 2.3 Default Exports vs. Named Exports
 
-```js
-/**
- * @typedef {Object} MyTypes
- * @property {import('my-lib').TypeA} A
- * @property {import('my-lib').TypeB} B
- */
-```
-
-### 2.3 Referencing Default Exports vs. Named Exports
-
-Occasionally, you’ll need to import a default export’s type. For example, say
-`my-lib` has a default export class:
+For default exports:
 
 ```js
 /**
@@ -68,12 +48,7 @@ Occasionally, you’ll need to import a default export’s type. For example, sa
  */
 ```
 
-Then you can use `MyDefaultClass` as a type for variables, function parameters,
-etc.
-
 ### 2.4 Namespaced Imports
-
-Some libraries export a namespace or multiple subpaths. For instance:
 
 ```js
 /**
@@ -84,10 +59,7 @@ Some libraries export a namespace or multiple subpaths. For instance:
 
 ---
 
-## 3. Advanced JSDoc Syntax & Usage
-
-Below are some more advanced patterns you can incorporate, based on best
-practices gleaned from community articles and official references.
+## 3. Advanced JSDoc Syntax
 
 ### 3.1 Defining Complex Object Shapes
 
@@ -105,8 +77,6 @@ JSDoc allows you to define deeply nested object shapes:
 ```
 
 ### 3.2 Function Expressions and Arrow Functions
-
-For arrow functions, you can attach types using `@type`:
 
 ```js
 /**
