@@ -2,25 +2,26 @@
 
 ## Package Manager
 
-- Install dependencies with **bun**: `bun install`
-- Run project scripts with **bun**: `bun run <script>`
-- Runtime targets: Bun `^1.4`
+- Use **Bun**: `bun install`
+- Run repo scripts with `bun run <script>`
+- Runtime target: Bun `^1.4`
 
 ## Commands
 
-| Task                         | Command                             |
-| ---------------------------- | ----------------------------------- |
-| Setup workspace              | `bun run setup`                     |
-| Sync Svelte/types            | `bun run sync`                      |
-| Lint + type-check            | `bun run check:lint`                |
-| CI checks                    | `bun run check:ci`                  |
-| Format check                 | `bun run check:format`              |
-| Format write                 | `bun run write`                     |
-| Build (staging)              | `bun run build`                     |
-| Build (production)           | `bun run build:prod`                |
-| Accessibility test           | `bun run test:axe --minimal --prod` |
-| Lighthouse test              | `bun run test:lighthouse --prod`    |
-| Refresh CMS content + assets | `bun run content`                   |
+| Task                 | Command                             |
+| -------------------- | ----------------------------------- |
+| Setup workspace      | `bun run setup`                     |
+| Sync Svelte types    | `bun run sync`                      |
+| Lint + type-check    | `bun run check:lint`                |
+| Format check         | `bun run check:format`              |
+| Write format fixes   | `bun run write`                     |
+| Full local check     | `bun run check`                     |
+| CI checks            | `bun run check:ci`                  |
+| Build (staging)      | `bun run build`                     |
+| Build (production)   | `bun run build:prod`                |
+| Accessibility test   | `bun run test:axe --minimal --prod` |
+| Lighthouse test      | `bun run test:lighthouse --prod`    |
+| Refresh CMS + assets | `bun run content`                   |
 
 ## External References
 
@@ -36,12 +37,11 @@
 
 ## Key Conventions
 
-- `src/data/generated/**` is generated content output; update via
-  `bun run content` instead of hand editing.
-- `docs/**` and `*.md` changes are excluded from CI triggers in
-  `.github/workflows/ci.yml`.
+- `src/data/generated/**` is generated output; refresh with `bun run content`,
+  do not edit by hand.
+- `docs/**` and `*.md` are intentionally ignored by CI triggers; doc-only
+  changes are low-risk.
+- Keep the static SSG / `adapter-static` architecture, GitHub Pages staging, and
+  Netlify production layout intact.
 - Treat `.agents/skills/**` as read-only external dependencies.
-
-## Commits
-
-You are never allowed to commit
+- Do not commit changes.
