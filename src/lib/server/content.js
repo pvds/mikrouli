@@ -12,7 +12,6 @@
  * @typedef {import('$types/contentful').NavigationEntry} NavigationEntry
  * @typedef {import('$types/contentful').ReviewEntry} ReviewEntry
  * @typedef {import('$types/contentful').ServiceEntry} ServiceEntry
- * @typedef {import('$lib/types/contentful').SectionFields} SectionFields
  * @typedef {import('$global/seo/Seo.svelte.types').SEOProps} SEOProps
  * @typedef {import('$global/seo/Seo.svelte.types').JsonLdType} JsonLdType
  * @typedef {import('$types/global').global} GlobalProps

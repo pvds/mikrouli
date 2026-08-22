@@ -18,7 +18,7 @@ const posts = $derived(data.posts);
 </Hero>
 
 {#if page.sections?.length}
-	{#each page.sections as section, i}
+	{#each page.sections as section, i (section.id)}
 		<ContentSection contentFooter={i === 0 ? /** @type {import("svelte").Snippet<[]>} */
 		(footerCta) : undefined} prose size="lg" index={i}
 						title={section.header || section.title} image={section.image}>

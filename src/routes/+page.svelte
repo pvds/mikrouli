@@ -35,7 +35,7 @@ const posts = $derived(data.posts);
 <TeaserSection items={services} priority slug="services" title="How I Can Support You"/>
 
 {#if page.sections?.length}
-	{#each page.sections as section, i}
+	{#each page.sections as section, i (section.id)}
 	<ContentSection index={i} wave="even" size="lg" prose title={section.header || section.title}
 					image={section.image}>
 		{@html section.content}

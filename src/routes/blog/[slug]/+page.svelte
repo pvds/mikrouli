@@ -40,7 +40,7 @@ onMount(() => {
 </Hero>
 
 {#if page.sections?.length}
-	{#each page.sections as section, i}
+	{#each page.sections as section, i (section.id)}
 		<ContentSection prose proseClasses="max-w-full!" index={i} title={section.title}>
 			{@html section.content}
 		</ContentSection>

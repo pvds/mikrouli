@@ -45,6 +45,7 @@ export type BaseEntry = {
 // ### Section
 
 export type SectionFields = {
+	id?: string;
 	title: string;
 	header?: string;
 	content: string;

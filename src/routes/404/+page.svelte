@@ -23,7 +23,7 @@ const page = $derived(data.page.fields);
 </Hero>
 
 {#if page.sections?.length}
-	{#each page.sections as section, i}
+	{#each page.sections as section, i (section.id)}
 		<ContentSection prose size="lg" index={i} title={section.header || section.title}
 						image={section.image}>
 			{@html section.content}

@@ -21,7 +21,7 @@ const services = $derived(data.services);
 </Hero>
 
 {#if page.sections?.length}
-	{#each page.sections as section, i}
+	{#each page.sections as section, i (section.id)}
 		<ContentSection prose size="md" index={i} title={section.header || section.title}
 						image={section.image}>
 			{@html section.content}
