@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+import type { Snippet } from "svelte";
 import { onNavigate } from "$app/navigation";
 import Branding from "$global/Branding.svelte";
 import Footer from "$global/Footer.svelte";
@@ -6,10 +7,14 @@ import Header from "$global/Header.svelte";
 import NavPrimary from "$global/NavPrimary.svelte";
 import Skip from "$global/Skip.svelte";
 import Seo from "$global/seo/Seo.svelte";
+import type { LayoutProps } from "./$types";
 import "../app.css";
 
-/** @type {import('./$types').LayoutProps} */
-let { children, data } = $props();
+interface Props extends LayoutProps {
+	children: Snippet;
+}
+
+let { children, data }: Props = $props();
 const nav = $derived(data.nav);
 
 const disableViewTransitions = true;
@@ -17,7 +22,7 @@ const disableViewTransitions = true;
 onNavigate((navigation) => {
 	if (!document.startViewTransition || disableViewTransitions) return;
 
-	return new Promise((resolve) => {
+	return new Promise<void>((resolve) => {
 		document.startViewTransition(async () => {
 			resolve();
 			await navigation.complete;

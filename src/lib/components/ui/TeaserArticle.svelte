@@ -1,19 +1,16 @@
-<script>
+<script lang="ts">
 import { resolve } from "$app/paths";
+import type { PostFields, ServiceFields } from "$types/contentful";
 import { getImageName } from "../../helpers/image.js";
 import Image from "./image/Image.svelte";
 
-/**
- * @typedef {import("$types/contentful").ServiceFields } ServiceFields
- * @typedef {import("$types/contentful").PostFields } PostFields
- * @typedef {Object} Props
- * @property {ServiceFields|PostFields} item
- * @property {string} slug
- * @property {boolean} [priority=false]
- */
+interface Props {
+	item: ServiceFields | PostFields;
+	slug: string;
+	priority?: boolean;
+}
 
-/** @type {Props} */
-let { item, slug, priority = false } = $props();
+let { item, slug, priority = false }: Props = $props();
 </script>
 <article class="group relative flex flex-col gap-4">
 	{#if item.heroImage?.file?.fileName}

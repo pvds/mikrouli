@@ -1,23 +1,22 @@
-<script>
+<script lang="ts">
+import type { Snippet } from "svelte";
 import { SPACING_X_CLASSES } from "$config";
 import Image from "$ui/image/Image.svelte";
 import WaveCss from "$visuals/WaveCss.svelte";
 import Section from "./Section.svelte";
 
-/**
- * @typedef {Object} Props
- * @property {string|undefined} title
- * @property {string|undefined} [proseClasses]
- * @property {import('svelte').Snippet} [children]
- * @property {import('svelte').Snippet} [contentFooter]
- * @property {import('svelte').Snippet} [side]
- * @property {boolean} [sideAbsolute]
- * @property {string} [image]
- * @property {string} [imageAlt]
- * @property {string} [imagePositionClass]
- */
+interface Props {
+	title: string | undefined;
+	proseClasses?: string;
+	children?: Snippet;
+	contentFooter?: Snippet;
+	side?: Snippet;
+	sideAbsolute?: boolean;
+	image?: string;
+	imageAlt?: string;
+	imagePositionClass?: string;
+}
 
-/** @type {Props} */
 let {
 	title,
 	proseClasses,
@@ -28,7 +27,7 @@ let {
 	image,
 	imageAlt,
 	imagePositionClass,
-} = $props();
+}: Props = $props();
 
 const spacingY = $derived({
 	padding: image

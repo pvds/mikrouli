@@ -1,20 +1,17 @@
-<script>
+<script lang="ts">
 import { resolve } from "$app/paths";
 import Section from "$layout/Section.svelte";
+import type { NavigationEntry } from "$types/contentful";
 import Image from "$ui/image/Image.svelte";
 import { toNavItems } from "../../helpers/nav.js";
 
-/**
- * @typedef {import('$types/contentful').NavigationEntry} NavigationEntry
- *
- * @typedef {Object} Props
- * @property {NavigationEntry} primary
- * @property {NavigationEntry} pages
- * @property {NavigationEntry} contact
- **/
+interface Props {
+	primary: NavigationEntry;
+	pages: NavigationEntry;
+	contact: NavigationEntry;
+}
 
-/** @type {Props} */
-let { primary, pages, contact } = $props();
+let { primary, pages, contact }: Props = $props();
 
 const navPrimary = $derived(toNavItems(primary.fields.items));
 const navPages = $derived(toNavItems(pages.fields.items));

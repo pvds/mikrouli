@@ -1,18 +1,18 @@
-<script>
+<script lang="ts">
+import type { Snippet } from "svelte";
 import { resolve } from "$app/paths";
 import { BUTTON_THEME } from "$config";
+import type { ImageField } from "$types/contentful";
 import BookingDialog from "$ui/BookingDialog.svelte";
 import { svgIcon } from "../../helpers/icon.js";
 import ContentSection from "./ContentSection.svelte";
 
-/**
- * @typedef {Object} Props
- * @property {import('$types/contentful').ImageField} [image]
- * @property {import('svelte').Snippet} [children]
- */
+interface Props {
+	image?: ImageField;
+	children?: Snippet;
+}
 
-/** @type {Props} */
-let { image, children } = $props();
+let { image, children }: Props = $props();
 </script>
 
 <ContentSection prose proseInvert theme="primaryDark" size="lg" index={1} {image} imagePosition="end">

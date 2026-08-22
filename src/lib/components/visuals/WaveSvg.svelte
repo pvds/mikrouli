@@ -1,17 +1,16 @@
-<script>
-/** @typedef {import('./WaveSvg.type.d.ts').WaveProps} Wave */
+<script lang="ts">
+import type { Snippet } from "svelte";
+import type { WaveProps } from "./WaveSvg.type";
 
-/**
- * @typedef {Object} Props
- * @property {Wave['direction']} [direction]
- * @property {Wave['alignment']} [alignment]
- * @property {Wave['height']} [height]
- * @property {Wave['opacity']} [opacity]
- * @property {Wave['color']} [color]
- * @property {import('svelte').Snippet} [children]
- */
+interface Props {
+	direction?: WaveProps["direction"];
+	alignment?: WaveProps["alignment"];
+	height?: WaveProps["height"];
+	opacity?: WaveProps["opacity"];
+	color?: WaveProps["color"];
+	children?: Snippet;
+}
 
-/** @type {Props} */
 let {
 	direction = "both",
 	alignment = "left",
@@ -19,7 +18,7 @@ let {
 	height = 30,
 	opacity = 1,
 	children,
-} = $props();
+}: Props = $props();
 const alignmentClass = $derived(alignment === "left" ? "left-0" : "right-0");
 </script>
 

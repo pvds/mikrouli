@@ -1,11 +1,9 @@
-<script>
-/**
- * @typedef {Object} Props
- * @property {string} classes
- */
+<script lang="ts">
+interface Props {
+	classes: string;
+}
 
-/** @type {Props} */
-let { classes } = $props();
+let { classes }: Props = $props();
 </script>
 
 <svg class="{classes}" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 638.6 638.1">

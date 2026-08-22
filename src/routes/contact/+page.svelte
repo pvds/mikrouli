@@ -1,13 +1,13 @@
-<script>
+<script lang="ts">
 import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
 import Outro from "$layout/Outro.svelte";
 import TeaserSection from "$layout/TeaserSection.svelte";
 import { getImageName } from "$lib/helpers/image.js";
 import BookingDialog from "$ui/BookingDialog.svelte";
+import type { PageProps } from "./$types";
 
-/** @type {import('./$types').PageProps} */
-let { data } = $props();
+let { data }: PageProps = $props();
 const page = $derived(data.page.fields);
 const posts = $derived(data.posts);
 </script>

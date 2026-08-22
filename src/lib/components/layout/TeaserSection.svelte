@@ -1,20 +1,17 @@
-<script>
+<script lang="ts">
+import type { PostEntry, ServiceEntry } from "$types/contentful";
 import TeaserArticle from "$ui/TeaserArticle.svelte";
 import { oddLastEntry } from "../../helpers/entry.js";
 import Section from "./Section.svelte";
 
-/**
- * @typedef {import("$types/contentful.js").ServiceEntry } ServiceEntry
- * @typedef {import("$types/contentful.js").PostEntry } PostEntry
- * @typedef {Object} Props
- * @property {ServiceEntry[]|PostEntry[]} items
- * @property {'services'|'blog'} slug
- * @property {boolean} [priority=false]
- * @property {string} title
- */
+interface Props {
+	items: ServiceEntry[] | PostEntry[];
+	slug: "services" | "blog";
+	priority?: boolean;
+	title: string;
+}
 
-/** @type {Props} */
-let { items, slug, title, priority } = $props();
+let { items, slug, title, priority }: Props = $props();
 </script>
 
 <Section {title}>

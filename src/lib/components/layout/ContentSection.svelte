@@ -1,33 +1,30 @@
-<script>
+<script lang="ts">
+import type { Snippet } from "svelte";
 import { PROSE_CLASSES_LG, PROSE_CLASSES_MD, PROSE_CLASSES_SM } from "$config";
 import { getImageName } from "$lib/helpers/image.js";
+import type { SectionSize, SectionTheme } from "$types/content";
+import type { ImageField } from "$types/contentful";
 import Image from "$ui/image/Image.svelte";
 import Section from "./Section.svelte";
 
-/**
- * @typedef {import('svelte').Snippet} Snippet
- * @typedef {import('$types/contentful').ImageField} Image
- * @typedef {import('$types/content').SectionTheme} SectionTheme
- * @typedef {import('$types/content').SectionSize} SectionSize
- * @typedef {Object} Props
- * @property {Snippet} children
- * @property {Snippet} [contentFooter]
- * @property {Snippet} [header]
- * @property {Snippet} [footer]
- * @property {Image} [image]
- * @property {'start'|'end'} [imagePosition]
- * @property {string} [title]
- * @property {number} [index]
- * @property {string} [classes=""]
- * @property {SectionTheme} [theme='default']
- * @property {'odd'|'even'} [wave='odd']
- * @property {SectionSize} [size='md']
- * @property {boolean} [prose=false]
- * @property {boolean} [proseInvert=false]
- * @property {string} [proseClasses]
- */
+interface Props {
+	children: Snippet;
+	contentFooter?: Snippet;
+	header?: Snippet;
+	footer?: Snippet;
+	image?: ImageField;
+	imagePosition?: "start" | "end";
+	title?: string;
+	index?: number;
+	classes?: string;
+	theme?: SectionTheme;
+	wave?: "odd" | "even";
+	size?: SectionSize;
+	prose?: boolean;
+	proseInvert?: boolean;
+	proseClasses?: string;
+}
 
-/** @type {Props} */
 let {
 	header,
 	footer,
@@ -44,17 +41,15 @@ let {
 	proseInvert = false,
 	proseClasses,
 	size = "md",
-} = $props();
+}: Props = $props();
 
-/** @param {number|undefined} i */
-const isOdd = (i) => typeof i === "number" && i % 2 === 1;
+const isOdd = (i: number | undefined): i is number =>
+	typeof i === "number" && i % 2 === 1;
 
-/** @param {number|undefined} i */
-const hasWave = (i) =>
+const hasWave = (i: number | undefined): boolean =>
 	wave === "odd" ? isOdd(i) : wave === "even" ? !isOdd(i) : false;
 
-/** @param {'sm'|'md'|'lg'} size */
-const proseSizeClasses = (size) =>
+const proseSizeClasses = (size: SectionSize): string =>
 	({
 		sm: PROSE_CLASSES_SM,
 		md: PROSE_CLASSES_MD,
