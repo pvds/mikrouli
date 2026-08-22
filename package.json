@@ -71,7 +71,6 @@
 		"playwright": "^1.62.1",
 		"playwright-lighthouse": "^4.0.0",
 		"schema-dts": "^2.0.0",
-		"sharp": "^0.35.3",
 		"svelte": "^5.56.10",
 		"svelte-check": "^4.7.6",
 		"svelte-sitemap": "^4.0.4",
@@ -84,8 +83,7 @@
 		"@biomejs/biome",
 		"@evilmartians/lefthook",
 		"@tailwindcss/oxide",
-		"esbuild",
-		"sharp"
+		"esbuild"
 	],
 	"overrides": {
 		"playwright-core": "$playwright"

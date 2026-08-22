@@ -12,10 +12,9 @@ export type NavigationItem = {
 // Image
 
 export type ImageMeta = {
-	placeholder: string;
 	width: string;
 	height: string;
-	hasAlpha: boolean;
+	hasTransparency: boolean;
 };
 
 // Booking

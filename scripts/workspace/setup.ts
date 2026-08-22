@@ -82,11 +82,11 @@ const main = async (): Promise<void> => {
 	}
 
 	/**
-	 * 5. Generate processed images and base64 placeholders
+	 * 5. Generate processed images
 	 */
-	logHeader("Generating processed images and base64 placeholders");
+	logHeader("Generating processed images");
 	await runCommand("bun run images:process --local --cms");
-	logSuccess("Generated processed images and base64 placeholders.");
+	logSuccess("Generated processed images.");
 
 	/**
 	 * 6. Ready for development

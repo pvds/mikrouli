@@ -1,12 +1,10 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import type { Sharp } from "sharp";
-import sharp from "sharp";
 import {
 	IMAGE_EXT,
-	IMAGE_EXTENSIONS,
 	IMAGE_FILENAME_TEMPLATE,
 	IMAGE_SIZES,
+	IMAGE_SOURCE_EXTENSIONS,
 } from "$config";
 import {
 	CPU_COUNT,
@@ -27,17 +25,19 @@ import { measure } from "$util/measure";
 import { safeIncrement } from "$util/process";
 import { escapeRegex } from "$util/regex";
 import { writeMetadata } from "./metadata";
-import { generatePlaceholder } from "./placeholders";
+import { hasWebpTransparency, stripWebpMetadata } from "./webp";
+
+const BUN_IMAGE_OPTIONS = {
+	autoOrient: false,
+};
 
 interface ProcessImagesOptions {
-	format?: Parameters<Sharp["toFormat"]>[0];
 	quality?: number;
 	concurrency?: number;
 	force?: boolean;
 }
 
 interface GenerateImagesOptions {
-	format: Parameters<Sharp["toFormat"]>[0];
 	quality: number;
 	outDir: string;
 	counts: Record<string, number>;
@@ -47,7 +47,6 @@ interface GenerateImagesOptions {
 export async function processImages(
 	category: string,
 	{
-		format = IMAGE_EXT,
 		quality = 80,
 		concurrency = CPU_COUNT,
 		force = false,
@@ -61,10 +60,9 @@ export async function processImages(
 	const metaData: Record<
 		string,
 		{
-			placeholder: string;
 			width: string;
 			height: string;
-			hasAlpha: boolean;
+			hasTransparency: boolean;
 		}
 	> = {};
 	const counts: Record<string, number> = {
@@ -81,24 +79,43 @@ export async function processImages(
 		limit(async () => {
 			const inputPath = path.join(inDir, file);
 			const baseName = path.parse(file).name;
-			const image = sharp(inputPath);
-			await generateImages(image, baseName, {
-				format,
+			const source = Bun.file(inputPath);
+			await generateImages(source, baseName, {
 				quality,
 				outDir,
 				counts,
 				force,
 			});
 
-			const { width, height, hasAlpha } = await image.metadata();
-			const placeholder = (await generatePlaceholder(
-				inputPath,
-			)) as string;
+			const { width, height } = await source
+				.image(BUN_IMAGE_OPTIONS)
+				.metadata();
+			if (!width || !height) {
+				throw new Error(`Missing metadata dimensions for ${inputPath}`);
+			}
+
+			const transparencyProbeSize = IMAGE_SIZES.at(-1);
+			if (!transparencyProbeSize) {
+				throw new Error("IMAGE_SIZES cannot be empty");
+			}
+
+			const transparencyProbePath = path.join(
+				outDir,
+				buildFileName(
+					baseName,
+					transparencyProbeSize.toString(),
+					IMAGE_EXT,
+				),
+			);
+
+			const hasTransparency = hasWebpTransparency(
+				await Bun.file(transparencyProbePath).bytes(),
+			);
+
 			metaData[baseName] = {
-				placeholder: placeholder,
-				width: width?.toString() || "",
-				height: height?.toString() || "",
-				hasAlpha: hasAlpha || false,
+				width: width.toString(),
+				height: height.toString(),
+				hasTransparency,
 			};
 		}),
 	);
@@ -121,16 +138,16 @@ export async function processImages(
 }
 
 async function generateImages(
-	image: Sharp,
+	source: Bun.BunFile,
 	baseName: string,
-	{ format, quality, outDir, counts, force }: GenerateImagesOptions,
+	{ quality, outDir, counts, force }: GenerateImagesOptions,
 ): Promise<void> {
 	await Promise.all(
 		IMAGE_SIZES.map(async (size) => {
 			const outputFileName = buildFileName(
 				baseName,
 				size.toString(),
-				typeof format === "string" ? format : format.id,
+				IMAGE_EXT,
 			);
 			const outputPath = path.join(outDir, outputFileName);
 
@@ -140,25 +157,33 @@ async function generateImages(
 				return;
 			}
 
-			await image
-				.clone()
-				.resize({
-					width: size,
-					fit: sharp.fit.inside,
-					withoutEnlargement: true,
-				})
-				.toFormat(format, { quality })
-				.toFile(outputPath)
-				.then(() => {
-					logDebug(`Generated: ${outputFileName}`);
-					safeIncrement(counts, "generated");
-				})
-				.catch((error: Error) => {
-					logError(
-						`Failed to generate image ${outputFileName}:`,
-						error,
-					);
-				});
+			try {
+				await source
+					.image(BUN_IMAGE_OPTIONS)
+					.resize(size, undefined, {
+						fit: "inside",
+						withoutEnlargement: true,
+					})
+					.webp({
+						quality,
+						lossless: false,
+					})
+					.write(outputPath);
+
+				// Sharp omits ICC/EXIF/XMP metadata in generated WebP output.
+				// Strip equivalent chunks to keep Bun output behavior aligned.
+				const generatedBytes = await Bun.file(outputPath).bytes();
+				const strippedBytes = stripWebpMetadata(generatedBytes);
+				if (strippedBytes.length !== generatedBytes.length) {
+					await Bun.write(outputPath, strippedBytes);
+				}
+
+				logDebug(`Generated: ${outputFileName}`);
+				safeIncrement(counts, "generated");
+			} catch (error) {
+				logError(`Failed to generate image ${outputFileName}:`, error);
+				throw error;
+			}
 		}),
 	);
 }
@@ -220,13 +245,16 @@ function createProcessedImageRegex(): RegExp {
 		`^${escapeRegex(IMAGE_FILENAME_TEMPLATE)
 			.replace("\\{base\\}", "([A-Za-z0-9-_]+)")
 			.replace("\\{size\\}", "(\\d+)")
-			.replace("\\{ext\\}", `(${IMAGE_EXTENSIONS.join("|")})`)}$`,
+			.replace("\\{ext\\}", `(${escapeRegex(IMAGE_EXT)})`)}$`,
 		"i",
 	);
 }
 
 async function getImageFiles(inDir: string): Promise<string[]> {
-	const fileRegex = new RegExp(`\\.(${IMAGE_EXTENSIONS.join("|")})$`, "i");
+	const fileRegex = new RegExp(
+		`\\.(${IMAGE_SOURCE_EXTENSIONS.join("|")})$`,
+		"i",
+	);
 
 	try {
 		const allFiles = await fs.readdir(inDir);

@@ -75,11 +75,11 @@ Implement as separate small batches:
 
 Do **not** migrate `svelte-sitemap` yet; its v4 migration belongs after the SvelteKit 3/Vite 8 configuration work because v4 prefers a Vite plugin.
 
-#### 2. Sharp -> Bun.Image
+#### 2. Sharp -> Bun.Image (completed)
 
 Read: [`03-sharp-to-bun-image.md`](./03-sharp-to-bun-image.md)
 
-Implement Bun.Image beside the existing Sharp pipeline, compare outputs, then remove Sharp only after parity gates pass. This is intentionally done while the framework remains stable.
+Implemented: Bun.Image build-time pipeline, WebP transparency metadata (`hasTransparency`), placeholder pipeline removal, and Sharp dependency removal. Size parity compared against Sharp baseline: total WebP bytes at ~1.044x with worst outlier below 3x in current fixtures.
 
 This objective owns the structural `Image.svelte` placeholder/loading cleanup. Complete it before the Modern Svelte source pass so two migration plans do not refactor the same component in conflicting ways.
 
