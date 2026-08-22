@@ -1,9 +1,6 @@
-/**
- * SVG icon
- * @param {import('$types/content').CtaIcon} name
- * @return {string}
- */
-export const svgIcon = (name) => {
+import type { CtaIcon } from "$types/content";
+
+export const svgIcon = (name: CtaIcon): string => {
 	const classes =
 		"inline h-[1em] ml-[0.4em] -mt-[3px] group-hover:scale-110 transition-transform";
 	switch (name) {

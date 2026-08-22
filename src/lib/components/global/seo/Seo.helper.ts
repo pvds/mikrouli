@@ -1,13 +1,7 @@
-/** @typedef {import('./Seo.svelte.types.js').SEOProps} SEOProps */
+import type { SEOProps } from "./Seo.svelte.types.js";
 
-/**
- * Check if the SEO properties are set
- * @param {SEOProps} seo
- * @param {string|null} routeId
- */
-export const checkSeo = (seo, routeId) => {
-	/** @type {(keyof SEOProps)[]} */
-	const propertiesToCheck = ["description", "keywords"];
+export const checkSeo = (seo: SEOProps, routeId: string | null): void => {
+	const propertiesToCheck: (keyof SEOProps)[] = ["description", "keywords"];
 	const missingProperties = propertiesToCheck.filter(
 		(property) => !seo[property],
 	);

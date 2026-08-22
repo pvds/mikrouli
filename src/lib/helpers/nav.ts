@@ -1,16 +1,10 @@
 import { resolve } from "$app/paths";
+import type { NavigationItem } from "$types/content";
+import type { NavigationFieldItems } from "$types/contentful";
 
-/**
- * @typedef {import('$types/contentful').NavigationFieldItems} NavigationFieldItems
- * @typedef {import('$types/content').NavigationItem} NavigationItem
- */
-
-/**
- * Converts Contentful navigation items to an array of NavItem objects
- * @param {NavigationFieldItems[]} navItems
- * @returns {NavigationItem[]}
- */
-export const toNavItems = (navItems) =>
+export const toNavItems = (
+	navItems: NavigationFieldItems[],
+): NavigationItem[] =>
 	navItems
 		.filter(({ hidden }) => !hidden)
 		.map(({ title, menuTitle, longTitle, url, isExternal, items }) => ({
