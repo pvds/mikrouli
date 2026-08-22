@@ -101,7 +101,8 @@ const srcset = (sizes) =>
 			<img src={placeholder} {alt}
 				 class={[POSITION_CLASSES, positionClass, classes, height, width, "transition-all"]}
 				 loading={priority ? "eager" : "lazy"}
-				 fetchpriority={priority ? "high" : null}/>
+				 decoding={priority ? "sync" : "async"}
+				 fetchpriority={priority ? "high" : "auto"}/>
 			<div class={[POSITION_CLASSES, positionClass, classes, "backdrop-blur-xl transition-all"]}></div>
 		{/if}
 		<picture>
@@ -109,7 +110,8 @@ const srcset = (sizes) =>
 			<img src={`${base}${directory}/${image}-1280.webp`} {alt}
 				class={[POSITION_CLASSES, positionClass, classes, height, width, { "opacity-0": !loadedImage }]}
 				loading={priority ? "eager" : "lazy"}
-				fetchpriority={priority ? "high" : null}
+				decoding={priority ? "sync" : "async"}
+				fetchpriority={priority ? "high" : "auto"}
 				onload={() => loadedImage = true}
 				onerror={() => loadedImage = false}
 				style={maskIndex ? `clip-path: url(#mask${maskIndex});`: ""}
