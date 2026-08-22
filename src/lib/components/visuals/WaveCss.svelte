@@ -22,7 +22,7 @@ const radPhase = $derived((phase * Math.PI) / 180);
 const pathBase = $derived(
 	invert ? "polygon(100% 0%, 0% 0%" : "polygon(100% 100%, 0% 100%",
 );
-const clipPath = $derived(() => {
+const clipPath = $derived.by(() => {
 	const pathPoints = Array.from({ length: points + 1 }, (_, i) => {
 		const val = offset + amplitude * Math.cos(i * units + radPhase);
 		const valY = ((val / height) * 100).toFixed(2);
@@ -33,9 +33,8 @@ const clipPath = $derived(() => {
 });
 </script>
 
-<div style="width: {width}; height: var(--height); clip-path: {clipPath()}; --height: {height}px"
+<div style="width: {width}; height: var(--height); clip-path: {clipPath}; --height: {height}px"
 	 class="wave overflow-hidden absolute left-0 {invert ? inside ?
 	 'bottom-[calc(100%-var(--height)+1px)]' : 'top-full' : inside ?
 	 `top-[calc(100%-var(--height)+1px)]` :
 	 'bottom-full'} {color}"></div>
-

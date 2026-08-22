@@ -10,43 +10,43 @@ import { getImageName } from "$lib/helpers/image.js";
 
 /** @type {import('./$types').PageProps} */
 let { data } = $props();
-const page = () => data.page.fields;
-const meta = () => data.page.meta;
-const services = () => data.services;
+const page = $derived(data.page.fields);
+const meta = $derived(data.page.meta);
+const services = $derived(data.services);
 let updated = $state(U_NBSP);
 
 onMount(() => {
-	updated = `Last updated on ${formatDate(meta().updatedAt)}`;
+	updated = `Last updated on ${formatDate(meta.updatedAt)}`;
 });
 </script>
 
-<Hero title={page().header} image={getImageName(page().heroImage?.file.fileName)}
-	  imageAlt={page().heroImage?.title} imagePositionClass="object-[100%_75%]">
-	{@html page().intro}
+<Hero title={page.header} image={getImageName(page.heroImage?.file.fileName)}
+	  imageAlt={page.heroImage?.title} imagePositionClass="object-[100%_75%]">
+	{@html page.intro}
 	<p class="mt-4 text-base italic">
 		{updated}
 	</p>
 </Hero>
 
-{#if page().sections?.length}
-	{#each page().sections as section, i}
+{#if page.sections?.length}
+	{#each page.sections as section, i}
 		<ContentSection prose size="lg" index={i} title={section.header || section.title}
 						image={section.image}>
 			{@html section.content}
 		</ContentSection>
 	{/each}
 {:else}
-	{#each page().contentSections as section, i}
+	{#each page.contentSections as section, i}
 		<ContentSection prose proseClasses="max-w-full!" index={i}>
 			{@html section}
 		</ContentSection>
 	{/each}
 {/if}
 
-{#if page().outro}
-	<Outro image={page().outroImage}>
-		{@html page().outro}
+{#if page.outro}
+	<Outro image={page.outroImage}>
+		{@html page.outro}
 	</Outro>
 {/if}
 
-<TeaserSection items={services()} slug="services" title="How I Can Support You"/>
+<TeaserSection items={services} slug="services" title="How I Can Support You"/>

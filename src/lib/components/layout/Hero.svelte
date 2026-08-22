@@ -30,7 +30,7 @@ let {
 	imagePositionClass,
 } = $props();
 
-const spacingY = $derived(() => ({
+const spacingY = $derived({
 	padding: image
 		? "pt-14 pb-18 sm:pt-20 sm:pb-24 md:pt-30 md:pb-34"
 		: "py-10 sm:py-16 md:py-24",
@@ -39,7 +39,7 @@ const spacingY = $derived(() => ({
 			? "-bottom-18 sm:-bottom-24 md:-bottom-34 max-sm:-mt-8 sm:-mt-6"
 			: "-bottom-10 sm:-bottom-16 md:-bottom-24 max-sm:-mt-8 sm:-mt-6"
 		: "",
-}));
+});
 
 const sideClasses = $derived(sideAbsolute ? "md:absolute md:right-0" : "");
 </script>
@@ -52,7 +52,7 @@ const sideClasses = $derived(sideAbsolute ? "md:absolute md:right-0" : "");
 	<div class="absolute inset-0 bg-primary-black/75"></div>
 	{/if}
 	<Section classes="{!image && 'bg-primary-light'} overflow-hidden"
-			customSpacing="{SPACING_X_CLASSES} {spacingY().padding}"
+			customSpacing="{SPACING_X_CLASSES} {spacingY.padding}"
 			innerClasses={sideAbsolute ? 'relative' : 'flex'}>
 		<div>
 			{#if title}
@@ -76,7 +76,7 @@ const sideClasses = $derived(sideAbsolute ? "md:absolute md:right-0" : "");
 			</div>
 		</div>
 		{#if side}
-		<div class="relative md:w-4/12 {sideClasses} {spacingY().bottom}"
+		<div class="relative md:w-4/12 {sideClasses} {spacingY.bottom}"
 			 class:content-center={!sideAbsolute}>
 			{@render side?.()}
 		</div>

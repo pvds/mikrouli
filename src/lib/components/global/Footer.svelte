@@ -16,9 +16,9 @@ import { toNavItems } from "../../helpers/nav.js";
 /** @type {Props} */
 let { primary, pages, contact } = $props();
 
-const NavPrimary = () => toNavItems(primary.fields.items);
-const NavPages = () => toNavItems(pages.fields.items);
-const NavContact = () => toNavItems(contact.fields.items);
+const navPrimary = $derived(toNavItems(primary.fields.items));
+const navPages = $derived(toNavItems(pages.fields.items));
+const navContact = $derived(toNavItems(contact.fields.items));
 </script>
 
 <footer class="footer relative mt-72 md:mt-80">
@@ -44,7 +44,7 @@ const NavContact = () => toNavItems(contact.fields.items);
 				<strong id={primary.meta.id}
 						class="sm:text-lg font-bold inline-block mb-2">{primary.fields.title}</strong>
 				<ul class="grid min-[28em]:max-xs-mid:grid-cols-2 md-mid:grid-cols-2 gap-x-4 gap-y-2">
-				{#each NavPrimary() as { href, label, title, target }}
+				{#each navPrimary as { href, label, title, target }}
 					<li>
 						<a {href} {title} {target}
 						   class="font-semibold text-primary-darker hover:underline hover:text-accent-darker">{label}</a>
@@ -57,7 +57,7 @@ const NavContact = () => toNavItems(contact.fields.items);
 						class="sm:text-lg font-bold inline-block mb-2">{contact.fields.title}</strong>
 				<ul
 					class="grid min-[28em]:max-xs-mid:grid-cols-2 md-mid:grid-cols-2 gap-x-4 gap-y-2">
-				{#each NavContact() as { href, label, title, target }}
+				{#each navContact as { href, label, title, target }}
 					<li>
 						<a {href} {title} {target}
 						   class="font-semibold text-primary-darker hover:underline hover:text-accent-darker">{label}</a>
@@ -70,7 +70,7 @@ const NavContact = () => toNavItems(contact.fields.items);
 						class="sm:text-lg font-bold inline-block mb-2">{pages.fields.title}</strong>
 				<ul
 					class="grid grid-cols-1 min-[28em]:grid-cols-2 md-mid:grid-cols-4 gap-x-4 gap-y-2">
-					{#each NavPages() as { href, label, title, target }}
+					{#each navPages as { href, label, title, target }}
 						<li>
 							<a {href} {title} {target}
 							   class="font-semibold text-primary-darker hover:underline hover:text-accent-darker">{label}</a>

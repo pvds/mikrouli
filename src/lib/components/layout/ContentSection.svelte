@@ -61,7 +61,7 @@ const proseSizeClasses = (size) =>
 		lg: PROSE_CLASSES_LG,
 	})[size] || PROSE_CLASSES_MD;
 
-const ProseTheme = () => (proseInvert ? "prose-invert" : "");
+const proseTheme = $derived(proseInvert ? "prose-invert" : "");
 </script>
 
 <Section wave={hasWave(index)} {size} {classes} {theme}>
@@ -75,7 +75,7 @@ const ProseTheme = () => (proseInvert ? "prose-invert" : "");
 			<h2 class="mb-[1.25em] text-2xl md:text-3xl font-bold">{title}</h2>
 			{/if}
 			<div class="{prose ? 'prose marker:text-accent-dark prose-headings:font-bold' : ''}
-		 	{ProseTheme()} {proseSizeClasses(size)} {proseClasses}"
+		 	{proseTheme} {proseSizeClasses(size)} {proseClasses}"
 					 style={!image ? "--container-prose: 65ch" : ""}>
 				{@render children?.()}
 			</div>

@@ -37,8 +37,7 @@ let dialog = $state(null);
 /** @type {'loading'|'loaded'|'failed'} */
 let iframeState = $state("loading");
 
-const getBookingCta = () => BOOKING_OPTIONS[type].cta;
-const getBookingUrl = () => BOOKING_OPTIONS[type].url;
+const booking = $derived(BOOKING_OPTIONS[type]);
 </script>
 
 <button
@@ -51,7 +50,7 @@ const getBookingUrl = () => BOOKING_OPTIONS[type].url;
 		<span class="max-xs:hidden min-lg:hidden">{cta.text}</span>
 		<span class="max-lg:hidden">{cta.textLong}</span>
 	{:else}
-		{getBookingCta()}
+		{booking.cta}
 	{/if}
 	{#if ctaIcon}
 		{@html svgIcon(ctaIcon)}
@@ -67,7 +66,7 @@ const getBookingUrl = () => BOOKING_OPTIONS[type].url;
 			>
 				Close Dialog
 			</button>
-			<a href={getBookingUrl()} target="_blank"
+			<a href={booking.url} target="_blank"
 			   class="py-2 px-4 rounded-full text-sm font-semibold hover:bg-primary-darker text-primary-light hover:text-primary-lightest"
 			>
 				Open in a New Tab
@@ -93,8 +92,8 @@ const getBookingUrl = () => BOOKING_OPTIONS[type].url;
 	{/if}
 
 	<iframe
-		title={getBookingCta()}
-		src="{getBookingUrl()}"
+		title={booking.cta}
+		src={booking.url}
 		width="100%"
 		height="100%"
 		class="w-full h-full"
