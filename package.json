@@ -31,9 +31,7 @@
 		"start": "vite dev --host",
 		"start:prod": "bun run build:prod && bun run preview:prod --open",
 		"build": "vite build",
-		"postbuild": "DEPLOY_TARGET=staging bun run assets:sitemap",
 		"build:prod": "DEPLOY_TARGET=production vite build --mode production",
-		"postbuild:prod": "DEPLOY_TARGET=production bun run assets:sitemap",
 		"preview": "vite preview",
 		"preview:prod": "DEPLOY_TARGET=production vite preview --mode production",
 		"test:html": "html-validate --config .htmlvalidate.json \"build/production/**/*.html\"",
@@ -52,7 +50,6 @@
 		"assets:fetch": "bun run scripts/assets/fetch.js",
 		"assets:process": "bun run scripts/assets/process.js",
 		"assets:favicons": "bunx realfavicon generate images/icon.svg favicons.json .favicons.json static/pwa",
-		"assets:sitemap": "bun run scripts/assets/helpers/sitemap.js",
 		"skills": "bunx skills update -y -a github-copilot"
 	},
 	"devDependencies": {

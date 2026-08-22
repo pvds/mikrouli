@@ -157,19 +157,15 @@ bun add -d @tailwindcss/language-server@latest
 
 ---
 
-## Deferred major — `svelte-sitemap` 2 -> 4
+## Completed major — `svelte-sitemap` 2 -> 4
 
-Do **not** implement this before the SvelteKit 3/Vite 8 migration unless there is a specific reason.
-
-### Why defer it
-
-Mikrouli currently generates the sitemap through a postbuild helper/CLI flow. `svelte-sitemap` 4 recommends migrating to its Vite plugin:
+Mikrouli now generates the sitemap through `svelte-sitemap/vite`:
 
 ```js
 import { svelteSitemap } from 'svelte-sitemap/vite';
 ```
 
-The CLI/CLI flags are now a legacy/deprecated path. Because SvelteKit 3 itself moves SvelteKit configuration into `vite.config`, doing the sitemap migration first would cause two rounds of Vite configuration churn.
+The CLI/CLI flags are now a legacy/deprecated path, so repo no longer depends on the old postbuild helper flow.
 
 ### Required behavior to preserve
 
@@ -181,20 +177,12 @@ Mikrouli has target-specific output:
 
 Version 4 supports both `domain` and `outDir`, so configure them from the same `DEPLOY_TARGET` source used by the rest of the build.
 
-### Later implementation batch
+### Implemented migration
 
-After SvelteKit 3/Vite 8 is green:
-
-1. Upgrade:
-
-```bash
-bun add -d svelte-sitemap@latest
-```
-
-2. Add `svelteSitemap(...)` to the existing Vite plugin list.
-3. Pass target-aware `domain` and `outDir` values.
-4. Remove the old `postbuild`/`postbuild:prod` sitemap hooks and sitemap helper **only after** both target outputs match.
-5. Compare generated sitemap URLs for staging and production.
+1. Add `svelteSitemap(...)` to `vite.config.ts`.
+2. Pass target-aware `domain` and `outDir` values from `DEPLOY_TARGET`.
+3. Remove `postbuild`/`postbuild:prod` sitemap hooks and sitemap helper.
+4. Compare generated sitemap URLs for staging and production.
 
 ### Acceptance criteria
 
@@ -202,7 +190,7 @@ bun add -d svelte-sitemap@latest
 - Production URLs use `https://mikrouli.org`.
 - Staging URLs use the intended GitHub Pages origin/base behavior.
 - No duplicate `/mikrouli` segment.
-- Old helper and scripts are removed only when unused.
+- Old helper and scripts are removed.
 
 ---
 
