@@ -2,7 +2,7 @@
 
 ## Package Manager
 
-- Install dependencies with **pnpm**: `pnpm install`
+- Install dependencies with **bun**: `bun install`
 - Run project scripts with **bun**: `bun run <script>`
 - Runtime targets: Node `^24`, Bun `^1.3`
 

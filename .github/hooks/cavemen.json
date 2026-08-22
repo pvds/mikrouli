@@ -1,11 +1,11 @@
 {
-  "version": 1,
-  "hooks": {
-    "sessionStart": [
-      {
-        "type": "prompt",
-        "prompt": "/caveman full"
-      }
-    ]
-  }
+	"version": 1,
+	"hooks": {
+		"sessionStart": [
+			{
+				"type": "prompt",
+				"prompt": "/caveman full"
+			}
+		]
+	}
 }

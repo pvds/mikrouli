@@ -114,4 +114,4 @@ const promptForMissingVariables = async (envFilePath, requiredVars = []) => {
 	logInfo(`Updated ${envFilePath} with missing environment variables.`);
 };
 
-export { getEmptyEnvVariables, updateEnvFile, promptForMissingVariables };
+export { getEmptyEnvVariables, promptForMissingVariables, updateEnvFile };
