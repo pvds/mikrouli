@@ -7,7 +7,6 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"ignoreUnknown": false,
 		"includes": ["**", "!src/data/generated", "!.agents/skills"]
 	},
 	"formatter": {
@@ -18,7 +17,7 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true,
+			"preset": "recommended",
 			"correctness": {
 				"noUnusedImports": { "level": "error" }
 			}
