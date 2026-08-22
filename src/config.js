@@ -8,7 +8,7 @@
 export const URL_SUBFOLDER_STAGING = "/mikrouli";
 export const URL_SUBFOLDER_PRODUCTION = "";
 export const URL_BASE_STAGING = "https://pvdv.github.io/mikrouli";
-export const URL_BASE_PRODUCTION = "https://mikrouli.nl";
+export const URL_BASE_PRODUCTION = "https://mikrouli.org";
 
 // Site
 export const SITE_PREVIEW_URL = "images/preview.webp";
@@ -38,7 +38,7 @@ export const OWNER_SAMEAS = [OWNER_LINKEDIN];
 
 // Contact
 export const CONTACT_PHONE = "+31 6 1944 6263";
-export const CONTACT_EMAIL = "contact@mikrouli.nl";
+export const CONTACT_EMAIL = "contact@mikrouli.org";
 export const CONTACT_STREET = "Virulypad 61";
 export const CONTACT_CITY = "Leiden";
 export const CONTACT_POSTAL = "2316 ZT";
