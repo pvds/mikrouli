@@ -30,25 +30,6 @@ let {
 	positionClass = "object-center",
 }: Props = $props();
 
-// Dynamic import causes a loading delay, keep for future reference
-// /** @type {ImageMeta|undefined} */
-// let meta = $state();
-// const loadMetadata = async () => {
-// 	try {
-// 		const metadata = await import(
-// 			`$data/generated/meta/${isLocal ? "local" : "cms"}/${image}.json`
-// 		);
-// 		meta = metadata.default;
-// 		loadedData = true;
-// 	} catch (error) {
-// 		console.error("Failed to load image metadata:", error);
-// 		loadedData = false;
-// 	}
-// };
-// onMount(() => {
-// 	loadMetadata();
-// });
-
 const base = resolve("/");
 const IMAGE_DIR = "images";
 const POSITION_CLASSES = "absolute object-cover";
@@ -58,10 +39,16 @@ const usePlaceholder = false;
 let loadedData = $state(true);
 let loadedImage = $state(false);
 
-const metaCategory = $derived(isLocal ? metadata.local : metadata.cms);
-const meta = $derived(
-	(metaCategory as Record<string, unknown>)[image] as ImageMeta | undefined,
+type MetadataCollection = Record<string, ImageMeta | undefined>;
+const imageMetadata: {
+	local: MetadataCollection;
+	cms: MetadataCollection;
+} = metadata;
+
+const metaCategory = $derived(
+	isLocal ? imageMetadata.local : imageMetadata.cms,
 );
+const meta = $derived(metaCategory[image]);
 
 const height = $derived(heightClass ? heightClass : "h-full");
 const width = $derived(widthClass ? widthClass : "w-full");
