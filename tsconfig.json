@@ -5,10 +5,12 @@
 		"forceConsistentCasingInFileNames": true,
 		"incremental": true,
 		"moduleResolution": "bundler",
+		"noEmit": true,
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
-		"strict": true
+		"strict": true,
+		"tsBuildInfoFile": ".tmp/tsconfig.tsbuildinfo"
 	},
 	"include": [
 		".svelte-kit/ambient.d.ts",
@@ -17,7 +19,6 @@
 		"src/**/*.js",
 		"src/**/*.ts",
 		"src/**/*.svelte",
-		"tests/**/*.js",
 		"scripts/**/*.ts",
 		"scripts/bun-env.d.ts",
 		"tests/**/*.ts",
