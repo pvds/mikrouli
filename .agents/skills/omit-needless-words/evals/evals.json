@@ -1,121 +1,121 @@
 {
-	"skill_name": "omit-needless-words",
-	"evals": [
-		{
-			"id": "announcement-overview-balanced",
-			"prompt": "Omit needless words from this with balanced intensity: We are pleased to announce that you can now use the dashboard to very quickly get a broad overview of your active incidents, and in this section we will explain how you can start using it effectively.",
-			"expected_behavior": [
-				"Removes happy talk and meta text",
-				"Preserves the dashboard and active incidents meaning",
-				"Uses balanced intensity",
-				"Does not summarize into unrelated wording",
-				"Returns the required output format"
-			],
-			"expected_revised_version_example": "Use the dashboard to view active incidents. Start with the steps in this section."
-		},
-		{
-			"id": "prerequisite-safety-strong",
-			"prompt": "Use strong intensity: In this section, we will walk you through the process of setting up your development environment. It is worth noting that this is a fairly straightforward process, but it is important that you make sure you have administrator privileges before you begin, as some of the steps may require elevated access to complete successfully.",
-			"expected_behavior": [
-				"Uses strong intensity",
-				"Preserves administrator privileges requirement",
-				"Removes unnecessary reassurance",
-				"Does not remove the prerequisite",
-				"Discloses risk only if compression removes nuance"
-			],
-			"expected_revised_version_example": "Set up your development environment. Administrator privileges required."
-		},
-		{
-			"id": "ui-instruction-destructive-action",
-			"prompt": "Omit needless words: Please type DELETE in the field below to confirm that you want to permanently delete this workspace.",
-			"expected_behavior": [
-				"Uses balanced intensity by default",
-				"Preserves the DELETE confirmation requirement",
-				"Preserves permanence of deletion",
-				"Does not reduce the warning to only 'Delete'",
-				"Keeps the action clear"
-			],
-			"expected_revised_version_example": "Type DELETE to permanently delete this workspace."
-		},
-		{
-			"id": "technical-docs-preserve-commands",
-			"prompt": "Make this more scannable: Before you are able to run the test suite locally, you will need to make sure that all dependencies have been installed in your local development environment. You can do this by running pnpm install from the root of the repository. After this command has completed successfully, you can then run pnpm test.",
-			"expected_behavior": [
-				"Uses balanced intensity by default",
-				"Preserves command names exactly",
-				"Preserves command order",
-				"Turns verbose prose into concise steps or command-focused copy",
-				"Does not summarize away setup context"
-			],
-			"expected_revised_version_example": "Install dependencies from the repository root: pnpm install. Then run the tests: pnpm test."
-		},
-		{
-			"id": "sensitive-copy-light-by-safety",
-			"prompt": "Omit needless words from this client message: We understand that this may be a difficult time for you, and we want you to know that you are very welcome to contact us whenever you feel ready to talk about what has been going on.",
-			"expected_behavior": [
-				"Defaults to light for emotionally sensitive copy when no intensity is specified",
-				"Reports selected intensity and default-reason clearly",
-				"Does not make the message cold or abrupt",
-				"Preserves emotional safety and invitation",
-				"Removes filler without removing useful warmth"
-			],
-			"expected_revised_version_example": "This may be a difficult time. You are welcome to contact us when you feel ready to talk."
-		},
-		{
-			"id": "not-summarization",
-			"prompt": "Omit needless words from this documentation section but do not summarize it: Users need administrator access to install the driver. If they do not have administrator access, they should contact IT before continuing. Installing without administrator access may fail and leave the driver partially configured.",
-			"expected_behavior": [
-				"Preserves all three decision-critical details",
-				"Does not summarize into one vague sentence",
-				"Keeps administrator access, contact IT, and partial configuration risk",
-				"Uses balanced intensity by default"
-			],
-			"expected_revised_version_example": "Administrator access required to install the driver. Without it, contact IT before continuing. Installation may fail and leave the driver partially configured."
-		},
-		{
-			"id": "bulleted-list-structure-preserved",
-			"prompt": "Omit needless words from this list:\n- Click the button below to proceed to the next step.\n- Please enter your name in the text field provided.\n- Once you are done, press the Submit button to complete the form.",
-			"expected_behavior": [
-				"Removes meta-text and filler from each list item",
-				"Preserves the list structure (three items)",
-				"Keeps the action in each item clear",
-				"Does not merge items or remove the bulleted format",
-				"Uses balanced intensity by default"
-			],
-			"expected_revised_version_example": "- Click the button to continue.\n- Enter your name.\n- Press Submit."
-		},
-		{
-			"id": "code-comment-prose-only",
-			"prompt": "Omit needless words from this code comment: // This function is responsible for validating that the email address provided by the user is in the correct format before it is submitted.",
-			"expected_behavior": [
-				"Edits only the prose in the comment",
-				"Does not change variable names, keywords, or code structure",
-				"Removes filler while keeping technical precision",
-				"Uses balanced intensity by default"
-			],
-			"expected_revised_version_example": "// Validates that the email address is in the correct format before submission."
-		},
-		{
-			"id": "nested-warnings-both-preserved",
-			"prompt": "Omit needless words: Step 1: Perform the initial configuration. Please be aware that this action cannot be reversed once it has been completed. Additionally, you should be aware that attempting to undo this step may cause data corruption.",
-			"expected_behavior": [
-				"Simplifies the surrounding prose",
-				"Preserves both warnings (irreversible action and data corruption risk)",
-				"Does not merge the two warnings into one",
-				"Uses balanced intensity by default"
-			],
-			"expected_revised_version_example": "Step 1: Perform the initial configuration. This action is irreversible. Attempting to undo it may cause data corruption."
-		},
-		{
-			"id": "very-short-content-minimal-edits",
-			"prompt": "Omit needless words from this: Click OK to save.",
-			"expected_behavior": [
-				"Recognizes the content is already minimal",
-				"Returns the original or a near-identical version",
-				"Does not force unnecessary changes",
-				"Notes that content is already concise"
-			],
-			"expected_revised_version_example": "Click OK to save."
-		}
-	]
+  "skill_name": "omit-needless-words",
+  "evals": [
+    {
+      "id": "announcement-overview-balanced",
+      "prompt": "Omit needless words from this with balanced intensity: We are pleased to announce that you can now use the dashboard to very quickly get a broad overview of your active incidents, and in this section we will explain how you can start using it effectively.",
+      "expected_behavior": [
+        "Removes happy talk and meta text",
+        "Preserves the dashboard and active incidents meaning",
+        "Uses balanced intensity",
+        "Does not summarize into unrelated wording",
+        "Returns the required output format"
+      ],
+      "expected_revised_version_example": "Use the dashboard to view active incidents. Start with the steps in this section."
+    },
+    {
+      "id": "prerequisite-safety-strong",
+      "prompt": "Use strong intensity: In this section, we will walk you through the process of setting up your development environment. It is worth noting that this is a fairly straightforward process, but it is important that you make sure you have administrator privileges before you begin, as some of the steps may require elevated access to complete successfully.",
+      "expected_behavior": [
+        "Uses strong intensity",
+        "Preserves administrator privileges requirement",
+        "Removes unnecessary reassurance",
+        "Does not remove the prerequisite",
+        "Discloses risk only if compression removes nuance"
+      ],
+      "expected_revised_version_example": "Set up your development environment. Administrator privileges required."
+    },
+    {
+      "id": "ui-instruction-destructive-action",
+      "prompt": "Omit needless words: Please type DELETE in the field below to confirm that you want to permanently delete this workspace.",
+      "expected_behavior": [
+        "Uses balanced intensity by default",
+        "Preserves the DELETE confirmation requirement",
+        "Preserves permanence of deletion",
+        "Does not reduce the warning to only 'Delete'",
+        "Keeps the action clear"
+      ],
+      "expected_revised_version_example": "Type DELETE to permanently delete this workspace."
+    },
+    {
+      "id": "technical-docs-preserve-commands",
+      "prompt": "Make this more scannable: Before you are able to run the test suite locally, you will need to make sure that all dependencies have been installed in your local development environment. You can do this by running pnpm install from the root of the repository. After this command has completed successfully, you can then run pnpm test.",
+      "expected_behavior": [
+        "Uses balanced intensity by default",
+        "Preserves command names exactly",
+        "Preserves command order",
+        "Turns verbose prose into concise steps or command-focused copy",
+        "Does not summarize away setup context"
+      ],
+      "expected_revised_version_example": "Install dependencies from the repository root: pnpm install. Then run the tests: pnpm test."
+    },
+    {
+      "id": "sensitive-copy-light-by-safety",
+      "prompt": "Omit needless words from this client message: We understand that this may be a difficult time for you, and we want you to know that you are very welcome to contact us whenever you feel ready to talk about what has been going on.",
+      "expected_behavior": [
+        "Defaults to light for emotionally sensitive copy when no intensity is specified",
+        "Reports selected intensity and default-reason clearly",
+        "Does not make the message cold or abrupt",
+        "Preserves emotional safety and invitation",
+        "Removes filler without removing useful warmth"
+      ],
+      "expected_revised_version_example": "This may be a difficult time. You are welcome to contact us when you feel ready to talk."
+    },
+    {
+      "id": "not-summarization",
+      "prompt": "Omit needless words from this documentation section but do not summarize it: Users need administrator access to install the driver. If they do not have administrator access, they should contact IT before continuing. Installing without administrator access may fail and leave the driver partially configured.",
+      "expected_behavior": [
+        "Preserves all three decision-critical details",
+        "Does not summarize into one vague sentence",
+        "Keeps administrator access, contact IT, and partial configuration risk",
+        "Uses balanced intensity by default"
+      ],
+      "expected_revised_version_example": "Administrator access required to install the driver. Without it, contact IT before continuing. Installation may fail and leave the driver partially configured."
+    },
+    {
+      "id": "bulleted-list-structure-preserved",
+      "prompt": "Omit needless words from this list:\n- Click the button below to proceed to the next step.\n- Please enter your name in the text field provided.\n- Once you are done, press the Submit button to complete the form.",
+      "expected_behavior": [
+        "Removes meta-text and filler from each list item",
+        "Preserves the list structure (three items)",
+        "Keeps the action in each item clear",
+        "Does not merge items or remove the bulleted format",
+        "Uses balanced intensity by default"
+      ],
+      "expected_revised_version_example": "- Click the button to continue.\n- Enter your name.\n- Press Submit."
+    },
+    {
+      "id": "code-comment-prose-only",
+      "prompt": "Omit needless words from this code comment: // This function is responsible for validating that the email address provided by the user is in the correct format before it is submitted.",
+      "expected_behavior": [
+        "Edits only the prose in the comment",
+        "Does not change variable names, keywords, or code structure",
+        "Removes filler while keeping technical precision",
+        "Uses balanced intensity by default"
+      ],
+      "expected_revised_version_example": "// Validates that the email address is in the correct format before submission."
+    },
+    {
+      "id": "nested-warnings-both-preserved",
+      "prompt": "Omit needless words: Step 1: Perform the initial configuration. Please be aware that this action cannot be reversed once it has been completed. Additionally, you should be aware that attempting to undo this step may cause data corruption.",
+      "expected_behavior": [
+        "Simplifies the surrounding prose",
+        "Preserves both warnings (irreversible action and data corruption risk)",
+        "Does not merge the two warnings into one",
+        "Uses balanced intensity by default"
+      ],
+      "expected_revised_version_example": "Step 1: Perform the initial configuration. This action is irreversible. Attempting to undo it may cause data corruption."
+    },
+    {
+      "id": "very-short-content-minimal-edits",
+      "prompt": "Omit needless words from this: Click OK to save.",
+      "expected_behavior": [
+        "Recognizes the content is already minimal",
+        "Returns the original or a near-identical version",
+        "Does not force unnecessary changes",
+        "Notes that content is already concise"
+      ],
+      "expected_revised_version_example": "Click OK to save."
+    }
+  ]
 }

@@ -1,71 +1,77 @@
 {
-	"version": 1,
-	"skills": {
-		"agents-md": {
-			"source": "getsentry/skills",
-			"sourceType": "github",
-			"skillPath": "skills/agents-md/SKILL.md",
-			"computedHash": "7ff79d6771cdf3db33606251eb15bbc5203b68a94b036ee471869842118ea02a"
-		},
-		"brand-voice": {
-			"source": "affaan-m/ecc",
-			"sourceType": "github",
-			"skillPath": "skills/brand-voice/SKILL.md",
-			"computedHash": "d2a2d29814a36bb98e4e9f2ef6dc724e2152e935f3d32019f3e2e554ff91ddef"
-		},
-		"bun": {
-			"source": "brianlovin/agent-config",
-			"sourceType": "github",
-			"skillPath": "skills/bun/SKILL.md",
-			"computedHash": "16c495e5ecd63e812b388b6d4fa62efd73614aea2fb507b0c8cdb122ea771ac0"
-		},
-		"caveman": {
-			"source": "juliusbrussee/caveman",
-			"sourceType": "github",
-			"skillPath": "skills/caveman/SKILL.md",
-			"computedHash": "48646eeec87b27067502d8bd450484faf08af588df783706b1571ee72f2d918c"
-		},
-		"modern-css": {
-			"source": "paulirish/dotfiles",
-			"sourceType": "github",
-			"skillPath": "agents/skills/modern-css/SKILL.md",
-			"computedHash": "04b1fd69e3c088949827e7c2af748402b2b7f798fc8742e9a7315ed506b161cc"
-		},
-		"modern-web-guidance": {
-			"source": "GoogleChrome/modern-web-guidance",
-			"sourceType": "github",
-			"skillPath": "skills/modern-web-guidance/SKILL.md",
-			"computedHash": "cf4101aff5b4f8959d9b89497b3a28e8941031591f7ff0a5783297d6b37ba8c3"
-		},
-		"omit-needless-words": {
-			"source": "pvds/ai",
-			"sourceType": "github",
-			"skillPath": "skills/omit-needless-words/SKILL.md",
-			"computedHash": "d1779aabe87b33d9dccf3ac4f0a0aa8c1a48c5cae882bc52d8e1969033878b47"
-		},
-		"svelte-code-writer": {
-			"source": "sveltejs/ai-tools",
-			"sourceType": "github",
-			"skillPath": "plugins/claude/svelte/skills/svelte-code-writer/SKILL.md",
-			"computedHash": "6f78193a79906175595ce8e4ca8d726da350eb99035a9544b6553620df5673a1"
-		},
-		"svelte-core-bestpractices": {
-			"source": "sveltejs/ai-tools",
-			"sourceType": "github",
-			"skillPath": "plugins/claude/svelte/skills/svelte-core-bestpractices/SKILL.md",
-			"computedHash": "98b4ee346ac45e13740c9f3353b604d5c6e844c96cdc8867052fa961cbdb525d"
-		},
-		"tailwind-best-practices": {
-			"source": "ofershap/tailwind-best-practices",
-			"sourceType": "github",
-			"skillPath": "skills/tailwind-best-practices/SKILL.md",
-			"computedHash": "6a6c5101bb0f507bd19b777e737fe68598d4c8bddb1313ea9d456db92580ea4b"
-		},
-		"typescript": {
-			"source": "pproenca/dot-skills",
-			"sourceType": "github",
-			"skillPath": "skills/.curated/typescript/SKILL.md",
-			"computedHash": "5cf1c3714eca76e65eb40939540dc585fa4d7295b81d51ebba5490a3ec6012b5"
-		}
-	}
+  "version": 1,
+  "skills": {
+    "agents-md": {
+      "source": "getsentry/skills",
+      "sourceType": "github",
+      "skillPath": "skills/agents-md/SKILL.md",
+      "computedHash": "7ff79d6771cdf3db33606251eb15bbc5203b68a94b036ee471869842118ea02a"
+    },
+    "brand-voice": {
+      "source": "affaan-m/ecc",
+      "sourceType": "github",
+      "skillPath": "skills/brand-voice/SKILL.md",
+      "computedHash": "d2a2d29814a36bb98e4e9f2ef6dc724e2152e935f3d32019f3e2e554ff91ddef"
+    },
+    "bun": {
+      "source": "brianlovin/agent-config",
+      "sourceType": "github",
+      "skillPath": "skills/bun/SKILL.md",
+      "computedHash": "16c495e5ecd63e812b388b6d4fa62efd73614aea2fb507b0c8cdb122ea771ac0"
+    },
+    "caveman": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/caveman/SKILL.md",
+      "computedHash": "48646eeec87b27067502d8bd450484faf08af588df783706b1571ee72f2d918c"
+    },
+    "modern-css": {
+      "source": "paulirish/dotfiles",
+      "sourceType": "github",
+      "skillPath": "agents/skills/modern-css/SKILL.md",
+      "computedHash": "04b1fd69e3c088949827e7c2af748402b2b7f798fc8742e9a7315ed506b161cc"
+    },
+    "modern-web-guidance": {
+      "source": "GoogleChrome/modern-web-guidance",
+      "sourceType": "github",
+      "skillPath": "skills/modern-web-guidance/SKILL.md",
+      "computedHash": "cf4101aff5b4f8959d9b89497b3a28e8941031591f7ff0a5783297d6b37ba8c3"
+    },
+    "omit-needless-words": {
+      "source": "pvds/ai",
+      "sourceType": "github",
+      "skillPath": "skills/omit-needless-words/SKILL.md",
+      "computedHash": "d1779aabe87b33d9dccf3ac4f0a0aa8c1a48c5cae882bc52d8e1969033878b47"
+    },
+    "playwright-cli": {
+      "source": "microsoft/playwright-cli",
+      "sourceType": "github",
+      "skillPath": "skills/playwright-cli/SKILL.md",
+      "computedHash": "f602822b51bcb6d033749c60731b8f1e80f308222fcb2e4af551905a817c6e08"
+    },
+    "svelte-code-writer": {
+      "source": "sveltejs/ai-tools",
+      "sourceType": "github",
+      "skillPath": "plugins/claude/svelte/skills/svelte-code-writer/SKILL.md",
+      "computedHash": "6f78193a79906175595ce8e4ca8d726da350eb99035a9544b6553620df5673a1"
+    },
+    "svelte-core-bestpractices": {
+      "source": "sveltejs/ai-tools",
+      "sourceType": "github",
+      "skillPath": "plugins/claude/svelte/skills/svelte-core-bestpractices/SKILL.md",
+      "computedHash": "98b4ee346ac45e13740c9f3353b604d5c6e844c96cdc8867052fa961cbdb525d"
+    },
+    "tailwind-best-practices": {
+      "source": "ofershap/tailwind-best-practices",
+      "sourceType": "github",
+      "skillPath": "skills/tailwind-best-practices/SKILL.md",
+      "computedHash": "6a6c5101bb0f507bd19b777e737fe68598d4c8bddb1313ea9d456db92580ea4b"
+    },
+    "typescript": {
+      "source": "pproenca/dot-skills",
+      "sourceType": "github",
+      "skillPath": "skills/.curated/typescript/SKILL.md",
+      "computedHash": "5cf1c3714eca76e65eb40939540dc585fa4d7295b81d51ebba5490a3ec6012b5"
+    }
+  }
 }

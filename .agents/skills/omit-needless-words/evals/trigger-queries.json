@@ -1,27 +1,27 @@
 {
-	"skill_name": "omit-needless-words",
-	"should_trigger": [
-		"Omit needless words from this copy.",
-		"Remove the happy talk from this onboarding text.",
-		"Make this README section more scannable.",
-		"Shorten this documentation without losing important details.",
-		"Tighten this UI text.",
-		"Use strong intensity on this product copy.",
-		"Reduce unnecessary instructions in this form text.",
-		"Make this less wordy but preserve the warning.",
-		"Edit this in the Steve Krug Don't Make Me Think sense.",
-		"Make this task-focused and remove filler."
-	],
-	"should_not_trigger": [
-		"Summarize this article in five bullets.",
-		"Translate this page to Dutch.",
-		"Write three new marketing headlines from scratch.",
-		"Make this message warmer and more empathetic.",
-		"Explain Steve Krug's book Don't Make Me Think.",
-		"Create a content strategy for our website.",
-		"Write an ADR for this decision.",
-		"Review this pull request for bugs.",
-		"Generate a README for this package.",
-		"Make this legal notice shorter by removing exceptions."
-	]
+  "skill_name": "omit-needless-words",
+  "should_trigger": [
+    "Omit needless words from this copy.",
+    "Remove the happy talk from this onboarding text.",
+    "Make this README section more scannable.",
+    "Shorten this documentation without losing important details.",
+    "Tighten this UI text.",
+    "Use strong intensity on this product copy.",
+    "Reduce unnecessary instructions in this form text.",
+    "Make this less wordy but preserve the warning.",
+    "Edit this in the Steve Krug Don't Make Me Think sense.",
+    "Make this task-focused and remove filler."
+  ],
+  "should_not_trigger": [
+    "Summarize this article in five bullets.",
+    "Translate this page to Dutch.",
+    "Write three new marketing headlines from scratch.",
+    "Make this message warmer and more empathetic.",
+    "Explain Steve Krug's book Don't Make Me Think.",
+    "Create a content strategy for our website.",
+    "Write an ADR for this decision.",
+    "Review this pull request for bugs.",
+    "Generate a README for this package.",
+    "Make this legal notice shorter by removing exceptions."
+  ]
 }
