@@ -1,6 +1,5 @@
 <script lang="ts">
 import { onMount } from "svelte";
-import { BUTTON_THEME } from "$config";
 
 let isDisabled = $state(false);
 
@@ -8,14 +7,15 @@ onMount(() => {
 	isDisabled = localStorage.getItem("umami.disabled") === "1";
 });
 
-function toggleTracking(): void {
+$effect(() => {
+	if (typeof localStorage === "undefined") return;
+
 	if (isDisabled) {
-		localStorage.removeItem("umami.disabled");
-	} else {
 		localStorage.setItem("umami.disabled", "1");
+	} else {
+		localStorage.removeItem("umami.disabled");
 	}
-	isDisabled = !isDisabled;
-}
+});
 </script>
 
 <div class="mx-auto px-8 pt-8 md:pt-24 prose prose-strong:font-bold marker:text-accent-dark">
@@ -27,15 +27,13 @@ function toggleTracking(): void {
 			on this device using this browser</strong>.
 	</p>
 	<div class="mt-12 flex flex-wrap gap-2">
-	<button onclick={toggleTracking}
-		class="flex flex-col px-4 py-2 transition text-center leading-tight {BUTTON_THEME.primary}"
-		type="button">
-		<span><span class="font-black">{isDisabled ? "START" : "STOP"}</span> tracking</span>
-		<small class="text-accent-light">This device/browser combination</small>
-	</button>
-	<a href="https://cloud.umami.is/share/ZNdZ6PywYGVatvHp/mikrouli.org" target="_blank" rel="noopener"
-	   class="px-4 py-2 no-underline transition text-center flex items-center {BUTTON_THEME.secondary}">View
-		Analytics</a>
+		<label class="inline-flex items-center gap-3 rounded-full border border-accent-dark bg-primary-light px-4 py-2 text-left text-primary-darker">
+			<input bind:checked={isDisabled} type="checkbox" class="h-4 w-4 accent-accent-dark" />
+			<span class="flex flex-col">
+				<span><span class="font-black">{isDisabled ? "START" : "STOP"}</span> tracking</span>
+				<small class="text-accent-dark/80">This device/browser combination</small>
+			</span>
+		</label>
 	</div>
 	{#if isDisabled}
 	<div
