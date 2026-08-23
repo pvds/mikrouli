@@ -6,6 +6,7 @@ import type { SectionTheme } from "$types/content";
 import WaveSvg from "$visuals/WaveSvg.svelte";
 
 interface Props {
+	element?: "section" | "div";
 	classes?: ClassValue;
 	innerClasses?: ClassValue;
 	title?: string;
@@ -17,6 +18,7 @@ interface Props {
 }
 
 let {
+	element = "section",
 	classes,
 	innerClasses,
 	title,
@@ -80,7 +82,7 @@ let themeClasses = $derived(
 let waveColor = $derived(WAVE_COLORS[theme]);
 </script>
 
-<section class={["relative", classes, spacing, themeClasses]}>
+<svelte:element this={element} class={["relative", classes, spacing, themeClasses]}>
 	<div class={["max-w-6xl mx-auto", innerClasses]}>
 		{#if wave}
 			<WaveSvg color={waveColor}>
@@ -90,7 +92,7 @@ let waveColor = $derived(WAVE_COLORS[theme]);
 			{@render content()}
 		{/if}
 	</div>
-</section>
+</svelte:element>
 
 {#snippet content()}
 	{#if title}

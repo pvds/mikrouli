@@ -50,7 +50,7 @@ const sideClasses = $derived(sideAbsolute ? "md:absolute md:right-0" : "");
 	</div>
 	<div class="absolute inset-0 bg-primary-black/75"></div>
 	{/if}
-	<Section classes={["overflow-hidden", !image && "bg-primary-light"]}
+	<Section classes={["overflow-clip", !image && "bg-primary-light"]}
 			customSpacing={[SPACING_X_CLASSES, spacingY.padding]}
 			innerClasses={sideAbsolute ? "relative" : "flex"}>
 		<div>
@@ -77,10 +77,20 @@ const sideClasses = $derived(sideAbsolute ? "md:absolute md:right-0" : "");
 			</div>
 		</div>
 		{#if side}
-		<div class={["relative md:w-4/12", sideClasses, spacingY.bottom, { "content-center": !sideAbsolute }]}>
-			{@render side?.()}
-		</div>
+			<div
+				class={[
+					"relative md:w-4/12 opacity-100 motion-safe:supports-view-timeline:view-fade-in",
+					sideClasses,
+					spacingY.bottom,
+					{
+						"content-center": !sideAbsolute,
+					},
+				]}
+			>
+				{@render side?.()}
+			</div>
 		{/if}
 	</Section>
-	<WaveCss height={25} inside/>
+
+	<WaveCss height={25} inside />
 </div>

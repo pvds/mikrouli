@@ -28,7 +28,8 @@ function toggleTracking(): void {
 	</p>
 	<div class="mt-12 flex flex-wrap gap-2">
 	<button onclick={toggleTracking}
-		class="flex flex-col px-4 py-2 transition text-center leading-tight {BUTTON_THEME.primary}">
+		class="flex flex-col px-4 py-2 transition text-center leading-tight {BUTTON_THEME.primary}"
+		type="button">
 		<span><span class="font-black">{isDisabled ? "START" : "STOP"}</span> tracking</span>
 		<small class="text-accent-light">This device/browser combination</small>
 	</button>

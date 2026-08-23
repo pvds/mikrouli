@@ -16,6 +16,10 @@ runs:
           shell: bash
 
         - name: Test accessibility
+          run: bun run test:html
+          shell: bash
+
+        - name: Test accessibility
           continue-on-error: true
           run: bun run test:axe --minimal --prod
           shell: bash
