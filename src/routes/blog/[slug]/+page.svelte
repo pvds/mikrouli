@@ -2,9 +2,9 @@
 import { onMount } from "svelte";
 import { resolve } from "$app/paths";
 import { U_NBSP } from "$config";
-import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
 import Outro from "$layout/Outro.svelte";
+import PageSections from "$layout/PageSections.svelte";
 import Section from "$layout/Section.svelte";
 import TeaserSection from "$layout/TeaserSection.svelte";
 import { formatDate } from "$lib/helpers/date.js";
@@ -39,19 +39,7 @@ onMount(() => {
 	</p>
 </Hero>
 
-{#if page.sections?.length}
-	{#each page.sections as section, i (section.id)}
-		<ContentSection prose proseClasses="max-w-full!" index={i} title={section.title}>
-			{@html section.content}
-		</ContentSection>
-	{/each}
-{:else}
-	{#each page.contentSections as section, i}
-		<ContentSection prose proseClasses="max-w-full!" index={i}>
-			{@html section}
-		</ContentSection>
-	{/each}
-{/if}
+<PageSections page={page} titleField="title" proseClasses="max-w-full!" />
 
 {#if post.prev || post.next}
 	<Section innerClasses="flex flex-wrap justify-between">
