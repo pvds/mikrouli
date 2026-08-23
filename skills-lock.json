@@ -61,6 +61,12 @@
 			"skillPath": "plugins/claude/svelte/skills/svelte-core-bestpractices/SKILL.md",
 			"computedHash": "98b4ee346ac45e13740c9f3353b604d5c6e844c96cdc8867052fa961cbdb525d"
 		},
+		"tailwind-4-docs": {
+			"source": "Lombiq/Tailwind-Agent-Skills",
+			"sourceType": "github",
+			"skillPath": "skills/tailwind-4-docs/SKILL.md",
+			"computedHash": "de756f5f03cc20a029983875b00b9dfef9d0ba8567d242c5cbb0262037d0a134"
+		},
 		"tailwind-best-practices": {
 			"source": "ofershap/tailwind-best-practices",
 			"sourceType": "github",
