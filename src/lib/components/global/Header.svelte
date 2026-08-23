@@ -7,13 +7,14 @@ interface Props {
 	children: Snippet;
 }
 
-let observer: IntersectionObserver;
-let sentinel: HTMLDivElement;
+let sentinel: HTMLDivElement | null = $state(null);
 let isCompact = $state(false);
 
 let { children }: Props = $props();
 
 onMount(() => {
+	if (!sentinel) return;
+
 	const observer = new IntersectionObserver(
 		([entry]) => {
 			isCompact = !entry.isIntersecting;
@@ -21,9 +22,7 @@ onMount(() => {
 		{ threshold: 0 },
 	);
 
-	if (sentinel) {
-		observer.observe(sentinel);
-	}
+	observer.observe(sentinel);
 
 	return () => {
 		observer.disconnect();

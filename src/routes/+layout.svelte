@@ -1,6 +1,5 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { onNavigate } from "$app/navigation";
 import Branding from "$global/Branding.svelte";
 import Footer from "$global/Footer.svelte";
 import Header from "$global/Header.svelte";
@@ -16,19 +15,6 @@ interface Props extends LayoutProps {
 
 let { children, data }: Props = $props();
 const nav = $derived(data.nav);
-
-const disableViewTransitions = true;
-
-onNavigate((navigation) => {
-	if (!document.startViewTransition || disableViewTransitions) return;
-
-	return new Promise<void>((resolve) => {
-		document.startViewTransition(async () => {
-			resolve();
-			await navigation.complete;
-		});
-	});
-});
 </script>
 
 <Seo/>
