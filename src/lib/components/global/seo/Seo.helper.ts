@@ -1,6 +1,11 @@
 import type { SEOProps } from "./Seo.svelte.types.js";
 
-export const checkSeo = (seo: SEOProps, routeId: string | null): void => {
+export const checkSeo = (
+	seo: Partial<SEOProps> | undefined,
+	routeId: string | null,
+): void => {
+	if (!seo) return;
+
 	const propertiesToCheck: (keyof SEOProps)[] = ["description", "keywords"];
 	const missingProperties = propertiesToCheck.filter(
 		(property) => !seo[property],
