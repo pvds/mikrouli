@@ -27,9 +27,13 @@
 ## Working Rules
 
 - Keep frontend work framework-light and dependency-light; prefer semantic HTML and CSS before JavaScript.
+- Prefer Tailwind utility classes for styling where possible; use component-level CSS only for browser-specific edge cases, fallback rules, or patterns that Tailwind cannot express cleanly without a lot of custom complexity.
+- Treat the existing design system as the default starting point: reuse established patterns, tokens, and utility combinations before creating bespoke UI.
+- Extend the design system deliberately when a repeated pattern or new visual need clearly belongs to the shared system; do not introduce one-off styling that bypasses the design language.
 - Exhaust native HTML and CSS first; treat runtime JavaScript as a last resort, not a convenience layer.
 - Add runtime JavaScript only when native HTML or CSS cannot provide the behavior or durable cross-browser UX.
 - Keep browser support aligned with the project baseline in `package.json` (`baseline widely available with downstream`). A feature that is newly available or limited availability needs an explicit fallback, or a clear reason that progressive enhancement is acceptable.
+- Do not drift from the working rules or project documentation; if a change appears to require an exception, document the reason and keep the exception explicit and minimal.
 - If a selector, intrinsic layout feature, form attribute, or top-layer primitive can do the job, use it instead of JavaScript.
 - Keep runtime JavaScript minimal and focused in the relevant modules rather than mixing unrelated behaviors together.
 - Preserve reduced-motion, keyboard focus, contrast, and offline behavior.

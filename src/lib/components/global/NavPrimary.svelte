@@ -13,7 +13,12 @@ interface Props {
 
 let { menu }: Props = $props();
 
-let menuPopovers = $state<HTMLUListElement[]>([]);
+const hasNativePopoverSupport =
+	typeof HTMLElement !== "undefined" && "popover" in HTMLElement.prototype;
+
+if (typeof window !== "undefined" && !hasNativePopoverSupport) {
+	void import("@oddbird/popover-polyfill");
+}
 
 const base = resolve("/");
 const navItemsBase = $derived(toNavItems(menu.fields.items));
@@ -47,25 +52,32 @@ const bookingCta = {
 {#each navItems as { href, label, title, menuTitle, target, items }, i (href)}
 	<li class="grow {href === base ? 'max-sm:hidden' : ''}">
 		{#if items && screen === "desktop"}
-		<button popovertarget="menu-popover-{screen}-{i}"
-				class="[anchor-name:{screen}-{i}] nav-menu__link inline-flex w-full text-center
-				px-1 md-mid:px-4 py-1 font-semibold transition-all {isCurrentPage(href) ?
-				'text-white' :
-				'text-primary-light hover:text-primary-lightest'}" type="button">{label}
+		<button
+			commandfor="menu-popover-{screen}-{i}"
+			command="toggle-popover"
+			class="[anchor-name:{screen}-{i}] nav-menu__link inline-flex w-full text-center
+			px-1 md-mid:px-4 py-1 font-semibold transition-all {isCurrentPage(href) ?
+			'text-white' :
+			'text-primary-light hover:text-primary-lightest'}"
+			type="button"
+			aria-controls="menu-popover-{screen}-{i}"
+			aria-expanded="false"
+		>
+			{label}
 			<svg class="inline w-[.8em] ml-1" xmlns="http://www.w3.org/2000/svg"
 				 viewBox="0 0 512 512">
 				<path d="M233 407c13 12 33 12 46 0l192-192a32 32 0 0 0-46-46L256 339 87 169a32 32 0 0 0-46 46l192 192z"/>
 			</svg>
 		</button>
-		<ul bind:this={menuPopovers[i]} id="menu-popover-{screen}-{i}" popover="auto"
-			class="[position-anchor:{screen}-{i}] [position-area:end_span-end] -ml-4 md-mid:-ml-1 mt-1 open:flex open:flex-col md-mid:gap-1 px-3 md-mid:px-1 pt-2 pb-3 rounded-md rounded-bl-3xl rounded-tr-3xl bg-primary-darker shadow-lg shadow-primary-black/25">
-			<li>{@render NavLink(href, menuTitle || label, title, target, menuPopovers[i], true)}</li>
+		<ul id="menu-popover-{screen}-{i}" popover="auto"
+			class="hidden [position-anchor:{screen}-{i}] [position-area:end_span-end] -ml-4 md-mid:-ml-1 mt-1 open:flex open:flex-col md-mid:gap-1 px-3 md-mid:px-1 pt-2 pb-3 rounded-md rounded-bl-3xl rounded-tr-3xl bg-primary-darker shadow-lg shadow-primary-black/25">
+			<li>{@render NavLink(href, menuTitle || label, title, target, true)}</li>
 			{#each items as { href, label, title, target } (href)}
-			<li>{@render NavLink(href, label, title, target, menuPopovers[i], true)}</li>
+			<li>{@render NavLink(href, label, title, target, true)}</li>
 			{/each}
 		</ul>
 		{:else}
-		{@render NavLink(href, label, title, target, null, true, "text-center")}
+		{@render NavLink(href, label, title, target, true, "text-center")}
 		{/if}
 	</li>
 {/each}
@@ -75,8 +87,8 @@ const bookingCta = {
 </ul>
 {/snippet}
 
-{#snippet NavLink(href: string, label: string, title?: string, target?: string, menuPopover: HTMLUListElement | null | undefined = undefined, exactMatch: boolean = false, classes: string = "")}
-	<a {href} {title} {target} onclick={menuPopover ? () => menuPopover.hidePopover() : undefined}
+{#snippet NavLink(href: string, label: string, title?: string, target?: string, exactMatch: boolean = false, classes: string = "")}
+	<a {href} {title} {target}
 		aria-current={isCurrentPage(href, true) ? "page" : undefined}
    		class="nav-menu__link inline-block w-full px-1 md-mid:px-4 py-1 font-semibold transition-all {classes}
 		{isCurrentPage(href, exactMatch) ? 'text-white' :
@@ -88,6 +100,10 @@ const bookingCta = {
 		--nav-primary-bottom: 48px;
 		--global-spacing-top: var(--nav-primary-top);
 		--global-spacing-bottom: var(--nav-primary-bottom);
+	}
+
+	[popover]:is(:popover-open, .\:popover-open) {
+		display: flex;
 	}
 
 	@media (min-width: 768px) {
