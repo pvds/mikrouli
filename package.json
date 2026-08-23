@@ -85,10 +85,10 @@
 		"@tailwindcss/oxide",
 		"esbuild"
 	],
+	"browserslist": [
+		"baseline widely available with downstream"
+	],
 	"overrides": {
 		"playwright-core": "$playwright"
-	},
-	"prettier": {
-		"proseWrap": "always"
 	}
 }
