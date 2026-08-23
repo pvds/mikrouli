@@ -1,7 +1,7 @@
 <script lang="ts">
-import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
 import Outro from "$layout/Outro.svelte";
+import PageSections from "$layout/PageSections.svelte";
 import TeaserSection from "$layout/TeaserSection.svelte";
 import { getImageName } from "$lib/helpers/image.js";
 import BookingDialog from "$ui/BookingDialog.svelte";
@@ -17,22 +17,7 @@ const posts = $derived(data.posts);
 	{@html page.intro}
 </Hero>
 
-{#if page.sections?.length}
-	{#each page.sections as section, i (section.id)}
-		<ContentSection contentFooter={i === 0 ? /** @type {import("svelte").Snippet<[]>} */
-		(footerCta) : undefined} prose size="lg" index={i}
-						title={section.header || section.title} image={section.image}>
-			{@html section.content}
-		</ContentSection>
-	{/each}
-{:else}
-	{#each page.contentSections as section, i}
-		<ContentSection contentFooter={i === 0 ? /** @type {import("svelte").Snippet<[]>} */
-		(footerCta) : undefined} prose size="lg" index={i}>
-			{@html section}
-		</ContentSection>
-	{/each}
-{/if}
+<PageSections page={page} contentFooter={footerCta} firstSectionOnly />
 
 {#snippet footerCta()}
 	<div class="flex flex-wrap gap-2 mt-6">

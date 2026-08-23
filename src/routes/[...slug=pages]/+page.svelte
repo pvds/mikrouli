@@ -1,9 +1,9 @@
 <script lang="ts">
 import { onMount } from "svelte";
 import { U_NBSP } from "$config";
-import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
 import Outro from "$layout/Outro.svelte";
+import PageSections from "$layout/PageSections.svelte";
 import TeaserSection from "$layout/TeaserSection.svelte";
 import { formatDate } from "$lib/helpers/date.js";
 import { getImageName } from "$lib/helpers/image.js";
@@ -28,20 +28,7 @@ onMount(() => {
 	</p>
 </Hero>
 
-{#if page.sections?.length}
-	{#each page.sections as section, i (section.id)}
-		<ContentSection prose size="lg" index={i} title={section.header || section.title}
-						image={section.image}>
-			{@html section.content}
-		</ContentSection>
-	{/each}
-{:else}
-	{#each page.contentSections as section, i}
-		<ContentSection prose proseClasses="max-w-full!" index={i}>
-			{@html section}
-		</ContentSection>
-	{/each}
-{/if}
+<PageSections page={page} proseClasses="max-w-full!" />
 
 {#if page.outro}
 	<Outro image={page.outroImage}>

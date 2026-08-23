@@ -4,6 +4,8 @@ import type { Snippet } from "svelte";
 interface Props {
 	classes?: string;
 	fullscreen?: boolean;
+	id?: string;
+	closedby?: "any" | "closerequest" | "none";
 	dialogElement?: HTMLDialogElement | null;
 	children?: Snippet;
 	header?: Snippet;
@@ -15,6 +17,8 @@ interface Props {
 let {
 	classes = "",
 	fullscreen = false,
+	id = undefined,
+	closedby = "any",
 	dialogElement = $bindable(),
 	children,
 	header,
@@ -22,18 +26,11 @@ let {
 	footer,
 	footerContent,
 }: Props = $props();
-
-function handleBackdropClick(event: MouseEvent): void {
-	if (event.target === dialogElement) {
-		dialogElement?.close();
-	}
-}
 </script>
 
-<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_noninteractive_element_interactions
- 	(native dialog is already accessible, closing on backdrop click is an enhancement ) -->
 <dialog bind:this={dialogElement}
-	onclick={handleBackdropClick}
+	{id}
+	closedby={closedby}
 	class="inset-0 m-auto border-none {fullscreen && 'h-full w-full'} {classes}
 	max-w-[min(120ch,calc(--spacing(-16)+100%))] max-h-[min(120ch,calc(--spacing(-16)+100%))]
 	max-sm:max-w-[calc(--spacing(-4)+100%)] max-sm:max-h-[calc(--spacing(-4)+100%)]

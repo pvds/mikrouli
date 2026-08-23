@@ -1,8 +1,8 @@
 <script lang="ts">
 import { resolve } from "$app/paths";
-import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
 import Outro from "$layout/Outro.svelte";
+import PageSections from "$layout/PageSections.svelte";
 import TeaserSection from "$layout/TeaserSection.svelte";
 import { getImageName } from "$lib/helpers/image.js";
 import Image from "$ui/image/Image.svelte";
@@ -32,20 +32,7 @@ const posts = $derived(data.posts);
 </Hero>
 
 
-{#if page.sections?.length}
-	{#each page.sections as section, i (section.id)}
-		<ContentSection prose size="md" index={i} title={section.header || section.title}
-						image={section.image}>
-			{@html section.content}
-		</ContentSection>
-	{/each}
-{:else}
-	{#each page.contentSections as section, i}
-		<ContentSection prose size="md" index={i}>
-			{@html section}
-		</ContentSection>
-	{/each}
-{/if}
+<PageSections page={page} size="md" />
 
 <TeaserSection items={services} priority slug="services" title="How I Can Support You"/>
 

@@ -1,7 +1,7 @@
 <script lang="ts">
-import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
 import Outro from "$layout/Outro.svelte";
+import PageSections from "$layout/PageSections.svelte";
 import { getImageName } from "$lib/helpers/image.js";
 import Image from "$ui/image/Image.svelte";
 import type { PageProps } from "./$types";
@@ -22,20 +22,7 @@ const page = $derived(data.page.fields);
 	</div>
 </Hero>
 
-{#if page.sections?.length}
-	{#each page.sections as section, i (section.id)}
-		<ContentSection prose size="lg" index={i} title={section.header || section.title}
-						image={section.image}>
-			{@html section.content}
-		</ContentSection>
-	{/each}
-{:else}
-	{#each page.contentSections as section, i}
-		<ContentSection prose size="lg" index={i}>
-			{@html section}
-		</ContentSection>
-	{/each}
-{/if}
+<PageSections page={page} />
 
 {#if page.outro}
 	<Outro image={page.outroImage}>

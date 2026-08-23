@@ -8,6 +8,8 @@ import type { SEOProps } from "./Seo.svelte.types.js";
 
 let { children }: { children?: Snippet } = $props();
 
+const seo = $derived(page.data?.seo ?? ({} as SEOProps));
+
 const constructTitle = (
 	title: string | undefined,
 	category: string | undefined,
@@ -44,40 +46,36 @@ const constructTitle = (
 };
 
 let title: SEOProps["title"] = $derived(
-	constructTitle(page.data.seo.title, page.data.seo.category),
+	constructTitle(seo.title, seo.category),
 );
-let description: SEOProps["description"] = $derived(page.data.seo.description);
-let keywords: SEOProps["keywords"] = $derived(page.data.seo.keywords);
-let canonical: SEOProps["canonical"] = $derived(
-	page.data.seo.canonical || page.url.href,
-);
-let siteName: SEOProps["siteName"] = $derived(page.data.seo.siteName);
+let description: SEOProps["description"] = $derived(seo.description);
+let keywords: SEOProps["keywords"] = $derived(seo.keywords);
+let canonical: SEOProps["canonical"] = $derived(seo.canonical || page.url.href);
+let siteName: SEOProps["siteName"] = $derived(seo.siteName);
 let imageURL: SEOProps["imageURL"] = $derived(
-	page.data.seo?.imageURL ? asset(`/${page.data.seo.imageURL}`) : undefined,
+	seo.imageURL ? asset(`/${seo.imageURL}`) : undefined,
 );
 /** @type {SEOProps['logo']} */
-let logo = $derived(
-	page.data.seo?.logo ? asset(`/${page.data.seo.logo}`) : undefined,
-);
+let logo = $derived(seo.logo ? asset(`/${seo.logo}`) : undefined);
 /** @type {SEOProps['author']} */
-let author = $derived(page.data.seo.author);
+let author = $derived(seo.author);
 /** @type {SEOProps['type']} */
-let type = $derived(page.data.seo.type || "website");
+let type = $derived(seo.type || "website");
 /** @type {SEOProps['index']} */
-let index = $derived(page.data.seo.index);
+let index = $derived(seo.index);
 /** @type {SEOProps['twitter']} */
-let twitter = $derived(page.data.seo.twitter || false);
+let twitter = $derived(seo.twitter || false);
 /** @type {SEOProps['openGraph']} */
-let openGraph = $derived(page.data.seo.openGraph || false);
+let openGraph = $derived(seo.openGraph || false);
 /** @type {SEOProps['jsonld']} */
-let jsonld = $derived(page.data.seo.jsonld);
+let jsonld = $derived(seo.jsonld);
 
 let ldScript = $derived(
 	`<script type="application/ld+json">${JSON.stringify(jsonld)}${"<"}/script>`,
 );
 
 if (import.meta.env.MODE === "development") {
-	$effect(() => checkSeo(page.data.seo, page.route.id));
+	$effect(() => checkSeo(seo, page.route.id));
 }
 </script>
 

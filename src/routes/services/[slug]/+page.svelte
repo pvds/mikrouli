@@ -1,7 +1,7 @@
 <script lang="ts">
-import ContentSection from "$layout/ContentSection.svelte";
 import Hero from "$layout/Hero.svelte";
 import Outro from "$layout/Outro.svelte";
+import PageSections from "$layout/PageSections.svelte";
 import TeaserSection from "$layout/TeaserSection.svelte";
 import { getImageName } from "$lib/helpers/image.js";
 import BookingDialog from "$ui/BookingDialog.svelte";
@@ -20,20 +20,7 @@ const services = $derived(data.services);
 	{/snippet}
 </Hero>
 
-{#if page.sections?.length}
-	{#each page.sections as section, i (section.id)}
-		<ContentSection prose size="md" index={i} title={section.header || section.title}
-						image={section.image}>
-			{@html section.content}
-		</ContentSection>
-	{/each}
-{:else}
-	{#each page.contentSections as section, i}
-		<ContentSection prose size="md" index={i}>
-			{@html section}
-		</ContentSection>
-	{/each}
-{/if}
+<PageSections page={page} size="md" />
 
 {#if page.outro}
 	<Outro image={page.heroImage}>
