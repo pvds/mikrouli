@@ -5,7 +5,7 @@ interface Props {
 	classes?: string;
 	fullscreen?: boolean;
 	id?: string;
-	closedBy?: "any" | "closerequest" | "none";
+	closedby?: "any" | "closerequest" | "none";
 	dialogElement?: HTMLDialogElement | null;
 	children?: Snippet;
 	header?: Snippet;
@@ -18,7 +18,7 @@ let {
 	classes = "",
 	fullscreen = false,
 	id = undefined,
-	closedBy = "any",
+	closedby = undefined,
 	dialogElement = $bindable(),
 	children,
 	header,
@@ -30,7 +30,7 @@ let {
 
 <dialog bind:this={dialogElement}
 	{id}
-	closedby={closedBy}
+	closedby={closedby}
 	class="inset-0 m-auto border-none {fullscreen && 'h-full w-full'} {classes}
 	max-w-[min(120ch,calc(--spacing(-16)+100%))] max-h-[min(120ch,calc(--spacing(-16)+100%))]
 	max-sm:max-w-[calc(--spacing(-4)+100%)] max-sm:max-h-[calc(--spacing(-4)+100%)]
