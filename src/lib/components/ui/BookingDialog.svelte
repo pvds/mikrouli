@@ -31,16 +31,18 @@ let {
 	ctaIcon,
 }: Props = $props();
 
-let dialog = $state<HTMLDialogElement | null>(null);
+let dialogElement = $state<HTMLDialogElement | null>(null);
 let iframeState = $state<"loading" | "loaded" | "failed">("loading");
 
 const booking = $derived(BOOKING_OPTIONS[type]);
+const dialogId = $derived(`booking-dialog-${type}`);
 </script>
 
 <button
 	class="group {cta?.classes}
 	transition-all {BUTTON_THEME[ctaTheme]} {BUTTON_SIZE[ctaSize]}"
-	onclick={() => dialog?.showModal()}
+	commandfor={dialogId}
+	command="show-modal"
 	type="button"
 >
 	{#if cta}
@@ -54,11 +56,12 @@ const booking = $derived(BOOKING_OPTIONS[type]);
 		{@html svgIcon(ctaIcon)}
 	{/if}
 </button>
-<Dialog bind:dialogElement={dialog} classes="bg-primary-darkest" fullscreen>
+<Dialog bind:dialogElement={dialogElement} id={dialogId} classes="bg-primary-darkest" fullscreen>
 	{#snippet header()}
 		<div class="p-2 z-1 flex flex-row-reverse justify-start bg-primary-darkest gap-2">
 			<button
-				onclick={() => dialog?.close()}
+				commandfor={dialogId}
+				command="close"
 				class="py-2 px-4 rounded-full text-sm font-semibold hover:bg-primary-darker text-primary-light hover:text-primary-lightest"
 				aria-label="Close"
 				type="button"
@@ -81,7 +84,7 @@ const booking = $derived(BOOKING_OPTIONS[type]);
 		<div class="absolute inset-0 flex items-center justify-center bg-primary-darker">
 			<section>
 				<h1 class="text-2xl md:text-3xl">Failed to load the booking form.</h1>
-				<a href={BOOKING_URL} target="_blank" onclick={() => dialog?.close()}
+				<a href={BOOKING_URL} target="_blank"
 				   class="inline-block mt-4 py-4 text-lg underline"
 				>
 					Try opening our booking app in a new tab.
