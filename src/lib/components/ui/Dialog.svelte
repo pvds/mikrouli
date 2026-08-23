@@ -18,7 +18,7 @@ let {
 	classes = "",
 	fullscreen = false,
 	id = undefined,
-	closedby = undefined,
+	closedby = "any",
 	dialogElement = $bindable(),
 	children,
 	header,
