@@ -79,15 +79,9 @@ const sideClasses = $derived(sideAbsolute ? "md:absolute md:right-0" : "");
 		{#if side}
 			<div
 				class={[
-					"relative md:w-4/12",
+					"relative md:w-4/12 opacity-100 motion-safe:supports-view-timeline:view-fade-in",
 					sideClasses,
 					spacingY.bottom,
-					"opacity-100",
-					"motion-safe:supports-[animation-timeline:view()]:[animation-name:fadeIn]",
-					"motion-safe:supports-[animation-timeline:view()]:[animation-timing-function:linear]",
-					"motion-safe:supports-[animation-timeline:view()]:[animation-fill-mode:both]",
-					"motion-safe:supports-[animation-timeline:view()]:[animation-timeline:view(block_0_var(--global-spacing-bottom))]",
-					"motion-safe:supports-[animation-timeline:view()]:[animation-range:entry_50%_contain_10%]",
 					{
 						"content-center": !sideAbsolute,
 					},

@@ -1,0 +1,13 @@
+@utility view-fade-in {
+	animation-name: fadeIn;
+	animation-timing-function: linear;
+	animation-fill-mode: both;
+	animation-timeline: view(block 0 var(--global-spacing-bottom));
+	animation-range: entry 50% entry 90%;
+}
+
+@custom-variant supports-view-timeline {
+	@supports ((animation-timeline: view()) and (animation-range: entry)) {
+		@slot;
+	}
+}
