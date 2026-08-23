@@ -49,6 +49,15 @@
 - Keep `AGENTS.md` as the root authority; use narrow scoped instruction files only when they remove repeated context.
 - Do not commit changes.
 
+## Review Checklist
+
+- Native HTML/CSS first; only keep JS when a browser-native primitive cannot provide the behavior.
+- Prefer Tailwind utilities and design-system patterns; avoid id-based styling and one-off custom CSS unless it is a clear, justified fallback.
+- Keep feature support aligned with `baseline widely available with downstream`; document new/borderline browser features and any progressive-enhancement fallback.
+- Preserve accessibility, reduced motion, focus states, and semantic structure.
+- Keep runtime logic small and scoped; no unrelated UI behavior mixed into shared components.
+- If a change needs an exception to the rules or documentation, make it explicit and minimal.
+
 ## External References
 
 | Need | File |
