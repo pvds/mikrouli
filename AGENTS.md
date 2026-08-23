@@ -33,6 +33,7 @@
 - Exhaust native HTML and CSS first; treat runtime JavaScript as a last resort, not a convenience layer.
 - Add runtime JavaScript only when native HTML or CSS cannot provide the behavior or durable cross-browser UX.
 - Keep browser support aligned with the project baseline in `package.json` (`baseline widely available with downstream`). A feature that is newly available or limited availability needs an explicit fallback, or a clear reason that progressive enhancement is acceptable.
+- Keep the site functional for the project browser target, not for every older browser. Newly available features may be used as progressive enhancement when they are feature-detected and degrade gracefully; they do not need to be optimized for unsupported browsers.
 - Do not drift from the working rules or project documentation; if a change appears to require an exception, document the reason and keep the exception explicit and minimal.
 - If a selector, intrinsic layout feature, form attribute, or top-layer primitive can do the job, use it instead of JavaScript.
 - Keep runtime JavaScript minimal and focused in the relevant modules rather than mixing unrelated behaviors together.
