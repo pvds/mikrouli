@@ -41,8 +41,7 @@ const dialogId = $derived(`booking-dialog-${type}`);
 <button
 	class="group {cta?.classes}
 	transition-all {BUTTON_THEME[ctaTheme]} {BUTTON_SIZE[ctaSize]}"
-	commandfor={dialogId}
-	command="show-modal"
+	onclick={() => dialogElement?.showModal()}
 	type="button"
 >
 	{#if cta}
@@ -60,8 +59,7 @@ const dialogId = $derived(`booking-dialog-${type}`);
 	{#snippet header()}
 		<div class="p-2 z-1 flex flex-row-reverse justify-start bg-primary-darkest gap-2">
 			<button
-				commandfor={dialogId}
-				command="close"
+				onclick={() => dialogElement?.close()}
 				class="py-2 px-4 rounded-full text-sm font-semibold hover:bg-primary-darker text-primary-light hover:text-primary-lightest"
 				aria-label="Close"
 				type="button"
