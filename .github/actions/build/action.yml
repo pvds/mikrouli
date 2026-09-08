@@ -27,7 +27,7 @@ runs:
 
         - name: Upload Staging artifact
           if: ${{ inputs.run_staging == 'true' }}
-          uses: actions/upload-pages-artifact@v3
+          uses: actions/upload-pages-artifact@v5
           with:
               path: ${{ inputs.build_dir_staging }}
 
@@ -40,7 +40,7 @@ runs:
 
         - name: Upload Production artifact
           if: ${{ inputs.run_production == 'true' }}
-          uses: actions/upload-artifact@v4
+          uses: actions/upload-artifact@v7
           with:
               name: production
               path: ${{ inputs.build_dir_production }}
