@@ -5,6 +5,7 @@
 		"void-style": "off",
 		"no-inline-style": "off",
 		"no-dup-class": "off",
+		"no-dup-id": "off",
 		"no-trailing-whitespace": "off",
 		"tel-non-breaking": "off"
 	}
