@@ -5,7 +5,7 @@ import {
 	IMAGES_JSON_OUTPUT_PATH_RESOLVED,
 	IS_CMS,
 } from "$util/dyn";
-import { prepareDir } from "$util/file";
+import { getAssetFileName, prepareDir } from "$util/file";
 import { pLimit } from "$util/limit";
 import { logDebug, logError, logInfo, logSuccess, logWarn } from "$util/log";
 import { withRetry } from "$util/retry";
@@ -55,9 +55,9 @@ function deleteImages(imagesPath: string, images: string[] = []): void {
 
 function checkImages(imagePath: string, images: string[] = []): SyncResult {
 	const downloadedImages = fs.readdirSync(imagePath);
-	const imageBaseNames = images.map((image) => path.basename(image));
+	const imageBaseNames = images.map(getAssetFileName);
 	const missing = images.filter((image) => {
-		const fileName = path.basename(image);
+		const fileName = getAssetFileName(image);
 		return !downloadedImages.includes(fileName);
 	});
 	const unused = downloadedImages.filter((image) => {
@@ -83,8 +83,8 @@ async function downloadContentfulAssets(
 		const limit = pLimit(5);
 		const downloadPromises = [];
 		for (const image of images) {
-			const url = `https:${image}`;
-			const fileName = path.basename(url);
+			const url = image.startsWith("//") ? `https:${image}` : image;
+			const fileName = getAssetFileName(image);
 			const outputPath = path.join(imagesPath, fileName);
 
 			downloadPromises.push(

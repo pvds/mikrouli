@@ -19,6 +19,7 @@ Static SvelteKit site for a systemic therapy practice. Content is sourced from C
 | Build production | `bun run build:prod` |
 | Preview staging | `bun run preview` |
 | Preview production | `bun run preview:prod` |
+| Unit tests | `bun run test:unit` |
 | Production HTML validation | `bun run test:html` |
 | Accessibility test | `bun run test:axe --minimal --prod` |
 | Lighthouse test | `bun run test:lighthouse --prod` |
@@ -52,3 +53,9 @@ Static SvelteKit site for a systemic therapy practice. Content is sourced from C
 - Keep the static SSG / `adapter-static` architecture intact.
 - Treat `.agents/skills/**` as read-only dependency files.
 - Do not commit changes.
+
+## CMS image filenames
+
+Image imports and asset downloads use the filename in the Contentful delivery URL, not the original upload filename. This keeps generated files, metadata, image URLs, and JSON-LD aligned even when an upload filename contains folders or spaces.
+
+For optional CMS cleanup, replace the affected asset's file with a flat filename and publish it. Changing the asset title does not change its filename. Refresh generated content with `bun run content`; do not edit generated JSON.
