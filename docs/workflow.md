@@ -4,12 +4,12 @@ The repo uses GitHub Actions to build, validate, and deploy the site to GitHub P
 
 ## Triggers
 
-| Trigger | Staging | Production | Notes |
-|---------|---------|------------|-------|
-| Push to `main` | Yes | No | Runs staging validation and deploy flow. |
-| Pull request to `main` | No | No | Build and checks run, but deployment is skipped. |
-| `repository_dispatch` (`ContentUpdate`) | No | Yes | Runs when Contentful content updates land. |
-| Manual dispatch | Optional | Optional | Can deploy either target manually. |
+| Trigger                                 | Staging  | Production | Notes                                            |
+| --------------------------------------- | -------- | ---------- | ------------------------------------------------ |
+| Push to `main`                          | Yes      | No         | Runs staging validation and deploy flow.         |
+| Pull request to `main`                  | No       | No         | Build and checks run, but deployment is skipped. |
+| `repository_dispatch` (`ContentUpdate`) | No       | Yes        | Runs when Contentful content updates land.       |
+| Manual dispatch                         | Optional | Optional   | Can deploy either target manually.               |
 
 The workflow ignores docs-only changes and generated-content changes via `paths-ignore` in `.github/workflows/ci.yml`.
 

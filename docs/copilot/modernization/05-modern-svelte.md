@@ -32,28 +32,28 @@ Do not turn this objective into a general rewrite or a showcase of every Svelte
 
 ## Final decisions
 
-| Area | Decision |
-| --- | --- |
-| Svelte mode | Keep runes mode; do not add legacy-mode code |
-| Dependency versions | This objective is source modernization, not another package-upgrade pass |
-| Values computed from props/state | Prefer `$derived` for local computed values |
-| Lazy live references | Keep getter closures when the getter itself must be passed/stored as the live reactive reference |
-| Intentional snapshots | Use a normal variable/constant when only the initial value is wanted |
-| `$derived` syntax | Use `$derived(expression)` for expressions and `$derived.by(() => ...)` for multi-statement derivations |
-| Read-only derived values | Prefer `const value = $derived(...)` unless intentional overriding is required |
-| Route component props | Use generated SvelteKit `PageProps` / `LayoutProps` through JSDoc |
-| Conditional classes | Prefer clsx-style arrays/objects in `class`; migrate away from `class:` |
-| Reusable class-like props | Use Svelte's `ClassValue` where it materially simplifies composition, starting with shared primitives such as `Section.svelte` |
-| Template locals | Replace legacy `{@const ...}` with Svelte 5.56 declaration tags `{const ...}` |
-| Each blocks | Prefer keyed each blocks when a real stable identity exists; never use the array index as a key |
-| Effects | Keep effects for real side effects only; do not use `$effect` to compute ordinary local state |
-| DOM behavior | Keep one-off lifecycle behavior simple; use attachments when element behavior is reusable or genuinely clearer |
-| `Header.svelte` observer | Co-locate setup/cleanup in `onMount`; do not introduce an attachment merely for novelty |
-| `Image.svelte` | Let `03-sharp-to-bun-image.md` own its structural loading/placeholder refactor first; modernize only its post-migration Svelte syntax |
-| View Transitions | Keep the currently disabled prototype; do not enable/remove it here |
-| Experimental Svelte | Do not enable experimental APIs as part of this objective |
-| SvelteKit 3 | Leave framework/config migration to `02-sveltekit-3-vite-8.md` |
-| TypeScript source conversion | Leave JS/JSDoc -> TypeScript to the separate TypeScript project |
+| Area                             | Decision                                                                                                                              |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Svelte mode                      | Keep runes mode; do not add legacy-mode code                                                                                          |
+| Dependency versions              | This objective is source modernization, not another package-upgrade pass                                                              |
+| Values computed from props/state | Prefer `$derived` for local computed values                                                                                           |
+| Lazy live references             | Keep getter closures when the getter itself must be passed/stored as the live reactive reference                                      |
+| Intentional snapshots            | Use a normal variable/constant when only the initial value is wanted                                                                  |
+| `$derived` syntax                | Use `$derived(expression)` for expressions and `$derived.by(() => ...)` for multi-statement derivations                               |
+| Read-only derived values         | Prefer `const value = $derived(...)` unless intentional overriding is required                                                        |
+| Route component props            | Use generated SvelteKit `PageProps` / `LayoutProps` through JSDoc                                                                     |
+| Conditional classes              | Prefer clsx-style arrays/objects in `class`; migrate away from `class:`                                                               |
+| Reusable class-like props        | Use Svelte's `ClassValue` where it materially simplifies composition, starting with shared primitives such as `Section.svelte`        |
+| Template locals                  | Replace legacy `{@const ...}` with Svelte 5.56 declaration tags `{const ...}`                                                         |
+| Each blocks                      | Prefer keyed each blocks when a real stable identity exists; never use the array index as a key                                       |
+| Effects                          | Keep effects for real side effects only; do not use `$effect` to compute ordinary local state                                         |
+| DOM behavior                     | Keep one-off lifecycle behavior simple; use attachments when element behavior is reusable or genuinely clearer                        |
+| `Header.svelte` observer         | Co-locate setup/cleanup in `onMount`; do not introduce an attachment merely for novelty                                               |
+| `Image.svelte`                   | Let `03-sharp-to-bun-image.md` own its structural loading/placeholder refactor first; modernize only its post-migration Svelte syntax |
+| View Transitions                 | Keep the currently disabled prototype; do not enable/remove it here                                                                   |
+| Experimental Svelte              | Do not enable experimental APIs as part of this objective                                                                             |
+| SvelteKit 3                      | Leave framework/config migration to `02-sveltekit-3-vite-8.md`                                                                        |
+| TypeScript source conversion     | Leave JS/JSDoc -> TypeScript to the separate TypeScript project                                                                       |
 
 ---
 
@@ -143,24 +143,24 @@ That distinction should become a project convention.
 
 Repository inspection found these concrete targets:
 
-| File/area | Current pattern | Recommended direction |
-| --- | --- | --- |
-| `src/routes/+layout.svelte` | `const nav = () => data.nav` | local `$derived` |
-| `src/routes/+page.svelte` | `page()`, `services()`, `posts()` getters | local `$derived` |
-| `Footer.svelte` | getters rerun `toNavItems(...)` on every call | `$derived(...)` |
-| `NavPrimary.svelte` | `NavItemsBase()` / `NavItemsWithHome()` | `$derived(...)` |
-| `BookingDialog.svelte` | getter for CTA/URL derived from `type` prop | `$derived(...)` |
-| `ContentSection.svelte` | `ProseTheme()` getter | `$derived(...)` or inline class condition |
-| `WaveSvg.svelte` | getter introduced for prop-derived alignment | `$derived(...)` |
-| `Hero.svelte` | `$derived(() => ({ ... }))` then `spacingY()` | fix misuse; derive the object value |
-| `Hero.svelte` | `class:` plus conditional class-string interpolation | modern `class` arrays/objects |
-| `ContentSection.svelte` | `{@const image_name = ...}` | `{const imageName = ...}` |
-| `BlogArticle.svelte` | `{@const image_name = ...}` | `{const imageName = ...}` |
-| `TeaserArticle.svelte` | `{@const image_name = ...}` | `{const imageName = ...}` |
-| `Header.svelte` | separate `onMount` / `onDestroy` for one observer | return cleanup from `onMount` |
-| route components | untyped `$props()` destructuring | generated `PageProps` / `LayoutProps` |
-| several lists | unkeyed `{#each}` | add keys where stable identity exists |
-| `Section.svelte` | string-only class-like props and manual interpolation | consider `ClassValue` + array composition |
+| File/area                   | Current pattern                                       | Recommended direction                     |
+| --------------------------- | ----------------------------------------------------- | ----------------------------------------- |
+| `src/routes/+layout.svelte` | `const nav = () => data.nav`                          | local `$derived`                          |
+| `src/routes/+page.svelte`   | `page()`, `services()`, `posts()` getters             | local `$derived`                          |
+| `Footer.svelte`             | getters rerun `toNavItems(...)` on every call         | `$derived(...)`                           |
+| `NavPrimary.svelte`         | `NavItemsBase()` / `NavItemsWithHome()`               | `$derived(...)`                           |
+| `BookingDialog.svelte`      | getter for CTA/URL derived from `type` prop           | `$derived(...)`                           |
+| `ContentSection.svelte`     | `ProseTheme()` getter                                 | `$derived(...)` or inline class condition |
+| `WaveSvg.svelte`            | getter introduced for prop-derived alignment          | `$derived(...)`                           |
+| `Hero.svelte`               | `$derived(() => ({ ... }))` then `spacingY()`         | fix misuse; derive the object value       |
+| `Hero.svelte`               | `class:` plus conditional class-string interpolation  | modern `class` arrays/objects             |
+| `ContentSection.svelte`     | `{@const image_name = ...}`                           | `{const imageName = ...}`                 |
+| `BlogArticle.svelte`        | `{@const image_name = ...}`                           | `{const imageName = ...}`                 |
+| `TeaserArticle.svelte`      | `{@const image_name = ...}`                           | `{const imageName = ...}`                 |
+| `Header.svelte`             | separate `onMount` / `onDestroy` for one observer     | return cleanup from `onMount`             |
+| route components            | untyped `$props()` destructuring                      | generated `PageProps` / `LayoutProps`     |
+| several lists               | unkeyed `{#each}`                                     | add keys where stable identity exists     |
+| `Section.svelte`            | string-only class-like props and manual interpolation | consider `ClassValue` + array composition |
 
 The historical closure commit touched route pages and multiple components, so
 the coding agent must inventory the **current** source rather than treating this
@@ -186,7 +186,7 @@ Example:
 
 ```js
 const bookingCta = {
-  text: "Book a Session",
+	text: "Book a Session",
 };
 ```
 
@@ -293,14 +293,14 @@ Current `Hero.svelte` contains:
 
 ```js
 const spacingY = $derived(() => ({
-  padding: image
-    ? "pt-14 pb-18 sm:pt-20 sm:pb-24 md:pt-30 md:pb-34"
-    : "py-10 sm:py-16 md:py-24",
-  bottom: sideAbsolute
-    ? image
-      ? "-bottom-18 sm:-bottom-24 md:-bottom-34 max-sm:-mt-8 sm:-mt-6"
-      : "-bottom-10 sm:-bottom-16 md:-bottom-24 max-sm:-mt-8 sm:-mt-6"
-    : "",
+	padding: image
+		? "pt-14 pb-18 sm:pt-20 sm:pb-24 md:pt-30 md:pb-34"
+		: "py-10 sm:py-16 md:py-24",
+	bottom: sideAbsolute
+		? image
+			? "-bottom-18 sm:-bottom-24 md:-bottom-34 max-sm:-mt-8 sm:-mt-6"
+			: "-bottom-10 sm:-bottom-16 md:-bottom-24 max-sm:-mt-8 sm:-mt-6"
+		: "",
 }));
 ```
 
@@ -318,14 +318,14 @@ For this object, prefer the direct expression:
 
 ```js
 const spacingY = $derived({
-  padding: image
-    ? "pt-14 pb-18 sm:pt-20 sm:pb-24 md:pt-30 md:pb-34"
-    : "py-10 sm:py-16 md:py-24",
-  bottom: sideAbsolute
-    ? image
-      ? "-bottom-18 sm:-bottom-24 md:-bottom-34 max-sm:-mt-8 sm:-mt-6"
-      : "-bottom-10 sm:-bottom-16 md:-bottom-24 max-sm:-mt-8 sm:-mt-6"
-    : "",
+	padding: image
+		? "pt-14 pb-18 sm:pt-20 sm:pb-24 md:pt-30 md:pb-34"
+		: "py-10 sm:py-16 md:py-24",
+	bottom: sideAbsolute
+		? image
+			? "-bottom-18 sm:-bottom-24 md:-bottom-34 max-sm:-mt-8 sm:-mt-6"
+			: "-bottom-10 sm:-bottom-16 md:-bottom-24 max-sm:-mt-8 sm:-mt-6"
+		: "",
 });
 ```
 
@@ -340,13 +340,13 @@ example loops or multiple statements:
 
 ```js
 const items = $derived.by(() => {
-  const result = [];
+	const result = [];
 
-  for (const item of source) {
-    if (item.visible) result.push(transform(item));
-  }
+	for (const item of source) {
+		if (item.visible) result.push(transform(item));
+	}
 
-  return result;
+	return result;
 });
 ```
 
@@ -422,7 +422,7 @@ For Mikrouli:
 
 ```js
 if (import.meta.env.MODE === "development") {
-  $effect(() => checkSeo(page.data.seo, page.route.id));
+	$effect(() => checkSeo(page.data.seo, page.route.id));
 }
 ```
 
@@ -1143,7 +1143,7 @@ intentionally passed/stored as a live-reference API.
 Fix `Hero.svelte`'s function-valued derived and any equivalent patterns:
 
 ```js
-$derived(() => expression)
+$derived(() => expression);
 ```
 
 where the intended derived value is actually `expression`.
@@ -1151,7 +1151,7 @@ where the intended derived value is actually `expression`.
 Choose:
 
 ```js
-$derived(expression)
+$derived(expression);
 ```
 
 or:

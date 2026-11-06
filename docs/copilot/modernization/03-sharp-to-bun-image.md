@@ -61,24 +61,24 @@ transparency parser.
 
 These decisions are settled for this migration.
 
-| Area | Decision |
-| --- | --- |
-| Image engine | Replace Sharp with `Bun.Image` |
-| Output format | Keep WebP |
-| Browser loading indication | Keep the existing instant CSS pulsating background |
-| LQIP/Base64 placeholders | Remove them completely from generation, metadata and `Image.svelte` |
-| `Bun.Image.placeholder()` | **Do not use it in the main implementation** |
-| `hasAlpha` | Replace it with `hasTransparency` |
-| Transparency source of truth | Inspect a generated WebP at build time |
-| Transparency dependency | Use a small first-party WebP parser; no npm package |
-| Browser cost of parser | None; parser exists only under `scripts/` |
-| Transparent-image loading UX | A1: show no pulsating background |
-| Opaque-image loading UX | Preserve the current pulse until the real image loads |
-| Metadata | Keep `width`, `height`, `hasTransparency`; remove `placeholder` and `hasAlpha` |
-| Orientation | Explicitly use `autoOrient: false` for Sharp parity |
-| Source formats | Narrow to the portable formats Mikrouli actually needs |
-| Generic format option | Remove after parity because the frontend is already WebP-specific |
-| Sharp fallback | Keep only temporarily for parity comparison; remove after validation |
+| Area                         | Decision                                                                       |
+| ---------------------------- | ------------------------------------------------------------------------------ |
+| Image engine                 | Replace Sharp with `Bun.Image`                                                 |
+| Output format                | Keep WebP                                                                      |
+| Browser loading indication   | Keep the existing instant CSS pulsating background                             |
+| LQIP/Base64 placeholders     | Remove them completely from generation, metadata and `Image.svelte`            |
+| `Bun.Image.placeholder()`    | **Do not use it in the main implementation**                                   |
+| `hasAlpha`                   | Replace it with `hasTransparency`                                              |
+| Transparency source of truth | Inspect a generated WebP at build time                                         |
+| Transparency dependency      | Use a small first-party WebP parser; no npm package                            |
+| Browser cost of parser       | None; parser exists only under `scripts/`                                      |
+| Transparent-image loading UX | A1: show no pulsating background                                               |
+| Opaque-image loading UX      | Preserve the current pulse until the real image loads                          |
+| Metadata                     | Keep `width`, `height`, `hasTransparency`; remove `placeholder` and `hasAlpha` |
+| Orientation                  | Explicitly use `autoOrient: false` for Sharp parity                            |
+| Source formats               | Narrow to the portable formats Mikrouli actually needs                         |
+| Generic format option        | Remove after parity because the frontend is already WebP-specific              |
+| Sharp fallback               | Keep only temporarily for parity comparison; remove after validation           |
 
 The key architecture decision is:
 
@@ -210,14 +210,14 @@ The existing resize path is effectively:
 
 ```js
 image
-  .clone()
-  .resize({
-    width: size,
-    fit: sharp.fit.inside,
-    withoutEnlargement: true,
-  })
-  .toFormat(format, { quality })
-  .toFile(outputPath);
+	.clone()
+	.resize({
+		width: size,
+		fit: sharp.fit.inside,
+		withoutEnlargement: true,
+	})
+	.toFormat(format, { quality })
+	.toFile(outputPath);
 ```
 
 ## Current placeholder generator
@@ -290,10 +290,10 @@ exists in the component and generated metadata.
 
 ```ts
 export type ImageMeta = {
-  placeholder: string;
-  width: string;
-  height: string;
-  hasAlpha: boolean;
+	placeholder: string;
+	width: string;
+	height: string;
+	hasAlpha: boolean;
 };
 ```
 
@@ -301,9 +301,9 @@ Target:
 
 ```ts
 export type ImageMeta = {
-  width: string;
-  height: string;
-  hasTransparency: boolean;
+	width: string;
+	height: string;
+	hasTransparency: boolean;
 };
 ```
 
@@ -378,7 +378,7 @@ safe.
 The new contract should therefore use:
 
 ```js
-hasTransparency
+hasTransparency;
 ```
 
 with the meaning:
@@ -397,9 +397,9 @@ Bun 1.4's documented `Image.Metadata` contains:
 
 ```ts
 {
-  format;
-  width;
-  height;
+	format;
+	width;
+	height;
 }
 ```
 
@@ -488,7 +488,7 @@ scripts/assets/helpers/webp.js
 with one responsibility:
 
 ```js
-hasWebpTransparency(bytes)
+hasWebpTransparency(bytes);
 ```
 
 Recommended implementation shape:
@@ -506,65 +506,61 @@ Recommended implementation shape:
  * @returns {boolean}
  */
 export function hasWebpTransparency(bytes) {
-  if (bytes.length < 12) {
-    throw new Error("Invalid WebP: file is too small");
-  }
+	if (bytes.length < 12) {
+		throw new Error("Invalid WebP: file is too small");
+	}
 
-  if (readFourCC(bytes, 0) !== "RIFF" || readFourCC(bytes, 8) !== "WEBP") {
-    throw new Error("Invalid WebP: missing RIFF/WEBP signature");
-  }
+	if (readFourCC(bytes, 0) !== "RIFF" || readFourCC(bytes, 8) !== "WEBP") {
+		throw new Error("Invalid WebP: missing RIFF/WEBP signature");
+	}
 
-  const view = new DataView(
-    bytes.buffer,
-    bytes.byteOffset,
-    bytes.byteLength,
-  );
+	const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
 
-  let offset = 12;
+	let offset = 12;
 
-  while (offset + 8 <= bytes.length) {
-    const type = readFourCC(bytes, offset);
-    const size = view.getUint32(offset + 4, true);
-    const dataOffset = offset + 8;
-    const chunkEnd = dataOffset + size;
+	while (offset + 8 <= bytes.length) {
+		const type = readFourCC(bytes, offset);
+		const size = view.getUint32(offset + 4, true);
+		const dataOffset = offset + 8;
+		const chunkEnd = dataOffset + size;
 
-    if (chunkEnd > bytes.length) {
-      throw new Error(`Invalid WebP: truncated ${type} chunk`);
-    }
+		if (chunkEnd > bytes.length) {
+			throw new Error(`Invalid WebP: truncated ${type} chunk`);
+		}
 
-    if (type === "VP8X") {
-      if (size < 1) {
-        throw new Error("Invalid WebP: empty VP8X chunk");
-      }
+		if (type === "VP8X") {
+			if (size < 1) {
+				throw new Error("Invalid WebP: empty VP8X chunk");
+			}
 
-      // VP8X alpha feature flag.
-      if ((bytes[dataOffset] & 0x10) !== 0) {
-        return true;
-      }
-    }
+			// VP8X alpha feature flag.
+			if ((bytes[dataOffset] & 0x10) !== 0) {
+				return true;
+			}
+		}
 
-    if (type === "ALPH") {
-      return true;
-    }
+		if (type === "ALPH") {
+			return true;
+		}
 
-    if (type === "VP8L") {
-      if (size < 5 || bytes[dataOffset] !== 0x2f) {
-        throw new Error("Invalid WebP: malformed VP8L header");
-      }
+		if (type === "VP8L") {
+			if (size < 5 || bytes[dataOffset] !== 0x2f) {
+				throw new Error("Invalid WebP: malformed VP8L header");
+			}
 
-      const header = view.getUint32(dataOffset + 1, true);
+			const header = view.getUint32(dataOffset + 1, true);
 
-      // VP8L packs width (14), height (14), alpha-is-used (1), version (3).
-      if ((header & 0x10000000) !== 0) {
-        return true;
-      }
-    }
+			// VP8L packs width (14), height (14), alpha-is-used (1), version (3).
+			if ((header & 0x10000000) !== 0) {
+				return true;
+			}
+		}
 
-    // RIFF chunks are padded to an even byte boundary.
-    offset = chunkEnd + (size & 1);
-  }
+		// RIFF chunks are padded to an even byte boundary.
+		offset = chunkEnd + (size & 1);
+	}
 
-  return false;
+	return false;
 }
 
 /**
@@ -573,12 +569,12 @@ export function hasWebpTransparency(bytes) {
  * @returns {string}
  */
 function readFourCC(bytes, offset) {
-  return String.fromCharCode(
-    bytes[offset],
-    bytes[offset + 1],
-    bytes[offset + 2],
-    bytes[offset + 3],
-  );
+	return String.fromCharCode(
+		bytes[offset],
+		bytes[offset + 1],
+		bytes[offset + 2],
+		bytes[offset + 3],
+	);
 }
 ```
 
@@ -627,16 +623,12 @@ variant:
 ```js
 const transparencyProbeSize = IMAGE_SIZES.at(-1);
 const transparencyProbePath = path.join(
-  outDir,
-  buildFileName(
-    baseName,
-    transparencyProbeSize.toString(),
-    IMAGE_EXT,
-  ),
+	outDir,
+	buildFileName(baseName, transparencyProbeSize.toString(), IMAGE_EXT),
 );
 
 const hasTransparency = hasWebpTransparency(
-  await Bun.file(transparencyProbePath).bytes(),
+	await Bun.file(transparencyProbePath).bytes(),
 );
 ```
 
@@ -696,13 +688,13 @@ Bun 1.4 supports the required pipeline directly:
 
 ```js
 await Bun.file("photo.jpg")
-  .image({ autoOrient: false })
-  .resize(800, undefined, {
-    fit: "inside",
-    withoutEnlargement: true,
-  })
-  .webp({ quality: 80 })
-  .write("photo-800.webp");
+	.image({ autoOrient: false })
+	.resize(800, undefined, {
+		fit: "inside",
+		withoutEnlargement: true,
+	})
+	.webp({ quality: 80 })
+	.write("photo-800.webp");
 ```
 
 Relevant documented behavior:
@@ -742,7 +734,7 @@ The current Mikrouli Sharp pipeline does not explicitly auto-orient images.
 A naive replacement:
 
 ```js
-Bun.file(inputPath).image()
+Bun.file(inputPath).image();
 ```
 
 could therefore rotate/flip EXIF-oriented JPEGs and change their reported
@@ -752,14 +744,14 @@ For this migration define:
 
 ```js
 const BUN_IMAGE_OPTIONS = {
-  autoOrient: false,
+	autoOrient: false,
 };
 ```
 
 and use it consistently:
 
 ```js
-source.image(BUN_IMAGE_OPTIONS)
+source.image(BUN_IMAGE_OPTIONS);
 ```
 
 for:
@@ -785,10 +777,10 @@ https://sharp.pixelplumbing.com/api-constructor/
 
 ```json
 {
-  "placeholder": "data:image/webp;base64,...",
-  "width": "1200",
-  "height": "800",
-  "hasAlpha": false
+	"placeholder": "data:image/webp;base64,...",
+	"width": "1200",
+	"height": "800",
+	"hasAlpha": false
 }
 ```
 
@@ -796,9 +788,9 @@ https://sharp.pixelplumbing.com/api-constructor/
 
 ```json
 {
-  "width": "1200",
-  "height": "800",
-  "hasTransparency": false
+	"width": "1200",
+	"height": "800",
+	"hasTransparency": false
 }
 ```
 
@@ -806,9 +798,9 @@ For a transparent output:
 
 ```json
 {
-  "width": "1200",
-  "height": "1200",
-  "hasTransparency": true
+	"width": "1200",
+	"height": "1200",
+	"hasTransparency": true
 }
 ```
 
@@ -967,9 +959,7 @@ const hasTransparency = $derived(meta?.hasTransparency ?? false);
 Prefer an explicit presentation-oriented derived value:
 
 ```js
-const showLoadingBackground = $derived(
-  !loadedImage && !hasTransparency,
-);
+const showLoadingBackground = $derived(!loadedImage && !hasTransparency);
 ```
 
 Then apply the same visual classes currently used for the skeleton when
@@ -1088,7 +1078,7 @@ In `scripts/assets/helpers/images.js`:
 
 ```js
 const BUN_IMAGE_OPTIONS = {
-  autoOrient: false,
+	autoOrient: false,
 };
 ```
 
@@ -1111,9 +1101,7 @@ const { width, height, hasAlpha } = await image.metadata();
 with Bun:
 
 ```js
-const { width, height } = await source
-  .image(BUN_IMAGE_OPTIONS)
-  .metadata();
+const { width, height } = await source.image(BUN_IMAGE_OPTIONS).metadata();
 ```
 
 ## Responsive generation
@@ -1124,13 +1112,13 @@ Create a fresh pipeline for every output:
 
 ```js
 await source
-  .image(BUN_IMAGE_OPTIONS)
-  .resize(size, undefined, {
-    fit: "inside",
-    withoutEnlargement: true,
-  })
-  .webp({ quality })
-  .write(outputPath);
+	.image(BUN_IMAGE_OPTIONS)
+	.resize(size, undefined, {
+		fit: "inside",
+		withoutEnlargement: true,
+	})
+	.webp({ quality })
+	.write(outputPath);
 ```
 
 Mapping:
@@ -1152,22 +1140,18 @@ After all outputs for the image exist:
 const transparencyProbeSize = IMAGE_SIZES.at(-1);
 
 const transparencyProbePath = path.join(
-  outDir,
-  buildFileName(
-    baseName,
-    transparencyProbeSize.toString(),
-    IMAGE_EXT,
-  ),
+	outDir,
+	buildFileName(baseName, transparencyProbeSize.toString(), IMAGE_EXT),
 );
 
 const hasTransparency = hasWebpTransparency(
-  await Bun.file(transparencyProbePath).bytes(),
+	await Bun.file(transparencyProbePath).bytes(),
 );
 
 metaData[baseName] = {
-  width: width.toString(),
-  height: height.toString(),
-  hasTransparency,
+	width: width.toString(),
+	height: height.toString(),
+	hasTransparency,
 };
 ```
 
@@ -1223,18 +1207,13 @@ Prefer:
 ```js
 export const IMAGE_EXT = "webp";
 
-export const IMAGE_SOURCE_EXTENSIONS = [
-  "jpeg",
-  "jpg",
-  "png",
-  "webp",
-];
+export const IMAGE_SOURCE_EXTENSIONS = ["jpeg", "jpg", "png", "webp"];
 ```
 
 Use:
 
 ```js
-IMAGE_SOURCE_EXTENSIONS
+IMAGE_SOURCE_EXTENSIONS;
 ```
 
 only for source discovery.
@@ -1242,7 +1221,7 @@ only for source discovery.
 Use:
 
 ```js
-IMAGE_EXT
+IMAGE_EXT;
 ```
 
 for generated-output matching.
@@ -1283,11 +1262,10 @@ The application is already WebP-specific end-to-end.
 After parity is established, simplify the image processor API to something like:
 
 ```js
-processImages(category, {
-  quality = 80,
-  concurrency = CPU_COUNT,
-  force = false,
-} = {})
+processImages(
+	category,
+	({ quality = 80, concurrency = CPU_COUNT, force = false } = {}),
+);
 ```
 
 and encode explicitly:
@@ -1309,7 +1287,7 @@ Keep the current outer image-level concurrency model initially.
 For each image, creating a fresh Bun pipeline per target width is correct:
 
 ```js
-source.image(BUN_IMAGE_OPTIONS)
+source.image(BUN_IMAGE_OPTIONS);
 ```
 
 Do not share one mutable `Bun.Image` instance between concurrent resize
@@ -1376,7 +1354,7 @@ scripts/assets/helpers/webp.js
 with:
 
 ```js
-hasWebpTransparency(bytes)
+hasWebpTransparency(bytes);
 ```
 
 Validate it against existing Sharp-generated WebPs before replacing Sharp.
@@ -1444,9 +1422,9 @@ Regenerate metadata and verify:
 
 ```json
 {
-  "width": "...",
-  "height": "...",
-  "hasTransparency": false
+	"width": "...",
+	"height": "...",
+	"hasTransparency": false
 }
 ```
 
@@ -1565,9 +1543,9 @@ Generated metadata is:
 
 ```json
 {
-  "width": "...",
-  "height": "...",
-  "hasTransparency": false
+	"width": "...",
+	"height": "...",
+	"hasTransparency": false
 }
 ```
 

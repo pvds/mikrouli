@@ -195,19 +195,19 @@ Keep the existing Svelte override for the baseline modernization:
 
 ```jsonc
 {
-  "includes": ["**/*.svelte"],
-  "linter": {
-    "rules": {
-      "style": {
-        "useConst": "off",
-        "useImportType": "off"
-      },
-      "correctness": {
-        "noUnusedImports": "off",
-        "noUnusedVariables": "off"
-      }
-    }
-  }
+	"includes": ["**/*.svelte"],
+	"linter": {
+		"rules": {
+			"style": {
+				"useConst": "off",
+				"useImportType": "off"
+			},
+			"correctness": {
+				"noUnusedImports": "off",
+				"noUnusedVariables": "off"
+			}
+		}
+	}
 }
 ```
 
@@ -310,16 +310,16 @@ Recommended target:
 
 ```json
 {
-  "scripts": {
-    "check": "bun run check:biome && bun run check:svelte",
-    "check:ci": "biome ci && bun run check:svelte",
-    "check:all": "bun run check && bun run build -l warn",
-    "check:biome": "biome check",
-    "check:format": "biome format",
-    "check:lint": "biome lint",
-    "check:svelte": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
-    "write": "biome check --write"
-  }
+	"scripts": {
+		"check": "bun run check:biome && bun run check:svelte",
+		"check:ci": "biome ci && bun run check:svelte",
+		"check:all": "bun run check && bun run build -l warn",
+		"check:biome": "biome check",
+		"check:format": "biome format",
+		"check:lint": "biome lint",
+		"check:svelte": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
+		"write": "biome check --write"
+	}
 }
 ```
 
@@ -388,9 +388,9 @@ The current pre-commit Biome command is roughly:
 
 ```yaml
 format:
-  run: bun run biome check --write --no-errors-on-unmatched
-    --files-ignore-unknown=true --skip-parse-errors --colors=off {staged_files}
-  stage_fixed: true
+    run: bun run biome check --write --no-errors-on-unmatched
+        --files-ignore-unknown=true --skip-parse-errors --colors=off {staged_files}
+    stage_fixed: true
 ```
 
 Preserve the useful staged-file behavior:
@@ -544,60 +544,60 @@ the configuration should remain intentionally close to the current one:
 
 ```jsonc
 {
-  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "vcs": {
-    "enabled": true,
-    "clientKind": "git",
-    "defaultBranch": "main",
-    "useIgnoreFile": true
-  },
-  "files": {
-    "includes": ["**", "!src/data/generated", "!.agents/skills"]
-  },
-  "formatter": {
-    "enabled": true,
-    "useEditorconfig": true
-  },
-  "assist": {
-    "actions": {
-      "source": {
-        "organizeImports": "on"
-      }
-    }
-  },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "preset": "recommended",
-      "correctness": {
-        "noUnusedImports": {
-          "level": "error"
-        }
-      }
-    }
-  },
-  "css": {
-    "parser": {
-      "tailwindDirectives": true
-    }
-  },
-  "overrides": [
-    {
-      "includes": ["**/*.svelte"],
-      "linter": {
-        "rules": {
-          "style": {
-            "useConst": "off",
-            "useImportType": "off"
-          },
-          "correctness": {
-            "noUnusedImports": "off",
-            "noUnusedVariables": "off"
-          }
-        }
-      }
-    }
-  ]
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"defaultBranch": "main",
+		"useIgnoreFile": true
+	},
+	"files": {
+		"includes": ["**", "!src/data/generated", "!.agents/skills"]
+	},
+	"formatter": {
+		"enabled": true,
+		"useEditorconfig": true
+	},
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": "on"
+			}
+		}
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"preset": "recommended",
+			"correctness": {
+				"noUnusedImports": {
+					"level": "error"
+				}
+			}
+		}
+	},
+	"css": {
+		"parser": {
+			"tailwindDirectives": true
+		}
+	},
+	"overrides": [
+		{
+			"includes": ["**/*.svelte"],
+			"linter": {
+				"rules": {
+					"style": {
+						"useConst": "off",
+						"useImportType": "off"
+					},
+					"correctness": {
+						"noUnusedImports": "off",
+						"noUnusedVariables": "off"
+					}
+				}
+			}
+		}
+	]
 }
 ```
 

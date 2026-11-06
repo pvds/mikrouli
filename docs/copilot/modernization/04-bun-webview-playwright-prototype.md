@@ -49,7 +49,7 @@ On macOS, Bun.WebView defaults to WebKit. On Linux/Windows it defaults to Chrome
 Mikrouli's current oracle is Chromium, so **force the Chrome backend in the prototype on every platform**:
 
 ```js
-new Bun.WebView({ backend: "chrome" })
+new Bun.WebView({ backend: "chrome" });
 ```
 
 Otherwise local macOS results and CI browser results would use different engines and accessibility/browser parity comparisons would be misleading.

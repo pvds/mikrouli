@@ -164,24 +164,24 @@ or other Oxlint categories wholesale merely to imitate Biome.
 The most important migration caveat is that Oxc does **not** provide identical
 language coverage.
 
-| Area | Modernized Biome baseline | Oxc target | Caveat |
-| --- | --- | --- | --- |
-| JavaScript linting | Biome | Oxlint | Policy/rule differences |
-| TypeScript linting | Biome | Oxlint | Policy/rule differences |
-| Svelte `<script>` linting | Biome partial/full depending config | Oxlint | Oxlint sees script only |
-| Svelte template semantics | `svelte-check` | `svelte-check` | Keep unchanged |
-| Svelte accessibility | primarily `svelte-check` + axe | same | Keep unchanged |
-| CSS linting | Biome | **none in Oxc** | Explicit decision required |
-| JSON/JSONC linting | Biome | **none in Oxlint** | Coverage loss |
-| Markdown linting | none | none | No regression |
-| JS/TS formatting | Biome | Oxfmt | Review one-time diff |
-| Svelte formatting | limited/experimental in Biome baseline | Oxfmt | Broader formatting scope |
-| CSS formatting | optional in Biome baseline | Oxfmt | May introduce new diffs |
-| JSON formatting | Biome | Oxfmt | Oxfmt also sorts `package.json` by default |
-| Markdown formatting | not a Biome strength | Oxfmt | New active formatting scope |
-| Import organization | Biome assist | Oxfmt `sortImports` | Algorithms differ |
-| Tailwind class sorting | not baseline Biome behavior | Oxfmt | New behavior |
-| Tailwind class linting | not equivalent to CSS linting | optional plugin/editor | Svelte limitation |
+| Area                      | Modernized Biome baseline              | Oxc target             | Caveat                                     |
+| ------------------------- | -------------------------------------- | ---------------------- | ------------------------------------------ |
+| JavaScript linting        | Biome                                  | Oxlint                 | Policy/rule differences                    |
+| TypeScript linting        | Biome                                  | Oxlint                 | Policy/rule differences                    |
+| Svelte `<script>` linting | Biome partial/full depending config    | Oxlint                 | Oxlint sees script only                    |
+| Svelte template semantics | `svelte-check`                         | `svelte-check`         | Keep unchanged                             |
+| Svelte accessibility      | primarily `svelte-check` + axe         | same                   | Keep unchanged                             |
+| CSS linting               | Biome                                  | **none in Oxc**        | Explicit decision required                 |
+| JSON/JSONC linting        | Biome                                  | **none in Oxlint**     | Coverage loss                              |
+| Markdown linting          | none                                   | none                   | No regression                              |
+| JS/TS formatting          | Biome                                  | Oxfmt                  | Review one-time diff                       |
+| Svelte formatting         | limited/experimental in Biome baseline | Oxfmt                  | Broader formatting scope                   |
+| CSS formatting            | optional in Biome baseline             | Oxfmt                  | May introduce new diffs                    |
+| JSON formatting           | Biome                                  | Oxfmt                  | Oxfmt also sorts `package.json` by default |
+| Markdown formatting       | not a Biome strength                   | Oxfmt                  | New active formatting scope                |
+| Import organization       | Biome assist                           | Oxfmt `sortImports`    | Algorithms differ                          |
+| Tailwind class sorting    | not baseline Biome behavior            | Oxfmt                  | New behavior                               |
+| Tailwind class linting    | not equivalent to CSS linting          | optional plugin/editor | Svelte limitation                          |
 
 ---
 
@@ -768,10 +768,7 @@ Recommended Oxlint baseline:
 ```jsonc
 {
 	"$schema": "./node_modules/oxlint/configuration_schema.json",
-	"ignorePatterns": [
-		"src/data/generated/**",
-		".agents/skills/**"
-	]
+	"ignorePatterns": ["src/data/generated/**", ".agents/skills/**"]
 }
 ```
 
@@ -780,10 +777,7 @@ Recommended Oxfmt baseline:
 ```jsonc
 {
 	"$schema": "./node_modules/oxfmt/configuration_schema.json",
-	"ignorePatterns": [
-		"src/data/generated/**",
-		".agents/skills/**"
-	]
+	"ignorePatterns": ["src/data/generated/**", ".agents/skills/**"]
 }
 ```
 
@@ -858,10 +852,7 @@ Then simplify it toward this intentional target:
 ```jsonc
 {
 	"$schema": "./node_modules/oxfmt/configuration_schema.json",
-	"ignorePatterns": [
-		"src/data/generated/**",
-		".agents/skills/**"
-	],
+	"ignorePatterns": ["src/data/generated/**", ".agents/skills/**"],
 	"svelte": true,
 	"proseWrap": "always",
 	"sortImports": {
@@ -894,10 +885,7 @@ Start minimal.
 ```jsonc
 {
 	"$schema": "./node_modules/oxlint/configuration_schema.json",
-	"ignorePatterns": [
-		"src/data/generated/**",
-		".agents/skills/**"
-	]
+	"ignorePatterns": ["src/data/generated/**", ".agents/skills/**"]
 }
 ```
 
@@ -913,10 +901,7 @@ Example only:
 ```jsonc
 {
 	"$schema": "./node_modules/oxlint/configuration_schema.json",
-	"ignorePatterns": [
-		"src/data/generated/**",
-		".agents/skills/**"
-	],
+	"ignorePatterns": ["src/data/generated/**", ".agents/skills/**"],
 	"rules": {
 		"some/useful-rule": "error"
 	}
@@ -1753,7 +1738,7 @@ The migration is complete only when all of the following are true.
 - [ ] Tailwind class-sorting policy is explicit.
 - [ ] JSDoc formatting remains disabled unless separately adopted.
 - [ ] Type-aware Oxlint remains disabled until TypeScript 7 unless prerequisites
-      changed.
+  changed.
 
 ## Configuration
 
