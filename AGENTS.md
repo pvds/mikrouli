@@ -17,6 +17,7 @@
 | Write format fixes | `bun run write` |
 | Full local check | `bun run check` |
 | CI checks | `bun run check:ci` |
+| Unit tests | `bun run test:unit` |
 | Build (staging) | `bun run build` |
 | Build (production) | `bun run build:prod` |
 | Production HTML validation | `bun run test:html` |

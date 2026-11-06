@@ -18,6 +18,7 @@ import type {
 	ContentfulEntryData,
 	ContentfulFileData,
 } from "$types/contentful-runtime";
+import { getAssetFileName } from "$util/file";
 
 interface ParsedEntry {
 	meta: Metadata;
@@ -124,7 +125,19 @@ export function parseContentEntry(rawEntry: unknown): ParsedEntry {
 					};
 				});
 		} else if (isContentfulEntry(value)) {
-			restFields[key] = toFields(value);
+			const nestedFields = toFields(value);
+			const file = toFile(value);
+			if (file?.contentType?.startsWith("image/")) {
+				if (typeof file.url !== "string") {
+					throw new Error(`Image asset in field '${key}' has no URL`);
+				}
+				restFields[key] = {
+					...nestedFields,
+					file: { ...file, fileName: getAssetFileName(file.url) },
+				};
+			} else {
+				restFields[key] = nestedFields;
+			}
 		}
 	}
 

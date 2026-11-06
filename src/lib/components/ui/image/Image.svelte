@@ -50,6 +50,7 @@ const meta = $derived(metaCategory[image]);
 const height = $derived(heightClass ? heightClass : "h-full");
 const width = $derived(widthClass ? widthClass : "w-full");
 const directory = $derived(`${IMAGE_DIR}/${isLocal ? "local" : "cms"}`);
+const encodedImage = $derived(encodeURI(image));
 
 const aspectRatio = $derived(meta ? `${meta.width}/${meta.height}` : "1/1");
 const hasAlpha = $derived(meta?.hasAlpha ?? false);
@@ -59,7 +60,7 @@ const srcset = (sizes: number[]): string =>
 	sizes
 		.map(
 			(size) =>
-				`${base}${directory}/${image}-${size}.${IMAGE_EXT} ${size}w`,
+				`${base}${directory}/${encodedImage}-${size}.${IMAGE_EXT} ${size}w`,
 		)
 		.join(", ");
 </script>
@@ -77,7 +78,7 @@ const srcset = (sizes: number[]): string =>
 >
 	<picture>
 		<source srcset={srcset(IMAGE_SIZES)} sizes={sizes} type={IMAGE_MIME_TYPE} />
-		<img src={`${base}${directory}/${image}-1280.${IMAGE_EXT}`} {alt}
+		<img src={`${base}${directory}/${encodedImage}-1280.${IMAGE_EXT}`} {alt}
 			class={[POSITION_CLASSES, positionClass, classes, height, width, { "opacity-0": !loadedImage }]}
 			loading={priority ? "eager" : "lazy"}
 			decoding={priority ? "sync" : "async"}

@@ -1,6 +1,18 @@
 import fs from "node:fs";
 import path from "node:path";
 
+export const getAssetFileName = (url: string): string => {
+	const assetUrl = new URL(url.startsWith("//") ? `https:${url}` : url);
+	if (assetUrl.protocol !== "https:" && assetUrl.protocol !== "http:") {
+		throw new Error(`Unsupported asset URL protocol: ${assetUrl.protocol}`);
+	}
+	const fileName = path.posix.basename(assetUrl.pathname);
+	if (!fileName || fileName === "/" || assetUrl.pathname.endsWith("/")) {
+		throw new Error(`Asset URL has no filename: ${url}`);
+	}
+	return fileName;
+};
+
 export const readJSON = async (
 	filePath: string,
 ): Promise<Record<string, unknown>> => {

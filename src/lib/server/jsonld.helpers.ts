@@ -24,7 +24,7 @@ export function getImage(
 		? {
 				"@context": "https://schema.org",
 				"@type": "ImageObject",
-				url: `${URL_BASE_PRODUCTION}/images/cms/${getImageName(image.file.fileName)}-${IMAGE_THUMBNAIL_SIZE}.${IMAGE_EXT}`,
+				url: `${URL_BASE_PRODUCTION}/images/cms/${getImageName(encodeURI(image.file.fileName))}-${IMAGE_THUMBNAIL_SIZE}.${IMAGE_EXT}`,
 			}
 		: undefined;
 }

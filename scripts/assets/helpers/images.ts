@@ -210,7 +210,7 @@ function buildFileName(base: string, size: string, ext: string): string {
 function createProcessedImageRegex(): RegExp {
 	return new RegExp(
 		`^${escapeRegex(IMAGE_FILENAME_TEMPLATE)
-			.replace("\\{base\\}", "([A-Za-z0-9-_]+)")
+			.replace("\\{base\\}", "(.+)")
 			.replace("\\{size\\}", "(\\d+)")
 			.replace("\\{ext\\}", `(${escapeRegex(IMAGE_EXT)})`)}$`,
 		"i",

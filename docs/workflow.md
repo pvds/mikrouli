@@ -23,6 +23,8 @@ The `main` job in `.github/workflows/ci.yml` does this:
 4. Builds staging and/or production artifacts.
 5. Runs the production validation tests via `.github/actions/test`.
 
+`bun run check:ci` includes formatting, unit tests (`bun run test:unit`), and Svelte type checks. CMS image imports and downloads share the canonical filename from the asset delivery URL.
+
 ## Deployments
 
 ### Staging
