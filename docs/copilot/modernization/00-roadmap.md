@@ -8,29 +8,29 @@
 
 Use this file as the entry point for modernization work. It intentionally contains only the current baseline, architectural constraints, implementation order, and links to the focused research files. Do not load every research file for every task; read only the file for the current objective.
 
-## Authoritative current baseline
+## Research baseline (2026-08-22)
 
-The latest project `package.json` provided for this research is the baseline. It already includes the completed Bun/package-manager and semver-safe dependency work.
+The table below records the project baseline used for this research snapshot. Check `package.json` for current versions.
 
 Core versions at the research snapshot:
 
-| Package/tool | Current baseline |
-| --- | --- |
-| Bun | `^1.4` |
-| Node | `^26` |
-| Svelte | `^5.56.10` |
-| SvelteKit | `^2.70.3` |
-| `@sveltejs/adapter-static` | `^3.0.10` |
-| `@sveltejs/vite-plugin-svelte` | `^6.2.4` |
-| Vite | `npm:rolldown-vite@^7.3.1` |
-| Tailwind CSS | `^4.3.3` |
-| TypeScript | `^5.9.3` |
-| `svelte-check` | `^4.7.6` |
-| Sharp | `^0.35.3` |
-| Playwright | `^1.62.1` |
-| `@axe-core/playwright` | `^4.13.0` |
-| Biome | `^2.5.10` |
-| Contentful | `^11.12.9` |
+| Package/tool                   | Research baseline          |
+| ------------------------------ | -------------------------- |
+| Bun                            | `^1.4`                     |
+| Node                           | `^26`                      |
+| Svelte                         | `^5.56.10`                 |
+| SvelteKit                      | `^2.70.3`                  |
+| `@sveltejs/adapter-static`     | `^3.0.10`                  |
+| `@sveltejs/vite-plugin-svelte` | `^6.2.4`                   |
+| Vite                           | `npm:rolldown-vite@^7.3.1` |
+| Tailwind CSS                   | `^4.3.3`                   |
+| TypeScript                     | `^5.9.3`                   |
+| `svelte-check`                 | `^4.7.6`                   |
+| Sharp                          | `^0.35.3`                  |
+| Playwright                     | `^1.62.1`                  |
+| `@axe-core/playwright`         | `^4.13.0`                  |
+| Biome                          | `^2.5.10`                  |
+| Contentful                     | `^11.12.9`                 |
 
 Do not redo completed semver-safe upgrades unless a later scoped migration requires a coupled version change.
 
@@ -40,7 +40,8 @@ Do not redo completed semver-safe upgrades unless a later scoped migration requi
 - pnpm to Bun package-manager migration.
 - SemVer-compatible dependency upgrades.
 - Sharp updated to the latest compatible/current baseline before replacement research.
-- Svelte and SvelteKit updated to the latest Svelte 5 / SvelteKit 2 baseline used for this research.
+- Svelte updated to the latest stable Svelte 5 baseline used for this research.
+- SvelteKit 3 and adapter-static 4 migration, completed with stable versions.
 
 These are historical context only. Do not create implementation work for them.
 
@@ -87,7 +88,7 @@ This objective owns the structural `Image.svelte` placeholder/loading cleanup. C
 
 Read: [`05-modern-svelte.md`](./05-modern-svelte.md)
 
-Modernize the current stable Svelte 5 source **before** the SvelteKit 3 prerelease migration so source-level reactivity/syntax changes can be validated against the known stable framework baseline.
+The original plan placed Svelte source modernization before the SvelteKit 3 upgrade. That upgrade is complete; modernize the source against the current stable stack.
 
 Key decisions:
 
@@ -124,14 +125,14 @@ Read: [`07-biome-to-oxc.md`](./07-biome-to-oxc.md)
 
 This is not the default next step. Revisit only after the modernized Biome baseline is stable and the concrete decision gates in the file are satisfied. The migration should happen only if Oxc provides a clear net benefit for Mikrouli's Svelte/Tailwind workflow; do not switch for tool novelty, raw speed, or ecosystem hype alone.
 
-#### 5. SvelteKit 3 + Vite 8 migration cluster
+#### 5. SvelteKit 3 + Vite 8 migration cluster (completed)
 
 Read: [`02-sveltekit-3-vite-8.md`](./02-sveltekit-3-vite-8.md)
 
-This is the one deliberately coupled framework batch family. It includes:
+Completed with stable SvelteKit 3.1.1 and adapter-static 4.0.1. It includes:
 
-- latest **published** `@sveltejs/kit@next` at implementation time;
-- Kit-3-compatible `@sveltejs/adapter-static@next`;
+- stable `@sveltejs/kit` 3.1.1;
+- compatible `@sveltejs/adapter-static` 4.0.1;
 - Vite 8 (remove the `rolldown-vite` npm alias);
 - `@sveltejs/vite-plugin-svelte` 7;
 - `vite-plugin-browser-sync` 7;
@@ -192,15 +193,15 @@ Do not allow permanently disabled code to remain indefinitely without this revie
 
 Read: [`../typescript/typescript-6-migration.md`](../typescript/typescript-6-migration.md)
 
-The full source migration from strict JSDoc JavaScript to TypeScript 6 is a separate project. Recommended timing: after the SvelteKit 3 migration is stable, so the source migration targets the new Kit 3 configuration/type model only once.
+The full source migration from strict JSDoc JavaScript to TypeScript 6 is a separate project. The SvelteKit 3 migration is complete, so the source migration can target its configuration and type model.
 
 The Modern Svelte objective should happen **before** this TypeScript project so the later language conversion translates already-clean Svelte patterns instead of mixing source-language and reactivity refactors.
 
 TypeScript 7 is documented as the future follow-up, not the current migration target, because Svelte's embedded-language tooling still requires TypeScript 6 for the normal stable path as of this research snapshot.
 
-## Why Modern Svelte comes before SvelteKit 3
+## Historical rationale: Modern Svelte before SvelteKit 3
 
-The ordering is intentional:
+This was the ordering rationale before the SvelteKit 3 migration:
 
 1. Mikrouli already has the required stable Svelte 5 baseline.
 2. The source modernization can be validated on the known SvelteKit 2 production baseline.
@@ -249,21 +250,21 @@ For Modern Svelte source batches additionally verify:
 
 ## Agent routing table
 
-| Current task | Read |
-| --- | --- |
-| Remaining dependency majors | `01-dependency-majors.md` |
-| Replace Sharp / simplify image pipeline and `Image.svelte` | `03-sharp-to-bun-image.md` |
-| Modern Svelte source idioms / reactivity / class syntax / route prop typing | `05-modern-svelte.md` |
-| Biome modernization / check reliability / parser flags | `06-modernize-biome.md` |
-| SvelteKit 3 / Vite 8 / aliases / Kit config | `02-sveltekit-3-vite-8.md` |
-| Migrate `svelte-sitemap` after Kit/Vite | sitemap section of `01-dependency-majors.md` |
-| Investigate Bun browser automation | `04-bun-webview-playwright-prototype.md` |
-| Convert JSDoc JS source to TypeScript | `../typescript/typescript-6-migration.md` |
-| Re-evaluate disabled View Transitions | this roadmap's View Transitions review gate + current root layout |
+| Current task                                                                | Read                                                              |
+| --------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Remaining dependency majors                                                 | `01-dependency-majors.md`                                         |
+| Replace Sharp / simplify image pipeline and `Image.svelte`                  | `03-sharp-to-bun-image.md`                                        |
+| Modern Svelte source idioms / reactivity / class syntax / route prop typing | `05-modern-svelte.md`                                             |
+| Biome modernization / check reliability / parser flags                      | `06-modernize-biome.md`                                           |
+| Completed: SvelteKit 3 / Vite 8 / aliases / Kit config                      | `02-sveltekit-3-vite-8.md`                                        |
+| Migrate `svelte-sitemap` after Kit/Vite                                     | sitemap section of `01-dependency-majors.md`                      |
+| Investigate Bun browser automation                                          | `04-bun-webview-playwright-prototype.md`                          |
+| Convert JSDoc JS source to TypeScript                                       | `../typescript/typescript-6-migration.md`                         |
+| Re-evaluate disabled View Transitions                                       | this roadmap's View Transitions review gate + current root layout |
 
 ## Rules for the coding agent
 
-- Re-check the **published** package version immediately before a prerelease/`next` migration. Do not install an unpublished GitHub branch version merely because this research saw a newer commit there.
+- Re-check the **published stable** package version before dependency upgrades. Do not install an unpublished GitHub branch version merely because research saw a newer commit there.
 - Prefer official migration tooling where available, but inspect every generated change before accepting it.
 - For Svelte source work, preserve the semantic reason behind existing code. In particular, do not blindly replace every getter closure; classify whether it is a local derivation or an intentional lazy-reference API.
 - Prefer current stable Svelte replacements for old idioms. Do not enable experimental Svelte features merely because they exist.

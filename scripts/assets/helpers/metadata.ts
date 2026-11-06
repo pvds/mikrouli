@@ -1,7 +1,7 @@
 import path from "node:path";
-import { IMAGES_METADATA_OUTPUT_PATH_RESOLVED } from "$util/dyn.js";
-import { prepareDir, readJSON, writeJSON } from "$util/file.js";
-import { logInfo, logSuccess } from "$util/log.js";
+import { IMAGES_METADATA_OUTPUT_PATH_RESOLVED } from "#util/dyn.ts";
+import { prepareDir, readJSON, writeJSON } from "#util/file.ts";
+import { logInfo, logSuccess } from "#util/log.ts";
 
 interface ImageMeta {
 	width: string;

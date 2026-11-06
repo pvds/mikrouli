@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
-import { errMsg } from "$util/error.js";
-import { logDebug, logError, logInfo, logSuccess } from "$util/log.js";
+import { errMsg } from "#util/error.ts";
+import { logDebug, logError, logInfo, logSuccess } from "#util/log.ts";
 
 const GENERATED_DIRS = ["node_modules", "build", ".svelte-kit", ".tmp"];
 const GENERATED_FILES = ["bun.lock"];

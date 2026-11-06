@@ -10,10 +10,10 @@ optimized.
 ## Table of Contents
 
 - [Usage](#usage)
-    - [Step 1: Add to Layout](#step-1-add-to-layout)
-    - [Step 2: Set Defaults in `+layout.server.js`](#step-2-set-defaults-in-layoutserverjs)
-    - [Step 3: Override Metadata in `+page.server.js`](#step-3-override-metadata-in-pageserverjs)
-    - [Extendable Custom Meta Tags](#extendable-custom-meta-tags)
+  - [Step 1: Add to Layout](#step-1-add-to-layout)
+  - [Step 2: Set Defaults in `+layout.server.js`](#step-2-set-defaults-in-layoutserverjs)
+  - [Step 3: Override Metadata in `+page.server.js`](#step-3-override-metadata-in-pageserverjs)
+  - [Extendable Custom Meta Tags](#extendable-custom-meta-tags)
 - [Properties](#properties)
 - [Important Notes](#important-notes)
 - [Credits](#credits)
@@ -51,10 +51,8 @@ export const load = async ({ url }) => {
 	return {
 		seo: {
 			title: "Site name - Slogan",
-			description:
-				"General information about the site",
-			keywords:
-				"keyword1, keyword2, keyword3",
+			description: "General information about the site",
+			keywords: "keyword1, keyword2, keyword3",
 			imageURL: `${url.origin}/logo.jpg`,
 			siteName: "Site name",
 		},
@@ -88,14 +86,13 @@ export const load = async ({ parent }) => {
 
 	return { seo };
 };
-
 ```
 
 ### Extendable Custom Meta Tags
 
-You can extend the metadata in `+layout.svelte` with custom meta tags by using 
-the 
-`children` 
+You can extend the metadata in `+layout.svelte` with custom meta tags by using
+the
+`children`
 slot:
 
 ```svelte

@@ -1,11 +1,11 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import Branding from "$global/Branding.svelte";
-import Footer from "$global/Footer.svelte";
-import Header from "$global/Header.svelte";
-import NavPrimary from "$global/NavPrimary.svelte";
-import Skip from "$global/Skip.svelte";
-import Seo from "$global/seo/Seo.svelte";
+import Branding from "#global/Branding.svelte";
+import Footer from "#global/Footer.svelte";
+import Header from "#global/Header.svelte";
+import NavPrimary from "#global/NavPrimary.svelte";
+import Skip from "#global/Skip.svelte";
+import Seo from "#global/seo/Seo.svelte";
 import type { LayoutProps } from "./$types";
 import "../app.css";
 

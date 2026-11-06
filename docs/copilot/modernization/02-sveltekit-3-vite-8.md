@@ -1,62 +1,53 @@
 # Mikrouli SvelteKit 3 + Vite 8 Migration
 
-> Research snapshot: 2026-08-22
-> Target: latest **published** SvelteKit 3 prerelease (`@next`) plus stable compatible dependencies
+> Migration completed: 2026-11-06
+> Verified stable versions: `@sveltejs/kit` 3.1.1 and `@sveltejs/adapter-static` 4.0.1
 > Audience: local GitHub Copilot coding agent
 
 ## Objective
 
-Move Mikrouli from the latest SvelteKit 2 baseline to the newest published SvelteKit 3 prerelease while preserving its static-site architecture, staging/production behavior, accessibility checks, and performance checks.
+Migrate Mikrouli to stable SvelteKit 3 while preserving its static-site architecture and staging/production behavior.
 
 This migration is intentionally a **coupled framework cluster**. Do not mix it with the full JavaScript/JSDoc -> TypeScript source refactor, Sharp replacement, sitemap v4 integration, or Bun.WebView prototype.
 
-## Current baseline
+## Research baseline (2026-08-22)
 
 ```text
 @sveltejs/kit                 ^2.70.3
 @sveltejs/adapter-static      ^3.0.10
-@sveltejs/vite-plugin-svelte  ^6.2.4
-svelte                        ^5.56.10
-typescript                    ^5.9.3
-svelte-check                  ^4.7.6
-vite                          npm:rolldown-vite@^7.3.1
-vite-plugin-browser-sync      ^6.0.0
+@sveltejs/vite-plugin-svelte  ^7.3.1
+svelte                        ^5.57.3
+typescript                    ^6.0.3
+svelte-check                  ^4.7.8
+vite                          ^8.3.5
+vite-plugin-browser-sync      ^7.0.0
 ```
 
-Current Vite config contains only BrowserSync, SvelteKit, and Tailwind plugins. Current SvelteKit configuration lives under the `kit` property of `svelte.config.js` and includes adapter-static, paths, prerender behavior, environment prefixes, aliases, service-worker registration, and CSP.
+The framework upgrade moved SvelteKit options into the `sveltekit(...)` Vite plugin and removed `svelte.config.js`.
 
 ## Target dependency family
 
-At implementation time, resolve the actual published versions rather than copying prerelease numbers from this research snapshot.
+Keep the stable dependency ranges current in `package.json`:
 
-Use conceptually:
-
-```bash
-bun add -d \
-  @sveltejs/kit@next \
-  @sveltejs/adapter-static@next \
-  @sveltejs/vite-plugin-svelte@latest \
-  vite@latest \
-  vite-plugin-browser-sync@latest \
-  typescript@~6
+```text
+@sveltejs/kit                 ^3.1.1
+@sveltejs/adapter-static      ^4.0.1
 ```
 
-### Important prerelease rule
-
-The SvelteKit `version-3` GitHub branch can be ahead of npm. During this research the branch showed `3.0.0-next.25`, while npm publication lagged behind it. **Install `@sveltejs/kit@next`, not an unpublished GitHub version.**
+Resolve latest stable versions from the package registry before future upgrades; do not use prereleases unless explicitly requested.
 
 ## Confirmed SvelteKit 3 dependency floor
 
 The current v3 development package/config establishes these relevant requirements:
 
-- Svelte `^5.56.4` or newer — current Mikrouli Svelte already satisfies this.
+- Svelte `^5.57.1` or newer — current Mikrouli Svelte already satisfies this.
 - `@sveltejs/vite-plugin-svelte` `^7`.
 - Vite `^8.0.12` or newer compatible v8.
 - TypeScript `^6` when TypeScript is installed.
-- modern Node 22+; Mikrouli's Node 26 engine is sufficient.
-- Kit-3-compatible `adapter-static` 4 prerelease.
+- Node v22.17 or newer.
+- `@sveltejs/adapter-static` 4.
 
-## Highest-impact breaking change: configuration moves into Vite
+## Highest-impact breaking change: configuration moved into Vite
 
 SvelteKit 3 rejects SvelteKit options nested under a `kit` namespace and instructs users to pass them directly to the `sveltekit(...)` Vite plugin.
 
@@ -91,7 +82,7 @@ sveltekit({
 
 Do not blindly paste the old `kit` object. Several options changed or disappeared, and aliases need a separate standards-based migration.
 
-Since Mikrouli currently has no non-Kit Svelte compiler/preprocessor configuration in `svelte.config.js`, expect that file may become unnecessary after migration. Verify with `svelte-kit sync`, `svelte-check`, dev, and builds before deleting it.
+Mikrouli had no non-Kit Svelte compiler/preprocessor configuration in `svelte.config.js`, so the migration removed it after moving Kit options into Vite.
 
 `svelte-check` 4.6+ can discover Svelte configuration from Vite config, which supports this direction.
 
@@ -101,9 +92,7 @@ Current Mikrouli behavior:
 
 ```js
 prerender: {
-  origin: production
-    ? "https://mikrouli.org"
-    : "https://pvds.github.io"
+	origin: production ? "https://mikrouli.org" : "https://pvds.github.io";
 }
 ```
 
@@ -123,13 +112,13 @@ paths: {
 
 Keep `prerender.handleHttpError` in the prerender section.
 
-## Breaking/deprecation direction: `$lib` -> `#lib`
+## `$lib` and custom aliases use package imports
 
-The Svelte CLI's Kit 3 migration now replaces `$lib` imports with `#lib`, and Kit 3 removes the old configurable `files.lib` model. The Kit 3 configuration validator also deprecates `alias` in favor of subpath imports.
+The Svelte CLI migration replaced `$lib` imports with `#lib`. Project aliases also use `package.json#imports`; deprecated `kit.alias` configuration has been removed.
 
 ### Mikrouli decision
 
-Migrate the project-specific aliases to standards-based package subpath imports too:
+The project-specific aliases use standards-based package subpath imports:
 
 ```text
 $lib      -> #lib
@@ -155,22 +144,22 @@ Do not invent the final import map from this document. First inventory every cur
 - JavaScript modules with explicit or omitted extensions;
 - scripts outside `src` (`$util`).
 
-Kit 3's prerelease changes around `#lib` include stricter module-resolution behavior and explicit extension requirements. Prefer explicit file extensions in imports where required by the final published migration tooling.
+Kit 3 uses stricter module resolution and explicit extensions in package imports where required.
 
 A likely package-import shape is conceptually:
 
 ```json
 {
-  "imports": {
-    "#config": "./src/config.js",
-    "#data/*": "./src/data/*",
-    "#global/*": "./src/lib/components/global/*",
-    "#layout/*": "./src/lib/components/layout/*",
-    "#ui/*": "./src/lib/components/ui/*",
-    "#visuals/*": "./src/lib/components/visuals/*",
-    "#types/*": "./src/lib/types/*",
-    "#util/*": "./scripts/util/*"
-  }
+	"imports": {
+		"#config": "./src/config.js",
+		"#data/*": "./src/data/*",
+		"#global/*": "./src/lib/components/global/*",
+		"#layout/*": "./src/lib/components/layout/*",
+		"#ui/*": "./src/lib/components/ui/*",
+		"#visuals/*": "./src/lib/components/visuals/*",
+		"#types/*": "./src/lib/types/*",
+		"#util/*": "./scripts/util/*"
+	}
 }
 ```
 
@@ -227,7 +216,7 @@ Verify that dev server proxy/reload behavior remains equivalent; do not reconfig
 
 ## `adapter-static`
 
-The Kit 3 adapter generation is `@sveltejs/adapter-static` 4 prerelease and requires SvelteKit 3.
+`@sveltejs/adapter-static` 4 requires SvelteKit 3.
 
 Preserve current adapter behavior:
 
@@ -285,12 +274,12 @@ ReadonlyURLSearchParams
 defineParams
 ```
 
-Relevant Kit 3 prerelease changes include:
+Relevant Kit 3 changes include:
 
 - `$app/stores` removal;
 - `$service-worker` removal/rework;
 - `invalidateAll` deprecation direction toward `refreshAll`;
-- several types moved to `$app/server`, `$app/state`, `@sveltejs/kit/hooks`, `@sveltejs/kit/env`, or `@sveltejs/kit/params` across the prerelease series.
+- types moved to `$app/server`, `$app/state`, `@sveltejs/kit/hooks`, `@sveltejs/kit/env`, or `@sveltejs/kit/params`.
 
 Do not migrate APIs that Mikrouli does not actually use.
 
@@ -337,7 +326,7 @@ If Kit 2 compatibility blocks this cleanly, combine the dependency bump with Bat
 ### Batch 3 — framework dependency cluster + official migration tooling
 
 - Run the latest Svelte CLI Kit 3 migration tooling in a clean branch/worktree if available.
-- Install the latest published `@sveltejs/kit@next` and compatible adapter/plugin/Vite versions.
+- Install the latest stable `@sveltejs/kit` and compatible adapter/plugin/Vite versions.
 - Remove the `rolldown-vite` alias.
 - Upgrade BrowserSync 7.
 - Review the generated diff; do not accept unrelated formatting/refactors blindly.
@@ -348,7 +337,7 @@ If Kit 2 compatibility blocks this cleanly, combine the dependency bump with Bat
 - Move `prerender.origin` -> `paths.origin`.
 - Delete or minimize `svelte.config.js` only if no remaining Svelte-specific configuration needs it.
 
-### Batch 5 — finish `#lib` / alias migration
+### Batch 5 — finish `$lib` / alias migration
 
 - Apply the official `$lib` -> `#lib` migration.
 - Remove remaining deprecated `alias` configuration.
@@ -390,7 +379,7 @@ Also verify:
 
 ## Rollback rule
 
-If Kit 3 prerelease regressions affect static prerendering, deployment paths, CSP, or existing tests in ways that cannot be solved narrowly, remain on the clean latest Kit 2 baseline and document the blocking upstream issue. Do not work around a prerelease framework problem with broad architectural changes.
+If Kit 3 regressions affect static prerendering, deployment paths, CSP, or existing tests in ways that cannot be solved narrowly, document the blocking upstream issue. Do not work around a framework problem with broad architectural changes.
 
 ## Research sources
 

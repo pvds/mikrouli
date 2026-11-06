@@ -1,6 +1,6 @@
 <script lang="ts">
-import type { PostEntry, ServiceEntry } from "$types/contentful";
-import TeaserArticle from "$ui/TeaserArticle.svelte";
+import type { PostEntry, ServiceEntry } from "#types/contentful.ts";
+import TeaserArticle from "#ui/TeaserArticle.svelte";
 import { oddLastEntry } from "../../helpers/entry.js";
 import Section from "./Section.svelte";
 

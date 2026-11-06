@@ -1,4 +1,4 @@
-import { logDebug } from "$util/log";
+import { logDebug } from "#util/log.ts";
 
 export const withRetry = async <TArgs extends unknown[], TResult>(
 	fn: (...args: TArgs) => Promise<TResult>,

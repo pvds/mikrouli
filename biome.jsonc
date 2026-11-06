@@ -13,6 +13,11 @@
 		"enabled": true,
 		"useEditorconfig": true
 	},
+	"markdown": {
+		"parser": {
+			"frontmatter": true
+		}
+	},
 	"assist": { "actions": { "source": { "organizeImports": "on" } } },
 	"linter": {
 		"enabled": true,
@@ -29,6 +34,12 @@
 		}
 	},
 	"overrides": [
+		{
+			"includes": ["docs/voice-profile.md"],
+			"formatter": {
+				"enabled": false
+			}
+		},
 		{
 			"includes": ["**/*.svelte"],
 			"linter": {

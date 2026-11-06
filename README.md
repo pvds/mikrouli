@@ -12,22 +12,22 @@ Static SvelteKit site for a systemic therapy practice. Content is sourced from C
 
 ## Common commands
 
-| Task | Command |
-|------|---------|
-| Start dev server | `bun run start` |
-| Build staging | `bun run build` |
-| Build production | `bun run build:prod` |
-| Preview staging | `bun run preview` |
-| Preview production | `bun run preview:prod` |
-| Unit tests | `bun run test:unit` |
-| Production HTML validation | `bun run test:html` |
-| Accessibility test | `bun run test:axe --minimal --prod` |
-| Lighthouse test | `bun run test:lighthouse --prod` |
-| Format check | `bun run check:format` |
-| Lint + type-check | `bun run check:lint` |
-| CI check | `bun run check:ci` |
-| Auto-fix formatting | `bun run write` |
-| Refresh generated content and assets | `bun run content` |
+| Task                                 | Command                             |
+| ------------------------------------ | ----------------------------------- |
+| Start dev server                     | `bun run start`                     |
+| Build staging                        | `bun run build`                     |
+| Build production                     | `bun run build:prod`                |
+| Preview staging                      | `bun run preview`                   |
+| Preview production                   | `bun run preview:prod`              |
+| Unit tests                           | `bun run test:unit`                 |
+| Production HTML validation           | `bun run test:html`                 |
+| Accessibility test                   | `bun run test:axe --minimal --prod` |
+| Lighthouse test                      | `bun run test:lighthouse --prod`    |
+| Format check                         | `bun run check:format`              |
+| Lint + type-check                    | `bun run check:lint`                |
+| CI check                             | `bun run check:ci`                  |
+| Auto-fix formatting                  | `bun run write`                     |
+| Refresh generated content and assets | `bun run content`                   |
 
 ## Project structure
 

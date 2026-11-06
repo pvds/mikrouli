@@ -7,7 +7,7 @@ import {
 	THRESHOLDS,
 	URL_SUBFOLDER_PRODUCTION,
 	URL_SUBFOLDER_STAGING,
-} from "$config";
+} from "#config";
 import {
 	BUILD_PATH_PRODUCTION_RESOLVED,
 	BUILD_PATH_STAGING_RESOLVED,
@@ -15,12 +15,18 @@ import {
 	IS_MINIMAL,
 	IS_PROD,
 	REPORTS_PATH_RESOLVED,
-} from "$util/dyn";
-import { getAllHtmlFiles } from "$util/file";
-import { logError, logHeader, logInfo, logSuccess, logWarn } from "$util/log";
-import { measure } from "$util/measure";
-import { closeBrowser, launchBrowser } from "$util/playwright";
-import { startServer, stopServer, waitForServer } from "$util/server";
+} from "#util/dyn.ts";
+import { getAllHtmlFiles } from "#util/file.ts";
+import {
+	logError,
+	logHeader,
+	logInfo,
+	logSuccess,
+	logWarn,
+} from "#util/log.ts";
+import { measure } from "#util/measure.ts";
+import { closeBrowser, launchBrowser } from "#util/playwright.ts";
+import { startServer, stopServer, waitForServer } from "#util/server.ts";
 
 const specificIndex = process.argv.indexOf("--specific");
 const specificPath =

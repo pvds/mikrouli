@@ -1,10 +1,10 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { PROSE_CLASSES_LG, PROSE_CLASSES_MD, PROSE_CLASSES_SM } from "$config";
-import { getImageName } from "$lib/helpers/image.js";
-import type { SectionSize, SectionTheme } from "$types/content";
-import type { ImageField } from "$types/contentful";
-import Image from "$ui/image/Image.svelte";
+import { PROSE_CLASSES_LG, PROSE_CLASSES_MD, PROSE_CLASSES_SM } from "#config";
+import { getImageName } from "#lib/helpers/image.ts";
+import type { SectionSize, SectionTheme } from "#types/content.ts";
+import type { ImageField } from "#types/contentful.ts";
+import Image from "#ui/image/Image.svelte";
 import Section from "./Section.svelte";
 
 interface Props {

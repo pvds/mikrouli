@@ -1,4 +1,4 @@
-import { getPage, getSeo } from "$lib/server/content";
+import { getPage, getSeo } from "#lib/server/content.ts";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({ route }) => {

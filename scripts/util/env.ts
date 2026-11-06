@@ -1,6 +1,6 @@
-import { askQuestion } from "$util/cli-question";
-import { logInfo, logMessage } from "$util/log";
-import { escapeRegex } from "$util/regex";
+import { askQuestion } from "#util/cli-question.ts";
+import { logInfo, logMessage } from "#util/log.ts";
+import { escapeRegex } from "#util/regex.ts";
 
 async function getEmptyEnvVariables(
 	envFilePath: string,

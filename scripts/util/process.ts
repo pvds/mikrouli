@@ -1,4 +1,4 @@
-import { logInfo } from "$util/log";
+import { logInfo } from "#util/log.ts";
 
 export const setupGracefulShutdown = (): void => {
 	const shutdown = (): void => {

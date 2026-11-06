@@ -21,12 +21,12 @@ Mikrouli already uses TypeScript's checker deeply through `jsconfig.json`:
 
 ```json
 {
-  "compilerOptions": {
-    "allowJs": true,
-    "checkJs": true,
-    "strict": true,
-    "moduleResolution": "bundler"
-  }
+	"compilerOptions": {
+		"allowJs": true,
+		"checkJs": true,
+		"strict": true,
+		"moduleResolution": "bundler"
+	}
 }
 ```
 
@@ -204,8 +204,8 @@ After:
 
 ```ts
 interface Props {
-  title: string;
-  disabled?: boolean;
+	title: string;
+	disabled?: boolean;
 }
 ```
 
@@ -219,7 +219,7 @@ Before:
  * @returns {number}
  */
 function length(value) {
-  return value.length;
+	return value.length;
 }
 ```
 
@@ -227,7 +227,7 @@ After:
 
 ```ts
 function length(value: string): number {
-  return value.length;
+	return value.length;
 }
 ```
 
@@ -242,7 +242,7 @@ Before:
  * @returns {T | undefined}
  */
 function first(items) {
-  return items[0];
+	return items[0];
 }
 ```
 
@@ -250,7 +250,7 @@ After:
 
 ```ts
 function first<T>(items: T[]): T | undefined {
-  return items[0];
+	return items[0];
 }
 ```
 

@@ -1,4 +1,4 @@
-import { getPage, getPosts, getSeo, getServices } from "$lib/server/content";
+import { getPage, getPosts, getSeo, getServices } from "#lib/server/content.ts";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async () => {

@@ -1,4 +1,4 @@
-import type { CtaIcon } from "$types/content";
+import type { CtaIcon } from "#types/content.ts";
 
 export const svgIcon = (name: CtaIcon): string => {
 	const classes =

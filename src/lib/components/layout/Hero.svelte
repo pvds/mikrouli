@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { SPACING_X_CLASSES } from "$config";
-import Image from "$ui/image/Image.svelte";
-import WaveCss from "$visuals/WaveCss.svelte";
+import { SPACING_X_CLASSES } from "#config";
+import Image from "#ui/image/Image.svelte";
+import WaveCss from "#visuals/WaveCss.svelte";
 import Section from "./Section.svelte";
 
 interface Props {

@@ -162,7 +162,7 @@ bun add -d @tailwindcss/language-server@latest
 Mikrouli now generates the sitemap through `svelte-sitemap/vite`:
 
 ```js
-import { svelteSitemap } from 'svelte-sitemap/vite';
+import { svelteSitemap } from "svelte-sitemap/vite";
 ```
 
 The CLI/CLI flags are now a legacy/deprecated path, so repo no longer depends on the old postbuild helper flow.

@@ -13,22 +13,22 @@
 - [x] add seo fields to page/service/post pages (update types and process.js)
 - [x] change process.js to automatically include new fields
 - [x] decide on a way to handle images (contentful/local files/Some CDN)
-- [x] decide on using a `content` field (use `---` to divide in sections) or 
+- [x] decide on using a `content` field (use `---` to divide in sections) or
   `sections` content type
-- [x] add reference field to page content type to link to services or other 
-  pages (can be used to get data like slug but also to facilitate nested 
+- [x] add reference field to page content type to link to services or other
+  pages (can be used to get data like slug but also to facilitate nested
   navigation and linking)
 - [x] implement shortcodes for contentful ~~(like `{{dialog:booking(intake)}}` to 
-  include a booking dialog~~ and `{{embed:youtube(https://youtube.com/...)}}` 
+  include a booking dialog~~ and `{{embed:youtube(https://youtube.com/...)}}`
   to embed a youtube video)
-~~- [ ] explore migrating to mdsvex to allow for svelte components in markdown~~
+  ~~- [] explore migrating to mdsvex to allow for svelte components in markdown~~
 
 #### Global
 
 - [ ] **remove disallow from robots route server.js file for production before 
   launching site**
 - [x] overwrite default typography (prose) variables, colors for sure
-- [ ] consider using custom utility classes for generated content (prose) 
+- [ ] consider using custom utility classes for generated content (prose)
   instead of typography plugin
 - [x] use rem for font sizes, but not for dimensions and spacing (use px/em)
 
@@ -70,10 +70,10 @@
 
 - [x] Seo component server side rendering (getting hydration warnings now)
 - [x] a11y issue due to nesting non `li` in `ul` in `NavPrimary` component
-- [x] for some reason local lighthouse seo test is 100% on github build while 
-  robots.txt has disallow and meta tag with noindex nofollow is set. Would 
+- [x] for some reason local lighthouse seo test is 100% on github build while
+  robots.txt has disallow and meta tag with noindex nofollow is set. Would
   expect a failure like when running on the netlify build.
-- [ ] image sync is based on image name > same image name but different 
+- [ ] image sync is based on image name > same image name but different
   image is not detected
 
 ### Refactor
@@ -90,18 +90,18 @@
 ### Documentation
 
 - [ ] update README.md with latest changes
-- [ ] add a CHANGELOG.md file (possible integrate conventional commits to 
+- [ ] add a CHANGELOG.md file (possible integrate conventional commits to
   automate)
 
 ### CI/CD
 
 - [x] balance speed and reliability
 - [x] cleanup by splitting steps into templates
-~~- [ ] cache cms images in pipeline to avoid downloading them every time~~
+  ~~- [] cache cms images in pipeline to avoid downloading them every time~~
 - [ ] add a test job (once vitest or playwright tests are added)
 - [x] optimize flow
-	- for different scenarios
-    - for when site is launched
+  - for different scenarios
+  - for when site is launched
 
 ### Security
 

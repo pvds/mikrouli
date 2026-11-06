@@ -1,11 +1,11 @@
 import { error } from "@sveltejs/kit";
-import { SEO_DEFAULT } from "$config";
-import navigationItems from "$data/generated/navigation.json";
-import pageItems from "$data/generated/pages.json";
-import postItems from "$data/generated/posts.json";
-import reviewItems from "$data/generated/reviews.json";
-import serviceItems from "$data/generated/services.json";
-import type { JsonLdType, SEOProps } from "$global/seo/Seo.svelte.types";
+import { SEO_DEFAULT } from "#config";
+import navigationItems from "#data/generated/navigation.json";
+import pageItems from "#data/generated/pages.json";
+import postItems from "#data/generated/posts.json";
+import reviewItems from "#data/generated/reviews.json";
+import serviceItems from "#data/generated/services.json";
+import type { JsonLdType, SEOProps } from "#global/seo/Seo.svelte.types.ts";
 import type {
 	BaseEntry,
 	BaseEntryRaw,
@@ -15,7 +15,7 @@ import type {
 	PostEntry,
 	ReviewEntry,
 	ServiceEntry,
-} from "$types/contentful";
+} from "#types/contentful.ts";
 import { getJsonLd } from "./jsonld";
 import { markdownToHtml, splitText } from "./utils";
 

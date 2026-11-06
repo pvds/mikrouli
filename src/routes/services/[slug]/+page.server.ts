@@ -3,7 +3,7 @@ import {
 	getService,
 	getServiceEntries,
 	getServices,
-} from "$lib/server/content";
+} from "#lib/server/content.ts";
 import type { EntryGenerator, PageServerLoad } from "./$types";
 
 export const entries: EntryGenerator = async () => {

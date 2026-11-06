@@ -1,8 +1,8 @@
 <script lang="ts">
+import { IMAGE_EXT, IMAGE_MIME_TYPE, IMAGE_SIZES } from "#config";
+import metadata from "#data/generated/meta/images.json";
+import type { ImageMeta } from "#types/content.ts";
 import { resolve } from "$app/paths";
-import { IMAGE_EXT, IMAGE_MIME_TYPE, IMAGE_SIZES } from "$config";
-import metadata from "$data/generated/meta/images.json";
-import type { ImageMeta } from "$types/content";
 
 interface Props {
 	image: string;
@@ -30,7 +30,7 @@ let {
 	positionClass = "object-center",
 }: Props = $props();
 
-const base = resolve("/");
+const base = resolve("");
 const IMAGE_DIR = "images";
 const POSITION_CLASSES = "absolute object-cover";
 

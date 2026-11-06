@@ -8,22 +8,22 @@
 
 ## Commands
 
-| Task | Command |
-|------|---------|
-| Setup workspace | `bun run setup` |
-| Sync Svelte types | `bun run sync` |
-| Lint + type-check | `bun run check:lint` |
-| Format check | `bun run check:format` |
-| Write format fixes | `bun run write` |
-| Full local check | `bun run check` |
-| CI checks | `bun run check:ci` |
-| Unit tests | `bun run test:unit` |
-| Build (staging) | `bun run build` |
-| Build (production) | `bun run build:prod` |
-| Production HTML validation | `bun run test:html` |
-| Accessibility test | `bun run test:axe --minimal --prod` |
-| Lighthouse test | `bun run test:lighthouse --prod` |
-| Refresh CMS + assets | `bun run content` |
+| Task                       | Command                             |
+| -------------------------- | ----------------------------------- |
+| Setup workspace            | `bun run setup`                     |
+| Sync Svelte types          | `bun run sync`                      |
+| Lint + type-check          | `bun run check:lint`                |
+| Format check               | `bun run check:format`              |
+| Write format fixes         | `bun run write`                     |
+| Full local check           | `bun run check`                     |
+| CI checks                  | `bun run check:ci`                  |
+| Unit tests                 | `bun run test:unit`                 |
+| Build (staging)            | `bun run build`                     |
+| Build (production)         | `bun run build:prod`                |
+| Production HTML validation | `bun run test:html`                 |
+| Accessibility test         | `bun run test:axe --minimal --prod` |
+| Lighthouse test            | `bun run test:lighthouse --prod`    |
+| Refresh CMS + assets       | `bun run content`                   |
 
 ## Working Rules
 
@@ -61,13 +61,13 @@
 
 ## External References
 
-| Need | File |
-|------|------|
-| Setup and scripts | `README.md` |
-| CI/CD behavior | `docs/workflow.md` |
-| Brand summary | `docs/brand.md` |
-| Copy and tone guidance | `docs/copy.md` |
-| Voice profile | `docs/voice-profile.md` |
-| JSDoc patterns | `docs/jsdoc.md` |
-| CI workflow source | `.github/workflows/ci.yml` |
+| Need                           | File                                                   |
+| ------------------------------ | ------------------------------------------------------ |
+| Setup and scripts              | `README.md`                                            |
+| CI/CD behavior                 | `docs/workflow.md`                                     |
+| Brand summary                  | `docs/brand.md`                                        |
+| Copy and tone guidance         | `docs/copy.md`                                         |
+| Voice profile                  | `docs/voice-profile.md`                                |
+| JSDoc patterns                 | `docs/jsdoc.md`                                        |
+| CI workflow source             | `.github/workflows/ci.yml`                             |
 | Read-only external skill files | `.github/instructions/external-skills.instructions.md` |

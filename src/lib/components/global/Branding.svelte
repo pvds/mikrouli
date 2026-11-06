@@ -1,11 +1,11 @@
 <script lang="ts">
+import { ORG_NAME, ORG_NAME_SUFFIX } from "#config";
+import Logo from "#visuals/Logo.svelte";
 import { resolve } from "$app/paths";
-import { ORG_NAME, ORG_NAME_SUFFIX } from "$config";
-import Logo from "$visuals/Logo.svelte";
 </script>
 
 <div>
-	<a class="flex gap-3 items-center" href="{resolve('/')}"
+	<a class="flex gap-3 items-center" href="{resolve('')}"
 	   aria-label="Go to Mikrouli homepage">
 		<Logo classes="relative bottom-[3px] size-11 fill-primary-light"/>
 		<div class="relative top-[-6px] flex items-baseline">

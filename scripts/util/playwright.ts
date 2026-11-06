@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import type { Browser, Page } from "playwright";
 import { chromium } from "playwright";
-import { logDebug, logError, logSuccess } from "$util/log";
+import { logDebug, logError, logSuccess } from "#util/log.ts";
 import { runCommand } from "./process";
 
 const chromeTestFlags = [

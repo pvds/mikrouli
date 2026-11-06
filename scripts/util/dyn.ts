@@ -16,7 +16,7 @@ import {
 	IMAGES_FILE,
 	JSON_OUTPUT_DIR,
 	REPORTS_DIR,
-} from "$config";
+} from "#config";
 
 // Paths
 const BASE_DIR = process.env.BASE_DIR || process.cwd();

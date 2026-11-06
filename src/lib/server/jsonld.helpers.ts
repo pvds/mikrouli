@@ -6,9 +6,9 @@ import {
 	ORG_NAME,
 	SEO_USE_AGGREGATE_RATING,
 	URL_BASE_PRODUCTION,
-} from "$config";
-import reviewItems from "$data/generated/reviews.json";
-import type { ImageField, ReviewEntry } from "$types/contentful";
+} from "#config";
+import reviewItems from "#data/generated/reviews.json";
+import type { ImageField, ReviewEntry } from "#types/contentful.ts";
 import { getImageName } from "../helpers/image";
 
 type ExtendedImageObject = ImageObject & { "@context": string };

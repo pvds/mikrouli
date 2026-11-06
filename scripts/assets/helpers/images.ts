@@ -7,14 +7,14 @@ import {
 	IMAGE_EXTENSIONS,
 	IMAGE_FILENAME_TEMPLATE,
 	IMAGE_SIZES,
-} from "$config";
+} from "#config";
 import {
 	CPU_COUNT,
 	IMAGE_INPUT_PATH_RESOLVED,
 	IMAGE_OUTPUT_PATH_RESOLVED,
-} from "$util/dyn";
-import { directoryExists, fileExists, prepareDir } from "$util/file";
-import { pLimit } from "$util/limit";
+} from "#util/dyn.ts";
+import { directoryExists, fileExists, prepareDir } from "#util/file.ts";
+import { pLimit } from "#util/limit.ts";
 import {
 	logDebug,
 	logError,
@@ -22,10 +22,10 @@ import {
 	logInfo,
 	logMessage,
 	logSuccess,
-} from "$util/log";
-import { measure } from "$util/measure";
-import { safeIncrement } from "$util/process";
-import { escapeRegex } from "$util/regex";
+} from "#util/log.ts";
+import { measure } from "#util/measure.ts";
+import { safeIncrement } from "#util/process.ts";
+import { escapeRegex } from "#util/regex.ts";
 import { writeMetadata } from "./metadata";
 
 interface ProcessImagesOptions {

@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import ContentSection from "$layout/ContentSection.svelte";
-import type { SectionSize } from "$types/content";
-import type { ImageField } from "$types/contentful";
+import ContentSection from "#layout/ContentSection.svelte";
+import type { SectionSize } from "#types/content.ts";
+import type { ImageField } from "#types/contentful.ts";
 
 type SectionLike = {
 	id?: string | number;

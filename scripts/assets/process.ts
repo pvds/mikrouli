@@ -1,6 +1,6 @@
-import { IS_CMS, IS_FORCE, IS_LOCAL } from "$util/dyn";
-import { logError, logWarn } from "$util/log";
-import { setupGracefulShutdown } from "$util/process";
+import { IS_CMS, IS_FORCE, IS_LOCAL } from "#util/dyn.ts";
+import { logError, logWarn } from "#util/log.ts";
+import { setupGracefulShutdown } from "#util/process.ts";
 import { processImages } from "./helpers/images";
 
 setupGracefulShutdown();

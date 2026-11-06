@@ -1,12 +1,12 @@
 <script lang="ts">
 import { onMount } from "svelte";
-import { U_NBSP } from "$config";
-import Hero from "$layout/Hero.svelte";
-import Outro from "$layout/Outro.svelte";
-import PageSections from "$layout/PageSections.svelte";
-import TeaserSection from "$layout/TeaserSection.svelte";
-import { formatDate } from "$lib/helpers/date.js";
-import { getImageName } from "$lib/helpers/image.js";
+import { U_NBSP } from "#config";
+import Hero from "#layout/Hero.svelte";
+import Outro from "#layout/Outro.svelte";
+import PageSections from "#layout/PageSections.svelte";
+import TeaserSection from "#layout/TeaserSection.svelte";
+import { formatDate } from "#lib/helpers/date.ts";
+import { getImageName } from "#lib/helpers/image.ts";
 import type { PageProps } from "./$types";
 
 let { data }: PageProps = $props();

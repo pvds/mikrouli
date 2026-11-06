@@ -266,9 +266,9 @@ function first(items) {
 
 /** @type {Props} */
 let props = {
-	classes: 'my-class',
+	classes: "my-class",
 	children: null,
-	extra: { id: 'xyz', description: 'Custom type usage' },
+	extra: { id: "xyz", description: "Custom type usage" },
 };
 
 const { classes, children, extra } = props;
@@ -280,9 +280,9 @@ const { classes, children, extra } = props;
 function processProps(inputProps) {
 	console.log(`Classes: ${inputProps.classes}`);
 	if (inputProps.children) {
-		console.log('Has snippet:', inputProps.children);
+		console.log("Has snippet:", inputProps.children);
 	}
-	console.log('Extra:', inputProps.extra);
+	console.log("Extra:", inputProps.extra);
 }
 ```
 
