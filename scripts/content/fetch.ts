@@ -1,14 +1,14 @@
 import path from "node:path";
 import type { CreateClientParams } from "contentful";
 import { createClient } from "contentful";
-import { CONTENT_TYPES } from "$config";
+import { CONTENT_TYPES } from "#config";
 import {
 	CONTENTFUL_ACCESS_TOKEN,
 	CONTENTFUL_SPACE_ID,
 	IS_FORCE,
 	IS_PROD,
-} from "$util/dyn";
-import { logError, logInfo, logSuccess, logWarn } from "$util/log";
+} from "#util/dyn.ts";
+import { logError, logInfo, logSuccess, logWarn } from "#util/log.ts";
 import { processContentfulData } from "./process";
 
 if (!CONTENTFUL_SPACE_ID || !CONTENTFUL_ACCESS_TOKEN) {

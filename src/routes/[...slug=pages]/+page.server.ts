@@ -1,10 +1,10 @@
-import { PARAMS_PAGES_EXCLUDE } from "$config";
+import { PARAMS_PAGES_EXCLUDE } from "#config";
 import {
 	getPage,
 	getPageEntries,
 	getSeo,
 	getServices,
-} from "$lib/server/content";
+} from "#lib/server/content.ts";
 import type { EntryGenerator, PageServerLoad } from "./$types";
 
 export const entries: EntryGenerator = async () => {

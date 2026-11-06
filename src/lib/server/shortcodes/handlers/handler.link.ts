@@ -1,5 +1,5 @@
-import { BUTTON_THEME } from "$config";
-import type { CtaTheme } from "$types/content";
+import { BUTTON_THEME } from "#config";
+import type { CtaTheme } from "#types/content.ts";
 import { svgIcon } from "../../../helpers/icon";
 import { isExternalUrl } from "../../../helpers/url";
 

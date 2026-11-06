@@ -4,7 +4,7 @@ import {
 	getReviews,
 	getSeo,
 	getServices,
-} from "$lib/server/content";
+} from "#lib/server/content.ts";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({ route }) => {

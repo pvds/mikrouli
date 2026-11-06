@@ -1,6 +1,6 @@
 <script lang="ts">
+import Hero from "#layout/Hero.svelte";
 import { page } from "$app/state";
-import Hero from "$layout/Hero.svelte";
 </script>
 
 <Hero title={page.status.toString()}>

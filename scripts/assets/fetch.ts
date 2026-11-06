@@ -4,11 +4,11 @@ import {
 	IMAGE_INPUT_PATH_RESOLVED,
 	IMAGES_JSON_OUTPUT_PATH_RESOLVED,
 	IS_CMS,
-} from "$util/dyn";
-import { getAssetFileName, prepareDir } from "$util/file";
-import { pLimit } from "$util/limit";
-import { logDebug, logError, logInfo, logSuccess, logWarn } from "$util/log";
-import { withRetry } from "$util/retry";
+} from "#util/dyn.ts";
+import { getAssetFileName, prepareDir } from "#util/file.ts";
+import { pLimit } from "#util/limit.ts";
+import { logDebug, logError, logInfo, logSuccess, logWarn } from "#util/log.ts";
+import { withRetry } from "#util/retry.ts";
 
 if (IS_CMS)
 	await syncImages(

@@ -1,4 +1,4 @@
-import { URL_BASE_PRODUCTION, URL_BASE_STAGING } from "$config";
+import { URL_BASE_PRODUCTION, URL_BASE_STAGING } from "#config";
 
 export const isExternalUrl = (url: string): boolean | null => {
 	const INTERNAL_URL_BASES = [URL_BASE_STAGING, URL_BASE_PRODUCTION];

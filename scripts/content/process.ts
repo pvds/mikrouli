@@ -12,13 +12,13 @@ import type {
 	SectionEntry,
 	SectionFields,
 	ServiceEntry,
-} from "$lib/types/contentful";
+} from "#lib/types/contentful.ts";
 import type {
 	ContentfulAssetData,
 	ContentfulEntryData,
 	ContentfulFileData,
-} from "$types/contentful-runtime";
-import { getAssetFileName } from "$util/file";
+} from "#types/contentful-runtime.ts";
+import { getAssetFileName } from "#util/file.ts";
 
 interface ParsedEntry {
 	meta: Metadata;

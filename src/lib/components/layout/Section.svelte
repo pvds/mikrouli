@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { ClassValue } from "svelte/elements";
-import { SPACING_X_CLASSES } from "$config";
-import type { SectionTheme } from "$types/content";
-import WaveSvg from "$visuals/WaveSvg.svelte";
+import { SPACING_X_CLASSES } from "#config";
+import type { SectionTheme } from "#types/content.ts";
+import WaveSvg from "#visuals/WaveSvg.svelte";
 
 interface Props {
 	element?: "section" | "div";

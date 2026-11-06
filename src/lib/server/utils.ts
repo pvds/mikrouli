@@ -12,7 +12,7 @@ export const processSync = <T>(
 };
 
 export const prependBasePath = (content: string): string => {
-	return content.replace(/href="\/(?!\/)(.*?)"/g, `href="${resolve("/")}$1"`);
+	return content.replace(/href="\/(?!\/)(.*?)"/g, `href="${resolve("")}$1"`);
 };
 
 export const splitText = (text: string, identifier = "<hr>"): string[] => {

@@ -1,5 +1,5 @@
-import type { SEOProps } from "$global/seo/Seo.svelte.types";
-import type { ContentFulContentType } from "$types/contentful";
+import type { SEOProps } from "#global/seo/Seo.svelte.types.ts";
+import type { ContentFulContentType } from "#types/contentful.ts";
 
 // ##################################################
 // Configuration

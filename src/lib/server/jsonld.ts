@@ -22,9 +22,9 @@ import {
 	OWNER_SAMEAS,
 	SITE_PREVIEW_URL,
 	URL_BASE_PRODUCTION,
-} from "$config";
-import type { JsonLdType } from "$global/seo/Seo.svelte.types";
-import type { PageEntry, PostEntry, ServiceEntry } from "$types/contentful";
+} from "#config";
+import type { JsonLdType } from "#global/seo/Seo.svelte.types.ts";
+import type { PageEntry, PostEntry, ServiceEntry } from "#types/contentful.ts";
 import {
 	getAggregateRating,
 	getImage,

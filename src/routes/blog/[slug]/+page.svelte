@@ -1,14 +1,14 @@
 <script lang="ts">
 import { onMount } from "svelte";
+import { U_NBSP } from "#config";
+import Hero from "#layout/Hero.svelte";
+import Outro from "#layout/Outro.svelte";
+import PageSections from "#layout/PageSections.svelte";
+import Section from "#layout/Section.svelte";
+import TeaserSection from "#layout/TeaserSection.svelte";
+import { formatDate } from "#lib/helpers/date.ts";
+import { getImageName } from "#lib/helpers/image.ts";
 import { resolve } from "$app/paths";
-import { U_NBSP } from "$config";
-import Hero from "$layout/Hero.svelte";
-import Outro from "$layout/Outro.svelte";
-import PageSections from "$layout/PageSections.svelte";
-import Section from "$layout/Section.svelte";
-import TeaserSection from "$layout/TeaserSection.svelte";
-import { formatDate } from "$lib/helpers/date.js";
-import { getImageName } from "$lib/helpers/image.js";
 import type { PageProps } from "./$types";
 
 let { data }: PageProps = $props();
@@ -44,17 +44,27 @@ onMount(() => {
 {#if post.prev || post.next}
 	<Section innerClasses="flex flex-wrap justify-between">
 		{#if post.prev}
-			<a href={resolve(`/blog/${post.prev?.slug}`)}
-			   class="inline-block group mr-auto pr-4 py-2 font-semibold md-mid:text-xl text-primary-darker hover:text-accent-dark">
-				<span class="inline-block mr-1 group-hover:animate-wiggle-left">&larr;
-				</span>{post.prev?.title}
+			<a
+				href={resolve(`blog/${post.prev?.slug}`)}
+				class="inline-block group mr-auto pr-4 py-2 font-semibold md-mid:text-xl text-primary-darker hover:text-accent-dark"
+			>
+				<span
+					class="inline-block mr-1 group-hover:animate-wiggle-left"
+				>←</span>
+
+				{post.prev?.title}
 			</a>
 		{/if}
 		{#if post.next}
-			<a href={resolve(`/blog/${post.next?.slug}`)}
-			   class="inline-block group ml-auto pl-4 py-2 font-semibold md-mid:text-xl text-primary-darker hover:text-accent-dark text-right">
-				{post.next?.title}<span
-				class="inline-block ml-1 group-hover:animate-wiggle-right">&rarr;</span>
+			<a
+				href={resolve(`blog/${post.next?.slug}`)}
+				class="inline-block group ml-auto pl-4 py-2 font-semibold md-mid:text-xl text-primary-darker hover:text-accent-dark text-right"
+			>
+				{post.next?.title}
+
+				<span
+					class="inline-block ml-1 group-hover:animate-wiggle-right"
+				>→</span>
 			</a>
 		{/if}
 	</Section>

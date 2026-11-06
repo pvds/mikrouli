@@ -4,16 +4,16 @@ import {
 	BOOKING_URL,
 	BUTTON_SIZE,
 	BUTTON_THEME,
-} from "$config";
-import { svgIcon } from "$lib/helpers/icon";
+} from "#config";
+import { svgIcon } from "#lib/helpers/icon.ts";
 import type {
 	BookingCta,
 	BookingType,
 	CtaIcon,
 	CtaSize,
 	CtaTheme,
-} from "$types/content";
-import Dialog from "$ui/Dialog.svelte";
+} from "#types/content.ts";
+import Dialog from "#ui/Dialog.svelte";
 
 interface Props {
 	type?: BookingType;

@@ -1,4 +1,4 @@
-import { URL_BASE_PRODUCTION, URL_BASE_STAGING } from "$config";
+import { URL_BASE_PRODUCTION, URL_BASE_STAGING } from "#config";
 
 const staticRules = `
 # Block private directories

@@ -1,10 +1,10 @@
 <script lang="ts">
+import { isCurrentPage } from "#lib/helpers/page.ts";
+import type { NavigationItem } from "#types/content.ts";
+import type { NavigationEntry } from "#types/contentful.ts";
+import BookingDialog from "#ui/BookingDialog.svelte";
+import WaveCss from "#visuals/WaveCss.svelte";
 import { resolve } from "$app/paths";
-import { isCurrentPage } from "$lib/helpers/page";
-import type { NavigationItem } from "$types/content";
-import type { NavigationEntry } from "$types/contentful";
-import BookingDialog from "$ui/BookingDialog.svelte";
-import WaveCss from "$visuals/WaveCss.svelte";
 import { toNavItems } from "../../helpers/nav.js";
 
 interface Props {
@@ -20,7 +20,7 @@ if (typeof window !== "undefined" && !hasNativePopoverSupport) {
 	void import("@oddbird/popover-polyfill");
 }
 
-const base = resolve("/");
+const base = resolve("");
 const navItemsBase = $derived(toNavItems(menu.fields.items));
 const navItemHome: NavigationItem = {
 	href: base,

@@ -1,7 +1,7 @@
 import type { Subprocess } from "bun";
-import { resolveIfExists } from "$util/file";
-import { logDebug, logInfo, logSuccess } from "$util/log";
-import { runCommand } from "$util/process";
+import { resolveIfExists } from "#util/file.ts";
+import { logDebug, logInfo, logSuccess } from "#util/log.ts";
+import { runCommand } from "#util/process.ts";
 
 export const startServer = async (
 	buildDir: string,

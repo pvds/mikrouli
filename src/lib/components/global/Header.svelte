@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import { onMount } from "svelte";
-import Section from "$layout/Section.svelte";
+import Section from "#layout/Section.svelte";
 
 interface Props {
 	children: Snippet;

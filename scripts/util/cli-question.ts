@@ -1,5 +1,5 @@
 import readline from "node:readline";
-import { logWarn } from "$util/log";
+import { logWarn } from "#util/log.ts";
 
 interface AskQuestionOptions {
 	required?: boolean;

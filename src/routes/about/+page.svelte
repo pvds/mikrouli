@@ -1,9 +1,9 @@
 <script lang="ts">
-import Hero from "$layout/Hero.svelte";
-import Outro from "$layout/Outro.svelte";
-import PageSections from "$layout/PageSections.svelte";
-import TeaserSection from "$layout/TeaserSection.svelte";
-import { getImageName } from "$lib/helpers/image.js";
+import Hero from "#layout/Hero.svelte";
+import Outro from "#layout/Outro.svelte";
+import PageSections from "#layout/PageSections.svelte";
+import TeaserSection from "#layout/TeaserSection.svelte";
+import { getImageName } from "#lib/helpers/image.ts";
 import type { PageProps } from "./$types";
 
 let { data }: PageProps = $props();

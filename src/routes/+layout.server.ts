@@ -1,4 +1,4 @@
-import { getNavigation, getSeo } from "$lib/server/content";
+import { getNavigation, getSeo } from "#lib/server/content.ts";
 import type { LayoutServerLoad } from "./$types";
 
 export const prerender = true;

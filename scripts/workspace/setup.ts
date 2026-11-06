@@ -1,5 +1,5 @@
 import path from "node:path";
-import { getEmptyEnvVariables, promptForMissingVariables } from "$util/env";
+import { getEmptyEnvVariables, promptForMissingVariables } from "#util/env.ts";
 import {
 	logError,
 	logHeader,
@@ -8,8 +8,8 @@ import {
 	logMessage,
 	logSuccess,
 	logWarn,
-} from "$util/log";
-import { runCommand } from "$util/process";
+} from "#util/log.ts";
+import { runCommand } from "#util/process.ts";
 
 const main = async (): Promise<void> => {
 	/**

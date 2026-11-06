@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import { ORG_NAME, ORG_SLOGAN } from "#config";
 import { asset, resolve } from "$app/paths";
 import { page } from "$app/state";
-import { ORG_NAME, ORG_SLOGAN } from "$config";
 import { checkSeo } from "./Seo.helper.js";
 import type { SEOProps } from "./Seo.svelte.types.js";
 
@@ -15,7 +15,7 @@ const constructTitle = (
 	category: string | undefined,
 	separator: string = " - ",
 ): string => {
-	const isHome = page.url.pathname === resolve("/");
+	const isHome = page.url.pathname === resolve("");
 	const normalize = (value: string | undefined) =>
 		value?.replace(/\s+/g, " ").trim() || "";
 	const truncate = (value: string, maxLength: number): string => {
@@ -53,10 +53,10 @@ let keywords: SEOProps["keywords"] = $derived(seo.keywords);
 let canonical: SEOProps["canonical"] = $derived(seo.canonical || page.url.href);
 let siteName: SEOProps["siteName"] = $derived(seo.siteName);
 let imageURL: SEOProps["imageURL"] = $derived(
-	seo.imageURL ? asset(`/${seo.imageURL}`) : undefined,
+	seo.imageURL ? asset(seo.imageURL) : undefined,
 );
 /** @type {SEOProps['logo']} */
-let logo = $derived(seo.logo ? asset(`/${seo.logo}`) : undefined);
+let logo = $derived(seo.logo ? asset(seo.logo) : undefined);
 /** @type {SEOProps['author']} */
 let author = $derived(seo.author);
 /** @type {SEOProps['type']} */

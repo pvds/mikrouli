@@ -8,13 +8,17 @@ import {
 	CPU_COUNT,
 	IS_MINIMAL,
 	IS_PROD,
-} from "$util/dyn";
-import { getAllHtmlFiles, resolveIfExists } from "$util/file";
-import { pLimit } from "$util/limit";
-import { logDebug, logError, logInfo, logSuccess } from "$util/log";
-import { measure } from "$util/measure";
-import { closeBrowser, launchBrowser, navigateToPage } from "$util/playwright";
-import { runCommand } from "$util/process";
+} from "#util/dyn.ts";
+import { getAllHtmlFiles, resolveIfExists } from "#util/file.ts";
+import { pLimit } from "#util/limit.ts";
+import { logDebug, logError, logInfo, logSuccess } from "#util/log.ts";
+import { measure } from "#util/measure.ts";
+import {
+	closeBrowser,
+	launchBrowser,
+	navigateToPage,
+} from "#util/playwright.ts";
+import { runCommand } from "#util/process.ts";
 
 const BUILD_DIR = IS_PROD
 	? BUILD_PATH_PRODUCTION_RESOLVED
